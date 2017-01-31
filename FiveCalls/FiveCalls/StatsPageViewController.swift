@@ -25,8 +25,10 @@ class StatsPageViewController : UIViewController, FinalPage {
     var viewModel: StatsViewModel? {
         didSet {
             if let vm = viewModel {
+                self.label.transform = self.label.transform.translatedBy(x: 0, y: 10)
                 self.label.text = self.label.text?.replacingOccurrences(of: "...", with: vm.formattedNumberOfCalls)
-                UIView.animate(withDuration: 1.75, animations: {
+                UIView.animate(withDuration: 1.25, animations: {
+                    self.label.transform = .identity
                     self.label.alpha = 1
                 })
             }

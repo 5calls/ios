@@ -9,8 +9,27 @@
 import UIKit
 
 class IssuesViewController : UITableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        fetchIssues()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+//        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
+//            
+//        }
+    }
+    
+    private func fetchIssues() {
+        let operation = FetchIssuesOperation(zipCode: nil)
+        operation.completionBlock = { [weak self] in
+            print("Issues: \(operation.issuesList)")
+        }
+        OperationQueue.main.addOperation(operation)
     }
 }

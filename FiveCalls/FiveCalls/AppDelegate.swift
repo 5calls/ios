@@ -16,28 +16,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setAppearance()
         
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
+        if true || !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
         
         return true
     }
     
+    func transitionTo(rootViewController viewController: UIViewController) {
+        guard let window = self.window else { return }
+        guard window.rootViewController != viewController else { return }
+        
+        let snapshot = window.snapshotView(afterScreenUpdates: false)!
+        viewController.view.addSubview(snapshot)
+        window.rootViewController = viewController
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            snapshot.alpha = 0
+            snapshot.frame.origin.y += window.frame.size.height
+            snapshot.transform = snapshot.transform.scaledBy(x: 0.8, y: 0.8)
+        }) { completed in
+            snapshot.removeFromSuperview()
+        }
+    }
+    
     func showWelcome() {
         guard let window = self.window else { return }
         let welcomeStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
         let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
-        let mainVC = window.rootViewController
+        let mainVC = window.rootViewController!
         welcomeVC.completionBlock = {
             UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue)
-            
-            UIView.transition(with: window,
-                              duration: 0.5,
-                              options: [.transitionCurlUp],
-                              animations: { 
-                window.rootViewController = mainVC
-            }, completion: nil)
-
+            self.transitionTo(rootViewController: mainVC)
         }
         window.rootViewController = welcomeVC
     }

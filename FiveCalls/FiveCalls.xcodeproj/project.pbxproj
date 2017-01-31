@@ -19,6 +19,12 @@
 		B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762601E40470100D63D62 /* IssuesViewController.swift */; };
 		B5E762631E40470A00D63D62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E762621E40470A00D63D62 /* Main.storyboard */; };
 		B5E762651E40480300D63D62 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762641E40480300D63D62 /* UserDefaultsKeys.swift */; };
+		B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762661E40CBB600D63D62 /* EditLocationViewController.swift */; };
+		B5E762691E40D63800D63D62 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762681E40D63800D63D62 /* Issue.swift */; };
+		B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7626A1E40D6DD00D63D62 /* Contact.swift */; };
+		B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */; };
+		B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */; };
+		B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762741E40E39000D63D62 /* IssuesList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		B5E762601E40470100D63D62 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
 		B5E762621E40470A00D63D62 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B5E762641E40480300D63D62 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		B5E762661E40CBB600D63D62 /* EditLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
+		B5E762681E40D63800D63D62 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		B5E7626A1E40D6DD00D63D62 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
+		B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchIssuesOperation.swift; sourceTree = "<group>"; };
+		B5E762741E40E39000D63D62 /* IssuesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,21 +80,59 @@
 		B52805131E3FA94D00EE832A /* FiveCalls */ = {
 			isa = PBXGroup;
 			children = (
+				B5E7626F1E40D74900D63D62 /* Operations */,
+				B5E7626E1E40D73600D63D62 /* View Controllers */,
+				B5E7626D1E40D72D00D63D62 /* View Models */,
+				B5E7626C1E40D72400D63D62 /* Models */,
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
-				B52805161E3FA94D00EE832A /* WelcomeViewController.swift */,
+				B5E762641E40480300D63D62 /* UserDefaultsKeys.swift */,
 				B528051B1E3FA94D00EE832A /* Assets.xcassets */,
 				B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */,
 				B52805181E3FA94D00EE832A /* Welcome.storyboard */,
 				B5E762621E40470A00D63D62 /* Main.storyboard */,
 				B52805201E3FA94D00EE832A /* Info.plist */,
-				B5E762581E40374600D63D62 /* FetchStatsOperation.swift */,
-				B5E7625A1E4037B400D63D62 /* BaseOperation.swift */,
-				B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */,
-				B5E7625E1E403C4700D63D62 /* StatsPageViewController.swift */,
-				B5E762601E40470100D63D62 /* IssuesViewController.swift */,
-				B5E762641E40480300D63D62 /* UserDefaultsKeys.swift */,
 			);
 			path = FiveCalls;
+			sourceTree = "<group>";
+		};
+		B5E7626C1E40D72400D63D62 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */,
+				B5E762681E40D63800D63D62 /* Issue.swift */,
+				B5E7626A1E40D6DD00D63D62 /* Contact.swift */,
+				B5E762741E40E39000D63D62 /* IssuesList.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B5E7626D1E40D72D00D63D62 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5E762601E40470100D63D62 /* IssuesViewController.swift */,
+				B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */,
+			);
+			name = "View Models";
+			sourceTree = "<group>";
+		};
+		B5E7626E1E40D73600D63D62 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B5E762661E40CBB600D63D62 /* EditLocationViewController.swift */,
+				B52805161E3FA94D00EE832A /* WelcomeViewController.swift */,
+				B5E7625E1E403C4700D63D62 /* StatsPageViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B5E7626F1E40D74900D63D62 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				B5E762581E40374600D63D62 /* FetchStatsOperation.swift */,
+				B5E7625A1E4037B400D63D62 /* BaseOperation.swift */,
+				B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */,
+			);
+			name = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,13 +209,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
+				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
 				B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */,
+				B5E762691E40D63800D63D62 /* Issue.swift in Sources */,
+				B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */,
+				B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */,
 				B5E762651E40480300D63D62 /* UserDefaultsKeys.swift in Sources */,
 				B5E7625F1E403C4700D63D62 /* StatsPageViewController.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
+				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

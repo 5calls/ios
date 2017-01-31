@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Issues View Controller-->
         <scene sceneID="URD-JJ-gfS">
             <objects>
-                <tableViewController id="GRZ-cT-aT3" customClass="IssuesViewController" sceneMemberID="viewController">
+                <tableViewController id="GRZ-cT-aT3" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xqk-9j-kez">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,12 +29,19 @@
                                         <constraint firstAttribute="height" constant="20" id="0Uo-MZ-aR1"/>
                                     </constraints>
                                 </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5calls-logotype" translatesAutoresizingMaskIntoConstraints="NO" id="fft-Ag-RIT">
+                                    <rect key="frame" x="8" y="28" width="359" height="57"/>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="fft-Ag-RIT" firstAttribute="trailing" secondItem="Mi6-Us-zfc" secondAttribute="trailingMargin" id="9dz-gk-u11"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="34" id="Bwu-Eb-gFB"/>
                                 <constraint firstItem="PdA-pk-ZlR" firstAttribute="top" secondItem="Mi6-Us-zfc" secondAttribute="top" id="Kbl-b6-oBQ"/>
                                 <constraint firstItem="PdA-pk-ZlR" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leading" id="MgF-he-4yC"/>
                                 <constraint firstAttribute="trailing" secondItem="PdA-pk-ZlR" secondAttribute="trailing" id="RdY-ub-iIh"/>
+                                <constraint firstItem="fft-Ag-RIT" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leadingMargin" id="bmg-NQ-TnJ"/>
+                                <constraint firstItem="fft-Ag-RIT" firstAttribute="top" secondItem="PdA-pk-ZlR" secondAttribute="bottom" constant="8" id="fBd-FE-TSF"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -74,4 +82,7 @@
             <point key="canvasLocation" x="-961" y="-226"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="5calls-logotype" width="567" height="158"/>
+    </resources>
 </document>
