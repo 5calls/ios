@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805141E3FA94D00EE832A /* AppDelegate.swift */; };
 		B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805161E3FA94D00EE832A /* WelcomeViewController.swift */; };
-		B528051A1E3FA94D00EE832A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Main.storyboard */; };
+		B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Welcome.storyboard */; };
 		B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B528051B1E3FA94D00EE832A /* Assets.xcassets */; };
 		B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */; };
+		B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762581E40374600D63D62 /* FetchStatsOperation.swift */; };
+		B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625A1E4037B400D63D62 /* BaseOperation.swift */; };
+		B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */; };
+		B5E7625F1E403C4700D63D62 /* StatsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625E1E403C4700D63D62 /* StatsPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B52805111E3FA94D00EE832A /* FiveCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52805141E3FA94D00EE832A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B52805161E3FA94D00EE832A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		B52805191E3FA94D00EE832A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B52805191E3FA94D00EE832A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Welcome.storyboard; sourceTree = "<group>"; };
 		B528051B1E3FA94D00EE832A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B528051E1E3FA94D00EE832A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B52805201E3FA94D00EE832A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5E762581E40374600D63D62 /* FetchStatsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatsOperation.swift; sourceTree = "<group>"; };
+		B5E7625A1E4037B400D63D62 /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
+		B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
+		B5E7625E1E403C4700D63D62 /* StatsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +64,14 @@
 			children = (
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
 				B52805161E3FA94D00EE832A /* WelcomeViewController.swift */,
-				B52805181E3FA94D00EE832A /* Main.storyboard */,
+				B52805181E3FA94D00EE832A /* Welcome.storyboard */,
 				B528051B1E3FA94D00EE832A /* Assets.xcassets */,
 				B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */,
 				B52805201E3FA94D00EE832A /* Info.plist */,
+				B5E762581E40374600D63D62 /* FetchStatsOperation.swift */,
+				B5E7625A1E4037B400D63D62 /* BaseOperation.swift */,
+				B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */,
+				B5E7625E1E403C4700D63D62 /* StatsPageViewController.swift */,
 			);
 			path = FiveCalls;
 			sourceTree = "<group>";
@@ -126,7 +138,7 @@
 			files = (
 				B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */,
 				B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */,
-				B528051A1E3FA94D00EE832A /* Main.storyboard in Resources */,
+				B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
+				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
+				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
+				B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */,
+				B5E7625F1E403C4700D63D62 /* StatsPageViewController.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,12 +161,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B52805181E3FA94D00EE832A /* Main.storyboard */ = {
+		B52805181E3FA94D00EE832A /* Welcome.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B52805191E3FA94D00EE832A /* Base */,
 			);
-			name = Main.storyboard;
+			name = Welcome.storyboard;
 			sourceTree = "<group>";
 		};
 		B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */ = {
@@ -300,6 +316,7 @@
 				B52805251E3FA94D00EE832A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
