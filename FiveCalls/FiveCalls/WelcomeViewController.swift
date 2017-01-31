@@ -13,6 +13,8 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageContainer: UIView!
     
+    var completionBlock = {}
+    
     lazy var pageController: UIPageViewController = {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -65,6 +67,11 @@ extension WelcomeViewController : UIPageViewControllerDataSource {
         guard let storyboard = self.storyboard else { fatalError() }
         let page = storyboard.instantiateViewController(withIdentifier: "Page\(index + 1)")
         page.view.tag = index
+        
+        if var finalPage = page as? FinalPage {
+            finalPage.didFinishBlock = completionBlock
+        }
+        
         return page
     }
     

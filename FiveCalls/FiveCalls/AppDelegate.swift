@@ -13,11 +13,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         setAppearance()
+        
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
+            showWelcome()
+        }
+        
         return true
+    }
+    
+    func showWelcome() {
+        guard let window = self.window else { return }
+        let welcomeStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
+        let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
+        let mainVC = window.rootViewController
+        welcomeVC.completionBlock = {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue)
+            
+            UIView.transition(with: window,
+                              duration: 0.5,
+                              options: [.transitionCurlUp],
+                              animations: { 
+                window.rootViewController = mainVC
+            }, completion: nil)
+
+        }
+        window.rootViewController = welcomeVC
     }
     
     func setAppearance() {

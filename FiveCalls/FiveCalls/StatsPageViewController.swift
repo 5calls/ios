@@ -8,7 +8,18 @@
 
 import UIKit
 
-class StatsPageViewController : UIViewController {
+protocol FinalPage {
+    var didFinishBlock: ((Void) -> Void)? { get set }
+}
+
+class StatsPageViewController : UIViewController, FinalPage {
+    
+    var didFinishBlock: ((Void) -> Void)?
+    
+    @IBAction func getStartedTapped(_ sender: Any) {
+        didFinishBlock?()
+    }
+    
     @IBOutlet weak var label: UILabel!
     
     var viewModel: StatsViewModel? {
