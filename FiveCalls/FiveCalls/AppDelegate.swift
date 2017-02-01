@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setAppearance()
         
-        if true || !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
         

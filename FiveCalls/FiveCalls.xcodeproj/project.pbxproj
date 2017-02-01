@@ -12,6 +12,8 @@
 		B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Welcome.storyboard */; };
 		B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B528051B1E3FA94D00EE832A /* Assets.xcassets */; };
 		B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */; };
+		B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F51E41772D00966B7D /* IssueCell.swift */; };
+		B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F71E41779300966B7D /* CheckboxView.swift */; };
 		B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762581E40374600D63D62 /* FetchStatsOperation.swift */; };
 		B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625A1E4037B400D63D62 /* BaseOperation.swift */; };
 		B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */; };
@@ -35,6 +37,8 @@
 		B528051B1E3FA94D00EE832A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B528051E1E3FA94D00EE832A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B52805201E3FA94D00EE832A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5CA63F51E41772D00966B7D /* IssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCell.swift; sourceTree = "<group>"; };
+		B5CA63F71E41779300966B7D /* CheckboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		B5E762581E40374600D63D62 /* FetchStatsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatsOperation.swift; sourceTree = "<group>"; };
 		B5E7625A1E4037B400D63D62 /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
 		B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 		B52805131E3FA94D00EE832A /* FiveCalls */ = {
 			isa = PBXGroup;
 			children = (
+				B5CA63F41E41772100966B7D /* Views */,
 				B5E7626F1E40D74900D63D62 /* Operations */,
 				B5E7626E1E40D73600D63D62 /* View Controllers */,
 				B5E7626D1E40D72D00D63D62 /* View Models */,
@@ -93,6 +98,15 @@
 				B52805201E3FA94D00EE832A /* Info.plist */,
 			);
 			path = FiveCalls;
+			sourceTree = "<group>";
+		};
+		B5CA63F41E41772100966B7D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5CA63F51E41772D00966B7D /* IssueCell.swift */,
+				B5CA63F71E41779300966B7D /* CheckboxView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		B5E7626C1E40D72400D63D62 /* Models */ = {
@@ -145,6 +159,7 @@
 				B528050D1E3FA94D00EE832A /* Sources */,
 				B528050E1E3FA94D00EE832A /* Frameworks */,
 				B528050F1E3FA94D00EE832A /* Resources */,
+				B5CA63F91E418B8E00966B7D /* Reveal */,
 			);
 			buildRules = (
 			);
@@ -204,6 +219,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B5CA63F91E418B8E00966B7D /* Reveal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Reveal;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B528050D1E3FA94D00EE832A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -214,6 +246,7 @@
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
 				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
+				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
 				B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */,
 				B5E762691E40D63800D63D62 /* Issue.swift in Sources */,
 				B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */,
@@ -223,6 +256,7 @@
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
+				B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

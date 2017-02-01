@@ -14,7 +14,7 @@
         <scene sceneID="URD-JJ-gfS">
             <objects>
                 <tableViewController id="GRZ-cT-aT3" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xqk-9j-kez">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xqk-9j-kez">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,13 +45,41 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gyL-0a-wGJ">
-                                <rect key="frame" x="0.0" y="155" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="gyL-0a-wGJ" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="155" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="15" width="44" height="44"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="M00-0u-O9S"/>
+                                                <constraint firstAttribute="width" constant="44" id="sge-sG-n0s"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppose Muslim Travel Ban" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-nv-0bt">
+                                            <rect key="frame" x="60" y="27" width="211.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="7xd-WT-WNb"/>
+                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="leading" secondItem="wEs-9r-J66" secondAttribute="trailing" constant="8" id="FeY-Hp-huw"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="wEs-9r-J66" secondAttribute="leading" id="Izu-kz-OvP"/>
+                                        <constraint firstItem="wEs-9r-J66" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="RLQ-9O-x19"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pdL-nv-0bt" secondAttribute="trailing" constant="20" id="VuS-Le-l6T"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="checkboxView" destination="wEs-9r-J66" id="vnx-78-vuF"/>
+                                    <outlet property="titleLabel" destination="pdL-nv-0bt" id="fEW-mJ-On2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -10,6 +10,8 @@ import UIKit
 
 class IssuesViewController : UITableViewController {
     
+    var issues: [Issue]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -28,8 +30,25 @@ class IssuesViewController : UITableViewController {
     private func fetchIssues() {
         let operation = FetchIssuesOperation(zipCode: nil)
         operation.completionBlock = { [weak self] in
-            print("Issues: \(operation.issuesList)")
+            if let issues = operation.issuesList?.issues {
+                self?.issues = issues
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
         }
         OperationQueue.main.addOperation(operation)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return issues?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as! IssueCell
+        if let issue = issues?[indexPath.row] {
+            cell.titleLabel.text = issue.name
+        }
+        return cell
     }
 }
