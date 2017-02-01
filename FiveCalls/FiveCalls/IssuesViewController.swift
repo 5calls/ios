@@ -14,9 +14,14 @@ class IssuesViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // edgesForExtendedLayout = []
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         fetchIssues()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +43,10 @@ class IssuesViewController : UITableViewController {
             }
         }
         OperationQueue.main.addOperation(operation)
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
