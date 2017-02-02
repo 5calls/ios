@@ -15,7 +15,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //TODO: set zip based on whatever user last set.
+        //TODO: need a function/extension that handles deciding between zipcode or location
         if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
             locationButton.setTitle(zip, for: .normal)
         }

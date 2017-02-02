@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+//import GLKit
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String)
@@ -15,11 +16,23 @@ protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController)
 }
 
-class EditLocationViewController : UIViewController {
+class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     weak var delegate: EditLocationViewControllerDelegate?
-    
+    private var lookupLocation: CLLocation?
+    @IBOutlet weak var addressLabel: UILabel!
+
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        return manager
+    }()
+
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var zipCodeTextField: UITextField!
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,7 +42,7 @@ class EditLocationViewController : UIViewController {
     }
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
-        
+        locationManager.requestWhenInUseAuthorization()
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
@@ -37,6 +50,7 @@ class EditLocationViewController : UIViewController {
     }
     
     @IBAction func submitZipCodeTapped(_ sender: Any) {
+        //TODO: delete location if present
         if validateZipCode() {
             delegate?.editLocationViewController(self, didSelectZipCode: zipCodeTextField.text!)
         }
@@ -55,4 +69,34 @@ class EditLocationViewController : UIViewController {
         
         return false
     }
+
+    //Mark: CLLocationManagerDelegate methods
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        manager.startUpdatingLocation()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("-----------------\n\(locations)\n-----------------\n")
+
+        guard lookupLocation == nil else {
+            return
+        }
+
+        if let location = locations.first {
+            print("should only do this once")
+            //TODO: persist this to userdefaults
+            lookupLocation = location
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+            //TODO: delete zip if present
+                if let lines = placemarks?.first?.addressDictionary?["FormattedAddressLines"] as? [String] {
+                    let address = lines.joined(separator: "\n")
+                    self.addressLabel.text = address
+                    self.view.layoutIfNeeded()
+                }
+            })
+        }
+    }
+
 }
