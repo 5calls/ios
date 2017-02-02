@@ -19,7 +19,11 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         //TODO: need a function/extension that handles deciding between zipcode or location
         if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
             locationButton.setTitle(zip, for: .normal)
+        } else if let locationInfo = UserDefaults.standard.value(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String: Any] {
+            let displayName = (locationInfo["displayName"] as? String) ?? "Selected Location"
+            self.locationButton.setTitle(displayName, for: .normal)
         }
+
 
         let issuesVC = storyboard!.instantiateViewController(withIdentifier: "IssuesViewController") as! IssuesViewController
         addChildViewController(issuesVC)
@@ -67,12 +71,43 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String) {
         locationButton.setTitle(zip, for: .normal)
-        UserDefaults.standard.setValue(zip, forKey: UserDefaultsKeys.zipCode.rawValue)
-        NotificationCenter.default.post(name: .zipCodeChanged, object: nil)
+        updateWith(zipCode: zip)
         dismiss(animated: true, completion: nil)
     }
 
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocationCoordinate2D) {
+    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation) {
+        getLocationInfo(from: location) { locationInfo in
+            self.dismiss(animated: true, completion: nil)
+            self.updateWith(locationInfo: locationInfo)
+            self.locationButton.setTitle((locationInfo["displayName"] as? String) ?? "Selected Location", for: .normal)
+        }
+    }
 
+    //Mark: private functions
+    private func getLocationInfo(from location: CLLocation, completion: @escaping (([String: Any]) -> ())) {
+        let geocoder = CLGeocoder()
+        var locationInfo = [String: Any]()
+        locationInfo["longitude"] = location.coordinate.longitude
+        locationInfo["latitude"] = location.coordinate.latitude
+        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+            let prefix = placemarks?.first?.subThoroughfare ?? ""
+            let street = placemarks?.first?.thoroughfare ?? ""
+            let streetAddress = prefix + " " + street
+            locationInfo["displayName"] = streetAddress != " " ? streetAddress : nil
+            locationInfo["zipcode"] = placemarks?.first?.postalCode ?? ""
+            completion(locationInfo)
+        })
+    }
+
+    private func updateWith(zipCode: String) {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.locationInfo.rawValue)
+        UserDefaults.standard.setValue(zipCode, forKey: UserDefaultsKeys.zipCode.rawValue)
+        NotificationCenter.default.post(name: .zipCodeChanged, object: nil)
+    }
+
+    private func updateWith(locationInfo: [String: Any]) {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.zipCode.rawValue)
+        UserDefaults.standard.setValue(locationInfo, forKey: UserDefaultsKeys.locationInfo.rawValue)
+        NotificationCenter.default.post(name: .locationChanged, object: nil)
     }
 }

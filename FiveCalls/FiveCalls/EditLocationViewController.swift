@@ -12,7 +12,7 @@ import CoreLocation
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String)
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocationCoordinate2D)
+    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation)
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController)
 }
 
@@ -79,7 +79,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("-----------------\n\(locations)\n-----------------\n")
 
-        guard lookupLocation == nil else {
+        guard lookupLocation == nil else { //only want to call delegate one time
             return
         }
 
@@ -87,15 +87,8 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
             print("should only do this once")
             //TODO: persist this to userdefaults
             lookupLocation = location
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
-            //TODO: delete zip if present
-                if let lines = placemarks?.first?.addressDictionary?["FormattedAddressLines"] as? [String] {
-                    let address = lines.joined(separator: "\n")
-                    self.addressLabel.text = address
-                    self.view.layoutIfNeeded()
-                }
-            })
+            delegate?.editLocationViewController(self, didSelectLocation: location)
+            locationManager.stopUpdatingLocation()
         }
     }
 
