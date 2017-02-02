@@ -20,6 +20,13 @@ class EditLocationViewController : UIViewController {
     
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var zipCodeTextField: UITextField!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
+            zipCodeTextField.text = zip
+        }
+    }
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
         

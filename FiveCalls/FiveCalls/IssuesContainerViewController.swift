@@ -12,12 +12,14 @@ import CoreLocation
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
+            locationButton.setTitle(zip, for: .normal)
+        }
+
         let issuesVC = storyboard!.instantiateViewController(withIdentifier: "IssuesViewController") as! IssuesViewController
         addChildViewController(issuesVC)
         
