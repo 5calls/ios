@@ -87,6 +87,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="headerView" destination="ivK-ea-Dlh" id="xvP-Uo-kZc"/>
+                        <outlet property="locationButton" destination="6mh-1s-XbV" id="NN0-il-Akw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVy-Ix-9Py" userLabel="First Responder" sceneMemberID="firstResponder"/>
