@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
-class IssuesContainerViewController : UIViewController {
+class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var locationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +37,34 @@ class IssuesContainerViewController : UIViewController {
     }
     
     @IBAction func setLocationTapped(_ sender: Any) {
-        
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nc = segue.destination as? UINavigationController,
+            let vc = nc.topViewController as? EditLocationViewController {
+            vc.delegate = self
+        }
+    }
+
+    //Mark: EditLocationViewControllerDelegate
+
+    func editLocationViewControllerDidCancel(_ vc: EditLocationViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String) {
+        locationButton.setTitle(zip, for: .normal)
+        UserDefaults.standard.setValue(zip, forKey: UserDefaultsKeys.zipCode.rawValue)
+        NotificationCenter.default.post(name: .zipCodeChanged, object: nil)
+        dismiss(animated: true, completion: nil)
+    }
+
+    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocationCoordinate2D) {
+
     }
 }

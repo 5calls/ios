@@ -17,7 +17,7 @@ class IssuesViewController : UITableViewController {
         // edgesForExtendedLayout = []
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        fetchIssues()
+        fetchIssues(forZip: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -26,14 +26,24 @@ class IssuesViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
-//            
-//        }
+        NotificationCenter.default.addObserver(self, selector: #selector(zipCodeChanged(_:)), name: .zipCodeChanged, object: nil)
+        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
+            fetchIssues(forZip: zip)
+        }
     }
-    
-    private func fetchIssues() {
-        let operation = FetchIssuesOperation(zipCode: nil)
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc private func zipCodeChanged(_ notif: Notification) {
+        let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
+        fetchIssues(forZip: zip)
+    }
+
+    private func fetchIssues(forZip zip: String?) {
+        let operation = FetchIssuesOperation(zipCode: zip)
         operation.completionBlock = { [weak self] in
             if let issues = operation.issuesList?.issues {
                 self?.issues = issues
