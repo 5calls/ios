@@ -31,6 +31,7 @@ class FetchIssuesOperation : BaseOperation {
                 print("Error fetching issues: \(e.localizedDescription)")
             } else {
                 let http = response as! HTTPURLResponse
+                print("HTTP \(http.statusCode)")
                 self.httpResponse = http
                 if http.statusCode == 200 {
                     do {
@@ -45,6 +46,9 @@ class FetchIssuesOperation : BaseOperation {
             
             self.finish()
         }
+        
+        
+        print("Fetching issues (zip: \(zipCode ?? ""))...")
         task.resume()
     }
     
