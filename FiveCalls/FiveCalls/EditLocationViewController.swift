@@ -30,10 +30,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var zipCodeTextField: UITextField!
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
@@ -77,15 +73,11 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("-----------------\n\(locations)\n-----------------\n")
-
         guard lookupLocation == nil else { //only want to call delegate one time
             return
         }
 
         if let location = locations.first {
-            print("should only do this once")
-            //TODO: persist this to userdefaults
             lookupLocation = location
             delegate?.editLocationViewController(self, didSelectLocation: location)
             locationManager.stopUpdatingLocation()

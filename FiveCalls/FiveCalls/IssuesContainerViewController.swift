@@ -15,15 +15,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO: set zip based on whatever user last set.
-        //TODO: need a function/extension that handles deciding between zipcode or location
-        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
-            locationButton.setTitle(zip, for: .normal)
-        } else if let locationInfo = UserDefaults.standard.value(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String: Any] {
-            let displayName = (locationInfo["displayName"] as? String) ?? "Selected Location"
-            self.locationButton.setTitle(displayName, for: .normal)
-        }
-
+        setTitleLabel()
 
         let issuesVC = storyboard!.instantiateViewController(withIdentifier: "IssuesViewController") as! IssuesViewController
         addChildViewController(issuesVC)
@@ -42,7 +34,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         issuesVC.didMove(toParentViewController: self)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -70,20 +62,33 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
 
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String) {
+        dismiss(animated: true, completion: { //`updateWith` must be in completion block so that VC is listening for notification
+            self.updateWith(zipCode: zip)
+        })
         locationButton.setTitle(zip, for: .normal)
-        updateWith(zipCode: zip)
-        dismiss(animated: true, completion: nil)
     }
 
     func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation) {
         getLocationInfo(from: location) { locationInfo in
-            self.dismiss(animated: true, completion: nil)
-            self.updateWith(locationInfo: locationInfo)
             self.locationButton.setTitle((locationInfo["displayName"] as? String) ?? "Selected Location", for: .normal)
+            self.dismiss(animated: true, completion: {//`updateWith` must be in completion block so that VC is listening for notification
+                self.updateWith(locationInfo: locationInfo)
+            })
+
         }
     }
 
     //Mark: private functions
+
+    private func setTitleLabel() {
+        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
+            locationButton.setTitle(zip, for: .normal)
+        } else if let locationInfo = UserDefaults.standard.value(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String: Any] {
+            let displayName = (locationInfo["displayName"] as? String) ?? "Selected Location"
+            self.locationButton.setTitle(displayName, for: .normal)
+        }
+    }
+
     private func getLocationInfo(from location: CLLocation, completion: @escaping (([String: Any]) -> ())) {
         let geocoder = CLGeocoder()
         var locationInfo = [String: Any]()
@@ -108,6 +113,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     private func updateWith(locationInfo: [String: Any]) {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.zipCode.rawValue)
         UserDefaults.standard.setValue(locationInfo, forKey: UserDefaultsKeys.locationInfo.rawValue)
-        NotificationCenter.default.post(name: .locationChanged, object: nil)
+        NotificationCenter.default.post(name: .zipCodeChanged, object: nil)
     }
 }

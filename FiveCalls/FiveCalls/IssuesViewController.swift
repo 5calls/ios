@@ -17,9 +17,6 @@ class IssuesViewController : UITableViewController {
         // edgesForExtendedLayout = []
         navigationController?.setNavigationBarHidden(true, animated: false)
         loadIssues()
-        //TODO: set zip based on whatever user last set.
-        let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
-        fetchIssues(forZip: zip)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
