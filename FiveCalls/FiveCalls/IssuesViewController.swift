@@ -10,14 +10,13 @@ import UIKit
 
 class IssuesViewController : UITableViewController {
     
-    var issues: [Issue]?
+    var issuesManager = IssuesManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // edgesForExtendedLayout = []
         navigationController?.setNavigationBarHidden(true, animated: false)
-        let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
-        fetchIssues(forZip: zip)
+        loadIssues()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -27,6 +26,7 @@ class IssuesViewController : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(zipCodeChanged(_:)), name: .zipCodeChanged, object: nil)
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,36 +35,40 @@ class IssuesViewController : UITableViewController {
     }
 
     @objc private func zipCodeChanged(_ notif: Notification) {
-        let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
-        fetchIssues(forZip: zip)
+        loadIssues()
+    }
+    
+    private func loadIssues() {
+        issuesManager.fetchIssues(completion: issuesLoaded)
     }
 
-    private func fetchIssues(forZip zip: String?) {
-        let operation = FetchIssuesOperation(zipCode: zip)
-        operation.completionBlock = { [weak self] in
-            if let issues = operation.issuesList?.issues {
-                self?.issues = issues
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-        }
-        OperationQueue.main.addOperation(operation)
+    private func issuesLoaded() {
+        tableView.reloadData()
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        if segue.identifier == "issueSegue" {
+            let dest = segue.destination as! IssueDetailViewController
+            dest.issuesManager = issuesManager
+            dest.issue = issuesManager.issues[indexPath.row]
+        }
+    }
+    
+    // MARK: - UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issues?.count ?? 0
+        return issuesManager.issues.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as! IssueCell
-        if let issue = issues?[indexPath.row] {
-            cell.titleLabel.text = issue.name
-        }
+        let issue = issuesManager.issues[indexPath.row]
+        cell.titleLabel.text = issue.name
         return cell
     }
 }

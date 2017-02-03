@@ -8,7 +8,8 @@
 
 import UIKit
 
-@IBDesignable class CheckboxView : UIView {
+@IBDesignable
+class CheckboxView : UIView {
     
     var imageView: UIImageView!
     
@@ -26,7 +27,8 @@ import UIKit
         isOpaque = false
         backgroundColor = .clear
         
-        imageView = UIImageView(image: #imageLiteral(resourceName: "icon-checkmark"))
+        let image = UIImage(named: "icon-checkmark")
+        imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.isHidden = !isChecked
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +40,10 @@ import UIKit
             imageView.widthAnchor.constraint(equalToConstant: 26),
             imageView.heightAnchor.constraint(equalToConstant: 19)
         ])
+    }
+    
+    override func prepareForInterfaceBuilder() {
+        imageView.image = UIImage(named: "icon-checkmark", in: Bundle(for: CheckboxView.self), compatibleWith: nil)
     }
     
     @IBInspectable var borderColor: UIColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.00) {

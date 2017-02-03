@@ -16,6 +16,8 @@
 		B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F51E41772D00966B7D /* IssueCell.swift */; };
 		B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F71E41779300966B7D /* CheckboxView.swift */; };
 		B5CA63FB1E422D0700966B7D /* IssuesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */; };
+		B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */; };
+		B5D5C95A1E441FEC00C80D5F /* IssuesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */; };
 		B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762581E40374600D63D62 /* FetchStatsOperation.swift */; };
 		B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625A1E4037B400D63D62 /* BaseOperation.swift */; };
 		B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */; };
@@ -43,6 +45,8 @@
 		B5CA63F51E41772D00966B7D /* IssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCell.swift; sourceTree = "<group>"; };
 		B5CA63F71E41779300966B7D /* CheckboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesContainerViewController.swift; sourceTree = "<group>"; };
+		B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesManager.swift; sourceTree = "<group>"; };
 		B5E762581E40374600D63D62 /* FetchStatsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatsOperation.swift; sourceTree = "<group>"; };
 		B5E7625A1E4037B400D63D62 /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
 		B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				B5E762681E40D63800D63D62 /* Issue.swift */,
 				B5E7626A1E40D6DD00D63D62 /* Contact.swift */,
 				B5E762741E40E39000D63D62 /* IssuesList.swift */,
+				B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				B5E7625E1E403C4700D63D62 /* StatsPageViewController.swift */,
 				B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */,
 				B5E762601E40470100D63D62 /* IssuesViewController.swift */,
+				B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -188,7 +194,7 @@
 				TargetAttributes = {
 					B52805101E3FA94D00EE832A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3ZTR7GBLGC;
+						DevelopmentTeam = C2K3864N2N;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -260,8 +266,10 @@
 				B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */,
 				B5E762651E40480300D63D62 /* UserDefaultsKeys.swift in Sources */,
 				B5E7625F1E403C4700D63D62 /* StatsPageViewController.swift in Sources */,
+				B5D5C95A1E441FEC00C80D5F /* IssuesManager.swift in Sources */,
 				2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
+				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 				B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */,
@@ -385,7 +393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3ZTR7GBLGC;
+				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCalls;
@@ -398,7 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3ZTR7GBLGC;
+				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCalls;

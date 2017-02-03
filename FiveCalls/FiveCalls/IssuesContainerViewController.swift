@@ -15,7 +15,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
             locationButton.setTitle(zip, for: .normal)
         }
@@ -36,6 +36,11 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             ])
         
         issuesVC.didMove(toParentViewController: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     @IBAction func setLocationTapped(_ sender: Any) {
