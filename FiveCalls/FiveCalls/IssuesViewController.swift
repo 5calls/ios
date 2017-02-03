@@ -17,6 +17,9 @@ class IssuesViewController : UITableViewController {
         // edgesForExtendedLayout = []
         navigationController?.setNavigationBarHidden(true, animated: false)
         loadIssues()
+        
+        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
