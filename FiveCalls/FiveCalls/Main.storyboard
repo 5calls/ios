@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4o-MU-xOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2087.1999999999998" y="-1016.0419790104949"/>
+            <point key="canvasLocation" x="4921" y="-1059"/>
         </scene>
         <!--Issues View Controller-->
         <scene sceneID="URD-JJ-gfS">
@@ -221,7 +221,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Ne-HS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="-347"/>
+            <point key="canvasLocation" x="1167" y="-369"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
@@ -239,7 +239,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZj-s7-SHf" id="Hfa-Yw-Zoy">
@@ -260,8 +260,11 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="IJo-u6-qUp" secondAttribute="trailing" constant="20" id="ouQ-D0-sO5"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="issueLabel" destination="IJo-u6-qUp" id="udk-tw-ajv"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="150" width="375" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tFw-k8-nYx" id="J54-rP-g67">
@@ -301,14 +304,58 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                 <constraint firstItem="GGF-ef-DH0" firstAttribute="leading" secondItem="J54-rP-g67" secondAttribute="leadingMargin" constant="20" id="Jdc-dV-wcG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="issueLabel" destination="GGF-ef-DH0" id="xif-8O-jDo"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" id="1Xd-sZ-QlP">
-                                        <rect key="frame" x="0.0" y="472" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="66" id="1Xd-sZ-QlP">
+                                        <rect key="frame" x="0.0" y="472" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Xd-sZ-QlP" id="r0i-yC-dN5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ouf-kb-rXA">
+                                                    <rect key="frame" x="8" y="5" width="60" height="56"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="56" id="lk9-N6-5zB"/>
+                                                        <constraint firstAttribute="width" constant="60" id="xqQ-xl-dCw"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ouf-kb-rXA" firstAttribute="leading" secondItem="r0i-yC-dN5" secondAttribute="leading" constant="8" id="DHa-2P-Lik"/>
+                                                <constraint firstItem="Ouf-kb-rXA" firstAttribute="top" secondItem="r0i-yC-dN5" secondAttribute="top" constant="5" id="Vpe-vl-7zx"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ouf-kb-rXA" secondAttribute="bottom" constant="5" id="nNs-Lj-poI"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="setLocationCell" rowHeight="66" id="boC-cV-bYf">
+                                        <rect key="frame" x="0.0" y="538" width="375" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="boC-cV-bYf" id="156-E5-ABg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your location to find your representatives" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-Fz-TPy">
+                                                    <rect key="frame" x="13" y="23" width="346" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
+                                                    <color key="textColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3Pe-Fz-TPy" firstAttribute="top" secondItem="156-E5-ABg" secondAttribute="topMargin" constant="15" id="8XG-Pi-gWc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3Pe-Fz-TPy" secondAttribute="trailing" constant="8" id="Ie1-3F-FpB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3Pe-Fz-TPy" secondAttribute="bottom" constant="14" id="O4M-aS-K5p"/>
+                                                <constraint firstItem="3Pe-Fz-TPy" firstAttribute="leading" secondItem="156-E5-ABg" secondAttribute="leadingMargin" constant="5" id="YpM-Md-oCh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="6tF-q1-2tT"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -331,7 +378,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DX6-zI-UAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831.2" y="-347.67616191904051"/>
+            <point key="canvasLocation" x="2190" y="-369"/>
         </scene>
         <!--Custom Navigation Controller-->
         <scene sceneID="VLC-fS-43C">
