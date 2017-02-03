@@ -62,8 +62,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
 
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String) {
-        dismiss(animated: true, completion: { //`updateWith` must be in completion block so that VC is listening for notification
-            self.updateWith(zipCode: zip)
+        dismiss(animated: true, completion: { [weak self] in//`updateWith` must be in completion block so that VC is listening for notification
+            self?.updateWith(zipCode: zip)
         })
         locationButton.setTitle(zip, for: .normal)
     }
@@ -71,8 +71,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation) {
         getLocationInfo(from: location) { locationInfo in
             self.locationButton.setTitle((locationInfo["displayName"] as? String) ?? "Selected Location", for: .normal)
-            self.dismiss(animated: true, completion: {//`updateWith` must be in completion block so that VC is listening for notification
-                self.updateWith(locationInfo: locationInfo)
+            self.dismiss(animated: true, completion: {[weak self] in //`updateWith` must be in completion block so that VC is listening for notification
+                self?.updateWith(locationInfo: locationInfo)
             })
         }
     }
@@ -84,7 +84,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             locationButton.setTitle(zip, for: .normal)
         } else if let locationInfo = UserDefaults.standard.value(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String: Any] {
             let displayName = (locationInfo["displayName"] as? String) ?? "Selected Location"
-            self.locationButton.setTitle(displayName, for: .normal)
+            locationButton.setTitle(displayName, for: .normal)
         }
     }
 

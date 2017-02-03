@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-//import GLKit
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String)
@@ -46,7 +45,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func submitZipCodeTapped(_ sender: Any) {
-        //TODO: delete location if present
         if validateZipCode() {
             delegate?.editLocationViewController(self, didSelectZipCode: zipCodeTextField.text!)
         }
