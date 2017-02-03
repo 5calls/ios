@@ -42,7 +42,8 @@
                                                     <rect key="frame" x="8" y="28" width="359" height="50"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mh-1s-XbV">
-                                                    <rect key="frame" x="144" y="90" width="86" height="30"/>
+                                                    <rect key="frame" x="141.5" y="90" width="91" height="32"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <state key="normal" title="Set Location"/>
                                                     <connections>
                                                         <action selector="setLocationTapped:" destination="NcD-22-I7g" eventType="touchUpInside" id="ylT-IF-hUs"/>
@@ -107,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
-                                <rect key="frame" x="59" y="237" width="256" height="59"/>
+                                <rect key="frame" x="59" y="239" width="256" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="MkO-so-yUl"/>
                                     <constraint firstAttribute="width" constant="256" id="QrQ-A4-eTQ"/>
@@ -117,22 +118,24 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Be-hS-t4B">
-                                <rect key="frame" x="130" y="115" width="115" height="30"/>
+                                <rect key="frame" x="127" y="115" width="121" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <state key="normal" title="Use My Location"/>
                                 <connections>
                                     <action selector="useMyLocationTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="w4g-PD-9WK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0o-QZ-kcL">
-                                <rect key="frame" x="266" y="304" width="49" height="30"/>
+                                <rect key="frame" x="263" y="306" width="52" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitZipCodeTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="zWm-0b-uhZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Enter Your Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-pd-kKj">
-                                <rect key="frame" x="99" y="196" width="177" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="100" y="198" width="177" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -190,18 +193,20 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppose Muslim Travel Ban" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-nv-0bt">
-                                            <rect key="frame" x="60" y="27" width="211.5" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <rect key="frame" x="60" y="16" width="204" height="43"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="top" secondItem="sKx-hn-UH9" secondAttribute="topMargin" constant="8" id="0TI-qG-QQc"/>
                                         <constraint firstItem="pdL-nv-0bt" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="7xd-WT-WNb"/>
                                         <constraint firstItem="pdL-nv-0bt" firstAttribute="leading" secondItem="wEs-9r-J66" secondAttribute="trailing" constant="8" id="FeY-Hp-huw"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="wEs-9r-J66" secondAttribute="leading" id="Izu-kz-OvP"/>
                                         <constraint firstItem="wEs-9r-J66" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="RLQ-9O-x19"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pdL-nv-0bt" secondAttribute="trailing" constant="20" id="VuS-Le-l6T"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="pdL-nv-0bt" secondAttribute="bottom" constant="8" id="dSM-Xp-HZT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -256,7 +261,7 @@
         <scene sceneID="VLC-fS-43C">
             <objects>
                 <navigationController id="IFq-NR-IrM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kdw-tv-5oW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -273,7 +278,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
