@@ -333,13 +333,14 @@ The Department of the Army's Civil Works division will be accepting public comme
             </objects>
             <point key="canvasLocation" x="1831.2" y="-347.67616191904051"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="VLC-fS-43C">
             <objects>
-                <navigationController id="IFq-NR-IrM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kdw-tv-5oW">
+                <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="NcD-22-I7g" kind="relationship" relationship="rootViewController" id="OzY-dr-g2e"/>
@@ -365,10 +366,13 @@ The Department of the Army's Civil Works division will be accepting public comme
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAU-Yf-4ns" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1148" y="-1016.0419790104949"/>
+            <point key="canvasLocation" x="3980" y="-1060"/>
         </scene>
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="6tF-q1-2tT"/>
+    </inferredMetricsTieBreakers>
 </document>
