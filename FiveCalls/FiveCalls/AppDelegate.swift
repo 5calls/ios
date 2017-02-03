@@ -56,6 +56,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pageControlAppearance = UIPageControl.appearance()
         pageControlAppearance.pageIndicatorTintColor = UIColor(red:0.68, green:0.82, blue:0.92, alpha:1.00)
         pageControlAppearance.currentPageIndicatorTintColor = UIColor(red:0.12, green:0.47, blue:0.81, alpha:1.00)
+        
+        // Fonts
+        
+        let fontDescriptor = UIFontDescriptor(fontAttributes: [
+            UIFontDescriptorFamilyAttribute: "Roboto Condensed"
+        ]).withSymbolicTraits([.traitBold, .traitCondensed]) // To match the website, fonts should be Bold and Condensed
+        
+        if let substituteDescriptor = fontDescriptor {
+            UILabel.appearance().substituteFontDescriptor = substituteDescriptor
+        }
+        
+        if let font = UIFont(name: "RobotoCondensed-Bold", size: 18.0) {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
