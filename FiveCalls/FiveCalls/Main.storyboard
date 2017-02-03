@@ -178,7 +178,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">

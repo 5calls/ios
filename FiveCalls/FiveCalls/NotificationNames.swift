@@ -10,5 +10,4 @@ import Foundation
 
 extension Notification.Name {
     static let zipCodeChanged = Notification.Name("zipCodeChanged")
-    static let locationChanged = Notification.Name("locationChanged")
 }
