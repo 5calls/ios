@@ -235,18 +235,99 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PSj-v4-4nC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wwf-aP-AUR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </stackView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="122"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZj-s7-SHf" id="Hfa-Yw-Zoy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="122"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPEAK OUT FOR ENVIRONMENTAL IMPACT AT STANDING ROCK" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJo-u6-qUp">
+                                                    <rect key="frame" x="28" y="11" width="319" height="99.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="26"/>
+                                                    <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="IJo-u6-qUp" secondAttribute="bottom" constant="3" id="ROd-XA-5Zb"/>
+                                                <constraint firstItem="IJo-u6-qUp" firstAttribute="leading" secondItem="Hfa-Yw-Zoy" secondAttribute="leadingMargin" constant="20" id="cbd-Vo-cUW"/>
+                                                <constraint firstItem="IJo-u6-qUp" firstAttribute="top" secondItem="Hfa-Yw-Zoy" secondAttribute="topMargin" constant="3" id="kis-Fc-jL6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IJo-u6-qUp" secondAttribute="trailing" constant="20" id="ouQ-D0-sO5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx">
+                                        <rect key="frame" x="0.0" y="150" width="375" height="322"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tFw-k8-nYx" id="J54-rP-g67">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGF-ef-DH0">
+                                                    <rect key="frame" x="28" y="18" width="319" height="286"/>
+                                                    <mutableString key="text">Trump recently signed an executive orders to revive the controversial Dakota Access and Keystone XL oil pipelines. The executive order directs the Army Corps of Engineers to conduct an environmental review “and approve in an expedited manner.”
+
+Stand With Standing Rock has asked everyone to contact the Army Corps of Engineers. Please read their statement below:
+
+On January 18th, the Department of the Army published the Notice of Intent to require an Environmental Impact Statement in the Federal Register. This is another small victory in defeating the proposed Dakota Access Pipeline.
+
+The fight, however, is still not over.
+
+This notice opens the public scoping phase and invites anyone interested to help them to identify potential issues, concerns, and reasonable alternatives that should be considered in an EIS.
+
+While the EIS is exactly what we called for, we must ensure that it fully takes into consideration tribal treaty rights, natural resources, cultural and sacred places, socio-economical concerns, environmental justice, and the health and wellbeing of those downstream who rely on our drinking water.
+
+We need your continued support as this process moves forward.
+
+The Department of the Army's Civil Works division will be accepting public comment until February 20th, 2017.
+
+(Source: Stand with Standing Rock)
+
+</mutableString>
+                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
+                                                    <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GGF-ef-DH0" firstAttribute="top" secondItem="J54-rP-g67" secondAttribute="topMargin" constant="10" id="2m5-a0-u2v"/>
+                                                <constraint firstItem="GGF-ef-DH0" firstAttribute="trailing" secondItem="J54-rP-g67" secondAttribute="trailingMargin" constant="-20" id="9bs-pY-mPE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="GGF-ef-DH0" secondAttribute="bottom" constant="10" id="EbP-vx-8Gm"/>
+                                                <constraint firstItem="GGF-ef-DH0" firstAttribute="leading" secondItem="J54-rP-g67" secondAttribute="leadingMargin" constant="20" id="Jdc-dV-wcG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" id="1Xd-sZ-QlP">
+                                        <rect key="frame" x="0.0" y="472" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Xd-sZ-QlP" id="r0i-yC-dN5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ejI-vB-vnF" id="0WD-cs-EOP"/>
+                                    <outlet property="delegate" destination="ejI-vB-vnF" id="eX6-mo-bfe"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PSj-v4-4nC" firstAttribute="leading" secondItem="UAa-DC-xPq" secondAttribute="leading" id="O1E-oT-lLg"/>
-                            <constraint firstItem="PSj-v4-4nC" firstAttribute="top" secondItem="UAa-DC-xPq" secondAttribute="top" id="SMx-3f-qDl"/>
-                            <constraint firstItem="kiY-NH-qGH" firstAttribute="top" secondItem="PSj-v4-4nC" secondAttribute="bottom" id="bZt-v9-rYJ"/>
-                            <constraint firstAttribute="trailing" secondItem="PSj-v4-4nC" secondAttribute="trailing" id="ldr-sl-0Ug"/>
+                            <constraint firstItem="wwf-aP-AUR" firstAttribute="leading" secondItem="UAa-DC-xPq" secondAttribute="leading" id="Pld-AC-X5Q"/>
+                            <constraint firstAttribute="trailing" secondItem="wwf-aP-AUR" secondAttribute="trailing" id="R6G-8s-xGy"/>
+                            <constraint firstItem="wwf-aP-AUR" firstAttribute="top" secondItem="UAa-DC-xPq" secondAttribute="top" id="TtQ-Lr-OvJ"/>
+                            <constraint firstItem="kiY-NH-qGH" firstAttribute="top" secondItem="wwf-aP-AUR" secondAttribute="bottom" id="nFg-RH-K4r"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="wwf-aP-AUR" id="LwK-V8-vbt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DX6-zI-UAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
