@@ -33,6 +33,10 @@
 		B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */; };
 		B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */; };
 		B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762741E40E39000D63D62 /* IssuesList.swift */; };
+		F57BD8B61E438E4200BD554C /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */; };
+		F57BD8B71E438E4200BD554C /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */; };
+		F57BD8B81E438E4200BD554C /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */; };
+		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchIssuesOperation.swift; sourceTree = "<group>"; };
 		B5E762741E40E39000D63D62 /* IssuesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesList.swift; sourceTree = "<group>"; };
+		F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
+		F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +104,14 @@
 		B52805131E3FA94D00EE832A /* FiveCalls */ = {
 			isa = PBXGroup;
 			children = (
+				F57BD8B21E438E4200BD554C /* Fonts */,
 				B5CA63F41E41772100966B7D /* Views */,
 				B5E7626F1E40D74900D63D62 /* Operations */,
 				B5E7626E1E40D73600D63D62 /* View Controllers */,
 				B5E7626D1E40D72D00D63D62 /* View Models */,
 				B5E7626C1E40D72400D63D62 /* Models */,
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
+				F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */,
 				B5E762641E40480300D63D62 /* UserDefaultsKeys.swift */,
 				2732D7C61E4300F300F149EF /* NotificationNames.swift */,
 				B528051B1E3FA94D00EE832A /* Assets.xcassets */,
@@ -167,6 +177,16 @@
 			name = Operations;
 			sourceTree = "<group>";
 		};
+		F57BD8B21E438E4200BD554C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */,
+				F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */,
+				F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -229,8 +249,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */,
+				F57BD8B61E438E4200BD554C /* RobotoCondensed-Bold.ttf in Resources */,
 				B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */,
+				F57BD8B71E438E4200BD554C /* RobotoCondensed-Italic.ttf in Resources */,
 				B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */,
+				F57BD8B81E438E4200BD554C /* RobotoCondensed-Regular.ttf in Resources */,
 				B5E762631E40470A00D63D62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +301,7 @@
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				B5D5C95C1E44317700C80D5F /* IssueDetailCell.swift in Sources */,
 				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
+				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 				B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */,
