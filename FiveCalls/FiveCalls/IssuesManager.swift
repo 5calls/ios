@@ -10,8 +10,16 @@ import Foundation
 
 class IssuesManager {
     
-    
     var issuesList: IssuesList?
+    
+    var zipCode: String? {
+        get {
+            return UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKeyPath: UserDefaultsKeys.zipCode.rawValue)
+        }
+    }
     
     var issues: [Issue] {
         return issuesList?.issues ?? []
@@ -22,8 +30,7 @@ class IssuesManager {
     }
     
     func fetchIssues(completion: @escaping (Void) -> Void) {
-        let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
-        let operation = FetchIssuesOperation(zipCode: zip)
+        let operation = FetchIssuesOperation(zipCode: zipCode)
         operation.completionBlock = { [weak self] in
             if let issuesList = operation.issuesList {
                 self?.issuesList = issuesList
