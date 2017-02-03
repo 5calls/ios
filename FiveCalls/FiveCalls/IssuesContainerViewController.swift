@@ -74,7 +74,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             self.dismiss(animated: true, completion: {//`updateWith` must be in completion block so that VC is listening for notification
                 self.updateWith(locationInfo: locationInfo)
             })
-
         }
     }
 

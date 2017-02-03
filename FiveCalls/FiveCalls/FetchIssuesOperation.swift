@@ -63,7 +63,6 @@ class FetchIssuesOperation : BaseOperation {
     
     private func parseIssues(data: Data) throws {
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! JSONDictionary
-        print(json)
         issuesList = IssuesList(dictionary: json)
     }
 }
