@@ -80,11 +80,23 @@ extension IssueDetailViewController : UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "setLocationCell", for: indexPath)
                 return cell
             } else {
-                // contact cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+                cell.borderTop = indexPath.row == 0
+                let contact = issue.contacts[indexPath.row]
+                cell.nameLabel.text = contact.name
+                cell.subtitleLabel.text = contact.area
+                
+                return cell
             }
-            
-            return UITableViewCell()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == Sections.contacts.rawValue {
+            return "Call your representatives"
+        }
+        
+        return nil
     }
     
     private func headerCell(at indexPath: IndexPath) -> UITableViewCell {
