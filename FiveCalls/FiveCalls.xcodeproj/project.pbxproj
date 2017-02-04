@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
+		9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA5C1E457F3D0024B991 /* CallScriptViewController.swift */; };
+		9C18DA5F1E458E480024B991 /* ContactDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */; };
 		B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805141E3FA94D00EE832A /* AppDelegate.swift */; };
 		B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805161E3FA94D00EE832A /* WelcomeViewController.swift */; };
 		B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Welcome.storyboard */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		9C18DA5C1E457F3D0024B991 /* CallScriptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallScriptViewController.swift; sourceTree = "<group>"; };
+		9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailCell.swift; sourceTree = "<group>"; };
 		B52805111E3FA94D00EE832A /* FiveCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52805141E3FA94D00EE832A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B52805161E3FA94D00EE832A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			children = (
 				B5CA63F51E41772D00966B7D /* IssueCell.swift */,
 				B591EB841E44D946006C7D28 /* ContactCell.swift */,
+				9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */,
 				B5D5C95B1E44317700C80D5F /* IssueDetailCell.swift */,
 				B5CA63F71E41779300966B7D /* CheckboxView.swift */,
 			);
@@ -166,6 +171,7 @@
 				B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */,
 				B5E762601E40470100D63D62 /* IssuesViewController.swift */,
 				B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */,
+				9C18DA5C1E457F3D0024B991 /* CallScriptViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
+				9C18DA5F1E458E480024B991 /* ContactDetailCell.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
 				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
 				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
@@ -305,6 +312,7 @@
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				B5D5C95C1E44317700C80D5F /* IssueDetailCell.swift in Sources */,
 				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
+				9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,

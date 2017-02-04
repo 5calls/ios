@@ -32,6 +32,17 @@ struct Contact {
     let photoURL: URL?
     let reason: String
     let state: String
+    var hasContacted: Bool
+}
+
+extension Contact: Hashable {
+    var hashValue: Int {
+        return id.hashValue
+    }
+    
+    static func == (lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension Contact : JSONSerializable {
@@ -49,6 +60,6 @@ extension Contact : JSONSerializable {
         }
         
         let photoURL = URL(string: photoURLString)
-        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state)
+        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state, hasContacted: false)
     }
 }

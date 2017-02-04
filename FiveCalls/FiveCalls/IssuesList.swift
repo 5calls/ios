@@ -11,7 +11,7 @@ import Foundation
 struct IssuesList {
     let splitDistrict: Bool
     let normalizedLocation: String
-    let issues: [Issue]
+    var issues: [Issue]
 }
 
 extension IssuesList : JSONSerializable {

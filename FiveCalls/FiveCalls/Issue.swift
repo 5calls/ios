@@ -25,7 +25,8 @@ struct Issue {
     let name: String
     let reason: String
     let script: String
-    let contacts: [Contact]
+    var contacts: [Contact]
+    var madeCalls: Bool
 }
 
 extension Issue : JSONSerializable {
@@ -42,6 +43,6 @@ extension Issue : JSONSerializable {
         
         let contacts = contactsJSON.flatMap({ Contact(dictionary: $0) })
         
-        self.init(id: id, name: name, reason: reason, script: script, contacts: contacts)
+        self.init(id: id, name: name, reason: reason, script: script, contacts: contacts, madeCalls: false)
     }
 }

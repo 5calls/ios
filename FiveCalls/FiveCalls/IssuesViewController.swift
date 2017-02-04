@@ -72,6 +72,7 @@ class IssuesViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as! IssueCell
         let issue = issuesManager.issues[indexPath.row]
         cell.titleLabel.text = issue.name
+        cell.checkboxView.isChecked = issue.madeCalls
         return cell
     }
 }
