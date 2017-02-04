@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -115,7 +115,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
-                                <rect key="frame" x="59" y="239" width="256" height="59"/>
+                                <rect key="frame" x="59" y="237" width="256" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="MkO-so-yUl"/>
                                     <constraint firstAttribute="width" constant="256" id="QrQ-A4-eTQ"/>
@@ -125,7 +125,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0o-QZ-kcL">
-                                <rect key="frame" x="263" y="306" width="52" height="32"/>
+                                <rect key="frame" x="263" y="304" width="52" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
@@ -133,11 +133,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Enter Your Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-pd-kKj">
-                                <rect key="frame" x="99" y="198" width="177" height="21"/>
+                                <rect key="frame" x="99" y="196" width="177" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Czh-eH-GW2">
+                                <rect key="frame" x="177" y="153" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -147,8 +150,10 @@
                             <constraint firstItem="7Xf-pd-kKj" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" id="ZLE-fH-J6V"/>
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="top" secondItem="Et2-qp-YNn" secondAttribute="bottom" constant="51" id="ZNd-b0-REt"/>
                             <constraint firstItem="7Xf-pd-kKj" firstAttribute="top" secondItem="5Be-hS-t4B" secondAttribute="bottom" constant="51" id="cUU-yE-4HQ"/>
+                            <constraint firstItem="Czh-eH-GW2" firstAttribute="centerX" secondItem="5Be-hS-t4B" secondAttribute="centerX" id="iNx-di-srp"/>
                             <constraint firstItem="S0o-QZ-kcL" firstAttribute="trailing" secondItem="8JR-Y0-Fwm" secondAttribute="trailing" id="ryI-r3-ggg"/>
                             <constraint firstItem="S0o-QZ-kcL" firstAttribute="top" secondItem="8JR-Y0-Fwm" secondAttribute="bottom" constant="8" id="tGR-Ac-u2c"/>
+                            <constraint firstItem="Czh-eH-GW2" firstAttribute="top" secondItem="5Be-hS-t4B" secondAttribute="bottom" constant="8" id="w6T-V6-cMv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Set Your Location" id="fjz-4h-IsH">
@@ -159,6 +164,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Czh-eH-GW2" id="MxA-Wv-if7"/>
                         <outlet property="useMyLocationButton" destination="5Be-hS-t4B" id="gVx-vZ-p5q"/>
                         <outlet property="zipCodeTextField" destination="8JR-Y0-Fwm" id="wdq-Vp-v97"/>
                     </connections>

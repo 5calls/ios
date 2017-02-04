@@ -121,6 +121,11 @@ extension IssueDetailViewController : UITableViewDataSource {
             return UITableViewCell()
         }
     }
+    
+    func scrollToBottom() {
+        let lastIndexPath = IndexPath(row: issue.contacts.count - 1, section: IssueSections.contacts.rawValue)
+        self.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+    }
 }
 
 extension IssueDetailViewController : EditLocationViewControllerDelegate {
@@ -128,18 +133,22 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String) {
-        dismiss(animated: true, completion: nil)
-        issuesManager.zipCode = zip
+    func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
+        issuesManager.userLocation = location
         issuesManager.fetchIssues {
-            self.tableView.reloadData()
+            if let issue = self.issuesManager.issue(withId: self.issue.id) {
+                self.issue = issue
+                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
+                self.scrollToBottom()
+            } else {
+                // weird state to be in, but the issue we're looking at
+                // no longer exists, so we'll just quietly (read: not quietly) 
+                // pop back to the issues list
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+
         }
-    }
-    
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation) {
         dismiss(animated: true, completion: nil)
-        issuesManager.fetchIssues {
-            self.tableView.reloadData()
-        }
+        
     }
 }

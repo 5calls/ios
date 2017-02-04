@@ -40,12 +40,6 @@ class ContactCell : UITableViewCell {
         detailTextLabel?.textColor = labelTextColor
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        print("imageView: \(imageView)")
-    }
-    
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         

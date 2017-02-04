@@ -10,8 +10,7 @@ import UIKit
 import CoreLocation
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String)
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation)
+    func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation)
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController)
 }
 
@@ -19,6 +18,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     weak var delegate: EditLocationViewControllerDelegate?
     private var lookupLocation: CLLocation?
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -31,6 +31,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // FIXME
         if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
             zipCodeTextField.text = zip
         }
@@ -46,7 +47,9 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     @IBAction func submitZipCodeTapped(_ sender: Any) {
         if validateZipCode() {
-            delegate?.editLocationViewController(self, didSelectZipCode: zipCodeTextField.text!)
+            let userLocation = UserLocation.current
+            userLocation.setFrom(zipCode: zipCodeTextField.text!)
+            delegate?.editLocationViewController(self, didUpdateLocation: userLocation)
         }
     }
     
@@ -67,6 +70,8 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     //Mark: CLLocationManagerDelegate methods
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        useMyLocationButton.isEnabled = false // prevent starting it twice...
+        activityIndicator.startAnimating()
         manager.startUpdatingLocation()
     }
 
@@ -76,9 +81,13 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
         }
 
         if let location = locations.first {
-            lookupLocation = location
-            delegate?.editLocationViewController(self, didSelectLocation: location)
             locationManager.stopUpdatingLocation()
+            lookupLocation = location
+            let userLocation = UserLocation.current
+            userLocation.setFrom(location: location) {
+                self.delegate?.editLocationViewController(self, didUpdateLocation: userLocation)
+            }
+            
         }
     }
 

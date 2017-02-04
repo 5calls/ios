@@ -20,7 +20,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTitleLabel()
+        setTitleLabel(location: UserLocation.current)
 
         let issuesVC = storyboard!.instantiateViewController(withIdentifier: "IssuesViewController") as! IssuesViewController
         addChildViewController(issuesVC)
@@ -39,6 +39,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         issuesVC.didMove(toParentViewController: self)
         issuesViewController = issuesVC
+        
+        // NotificationCenter.default.addObserver(self, selector: #selector(IssuesContainerViewController.locationDidChange(_:)), name: .locationChanged, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +49,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     @IBAction func setLocationTapped(_ sender: Any) {
-
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -60,62 +61,29 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             vc.delegate = self
         }
     }
+    
+    func locationDidChange(_ notification: Notification) {
+        let location = notification.object as! UserLocation
+        setTitleLabel(location: location)
+    }
 
-    //Mark: EditLocationViewControllerDelegate
+    // MARK: - EditLocationViewControllerDelegate
 
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController) {
         dismiss(animated: true, completion: nil)
     }
-
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String) {
-        dismiss(animated: true, completion: { [weak self] in//`updateWith` must be in completion block so that VC is listening for notification
-            self?.updateWith(zipCode: zip)
-        })
-        locationButton.setTitle(zip, for: .normal)
-    }
-
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation) {
-        getLocationInfo(from: location) { locationInfo in
-            self.locationButton.setTitle((locationInfo["displayName"] as? String) ?? "Selected Location", for: .normal)
-            self.dismiss(animated: true, completion: {[weak self] in //`updateWith` must be in completion block so that VC is listening for notification
-                self?.updateWith(locationInfo: locationInfo)
-            })
+    
+    func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
+        dismiss(animated: true) { [weak self] in
+            self?.issuesManager.userLocation = location
+            self?.issuesViewController.loadIssues()
+            self?.setTitleLabel(location: location)
         }
     }
+    
+    // MARK: - Private functions
 
-    //Mark: private functions
-
-    private func setTitleLabel() {
-        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
-            locationButton.setTitle(zip, for: .normal)
-        } else if let locationInfo = UserDefaults.standard.value(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String: Any] {
-            let displayName = (locationInfo["displayName"] as? String) ?? "Selected Location"
-            locationButton.setTitle(displayName, for: .normal)
-        }
-    }
-
-    private func getLocationInfo(from location: CLLocation, completion: @escaping (([String: Any]) -> ())) {
-        let geocoder = CLGeocoder()
-        var locationInfo = [String: Any]()
-        locationInfo["longitude"] = location.coordinate.longitude
-        locationInfo["latitude"] = location.coordinate.latitude
-        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
-            let prefix = placemarks?.first?.subThoroughfare ?? ""
-            let street = placemarks?.first?.thoroughfare ?? ""
-            let streetAddress = prefix + " " + street
-            locationInfo["displayName"] = streetAddress != " " ? streetAddress : nil
-            locationInfo["zipcode"] = placemarks?.first?.postalCode ?? ""
-            completion(locationInfo)
-        })
-    }
-
-    private func updateWith(zipCode: String) {
-        issuesManager.zipCode = zipCode
-        NotificationCenter.default.post(name: .locationChanged, object: nil)
-    }
-
-    private func updateWith(locationInfo: [String: Any]) {
-        issuesManager.locationInfo = locationInfo
-        NotificationCenter.default.post(name: .locationChanged, object: nil)
+    private func setTitleLabel(location: UserLocation?) {
+        locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
     }
 }
