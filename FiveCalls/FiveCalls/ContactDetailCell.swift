@@ -10,7 +10,7 @@ import UIKit
 
 class ContactDetailCell : UITableViewCell {
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: RemoteImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var callingReasonLabel: UILabel!
@@ -18,8 +18,7 @@ class ContactDetailCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        avatarImageView.layer.cornerRadius = 40
-        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
     }
     
 }

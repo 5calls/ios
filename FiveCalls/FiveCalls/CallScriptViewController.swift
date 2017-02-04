@@ -100,19 +100,31 @@ extension CallScriptViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
+        
         case CallScriptRows.contact.rawValue:
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactDetailCell
             cell.callButton.setTitle(contact.phone, for: .normal)
             cell.callButton.addTarget(self, action: #selector(callButtonPressed(_:)), for: .touchUpInside)
             cell.nameLabel.text = contact.name
             cell.callingReasonLabel.text = contact.reason
+            if let photoURL = contact.photoURL {
+                cell.avatarImageView.setRemoteImage(url: photoURL)
+            } else {
+                cell.avatarImageView.image = cell.avatarImageView.defaultImage
+            }
             return cell
+            
         case CallScriptRows.script.rawValue:
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "scriptCell", for: indexPath) as! IssueDetailCell
             cell.issueLabel.text = issue.script
             return cell
+            
         default:
+            
             return UITableViewCell()
+            
         }
     }
 }

@@ -25,6 +25,10 @@ class IssueDetailViewController : UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,6 +94,11 @@ extension IssueDetailViewController : UITableViewDataSource {
                 let contact = issue.contacts[indexPath.row]
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
+                if let photoURL = contact.photoURL {
+                    cell.avatarImageView.setRemoteImage(url: photoURL)
+                } else {
+                    cell.avatarImageView.image = cell.avatarImageView.defaultImage
+                }
                 // This wont work while issue is a struct unless you return to root
                 cell.hasContacted = contact.hasContacted
                 return cell
