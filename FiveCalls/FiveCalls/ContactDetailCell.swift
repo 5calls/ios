@@ -22,10 +22,4 @@ class ContactDetailCell : UITableViewCell {
         avatarImageView.clipsToBounds = true
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        print("imageView: \(imageView)")
-    }
-    
 }
