@@ -10,8 +10,9 @@ import Foundation
 
 class IssuesManager {
     
-    
     var issuesList: IssuesList?
+    
+    var userLocation: UserLocation?
     
     var issues: [Issue] {
         return issuesList?.issues ?? []
@@ -22,16 +23,9 @@ class IssuesManager {
     }
     
     func fetchIssues(completion: @escaping (Void) -> Void) {
-        let operation: FetchIssuesOperation
-        if let locationInfo = UserDefaults.standard.value(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String: Any],
-            let lat = locationInfo["latitude"] as? Double,
-            let long = locationInfo["longitude"] as? Double {
-            operation = FetchIssuesOperation(latLong: "\(lat),\(long)")
-        } else {
-            let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
-            operation = FetchIssuesOperation(zipCode: zip)
-        }
-
+        
+        let operation = FetchIssuesOperation(location: userLocation)
+        
         operation.completionBlock = { [weak self] in
             if let issuesList = operation.issuesList {
                 self?.issuesList = issuesList
