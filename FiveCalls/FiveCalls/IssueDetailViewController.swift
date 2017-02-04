@@ -40,17 +40,22 @@ class IssueDetailViewController : UIViewController {
         if let nav = segue.destination as? UINavigationController,
             let loc = nav.viewControllers.first as? EditLocationViewController {
             loc.delegate = self
-        }
+        } else if let call = segue.destination as? CallScriptViewController {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            call.issuesManager = issuesManager
+            call.issue = issue
+            call.contact = issue.contacts[indexPath.row]
+        }        
     }
 }
 
-enum Sections : Int {
+enum IssueSections : Int {
     case header
     case contacts
     case count
 }
 
-enum HeaderRows : Int {
+enum IssueHeaderRows : Int {
     case title
     case description
     case count
@@ -58,12 +63,12 @@ enum HeaderRows : Int {
 
 extension IssueDetailViewController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Sections.count.rawValue
+        return IssueSections.count.rawValue
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == Sections.header.rawValue {
-            return HeaderRows.count.rawValue
+        if section == IssueSections.header.rawValue {
+            return IssueHeaderRows.count.rawValue
         } else {
             return max(1, issue.contacts.count)
         }
@@ -72,7 +77,7 @@ extension IssueDetailViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case Sections.header.rawValue:
+        case IssueSections.header.rawValue:
             return headerCell(at: indexPath)
         default:
             
@@ -85,14 +90,15 @@ extension IssueDetailViewController : UITableViewDataSource {
                 let contact = issue.contacts[indexPath.row]
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
-                
+                // This wont work while issue is a struct unless you return to root
+                cell.hasContacted = contact.hasContacted
                 return cell
             }
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == Sections.contacts.rawValue {
+        if section == IssueSections.contacts.rawValue {
             return "Call your representatives"
         }
         
@@ -101,12 +107,12 @@ extension IssueDetailViewController : UITableViewDataSource {
     
     private func headerCell(at indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case HeaderRows.title.rawValue:
+        case IssueHeaderRows.title.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as! IssueDetailCell
             cell.issueLabel.text = issue.name
             return cell
             
-        case HeaderRows.description.rawValue:
+        case IssueHeaderRows.description.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! IssueDetailCell
             cell.issueLabel.text = issue.reason
             return cell
@@ -115,10 +121,6 @@ extension IssueDetailViewController : UITableViewDataSource {
             return UITableViewCell()
         }
     }
-}
-
-extension IssueDetailViewController : UITableViewDelegate {
-    
 }
 
 extension IssueDetailViewController : EditLocationViewControllerDelegate {
