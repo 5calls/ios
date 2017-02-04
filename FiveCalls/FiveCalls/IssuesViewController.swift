@@ -28,7 +28,7 @@ class IssuesViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(zipCodeChanged(_:)), name: .zipCodeChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(locationChanged(_:)), name: .locationChanged, object: nil)
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
@@ -37,7 +37,7 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc private func zipCodeChanged(_ notif: Notification) {
+    @objc private func locationChanged(_ notification: Notification) {
         loadIssues()
     }
     

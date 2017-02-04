@@ -62,7 +62,7 @@ class FetchIssuesOperation : BaseOperation {
         }
         
         
-        print("Fetching issues (zip: \(zipCode ?? ""))...")
+        print("Fetching issues (zip: \(zipCode ?? "") | latlng: \(latLongString ?? ""))...")
         task.resume()
     }
     

@@ -14,10 +14,25 @@ class IssuesManager {
     
     var zipCode: String? {
         get {
-            return UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue)
+            return UserDefaults.standard.getValue(forKey: .zipCode)
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKeyPath: UserDefaultsKeys.zipCode.rawValue)
+            UserDefaults.standard.setValue(newValue, forKey: UserDefaultsKeys.zipCode.rawValue)
+            if newValue != nil {
+                locationInfo = nil
+            }
+        }
+    }
+    
+    var locationInfo: [String : Any]? {
+        get {
+            return UserDefaults.standard.object(forKey: UserDefaultsKeys.locationInfo.rawValue) as? [String : Any]
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: UserDefaultsKeys.locationInfo.rawValue)
+            if newValue != nil {
+                zipCode = nil
+            }
         }
     }
     
@@ -30,7 +45,15 @@ class IssuesManager {
     }
     
     func fetchIssues(completion: @escaping (Void) -> Void) {
-        let operation = FetchIssuesOperation(zipCode: zipCode)
+        
+        let operation: FetchIssuesOperation
+        if let location = locationInfo,
+            let lat = location["latitude"],
+            let long = location["longitude"] {
+            operation = FetchIssuesOperation(latLong: "\(lat),\(long)")
+        } else {
+            operation = FetchIssuesOperation(zipCode: zipCode)
+        }
         
         operation.completionBlock = { [weak self] in
             if let issuesList = operation.issuesList {

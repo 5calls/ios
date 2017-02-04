@@ -12,6 +12,11 @@ import CoreLocation
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
+    
+    var issuesViewController: IssuesViewController!
+    var issuesManager: IssuesManager {
+        return issuesViewController.issuesManager
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             ])
         
         issuesVC.didMove(toParentViewController: self)
+        issuesViewController = issuesVC
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,14 +110,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
 
     private func updateWith(zipCode: String) {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.locationInfo.rawValue)
-        UserDefaults.standard.setValue(zipCode, forKey: UserDefaultsKeys.zipCode.rawValue)
-        NotificationCenter.default.post(name: .zipCodeChanged, object: nil)
+        issuesManager.zipCode = zipCode
+        NotificationCenter.default.post(name: .locationChanged, object: nil)
     }
 
     private func updateWith(locationInfo: [String: Any]) {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.zipCode.rawValue)
-        UserDefaults.standard.setValue(locationInfo, forKey: UserDefaultsKeys.locationInfo.rawValue)
-        NotificationCenter.default.post(name: .zipCodeChanged, object: nil)
+        issuesManager.locationInfo = locationInfo
+        NotificationCenter.default.post(name: .locationChanged, object: nil)
     }
 }
