@@ -39,13 +39,21 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         issuesVC.didMove(toParentViewController: self)
         issuesViewController = issuesVC
-        
-        // NotificationCenter.default.addObserver(self, selector: #selector(IssuesContainerViewController.locationDidChange(_:)), name: .locationChanged, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        // don't need to listen anymore because any change comes from this VC (otherwise we'll end up fetching twice)
+        NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // we need to know if location changes by any other VC so we can update our UI
+        NotificationCenter.default.addObserver(self, selector: #selector(IssuesContainerViewController.locationDidChange(_:)), name: .locationChanged, object: nil)
     }
     
     @IBAction func setLocationTapped(_ sender: Any) {
