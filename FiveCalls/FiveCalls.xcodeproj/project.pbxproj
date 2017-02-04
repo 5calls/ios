@@ -420,7 +420,7 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCalls;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -433,7 +433,7 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCalls;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
