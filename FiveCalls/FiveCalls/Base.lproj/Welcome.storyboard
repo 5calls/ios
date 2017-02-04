@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -73,49 +73,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-4Q-3q1">
-                                <rect key="frame" x="24" y="24" width="327" height="299"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">MAKE YOUR VOICE HEARD
-</string>
-                                        <attributes>
-                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                            <color key="NSColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="30" name="Helvetica-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="16" minimumLineHeight="33" defaultTabInterval="36" tighteningFactorForTruncation="0.0" headerLevel="2">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.
-</string>
-                                        <attributes>
-                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                            <color key="NSColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="16" minimumLineHeight="16.799999237060547" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE YOUR VOICE HEARD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-4Q-3q1">
+                                <rect key="frame" x="24" y="24" width="327" height="67.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTN-TQ-Ssn">
+                                <rect key="frame" x="24" y="111.5" width="327" height="108.5"/>
+                                <string key="text">Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PZB-P4-4Pj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eV6-4Q-3q1" secondAttribute="bottom" constant="24" id="1Lx-Y8-3ZI"/>
+                            <constraint firstItem="gTN-TQ-Ssn" firstAttribute="top" secondItem="eV6-4Q-3q1" secondAttribute="bottom" constant="20" id="8QS-jM-Rw8"/>
                             <constraint firstAttribute="trailing" secondItem="eV6-4Q-3q1" secondAttribute="trailing" constant="24" id="96a-lB-6bv"/>
                             <constraint firstItem="eV6-4Q-3q1" firstAttribute="top" secondItem="iXw-mR-qko" secondAttribute="bottom" constant="24" id="EQb-UU-gye"/>
                             <constraint firstItem="eV6-4Q-3q1" firstAttribute="leading" secondItem="GTt-jg-HeU" secondAttribute="leading" constant="24" id="VsC-4g-Qzk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gTN-TQ-Ssn" secondAttribute="trailing" constant="8" id="ex6-OE-Uer"/>
+                            <constraint firstItem="PZB-P4-4Pj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTN-TQ-Ssn" secondAttribute="bottom" constant="20" id="hcV-86-ttY"/>
+                            <constraint firstItem="gTN-TQ-Ssn" firstAttribute="leading" secondItem="GTt-jg-HeU" secondAttribute="leadingMargin" constant="8" id="p22-tw-P5b"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -126,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULD-BG-Di3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="124"/>
+            <point key="canvasLocation" x="557.60000000000002" y="123.68815592203899"/>
         </scene>
         <!--Stats Page View Controller-->
         <scene sceneID="OY9-hq-Y9y">
@@ -140,53 +120,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HS-eY-5Py">
-                                <rect key="frame" x="24" y="44" width="327" height="130"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Spend 5 minutes, make 5 calls.">
-                                        <attributes>
-                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                            <color key="NSColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="30" name="Helvetica-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="24" name="HelveticaNeue-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="16" minimumLineHeight="22.399999618530273" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="30" name="Helvetica-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <font key="NSOriginalFont" size="24" name="HelveticaNeue-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="16" minimumLineHeight="22.399999618530273" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Calling is the most effective way to influence your representative.">
-                                        <attributes>
-                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                            <color key="NSColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="16" minimumLineHeight="22.399999618530273" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spend 5 minutes, make 5 calls." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HS-eY-5Py">
+                                <rect key="frame" x="24" y="44" width="327" height="67.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL3-kO-5GT">
@@ -203,24 +140,18 @@ Cg
                                     <action selector="getStartedTapped:" destination="fyU-dq-yax" eventType="touchUpInside" id="VfR-lg-kWZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-Uy-7K6">
-                                <rect key="frame" x="24" y="198" width="327" height="64.5"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">TOGETHER WE'VE MADE 
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-Uy-7K6">
+                                <rect key="frame" x="24" y="189.5" width="327" height="42.5"/>
+                                <string key="text">TOGETHER WE'VE MADE 
 ... CALLS</string>
-                                        <attributes>
-                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="NSColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="21" name="Helvetica-Bold"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="16" minimumLineHeight="23.100000000000001" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops/>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calling is the most effective way to influence your representative." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTT-YD-26Z">
+                                <rect key="frame" x="24" y="123" width="327" height="42.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -230,11 +161,14 @@ Cg
                             <constraint firstItem="1HS-eY-5Py" firstAttribute="leading" secondItem="ht3-ki-psO" secondAttribute="leading" constant="24" id="Dok-6W-bbL"/>
                             <constraint firstItem="1HS-eY-5Py" firstAttribute="top" secondItem="Ne5-Ii-gp0" secondAttribute="bottom" constant="24" id="Mah-SM-w9f"/>
                             <constraint firstItem="Hra-Uy-7K6" firstAttribute="leading" secondItem="1HS-eY-5Py" secondAttribute="leading" id="Q3g-bL-kZB"/>
+                            <constraint firstItem="QTT-YD-26Z" firstAttribute="top" secondItem="1HS-eY-5Py" secondAttribute="bottom" constant="11.5" id="XGQ-ct-r79"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="leading" secondItem="ht3-ki-psO" secondAttribute="leadingMargin" constant="8" id="bWK-VM-XRv"/>
+                            <constraint firstItem="QTT-YD-26Z" firstAttribute="trailing" secondItem="1HS-eY-5Py" secondAttribute="trailing" id="da8-CL-ScH"/>
                             <constraint firstAttribute="trailing" secondItem="1HS-eY-5Py" secondAttribute="trailing" constant="24" id="hqn-jR-rep"/>
+                            <constraint firstItem="QTT-YD-26Z" firstAttribute="leading" secondItem="1HS-eY-5Py" secondAttribute="leading" id="iqV-RR-C0M"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FL3-kO-5GT" secondAttribute="trailing" constant="8" id="kEf-zp-aA2"/>
+                            <constraint firstItem="Hra-Uy-7K6" firstAttribute="top" secondItem="QTT-YD-26Z" secondAttribute="bottom" constant="24" id="nJF-bp-aA4"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hra-Uy-7K6" secondAttribute="bottom" constant="24" id="r1q-fQ-bhS"/>
-                            <constraint firstItem="Hra-Uy-7K6" firstAttribute="top" secondItem="1HS-eY-5Py" secondAttribute="bottom" constant="24" id="s9l-GF-iR8"/>
                             <constraint firstItem="rXb-W1-5JO" firstAttribute="top" secondItem="FL3-kO-5GT" secondAttribute="bottom" constant="24" id="zhQ-tU-Y1Y"/>
                         </constraints>
                     </view>
