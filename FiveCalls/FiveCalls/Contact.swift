@@ -35,16 +35,6 @@ struct Contact {
     var hasContacted: Bool
 }
 
-extension Contact: Hashable {
-    var hashValue: Int {
-        return id.hashValue
-    }
-    
-    static func == (lhs: Contact, rhs: Contact) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
 extension Contact : JSONSerializable {
     init?(dictionary: JSONDictionary) {
         guard let id = dictionary["id"] as? String,

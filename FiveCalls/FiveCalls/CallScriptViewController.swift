@@ -13,14 +13,13 @@ class CallScriptViewController : UIViewController {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var contact: Contact!
-    var contacted: Set<Contact> = []
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var resultUnavailableBtn: UIButton!
-    @IBOutlet weak var resultVoicemailBtn: UIButton!
-    @IBOutlet weak var resultContactedBtn: UIButton!
-    @IBOutlet weak var resultSkipBtn: UIButton!
+    @IBOutlet weak var resultUnavailableButton: UIButton!
+    @IBOutlet weak var resultVoicemailButton: UIButton!
+    @IBOutlet weak var resultContactedButton: UIButton!
+    @IBOutlet weak var resultSkipButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +40,16 @@ class CallScriptViewController : UIViewController {
 
     @IBAction func resultButtonPressed(_ button: UIButton) {
         switch button {
-        case resultContactedBtn:
+        case resultContactedButton:
             print("call connected, log this")
             break
-        case resultSkipBtn:
+        case resultSkipButton:
             print("call skipped, log this")
             break
-        case resultVoicemailBtn:
+        case resultVoicemailButton:
             print("got voicemail, log this")
             break
-        case resultUnavailableBtn:
+        case resultUnavailableButton:
             print("unavailable, log this")
             break
         default:
@@ -96,7 +95,6 @@ extension CallScriptViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.row {
         case CallScriptRows.contact.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactDetailCell

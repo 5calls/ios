@@ -413,7 +413,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <scene sceneID="VLC-fS-43C">
             <objects>
                 <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Kdw-tv-5oW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -431,7 +431,7 @@ The Department of the Army's Civil Works division will be accepting public comme
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -684,10 +684,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="resultContactedBtn" destination="Wjr-sd-Qcl" id="IR1-nw-nUn"/>
-                        <outlet property="resultSkipBtn" destination="9Ef-iV-1bu" id="MhJ-hI-5Eg"/>
-                        <outlet property="resultUnavailableBtn" destination="Axy-ed-Di0" id="vFh-AM-ecV"/>
-                        <outlet property="resultVoicemailBtn" destination="dYe-o8-2ft" id="xeT-k1-ADN"/>
+                        <outlet property="resultContactedButton" destination="Wjr-sd-Qcl" id="AwX-Ga-3yz"/>
+                        <outlet property="resultSkipButton" destination="9Ef-iV-1bu" id="N4h-iA-4ek"/>
+                        <outlet property="resultUnavailableButton" destination="Axy-ed-Di0" id="wfX-5T-Sto"/>
+                        <outlet property="resultVoicemailButton" destination="dYe-o8-2ft" id="q4Y-D0-3hh"/>
                         <outlet property="tableView" destination="lah-YB-s7v" id="BNy-Hp-tUY"/>
                     </connections>
                 </viewController>
