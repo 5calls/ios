@@ -21,6 +21,10 @@ class CallScriptViewController : UIViewController {
     @IBOutlet weak var resultContactedButton: UIButton!
     @IBOutlet weak var resultSkipButton: UIButton!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
