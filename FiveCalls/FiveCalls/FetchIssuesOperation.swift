@@ -10,27 +10,36 @@ import Foundation
 
 class FetchIssuesOperation : BaseOperation {
     let zipCode: String?
-    
+    let latLongString: String?
+
     var httpResponse: HTTPURLResponse?
     
     var error: Error?
 
     var issuesList: IssuesList?
-    
+
     init(zipCode: String?) {
         self.zipCode = zipCode
+        self.latLongString = nil
+        super.init()
+    }
+    init(latLong: String?) {
+        self.zipCode = nil
+        self.latLongString = latLong
+        super.init()
     }
     
     lazy var sessionConfiguration = URLSessionConfiguration.default
     lazy var session: URLSession = { return URLSession(configuration: self.sessionConfiguration) }()
     
     override func execute() {
-        var query = ""
-        if let zip = zipCode {
-            query = "?address=\(zip)"
+        var urlString = "https://5calls.org/issues/"
+        let urlQueryString: String? = zipCode ?? latLongString
+        if let query = urlQueryString {
+            urlString = urlString + "?address=" + query
         }
-        let url = URL(string: "https://5calls.org/issues/\(query)")!
-        
+        let url = URL(string: urlString)!
+
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 print("Error fetching issues: \(e.localizedDescription)")

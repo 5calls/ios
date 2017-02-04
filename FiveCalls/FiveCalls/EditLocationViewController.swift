@@ -11,13 +11,21 @@ import CoreLocation
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewController(_ vc: EditLocationViewController, didSelectZipCode zip: String)
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocationCoordinate2D)
+    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation)
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController)
 }
 
-class EditLocationViewController : UIViewController {
+class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     weak var delegate: EditLocationViewControllerDelegate?
-    
+    private var lookupLocation: CLLocation?
+    @IBOutlet weak var addressLabel: UILabel!
+
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        return manager
+    }()
+
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var zipCodeTextField: UITextField!
 
@@ -29,7 +37,7 @@ class EditLocationViewController : UIViewController {
     }
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
-        
+        locationManager.requestWhenInUseAuthorization()
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
@@ -55,4 +63,23 @@ class EditLocationViewController : UIViewController {
         
         return false
     }
+
+    //Mark: CLLocationManagerDelegate methods
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        manager.startUpdatingLocation()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard lookupLocation == nil else { //only want to call delegate one time
+            return
+        }
+
+        if let location = locations.first {
+            lookupLocation = location
+            delegate?.editLocationViewController(self, didSelectLocation: location)
+            locationManager.stopUpdatingLocation()
+        }
+    }
+
 }

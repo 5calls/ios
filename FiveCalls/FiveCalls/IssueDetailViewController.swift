@@ -136,7 +136,7 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
         }
     }
     
-    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocationCoordinate2D) {
+    func editLocationViewController(_ vc: EditLocationViewController, didSelectLocation location: CLLocation) {
         dismiss(animated: true, completion: nil)
         issuesManager.fetchIssues {
             self.tableView.reloadData()

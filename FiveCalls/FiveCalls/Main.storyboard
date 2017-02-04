@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -107,6 +107,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Be-hS-t4B">
+                                <rect key="frame" x="130" y="115" width="115" height="30"/>
+                                <state key="normal" title="Use My Location"/>
+                                <connections>
+                                    <action selector="useMyLocationTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="w4g-PD-9WK"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
                                 <rect key="frame" x="59" y="239" width="256" height="59"/>
                                 <constraints>
@@ -117,14 +124,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Be-hS-t4B">
-                                <rect key="frame" x="127" y="115" width="121" height="32"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                <state key="normal" title="Use My Location"/>
-                                <connections>
-                                    <action selector="useMyLocationTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="w4g-PD-9WK"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0o-QZ-kcL">
                                 <rect key="frame" x="263" y="306" width="52" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>

@@ -31,6 +31,7 @@ class IssuesManager {
     
     func fetchIssues(completion: @escaping (Void) -> Void) {
         let operation = FetchIssuesOperation(zipCode: zipCode)
+        
         operation.completionBlock = { [weak self] in
             if let issuesList = operation.issuesList {
                 self?.issuesList = issuesList
