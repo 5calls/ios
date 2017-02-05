@@ -31,11 +31,11 @@ class RemoteImageView : UIImageView {
     }
     
     func setRemoteImage(url: URL, completion: @escaping RemoteImageCallback) {
-        guard url != currentImageURL else { return }
-        
         image = defaultImage
         currentTask?.cancel()
         currentTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
+            guard self.currentTask!.state != .canceling else { return }
+            
             if let e = error as? NSError {
                 if e.domain == NSURLErrorDomain && e.code == NSURLErrorCancelled {
                     // ignore cancellation errors

@@ -11,6 +11,7 @@ import UIKit
 class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
+    var logs: ContactLogs?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class IssuesViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // NotificationCenter.default.addObserver(self, selector: #selector(locationChanged(_:)), name: .locationChanged, object: nil)
+        logs = ContactLogs.load()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,14 +39,10 @@ class IssuesViewController : UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // NotificationCenter.default.removeObserver(self)
     }
 
-    @objc private func locationChanged(_ notification: Notification) {
-        loadIssues()
-    }
-    
     func loadIssues() {
+        issuesManager.userLocation = UserLocation.current
         issuesManager.fetchIssues(completion: issuesLoaded)
     }
 
@@ -76,7 +73,9 @@ class IssuesViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as! IssueCell
         let issue = issuesManager.issues[indexPath.row]
         cell.titleLabel.text = issue.name
-        cell.checkboxView.isChecked = issue.madeCalls
+        if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
+            cell.checkboxView.isChecked = hasContacted
+        }
         return cell
     }
 }

@@ -10,14 +10,8 @@ import Foundation
 
 enum UserDefaultsKeys : String {
     case hasShownWelcomeScreen
-    case zipCode
-    case locationInfo
+    
     case locationDisplay
     case locationType
-}
-
-extension UserDefaults {
-    func getValue(forKey key: UserDefaultsKeys) -> String? {
-        return string(forKey: key.rawValue)
-    }
+    case locationValue
 }

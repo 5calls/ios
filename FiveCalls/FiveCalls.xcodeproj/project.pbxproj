@@ -16,6 +16,9 @@
 		9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */; };
 		B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280511E46A7A300749ED7 /* EllipsisButton.swift */; };
 		B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280531E46A91F00749ED7 /* AreaOffice.swift */; };
+		B50280561E47875500749ED7 /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280551E47875500749ED7 /* ContactLog.swift */; };
+		B502805E1E478BC200749ED7 /* FiveCallsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502805D1E478BC200749ED7 /* FiveCallsTests.swift */; };
+		B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280671E478BF500749ED7 /* ContactLogsTests.swift */; };
 		B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805141E3FA94D00EE832A /* AppDelegate.swift */; };
 		B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805161E3FA94D00EE832A /* WelcomeViewController.swift */; };
 		B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Welcome.storyboard */; };
@@ -44,6 +47,7 @@
 		B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762741E40E39000D63D62 /* IssuesList.swift */; };
 		B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E806FE1E463FE300EBE553 /* UserLocation.swift */; };
 		B5E807041E46796A00EBE553 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E807031E46796A00EBE553 /* RemoteImageView.swift */; };
+		E8C78D1D5F3255065257A4BC /* Pods_FiveCallsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */; };
 		F57BD8B61E438E4200BD554C /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */; };
 		F57BD8B71E438E4200BD554C /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */; };
 		F57BD8B81E438E4200BD554C /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */; };
@@ -51,10 +55,22 @@
 		FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B50280601E478BC200749ED7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B52805091E3FA94D00EE832A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B52805101E3FA94D00EE832A;
+			remoteInfo = FiveCalls;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCalls.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls.release.xcconfig"; sourceTree = "<group>"; };
 		1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCalls.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls.debug.xcconfig"; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.release.xcconfig"; sourceTree = "<group>"; };
 		9C18DA5C1E457F3D0024B991 /* CallScriptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallScriptViewController.swift; sourceTree = "<group>"; };
 		9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailCell.swift; sourceTree = "<group>"; };
 		9C18DA601E461C920024B991 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
@@ -62,6 +78,11 @@
 		9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutcomeOperation.swift; sourceTree = "<group>"; };
 		B50280511E46A7A300749ED7 /* EllipsisButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllipsisButton.swift; sourceTree = "<group>"; };
 		B50280531E46A91F00749ED7 /* AreaOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaOffice.swift; sourceTree = "<group>"; };
+		B50280551E47875500749ED7 /* ContactLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLog.swift; sourceTree = "<group>"; };
+		B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B502805D1E478BC200749ED7 /* FiveCallsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsTests.swift; sourceTree = "<group>"; };
+		B502805F1E478BC200749ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B50280671E478BF500749ED7 /* ContactLogsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLogsTests.swift; sourceTree = "<group>"; };
 		B52805111E3FA94D00EE832A /* FiveCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52805141E3FA94D00EE832A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B52805161E3FA94D00EE832A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -98,9 +119,18 @@
 		F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 		FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueActivityItemSource.swift; sourceTree = "<group>"; };
+		FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B50280581E478BC200749ED7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8C78D1D5F3255065257A4BC /* Pods_FiveCallsTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B528050E1E3FA94D00EE832A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,6 +147,8 @@
 			children = (
 				1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */,
 				0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */,
+				FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */,
+				3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -125,14 +157,26 @@
 			isa = PBXGroup;
 			children = (
 				D08630058C5382210630DE7E /* Pods_FiveCalls.framework */,
+				3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B502805C1E478BC200749ED7 /* FiveCallsTests */ = {
+			isa = PBXGroup;
+			children = (
+				B502805D1E478BC200749ED7 /* FiveCallsTests.swift */,
+				B502805F1E478BC200749ED7 /* Info.plist */,
+				B50280671E478BF500749ED7 /* ContactLogsTests.swift */,
+			);
+			path = FiveCallsTests;
 			sourceTree = "<group>";
 		};
 		B52805081E3FA94D00EE832A = {
 			isa = PBXGroup;
 			children = (
 				B52805131E3FA94D00EE832A /* FiveCalls */,
+				B502805C1E478BC200749ED7 /* FiveCallsTests */,
 				B52805121E3FA94D00EE832A /* Products */,
 				13FC26552E02495F4B111FD7 /* Pods */,
 				41C59A8CD8923A7D219FA9B5 /* Frameworks */,
@@ -143,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				B52805111E3FA94D00EE832A /* FiveCalls.app */,
+				B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,6 +241,7 @@
 				B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */,
 				B5E806FE1E463FE300EBE553 /* UserLocation.swift */,
 				B50280531E46A91F00749ED7 /* AreaOffice.swift */,
+				B50280551E47875500749ED7 /* ContactLog.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -247,6 +293,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B502805A1E478BC200749ED7 /* FiveCallsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B50280621E478BC200749ED7 /* Build configuration list for PBXNativeTarget "FiveCallsTests" */;
+			buildPhases = (
+				84B6B1BDB198229A58DA97E1 /* [CP] Check Pods Manifest.lock */,
+				B50280571E478BC200749ED7 /* Sources */,
+				B50280581E478BC200749ED7 /* Frameworks */,
+				B50280591E478BC200749ED7 /* Resources */,
+				2FD3763A0D5CA022A518B1A9 /* [CP] Embed Pods Frameworks */,
+				6865CE84EDF950CF45C88C15 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B50280611E478BC200749ED7 /* PBXTargetDependency */,
+			);
+			name = FiveCallsTests;
+			productName = FiveCallsTests;
+			productReference = B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B52805101E3FA94D00EE832A /* FiveCalls */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B52805231E3FA94D00EE832A /* Build configuration list for PBXNativeTarget "FiveCalls" */;
@@ -278,6 +345,12 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = 5calls;
 				TargetAttributes = {
+					B502805A1E478BC200749ED7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = C2K3864N2N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B52805101E3FA94D00EE832A;
+					};
 					B52805101E3FA94D00EE832A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = C2K3864N2N;
@@ -299,11 +372,19 @@
 			projectRoot = "";
 			targets = (
 				B52805101E3FA94D00EE832A /* FiveCalls */,
+				B502805A1E478BC200749ED7 /* FiveCallsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B50280591E478BC200749ED7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B528050F1E3FA94D00EE832A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +402,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2FD3763A0D5CA022A518B1A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5DBAD4BAE9299D0E23AFC2FA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,6 +445,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6865CE84EDF950CF45C88C15 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84B6B1BDB198229A58DA97E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B5CA63F91E418B8E00966B7D /* Reveal */ = {
@@ -383,6 +509,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B50280571E478BC200749ED7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B502805E1E478BC200749ED7 /* FiveCallsTests.swift in Sources */,
+				B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B528050D1E3FA94D00EE832A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,6 +535,7 @@
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
 				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
 				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
+				B50280561E47875500749ED7 /* ContactLog.swift in Sources */,
 				B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */,
 				B5E762691E40D63800D63D62 /* Issue.swift in Sources */,
 				B5CA63FB1E422D0700966B7D /* IssuesContainerViewController.swift in Sources */,
@@ -426,6 +562,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B50280611E478BC200749ED7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B52805101E3FA94D00EE832A /* FiveCalls */;
+			targetProxy = B50280601E478BC200749ED7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B52805181E3FA94D00EE832A /* Welcome.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -446,6 +590,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B50280631E478BC200749ED7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = C2K3864N2N;
+				INFOPLIST_FILE = FiveCallsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiveCalls.app/FiveCalls";
+			};
+			name = Debug;
+		};
+		B50280641E478BC200749ED7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = C2K3864N2N;
+				INFOPLIST_FILE = FiveCallsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiveCalls.app/FiveCalls";
+			};
+			name = Release;
+		};
 		B52805211E3FA94D00EE832A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -541,6 +717,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCalls/Info.plist;
@@ -555,6 +732,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCalls/Info.plist;
@@ -568,6 +746,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B50280621E478BC200749ED7 /* Build configuration list for PBXNativeTarget "FiveCallsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B50280631E478BC200749ED7 /* Debug */,
+				B50280641E478BC200749ED7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B528050C1E3FA94D00EE832A /* Build configuration list for PBXProject "FiveCalls" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

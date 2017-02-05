@@ -468,11 +468,11 @@ The Department of the Army's Civil Works division will be accepting public comme
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="135" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="135"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="180" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqZ-eY-ho4" id="uLd-Vb-KSR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-hW-gnx" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
@@ -486,11 +486,8 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                         <userDefinedRuntimeAttribute type="image" keyPath="defaultImage" value="icon-office"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Richard J. Durbin D-IL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoE-J1-wgV">
-                                                    <rect key="frame" x="15" y="33" width="261" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="sy0-ai-cOC"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Richard J. Durbin D-IL with a long name that wraps" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoE-J1-wgV">
+                                                    <rect key="frame" x="15" y="37" width="257" height="47.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                     <color key="textColor" red="0.095469482243061066" green="0.45810282230377197" blue="0.8193671703338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -504,18 +501,8 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkr-8w-SY8">
-                                                    <rect key="frame" x="15" y="62" width="138" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="mGM-9N-dVu"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
-                                                    <state key="normal" title="+1 444-444-4444">
-                                                        <color key="titleColor" red="0.89566051960000004" green="0.2254079282" blue="0.2075248063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why you're calling this office:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w9-Gc-EBX">
-                                                    <rect key="frame" x="15" y="97" width="223" height="18"/>
+                                                    <rect key="frame" x="15" y="133.5" width="223" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="PhI-R0-fsK"/>
                                                     </constraints>
@@ -524,39 +511,44 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is one of your two senators" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-9n-8a4">
-                                                    <rect key="frame" x="15" y="115" width="352" height="12"/>
+                                                    <rect key="frame" x="15" y="159.5" width="352" height="12.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNK-X0-fDd" customClass="EllipsisButton" customModule="FiveCalls" customModuleProvider="target">
-                                                    <rect key="frame" x="200" y="64" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="MUO-ah-tpH"/>
-                                                        <constraint firstAttribute="height" constant="30" id="dL6-gU-u7R"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNK-X0-fDd">
+                                                    <rect key="frame" x="279" y="105" width="82" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <state key="normal" title="..."/>
+                                                    <state key="normal" title="Line Busy?">
+                                                        <color key="titleColor" red="0.89566051959991455" green="0.2254079282283783" blue="0.20752480626106262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkr-8w-SY8">
+                                                    <rect key="frame" x="15" y="92.5" width="138" height="36"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                                    <state key="normal" title="+1 444-444-4444">
+                                                        <color key="titleColor" red="0.89566051960000004" green="0.2254079282" blue="0.2075248063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7w9-Gc-EBX" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="0fc-nh-lLt"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Voe-9n-8a4" secondAttribute="trailing" id="1XY-SO-qv8"/>
                                                 <constraint firstItem="KPu-hW-gnx" firstAttribute="top" secondItem="uLd-Vb-KSR" secondAttribute="top" constant="15" id="3BA-ZH-GcA"/>
+                                                <constraint firstItem="pkr-8w-SY8" firstAttribute="top" secondItem="NoE-J1-wgV" secondAttribute="bottom" constant="8" id="92A-Ul-YGV"/>
                                                 <constraint firstItem="pkr-8w-SY8" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="AbF-0C-Mvm"/>
                                                 <constraint firstItem="Voe-9n-8a4" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="BJJ-Df-I1C"/>
-                                                <constraint firstItem="MNK-X0-fDd" firstAttribute="baseline" secondItem="pkr-8w-SY8" secondAttribute="baseline" id="IGF-NC-yJK"/>
+                                                <constraint firstItem="KPu-hW-gnx" firstAttribute="leading" secondItem="NoE-J1-wgV" secondAttribute="trailing" constant="8" id="LFx-DS-VBU"/>
+                                                <constraint firstItem="NoE-J1-wgV" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="OFs-oQ-FBb"/>
+                                                <constraint firstItem="MNK-X0-fDd" firstAttribute="centerX" secondItem="KPu-hW-gnx" secondAttribute="centerX" id="So3-gX-qqg"/>
                                                 <constraint firstAttribute="trailing" secondItem="KPu-hW-gnx" secondAttribute="trailing" constant="15" id="TKq-8Y-oli"/>
                                                 <constraint firstItem="avw-nh-C54" firstAttribute="top" secondItem="uLd-Vb-KSR" secondAttribute="top" constant="15" id="ZHl-TN-Hlj"/>
-                                                <constraint firstItem="NoE-J1-wgV" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="ZOb-bu-AiA"/>
                                                 <constraint firstItem="7w9-Gc-EBX" firstAttribute="top" secondItem="pkr-8w-SY8" secondAttribute="bottom" constant="5" id="egj-05-WtH"/>
                                                 <constraint firstItem="avw-nh-C54" firstAttribute="leading" secondItem="uLd-Vb-KSR" secondAttribute="leading" constant="15" id="geB-ih-u9N"/>
-                                                <constraint firstItem="pkr-8w-SY8" firstAttribute="top" secondItem="NoE-J1-wgV" secondAttribute="bottom" constant="5" id="igQ-Nm-YGn"/>
-                                                <constraint firstItem="Voe-9n-8a4" firstAttribute="top" secondItem="7w9-Gc-EBX" secondAttribute="bottom" id="ji5-N2-lQh"/>
-                                                <constraint firstItem="NoE-J1-wgV" firstAttribute="top" secondItem="avw-nh-C54" secondAttribute="bottom" id="mI3-72-3uU"/>
-                                                <constraint firstItem="KPu-hW-gnx" firstAttribute="leading" secondItem="NoE-J1-wgV" secondAttribute="trailing" constant="4" id="saa-6y-ArD"/>
-                                                <constraint firstItem="MNK-X0-fDd" firstAttribute="leading" secondItem="pkr-8w-SY8" secondAttribute="trailing" constant="47" id="tww-JT-mzT"/>
+                                                <constraint firstItem="Voe-9n-8a4" firstAttribute="top" secondItem="7w9-Gc-EBX" secondAttribute="bottom" constant="8" id="ji5-N2-lQh"/>
+                                                <constraint firstItem="NoE-J1-wgV" firstAttribute="top" secondItem="avw-nh-C54" secondAttribute="bottom" constant="4" id="lGT-Ge-76x"/>
                                                 <constraint firstItem="Voe-9n-8a4" firstAttribute="bottom" secondItem="uLd-Vb-KSR" secondAttribute="bottomMargin" id="vYU-dQ-Thu"/>
+                                                <constraint firstItem="MNK-X0-fDd" firstAttribute="top" secondItem="KPu-hW-gnx" secondAttribute="bottom" constant="10" id="yHg-89-Vqx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -568,7 +560,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="322" id="DHa-Uy-Lsa" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="163" width="375" height="322"/>
+                                        <rect key="frame" x="0.0" y="208" width="375" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHa-Uy-Lsa" id="gfW-bj-ars">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
@@ -609,7 +601,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <outlet property="delegate" destination="2z3-FP-x6s" id="DOy-uf-VBQ"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNN-Im-dnc" userLabel="Static Footer">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNN-Im-dnc" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="549" width="375" height="118"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your call result to get the next call." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uid-xw-4R9">
@@ -699,6 +691,26 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="BnO-UM-Vzr"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYu-zp-YoN" customClass="ContactButton" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="22" width="359" height="44"/>
+                                        <color key="backgroundColor" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="jBy-nm-QGr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="GET NEXT CONTACT">
+                                            <color key="titleColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="xUD-5n-UJ8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -708,14 +720,17 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <constraint firstAttribute="trailing" secondItem="uid-xw-4R9" secondAttribute="trailing" constant="8" id="IBS-AQ-eZ8"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="leading" secondItem="dYe-o8-2ft" secondAttribute="leading" id="MX0-9a-0tZ"/>
                                     <constraint firstItem="dYe-o8-2ft" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="N3g-Qg-zLp"/>
+                                    <constraint firstItem="xYu-zp-YoN" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="Qgr-gL-cLJ"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" id="TJF-wn-3pw"/>
                                     <constraint firstAttribute="trailing" secondItem="dYe-o8-2ft" secondAttribute="trailing" constant="8" id="Uf9-j6-22H"/>
                                     <constraint firstAttribute="height" constant="118" id="WSd-Og-Gqw"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="leading" secondItem="Axy-ed-Di0" secondAttribute="leading" id="aur-pp-cj0"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="top" secondItem="Axy-ed-Di0" secondAttribute="bottom" constant="2" id="dYV-FN-qgd"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="f4g-KR-cAU"/>
+                                    <constraint firstItem="xYu-zp-YoN" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="hA1-um-CN7"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="iwb-0a-39f"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="qxq-P4-apJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="xYu-zp-YoN" secondAttribute="trailing" constant="8" id="wtb-Vu-Jhq"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="x7t-4Z-Yqx"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="zMd-b6-KDO"/>
                                 </constraints>
@@ -733,7 +748,11 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="footer" destination="uNN-Im-dnc" id="OVG-s1-xlr"/>
+                        <outlet property="footerHeightContraint" destination="WSd-Og-Gqw" id="nLb-K1-ilR"/>
+                        <outlet property="footerLabel" destination="uid-xw-4R9" id="rm6-Lg-I6A"/>
                         <outlet property="resultContactedButton" destination="Wjr-sd-Qcl" id="AwX-Ga-3yz"/>
+                        <outlet property="resultNextButton" destination="xYu-zp-YoN" id="d6x-fh-hCQ"/>
                         <outlet property="resultSkipButton" destination="9Ef-iV-1bu" id="N4h-iA-4ek"/>
                         <outlet property="resultUnavailableButton" destination="Axy-ed-Di0" id="wfX-5T-Sto"/>
                         <outlet property="resultVoicemailButton" destination="dYe-o8-2ft" id="q4Y-D0-3hh"/>

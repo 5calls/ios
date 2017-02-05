@@ -1,0 +1,6 @@
+framework module Pantry {
+  umbrella header "Pantry-umbrella.h"
+
+  export *
+  module * { export * }
+}

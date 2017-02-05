@@ -13,16 +13,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     
     var issuesManager: IssuesManager!
     var issue: Issue!
+    var logs: ContactLogs?
     
     @IBOutlet weak var tableView: UITableView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func awakeFromNib() {
@@ -38,6 +34,21 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        logs = ContactLogs.load()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,7 +99,6 @@ extension IssueDetailViewController : UITableViewDataSource {
         case IssueSections.header.rawValue:
             return headerCell(at: indexPath)
         default:
-            
             if issue.contacts.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "setLocationCell", for: indexPath)
                 return cell
@@ -103,8 +113,9 @@ extension IssueDetailViewController : UITableViewDataSource {
                 } else {
                     cell.avatarImageView.image = cell.avatarImageView.defaultImage
                 }
-                // This wont work while issue is a struct unless you return to root
-                cell.hasContacted = contact.hasContacted
+                if let hasContacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
+                    cell.hasContacted = hasContacted
+                }
                 return cell
             }
         }
@@ -114,7 +125,6 @@ extension IssueDetailViewController : UITableViewDataSource {
         if section == IssueSections.contacts.rawValue {
             return "Call your representatives"
         }
-        
         return nil
     }
     

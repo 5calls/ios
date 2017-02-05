@@ -1,7 +1,16 @@
 platform :ios, '9.0'
+use_frameworks!
+
+def common_pods
+  pod 'Pantry'
+end
 
 target 'FiveCalls' do
-  use_frameworks!
-
+  common_pods
   pod 'DropDown'
 end
+
+target 'FiveCallsTests' do
+  common_pods
+end
+
