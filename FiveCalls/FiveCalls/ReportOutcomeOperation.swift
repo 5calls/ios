@@ -11,32 +11,24 @@ import Foundation
 class ReportOutcomeOperation : BaseOperation {
     
     //Input properties
-    var result: String?
-    var contact: Contact?
-    var issue: Issue?
+    var log: ContactLog
     
     //Output properties
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
-    init(issue: Issue, contact: Contact, result: String) {
-        self.issue = issue
-        self.contact = contact
-        self.result = result
+    init(log: ContactLog) {
+        self.log = log
     }
     
     override func execute() {
-        guard let result = result, let contact = contact, let issue = issue else {
-            print("call parameters invalid")
-            return
-        }
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         let url = URL(string: "https://5calls.org/report")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let query = "result=\(result)&contactid=\(contact.id)&issueid=\(issue.id)"
+        let query = "result=\(log.outcome)&contactid=\(log.contactId)&issueid=\(log.issueId)"
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return
@@ -52,7 +44,6 @@ class ReportOutcomeOperation : BaseOperation {
                     print("sent report successfully")
                 }
             }
-            
             self.finish()
         }
         task.resume()

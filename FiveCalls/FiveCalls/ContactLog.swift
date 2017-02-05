@@ -87,13 +87,18 @@ struct ContactLogs {
     }
     
     func hasContacted(contactId: String, forIssue issueId: String) -> Bool {
-        // TODO
+        if let _ = all.filter({$0.contactId == contactId && $0.issueId == issueId}).first {
+            return true
+        }
         return false
     }
     
     func hasCompleted(issue: String, allContacts: [Contact]) -> Bool {
-        // TODO
-        return false
+        for contact in allContacts {
+            if !hasContacted(contactId: contact.id, forIssue: issue) {
+                return false
+            }
+        }
+        return true
     }
-    
 }

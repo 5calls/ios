@@ -33,7 +33,6 @@ struct Contact {
     let reason: String?
     let state: String?
     let fieldOffices: [AreaOffice]
-    var hasContacted: Bool
 }
 
 extension Contact : JSONSerializable {
@@ -58,8 +57,7 @@ extension Contact : JSONSerializable {
             fieldOffices = []
         }
         
-        
         let photoURL = URL(string: photoURLString)
-        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state, fieldOffices: fieldOffices, hasContacted: false)
+        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state, fieldOffices: fieldOffices)
     }
 }

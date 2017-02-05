@@ -68,7 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if let font = UIFont(name: "RobotoCondensed-Bold", size: 18.0) {
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font,
+                                                                NSForegroundColorAttributeName : UIColor.white]
         }
     }
 

@@ -601,7 +601,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <outlet property="delegate" destination="2z3-FP-x6s" id="DOy-uf-VBQ"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNN-Im-dnc" userLabel="Static Footer">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNN-Im-dnc" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="549" width="375" height="118"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your call result to get the next call." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uid-xw-4R9">
@@ -691,6 +691,26 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="BnO-UM-Vzr"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYu-zp-YoN" customClass="ContactButton" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="22" width="359" height="44"/>
+                                        <color key="backgroundColor" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="jBy-nm-QGr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="GET NEXT CONTACT">
+                                            <color key="titleColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="xUD-5n-UJ8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -700,14 +720,17 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <constraint firstAttribute="trailing" secondItem="uid-xw-4R9" secondAttribute="trailing" constant="8" id="IBS-AQ-eZ8"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="leading" secondItem="dYe-o8-2ft" secondAttribute="leading" id="MX0-9a-0tZ"/>
                                     <constraint firstItem="dYe-o8-2ft" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="N3g-Qg-zLp"/>
+                                    <constraint firstItem="xYu-zp-YoN" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="Qgr-gL-cLJ"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" id="TJF-wn-3pw"/>
                                     <constraint firstAttribute="trailing" secondItem="dYe-o8-2ft" secondAttribute="trailing" constant="8" id="Uf9-j6-22H"/>
                                     <constraint firstAttribute="height" constant="118" id="WSd-Og-Gqw"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="leading" secondItem="Axy-ed-Di0" secondAttribute="leading" id="aur-pp-cj0"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="top" secondItem="Axy-ed-Di0" secondAttribute="bottom" constant="2" id="dYV-FN-qgd"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="f4g-KR-cAU"/>
+                                    <constraint firstItem="xYu-zp-YoN" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="hA1-um-CN7"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="iwb-0a-39f"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="qxq-P4-apJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="xYu-zp-YoN" secondAttribute="trailing" constant="8" id="wtb-Vu-Jhq"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="x7t-4Z-Yqx"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="zMd-b6-KDO"/>
                                 </constraints>
@@ -725,7 +748,11 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="footer" destination="uNN-Im-dnc" id="OVG-s1-xlr"/>
+                        <outlet property="footerHeightContraint" destination="WSd-Og-Gqw" id="nLb-K1-ilR"/>
+                        <outlet property="footerLabel" destination="uid-xw-4R9" id="rm6-Lg-I6A"/>
                         <outlet property="resultContactedButton" destination="Wjr-sd-Qcl" id="AwX-Ga-3yz"/>
+                        <outlet property="resultNextButton" destination="xYu-zp-YoN" id="d6x-fh-hCQ"/>
                         <outlet property="resultSkipButton" destination="9Ef-iV-1bu" id="N4h-iA-4ek"/>
                         <outlet property="resultUnavailableButton" destination="Axy-ed-Di0" id="wfX-5T-Sto"/>
                         <outlet property="resultVoicemailButton" destination="dYe-o8-2ft" id="q4Y-D0-3hh"/>

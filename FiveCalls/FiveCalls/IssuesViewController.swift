@@ -11,6 +11,7 @@ import UIKit
 class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
+    var logs: ContactLogs?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class IssuesViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        logs = ContactLogs.load()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,7 +73,9 @@ class IssuesViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as! IssueCell
         let issue = issuesManager.issues[indexPath.row]
         cell.titleLabel.text = issue.name
-        cell.checkboxView.isChecked = issue.madeCalls
+        if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
+            cell.checkboxView.isChecked = hasContacted
+        }
         return cell
     }
 }

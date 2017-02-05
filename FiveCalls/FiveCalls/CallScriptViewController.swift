@@ -14,12 +14,17 @@ class CallScriptViewController : UIViewController {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var contact: Contact!
+    var logs = ContactLogs.load()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var footer: UIView!
     @IBOutlet weak var resultUnavailableButton: ContactButton!
     @IBOutlet weak var resultVoicemailButton: ContactButton!
     @IBOutlet weak var resultContactedButton: ContactButton!
     @IBOutlet weak var resultSkipButton: ContactButton!
+    @IBOutlet weak var resultNextButton: ContactButton!
+    @IBOutlet weak var footerLabel: UILabel!
+    @IBOutlet weak var footerHeightContraint: NSLayoutConstraint!
     var dropdown: DropDown?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -29,10 +34,36 @@ class CallScriptViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.tintColor = .white
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        contactChanged()
+    }
+    
+    func contactChanged() {
+        if let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) {
+            title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
+        }
+        let hasCompleted = logs.hasCompleted(issue: issue.id, allContacts: issue.contacts)
+        let hasContacted = logs.hasContacted(contactId: contact.id, forIssue: issue.id)
+        if hasCompleted {
+            self.footerHeightContraint.constant = 40
+            self.footerLabel.text = "You've contacted everyone, great work!"
+        } else {
+            self.footerHeightContraint.constant = hasContacted ? 90 : 118
+            self.footerLabel.text = hasContacted ? "You've already contacted \(self.contact.name)." : "Enter your call result to get the next call."
+        }
+        self.resultNextButton.isHidden = hasCompleted || !hasContacted
+        self.resultUnavailableButton.isHidden = hasCompleted || hasContacted
+        self.resultVoicemailButton.isHidden = hasCompleted || hasContacted
+        self.resultContactedButton.isHidden = hasCompleted || hasContacted
+        self.resultSkipButton.isHidden = hasCompleted || hasContacted
+        footer.setNeedsUpdateConstraints()
+        tableView.reloadData()
     }
     
     func callButtonPressed(_ button: UIButton) {
@@ -48,9 +79,10 @@ class CallScriptViewController : UIViewController {
         }
     }
     
-    func reportCallOutcome(_ outcomeType: String) {
-        if outcomeType.characters.count > 0 {
-            let operation = ReportOutcomeOperation(issue: issue, contact: contact, result: outcomeType)
+    func reportCallOutcome(_ log: ContactLog) {
+        if log.outcome.characters.count > 0 {
+            logs.add(log: log)
+            let operation = ReportOutcomeOperation(log:log)
             OperationQueue.main.addOperation(operation)
         }
     }
@@ -62,7 +94,7 @@ class CallScriptViewController : UIViewController {
             outcomeType = "contacted"
             break
         case resultSkipButton:
-            outcomeType = "" // Do we have a report for "skip" ?
+            outcomeType = "skip"
             break
         case resultVoicemailButton:
             outcomeType = "vm"
@@ -70,33 +102,24 @@ class CallScriptViewController : UIViewController {
         case resultUnavailableButton:
             outcomeType = "unavailable"
             break
+        case resultNextButton:
+            print("find next contact")
+            break
         default:
             print("unknown button pressed")
         }
-        reportCallOutcome(outcomeType)
+        //validate that a call button was actually pressed at some point?
+        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contact.phone, outcome: outcomeType, date: Date())
+        reportCallOutcome(log)
         
-        // Struct passing around problems. This needs to be refactored / cleaned up.
-        contact.hasContacted = true
-        let oldContact: Contact! = contact
-        for i in 0..<issuesManager.issuesList!.issues.count {
-            if issuesManager.issuesList!.issues[i].id == self.issue.id {
-                for j in 0..<issuesManager.issuesList!.issues[i].contacts.count {
-                    if issuesManager.issuesList!.issues[i].contacts[j].id == oldContact.id {
-                        issuesManager.issuesList!.issues[i].contacts[j].hasContacted = true
-                    }
-                    if issuesManager.issuesList!.issues[i].contacts[j].hasContacted == false {
-                        contact = issuesManager.issuesList!.issues[i].contacts[j]
-                        tableView.reloadData()
-                    }
-                }
+        for contact in issue.contacts {
+            if !logs.hasContacted(contactId: contact.id, forIssue: issue.id) {
+                self.contact = contact
+                contactChanged()
+                break
             }
         }
-        if (contact.hasContacted) {
-            for i in 0..<issuesManager.issuesList!.issues.count {
-                if issuesManager.issuesList!.issues[i].id == self.issue.id {
-                    issuesManager.issuesList!.issues[i].madeCalls = true
-                }
-            }
+        if logs.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
             _ = navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -117,7 +140,6 @@ extension CallScriptViewController : UITableViewDataSource {
         switch indexPath.row {
         
         case CallScriptRows.contact.rawValue:
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactDetailCell
             cell.callButton.setTitle(contact.phone, for: .normal)
             cell.callButton.addTarget(self, action: #selector(callButtonPressed(_:)), for: .touchUpInside)
@@ -143,13 +165,11 @@ extension CallScriptViewController : UITableViewDataSource {
             return cell
             
         case CallScriptRows.script.rawValue:
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "scriptCell", for: indexPath) as! IssueDetailCell
             cell.issueLabel.text = issue.script
             return cell
             
         default:
-            
             return UITableViewCell()
             
         }
