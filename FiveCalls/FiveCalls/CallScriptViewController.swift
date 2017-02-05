@@ -48,23 +48,32 @@ class CallScriptViewController : UIViewController {
         }
     }
     
+    func reportCallOutcome(_ outcomeType: String) {
+        if outcomeType.characters.count > 0 {
+            let operation = ReportOutcomeOperation(issue: issue, contact: contact, result: outcomeType)
+            OperationQueue.main.addOperation(operation)
+        }
+    }
+    
     @IBAction func resultButtonPressed(_ button: UIButton) {
+        var outcomeType = ""
         switch button {
         case resultContactedButton:
-            print("call connected, log this")
+            outcomeType = "contacted"
             break
         case resultSkipButton:
-            print("call skipped, log this")
+            outcomeType = "" // Do we have a report for "skip" ?
             break
         case resultVoicemailButton:
-            print("got voicemail, log this")
+            outcomeType = "vm"
             break
         case resultUnavailableButton:
-            print("unavailable, log this")
+            outcomeType = "unavailable"
             break
         default:
             print("unknown button pressed")
         }
+        reportCallOutcome(outcomeType)
         
         // Struct passing around problems. This needs to be refactored / cleaned up.
         contact.hasContacted = true

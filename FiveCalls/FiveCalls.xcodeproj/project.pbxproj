@@ -13,6 +13,7 @@
 		9C18DA5F1E458E480024B991 /* ContactDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */; };
 		9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA601E461C920024B991 /* PaddedLabel.swift */; };
 		9C46B1F81E46D638009B2C11 /* ContactButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F71E46D638009B2C11 /* ContactButton.swift */; };
+		9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */; };
 		B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280511E46A7A300749ED7 /* EllipsisButton.swift */; };
 		B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280531E46A91F00749ED7 /* AreaOffice.swift */; };
 		B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805141E3FA94D00EE832A /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDetailCell.swift; sourceTree = "<group>"; };
 		9C18DA601E461C920024B991 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		9C46B1F71E46D638009B2C11 /* ContactButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactButton.swift; sourceTree = "<group>"; };
+		9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutcomeOperation.swift; sourceTree = "<group>"; };
 		B50280511E46A7A300749ED7 /* EllipsisButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllipsisButton.swift; sourceTree = "<group>"; };
 		B50280531E46A91F00749ED7 /* AreaOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaOffice.swift; sourceTree = "<group>"; };
 		B52805111E3FA94D00EE832A /* FiveCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,7 @@
 				B5E7625A1E4037B400D63D62 /* BaseOperation.swift */,
 				B5E762581E40374600D63D62 /* FetchStatsOperation.swift */,
 				B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */,
+				9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			files = (
 				B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */,
 				B5D5C95E1E44357100C80D5F /* CustomNavigationController.swift in Sources */,
+				9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */,
 				B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
