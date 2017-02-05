@@ -42,6 +42,7 @@ class IssuesViewController : UITableViewController {
     }
     
     func loadIssues() {
+        issuesManager.userLocation = UserLocation.current
         issuesManager.fetchIssues(completion: issuesLoaded)
     }
 
