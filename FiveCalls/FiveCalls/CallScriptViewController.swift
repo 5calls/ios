@@ -51,10 +51,10 @@ class CallScriptViewController : UIViewController {
         let hasCompleted = logs.hasCompleted(issue: issue.id, allContacts: issue.contacts)
         let hasContacted = logs.hasContacted(contactId: contact.id, forIssue: issue.id)
         if hasCompleted {
-            self.footerHeightContraint.constant = 40
+            self.footerHeightContraint.constant = 30
             self.footerLabel.text = "You've contacted everyone, great work!"
         } else {
-            self.footerHeightContraint.constant = hasContacted ? 90 : 118
+            self.footerHeightContraint.constant = hasContacted ? 75 : 118
             self.footerLabel.text = hasContacted ? "You've already contacted \(self.contact.name)." : "Enter your call result to get the next call."
         }
         self.resultNextButton.isHidden = hasCompleted || !hasContacted
