@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 import DropDown
 
-class CallScriptViewController : UIViewController {
+class CallScriptViewController : UIViewController, IssueShareable {
     
     var issuesManager: IssuesManager!
     var issue: Issue!
@@ -29,7 +29,7 @@ class CallScriptViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(IssueDetailViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -99,6 +99,10 @@ class CallScriptViewController : UIViewController {
             }
             _ = navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func shareButtonPressed(_ button: UIBarButtonItem) {
+        shareIssue()
     }
 }
 

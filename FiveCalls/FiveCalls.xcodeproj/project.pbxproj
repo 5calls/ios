@@ -48,6 +48,7 @@
 		F57BD8B71E438E4200BD554C /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */; };
 		F57BD8B81E438E4200BD554C /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
+		FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
+		FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueActivityItemSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				B5E807031E46796A00EBE553 /* RemoteImageView.swift */,
 				B50280511E46A7A300749ED7 /* EllipsisButton.swift */,
 				9C46B1F71E46D638009B2C11 /* ContactButton.swift */,
+				FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				9C46B1F81E46D638009B2C11 /* ContactButton.swift in Sources */,
+				FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */,
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
 				B5D5C95C1E44317700C80D5F /* IssueDetailCell.swift in Sources */,
 				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
