@@ -33,8 +33,9 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
         super.viewWillAppear(animated)
         zipCodeTextField.becomeFirstResponder()
         // FIXME
-        if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
-            zipCodeTextField.text = zip
+        
+        if case .zipCode? = UserLocation.current.locationType {
+            zipCodeTextField.text = UserLocation.current.locationValue
         }
     }
     
