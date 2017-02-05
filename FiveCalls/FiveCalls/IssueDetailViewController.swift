@@ -22,6 +22,12 @@ class IssueDetailViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // clear selection
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
