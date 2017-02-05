@@ -16,11 +16,10 @@ class CallScriptViewController : UIViewController {
     var contact: Contact!
     
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var resultUnavailableButton: UIButton!
-    @IBOutlet weak var resultVoicemailButton: UIButton!
-    @IBOutlet weak var resultContactedButton: UIButton!
-    @IBOutlet weak var resultSkipButton: UIButton!
+    @IBOutlet weak var resultUnavailableButton: ContactButton!
+    @IBOutlet weak var resultVoicemailButton: ContactButton!
+    @IBOutlet weak var resultContactedButton: ContactButton!
+    @IBOutlet weak var resultSkipButton: ContactButton!
     var dropdown: DropDown?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -37,13 +36,18 @@ class CallScriptViewController : UIViewController {
     }
     
     func callButtonPressed(_ button: UIButton) {
-        if let dialURL = URL(string: "telprompt:\(contact.phone)") {
+        callNumber(contact.phone)
+    }
+
+    func callNumber(_ number: String) {
+        print("dialing \(number)")
+        if let dialURL = URL(string: "telprompt:\(number)") {
             UIApplication.shared.open(dialURL) { success in
                 //Log the result
             }
         }
     }
-
+    
     @IBAction func resultButtonPressed(_ button: UIButton) {
         switch button {
         case resultContactedButton:
@@ -119,7 +123,11 @@ extension CallScriptViewController : UITableViewDataSource {
             cell.moreNumbersButton.isHidden = contact.fieldOffices.isEmpty
             if contact.fieldOffices.count > 0 {
                 dropdown = DropDown(anchorView: cell.moreNumbersButton)
-                dropdown?.dataSource = contact.fieldOffices.map { $0.phone }
+                dropdown?.dataSource = contact.fieldOffices.map { "\($0.phone) (\($0.city))" }
+                dropdown?.selectionAction = { [weak self] index, item in
+                    guard let phone = self?.contact.fieldOffices[index].phone else { return }
+                    self?.callNumber(phone)
+                }
             }
             cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
             
