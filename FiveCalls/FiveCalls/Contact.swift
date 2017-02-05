@@ -32,6 +32,7 @@ struct Contact {
     let photoURL: URL?
     let reason: String
     let state: String
+    let fieldOffices: [AreaOffice]
     var hasContacted: Bool
 }
 
@@ -44,12 +45,16 @@ extension Contact : JSONSerializable {
             let phone = dictionary["phone"] as? String,
             let photoURLString = dictionary["photoURL"] as? String,
             let reason = dictionary["reason"] as? String,
-            let state = dictionary["state"] as? String else {
+            let state = dictionary["state"] as? String,
+            let fieldOfficesJSON = dictionary["field_offices"] as? [JSONDictionary]
+        else {
                 print("Unable to parse Contact from JSON: \(dictionary)")
                 return nil
         }
         
+        let fieldOffices = fieldOfficesJSON.flatMap(AreaOffice.init)
+        
         let photoURL = URL(string: photoURLString)
-        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state, hasContacted: false)
+        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state, fieldOffices: fieldOffices, hasContacted: false)
     }
 }

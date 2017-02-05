@@ -14,6 +14,7 @@ class ContactDetailCell : UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var callingReasonLabel: UILabel!
+    @IBOutlet weak var moreNumbersButton: EllipsisButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

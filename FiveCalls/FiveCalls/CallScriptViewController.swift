@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import DropDown
 
 class CallScriptViewController : UIViewController {
     
@@ -20,6 +21,7 @@ class CallScriptViewController : UIViewController {
     @IBOutlet weak var resultVoicemailButton: UIButton!
     @IBOutlet weak var resultContactedButton: UIButton!
     @IBOutlet weak var resultSkipButton: UIButton!
+    var dropdown: DropDown?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -113,6 +115,14 @@ extension CallScriptViewController : UITableViewDataSource {
             } else {
                 cell.avatarImageView.image = cell.avatarImageView.defaultImage
             }
+            
+            cell.moreNumbersButton.isHidden = contact.fieldOffices.isEmpty
+            if contact.fieldOffices.count > 0 {
+                dropdown = DropDown(anchorView: cell.moreNumbersButton)
+                dropdown?.dataSource = contact.fieldOffices.map { $0.phone }
+            }
+            cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
+            
             return cell
             
         case CallScriptRows.script.rawValue:
@@ -126,6 +136,10 @@ extension CallScriptViewController : UITableViewDataSource {
             return UITableViewCell()
             
         }
+    }
+    
+    func moreNumbersTapped() {
+        dropdown?.show()
     }
 }
 
