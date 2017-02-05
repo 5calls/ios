@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class IssueDetailViewController : UIViewController {
+class IssueDetailViewController : UIViewController, IssueShareable {
     
     var issuesManager: IssuesManager!
     var issue: Issue!
@@ -34,7 +34,7 @@ class IssueDetailViewController : UIViewController {
         
         navigationController?.navigationBar.tintColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(IssueDetailViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -50,6 +50,10 @@ class IssueDetailViewController : UIViewController {
             call.issue = issue
             call.contact = issue.contacts[indexPath.row]
         }        
+    }
+    
+    func shareButtonPressed(_ button: UIBarButtonItem) {
+        shareIssue()
     }
 }
 
