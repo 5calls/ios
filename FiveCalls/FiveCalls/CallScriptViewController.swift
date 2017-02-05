@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import DropDown
 
 class CallScriptViewController : UIViewController {
     
@@ -15,11 +16,11 @@ class CallScriptViewController : UIViewController {
     var contact: Contact!
     
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var resultUnavailableButton: UIButton!
-    @IBOutlet weak var resultVoicemailButton: UIButton!
-    @IBOutlet weak var resultContactedButton: UIButton!
-    @IBOutlet weak var resultSkipButton: UIButton!
+    @IBOutlet weak var resultUnavailableButton: ContactButton!
+    @IBOutlet weak var resultVoicemailButton: ContactButton!
+    @IBOutlet weak var resultContactedButton: ContactButton!
+    @IBOutlet weak var resultSkipButton: ContactButton!
+    var dropdown: DropDown?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -35,30 +36,44 @@ class CallScriptViewController : UIViewController {
     }
     
     func callButtonPressed(_ button: UIButton) {
-        if let dialURL = URL(string: "telprompt:\(contact.phone)") {
+        callNumber(contact.phone)
+    }
+
+    func callNumber(_ number: String) {
+        print("dialing \(number)")
+        if let dialURL = URL(string: "telprompt:\(number)") {
             UIApplication.shared.open(dialURL) { success in
                 //Log the result
             }
         }
     }
-
+    
+    func reportCallOutcome(_ outcomeType: String) {
+        if outcomeType.characters.count > 0 {
+            let operation = ReportOutcomeOperation(issue: issue, contact: contact, result: outcomeType)
+            OperationQueue.main.addOperation(operation)
+        }
+    }
+    
     @IBAction func resultButtonPressed(_ button: UIButton) {
+        var outcomeType = ""
         switch button {
         case resultContactedButton:
-            print("call connected, log this")
+            outcomeType = "contacted"
             break
         case resultSkipButton:
-            print("call skipped, log this")
+            outcomeType = "" // Do we have a report for "skip" ?
             break
         case resultVoicemailButton:
-            print("got voicemail, log this")
+            outcomeType = "vm"
             break
         case resultUnavailableButton:
-            print("unavailable, log this")
+            outcomeType = "unavailable"
             break
         default:
             print("unknown button pressed")
         }
+        reportCallOutcome(outcomeType)
         
         // Struct passing around problems. This needs to be refactored / cleaned up.
         contact.hasContacted = true
@@ -113,6 +128,18 @@ extension CallScriptViewController : UITableViewDataSource {
             } else {
                 cell.avatarImageView.image = cell.avatarImageView.defaultImage
             }
+            
+            cell.moreNumbersButton.isHidden = contact.fieldOffices.isEmpty
+            if contact.fieldOffices.count > 0 {
+                dropdown = DropDown(anchorView: cell.moreNumbersButton)
+                dropdown?.dataSource = contact.fieldOffices.map { "\($0.phone) (\($0.city))" }
+                dropdown?.selectionAction = { [weak self] index, item in
+                    guard let phone = self?.contact.fieldOffices[index].phone else { return }
+                    self?.callNumber(phone)
+                }
+            }
+            cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
+            
             return cell
             
         case CallScriptRows.script.rawValue:
@@ -126,6 +153,10 @@ extension CallScriptViewController : UITableViewDataSource {
             return UITableViewCell()
             
         }
+    }
+    
+    func moreNumbersTapped() {
+        dropdown?.show()
     }
 }
 

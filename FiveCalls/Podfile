@@ -1,0 +1,7 @@
+platform :ios, '9.0'
+
+target 'FiveCalls' do
+  use_frameworks!
+
+  pod 'DropDown'
+end
