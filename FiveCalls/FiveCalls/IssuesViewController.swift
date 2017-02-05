@@ -28,7 +28,6 @@ class IssuesViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // NotificationCenter.default.addObserver(self, selector: #selector(locationChanged(_:)), name: .locationChanged, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,13 +37,8 @@ class IssuesViewController : UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // NotificationCenter.default.removeObserver(self)
     }
 
-    @objc private func locationChanged(_ notification: Notification) {
-        loadIssues()
-    }
-    
     func loadIssues() {
         issuesManager.userLocation = UserLocation.current
         issuesManager.fetchIssues(completion: issuesLoaded)
