@@ -31,10 +31,16 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        zipCodeTextField.becomeFirstResponder()
         // FIXME
         if let zip = UserDefaults.standard.string(forKey: UserDefaultsKeys.zipCode.rawValue) {
             zipCodeTextField.text = zip
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        zipCodeTextField.resignFirstResponder()
     }
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
