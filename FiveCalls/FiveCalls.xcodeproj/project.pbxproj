@@ -19,6 +19,7 @@
 		B50280561E47875500749ED7 /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280551E47875500749ED7 /* ContactLog.swift */; };
 		B502805E1E478BC200749ED7 /* FiveCallsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502805D1E478BC200749ED7 /* FiveCallsTests.swift */; };
 		B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280671E478BF500749ED7 /* ContactLogsTests.swift */; };
+		B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280691E48C95700749ED7 /* BorderedButton.swift */; };
 		B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805141E3FA94D00EE832A /* AppDelegate.swift */; };
 		B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805161E3FA94D00EE832A /* WelcomeViewController.swift */; };
 		B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Welcome.storyboard */; };
@@ -84,6 +85,7 @@
 		B502805D1E478BC200749ED7 /* FiveCallsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsTests.swift; sourceTree = "<group>"; };
 		B502805F1E478BC200749ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B50280671E478BF500749ED7 /* ContactLogsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLogsTests.swift; sourceTree = "<group>"; };
+		B50280691E48C95700749ED7 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B52805111E3FA94D00EE832A /* FiveCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52805141E3FA94D00EE832A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B52805161E3FA94D00EE832A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				B50280511E46A7A300749ED7 /* EllipsisButton.swift */,
 				9C46B1F71E46D638009B2C11 /* ContactButton.swift */,
 				FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */,
+				B50280691E48C95700749ED7 /* BorderedButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
 				9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */,
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
+				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
