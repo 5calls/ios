@@ -181,6 +181,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="NyN-RM-AWz" userLabel="FooterView">
+                            <rect key="frame" x="0.0" y="103" width="375" height="68"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldp-Sg-uKO">
+                                    <rect key="frame" x="337" y="23" width="22" height="22"/>
+                                    <connections>
+                                        <segue destination="ZRq-uX-bkA" kind="presentation" id="cef-Jk-2M4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.2195284515619278" green="0.45113739371299744" blue="0.79296398162841797" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstItem="ldp-Sg-uKO" firstAttribute="centerY" secondItem="NyN-RM-AWz" secondAttribute="centerY" id="C1A-Xs-xhh"/>
+                                <constraint firstAttribute="trailing" secondItem="ldp-Sg-uKO" secondAttribute="trailing" constant="16" id="KXa-nJ-af8"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="gyL-0a-wGJ" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
@@ -232,7 +250,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Ne-HS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="-226"/>
+            <point key="canvasLocation" x="860" y="-226.23688155922042"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
@@ -416,6 +434,48 @@ The Department of the Army's Civil Works division will be accepting public comme
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DX6-zI-UAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1778" y="-226"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="cty-X4-nIC">
+            <objects>
+                <viewController id="OoL-kI-ZCd" customClass="AboutViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QPp-Ud-6pG"/>
+                        <viewControllerLayoutGuide type="bottom" id="ABB-F9-WVu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OA2-xY-kOo">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzV-Qr-tAC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PzV-Qr-tAC" firstAttribute="leading" secondItem="OA2-xY-kOo" secondAttribute="leading" id="UR9-zQ-izP"/>
+                            <constraint firstAttribute="trailing" secondItem="PzV-Qr-tAC" secondAttribute="trailing" id="eEA-nx-15Z"/>
+                            <constraint firstItem="PzV-Qr-tAC" firstAttribute="top" secondItem="QPp-Ud-6pG" secondAttribute="bottom" id="hjT-pE-YWT"/>
+                            <constraint firstItem="PzV-Qr-tAC" firstAttribute="bottom" secondItem="ABB-F9-WVu" secondAttribute="top" id="l2V-KF-Vjf"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="About" id="rY9-K4-5oU">
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="6NY-o6-bR2">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="close:" destination="OoL-kI-ZCd" id="RGB-lf-lFS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="PzV-Qr-tAC" id="e7F-M8-gLw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="USj-B8-avC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2732" y="490.70464767616198"/>
         </scene>
         <!--Custom Navigation Controller-->
         <scene sceneID="VLC-fS-43C">
@@ -763,12 +823,31 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             </objects>
             <point key="canvasLocation" x="2732" y="-226.23688155922042"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GF3-XK-xZp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZRq-uX-bkA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="r70-ye-hKT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OoL-kI-ZCd" kind="relationship" relationship="rootViewController" id="gpq-k0-Pc6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aJg-cT-aOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1791" y="491"/>
+        </scene>
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
         <image name="icon-office" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6tF-q1-2tT"/>
+        <segue reference="m1W-bt-ywO"/>
     </inferredMetricsTieBreakers>
 </document>
