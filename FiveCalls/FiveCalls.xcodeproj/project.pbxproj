@@ -54,6 +54,8 @@
 		F57BD8B81E438E4200BD554C /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 		FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B339F1E485BA3004B9281 /* AboutViewController.swift */; };
+		FA1B33D91E48F848004B9281 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1B33D81E48F848004B9281 /* About.storyboard */; };
+		FA1B33DB1E48FD0B004B9281 /* AboutHtmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */; };
 		FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +124,8 @@
 		F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 		FA1B339F1E485BA3004B9281 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		FA1B33D81E48F848004B9281 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutHtmlViewController.swift; sourceTree = "<group>"; };
 		FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueActivityItemSource.swift; sourceTree = "<group>"; };
 		FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +217,7 @@
 				B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */,
 				B52805181E3FA94D00EE832A /* Welcome.storyboard */,
 				B5E762621E40470A00D63D62 /* Main.storyboard */,
+				FA1B33D81E48F848004B9281 /* About.storyboard */,
 				B52805201E3FA94D00EE832A /* Info.plist */,
 			);
 			path = FiveCalls;
@@ -271,6 +276,7 @@
 				B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */,
 				9C18DA5C1E457F3D0024B991 /* CallScriptViewController.swift */,
 				FA1B339F1E485BA3004B9281 /* AboutViewController.swift */,
+				FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 			files = (
 				B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */,
 				F57BD8B61E438E4200BD554C /* RobotoCondensed-Bold.ttf in Resources */,
+				FA1B33D91E48F848004B9281 /* About.storyboard in Resources */,
 				B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */,
 				F57BD8B71E438E4200BD554C /* RobotoCondensed-Italic.ttf in Resources */,
 				B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */,
@@ -555,6 +562,7 @@
 				9C46B1F81E46D638009B2C11 /* ContactButton.swift in Sources */,
 				FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */,
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
+				FA1B33DB1E48FD0B004B9281 /* AboutHtmlViewController.swift in Sources */,
 				B5D5C95C1E44317700C80D5F /* IssueDetailCell.swift in Sources */,
 				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
 				9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */,
