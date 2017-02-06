@@ -12,17 +12,15 @@ import UIKit
 class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var contentView: UIWebView!
+    var contentName: String { get { return "whycall" } }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    @IBAction func close(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
-        if let asset = NSDataAsset(name: "AboutHtml") {
+        self.navigationController?.navigationBar.tintColor = .white
+        if let asset = NSDataAsset(name: contentName) {
             let htmlString = String(data: asset.data, encoding: .utf8)!
             contentView.loadHTMLString(htmlString, baseURL: nil)
             contentView.delegate = self
@@ -48,4 +46,16 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
         }
     }
     
+}
+
+class WhyCallViewController : AboutHtmlViewController {
+    override var contentName: String { get { return "About-WhyCall" } }
+}
+
+class WhoWeAreViewController : AboutHtmlViewController {
+    override var contentName: String { get { return "About-WhoAreWe" } }
+}
+
+class OpenSourceViewController : AboutHtmlViewController {
+    override var contentName: String { get { return "About-OpenSource" } }
 }
