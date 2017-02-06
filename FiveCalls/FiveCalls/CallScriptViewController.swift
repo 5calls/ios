@@ -172,7 +172,8 @@ extension CallScriptViewController : UITableViewDataSource {
                 }
             }
             cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
-            
+            //This helps both reizing labels we have actually display correctly 
+            cell.layoutIfNeeded()
             return cell
             
         case CallScriptRows.script.rawValue:
