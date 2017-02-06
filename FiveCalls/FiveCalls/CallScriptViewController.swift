@@ -41,13 +41,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        contactChanged()
+        setupView()
     }
     
-    func contactChanged() {
-        if let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) {
-            title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
-        }
+    func setupView() {
+        guard let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) else { return }
+        title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
+
         let hasCompleted = logs.hasCompleted(issue: issue.id, allContacts: issue.contacts)
         let hasContacted = logs.hasContacted(contactId: contact.id, forIssue: issue.id)
         if hasCompleted {
@@ -62,8 +62,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.resultVoicemailButton.isHidden = hasCompleted || hasContacted
         self.resultContactedButton.isHidden = hasCompleted || hasContacted
         self.resultSkipButton.isHidden = hasCompleted || hasContacted
+        
         footer.setNeedsUpdateConstraints()
-        tableView.reloadData()
     }
     
     func callButtonPressed(_ button: UIButton) {
@@ -114,14 +114,21 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         for contact in issue.contacts {
             if !logs.hasContacted(contactId: contact.id, forIssue: issue.id) {
-                self.contact = contact
-                contactChanged()
-                break
+                nextContact(contact)
+                return
             }
         }
         if logs.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
             _ = navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func nextContact(_ contact: Contact) {
+        let newController: CallScriptViewController = self.storyboard?.instantiateViewController(withIdentifier: "callScriptController") as! CallScriptViewController
+        newController.issuesManager = issuesManager
+        newController.issue = issue
+        newController.contact = contact
+        navigationController?.replaceTopViewController(with: newController, animated: true)
     }
     
     func shareButtonPressed(_ button: UIBarButtonItem) {
@@ -165,7 +172,8 @@ extension CallScriptViewController : UITableViewDataSource {
                 }
             }
             cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
-            
+            //This helps both reizing labels we have actually display correctly 
+            cell.layoutIfNeeded()
             return cell
             
         case CallScriptRows.script.rawValue:

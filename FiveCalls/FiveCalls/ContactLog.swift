@@ -94,6 +94,9 @@ struct ContactLogs {
     }
     
     func hasCompleted(issue: String, allContacts: [Contact]) -> Bool {
+        if (allContacts.count == 0) {
+            return false
+        }
         for contact in allContacts {
             if !hasContacted(contactId: contact.id, forIssue: issue) {
                 return false

@@ -13,3 +13,12 @@ class CustomNavigationController : UINavigationController {
         return topViewController?.preferredStatusBarStyle ?? .lightContent
     }
 }
+
+extension UINavigationController  {
+    func replaceTopViewController(with newViewController: UIViewController, animated: Bool) {
+        var controllers = viewControllers
+        let newIndex = viewControllers.count - 1
+        controllers[newIndex] = newViewController
+        setViewControllers(controllers, animated: animated)
+    }
+}
