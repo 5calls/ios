@@ -162,7 +162,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="esQ-Cx-c1Z">
-                        <barButtonItem key="rightBarButtonItem" title="Close" id="uM2-ei-DbW">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="uM2-ei-DbW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="close:" destination="VgL-ZE-5Pe" id="ctb-45-iX7"/>
