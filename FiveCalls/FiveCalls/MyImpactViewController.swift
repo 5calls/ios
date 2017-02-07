@@ -11,6 +11,7 @@ import UIKit
 class MyImpactViewController : UITableViewController {
     
     var viewModel: ImpactViewModel!
+    var totalCalls: Int?
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
@@ -55,6 +56,16 @@ class MyImpactViewController : UITableViewController {
         
         subheadLabel.isHidden = number == 0
         
+        
+        let op = FetchStatsOperation()
+        op.completionBlock = {
+            self.totalCalls = op.numberOfCalls
+            DispatchQueue.main.async {
+                self.tableView.reloadData()    
+            }
+            
+        }
+        OperationQueue.main.addOperation(op)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,6 +96,15 @@ class MyImpactViewController : UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if let total = totalCalls, section == Sections.stats.rawValue {
+            let statsVm = StatsViewModel(numberOfCalls: total)
+            return "The 5 Calls community has contributed \(statsVm.formattedNumberOfCalls!) calls!"
+        }
+        
+        return nil
     }
     
     private func configureStatRow(cell: UITableViewCell, stat: StatRow) {
