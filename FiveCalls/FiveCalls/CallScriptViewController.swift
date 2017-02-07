@@ -73,8 +73,12 @@ class CallScriptViewController : UIViewController, IssueShareable {
     func callNumber(_ number: String) {
         print("dialing \(number)")
         if let dialURL = URL(string: "telprompt:\(number)") {
-            UIApplication.shared.open(dialURL) { success in
-                //Log the result
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(dialURL) { success in
+                    //Log the result
+                }
+            } else {
+                UIApplication.shared.openURL(dialURL)
             }
         }
     }
