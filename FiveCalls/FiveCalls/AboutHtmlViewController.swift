@@ -34,27 +34,14 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
         case .linkClicked:
             // Open links in Safari
             guard let url = request.url else { return true }
+            UIApplication.shared.fvc_open(url)
             
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url)
-            } else {
-                // openURL(_:) is deprecated in iOS 10+.
-                UIApplication.shared.openURL(url)
-            }
             return false
         default:
             // Handle other navigation types...
             return true
         }
     }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-//        let cssPath = Bundle.main.path(forResource: "styles", ofType: "css")
-//        let javascriptString = "var link = document.createElement('link'); link.href = '\(cssPath)'; link.rel = 'stylesheet'; document.head.appendChild(link)";
-//        print(javascriptString)
-//        webView.stringByEvaluatingJavaScript(from: javascriptString)
-    }
-    
 }
 
 class WhyCallViewController : AboutHtmlViewController {

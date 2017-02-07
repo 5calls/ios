@@ -2,6 +2,8 @@
 
 This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5897bfe9e9a832010023be69&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5897bfe9e9a832010023be69/build/latest?branch=master)
+
 ## Requirements
 
 - Xcode 8
