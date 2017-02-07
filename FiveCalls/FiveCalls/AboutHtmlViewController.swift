@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import CPDAcknowledgements
 
 class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var contentView: UIWebView!
-    var contentName: String { get { return "whycall" } }
+    var contentName: String { get { return "" } }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -20,11 +21,12 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = .white
-        if let asset = NSDataAsset(name: contentName) {
-            let htmlString = String(data: asset.data, encoding: .utf8)!
-            contentView.loadHTMLString(htmlString, baseURL: nil)
-            contentView.delegate = self
-        }
+        
+        let path = Bundle.main.path(forResource: "about-\(contentName)", ofType: "html")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+        let htmlString = String(data: data, encoding: .utf8)!
+        contentView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL)
+        contentView.delegate = self
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -34,7 +36,7 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
             guard let url = request.url else { return true }
             
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url)
             } else {
                 // openURL(_:) is deprecated in iOS 10+.
                 UIApplication.shared.openURL(url)
@@ -46,16 +48,20 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
         }
     }
     
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+//        let cssPath = Bundle.main.path(forResource: "styles", ofType: "css")
+//        let javascriptString = "var link = document.createElement('link'); link.href = '\(cssPath)'; link.rel = 'stylesheet'; document.head.appendChild(link)";
+//        print(javascriptString)
+//        webView.stringByEvaluatingJavaScript(from: javascriptString)
+    }
+    
 }
 
 class WhyCallViewController : AboutHtmlViewController {
-    override var contentName: String { get { return "About-WhyCall" } }
+    override var contentName: String { get { return "whycall" } }
 }
 
 class WhoWeAreViewController : AboutHtmlViewController {
-    override var contentName: String { get { return "About-WhoAreWe" } }
+    override var contentName: String { get { return "whoweare" } }
 }
 
-class OpenSourceViewController : AboutHtmlViewController {
-    override var contentName: String { get { return "About-OpenSource" } }
-}

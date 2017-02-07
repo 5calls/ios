@@ -1,15 +1,18 @@
 PODS:
+  - CPDAcknowledgements (1.0.0)
   - DropDown (2)
   - Pantry (0.3)
 
 DEPENDENCIES:
+  - CPDAcknowledgements
   - DropDown
   - Pantry
 
 SPEC CHECKSUMS:
+  CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
 
-PODFILE CHECKSUM: dfadcbeee5718b08353066c86b67584078220322
+PODFILE CHECKSUM: c92339629470e4a879a176b58d5d4df2dbe8e34c
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

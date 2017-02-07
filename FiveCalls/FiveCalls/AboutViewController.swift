@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Social
 import MessageUI
+import CPDAcknowledgements
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
 
@@ -23,9 +24,15 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     @IBOutlet weak var followOnTwitterCell: UITableViewCell!
     @IBOutlet weak var shareCell: UITableViewCell!
     @IBOutlet weak var rateCell: UITableViewCell!
+    @IBOutlet weak var openSourceCell: UITableViewCell!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = .white
     }
 
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -33,16 +40,17 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let clickedCell = tableView.cellForRow(at: indexPath)
+        guard let clickedCell = tableView.cellForRow(at: indexPath) else { return }
         
-        if(clickedCell == feedbackCell) {
-            sendFeedback()
-        } else if (clickedCell == followOnTwitterCell) {
-            followOnTwitter()
-        } else if (clickedCell == shareCell) {
-            shareApp()
-        } else if (clickedCell == rateCell) {
-            promptForRating()
+        switch clickedCell {
+            
+        case feedbackCell:          sendFeedback()
+        case followOnTwitterCell:   followOnTwitter()
+        case shareCell:             shareApp()
+        case rateCell:              promptForRating()
+        case openSourceCell:        showOpenSource()
+            
+        default: break;
         }
     }
     
@@ -162,6 +170,11 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         
         alertController.addAction(UIAlertAction(title: alertTitle!, style: alertStyle!, handler: alertActionHandler))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showOpenSource() {
+        let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
+        navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }
 
 }

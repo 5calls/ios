@@ -81,7 +81,7 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad6-Ie-bsI" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="My Impact">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -98,7 +98,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMR-6E-6ld" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="187" y="0.0" width="187.5" height="44"/>
+                                        <rect key="frame" x="187" y="0.0" width="188" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="About 5 Calls">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
