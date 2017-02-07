@@ -11,6 +11,8 @@ target 'FiveCalls' do
   common_pods
   pod 'DropDown'
   pod 'CPDAcknowledgements'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 target 'FiveCallsTests' do

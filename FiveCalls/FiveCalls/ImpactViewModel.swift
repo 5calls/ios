@@ -13,7 +13,6 @@ struct ImpactViewModel {
     
     init(logs: [ContactLog]) {
         self.logs = logs
-        print(logs.map { $0.outcome })
     }
     
     var numberOfCalls: Int {
