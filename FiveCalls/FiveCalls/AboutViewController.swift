@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Social
 import MessageUI
 import CPDAcknowledgements
 
@@ -83,17 +82,10 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func shareApp() {
 
-        let actionSheet = UIAlertController(title: "", message: "Share", preferredStyle: .actionSheet)
-        
-        let tweetAction = getTweetAction()
-        let moreAction = getMoreAction()
-        let fbAction = getFacebookAction()
-        
-        actionSheet.addAction(tweetAction)
-        actionSheet.addAction(fbAction)
-        actionSheet.addAction(moreAction)
-        
-        present(actionSheet, animated: true, completion: nil)
+        guard let url = URL(string: "https://itunes.apple.com/us/app/myapp/id\(AboutViewController.appId)?ls=1&mt=8") else { return }
+        let vc = UIActivityViewController(activityItems: ["Make 5 Calls to your elected officials and let your voice be heard!",url], applicationActivities: [])
+        vc.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
+        self.present(vc, animated: true, completion: nil)
        
     }
     
@@ -109,67 +101,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
-    }
-    
-    func getFacebookAction() -> UIAlertAction {
-        return UIAlertAction(title: "Share on Facebook", style: .default, handler: {
-            (action) -> Void in
-            
-            // check if Facebook service is available
-            if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
-                let fbComposerVC = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-                fbComposerVC?.add(AboutViewController.appUrl)
-                self.present(fbComposerVC!, animated: true, completion: nil)
-            }
-            else {
-                self.showAlert(message:"You are not logged in to your Facebook account")
-            }
-        })
-    }
-    
-    func getMoreAction() -> UIAlertAction {
-        return UIAlertAction(title: "More", style: .default, handler: {
-            (action) -> Void in
-            guard let url = URL(string: "https://itunes.apple.com/us/app/myapp/id\(AboutViewController.appId)?ls=1&mt=8") else { return }
-            let vc = UIActivityViewController(activityItems: [url], applicationActivities: [])
-            vc.excludedActivityTypes = [UIActivityType.postToFacebook, UIActivityType.postToTwitter]
-            self.present(vc, animated: true, completion: nil)
-        })
-        
-    }
-    
-    func getTweetAction() -> UIAlertAction {
-        return UIAlertAction(title: "Share on Twitter", style: .default, handler: {
-            (action) -> Void in
-            
-            // check if Twitter service is available
-            
-            if (SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter)) {
-                let twitterComposerVC = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-                twitterComposerVC?.add(AboutViewController.appUrl)
-                self.present(twitterComposerVC!, animated: true, completion: nil)
-            }
-            else {
-                self.showAlert(message:"You are not logged in to your Twitter account")
-            }
-        })
-    }
-    
-    func showAlert(message: String, alertTitle: String?=nil, alertStyle: UIAlertActionStyle?=nil, alertActionHandler: ((UIAlertAction) -> Void)?=nil) {
-        var alertTitle = alertTitle
-        var alertStyle = alertStyle
-        let alertController = UIAlertController(title: "Share", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        if alertTitle == nil {
-            alertTitle = "Okay"
-        }
-        
-        if alertStyle == nil {
-            alertStyle = UIAlertActionStyle.default
-        }
-        
-        alertController.addAction(UIAlertAction(title: alertTitle!, style: alertStyle!, handler: alertActionHandler))
-        self.present(alertController, animated: true, completion: nil)
     }
     
     func showOpenSource() {
