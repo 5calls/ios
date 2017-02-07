@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,24 +77,82 @@
                                 </constraints>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-zA-nnh">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad6-Ie-bsI" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="My Impact">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rightBorder" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topBorder" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMR-6E-6ld" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="187" y="0.0" width="188" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="About 5 Calls">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="leftBorder" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topBorder" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="pny-xa-cH5" kind="presentation" id="3h9-Fh-cRY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yMR-6E-6ld" secondAttribute="bottom" id="8A4-27-JOO"/>
+                                    <constraint firstAttribute="trailing" secondItem="yMR-6E-6ld" secondAttribute="trailing" id="BvC-8i-TVS"/>
+                                    <constraint firstItem="yMR-6E-6ld" firstAttribute="width" secondItem="Ad6-Ie-bsI" secondAttribute="width" id="Gnw-iz-w8g"/>
+                                    <constraint firstItem="Ad6-Ie-bsI" firstAttribute="leading" secondItem="IwU-zA-nnh" secondAttribute="leading" id="JRM-tF-7di"/>
+                                    <constraint firstAttribute="height" constant="44" id="Lfq-V1-EN4"/>
+                                    <constraint firstItem="Ad6-Ie-bsI" firstAttribute="width" secondItem="IwU-zA-nnh" secondAttribute="width" multiplier="0.5" id="R76-yA-Pxi"/>
+                                    <constraint firstItem="yMR-6E-6ld" firstAttribute="top" secondItem="IwU-zA-nnh" secondAttribute="top" id="T2p-c8-lbO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ad6-Ie-bsI" secondAttribute="bottom" id="X3S-Mo-n0S"/>
+                                    <constraint firstItem="Ad6-Ie-bsI" firstAttribute="top" secondItem="IwU-zA-nnh" secondAttribute="top" id="fc1-y4-6ff"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ivK-ea-Dlh" firstAttribute="top" secondItem="q7A-ng-OQj" secondAttribute="top" id="0g0-54-ycH"/>
+                            <constraint firstItem="bjc-yU-Qg3" firstAttribute="top" secondItem="IwU-zA-nnh" secondAttribute="bottom" id="QxE-9A-F3C"/>
                             <constraint firstItem="ivK-ea-Dlh" firstAttribute="leading" secondItem="q7A-ng-OQj" secondAttribute="leading" id="ZUV-JU-i4i"/>
+                            <constraint firstAttribute="trailing" secondItem="IwU-zA-nnh" secondAttribute="trailing" id="s97-s8-cua"/>
+                            <constraint firstItem="IwU-zA-nnh" firstAttribute="leading" secondItem="q7A-ng-OQj" secondAttribute="leading" id="z3m-ln-fUA"/>
                             <constraint firstAttribute="trailing" secondItem="ivK-ea-Dlh" secondAttribute="trailing" id="zxa-te-TMH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DNh-Vj-zPa"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerView" destination="ivK-ea-Dlh" id="xvP-Uo-kZc"/>
                         <outlet property="locationButton" destination="6mh-1s-XbV" id="NN0-il-Akw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVy-Ix-9Py" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="-798"/>
+            <point key="canvasLocation" x="-23.199999999999999" y="-798.35082458770626"/>
         </scene>
         <!--Set Your Location-->
         <scene sceneID="2WM-Ob-Swa">
@@ -215,6 +274,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="checkboxView" destination="wEs-9r-J66" id="vnx-78-vuF"/>
                                     <outlet property="titleLabel" destination="pdL-nv-0bt" id="fEW-mJ-On2"/>
@@ -232,7 +292,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Ne-HS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="-226"/>
+            <point key="canvasLocation" x="860" y="-226.23688155922042"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
@@ -737,12 +797,20 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             </objects>
             <point key="canvasLocation" x="2732" y="-226.23688155922042"/>
         </scene>
+        <!--About-->
+        <scene sceneID="Tq7-Ud-ajB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="pny-xa-cH5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUM-95-7bm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="364" y="100"/>
+        </scene>
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
         <image name="icon-office" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6tF-q1-2tT"/>
+        <segue reference="m1W-bt-ywO"/>
     </inferredMetricsTieBreakers>
 </document>

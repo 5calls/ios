@@ -1,0 +1,6 @@
+framework module CPDAcknowledgements {
+  umbrella header "CPDAcknowledgements-umbrella.h"
+
+  export *
+  module * { export * }
+}

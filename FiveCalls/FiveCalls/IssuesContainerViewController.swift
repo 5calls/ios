@@ -12,6 +12,7 @@ import CoreLocation
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var footerView: UIView!
     
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
@@ -34,7 +35,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             issuesVC.view.topAnchor.constraint(equalTo: view.topAnchor),
             issuesVC.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             issuesVC.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            issuesVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            issuesVC.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
             ])
         
         issuesVC.didMove(toParentViewController: self)
