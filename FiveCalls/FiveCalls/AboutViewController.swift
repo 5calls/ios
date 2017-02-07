@@ -51,6 +51,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
             
         default: break;
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func sendFeedback() {
