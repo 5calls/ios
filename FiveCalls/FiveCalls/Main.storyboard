@@ -468,11 +468,11 @@ The Department of the Army's Civil Works division will be accepting public comme
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="180" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="183" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="183"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqZ-eY-ho4" id="uLd-Vb-KSR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-hW-gnx" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
@@ -501,17 +501,17 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why you're calling this office:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w9-Gc-EBX">
-                                                    <rect key="frame" x="15" y="133.5" width="223" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why you're calling this office:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7w9-Gc-EBX">
+                                                    <rect key="frame" x="15" y="134" width="257" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="PhI-R0-fsK"/>
+                                                        <constraint firstAttribute="height" constant="20" id="PhI-R0-fsK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is one of your two senators" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-9n-8a4">
-                                                    <rect key="frame" x="15" y="159.5" width="352" height="12.5"/>
+                                                    <rect key="frame" x="15" y="161.5" width="352" height="13.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -544,6 +544,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                 <constraint firstAttribute="trailing" secondItem="KPu-hW-gnx" secondAttribute="trailing" constant="15" id="TKq-8Y-oli"/>
                                                 <constraint firstItem="avw-nh-C54" firstAttribute="top" secondItem="uLd-Vb-KSR" secondAttribute="top" constant="15" id="ZHl-TN-Hlj"/>
                                                 <constraint firstItem="7w9-Gc-EBX" firstAttribute="top" secondItem="pkr-8w-SY8" secondAttribute="bottom" constant="5" id="egj-05-WtH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7w9-Gc-EBX" secondAttribute="trailing" constant="95" id="fxW-Sr-gqS"/>
                                                 <constraint firstItem="avw-nh-C54" firstAttribute="leading" secondItem="uLd-Vb-KSR" secondAttribute="leading" constant="15" id="geB-ih-u9N"/>
                                                 <constraint firstItem="Voe-9n-8a4" firstAttribute="top" secondItem="7w9-Gc-EBX" secondAttribute="bottom" constant="8" id="ji5-N2-lQh"/>
                                                 <constraint firstItem="NoE-J1-wgV" firstAttribute="top" secondItem="avw-nh-C54" secondAttribute="bottom" constant="4" id="lGT-Ge-76x"/>
@@ -559,15 +560,15 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <outlet property="nameLabel" destination="NoE-J1-wgV" id="8zm-2Q-05W"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="322" id="DHa-Uy-Lsa" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="208" width="375" height="322"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="312" id="DHa-Uy-Lsa" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="211" width="375" height="312"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHa-Uy-Lsa" id="gfW-bj-ars">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJj-et-bJl" customClass="PaddedLabel" customModule="FiveCalls" customModuleProvider="target">
-                                                    <rect key="frame" x="18" y="18" width="339" height="286"/>
+                                                    <rect key="frame" x="18" y="14" width="339" height="285"/>
                                                     <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <string key="text">Hi, my name is [Name] and I'm a concerned constituent from [City, Zip].
 
@@ -587,8 +588,8 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <constraints>
                                                 <constraint firstItem="FJj-et-bJl" firstAttribute="leading" secondItem="gfW-bj-ars" secondAttribute="leadingMargin" constant="10" id="HjO-rS-qju"/>
                                                 <constraint firstItem="FJj-et-bJl" firstAttribute="trailing" secondItem="gfW-bj-ars" secondAttribute="trailingMargin" constant="-10" id="UkG-TY-b3N"/>
-                                                <constraint firstItem="FJj-et-bJl" firstAttribute="top" secondItem="gfW-bj-ars" secondAttribute="topMargin" constant="10" id="XHf-nD-gLY"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="FJj-et-bJl" secondAttribute="bottom" constant="10" id="jKj-Jx-5FD"/>
+                                                <constraint firstItem="FJj-et-bJl" firstAttribute="top" secondItem="gfW-bj-ars" secondAttribute="topMargin" constant="6" id="XHf-nD-gLY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="FJj-et-bJl" secondAttribute="bottom" constant="5" id="jKj-Jx-5FD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -691,26 +692,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="BnO-UM-Vzr"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYu-zp-YoN" customClass="ContactButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="22" width="359" height="44"/>
-                                        <color key="backgroundColor" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="jBy-nm-QGr"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
-                                        <state key="normal" title="GET NEXT CONTACT">
-                                            <color key="titleColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="selected">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="xUD-5n-UJ8"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -720,17 +701,14 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <constraint firstAttribute="trailing" secondItem="uid-xw-4R9" secondAttribute="trailing" constant="8" id="IBS-AQ-eZ8"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="leading" secondItem="dYe-o8-2ft" secondAttribute="leading" id="MX0-9a-0tZ"/>
                                     <constraint firstItem="dYe-o8-2ft" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="N3g-Qg-zLp"/>
-                                    <constraint firstItem="xYu-zp-YoN" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="Qgr-gL-cLJ"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" id="TJF-wn-3pw"/>
                                     <constraint firstAttribute="trailing" secondItem="dYe-o8-2ft" secondAttribute="trailing" constant="8" id="Uf9-j6-22H"/>
                                     <constraint firstAttribute="height" constant="118" id="WSd-Og-Gqw"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="leading" secondItem="Axy-ed-Di0" secondAttribute="leading" id="aur-pp-cj0"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="top" secondItem="Axy-ed-Di0" secondAttribute="bottom" constant="2" id="dYV-FN-qgd"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="f4g-KR-cAU"/>
-                                    <constraint firstItem="xYu-zp-YoN" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="hA1-um-CN7"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="iwb-0a-39f"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="qxq-P4-apJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="xYu-zp-YoN" secondAttribute="trailing" constant="8" id="wtb-Vu-Jhq"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="x7t-4Z-Yqx"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="zMd-b6-KDO"/>
                                 </constraints>
@@ -748,11 +726,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="footer" destination="uNN-Im-dnc" id="OVG-s1-xlr"/>
-                        <outlet property="footerHeightContraint" destination="WSd-Og-Gqw" id="nLb-K1-ilR"/>
-                        <outlet property="footerLabel" destination="uid-xw-4R9" id="rm6-Lg-I6A"/>
                         <outlet property="resultContactedButton" destination="Wjr-sd-Qcl" id="AwX-Ga-3yz"/>
-                        <outlet property="resultNextButton" destination="xYu-zp-YoN" id="d6x-fh-hCQ"/>
                         <outlet property="resultSkipButton" destination="9Ef-iV-1bu" id="N4h-iA-4ek"/>
                         <outlet property="resultUnavailableButton" destination="Axy-ed-Di0" id="wfX-5T-Sto"/>
                         <outlet property="resultVoicemailButton" destination="dYe-o8-2ft" id="q4Y-D0-3hh"/>
