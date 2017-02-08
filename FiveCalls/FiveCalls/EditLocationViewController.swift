@@ -35,7 +35,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.tintColor = .white
         zipCodeTextField.becomeFirstResponder()
         
         if case .zipCode? = UserLocation.current.locationType {
