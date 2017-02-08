@@ -146,8 +146,10 @@ extension IssueDetailViewController : UITableViewDataSource {
     }
     
     func scrollToBottom() {
-        let lastIndexPath = IndexPath(row: issue.contacts.count - 1, section: IssueSections.contacts.rawValue)
-        self.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+        let s = self.tableView.contentSize
+        var b = self.tableView.bounds
+        b.origin.y = max(0,s.height - b.height)
+        self.tableView.scrollRectToVisible(b, animated: true)
     }
 }
 
