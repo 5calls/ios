@@ -86,7 +86,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     func informUserOfPermissions() {
         let alertController = UIAlertController(title: "Location permission denied.", message:
-            "To use Location please change the permissions in the Settings.", preferredStyle: .alert)
+            "To use Location please change the permissions in the Settings and try again.", preferredStyle: .alert)
         let dismiss = UIAlertAction(title: "Dismiss", style: .default ,handler: nil)
         alertController.addAction(dismiss)
         let openSettings = UIAlertAction(title: "Open Settings", style: .default, handler: { action in
@@ -98,7 +98,9 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .denied {
+        if status == .denied {
+            informUserOfPermissions()
+        } else {
             useMyLocationButton.isEnabled = false // prevent starting it twice...
             activityIndicator.startAnimating()
             manager.startUpdatingLocation()
