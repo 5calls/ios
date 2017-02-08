@@ -126,16 +126,20 @@
                                 <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL3-kO-5GT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL3-kO-5GT" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
                                 <rect key="frame" x="24" y="570" width="327" height="73"/>
                                 <color key="backgroundColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="yc3-dU-J9N"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <state key="normal" title="Get Started">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="customFontSize">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getStartedTapped:" destination="fyU-dq-yax" eventType="touchUpInside" id="VfR-lg-kWZ"/>
                                 </connections>

@@ -20,6 +20,7 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .white
         
         let path = Bundle.main.path(forResource: "about-\(contentName)", ofType: "html")!

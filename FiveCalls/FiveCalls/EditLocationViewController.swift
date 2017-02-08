@@ -29,10 +29,14 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var zipCodeTextField: UITextField!
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .white
         zipCodeTextField.becomeFirstResponder()
-        // FIXME
         
         if case .zipCode? = UserLocation.current.locationType {
             zipCodeTextField.text = UserLocation.current.locationValue
@@ -45,7 +49,11 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
-        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.authorizationStatus() == .denied {
+            informUserOfPermissions()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
@@ -75,11 +83,26 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
 
     //Mark: CLLocationManagerDelegate methods
+    
+    func informUserOfPermissions() {
+        let alertController = UIAlertController(title: "Location permission denied.", message:
+            "To use Location please change the permissions in the Settings.", preferredStyle: .alert)
+        let dismiss = UIAlertAction(title: "Dismiss", style: .default ,handler: nil)
+        alertController.addAction(dismiss)
+        let openSettings = UIAlertAction(title: "Open Settings", style: .default, handler: { action in
+            guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
+            UIApplication.shared.fvc_open(url)
+        })
+        alertController.addAction(openSettings)
+        present(alertController, animated: true, completion: nil)
+    }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        useMyLocationButton.isEnabled = false // prevent starting it twice...
-        activityIndicator.startAnimating()
-        manager.startUpdatingLocation()
+        if status != .denied {
+            useMyLocationButton.isEnabled = false // prevent starting it twice...
+            activityIndicator.startAnimating()
+            manager.startUpdatingLocation()
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -13,14 +13,15 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     var issuesManager: IssuesManager!
     var issue: Issue!
+    var issueIndex = -1
     var contact: Contact!
     var logs = ContactLogs.load()
     var lastPhoneDialed = ""
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var resultUnavailableButton: ContactButton!
-    @IBOutlet weak var resultVoicemailButton: ContactButton!
-    @IBOutlet weak var resultContactedButton: ContactButton!
-    @IBOutlet weak var resultSkipButton: ContactButton!
+    @IBOutlet weak var resultUnavailableButton: BlueButton!
+    @IBOutlet weak var resultVoicemailButton: BlueButton!
+    @IBOutlet weak var resultContactedButton: BlueButton!
+    @IBOutlet weak var resultSkipButton: BlueButton!
     var dropdown: DropDown?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -40,6 +41,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) else { return }
+        self.issueIndex = issueIndex
         title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
     }
     
@@ -82,18 +84,18 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let contactedPhone = lastPhoneDialed.characters.count > 0 ? lastPhoneDialed : contact.phone
         let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcomeType, date: Date())
         reportCallOutcome(log)
-        for contact in issue.contacts {
-            if !logs.hasContacted(contactId: contact.id, forIssue: issue.id) {
-                nextContact(contact)
-                return
-            }
+        
+        var nextIndex = issueIndex+1
+        if issueIndex+1 >= issue.contacts.count {
+            nextIndex = 0
         }
-        if logs.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
-            _ = navigationController?.popViewController(animated: true)
-        }
+        if issue.contacts.indices.contains(nextIndex) {
+            let nextContact = issue.contacts[nextIndex]
+            showNextContact(nextContact)
+        }        
     }
     
-    func nextContact(_ contact: Contact) {
+    func showNextContact(_ contact: Contact) {
         let newController: CallScriptViewController = self.storyboard?.instantiateViewController(withIdentifier: "callScriptController") as! CallScriptViewController
         newController.issuesManager = issuesManager
         newController.issue = issue
