@@ -520,10 +520,10 @@ The Department of the Army's Civil Works division will be accepting public comme
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
