@@ -28,8 +28,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         view.insertSubview(issuesVC.view, belowSubview: headerView)
         issuesVC.view.translatesAutoresizingMaskIntoConstraints = false
-        issuesVC.tableView.contentInset.top = headerView.frame.size.height - 20 // status bar adjustment
-        issuesVC.tableView.scrollIndicatorInsets.top = headerView.frame.size.height - 10
         
         NSLayoutConstraint.activate([
             issuesVC.view.topAnchor.constraint(equalTo: view.topAnchor),
@@ -41,10 +39,21 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         issuesVC.didMove(toParentViewController: self)
         issuesViewController = issuesVC
     }
+    
+    private func setContentInset() {
+        issuesViewController.tableView.contentInset.top = headerView.frame.size.height
+        issuesViewController.tableView.scrollIndicatorInsets.top = headerView.frame.size.height
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setContentInset()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        setContentInset()
         
         // don't need to listen anymore because any change comes from this VC (otherwise we'll end up fetching twice)
         NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)

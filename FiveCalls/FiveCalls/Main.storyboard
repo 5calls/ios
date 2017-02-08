@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,30 +20,30 @@
                         <viewControllerLayoutGuide type="bottom" id="bjc-yU-Qg3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="q7A-ng-OQj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivK-ea-Dlh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Qtq-MN-MML">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mi6-Us-zfc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdA-pk-ZlR" userLabel="Red Stripe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                                     <color key="backgroundColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="0Uo-MZ-aR1"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5calls-logotype" translatesAutoresizingMaskIntoConstraints="NO" id="fft-Ag-RIT">
-                                                    <rect key="frame" x="8" y="28" width="359" height="50"/>
+                                                    <rect key="frame" x="8" y="28" width="398" height="50"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mh-1s-XbV">
-                                                    <rect key="frame" x="142" y="82" width="91" height="32"/>
+                                                    <rect key="frame" x="161.66666666666666" y="82" width="91" height="32"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <state key="normal" title="Set Location"/>
                                                     <connections>
@@ -78,10 +78,10 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-zA-nnh">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad6-Ie-bsI" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="My Impact">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -101,7 +101,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMR-6E-6ld" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="187" y="0.0" width="188" height="44"/>
+                                        <rect key="frame" x="206.66666666666663" y="0.0" width="207.33333333333337" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="About 5 Calls">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -166,11 +166,11 @@
                         <viewControllerLayoutGuide type="bottom" id="zsq-No-sUU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KQU-J2-YtO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Be-hS-t4B" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                <rect key="frame" x="62.5" y="99" width="250" height="44"/>
+                                <rect key="frame" x="82" y="35" width="250" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="0nZ-07-gNh"/>
                                     <constraint firstAttribute="height" constant="44" id="HAO-vV-2NC"/>
@@ -186,7 +186,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
-                                <rect key="frame" x="60" y="234" width="256" height="59"/>
+                                <rect key="frame" x="79" y="170" width="256" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="MkO-so-yUl"/>
                                     <constraint firstAttribute="width" constant="256" id="QrQ-A4-eTQ"/>
@@ -196,7 +196,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0o-QZ-kcL" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                <rect key="frame" x="216" y="301" width="100" height="40"/>
+                                <rect key="frame" x="235" y="237" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="KTK-f0-lqy"/>
                                     <constraint firstAttribute="width" constant="100" id="vDF-j1-Q3J"/>
@@ -212,13 +212,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Enter Your Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-pd-kKj">
-                                <rect key="frame" x="99" y="193" width="177" height="21"/>
+                                <rect key="frame" x="118.66666666666669" y="129" width="177" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Czh-eH-GW2">
-                                <rect key="frame" x="177" y="161" width="20" height="20"/>
+                                <rect key="frame" x="196.66666666666666" y="97" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,15 +258,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="IssuesViewController" id="GRZ-cT-aT3" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xqk-9j-kez">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="gyL-0a-wGJ" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
@@ -278,7 +278,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppose Muslim Travel Ban" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-nv-0bt">
-                                            <rect key="frame" x="60" y="16" width="204" height="42"/>
+                                            <rect key="frame" x="60" y="16" width="203.33333333333331" height="42"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -324,22 +324,22 @@
                         <viewControllerLayoutGuide type="bottom" id="kiY-NH-qGH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UAa-DC-xPq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wwf-aP-AUR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="122"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZj-s7-SHf" id="Hfa-Yw-Zoy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="122"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPEAK OUT FOR ENVIRONMENTAL IMPACT AT STANDING ROCK" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJo-u6-qUp">
-                                                    <rect key="frame" x="28" y="11" width="319" height="100"/>
+                                                    <rect key="frame" x="28" y="11" width="358" height="100"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="26"/>
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -357,14 +357,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="150" width="375" height="322"/>
+                                        <rect key="frame" x="0.0" y="150" width="414" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tFw-k8-nYx" id="J54-rP-g67">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGF-ef-DH0">
-                                                    <rect key="frame" x="28" y="18" width="319" height="286"/>
+                                                    <rect key="frame" x="28" y="18" width="358" height="286"/>
                                                     <string key="text">Trump recently signed an executive orders to revive the controversial Dakota Access and Keystone XL oil pipelines. The executive order directs the Army Corps of Engineers to conduct an environmental review “and approve in an expedited manner.”
 
 Stand With Standing Rock has asked everyone to contact the Army Corps of Engineers. Please read their statement below:
@@ -401,10 +401,10 @@ The Department of the Army's Civil Works division will be accepting public comme
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="107" id="1Xd-sZ-QlP" customClass="ContactCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="472" width="375" height="107"/>
+                                        <rect key="frame" x="0.0" y="472" width="414" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Xd-sZ-QlP" id="r0i-yC-dN5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="JQD-W8-GS8" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
@@ -450,14 +450,14 @@ The Department of the Army's Civil Works division will be accepting public comme
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="setLocationCell" rowHeight="66" id="boC-cV-bYf">
-                                        <rect key="frame" x="0.0" y="579" width="375" height="66"/>
+                                        <rect key="frame" x="0.0" y="579" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="boC-cV-bYf" id="156-E5-ABg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your location to find your representatives" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-Fz-TPy">
-                                                    <rect key="frame" x="13" y="23" width="346" height="21"/>
+                                                    <rect key="frame" x="13" y="23" width="291" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
                                                     <color key="textColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -502,7 +502,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <scene sceneID="VLC-fS-43C">
             <objects>
                 <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Kdw-tv-5oW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -520,7 +520,7 @@ The Department of the Army's Civil Works division will be accepting public comme
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -543,22 +543,22 @@ The Department of the Army's Civil Works division will be accepting public comme
                         <viewControllerLayoutGuide type="bottom" id="mhU-yF-TgZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="crI-ah-t90">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lah-YB-s7v">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="541"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="610"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="183" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="183"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="183"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqZ-eY-ho4" id="uLd-Vb-KSR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="183"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-hW-gnx" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
-                                                    <rect key="frame" x="280" y="15" width="80" height="80"/>
+                                                    <rect key="frame" x="319" y="15" width="80" height="80"/>
                                                     <color key="backgroundColor" red="0.96070033311843872" green="0.96083813905715942" blue="0.96067017316818237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="dZu-WQ-C9k"/>
@@ -569,7 +569,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Richard J. Durbin D-IL with a long name that wraps" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoE-J1-wgV">
-                                                    <rect key="frame" x="15" y="37" width="257" height="47.5"/>
+                                                    <rect key="frame" x="15" y="37" width="296" height="47.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                                     <color key="textColor" red="0.095469482243061066" green="0.45810282230377197" blue="0.8193671703338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -584,7 +584,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why you're calling this office:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7w9-Gc-EBX">
-                                                    <rect key="frame" x="15" y="133.5" width="257" height="20"/>
+                                                    <rect key="frame" x="15" y="133.33333333333334" width="296" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="PhI-R0-fsK"/>
                                                     </constraints>
@@ -593,13 +593,13 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is one of your two senators" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-9n-8a4">
-                                                    <rect key="frame" x="15" y="161.5" width="352" height="13.5"/>
+                                                    <rect key="frame" x="15" y="161.33333333333337" width="391" height="13.666666666666657"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNK-X0-fDd">
-                                                    <rect key="frame" x="279" y="105" width="82" height="32"/>
+                                                    <rect key="frame" x="318" y="105" width="82" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <state key="normal" title="Line Busy?">
                                                         <color key="titleColor" red="0.89566051959991455" green="0.2254079282283783" blue="0.20752480626106262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -643,14 +643,14 @@ The Department of the Army's Civil Works division will be accepting public comme
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="312" id="DHa-Uy-Lsa" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211" width="375" height="312"/>
+                                        <rect key="frame" x="0.0" y="211" width="414" height="312"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHa-Uy-Lsa" id="gfW-bj-ars">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="312"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJj-et-bJl" customClass="PaddedLabel" customModule="FiveCalls" customModuleProvider="target">
-                                                    <rect key="frame" x="18" y="14" width="339" height="285"/>
+                                                    <rect key="frame" x="18" y="14" width="378" height="285"/>
                                                     <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <string key="text">Hi, my name is [Name] and I'm a concerned constituent from [City, Zip].
 
@@ -685,16 +685,16 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNN-Im-dnc" userLabel="Footer">
-                                <rect key="frame" x="0.0" y="541" width="375" height="126"/>
+                                <rect key="frame" x="0.0" y="610" width="414" height="126"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your call result to get the next call." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uid-xw-4R9">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="19"/>
+                                        <rect key="frame" x="8" y="0.0" width="398" height="19"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axy-ed-Di0" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="22" width="175.5" height="44"/>
+                                        <rect key="frame" x="8" y="22" width="195" height="44"/>
                                         <color key="backgroundColor" red="0.73130005598068237" green="0.86836498975753784" blue="0.98168426752090454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="KFv-Nz-vV8"/>
@@ -719,7 +719,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-o8-2ft" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="191.5" y="22" width="175.5" height="44"/>
+                                        <rect key="frame" x="211" y="22" width="195" height="44"/>
                                         <color key="backgroundColor" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="1JY-tE-dB6"/>
@@ -743,7 +743,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjr-sd-Qcl" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="74" width="175.5" height="44"/>
+                                        <rect key="frame" x="8" y="74" width="195" height="44"/>
                                         <color key="backgroundColor" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Aoo-Pz-gVi"/>
@@ -767,7 +767,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ef-iV-1bu" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="191.5" y="74" width="175.5" height="44"/>
+                                        <rect key="frame" x="211" y="74" width="195" height="44"/>
                                         <color key="backgroundColor" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="HZA-N4-XSR"/>
@@ -840,21 +840,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             <objects>
                 <tableViewController id="V9a-DA-ySZ" customClass="MyImpactViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="w0T-OJ-9RG">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="4hO-va-xGA">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="187"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your impact is {{number}} {{calls}}{{punctuation}}" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ir8-NY-44G">
-                                    <rect key="frame" x="8" y="30" width="351" height="57.5"/>
+                                    <rect key="frame" x="8" y="30" width="390" height="57.333333333333329"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                     <color key="textColor" red="0.89566051960000004" green="0.2254079282" blue="0.2075248063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That's awesome and you should feel awesome. Every call counts!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSw-yP-80O">
-                                    <rect key="frame" x="8" y="113" width="281.5" height="41"/>
+                                    <rect key="frame" x="8" y="112.99999999999999" width="363" height="40.666666666666643"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -872,21 +872,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statCell" textLabel="ZSx-yb-8Qy" detailTextLabel="RlJ-Rz-RYb" style="IBUITableViewCellStyleValue1" id="TVv-gW-ZKZ">
-                                <rect key="frame" x="0.0" y="243" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="242.33333333333334" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVv-gW-ZKZ" id="Ns2-UU-Wpo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZSx-yb-8Qy">
-                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
+                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RlJ-Rz-RYb">
-                                            <rect key="frame" x="303" y="11" width="57" height="21"/>
+                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -896,21 +896,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="contactStatCell" textLabel="SJ8-g0-JAP" detailTextLabel="kbU-0d-lcn" style="IBUITableViewCellStyleValue1" id="mE9-Jg-tD4">
-                                <rect key="frame" x="0.0" y="287" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="286.33333333333337" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mE9-Jg-tD4" id="4mP-T1-Hr3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SJ8-g0-JAP">
-                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
+                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kbU-0d-lcn">
-                                            <rect key="frame" x="303" y="11" width="57" height="21"/>
+                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -955,7 +955,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3VD-Ro-n8g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
