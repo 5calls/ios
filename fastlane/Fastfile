@@ -25,7 +25,8 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     gym(workspace: workspace, scheme: scheme)
-    pilot
+    changelog = File.read('changelog.txt')
+    pilot(changelog: changelog)
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)

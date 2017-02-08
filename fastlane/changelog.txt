@@ -1,0 +1,11 @@
+- Disable rotation for now.
+- Make location nav bar red
+- Use dummy footer so we don’t get ghost rows all the way down
+- Fix location issue
+- Nicer location screen
+- Better button spacing on call script screen
+- Don’t allow selection on the My Impact screen.
+- Fix crash when entering zip code for the first time
+- Minor textual changes for case consistency
+- Add a separator at the top of the issues list
+- Add icon credit to @sensibleworld
