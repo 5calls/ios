@@ -21,6 +21,8 @@ class IssuesViewController : UITableViewController {
         
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.tableFooterView = UIView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
