@@ -1012,6 +1012,7 @@
 				B5A70A601E4C01A00031DF58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
