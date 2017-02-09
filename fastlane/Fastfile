@@ -57,6 +57,10 @@ platform :ios do
     #   success: false
     # )
   end
+
+  lane :snapshots do
+    snapshot
+  end
 end
 
 
