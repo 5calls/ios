@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Crashlytics
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation)
@@ -35,6 +36,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Answers.logCustomEvent(withName:"Screen: Edit Location")
         zipCodeTextField.becomeFirstResponder()
         
         if case .zipCode? = UserLocation.current.locationType {
@@ -49,8 +51,10 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
         if CLLocationManager.authorizationStatus() == .denied {
+            Answers.logCustomEvent(withName:"Action: Denied Location")
             informUserOfPermissions()
         } else {
+            Answers.logCustomEvent(withName:"Action: Used Location")
             locationManager.requestWhenInUseAuthorization()
         }
     }
@@ -61,6 +65,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     @IBAction func submitZipCodeTapped(_ sender: Any) {
         if validateZipCode() {
+            Answers.logCustomEvent(withName:"Action: Used Zip Code")
             let userLocation = UserLocation.current
             userLocation.setFrom(zipCode: zipCodeTextField.text!)
             delegate?.editLocationViewController(self, didUpdateLocation: userLocation)

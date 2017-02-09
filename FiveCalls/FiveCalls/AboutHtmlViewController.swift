@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CPDAcknowledgements
+import Crashlytics
 
 class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
     
@@ -22,7 +23,7 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .white
-        
+        Answers.logCustomEvent(withName: "Screen: About \(contentName)")
         let path = Bundle.main.path(forResource: "about-\(contentName)", ofType: "html")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let htmlString = String(data: data, encoding: .utf8)!
@@ -35,6 +36,7 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
         case .linkClicked:
             // Open links in Safari
             guard let url = request.url else { return true }
+            Answers.logCustomEvent(withName: "Action: Open External Link", customAttributes: ["url":url.absoluteString])
             UIApplication.shared.fvc_open(url)
             
             return false

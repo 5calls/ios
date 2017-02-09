@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Crashlytics
 
 class IssueDetailViewController : UIViewController, IssueShareable {
     
@@ -38,6 +39,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Answers.logCustomEvent(withName:"Screen: Issue Detail", customAttributes: ["issue_id":issue.id])
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
