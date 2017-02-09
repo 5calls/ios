@@ -124,7 +124,7 @@ extension IssueDetailViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == IssueSections.contacts.rawValue {
+        if !issue.contacts.isEmpty && section == IssueSections.contacts.rawValue {
             return "Call your representatives"
         }
         return nil
