@@ -29,43 +29,37 @@ class FiveCallsUITests: XCTestCase {
     
     func testTakeScreenshots() {
         snapshot("0-welcome")
+        
+        // ¯\_(ツ)_/¯
+        let welcomeScreen = app.otherElements.containing(.image, identifier:"5calls-logotype")
+            .children(matching: .other).element(boundBy: 1)
+            .children(matching: .other).element
+            .children(matching: .other).element
+            .children(matching: .other).element
+            .children(matching: .other).element
 
-
-        app.scrollViews.element(boundBy: 0).swipeLeft()
+        welcomeScreen.swipeLeft()
 
         snapshot("1-welcome2")
 
-        app.buttons["Get Started"].tap()
-        app.buttons["Set Location"].tap()
-        app.textFields.element(boundBy: 0).typeText("77429")
-        app.buttons["Submit"].tap()
-
-    }
-
-    func testExample() {
-        
-        let app = XCUIApplication()
-        let element = app.otherElements.containing(.image, identifier:"5calls-logotype").children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
-        element.swipeLeft()
-
         app.buttons["GET STARTED"].tap()
-
-
-        // about screen
-        app.buttons["About 5 Calls"].tap()
-        app.navigationBars["About"].buttons["Done"].tap()
-
-        // my impact
-        app.buttons["My Impact"].tap()
-        app.navigationBars["My Impact"].buttons["Done"].tap()
-
-        // set location
         app.buttons["Set Location"].tap()
         app.textFields["Zip Code"].tap()
         app.typeText("77429")
         app.buttons["SUBMIT"].tap()
+
+        snapshot("2-issues")
+ 
+        // this break in the future as new issues come out, but I think it's better to pick an issue explicitly
+        // rather than tapping on the first cell. Having canned data for UI_TESTING is a good solution to this.
+        app.tables.element(boundBy: 0).swipeUp()
+        app.tables.cells.staticTexts["Object to the Unraveling of Dodd-Frank"].tap()
+        snapshot("3-issue-detail")
+        let issueTable = app.tables.element(boundBy: 0)
+        issueTable.swipeUp()
+        issueTable.swipeUp()
         
-        let tablesQuery = app.tables
+        app.cells.staticTexts["Ted Cruz"].tap()
+        snapshot("4-call-script")
     }
-    
 }
