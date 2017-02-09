@@ -37,6 +37,8 @@
 		B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B528051B1E3FA94D00EE832A /* Assets.xcassets */; };
 		B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */; };
 		B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591EB841E44D946006C7D28 /* ContactCell.swift */; };
+		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
+		B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */; };
 		B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F51E41772D00966B7D /* IssueCell.swift */; };
 		B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F71E41779300966B7D /* CheckboxView.swift */; };
 		B5CA63FB1E422D0700966B7D /* IssuesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */; };
@@ -77,6 +79,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		B50280601E478BC200749ED7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B52805091E3FA94D00EE832A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B52805101E3FA94D00EE832A;
+			remoteInfo = FiveCalls;
+		};
+		B5A70A5D1E4C01A00031DF58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B52805091E3FA94D00EE832A /* Project object */;
 			proxyType = 1;
@@ -127,6 +136,10 @@
 		B528051E1E3FA94D00EE832A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B52805201E3FA94D00EE832A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B591EB841E44D946006C7D28 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsUITests.swift; sourceTree = "<group>"; };
+		B5A70A5C1E4C01A00031DF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		B5CA63F51E41772D00966B7D /* IssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCell.swift; sourceTree = "<group>"; };
 		B5CA63F71E41779300966B7D /* CheckboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesContainerViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +199,13 @@
 				42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */,
 				558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */,
 				60C6E15E18B252A35EF14CFA /* CoreVideo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5A70A551E4C01A00031DF58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +277,7 @@
 			children = (
 				B52805131E3FA94D00EE832A /* FiveCalls */,
 				B502805C1E478BC200749ED7 /* FiveCallsTests */,
+				B5A70A591E4C01A00031DF58 /* FiveCallsUITests */,
 				B52805121E3FA94D00EE832A /* Products */,
 				13FC26552E02495F4B111FD7 /* Pods */,
 				41C59A8CD8923A7D219FA9B5 /* Frameworks */,
@@ -269,6 +290,7 @@
 			children = (
 				B52805111E3FA94D00EE832A /* FiveCalls.app */,
 				B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */,
+				B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,6 +316,16 @@
 				B52805201E3FA94D00EE832A /* Info.plist */,
 			);
 			path = FiveCalls;
+			sourceTree = "<group>";
+		};
+		B5A70A591E4C01A00031DF58 /* FiveCallsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */,
+				B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */,
+				B5A70A5C1E4C01A00031DF58 /* Info.plist */,
+			);
+			path = FiveCallsUITests;
 			sourceTree = "<group>";
 		};
 		B5CA63F41E41772100966B7D /* Views */ = {
@@ -423,13 +455,31 @@
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B5A70A571E4C01A00031DF58 /* FiveCallsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5A70A611E4C01A00031DF58 /* Build configuration list for PBXNativeTarget "FiveCallsUITests" */;
+			buildPhases = (
+				B5A70A541E4C01A00031DF58 /* Sources */,
+				B5A70A551E4C01A00031DF58 /* Frameworks */,
+				B5A70A561E4C01A00031DF58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5A70A5E1E4C01A00031DF58 /* PBXTargetDependency */,
+			);
+			name = FiveCallsUITests;
+			productName = FiveCallsUITests;
+			productReference = B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B52805091E3FA94D00EE832A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = 5calls;
 				TargetAttributes = {
@@ -443,6 +493,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = C2K3864N2N;
 						ProvisioningStyle = Automatic;
+					};
+					B5A70A571E4C01A00031DF58 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = C2K3864N2N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B52805101E3FA94D00EE832A;
 					};
 				};
 			};
@@ -461,6 +517,7 @@
 			targets = (
 				B52805101E3FA94D00EE832A /* FiveCalls */,
 				B502805A1E478BC200749ED7 /* FiveCallsTests */,
+				B5A70A571E4C01A00031DF58 /* FiveCallsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -490,6 +547,13 @@
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
 				B5E762631E40470A00D63D62 /* Main.storyboard in Resources */,
 				DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5A70A561E4C01A00031DF58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +737,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5A70A541E4C01A00031DF58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */,
+				B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -680,6 +753,11 @@
 			isa = PBXTargetDependency;
 			target = B52805101E3FA94D00EE832A /* FiveCalls */;
 			targetProxy = B50280601E478BC200749ED7 /* PBXContainerItemProxy */;
+		};
+		B5A70A5E1E4C01A00031DF58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B52805101E3FA94D00EE832A /* FiveCalls */;
+			targetProxy = B5A70A5D1E4C01A00031DF58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -710,6 +788,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -725,6 +804,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -836,6 +916,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -855,11 +936,42 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B5A70A5F1E4C01A00031DF58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = C2K3864N2N;
+				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FiveCalls;
+			};
+			name = Debug;
+		};
+		B5A70A601E4C01A00031DF58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = C2K3864N2N;
+				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FiveCalls;
 			};
 			name = Release;
 		};
@@ -892,6 +1004,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		B5A70A611E4C01A00031DF58 /* Build configuration list for PBXNativeTarget "FiveCallsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5A70A5F1E4C01A00031DF58 /* Debug */,
+				B5A70A601E4C01A00031DF58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

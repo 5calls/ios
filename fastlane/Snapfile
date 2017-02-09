@@ -1,0 +1,22 @@
+devices([
+  "iPhone 7",
+  "iPhone 7 Plus",
+  "iPhone SE"
+])
+
+languages([
+  "en-US",
+])
+
+workspace "./FiveCalls/FiveCalls.xcworkspace"
+scheme "FiveCallsUITests"
+
+output_directory "./screenshots"
+clear_previous_screenshots true
+
+# Arguments to pass to the app on launch. See https://github.com/fastlane/snapshot#launch-arguments
+launch_arguments(["-hasShownWelcomeScreen false"])
+
+# For more information about all available options run
+# fastlane snapshot --help
+

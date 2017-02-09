@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Pantry
 import Fabric
 import Crashlytics
 
@@ -15,10 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private func isUITesting() -> Bool {
+        return ProcessInfo.processInfo.environment["UI_TESTING"] == "1"
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        if isUITesting() {
+            resetData()
+        }
+
         BuddyBuildSDK.setup()
         Fabric.with([Crashlytics.self])
-        
+
         setAppearance()
         
         if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
@@ -100,6 +110,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
+    private func resetData() {
+        // clear user defaults
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
+
+        // clear any saved location data
+        Pantry.removeAllCache()
+    }
 }
 
 extension UIApplication {
