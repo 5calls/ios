@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class WelcomeViewController: UIViewController {
     
@@ -30,6 +31,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Answers.logCustomEvent(withName:"Screen: Welcome")
         loadPages()
     }
 

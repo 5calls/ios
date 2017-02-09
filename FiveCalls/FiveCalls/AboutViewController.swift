@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MessageUI
 import CPDAcknowledgements
+import Crashlytics
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
 
@@ -32,6 +33,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
+        Answers.logCustomEvent(withName:"Screen: About")
     }
 
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -55,6 +57,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func sendFeedback() {
+        Answers.logCustomEvent(withName: "Action: Feedback")
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -72,32 +75,23 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func promptForRating() {
+        Answers.logCustomEvent(withName: "Action: Rate the App")
         guard let url = URL(string: "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(AboutViewController.appId)") else { return }
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            // openURL(_:) is deprecated in iOS 10+.
-            UIApplication.shared.openURL(url)
-        }
+        UIApplication.shared.fvc_open(url)
     }
     
     func shareApp() {
-
+        Answers.logCustomEvent(withName: "Action: Share The App")
         guard let url = URL(string: "https://itunes.apple.com/us/app/myapp/id\(AboutViewController.appId)?ls=1&mt=8") else { return }
         let vc = UIActivityViewController(activityItems: ["Make 5 Calls to your elected officials and let your voice be heard!",url], applicationActivities: [])
         vc.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
         self.present(vc, animated: true, completion: nil)
-       
     }
     
     func followOnTwitter() {
+        Answers.logCustomEvent(withName: "Action: Follow On Twitter")
         guard let url = URL(string: "https://twitter.com/make5calls") else { return }
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            // openURL(_:) is deprecated in iOS 10+.
-            UIApplication.shared.openURL(url)
-        }
+        UIApplication.shared.fvc_open(url)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -105,6 +99,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func showOpenSource() {
+        Answers.logCustomEvent(withName: "Screen: Open Source Libraries")
         let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
         navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }

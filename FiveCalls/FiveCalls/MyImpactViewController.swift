@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class MyImpactViewController : UITableViewController {
     
@@ -43,6 +44,8 @@ class MyImpactViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Answers.logCustomEvent(withName:"Screen: My Impact")
+        
         viewModel = ImpactViewModel(logs: ContactLogs.load().all)
         
         let number = viewModel.numberOfCalls

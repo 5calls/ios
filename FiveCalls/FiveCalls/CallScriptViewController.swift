@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import DropDown
+import Crashlytics
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -41,11 +42,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) else { return }
+        Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
         self.issueIndex = issueIndex
         title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
     }
     
     func callButtonPressed(_ button: UIButton) {
+        Answers.logCustomEvent(withName:"Action: Dialed Number", customAttributes: ["contact_id":contact.id])
         callNumber(contact.phone)
     }
 
@@ -80,6 +83,9 @@ class CallScriptViewController : UIViewController, IssueShareable {
             break
         default:
             print("unknown button pressed")
+        }
+        if let outcomeName = button.titleLabel?.text {
+            Answers.logCustomEvent(withName:"Action: Button \(outcomeName)", customAttributes: ["contact_id":contact.id])
         }
         let contactedPhone = lastPhoneDialed.characters.count > 0 ? lastPhoneDialed : contact.phone
         let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcomeType, date: Date())
@@ -140,8 +146,12 @@ extension CallScriptViewController : UITableViewDataSource {
                 dropdown?.dataSource = contact.fieldOffices.map { "\($0.phone) (\($0.city))" }
                 dropdown?.dismissMode = .automatic
                 dropdown?.selectionAction = { [weak self] index, item in
-                    guard let phone = self?.contact.fieldOffices[index].phone else { return }
-                    self?.callNumber(phone)
+                    guard let strongSelf = self else { return }
+                    if strongSelf.contact.fieldOffices.indices.contains(index) {
+                        let phone = strongSelf.contact.fieldOffices[index].phone
+                        Answers.logCustomEvent(withName:"Action: Dialed Alternate Number", customAttributes: ["contact_id":strongSelf.contact.id])
+                        self?.callNumber(phone)
+                    }
                 }
             }
             cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
@@ -161,6 +171,7 @@ extension CallScriptViewController : UITableViewDataSource {
     }
     
     func moreNumbersTapped() {
+        Answers.logCustomEvent(withName:"Action: Opened More Numbers", customAttributes: ["contact_id":contact.id])
         dropdown?.show()
     }
 }

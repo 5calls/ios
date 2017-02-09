@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class IssuesViewController : UITableViewController {
     
@@ -15,7 +16,8 @@ class IssuesViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // edgesForExtendedLayout = []
+        Answers.logCustomEvent(withName:"Screen: Issues List")
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         loadIssues()
         
