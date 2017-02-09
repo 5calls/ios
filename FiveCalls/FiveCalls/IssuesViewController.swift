@@ -74,13 +74,21 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 0.5))
-        view.backgroundColor = tableView.separatorColor
-        return view
+        let blueTextColor = UIColor(colorLiteralRed:0.09, green:0.46, blue:0.82, alpha:1.0)
+
+        let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
+        notAButton.setTitle("What's important to you?", for: .normal)
+        notAButton.setTitleColor(blueTextColor, for: .normal)
+        notAButton.backgroundColor = UIColor(colorLiteralRed:0.96, green:0.96, blue:0.96, alpha:1.0)
+        notAButton.borderWidth = 1
+        notAButton.borderColor = UIColor(colorLiteralRed:0.88, green:0.88, blue:0.88, alpha:1.0)
+        notAButton.topBorder = true
+        notAButton.bottomBorder = true
+        return notAButton
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.5
+        return 26.0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
