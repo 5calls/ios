@@ -34,7 +34,7 @@ class IssuesManager {
                     completion()
                 }
             } else {
-                print("Could not load issues.. \(operation.error?.localizedDescription)")
+                print("Could not load issues.. \(operation.error?.localizedDescription ?? "[operation error was nil]")")
             }
         }
         OperationQueue.main.addOperation(operation)
