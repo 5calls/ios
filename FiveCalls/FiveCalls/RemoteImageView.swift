@@ -32,6 +32,14 @@ class RemoteImageView : UIImageView {
     
     func setRemoteImage(url: URL, completion: @escaping RemoteImageCallback) {
         image = defaultImage
+        setRemoteImage(preferred: defaultImage, url: url, completion: completion)
+    }
+
+    func setRemoteImage(preferred preferredImage: UIImage?, url: URL, completion: @escaping RemoteImageCallback) {
+        image = preferredImage
+        guard preferredImage == nil || preferredImage == defaultImage else {
+            return completion(preferredImage!)
+        }
         currentTask?.cancel()
         currentTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
             guard self.currentTask!.state != .canceling else { return }
