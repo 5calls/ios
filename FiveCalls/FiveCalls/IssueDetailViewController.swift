@@ -175,7 +175,15 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
             }
 
         }
-        dismiss(animated: true, completion: nil)
-        
+
+		dismiss(animated: true, completion: nil)
+
+		if issuesManager.isSplitDistrict {
+			let alertController = UIAlertController(title: "Split Congressional District", message:
+				"Your ZIP code belongs to more than one congressional district. Please select “Use My Location” to locate your particular representative.", preferredStyle: .alert)
+			alertController.addAction(UIAlertAction(title: "OK", style: .default ,handler: nil))
+			present(alertController, animated: true, completion: nil)
+		}
+		
     }
 }
