@@ -17,9 +17,9 @@ class IssuesManager {
     var issues: [Issue] {
         return issuesList?.issues ?? []
     }
-	
-	var isSplitDistrict: Bool { return self.issuesList?.splitDistrict == true }
-	
+    
+    var isSplitDistrict: Bool { return self.issuesList?.splitDistrict == true }
+    
     func issue(withId id: String) -> Issue? {
         return issuesList?.issues.filter { $0.id == id }.first
     }
