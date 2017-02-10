@@ -36,7 +36,7 @@ class RemoteImageView : UIImageView {
         currentTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
             guard self.currentTask!.state != .canceling else { return }
             
-            if let e = error as? NSError {
+            if let e = error as NSError? {
                 if e.domain == NSURLErrorDomain && e.code == NSURLErrorCancelled {
                     // ignore cancellation errors
                 } else {
