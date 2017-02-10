@@ -21,7 +21,7 @@ class IssueActivityItemSource: NSObject, UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
-        return "I just called my rep to \(issue.name) — you should too: http://5calls.org/#issue/\(issue.id)?utm_campaign=twshare"
+        return R.string.localizable.iJustCalledMyRep(issue.name, issue.id)
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivityType?) -> String {
