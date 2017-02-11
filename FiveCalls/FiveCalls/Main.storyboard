@@ -169,9 +169,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Be-hS-t4B" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                <rect key="frame" x="60" y="15" width="294" height="44"/>
+                                <rect key="frame" x="72.666666666666686" y="15" width="270" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="HAO-vV-2NC"/>
+                                    <constraint firstAttribute="width" constant="270" id="Pdf-nI-tIb"/>
                                 </constraints>
                                 <state key="normal" title="Use My Location"/>
                                 <userDefinedRuntimeAttributes>
@@ -189,13 +190,6 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Czh-eH-GW2">
-                                <rect key="frame" x="298" y="27" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="Cmb-88-OrV"/>
-                                    <constraint firstAttribute="height" constant="20" id="RyP-Pd-DBq"/>
-                                </constraints>
-                            </activityIndicatorView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
                                 <rect key="frame" x="44" y="110" width="220" height="55"/>
                                 <constraints>
@@ -221,6 +215,13 @@
                                     <action selector="submitZipCodeTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="zWm-0b-uhZ"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Czh-eH-GW2">
+                                <rect key="frame" x="310" y="27" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Cmb-88-OrV"/>
+                                    <constraint firstAttribute="height" constant="20" id="RyP-Pd-DBq"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -229,13 +230,11 @@
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="top" secondItem="Et2-qp-YNn" secondAttribute="bottom" constant="15" id="4T8-uL-Dh5"/>
                             <constraint firstItem="8JR-Y0-Fwm" firstAttribute="top" secondItem="7Xf-pd-kKj" secondAttribute="bottom" constant="15" id="7A2-4j-2Kd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="S0o-QZ-kcL" secondAttribute="trailing" constant="24" id="BD1-tr-VbL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Be-hS-t4B" secondAttribute="trailing" constant="40" id="Bel-jv-IRK"/>
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" id="E3V-Vx-8rH"/>
                             <constraint firstItem="S0o-QZ-kcL" firstAttribute="leading" secondItem="8JR-Y0-Fwm" secondAttribute="trailing" constant="6" id="Jvz-Vm-DCI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Czh-eH-GW2" secondAttribute="trailing" constant="76" id="M3Q-bK-g0j"/>
-                            <constraint firstItem="5Be-hS-t4B" firstAttribute="leading" secondItem="KQU-J2-YtO" secondAttribute="leadingMargin" constant="40" id="Ntg-RE-5jW"/>
                             <constraint firstItem="7Xf-pd-kKj" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" id="ZLE-fH-J6V"/>
                             <constraint firstItem="7Xf-pd-kKj" firstAttribute="top" secondItem="5Be-hS-t4B" secondAttribute="bottom" constant="15" id="cUU-yE-4HQ"/>
+                            <constraint firstItem="Czh-eH-GW2" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" constant="113" id="eWC-8Z-mLR"/>
                             <constraint firstItem="Czh-eH-GW2" firstAttribute="centerY" secondItem="5Be-hS-t4B" secondAttribute="centerY" id="ig9-pr-Tul"/>
                         </constraints>
                     </view>
@@ -255,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4o-MU-xOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3672.8000000000002" y="-1076.311844077961"/>
+            <point key="canvasLocation" x="3672.4637681159425" y="-1076.9021739130435"/>
         </scene>
         <!--Issues View Controller-->
         <scene sceneID="URD-JJ-gfS">
@@ -506,7 +505,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <scene sceneID="VLC-fS-43C">
             <objects>
                 <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Kdw-tv-5oW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -524,7 +523,7 @@ The Department of the Army's Civil Works division will be accepting public comme
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -959,7 +958,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

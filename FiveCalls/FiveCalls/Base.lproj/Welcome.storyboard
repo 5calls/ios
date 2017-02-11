@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5calls-logotype" translatesAutoresizingMaskIntoConstraints="NO" id="5OW-04-u8c">
-                                <rect key="frame" x="41.5" y="28" width="292" height="158"/>
+                                <rect key="frame" x="42" y="28" width="292" height="158"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="292" id="248-fw-pMH"/>
                                 </constraints>
@@ -144,7 +144,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-Uy-7K6">
-                                <rect key="frame" x="24" y="154" width="327" height="42.5"/>
+                                <rect key="frame" x="24" y="154" width="327" height="43"/>
                                 <string key="text">TOGETHER WE'VE MADE 
 ... CALLS</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
