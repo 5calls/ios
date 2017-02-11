@@ -16,6 +16,9 @@ protocol FinalPage {
 class StatsPageViewController : UIViewController, FinalPage {
     
     var didFinishBlock: ((Void) -> Void)?
+    @IBOutlet weak var topMargin: NSLayoutConstraint!
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var buttonHeight: NSLayoutConstraint!
     
     @IBAction func getStartedTapped(_ sender: Any) {
         didFinishBlock?()
@@ -43,6 +46,13 @@ class StatsPageViewController : UIViewController, FinalPage {
         if viewModel == nil {
             label.alpha = 0
             loadStats()
+        }
+        
+        // If iPhone 4S
+        if UIScreen.main.bounds.size.height <= 480 {
+            topMargin.constant = 0
+            bottomMargin.constant = 0
+            buttonHeight.constant = 44
         }
     }
     
