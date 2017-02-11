@@ -31,7 +31,19 @@ class RemoteImageView : UIImageView {
     }
     
     func setRemoteImage(url: URL, completion: @escaping RemoteImageCallback) {
-        image = defaultImage
+        setRemoteImage(preferred: defaultImage, url: url, completion: completion)
+    }
+
+    func setRemoteImage(preferred preferredImage: UIImage?, url: URL, completion: @escaping RemoteImageCallback) {
+        if let cachedImage = ImageCache.shared.image(forKey: url) {
+            image = cachedImage
+            return
+        }
+        
+        image = preferredImage
+        guard preferredImage == nil || preferredImage == defaultImage else {
+            return completion(preferredImage!)
+        }
         currentTask?.cancel()
         currentTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
             guard self.currentTask!.state != .canceling else { return }
@@ -48,6 +60,7 @@ class RemoteImageView : UIImageView {
                 if http.statusCode == 200 {
                     if let data = data, let image = UIImage(data: data) {
                         self.currentImageURL = url
+                        ImageCache.shared.set(image: image, forKey: url)
                         DispatchQueue.main.async {
                             completion(image)
                         }
@@ -59,4 +72,24 @@ class RemoteImageView : UIImageView {
         })
         currentTask?.resume()
     }
+}
+
+private struct ImageCache {
+    static var shared = ImageCache()
+    
+    private let cache: NSCache<NSString, UIImage>
+    
+    init() {
+        cache = NSCache()
+    }
+    
+    func image(forKey key:URL) -> UIImage? {
+        return cache.object(forKey: key.absoluteString as NSString)
+    }
+    
+    func set(image: UIImage, forKey key: URL) {
+        cache.setObject(image, forKey: key.absoluteString as NSString)
+    }
+    
+    
 }
