@@ -15,8 +15,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
-    internal var images = [String: UIImage]()
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -112,8 +111,7 @@ extension IssueDetailViewController : UITableViewDataSource {
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
                 if let photoURL = contact.photoURL {
-                    let imageKey = photoURL.absoluteString
-                    cell.avatarImageView.setRemoteImage(preferred: images[imageKey], url: photoURL, completion:  { self.images[imageKey] = $0 })
+                    cell.avatarImageView.setRemoteImage(url: photoURL)
                 } else {
                     cell.avatarImageView.image = cell.avatarImageView.defaultImage
                 }
