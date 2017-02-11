@@ -21,6 +21,9 @@ extension UILabel {
             
             if let descriptor = UIFontDescriptor(fontAttributes: newValue.fontAttributes).withSymbolicTraits(symbolicTraits) {
                 self.font = UIFont(descriptor: descriptor, size: font.pointSize)
+            } else {
+                // Fixes issue with iOS 9 not getting the custom font but may lose traits this way
+                self.font = UIFont(descriptor: newValue, size: font.pointSize)
             }
         }
     }
