@@ -41,7 +41,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) else { return }
+        guard let issue = issue, let contactIndex = issue.contacts.index(of: contact) else {
+            return
+        }
+        
         Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
         self.contactIndex = contactIndex
         title = "Contact \(contactIndex+1) of \(issue.contacts.count)"
