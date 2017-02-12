@@ -102,7 +102,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     func showNextContact(_ contact: Contact) {
-        let newController: CallScriptViewController = self.storyboard?.instantiateViewController(withIdentifier: "callScriptController") as! CallScriptViewController
+        let newController = R.storyboard.main.callScriptController()!
         newController.issuesManager = issuesManager
         newController.issue = issue
         newController.contact = contact
@@ -129,7 +129,7 @@ extension CallScriptViewController : UITableViewDataSource {
         switch indexPath.row {
         
         case CallScriptRows.contact.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contactDetailCell, for: indexPath)!
             cell.callButton.setTitle(contact.phone, for: .normal)
             cell.callButton.addTarget(self, action: #selector(callButtonPressed(_:)), for: .touchUpInside)
             cell.nameLabel.text = contact.name
@@ -160,7 +160,7 @@ extension CallScriptViewController : UITableViewDataSource {
             return cell
             
         case CallScriptRows.script.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "scriptCell", for: indexPath) as! IssueDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
             cell.issueLabel.text = issue.script
             return cell
             

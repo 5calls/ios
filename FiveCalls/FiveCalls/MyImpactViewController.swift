@@ -8,6 +8,7 @@
 
 import UIKit
 import Crashlytics
+import Rswift
 
 class MyImpactViewController : UITableViewController {
     
@@ -22,11 +23,11 @@ class MyImpactViewController : UITableViewController {
         case contacts
         case count
         
-        var cellIdentifier: String {
+        var cellIdentifier: Rswift.ReuseIdentifier<UIKit.UITableViewCell>? {
             switch self {
-            case .stats: return "statCell"
-            case .contacts: return "contactStatCell"
-            default: return ""
+            case .stats: return R.reuseIdentifier.statCell
+            case .contacts: return R.reuseIdentifier.contactStatCell
+            default: return nil
             }
         }
     }
@@ -90,7 +91,7 @@ class MyImpactViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = Sections(rawValue: indexPath.section)!
         let identifier = section.cellIdentifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier!, for: indexPath)!
         
         switch section {
         case .stats:

@@ -5,6 +5,9 @@ PODS:
   - DropDown (2)
   - Fabric (1.6.11)
   - Pantry (0.3)
+  - R.swift (3.2.0):
+    - R.swift.Library (~> 3.0.2)
+  - R.swift.Library (3.0.2)
 
 DEPENDENCIES:
   - CPDAcknowledgements
@@ -12,6 +15,7 @@ DEPENDENCIES:
   - DropDown
   - Fabric
   - Pantry
+  - R.swift
 
 SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
@@ -19,7 +23,9 @@ SPEC CHECKSUMS:
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
+  R.swift: 207a372a2b5977caef440c696a368009460641d1
+  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
 
-PODFILE CHECKSUM: fb0c5962241d8ddff6ee477510499c8c15d86bca
+PODFILE CHECKSUM: 17413b2e74977753f163f7e819077d891a175eeb
 
 COCOAPODS: 1.2.0

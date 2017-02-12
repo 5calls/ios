@@ -27,7 +27,7 @@ class CheckboxView : UIView {
         isOpaque = false
         backgroundColor = .clear
         
-        let image = UIImage(named: "icon-checkmark")
+        let image = R.image.iconCheckmark()
         imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.isHidden = !isChecked
@@ -43,7 +43,7 @@ class CheckboxView : UIView {
     }
     
     override func prepareForInterfaceBuilder() {
-        imageView.image = UIImage(named: "icon-checkmark", in: Bundle(for: CheckboxView.self), compatibleWith: nil)
+        imageView.image = UIImage(resource: R.image.iconCheckmark, compatibleWith: nil)
     }
     
     @IBInspectable var borderColor: UIColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.00) {

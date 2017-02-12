@@ -56,10 +56,9 @@ class IssuesViewController : UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        if segue.identifier == "issueSegue" {
-            let dest = segue.destination as! IssueDetailViewController
-            dest.issuesManager = issuesManager
-            dest.issue = issuesManager.issues[indexPath.row]
+        if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
+            typedInfo.destination.issuesManager = issuesManager
+            typedInfo.destination.issue = issuesManager.issues[indexPath.row]
         }
     }
     
@@ -92,7 +91,7 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell") as! IssueCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
         let issue = issuesManager.issues[indexPath.row]
         cell.titleLabel.text = issue.name
         if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {

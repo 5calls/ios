@@ -102,10 +102,10 @@ extension IssueDetailViewController : UITableViewDataSource {
             return headerCell(at: indexPath)
         default:
             if issue.contacts.isEmpty {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "setLocationCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)!
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contactCell, for: indexPath)!
                 cell.borderTop = indexPath.row == 0
                 let contact = issue.contacts[indexPath.row]
                 cell.nameLabel.text = contact.name

@@ -22,8 +22,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitleLabel(location: UserLocation.current)
-
-        let issuesVC = storyboard!.instantiateViewController(withIdentifier: "IssuesViewController") as! IssuesViewController
+        
+        let issuesVC = R.storyboard.main.issuesViewController()!
         addChildViewController(issuesVC)
         
         view.insertSubview(issuesVC.view, belowSubview: headerView)

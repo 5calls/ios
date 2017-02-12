@@ -5,6 +5,7 @@ plugin 'cocoapods-acknowledgements'
 
 def common_pods
   pod 'Pantry'
+  pod 'R.swift'
 end
 
 target 'FiveCalls' do

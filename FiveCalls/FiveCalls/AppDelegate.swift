@@ -57,8 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showWelcome() {
         guard let window = self.window else { return }
-        let welcomeStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
-        let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
+        let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         let mainVC = window.rootViewController!
         welcomeVC.completionBlock = {
             UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue)
@@ -73,7 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageControlAppearance.currentPageIndicatorTintColor = UIColor(red:0.12, green:0.47, blue:0.81, alpha:1.00)
         
         // Fonts
-        
         let fontDescriptor = UIFontDescriptor(fontAttributes: [
             UIFontDescriptorFamilyAttribute: "Roboto Condensed"
         ]).withSymbolicTraits([.traitBold, .traitCondensed]) // To match the website, fonts should be Bold and Condensed
@@ -82,10 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UILabel.appearance().substituteFontDescriptor = substituteDescriptor
         }
         
-        if let font = UIFont(name: "RobotoCondensed-Bold", size: 18.0) {
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font,
-                                                                NSForegroundColorAttributeName : UIColor.white]
-        }
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSFontAttributeName: R.font.robotoCondensedBold(size: 18.0)!,
+            NSForegroundColorAttributeName : UIColor.white]
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
