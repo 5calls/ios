@@ -84,21 +84,25 @@ class CallScriptViewController : UIViewController, IssueShareable {
         default:
             print("unknown button pressed")
         }
+        
         if let outcomeName = button.titleLabel?.text {
             Answers.logCustomEvent(withName:"Action: Button \(outcomeName)", customAttributes: ["contact_id":contact.id])
         }
+        
         let contactedPhone = lastPhoneDialed.characters.count > 0 ? lastPhoneDialed : contact.phone
         let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcomeType, date: Date())
         reportCallOutcome(log)
         
-        var nextIndex = issueIndex+1
+        NotificationCenter.default.post(name: .callMade, object: log)
+        
+        var nextIndex = issueIndex + 1
         if issueIndex+1 >= issue.contacts.count {
             nextIndex = 0
         }
         if issue.contacts.indices.contains(nextIndex) {
             let nextContact = issue.contacts[nextIndex]
             showNextContact(nextContact)
-        }        
+        }
     }
     
     func showNextContact(_ contact: Contact) {
