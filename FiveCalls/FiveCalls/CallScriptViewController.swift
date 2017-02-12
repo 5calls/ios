@@ -25,11 +25,15 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var resultInstructionsLabel: UILabel!
     @IBOutlet weak var resultUnavailableButton: BlueButton!
     @IBOutlet weak var resultVoicemailButton: BlueButton!
     @IBOutlet weak var resultContactedButton: BlueButton!
     @IBOutlet weak var resultSkipButton: BlueButton!
+    @IBOutlet weak var checkboxView: CheckboxView!
+    
     var dropdown: DropDown?
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -76,13 +80,23 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     func hideResultButtons(animated: Bool) {
-        let duration = animated ? 0.3 : 0
-        
-        UIView.animate(withDuration: duration) {
+        let duration = animated ? 0.5 : 0
+        let hideDuration = duration * 0.6
+        UIView.animate(withDuration: hideDuration) {
             for button in [self.resultContactedButton, self.resultVoicemailButton, self.resultUnavailableButton, self.resultSkipButton] {
                 button?.alpha = 0
             }
+            self.resultInstructionsLabel.alpha = 0
         }
+        
+        checkboxView.alpha = 0
+        checkboxView.transform = checkboxView.transform.scaledBy(x: 0.2, y: 0.2)
+        checkboxView.isHidden = false
+        
+        UIView.animate(withDuration: duration, delay: duration * 0.75, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+            self.checkboxView.alpha = 1
+            self.checkboxView.transform = .identity
+        }, completion: nil)
     }
     
     func handleCallOutcome(outcome: ContactOutcome) {
