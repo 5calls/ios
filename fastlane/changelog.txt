@@ -1,11 +1,16 @@
-- Disable rotation for now.
-- Make location nav bar red
-- Use dummy footer so we don’t get ghost rows all the way down
-- Fix location issue
-- Nicer location screen
-- Better button spacing on call script screen
-- Don’t allow selection on the My Impact screen.
-- Fix crash when entering zip code for the first time
-- Minor textual changes for case consistency
-- Add a separator at the top of the issues list
-- Add icon credit to @sensibleworld
+
+Call Result Tweaks.
+	No longer pushes the last contact over & over again.
+	Instead, the result buttons hide and a checkmark appears for
+	the last contact in the list.
+
+Fix Tableview inconsistency crash on first launch after setting location
+
+Fix flashing images for contacts
+	Images are now cached in memory and load instantly when already cached.
+
+Fix layout issues with smaller screens
+
+Better messaging of split districts
+	Prompts you to use your full location if you enter a zip
+	and that zip code is a split district
