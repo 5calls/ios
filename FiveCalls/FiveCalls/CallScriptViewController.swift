@@ -180,7 +180,7 @@ extension CallScriptViewController : UITableViewDataSource {
                 }
             }
             cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
-            //This helps both reizing labels we have actually display correctly 
+            // This helps both resizing labels we have actually display correctly 
             cell.layoutIfNeeded()
             return cell
             
