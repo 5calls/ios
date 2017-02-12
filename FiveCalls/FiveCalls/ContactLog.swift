@@ -9,12 +9,21 @@
 import Foundation
 import Pantry
 
+enum ContactOutcome : String {
+    case contacted
+    case voicemail = "vm"
+    case unavailable
+    
+    // reserved for cases where we save something on disk that we later don't recognize
+    case unknown
+}
+
 struct ContactLog {
 
     let issueId: String
     let contactId: String
     let phone: String
-    let outcome: String
+    let outcome: ContactOutcome
     let date: Date
     
     static var dateFormatter: DateFormatter = {
@@ -32,7 +41,7 @@ extension ContactLog : Storable {
         issueId = warehouse.get("issueId") ?? ""
         contactId = warehouse.get("contactId") ?? ""
         phone = warehouse.get("phone") ?? ""
-        outcome = warehouse.get("outcome") ?? ""
+        outcome = warehouse.get("outcome").flatMap(ContactOutcome.init) ?? .unknown
         date = ContactLog.dateFormatter.date(from: warehouse.get("date") ?? "") ?? Date()
     }
     
@@ -41,7 +50,7 @@ extension ContactLog : Storable {
             "issueId": issueId,
             "contactId": contactId,
             "phone": phone,
-            "outcome": outcome,
+            "outcome": outcome.rawValue,
             "date": ContactLog.dateFormatter.string(from: date)
         ]
     }
@@ -49,7 +58,7 @@ extension ContactLog : Storable {
 
 extension ContactLog : Hashable {
     var hashValue: Int {
-        return (issueId + contactId + phone + outcome).hash
+        return (issueId + contactId + phone + outcome.rawValue).hash
     }
     
     static func ==(lhs: ContactLog, rhs: ContactLog) -> Bool {
@@ -76,6 +85,7 @@ struct ContactLogs {
     mutating func add(log: ContactLog) {
         all.append(log)
         save()
+        NotificationCenter.default.post(name: .callMade, object: log)
     }
     
     func save() {

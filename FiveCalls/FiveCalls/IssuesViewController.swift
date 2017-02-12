@@ -11,6 +11,9 @@ import Crashlytics
 
 class IssuesViewController : UITableViewController {
     
+    // keep track of when calls are made, so we know if we need to reload any cells
+    var needToReloadVisibleRowsOnNextAppearance = false
+    
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
     
@@ -25,6 +28,10 @@ class IssuesViewController : UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.tableFooterView = UIView()
+        
+        NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
+            self?.needToReloadVisibleRowsOnNextAppearance = true
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -38,7 +45,12 @@ class IssuesViewController : UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+        
+        // only reload rows if we need to. this fixes a rare tableview inconsistency crash we've seen
+        if needToReloadVisibleRowsOnNextAppearance {
+            tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+            needToReloadVisibleRowsOnNextAppearance = false
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

@@ -24,7 +24,6 @@
 		B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280511E46A7A300749ED7 /* EllipsisButton.swift */; };
 		B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280531E46A91F00749ED7 /* AreaOffice.swift */; };
 		B50280561E47875500749ED7 /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280551E47875500749ED7 /* ContactLog.swift */; };
-		B502805E1E478BC200749ED7 /* FiveCallsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502805D1E478BC200749ED7 /* FiveCallsTests.swift */; };
 		B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280671E478BF500749ED7 /* ContactLogsTests.swift */; };
 		B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280691E48C95700749ED7 /* BorderedButton.swift */; };
 		B50280741E497C4A00749ED7 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = B50280731E497C4A00749ED7 /* styles.css */; };
@@ -121,7 +120,6 @@
 		B50280531E46A91F00749ED7 /* AreaOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaOffice.swift; sourceTree = "<group>"; };
 		B50280551E47875500749ED7 /* ContactLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLog.swift; sourceTree = "<group>"; };
 		B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B502805D1E478BC200749ED7 /* FiveCallsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsTests.swift; sourceTree = "<group>"; };
 		B502805F1E478BC200749ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B50280671E478BF500749ED7 /* ContactLogsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLogsTests.swift; sourceTree = "<group>"; };
 		B50280691E48C95700749ED7 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
@@ -248,7 +246,6 @@
 		B502805C1E478BC200749ED7 /* FiveCallsTests */ = {
 			isa = PBXGroup;
 			children = (
-				B502805D1E478BC200749ED7 /* FiveCallsTests.swift */,
 				B502805F1E478BC200749ED7 /* Info.plist */,
 				B50280671E478BF500749ED7 /* ContactLogsTests.swift */,
 			);
@@ -702,7 +699,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B502805E1E478BC200749ED7 /* FiveCallsTests.swift in Sources */,
 				B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
