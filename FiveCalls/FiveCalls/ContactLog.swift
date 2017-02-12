@@ -85,6 +85,7 @@ struct ContactLogs {
     mutating func add(log: ContactLog) {
         all.append(log)
         save()
+        NotificationCenter.default.post(name: .callMade, object: log)
     }
     
     func save() {
