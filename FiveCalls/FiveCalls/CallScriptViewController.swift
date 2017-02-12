@@ -14,7 +14,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     var issuesManager: IssuesManager!
     var issue: Issue!
-    var issueIndex = -1
+    var contactIndex = 0
     var contact: Contact!
     var logs = ContactLogs.load()
     var lastPhoneDialed = ""
@@ -43,8 +43,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         super.viewWillAppear(animated)
         guard let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) else { return }
         Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
-        self.issueIndex = issueIndex
-        title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
+        self.contactIndex = contactIndex
+        title = "Contact \(contactIndex+1) of \(issue.contacts.count)"
     }
     
     func callButtonPressed(_ button: UIButton) {
