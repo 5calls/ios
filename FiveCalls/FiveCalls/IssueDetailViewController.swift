@@ -102,7 +102,12 @@ extension IssueDetailViewController : UITableViewDataSource {
             return headerCell(at: indexPath)
         default:
             if issue.contacts.isEmpty {
-                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)!
+                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)! as SetLocationCell
+                if issuesManager.isSplitDistrict {
+                    cell.messageLabel.text = "Your zip code belongs to multiple congressional districts. Use your full location to find your representative."
+                } else {
+                    cell.messageLabel.text = "Set your location to find your representatives"
+                }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contactCell, for: indexPath)!

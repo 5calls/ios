@@ -61,6 +61,7 @@
 		B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762741E40E39000D63D62 /* IssuesList.swift */; };
 		B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E806FE1E463FE300EBE553 /* UserLocation.swift */; };
 		B5E807041E46796A00EBE553 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E807031E46796A00EBE553 /* RemoteImageView.swift */; };
+		B5E98E311E50C895005221B7 /* SetLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E301E50C895005221B7 /* SetLocationCell.swift */; };
 		B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */; };
 		DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
@@ -162,6 +163,7 @@
 		B5E762741E40E39000D63D62 /* IssuesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesList.swift; sourceTree = "<group>"; };
 		B5E806FE1E463FE300EBE553 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		B5E807031E46796A00EBE553 /* RemoteImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
+		B5E98E301E50C895005221B7 /* SetLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLocationCell.swift; sourceTree = "<group>"; };
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D08630058C5382210630DE7E /* Pods_FiveCalls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCalls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				9C46B1F71E46D638009B2C11 /* BlueButton.swift */,
 				FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */,
 				B50280691E48C95700749ED7 /* BorderedButton.swift */,
+				B5E98E301E50C895005221B7 /* SetLocationCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				9C46B1F81E46D638009B2C11 /* BlueButton.swift in Sources */,
+				B5E98E311E50C895005221B7 /* SetLocationCell.swift in Sources */,
 				FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */,
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
 				FA1B33DB1E48FD0B004B9281 /* AboutHtmlViewController.swift in Sources */,
