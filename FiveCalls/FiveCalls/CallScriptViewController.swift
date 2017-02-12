@@ -14,16 +14,26 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     var issuesManager: IssuesManager!
     var issue: Issue!
-    var issueIndex = -1
+    var contactIndex = 0
     var contact: Contact!
     var logs = ContactLogs.load()
-    var lastPhoneDialed = ""
+    var lastPhoneDialed: String?
+    
+    var isLastContactForIssue: Bool {
+        let contactIndex = issue.contacts.index(of: contact)
+        return contactIndex == issue.contacts.count - 1
+    }
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var resultInstructionsLabel: UILabel!
     @IBOutlet weak var resultUnavailableButton: BlueButton!
     @IBOutlet weak var resultVoicemailButton: BlueButton!
     @IBOutlet weak var resultContactedButton: BlueButton!
     @IBOutlet weak var resultSkipButton: BlueButton!
+    @IBOutlet weak var checkboxView: CheckboxView!
+    
     var dropdown: DropDown?
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -41,10 +51,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue, let issueIndex = issue.contacts.index(where:{$0.id == contact.id}) else { return }
+        guard let issue = issue, let contactIndex = issue.contacts.index(of: contact) else {
+            return
+        }
+        
         Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
-        self.issueIndex = issueIndex
-        title = "Contact \(issueIndex+1) of \(issue.contacts.count)"
+        self.contactIndex = contactIndex
+        title = "Contact \(contactIndex+1) of \(issue.contacts.count)"
     }
     
     func callButtonPressed(_ button: UIButton) {
@@ -59,54 +72,62 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     func reportCallOutcome(_ log: ContactLog) {
-        if log.outcome.characters.count > 0 {
-            logs.add(log: log)
-            let operation = ReportOutcomeOperation(log:log)
-            OperationQueue.main.addOperation(operation)
+        logs.add(log: log)
+        let operation = ReportOutcomeOperation(log:log)
+        #if !debug  // don't report stats in debug builds
+        OperationQueue.main.addOperation(operation)
+        #endif
+    }
+    
+    func hideResultButtons(animated: Bool) {
+        let duration = animated ? 0.5 : 0
+        let hideDuration = duration * 0.6
+        UIView.animate(withDuration: hideDuration) {
+            for button in [self.resultContactedButton, self.resultVoicemailButton, self.resultUnavailableButton, self.resultSkipButton] {
+                button?.alpha = 0
+            }
+            self.resultInstructionsLabel.alpha = 0
         }
+        
+        checkboxView.alpha = 0
+        checkboxView.transform = checkboxView.transform.scaledBy(x: 0.2, y: 0.2)
+        checkboxView.isHidden = false
+        
+        UIView.animate(withDuration: duration, delay: duration * 0.75, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+            self.checkboxView.alpha = 1
+            self.checkboxView.transform = .identity
+        }, completion: nil)
+    }
+    
+    func handleCallOutcome(outcome: ContactOutcome) {
+        // save & send log entry
+        let contactedPhone = lastPhoneDialed ?? contact.phone
+        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcome, date: Date())
+        reportCallOutcome(log)
     }
     
     @IBAction func resultButtonPressed(_ button: UIButton) {
-        var outcomeType = ""
+        Answers.logCustomEvent(withName:"Action: Button \(button.titleLabel)", customAttributes: ["contact_id":contact.id])
+        
         switch button {
-        case resultContactedButton:
-            outcomeType = "contacted"
-            break
-        case resultVoicemailButton:
-            outcomeType = "vm"
-            break
-        case resultUnavailableButton:
-            outcomeType = "unavailable"
-            break
-        case resultSkipButton:
-            print("find next contact")
-            break
+        case resultContactedButton: handleCallOutcome(outcome: .contacted)
+        case resultVoicemailButton: handleCallOutcome(outcome: .voicemail)
+        case resultUnavailableButton: handleCallOutcome(outcome: .unavailable)
+        case resultSkipButton: break
         default:
             print("unknown button pressed")
         }
-        
-        if let outcomeName = button.titleLabel?.text {
-            Answers.logCustomEvent(withName:"Action: Button \(outcomeName)", customAttributes: ["contact_id":contact.id])
-        }
-        
-        let contactedPhone = lastPhoneDialed.characters.count > 0 ? lastPhoneDialed : contact.phone
-        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcomeType, date: Date())
-        reportCallOutcome(log)
-        
-        NotificationCenter.default.post(name: .callMade, object: log)
-        
-        var nextIndex = issueIndex + 1
-        if issueIndex+1 >= issue.contacts.count {
-            nextIndex = 0
-        }
-        if issue.contacts.indices.contains(nextIndex) {
-            let nextContact = issue.contacts[nextIndex]
+     
+        if isLastContactForIssue {
+            hideResultButtons(animated: true)
+        } else {
+            let nextContact = issue.contacts[contactIndex + 1]
             showNextContact(nextContact)
         }
     }
     
     func showNextContact(_ contact: Contact) {
-        let newController: CallScriptViewController = self.storyboard?.instantiateViewController(withIdentifier: "callScriptController") as! CallScriptViewController
+        let newController: CallScriptViewController = storyboard?.instantiateViewController(withIdentifier: "callScriptController") as! CallScriptViewController
         newController.issuesManager = issuesManager
         newController.issue = issue
         newController.contact = contact

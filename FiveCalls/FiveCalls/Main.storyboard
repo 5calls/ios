@@ -269,7 +269,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
@@ -793,11 +793,23 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <action selector="resultButtonPressed:" destination="2z3-FP-x6s" eventType="touchUpInside" id="BnO-UM-Vzr"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-9A-x3M" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="185" y="41" width="44" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="cAq-JJ-sWj"/>
+                                            <constraint firstAttribute="height" constant="44" id="cO7-Pr-Elw"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="dYe-o8-2ft" firstAttribute="leading" secondItem="Axy-ed-Di0" secondAttribute="trailing" constant="8" id="3xN-uI-bxr"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="top" secondItem="Wjr-sd-Qcl" secondAttribute="top" id="EHj-9W-a7j"/>
+                                    <constraint firstItem="WrH-9A-x3M" firstAttribute="centerX" secondItem="uNN-Im-dnc" secondAttribute="centerX" id="FG7-UM-DCw"/>
                                     <constraint firstItem="dYe-o8-2ft" firstAttribute="top" secondItem="Axy-ed-Di0" secondAttribute="top" id="GzS-e4-3vg"/>
                                     <constraint firstAttribute="trailing" secondItem="uid-xw-4R9" secondAttribute="trailing" constant="8" id="IBS-AQ-eZ8"/>
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="leading" secondItem="dYe-o8-2ft" secondAttribute="leading" id="MX0-9a-0tZ"/>
@@ -810,6 +822,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <constraint firstItem="9Ef-iV-1bu" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="f4g-KR-cAU"/>
                                     <constraint firstItem="Wjr-sd-Qcl" firstAttribute="width" secondItem="Axy-ed-Di0" secondAttribute="width" id="iwb-0a-39f"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="top" secondItem="uid-xw-4R9" secondAttribute="bottom" constant="3" id="qxq-P4-apJ"/>
+                                    <constraint firstItem="WrH-9A-x3M" firstAttribute="centerY" secondItem="uNN-Im-dnc" secondAttribute="centerY" id="szS-g2-Gnb"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="x7t-4Z-Yqx"/>
                                     <constraint firstItem="Axy-ed-Di0" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="zMd-b6-KDO"/>
                                 </constraints>
@@ -827,7 +840,9 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="checkboxView" destination="WrH-9A-x3M" id="AxV-iY-55t"/>
                         <outlet property="resultContactedButton" destination="Wjr-sd-Qcl" id="AwX-Ga-3yz"/>
+                        <outlet property="resultInstructionsLabel" destination="uid-xw-4R9" id="sU4-ej-xqa"/>
                         <outlet property="resultSkipButton" destination="9Ef-iV-1bu" id="N4h-iA-4ek"/>
                         <outlet property="resultUnavailableButton" destination="Axy-ed-Di0" id="wfX-5T-Sto"/>
                         <outlet property="resultVoicemailButton" destination="dYe-o8-2ft" id="q4Y-D0-3hh"/>
@@ -836,7 +851,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J8a-2E-WHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="-226.23688155922042"/>
+            <point key="canvasLocation" x="2730.434782608696" y="-226.63043478260872"/>
         </scene>
         <!--My Impact-->
         <scene sceneID="Hib-0u-CEN">
@@ -875,21 +890,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statCell" textLabel="ZSx-yb-8Qy" detailTextLabel="RlJ-Rz-RYb" style="IBUITableViewCellStyleValue1" id="TVv-gW-ZKZ">
-                                <rect key="frame" x="0.0" y="242.33333333333334" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="243" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVv-gW-ZKZ" id="Ns2-UU-Wpo">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZSx-yb-8Qy">
-                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
+                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RlJ-Rz-RYb">
-                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="342" y="11" width="57" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -899,21 +914,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="contactStatCell" textLabel="SJ8-g0-JAP" detailTextLabel="kbU-0d-lcn" style="IBUITableViewCellStyleValue1" id="mE9-Jg-tD4">
-                                <rect key="frame" x="0.0" y="286.33333333333337" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="287" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mE9-Jg-tD4" id="4mP-T1-Hr3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SJ8-g0-JAP">
-                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
+                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kbU-0d-lcn">
-                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="342" y="11" width="57" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
