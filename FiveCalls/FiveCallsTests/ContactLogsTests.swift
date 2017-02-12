@@ -31,7 +31,7 @@ class ContactLogsTests: XCTestCase {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.date(from: "1984-01-24")!
-        let log = ContactLog(issueId: "issue1", contactId: "contact1", phone: "111-222-3333", outcome: "voicemail", date: date)
+        let log = ContactLog(issueId: "issue1", contactId: "contact1", phone: "111-222-3333", outcome: .voicemail, date: date)
         Pantry.pack([log], key: "log")
         
         if let loadedLogs: [ContactLog] = Pantry.unpack("log") {
