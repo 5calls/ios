@@ -9,6 +9,24 @@ This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 - Xcode 8
 - iOS 10
 
+## Getting Started
+
+Install the dependencies:
+
+```
+bundle install
+```
+
+## Using R.swift
+
+R.swift removes the need to use "stringly typed" resources. Instead, you can reference your app's resources Android-style, which is strongly typed. Benefits are less casting, compile time checking for resources, and a little less code. [See examples for each type here.](https://github.com/mac-cain13/R.swift/blob/master/Documentation/Examples.md)
+
+**Note**: Since 5Calls uses prototype cells instead of cell nibs, this is all you need to dequeue a cell:
+
+```
+let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)!
+```
+
 ## Testflight Builds
 
 > _This currently has to be done by Ben_
