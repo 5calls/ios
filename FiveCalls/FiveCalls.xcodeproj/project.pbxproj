@@ -438,7 +438,7 @@
 			buildConfigurationList = B52805231E3FA94D00EE832A /* Build configuration list for PBXNativeTarget "FiveCalls" */;
 			buildPhases = (
 				5DBAD4BAE9299D0E23AFC2FA /* [CP] Check Pods Manifest.lock */,
-				0F76D37E1E4FDF4500C14543 /* ShellScript */,
+				0F76D37E1E4FDF4500C14543 /* Generate R.Swift Code */,
 				B528050D1E3FA94D00EE832A /* Sources */,
 				B528050E1E3FA94D00EE832A /* Frameworks */,
 				B528050F1E3FA94D00EE832A /* Resources */,
@@ -561,13 +561,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F76D37E1E4FDF4500C14543 /* ShellScript */ = {
+		0F76D37E1E4FDF4500C14543 /* Generate R.Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Generate R.Swift Code";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
