@@ -168,6 +168,17 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
         issuesManager.userLocation = location
         issuesManager.fetchIssues {
+            
+            if self.issuesManager.isSplitDistrict {
+                let alertController = UIAlertController(title: "Split Congressional District", message:
+                    "Your ZIP code belongs to more than one congressional district. Please select “Use My Location” to locate your particular representative.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default ,handler: nil))
+                vc.present(alertController, animated: true, completion: nil)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        
+            
             if let issue = self.issuesManager.issue(withId: self.issue.id) {
                 self.issue = issue
                 self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
@@ -178,17 +189,6 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
                 // pop back to the issues list
                 _ = self.navigationController?.popViewController(animated: true)
             }
-
         }
-
-		dismiss(animated: true, completion: nil)
-
-		if issuesManager.isSplitDistrict {
-			let alertController = UIAlertController(title: "Split Congressional District", message:
-				"Your ZIP code belongs to more than one congressional district. Please select “Use My Location” to locate your particular representative.", preferredStyle: .alert)
-			alertController.addAction(UIAlertAction(title: "OK", style: .default ,handler: nil))
-			present(alertController, animated: true, completion: nil)
-		}
-		
     }
 }
