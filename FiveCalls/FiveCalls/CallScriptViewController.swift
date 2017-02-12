@@ -68,10 +68,11 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     func reportCallOutcome(_ log: ContactLog) {
-        if log.outcome.characters.count > 0 {
-            logs.add(log: log)
-            let operation = ReportOutcomeOperation(log:log)
-            OperationQueue.main.addOperation(operation)
+        logs.add(log: log)
+        let operation = ReportOutcomeOperation(log:log)
+        #if !debug  // don't report stats in debug builds
+        OperationQueue.main.addOperation(operation)
+        #endif
     }
     
     func hideResultButtons(animated: Bool) {
