@@ -58,6 +58,11 @@ class CallScriptViewController : UIViewController, IssueShareable {
         Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
         self.contactIndex = contactIndex
         title = "Contact \(contactIndex+1) of \(issue.contacts.count)"
+
+        let method = logs.methodOfContact(to: contact.id, forIssue: issue.id)
+        self.resultContactedButton.isSelected = method == .contacted
+        self.resultUnavailableButton.isSelected = method == .unavailable
+        self.resultVoicemailButton.isSelected = method == .voicemail
     }
     
     func callButtonPressed(_ button: UIButton) {
