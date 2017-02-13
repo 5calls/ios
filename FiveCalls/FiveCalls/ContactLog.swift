@@ -96,11 +96,12 @@ struct ContactLogs {
         return Pantry.unpack(persistenceKey).flatMap(ContactLogs.init) ?? ContactLogs()
     }
     
+    func methodOfContact(to contactId: String, forIssue issueId: String) -> ContactOutcome? {
+        return all.filter({$0.contactId == contactId && $0.issueId == issueId}).last?.outcome
+    }
+	
     func hasContacted(contactId: String, forIssue issueId: String) -> Bool {
-        if let _ = all.filter({$0.contactId == contactId && $0.issueId == issueId}).first {
-            return true
-        }
-        return false
+        return self.methodOfContact(to: contactId, forIssue: issueId) != nil
     }
     
     func hasCompleted(issue: String, allContacts: [Contact]) -> Bool {
