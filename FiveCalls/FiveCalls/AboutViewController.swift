@@ -25,6 +25,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     @IBOutlet weak var shareCell: UITableViewCell!
     @IBOutlet weak var rateCell: UITableViewCell!
     @IBOutlet weak var openSourceCell: UITableViewCell!
+    @IBOutlet weak var showWelcomeCell: UITableViewCell!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -50,6 +51,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         case shareCell:             shareApp()
         case rateCell:              promptForRating()
         case openSourceCell:        showOpenSource()
+        case showWelcomeCell:       showWelcome()
             
         default: break;
         }
@@ -104,4 +106,12 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }
 
+    func showWelcome() {
+        let welcomeStoryboard = R.storyboard.welcome()
+        let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
+        welcomeVC.completionBlock = { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        present(welcomeVC, animated: true)
+    }
 }
