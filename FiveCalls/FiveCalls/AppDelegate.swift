@@ -30,7 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
-        
+
+        var types: UIUserNotificationType = UIUserNotificationType()
+        types.insert(.alert)
+        types.insert(.badge)
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: nil))
+
         return true
     }
     

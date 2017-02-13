@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
 		0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76D37F1E4FE05B00C14543 /* R.generated.swift */; };
+		271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625401E52502D0042222E /* ScheduleRemindersController.swift */; };
+		271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
 		33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */; };
 		33C2E0E81E52ADC200F810C6 /* UIColor+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */; };
@@ -110,6 +112,8 @@
 		0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCalls.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls.release.xcconfig"; sourceTree = "<group>"; };
 		0F76D37F1E4FE05B00C14543 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCalls.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls.debug.xcconfig"; sourceTree = "<group>"; };
+		271625401E52502D0042222E /* ScheduleRemindersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRemindersController.swift; sourceTree = "<group>"; };
+		271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionSegmentedControl.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-FiveCallsTests-metadata.plist"; path = "Pods/Pods-FiveCallsTests-metadata.plist"; sourceTree = "<group>"; };
 		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -383,6 +387,7 @@
 				FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */,
 				B50280691E48C95700749ED7 /* BorderedButton.swift */,
 				B5E98E301E50C895005221B7 /* SetLocationCell.swift */,
+				271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 				FA1B339F1E485BA3004B9281 /* AboutViewController.swift */,
 				FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */,
 				B50280791E49864D00749ED7 /* MyImpactViewController.swift */,
+				271625401E52502D0042222E /* ScheduleRemindersController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -787,6 +793,7 @@
 				B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */,
 				9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
+				271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */,
 				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
 				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
 				B50280561E47875500749ED7 /* ContactLog.swift in Sources */,
@@ -811,6 +818,7 @@
 				9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */,
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
 				33C2E0E81E52ADC200F810C6 /* UIColor+FiveCalls.swift in Sources */,
+				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
 				B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */,
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
