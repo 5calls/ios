@@ -20,6 +20,7 @@ class BlueButton: UIButton {
     
     var normalBackgroundColor = UIColor(colorLiteralRed:0.73, green:0.87, blue:0.98, alpha:1.0)
     var highlightBackgroundColor = UIColor(colorLiteralRed:0.90, green:0.22, blue:0.21, alpha:1.0)
+    var selectedBackgroundColor = UIColor(colorLiteralRed:0.90, green:0.22, blue:0.21, alpha:1.0)
     var defaultTextColor = UIColor(colorLiteralRed:0.09, green:0.46, blue:0.82, alpha:1.0)
 
     override init(frame: CGRect) {
@@ -51,8 +52,18 @@ class BlueButton: UIButton {
         }
     }
     
+    override var isSelected: Bool {
+        didSet {
+            titleLabel?.alpha = 1.0
+            updateColors()
+        }
+    }
+
     func updateColors() {
-        backgroundColor = isHighlighted ? highlightBackgroundColor : normalBackgroundColor
+        if isHighlighted { backgroundColor = highlightBackgroundColor }
+        else if isSelected { backgroundColor = selectedBackgroundColor }
+        else { backgroundColor = normalBackgroundColor }
+
         setTitleColor(.white, for: .selected)
         setTitleColor(.white, for: .highlighted)
         setTitleColor(defaultTextColor, for: .normal)
