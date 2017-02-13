@@ -97,7 +97,7 @@ struct ContactLogs {
     }
     
     func methodOfContact(to contactId: String, forIssue issueId: String) -> ContactOutcome? {
-        return all.filter({$0.contactId == contactId && $0.issueId == issueId}).first?.outcome
+        return all.filter({$0.contactId == contactId && $0.issueId == issueId}).last?.outcome
     }
 	
     func hasContacted(contactId: String, forIssue issueId: String) -> Bool {
