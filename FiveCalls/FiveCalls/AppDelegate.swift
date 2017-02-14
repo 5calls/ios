@@ -68,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setAppearance() {
         let pageControlAppearance = UIPageControl.appearance()
-        pageControlAppearance.pageIndicatorTintColor = UIColor(red:0.68, green:0.82, blue:0.92, alpha:1.00)
-        pageControlAppearance.currentPageIndicatorTintColor = UIColor(red:0.12, green:0.47, blue:0.81, alpha:1.00)
+        pageControlAppearance.pageIndicatorTintColor = .fvc_lightBlue
+        pageControlAppearance.currentPageIndicatorTintColor = .fvc_darkBlue
         
         // Fonts
         let fontDescriptor = UIFontDescriptor(fontAttributes: [
