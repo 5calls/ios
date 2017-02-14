@@ -16,7 +16,7 @@ class FetchStatsOperation : BaseOperation {
     
     override func execute() {
         let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
+        let session = URLSessionProvider.buildSession(configuration: config)
         let url = URL(string: "https://5calls.org/report")!
         let task = session.dataTask(with: url) { (data, response, error) in
             
