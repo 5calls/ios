@@ -40,14 +40,20 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
+    ensure_git_status_clean
+    increment_build
+    commit_version_bump
+
     badge(shield: "Version-#{app_version}-red", shield_no_resize: true)
 
     gym(workspace: workspace, scheme: scheme)
+    prompt(text: "Make any changes to fastlane/changelog.txt and press any key when ready...")
     changelog = File.read('changelog.txt')
     pilot(changelog: changelog)
 
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+    reset_git_repo(files: app_icon_files)
+    add_git_tag
+    push_git_tags
   end
 
   desc "Deploy a new version to the App Store"
