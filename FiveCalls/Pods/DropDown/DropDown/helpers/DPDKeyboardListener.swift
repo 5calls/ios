@@ -36,12 +36,12 @@ extension KeyboardListener {
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(keyboardWillShow(_:)),
-			name: NSNotification.Name.UIKeyboardWillShow,
+			name: .UIKeyboardWillShow,
 			object: nil)
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(keyboardWillHide(_:)),
-			name: NSNotification.Name.UIKeyboardWillHide,
+			name: .UIKeyboardWillHide,
 			object: nil)
 	}
 	
