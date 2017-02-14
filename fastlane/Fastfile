@@ -47,9 +47,9 @@ platform :ios do
     badge(shield: "Version-#{app_version}-red", shield_no_resize: true)
 
     gym(workspace: workspace, scheme: scheme)
-    prompt(text: "Make any changes to fastlane/changelog.txt and press any key when ready...")
-    changelog = File.read('changelog.txt')
+    changelog = prompt_for_changelog
     pilot(changelog: changelog, distribute_external: true)
+    git_commit(file: 'changelog.txt', message: 'Updated changelog.txt')
 
     reset_git_repo(files: app_icon_files)
     add_git_tag
@@ -87,6 +87,10 @@ end
 def app_icon_files
   Dir['../FiveCalls/FiveCalls/Assets.xcassets/AppIcon.appiconset/*.png']
 end
+
+def prompt_for_release_notes
+    `open changelog.txt -W`
+    File.read('changelog.txt')
 end
 
 
