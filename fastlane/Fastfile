@@ -9,6 +9,7 @@ fastlane_version "2.14.2"
 default_platform :ios
 
 workspace = 'FiveCalls/FiveCalls.xcworkspace'
+xcodeproj = 'FiveCalls/FiveCalls.xcodeproj'
 scheme = 'FiveCalls'
 
 platform :ios do
@@ -21,15 +22,38 @@ platform :ios do
     scan(workspace: workspace, scheme: scheme)
   end
 
+  desc "Increments build number"
+  lane :increment_build do
+    increment_build_number(xcodeproj: xcodeproj)
+  end
+
+  lane :app_version do
+    get_app_version(xcodeproj: xcodeproj)
+  end
+
+  def get_app_version(xcodeproj:)
+    marketing_version = get_version_number(xcodeproj: xcodeproj)
+    build_number = get_build_number(xcodeproj: xcodeproj)
+    "#{marketing_version}.#{build_number}"
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    gym(workspace: workspace, scheme: scheme)
-    changelog = File.read('changelog.txt')
-    pilot(changelog: changelog)
+    ensure_git_status_clean
+    increment_build
+    commit_version_bump
 
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+    badge(shield: "Version-#{app_version}-red", shield_no_resize: true)
+
+    gym(workspace: workspace, scheme: scheme)
+    prompt(text: "Make any changes to fastlane/changelog.txt and press any key when ready...")
+    changelog = File.read('changelog.txt')
+    pilot(changelog: changelog, distribute_external: true)
+
+    reset_git_repo(files: app_icon_files)
+    add_git_tag
+    push_git_tags
   end
 
   desc "Deploy a new version to the App Store"
@@ -58,6 +82,10 @@ platform :ios do
   lane :snapshots do
     snapshot
   end
+end
+
+def app_icon_files
+  Dir['FiveCalls/FiveCalls/Assets.xcassets/AppIcon.appiconset/*.png']
 end
 
 
