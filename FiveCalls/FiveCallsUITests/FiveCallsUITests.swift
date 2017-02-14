@@ -19,6 +19,7 @@ class FiveCallsUITests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         app.launchEnvironment = ["UI_TESTING" : "1"]
+        loadJSONFixtures(application: app)
         setupSnapshot(app)
         app.launch()
     }
@@ -61,5 +62,12 @@ class FiveCallsUITests: XCTestCase {
         
         app.cells.staticTexts["Ted Cruz"].tap()
         snapshot("4-call-script")
+    }
+    
+    private func loadJSONFixtures(application: XCUIApplication) {
+        let bundle = Bundle(for: FiveCallsUITests.self)
+        application.launchEnvironment["GET:/issues"] = bundle.path(forResource: "GET-issues", ofType: "json")
+        application.launchEnvironment["GET:/report"] = bundle.path(forResource: "GET-report", ofType: "json")
+        application.launchEnvironment["POST:/report"] = bundle.path(forResource: "POST-report", ofType: "json")
     }
 }

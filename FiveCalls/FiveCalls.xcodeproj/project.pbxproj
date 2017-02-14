@@ -65,6 +65,9 @@
 		B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E321E529E31005221B7 /* URLSessionProvider.swift */; };
 		B5E98E351E529E66005221B7 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E341E529E66005221B7 /* functions.swift */; };
 		B5E98E381E529EE4005221B7 /* SeededURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E371E529EE4005221B7 /* SeededURLSession.swift */; };
+		B5E98E3B1E52A566005221B7 /* GET-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E3A1E52A566005221B7 /* GET-report.json */; };
+		B5E98E3D1E52A570005221B7 /* GET-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E3C1E52A570005221B7 /* GET-issues.json */; };
+		B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E401E52A8AB005221B7 /* POST-report.json */; };
 		B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */; };
 		DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
@@ -170,6 +173,9 @@
 		B5E98E321E529E31005221B7 /* URLSessionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
 		B5E98E341E529E66005221B7 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		B5E98E371E529EE4005221B7 /* SeededURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeededURLSession.swift; sourceTree = "<group>"; };
+		B5E98E3A1E52A566005221B7 /* GET-report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-report.json"; sourceTree = "<group>"; };
+		B5E98E3C1E52A570005221B7 /* GET-issues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-issues.json"; sourceTree = "<group>"; };
+		B5E98E401E52A8AB005221B7 /* POST-report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "POST-report.json"; sourceTree = "<group>"; };
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D08630058C5382210630DE7E /* Pods_FiveCalls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCalls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
@@ -331,6 +337,7 @@
 		B5A70A591E4C01A00031DF58 /* FiveCallsUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B5E98E391E52A41E005221B7 /* Fixtures */,
 				B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */,
 				B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */,
 				B5A70A5C1E4C01A00031DF58 /* Info.plist */,
@@ -417,6 +424,16 @@
 				B5E98E371E529EE4005221B7 /* SeededURLSession.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		B5E98E391E52A41E005221B7 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				B5E98E3A1E52A566005221B7 /* GET-report.json */,
+				B5E98E3C1E52A570005221B7 /* GET-issues.json */,
+				B5E98E401E52A8AB005221B7 /* POST-report.json */,
+			);
+			name = Fixtures;
 			sourceTree = "<group>";
 		};
 		F57BD8B21E438E4200BD554C /* Fonts */ = {

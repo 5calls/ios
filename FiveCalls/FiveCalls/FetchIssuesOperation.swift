@@ -23,7 +23,9 @@ class FetchIssuesOperation : BaseOperation {
     }
     
     lazy var sessionConfiguration = URLSessionConfiguration.default
-    lazy var session: URLSession = { return URLSession(configuration: self.sessionConfiguration) }()
+    lazy var session: URLSession = {
+        return URLSessionProvider.buildSession(configuration: self.sessionConfiguration)
+    }()
     
     func buildIssuesURL() -> URL {
         var urlComponents = URLComponents()

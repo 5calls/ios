@@ -23,7 +23,7 @@ class ReportOutcomeOperation : BaseOperation {
     
     override func execute() {
         let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
+        let session = URLSessionProvider.buildSession(configuration: config)
         let url = URL(string: "https://5calls.org/report")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
