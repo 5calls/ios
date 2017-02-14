@@ -5,5 +5,6 @@ gem "cocoapods"
 gem "cocoapods-acknowledgements"
 gem "dotenv"
 gem "fastlane"
+gem "badge"
 gem "snapshot"
 
