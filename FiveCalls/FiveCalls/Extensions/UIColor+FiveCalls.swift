@@ -37,9 +37,7 @@ extension UIColor {
     //MARK - Grays
     
     convenience init(fvc_gray component: Float) {
-        self.init(colorLiteralRed: component,
-                  green: component,
-                  blue: component,
+        self.init(white: CGFloat(component),
                   alpha: 1.00)
     }
     
@@ -48,6 +46,8 @@ extension UIColor {
     static let fvc_lightGray = UIColor(fvc_gray: 0.90)
     
     static let fvc_mediumGray = UIColor(fvc_gray:0.88)
+    
+    static let fvc_darkGray = UIColor(fvc_gray: 0.4)
     
     //MARK: - Other colors
     
