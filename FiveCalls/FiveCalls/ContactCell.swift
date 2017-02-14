@@ -52,7 +52,7 @@ class ContactCell : UITableViewCell {
         context?.setStrokeColor(separatorColor.cgColor)
         
         if borderTop {
-            context?.move(to: CGPoint(x: 0, y: 0))
+            context?.move(to: .zero)
             context?.addLine(to: CGPoint(x: bounds.size.width, y: 0))
         }
         
