@@ -42,7 +42,7 @@ class ContactCell : UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
+        avatarImageView.fvc_circleify()
     }
     
     override func draw(_ rect: CGRect) {
