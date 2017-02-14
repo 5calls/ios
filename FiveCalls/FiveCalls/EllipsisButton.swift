@@ -12,9 +12,8 @@ import UIKit
 class EllipsisButton : UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.cornerRadius = frame.size.height / 2
+        fvc_circleify()
         layer.borderColor = UIColor.red.cgColor
         layer.borderWidth = 2
-        clipsToBounds = true
     }
 }
