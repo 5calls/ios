@@ -49,7 +49,7 @@ platform :ios do
     gym(workspace: workspace, scheme: scheme)
     prompt(text: "Make any changes to fastlane/changelog.txt and press any key when ready...")
     changelog = File.read('changelog.txt')
-    pilot(changelog: changelog)
+    pilot(changelog: changelog, distribute_external: true)
 
     reset_git_repo(files: app_icon_files)
     add_git_tag
