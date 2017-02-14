@@ -85,7 +85,8 @@ platform :ios do
 end
 
 def app_icon_files
-  Dir['FiveCalls/FiveCalls/Assets.xcassets/AppIcon.appiconset/*.png']
+  Dir['../FiveCalls/FiveCalls/Assets.xcassets/AppIcon.appiconset/*.png']
+end
 end
 
 
