@@ -25,7 +25,7 @@ class ContactCell : UITableViewCell {
     }
     
     var separatorColor: UIColor = .lightGray
-    var labelTextColor: UIColor = UIColor(white: 0.4, alpha: 1)
+    var labelTextColor: UIColor = .fvc_darkGray
     
     @IBOutlet weak var avatarImageView: RemoteImageView!
     @IBOutlet weak var nameLabel: UILabel!
