@@ -53,7 +53,7 @@ class FiveCallsUITests: XCTestCase {
         // this break in the future as new issues come out, but I think it's better to pick an issue explicitly
         // rather than tapping on the first cell. Having canned data for UI_TESTING is a good solution to this.
         app.tables.element(boundBy: 0).swipeUp()
-        app.tables.cells.staticTexts["Object to the Unraveling of Dodd-Frank"].tap()
+        app.tables.cells.staticTexts["Defend the Affordable Care Act"].tap()
         snapshot("3-issue-detail")
         let issueTable = app.tables.element(boundBy: 0)
         issueTable.swipeUp()
