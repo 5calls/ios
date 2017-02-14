@@ -12,6 +12,7 @@ import Crashlytics
 
 class IssueDetailViewController : UIViewController, IssueShareable {
     
+    
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
