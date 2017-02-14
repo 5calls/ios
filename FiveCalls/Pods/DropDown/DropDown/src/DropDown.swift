@@ -977,12 +977,12 @@ extension DropDown {
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(keyboardUpdate),
-			name: NSNotification.Name.UIKeyboardWillShow,
+			name: .UIKeyboardWillShow,
 			object: nil)
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(keyboardUpdate),
-			name: NSNotification.Name.UIKeyboardWillHide,
+			name: .UIKeyboardWillHide,
 			object: nil)
 	}
 
