@@ -12,6 +12,8 @@ import Crashlytics
 
 class IssueDetailViewController : UIViewController, IssueShareable {
     
+    fileprivate let multipleDistrictText = "Your ZIP code contains more than one congressional district. Please select “Use My Location” to locate your representative."
+    
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
@@ -104,7 +106,7 @@ extension IssueDetailViewController : UITableViewDataSource {
             if issue.contacts.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)! as SetLocationCell
                 if issuesManager.isSplitDistrict {
-                    cell.messageLabel.text = "Your zip code belongs to multiple congressional districts. Use your full location to find your representative."
+                    cell.messageLabel.text = multipleDistrictText
                 } else {
                     cell.messageLabel.text = "Set your location to find your representatives"
                 }
@@ -171,8 +173,8 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
             
             if self.issuesManager.isSplitDistrict {
                 let alertController = UIAlertController(title: "Split Congressional District", message:
-                    "Your ZIP code belongs to more than one congressional district. Please select “Use My Location” to locate your particular representative.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default ,handler: nil))
+                    self.multipleDistrictText, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 vc.present(alertController, animated: true, completion: nil)
             } else {
                 self.dismiss(animated: true, completion: nil)
