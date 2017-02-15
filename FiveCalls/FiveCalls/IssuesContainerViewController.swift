@@ -22,21 +22,34 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitleLabel(location: UserLocation.current)
+		
+		
+		let runningOnIPad = UIDevice.current.userInterfaceIdiom == .pad
+		let issuesVC = R.storyboard.main.issuesViewController()!
+		let childController: UIViewController
+		
+		if runningOnIPad {
+			let splitController = UISplitViewController()
+			splitController.preferredDisplayMode = .allVisible
+			childController = splitController
+			splitController.viewControllers = [issuesVC, UIViewController()]
+		} else {
+			childController = issuesVC
+		}
+		
+        addChildViewController(childController)
         
-        let issuesVC = R.storyboard.main.issuesViewController()!
-        addChildViewController(issuesVC)
-        
-        view.insertSubview(issuesVC.view, belowSubview: headerView)
-        issuesVC.view.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(childController.view, belowSubview: headerView)
+        childController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            issuesVC.view.topAnchor.constraint(equalTo: view.topAnchor),
-            issuesVC.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-            issuesVC.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            issuesVC.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
+            childController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            childController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            childController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            childController.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
             ])
         
-        issuesVC.didMove(toParentViewController: self)
+        childController.didMove(toParentViewController: self)
         issuesViewController = issuesVC
     }
     
