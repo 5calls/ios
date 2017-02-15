@@ -513,7 +513,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <!--Custom Navigation Controller-->
         <scene sceneID="JhW-PA-feF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
