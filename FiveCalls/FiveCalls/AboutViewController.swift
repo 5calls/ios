@@ -107,8 +107,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
 
     func showWelcome() {
-        let welcomeStoryboard = R.storyboard.welcome()
-        let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
+        let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         welcomeVC.completionBlock = { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
