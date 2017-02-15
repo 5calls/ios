@@ -138,12 +138,12 @@ extension IssueDetailViewController : UITableViewDataSource {
     private func headerCell(at indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case IssueHeaderRows.title.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as! IssueDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.titleCell, for: indexPath)!
             cell.issueLabel.text = issue.name
             return cell
             
         case IssueHeaderRows.description.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! IssueDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.descriptionCell, for: indexPath)!
             cell.issueLabel.text = issue.reason
             return cell
             
