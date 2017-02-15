@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  FiveCalls
+
+  Created by Erik Krietsch on 2/10/17.
+  Copyright © 2017 5calls. All rights reserved.
+*/
+
+"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: http://5calls.org/#issue/%@?utm_campaign=twshare";
+"invalid-zip-title"                   = "Invalid Zip Code";
+"invalid-zip-message"                 = "Please enter a 5-digit zip code";
+"ok-button-title"                     = "OK";
+"location-permission-denied-title"    = "Location permission denied.";
+"location-permission-denied-message"  = "To use Location please change the permissions in the Settings and try again.";
+"open-settings-title"                 = "Open Settings";
+"dismiss-title"                       = "Dismiss";
+"whats-important-title"               = "What's important to you?";
+"call-your-reps"                      = "Call your representatives";
+"split-district-title"                = "Split Congressional District";
+"split-district-message"              = "Your ZIP code belongs to more than one congressional district. Select “Use My Location” to locate your particular representative.";
+"set-your-location"                   = "Set your location to find your representatives";
+"cant-send-email-title"               = "Can't send mail";
+"cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
+"share-the-app-message"               = "Make 5 Calls to your elected officials and let your voice be heard!";
+"your-impact-multiple"                = "Your impact is %d calls!";
+"your-impact-single"                  = "Your impact is %d call!";
+"your-impact-zero"                    = "Your impact is %d calls.";
+"community-calls"                     = "The 5 Calls community has contributed %@ calls!";
+"made-contact"                        = "Made Contact";
+"unavailable"                         = "Unavailable";
+"left-voicemail"                      = "Left Voicemail";
+"called-multiple"                     = "%d times";
+"called-single"                       = "%d time";

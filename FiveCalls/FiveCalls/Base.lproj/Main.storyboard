@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -506,7 +507,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <scene sceneID="VLC-fS-43C">
             <objects>
                 <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Kdw-tv-5oW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -524,7 +525,7 @@ The Department of the Army's Civil Works division will be accepting public comme
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -974,7 +975,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3VD-Ro-n8g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

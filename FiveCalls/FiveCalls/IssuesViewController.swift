@@ -88,7 +88,7 @@ class IssuesViewController : UITableViewController {
         let blueTextColor = UIColor(colorLiteralRed:0.09, green:0.46, blue:0.82, alpha:1.0)
 
         let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
-        notAButton.setTitle("What's important to you?", for: .normal)
+        notAButton.setTitle(R.string.localizable.whatsImportantTitle(), for: .normal)
         notAButton.setTitleColor(blueTextColor, for: .normal)
         notAButton.backgroundColor = UIColor(colorLiteralRed:0.96, green:0.96, blue:0.96, alpha:1.0)
         notAButton.borderWidth = 1
