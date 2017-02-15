@@ -22,21 +22,20 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitleLabel(location: UserLocation.current)
-		
-		
-		let runningOnIPad = UIDevice.current.userInterfaceIdiom == .pad
-		let issuesVC = R.storyboard.main.issuesViewController()!
-		let childController: UIViewController
-		
-		if runningOnIPad {
-			let splitController = UISplitViewController()
-			splitController.preferredDisplayMode = .allVisible
-			childController = splitController
-			splitController.viewControllers = [issuesVC, UIViewController()]
-		} else {
-			childController = issuesVC
-		}
-		
+
+        let runningOnIPad = UIDevice.current.userInterfaceIdiom == .pad
+        let issuesVC = R.storyboard.main.issuesViewController()!
+        let childController: UIViewController
+
+        if runningOnIPad {
+            let splitController = UISplitViewController()
+            splitController.preferredDisplayMode = .allVisible
+            childController = splitController
+            splitController.viewControllers = [issuesVC, UIViewController()]
+        } else {
+            childController = issuesVC
+        }
+
         addChildViewController(childController)
         
         view.insertSubview(childController.view, belowSubview: headerView)
