@@ -78,6 +78,20 @@ class IssuesViewController : UITableViewController {
         viewModel = ViewModel(issues: issuesManager.issues)
         tableView.reloadData()
     }
+	
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+		if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
+			guard let indexPath = tableView.indexPathForSelectedRow else { return true }
+			let controller = R.storyboard.main.issueDetailViewController()!
+			controller.issuesManager = issuesManager
+			controller.issue = issuesManager.issues[indexPath.row]
+
+			let nav = UINavigationController(rootViewController: controller)
+			split.showDetailViewController(nav, sender: self)
+			return false
+		}
+		return true
+	}
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
