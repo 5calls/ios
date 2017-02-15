@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ScheduleRemindersController: UIViewController, MultipleSelectionDelegate {
+class ScheduleRemindersController: UIViewController {
 
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
@@ -16,7 +16,6 @@ class ScheduleRemindersController: UIViewController, MultipleSelectionDelegate {
     var notificationsChanged: Bool?
 
     override func viewDidLoad() {
-        daysOfWeekSelector.delegate = self
         notificationsChanged = false
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
             daysOfWeekSelector.setSelectedButtons(at: indices(from: notifications))
@@ -42,7 +41,7 @@ class ScheduleRemindersController: UIViewController, MultipleSelectionDelegate {
         notificationsChanged = true
     }
 
-    func control(changed: MultipleSelectionControl) {
+    @IBAction func dayPickerAction(_ sender: MultipleSelectionControl) {
         notificationsChanged = true
     }
 

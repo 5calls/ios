@@ -8,19 +8,10 @@
 
 import Foundation
 
-protocol MultipleSelectionDelegate {
-    func control(changed control: MultipleSelectionControl)
-}
 class MultipleSelectionControl: UIControl {
-
-    //TODO: get values from persistence
-    //TODO: persist values
-    //TODO: override UIControl
     @IBInspectable var selectedColor: UIColor = UIColor.lightGray
     @IBInspectable var deSelectedColor: UIColor = UIColor.white
     @IBInspectable var titlesString: String = ""
-
-    var delegate: MultipleSelectionDelegate?
 
     private var titles: [String]?
     var buttons: [UIButton]?
@@ -46,6 +37,7 @@ class MultipleSelectionControl: UIControl {
     }
 
     override func awakeFromNib() {
+        super.awakeFromNib()
         let titles = titlesString.components(separatedBy: ",")
         guard titles.count > 0 else { return }
         let stackView = UIStackView()
@@ -78,8 +70,8 @@ class MultipleSelectionControl: UIControl {
 
     @objc func buttonAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.control(changed: self)
         color(button: sender)
+        sendActions(for: .valueChanged)
     }
 
     func color(button: UIButton) {

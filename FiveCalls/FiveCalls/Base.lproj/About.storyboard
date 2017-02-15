@@ -245,6 +245,9 @@
                                         <color key="value" red="0.73130005600000003" green="0.86836498979999999" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dayPickerAction:" destination="r3M-VD-RuJ" eventType="valueChanged" id="V9E-tM-DLN"/>
+                                </connections>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="pgL-vc-xhW">
                                 <rect key="frame" x="0.0" y="343" width="375" height="160"/>
