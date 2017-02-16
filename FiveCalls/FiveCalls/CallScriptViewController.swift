@@ -144,7 +144,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     func shareButtonPressed(_ button: UIBarButtonItem) {
-        shareIssue()
+        shareIssue(from: button)
     }
 }
 

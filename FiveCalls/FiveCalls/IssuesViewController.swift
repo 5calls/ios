@@ -16,6 +16,7 @@ class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
+    var shareButton: UIButton? { didSet { self.shareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,12 @@ class IssuesViewController : UITableViewController {
         }
     }
 
+    func share(button: UIButton) {
+        if let nav = self.splitViewController?.viewControllers.last as? UINavigationController, let shareable = nav.viewControllers.last as? IssueShareable {
+            shareable.shareIssue(from: button)
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -75,6 +82,7 @@ class IssuesViewController : UITableViewController {
 
             let nav = UINavigationController(rootViewController: controller)
             split.showDetailViewController(nav, sender: self)
+            self.shareButton?.isHidden = false
             return false
         }
         return true

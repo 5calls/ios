@@ -12,9 +12,9 @@ import CoreLocation
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
-	@IBOutlet weak var footerView: UIView!
-	@IBOutlet weak var shareButton: UIButton!
-	
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var shareButton: UIButton!
+
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
@@ -32,6 +32,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             let splitController = UISplitViewController()
             splitController.preferredDisplayMode = .allVisible
             childController = splitController
+            issuesVC.shareButton = self.shareButton
             splitController.viewControllers = [issuesVC, UIViewController()]
         } else {
             childController = issuesVC
