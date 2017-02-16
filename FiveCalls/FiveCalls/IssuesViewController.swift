@@ -88,6 +88,7 @@ class IssuesViewController : UITableViewController {
 
             let nav = UINavigationController(rootViewController: controller)
             split.showDetailViewController(nav, sender: self)
+            self.shareButton?.isHidden = false
             return false
         }
         return true

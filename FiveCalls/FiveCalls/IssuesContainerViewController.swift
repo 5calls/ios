@@ -41,6 +41,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             let splitController = UISplitViewController()
             splitController.preferredDisplayMode = .allVisible
             childController = splitController
+            issuesVC.shareButton = self.shareButton
             splitController.viewControllers = [issuesVC, UIViewController()]
         } else {
             childController = issuesVC
