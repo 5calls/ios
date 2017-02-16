@@ -45,7 +45,9 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         }
         logs = ContactLogs.load()
 
-		if UIDevice.current.userInterfaceIdiom == .pad {
+		if let nav = self.navigationController, nav.viewControllers.count > 1 {
+			navigationController?.setNavigationBarHidden(false, animated: true)
+		} else {
             tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
         }
     }
