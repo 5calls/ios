@@ -13,10 +13,10 @@ class ScheduleRemindersController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
 
-    var notificationsChanged: Bool?
+    var notificationsChanged: Bool = true
 
     override func viewDidLoad() {
-        notificationsChanged = false
+        super.viewDidLoad()
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
             daysOfWeekSelector.setSelectedButtons(at: indices(from: notifications))
             if let date = notifications.first?.fireDate {
@@ -28,7 +28,7 @@ class ScheduleRemindersController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let changed = notificationsChanged, changed == true else { return }
+        guard notificationsChanged == true else { return }
 
         UIApplication.shared.cancelAllLocalNotifications()
         for selectorIndex in daysOfWeekSelector.selectedIndices {
