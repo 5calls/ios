@@ -51,11 +51,18 @@
                                                         <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="m1W-bt-ywO"/>
                                                     </connections>
                                                 </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
+                                                    <rect key="frame" x="374" y="46.666666666666671" width="19" height="27.000000000000014"/>
+                                                    <state key="normal" image="share"/>
+                                                </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="fft-Ag-RIT" firstAttribute="trailing" secondItem="Mi6-Us-zfc" secondAttribute="trailingMargin" id="9dz-gk-u11"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="34" id="Bwu-Eb-gFB"/>
+                                                <constraint firstItem="Kza-be-BC6" firstAttribute="centerY" secondItem="Mi6-Us-zfc" secondAttribute="centerY" id="CQQ-xm-eO7"/>
                                                 <constraint firstItem="6mh-1s-XbV" firstAttribute="top" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="4" id="Nuk-OF-MC4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kza-be-BC6" secondAttribute="trailing" constant="21" id="V7A-Mb-LQe"/>
                                                 <constraint firstAttribute="trailing" secondItem="PdA-pk-ZlR" secondAttribute="trailing" id="Z25-em-KHq"/>
                                                 <constraint firstItem="fft-Ag-RIT" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leadingMargin" id="bmg-NQ-TnJ"/>
                                                 <constraint firstItem="PdA-pk-ZlR" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leading" id="cWg-U4-h7j"/>
@@ -151,6 +158,7 @@
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerView" destination="ivK-ea-Dlh" id="xvP-Uo-kZc"/>
                         <outlet property="locationButton" destination="6mh-1s-XbV" id="NN0-il-Akw"/>
+                        <outlet property="shareButton" destination="Kza-be-BC6" id="JK5-sh-Ay2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVy-Ix-9Py" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -993,8 +1001,9 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
         <image name="icon-office" width="100" height="100"/>
+        <image name="share" width="19" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6tF-q1-2tT"/>
+        <segue reference="m1W-bt-ywO"/>
     </inferredMetricsTieBreakers>
 </document>
