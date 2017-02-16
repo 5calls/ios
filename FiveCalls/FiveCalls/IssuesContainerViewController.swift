@@ -14,7 +14,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
-    
+	@IBOutlet weak var shareButton: UIButton!
+
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
