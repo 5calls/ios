@@ -61,11 +61,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         issuesViewController.tableView.scrollIndicatorInsets.top = headerView.frame.size.height
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setContentInset()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
