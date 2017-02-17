@@ -18,6 +18,11 @@ class IssuesViewController : UITableViewController {
     var logs: ContactLogs?
     var shareButton: UIButton? { didSet { self.shareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
+    struct ViewModel {
+        let issues: [Issue]
+    }
+    var viewModel = ViewModel(issues: [])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Answers.logCustomEvent(withName:"Screen: Issues List")
@@ -70,6 +75,7 @@ class IssuesViewController : UITableViewController {
     }
 
     private func issuesLoaded() {
+        viewModel = ViewModel(issues: issuesManager.issues)
         tableView.reloadData()
     }
 
@@ -92,7 +98,7 @@ class IssuesViewController : UITableViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
-            typedInfo.destination.issue = issuesManager.issues[indexPath.row]
+            typedInfo.destination.issue = viewModel.issues[indexPath.row]
         }
     }
     
@@ -103,7 +109,7 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issuesManager.issues.count
+        return viewModel.issues.count
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -124,7 +130,7 @@ class IssuesViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
-        let issue = issuesManager.issues[indexPath.row]
+        let issue = viewModel.issues[indexPath.row]
         cell.titleLabel.text = issue.name
         if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
             cell.checkboxView.isChecked = hasContacted
