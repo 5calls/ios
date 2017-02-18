@@ -44,6 +44,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         effectView.translatesAutoresizingMaskIntoConstraints = false
         effectView.effect = UIBlurEffect(style: .light)
         
+        self.headerView.translatesAutoresizingMaskIntoConstraints = false
         effectView.contentView.addSubview(self.headerView)
         self.headerContainer.addSubview(effectView)
         
