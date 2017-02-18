@@ -529,7 +529,7 @@
 					};
 					B52805101E3FA94D00EE832A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = C2K3864N2N;
+						DevelopmentTeam = 2D3UABTKX4;
 						ProvisioningStyle = Automatic;
 					};
 					B5A70A571E4C01A00031DF58 = {
@@ -970,7 +970,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = C2K3864N2N;
+				DEVELOPMENT_TEAM = 2D3UABTKX4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -992,7 +992,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = C2K3864N2N;
+				DEVELOPMENT_TEAM = 2D3UABTKX4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
