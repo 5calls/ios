@@ -40,24 +40,24 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         issuesVC.didMove(toParentViewController: self)
         issuesViewController = issuesVC
         
-        let effectView = UIVisualEffectView(frame: self.headerContainer.bounds)
+        let effectView = UIVisualEffectView(frame: headerContainer.bounds)
         effectView.translatesAutoresizingMaskIntoConstraints = false
         effectView.effect = UIBlurEffect(style: .light)
         
-        self.headerView.translatesAutoresizingMaskIntoConstraints = false
-        effectView.contentView.addSubview(self.headerView)
-        self.headerContainer.addSubview(effectView)
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        effectView.contentView.addSubview(headerView)
+        headerContainer.addSubview(effectView)
         
         NSLayoutConstraint.activate([
-            effectView.contentView.topAnchor.constraint(equalTo: self.headerView.topAnchor),
-            effectView.contentView.bottomAnchor.constraint(equalTo: self.headerView.bottomAnchor),
-            effectView.contentView.leftAnchor.constraint(equalTo: self.headerView.leftAnchor),
-            effectView.contentView.rightAnchor.constraint(equalTo: self.headerView.rightAnchor),
+            effectView.contentView.topAnchor.constraint(equalTo: headerView.topAnchor),
+            effectView.contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            effectView.contentView.leftAnchor.constraint(equalTo: headerView.leftAnchor),
+            effectView.contentView.rightAnchor.constraint(equalTo: headerView.rightAnchor),
             
-            self.headerContainer.topAnchor.constraint(equalTo: effectView.topAnchor),
-            self.headerContainer.bottomAnchor.constraint(equalTo: effectView.bottomAnchor),
-            self.headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor),
-            self.headerContainer.rightAnchor.constraint(equalTo: effectView.rightAnchor)
+            headerContainer.topAnchor.constraint(equalTo: effectView.topAnchor),
+            headerContainer.bottomAnchor.constraint(equalTo: effectView.bottomAnchor),
+            headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor),
+            headerContainer.rightAnchor.constraint(equalTo: effectView.rightAnchor)
             ])
     }
     
