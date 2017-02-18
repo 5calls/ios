@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,68 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivK-ea-Dlh">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlg-f3-h08" userLabel="Header Container">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Qtq-MN-MML">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mi6-Us-zfc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdA-pk-ZlR" userLabel="Red Stripe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
-                                                    <color key="backgroundColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="0Uo-MZ-aR1"/>
-                                                    </constraints>
-                                                </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5calls-logotype" translatesAutoresizingMaskIntoConstraints="NO" id="fft-Ag-RIT">
-                                                    <rect key="frame" x="8" y="28" width="398" height="50"/>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mh-1s-XbV">
-                                                    <rect key="frame" x="161.66666666666666" y="82" width="91" height="32"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                    <state key="normal" title="Set Location"/>
-                                                    <connections>
-                                                        <action selector="setLocationTapped:" destination="NcD-22-I7g" eventType="touchUpInside" id="ylT-IF-hUs"/>
-                                                        <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="m1W-bt-ywO"/>
-                                                    </connections>
-                                                </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
-                                                    <rect key="frame" x="374" y="46.666666666666671" width="19" height="27.000000000000014"/>
-                                                    <state key="normal" image="share"/>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="fft-Ag-RIT" firstAttribute="trailing" secondItem="Mi6-Us-zfc" secondAttribute="trailingMargin" id="9dz-gk-u11"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="34" id="Bwu-Eb-gFB"/>
-                                                <constraint firstItem="Kza-be-BC6" firstAttribute="centerY" secondItem="Mi6-Us-zfc" secondAttribute="centerY" id="CQQ-xm-eO7"/>
-                                                <constraint firstItem="6mh-1s-XbV" firstAttribute="top" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="4" id="Nuk-OF-MC4"/>
-                                                <constraint firstAttribute="trailing" secondItem="Kza-be-BC6" secondAttribute="trailing" constant="21" id="V7A-Mb-LQe"/>
-                                                <constraint firstAttribute="trailing" secondItem="PdA-pk-ZlR" secondAttribute="trailing" id="Z25-em-KHq"/>
-                                                <constraint firstItem="fft-Ag-RIT" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leadingMargin" id="bmg-NQ-TnJ"/>
-                                                <constraint firstItem="PdA-pk-ZlR" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leading" id="cWg-U4-h7j"/>
-                                                <constraint firstItem="fft-Ag-RIT" firstAttribute="top" secondItem="PdA-pk-ZlR" secondAttribute="bottom" constant="8" id="fBd-FE-TSF"/>
-                                                <constraint firstItem="PdA-pk-ZlR" firstAttribute="top" secondItem="Mi6-Us-zfc" secondAttribute="top" id="gUu-ao-jZu"/>
-                                                <constraint firstItem="6mh-1s-XbV" firstAttribute="centerX" secondItem="Mi6-Us-zfc" secondAttribute="centerX" id="gzT-IE-0dw"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Mi6-Us-zfc" secondAttribute="trailing" id="GV4-nk-jQd"/>
-                                        <constraint firstAttribute="bottom" secondItem="Mi6-Us-zfc" secondAttribute="bottom" id="JcE-dd-eoS"/>
-                                        <constraint firstItem="Mi6-Us-zfc" firstAttribute="top" secondItem="Qtq-MN-MML" secondAttribute="top" id="hK1-2i-gel"/>
-                                        <constraint firstItem="Mi6-Us-zfc" firstAttribute="leading" secondItem="Qtq-MN-MML" secondAttribute="leading" id="saZ-q3-9gE"/>
-                                    </constraints>
-                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="BIs-eS-PJJ"/>
+                                    <constraint firstAttribute="height" constant="120" id="A2J-Qi-QYj"/>
                                 </constraints>
-                                <blurEffect style="regular"/>
-                            </visualEffectView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-zA-nnh">
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-zA-nnh" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ad6-Ie-bsI" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
@@ -107,7 +53,7 @@
                                             <segue destination="uCI-we-dEY" kind="presentation" id="uz2-Qf-9pm"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMR-6E-6ld" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMR-6E-6ld" userLabel="About" customClass="BorderedButton" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="206.66666666666663" y="0.0" width="207.33333333333337" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="About 5 Calls">
@@ -144,26 +90,61 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ivK-ea-Dlh" firstAttribute="top" secondItem="q7A-ng-OQj" secondAttribute="top" id="0g0-54-ycH"/>
+                            <constraint firstAttribute="top" secondItem="Jlg-f3-h08" secondAttribute="top" id="Ak3-mD-P85"/>
                             <constraint firstItem="bjc-yU-Qg3" firstAttribute="top" secondItem="IwU-zA-nnh" secondAttribute="bottom" id="QxE-9A-F3C"/>
-                            <constraint firstItem="ivK-ea-Dlh" firstAttribute="leading" secondItem="q7A-ng-OQj" secondAttribute="leading" id="ZUV-JU-i4i"/>
+                            <constraint firstAttribute="trailing" secondItem="Jlg-f3-h08" secondAttribute="trailing" id="dRI-oh-HeM"/>
                             <constraint firstAttribute="trailing" secondItem="IwU-zA-nnh" secondAttribute="trailing" id="s97-s8-cua"/>
+                            <constraint firstItem="Jlg-f3-h08" firstAttribute="leading" secondItem="q7A-ng-OQj" secondAttribute="leading" id="vNy-s3-dMz"/>
                             <constraint firstItem="IwU-zA-nnh" firstAttribute="leading" secondItem="q7A-ng-OQj" secondAttribute="leading" id="z3m-ln-fUA"/>
-                            <constraint firstAttribute="trailing" secondItem="ivK-ea-Dlh" secondAttribute="trailing" id="zxa-te-TMH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DNh-Vj-zPa"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
-                        <outlet property="headerView" destination="ivK-ea-Dlh" id="xvP-Uo-kZc"/>
-                        <outlet property="locationButton" destination="6mh-1s-XbV" id="NN0-il-Akw"/>
-                        <outlet property="shareButton" destination="Kza-be-BC6" id="JK5-sh-Ay2"/>
+                        <outlet property="headerContainer" destination="Jlg-f3-h08" id="etS-dw-Kub"/>
+                        <outlet property="headerView" destination="hWw-bF-wTS" id="Y5s-Vp-Jdt"/>
+                        <outlet property="locationButton" destination="1uQ-iF-VA7" id="Zqw-Ux-2O6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVy-Ix-9Py" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="hWw-bF-wTS" userLabel="Header View">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Uq-fn-96J" userLabel="Red Stripe">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                            <color key="backgroundColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="4DS-3s-xJn"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5calls-logotype" translatesAutoresizingMaskIntoConstraints="NO" id="VW0-qD-WqW">
+                            <rect key="frame" x="8" y="28" width="398" height="50"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uQ-iF-VA7">
+                            <rect key="frame" x="161.66666666666666" y="82" width="91" height="32"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                            <state key="normal" title="Set Location"/>
+                            <connections>
+                                <action selector="setLocationTapped:" destination="NcD-22-I7g" eventType="touchUpInside" id="5GU-vA-d2A"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottomMargin" secondItem="VW0-qD-WqW" secondAttribute="bottom" constant="34" id="Mzu-Di-ENL"/>
+                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="VW0-qD-WqW" secondAttribute="bottom" constant="4" id="N24-Fz-FpH"/>
+                        <constraint firstItem="VW0-qD-WqW" firstAttribute="trailing" secondItem="hWw-bF-wTS" secondAttribute="trailingMargin" id="TDl-je-Uop"/>
+                        <constraint firstItem="VW0-qD-WqW" firstAttribute="leading" secondItem="hWw-bF-wTS" secondAttribute="leadingMargin" id="aC7-gX-P29"/>
+                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="centerX" secondItem="hWw-bF-wTS" secondAttribute="centerX" id="gTo-eM-EG1"/>
+                        <constraint firstItem="0Uq-fn-96J" firstAttribute="leading" secondItem="hWw-bF-wTS" secondAttribute="leading" id="lt1-cr-n1A"/>
+                        <constraint firstItem="VW0-qD-WqW" firstAttribute="top" secondItem="0Uq-fn-96J" secondAttribute="bottom" constant="8" id="mmi-DM-UlH"/>
+                        <constraint firstAttribute="trailing" secondItem="0Uq-fn-96J" secondAttribute="trailing" id="v56-uQ-xre"/>
+                        <constraint firstItem="0Uq-fn-96J" firstAttribute="top" secondItem="hWw-bF-wTS" secondAttribute="top" id="vWj-Wf-6Lj"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="-23.199999999999999" y="-798.35082458770626"/>
+            <point key="canvasLocation" x="-24.637681159420293" y="-798.91304347826087"/>
         </scene>
         <!--Set Your Location-->
         <scene sceneID="2WM-Ob-Swa">
@@ -278,7 +259,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
@@ -330,7 +311,7 @@
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
             <objects>
-                <viewController storyboardIdentifier="IssueDetailViewController" id="ejI-vB-vnF" customClass="IssueDetailViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ejI-vB-vnF" customClass="IssueDetailViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XyM-jU-9QS"/>
                         <viewControllerLayoutGuide type="bottom" id="kiY-NH-qGH"/>
@@ -531,7 +512,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <!--Custom Navigation Controller-->
         <scene sceneID="JhW-PA-feF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -866,7 +847,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <!--My Impact-->
         <scene sceneID="Hib-0u-CEN">
             <objects>
-                <tableViewController modalPresentationStyle="pageSheet" id="V9a-DA-ySZ" customClass="MyImpactViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="V9a-DA-ySZ" customClass="MyImpactViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="w0T-OJ-9RG">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -900,21 +881,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statCell" textLabel="ZSx-yb-8Qy" detailTextLabel="RlJ-Rz-RYb" style="IBUITableViewCellStyleValue1" id="TVv-gW-ZKZ">
-                                <rect key="frame" x="0.0" y="243" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="242.33333333333334" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVv-gW-ZKZ" id="Ns2-UU-Wpo">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZSx-yb-8Qy">
-                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
+                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RlJ-Rz-RYb">
-                                            <rect key="frame" x="342" y="11" width="57" height="21"/>
+                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -924,21 +905,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="contactStatCell" textLabel="SJ8-g0-JAP" detailTextLabel="kbU-0d-lcn" style="IBUITableViewCellStyleValue1" id="mE9-Jg-tD4">
-                                <rect key="frame" x="0.0" y="287" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="286.33333333333337" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mE9-Jg-tD4" id="4mP-T1-Hr3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SJ8-g0-JAP">
-                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
+                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kbU-0d-lcn">
-                                            <rect key="frame" x="342" y="11" width="57" height="21"/>
+                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -981,7 +962,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <!--Custom Navigation Controller-->
         <scene sceneID="2hy-4t-bv1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1001,9 +982,5 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
         <image name="icon-office" width="100" height="100"/>
-        <image name="share" width="19" height="27"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="m1W-bt-ywO"/>
-    </inferredMetricsTieBreakers>
 </document>
