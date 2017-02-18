@@ -23,6 +23,12 @@ class ScheduleRemindersController: UIViewController {
                 timePicker.setDate(date, animated: true)
             }
         }
+
+        var types = UIUserNotificationType()
+        types.insert(.alert)
+        types.insert(.badge)
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: nil))
+
         timePicker.setValue(UIColor(red:0.12, green:0.47, blue:0.81, alpha:1.00), forKey: "textColor")
     }
 

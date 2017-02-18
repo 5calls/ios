@@ -31,11 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showWelcome()
         }
 
-        var types = UIUserNotificationType()
-        types.insert(.alert)
-        types.insert(.badge)
-        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: nil))
-
         return true
     }
     
