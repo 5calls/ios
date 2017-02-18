@@ -13,6 +13,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var headerContainer: UIView!
     
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
@@ -26,7 +27,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         let issuesVC = R.storyboard.main.issuesViewController()!
         addChildViewController(issuesVC)
         
-        view.insertSubview(issuesVC.view, belowSubview: headerView)
+        view.insertSubview(issuesVC.view, belowSubview: headerContainer)
         issuesVC.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -38,13 +39,32 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         issuesVC.didMove(toParentViewController: self)
         issuesViewController = issuesVC
+        
+        let effectView = UIVisualEffectView(frame: self.headerContainer.bounds)
+        effectView.translatesAutoresizingMaskIntoConstraints = false
+        effectView.effect = UIBlurEffect(style: .light)
+        
+        effectView.contentView.addSubview(self.headerView)
+        self.headerContainer.addSubview(effectView)
+        
+        NSLayoutConstraint.activate([
+            effectView.contentView.topAnchor.constraint(equalTo: self.headerView.topAnchor),
+            effectView.contentView.bottomAnchor.constraint(equalTo: self.headerView.bottomAnchor),
+            effectView.contentView.leftAnchor.constraint(equalTo: self.headerView.leftAnchor),
+            effectView.contentView.rightAnchor.constraint(equalTo: self.headerView.rightAnchor),
+            
+            self.headerContainer.topAnchor.constraint(equalTo: effectView.topAnchor),
+            self.headerContainer.bottomAnchor.constraint(equalTo: effectView.bottomAnchor),
+            self.headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor),
+            self.headerContainer.rightAnchor.constraint(equalTo: effectView.rightAnchor)
+            ])
     }
     
     private func setContentInset() {
         // Fix for odd force unwrapping in crash noted in bug #75
-        guard issuesViewController != nil && headerView != nil else { return }
-        issuesViewController.tableView.contentInset.top = headerView.frame.size.height
-        issuesViewController.tableView.scrollIndicatorInsets.top = headerView.frame.size.height
+        guard issuesViewController != nil && headerContainer != nil else { return }
+        issuesViewController.tableView.contentInset.top = headerContainer.frame.size.height
+        issuesViewController.tableView.scrollIndicatorInsets.top = headerContainer.frame.size.height
     }
     
     override func viewWillAppear(_ animated: Bool) {
