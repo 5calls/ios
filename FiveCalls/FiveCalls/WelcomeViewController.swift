@@ -11,7 +11,6 @@ import Crashlytics
 
 class WelcomeViewController: UIViewController {
     
-    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageContainer: UIView!
     
     var completionBlock = {}
@@ -61,7 +60,7 @@ extension WelcomeViewController : UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let index = viewController.view.tag - 1
-        guard index > 0 else { return nil }
+        guard index >= 0 else { return nil }
         return self.viewController(atIndex: index)
     }
     

@@ -12,6 +12,7 @@ import Crashlytics
 
 class IssueDetailViewController : UIViewController, IssueShareable {
     
+    
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
@@ -104,9 +105,9 @@ extension IssueDetailViewController : UITableViewDataSource {
             if issue.contacts.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)! as SetLocationCell
                 if issuesManager.isSplitDistrict {
-                    cell.messageLabel.text = "Your zip code belongs to multiple congressional districts. Use your full location to find your representative."
+                    cell.messageLabel.text = R.string.localizable.splitDistrictMessage()
                 } else {
-                    cell.messageLabel.text = "Set your location to find your representatives"
+                    cell.messageLabel.text = R.string.localizable.setYourLocation()
                 }
                 return cell
             } else {
@@ -130,7 +131,7 @@ extension IssueDetailViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if !issue.contacts.isEmpty && section == IssueSections.contacts.rawValue {
-            return "Call your representatives"
+            return R.string.localizable.callYourReps()
         }
         return nil
     }
@@ -138,12 +139,12 @@ extension IssueDetailViewController : UITableViewDataSource {
     private func headerCell(at indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case IssueHeaderRows.title.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as! IssueDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.titleCell, for: indexPath)!
             cell.issueLabel.text = issue.name
             return cell
             
         case IssueHeaderRows.description.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! IssueDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.descriptionCell, for: indexPath)!
             cell.issueLabel.text = issue.reason
             return cell
             
@@ -168,11 +169,9 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
         issuesManager.userLocation = location
         issuesManager.fetchIssues {
-            
             if self.issuesManager.isSplitDistrict {
-                let alertController = UIAlertController(title: "Split Congressional District", message:
-                    "Your ZIP code belongs to more than one congressional district. Please select “Use My Location” to locate your particular representative.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default ,handler: nil))
+                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
                 vc.present(alertController, animated: true, completion: nil)
             } else {
                 self.dismiss(animated: true, completion: nil)

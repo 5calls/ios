@@ -79,8 +79,8 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
             return true
         }
 
-        let alert = UIAlertController(title: "Invalid Zip Code", message: "Please enter a 5-digit zip code", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: R.string.localizable.invalidZipTitle(), message: R.string.localizable.invalidZipMessage(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
         
         return false
@@ -89,11 +89,11 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     //Mark: CLLocationManagerDelegate methods
     
     func informUserOfPermissions() {
-        let alertController = UIAlertController(title: "Location permission denied.", message:
-            "To use Location please change the permissions in the Settings and try again.", preferredStyle: .alert)
-        let dismiss = UIAlertAction(title: "Dismiss", style: .default ,handler: nil)
+        let alertController = UIAlertController(title: R.string.localizable.locationPermissionDeniedTitle(), message:
+            R.string.localizable.locationPermissionDeniedMessage(), preferredStyle: .alert)
+        let dismiss = UIAlertAction(title: R.string.localizable.dismissTitle(), style: .default ,handler: nil)
         alertController.addAction(dismiss)
-        let openSettings = UIAlertAction(title: "Open Settings", style: .default, handler: { action in
+        let openSettings = UIAlertAction(title: R.string.localizable.openSettingsTitle(), style: .default, handler: { action in
             guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
             UIApplication.shared.fvc_open(url)
         })

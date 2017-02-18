@@ -68,9 +68,8 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
             
             present(mail, animated: true)
         } else {
-            let alertController = UIAlertController(title: "Can't send mail", message:
-                "Please configure an e-mail address in the Settings app", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default ,handler: nil))
+            let alertController = UIAlertController(title: R.string.localizable.cantSendEmailTitle(), message: R.string.localizable.cantSendEmailMessage(), preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: R.string.localizable.dismissTitle(), style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
         }
     
@@ -84,8 +83,8 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func shareApp() {
         Answers.logCustomEvent(withName: "Action: Share The App")
-        guard let url = URL(string: "https://itunes.apple.com/us/app/myapp/id\(AboutViewController.appId)?ls=1&mt=8") else { return }
-        let vc = UIActivityViewController(activityItems: ["Make 5 Calls to your elected officials and let your voice be heard!",url], applicationActivities: [])
+        guard let url = AboutViewController.appUrl else { return }
+        let vc = UIActivityViewController(activityItems: [R.string.localizable.shareTheAppMessage(), url], applicationActivities: [])
         vc.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
         self.present(vc, animated: true, completion: nil)
     }
@@ -107,8 +106,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
 
     func showWelcome() {
-        let welcomeStoryboard = R.storyboard.welcome()
-        let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
+        let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         welcomeVC.completionBlock = { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }

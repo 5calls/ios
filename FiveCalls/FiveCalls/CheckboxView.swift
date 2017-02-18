@@ -46,12 +46,12 @@ class CheckboxView : UIView {
         imageView.image = UIImage(resource: R.image.iconCheckmark, compatibleWith: nil)
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.00) {
+    @IBInspectable var borderColor: UIColor = .fvc_lightGray {
         didSet {
              setNeedsDisplay()
         }
     }
-    @IBInspectable var selectedBackgroundColor: UIColor = UIColor(red:0.00, green:0.62, blue:0.36, alpha:1.00) {
+    @IBInspectable var selectedBackgroundColor: UIColor = .fvc_green {
         didSet {
             setNeedsDisplay()
         }

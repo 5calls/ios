@@ -48,18 +48,10 @@ class MyImpactViewController : UITableViewController {
         Answers.logCustomEvent(withName:"Screen: My Impact")
         
         viewModel = ImpactViewModel(logs: ContactLogs.load().all)
-        
-        let number = viewModel.numberOfCalls
-        let calls = number == 1 ? "call" : "calls"
-        let punctuation = number > 0  ? "!" : "."
-        let template = headerLabel.text
-        let headerString = template?.replacingOccurrences(of: "{{number}}", with: String(number))
-                                    .replacingOccurrences(of: "{{calls}}", with: calls)
-                                    .replacingOccurrences(of: "{{punctuation}}", with: punctuation)
-        headerLabel.text = headerString
-        
-        subheadLabel.isHidden = number == 0
-        
+      
+        let numberOfCalls = viewModel.numberOfCalls
+        headerLabel.text = impactMessage(for: numberOfCalls)
+        subheadLabel.isHidden = numberOfCalls == 0
         
         let op = FetchStatsOperation()
         op.completionBlock = {
@@ -103,24 +95,32 @@ class MyImpactViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if let total = totalCalls, section == Sections.stats.rawValue {
-            let statsVm = StatsViewModel(numberOfCalls: total)
-            return "The 5 Calls community has contributed \(statsVm.formattedNumberOfCalls!) calls!"
-        }
-        
-        return nil
+        guard let total = totalCalls, section == Sections.stats.rawValue else { return nil }
+        let statsVm = StatsViewModel(numberOfCalls: total)
+        return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
     }
-    
+  
+    private func impactMessage(for numberOfCalls: Int) -> String {
+        switch numberOfCalls {
+        case 0:
+            return R.string.localizable.yourImpactZero(numberOfCalls)
+        case 1:
+            return R.string.localizable.yourImpactSingle(numberOfCalls)
+        default:
+            return R.string.localizable.yourImpactMultiple(numberOfCalls)
+        }
+    }
+  
     private func configureStatRow(cell: UITableViewCell, stat: StatRow) {
         switch stat {
         case .madeContact:
-            cell.textLabel?.text = "Made Contact"
+            cell.textLabel?.text = R.string.localizable.madeContact()
             cell.detailTextLabel?.text = timesString(count: viewModel.madeContactCount)
         case .unavailable:
-            cell.textLabel?.text = "Unavailable"
+            cell.textLabel?.text = R.string.localizable.unavailable()
             cell.detailTextLabel?.text = timesString(count: viewModel.unavailableCount)
         case .voicemail:
-            cell.textLabel?.text = "Left Voicemail"
+            cell.textLabel?.text = R.string.localizable.leftVoicemail()
             cell.detailTextLabel?.text = timesString(count: viewModel.voicemailCount)
         default: break
         }
@@ -131,6 +131,7 @@ class MyImpactViewController : UITableViewController {
     }
     
     private func timesString(count: Int) -> String {
-        return "\(count) time\( count == 1 ? "" : "s")"
+        guard count != 1 else { return R.string.localizable.calledSingle(count) }
+        return R.string.localizable.calledMultiple(count)
     }
 }

@@ -41,15 +41,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     private func setContentInset() {
+        // Fix for odd force unwrapping in crash noted in bug #75
+        guard issuesViewController != nil && headerView != nil else { return }
         issuesViewController.tableView.contentInset.top = headerView.frame.size.height
         issuesViewController.tableView.scrollIndicatorInsets.top = headerView.frame.size.height
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setContentInset()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
