@@ -16,7 +16,8 @@ class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
-    var shareButton: UIButton? { didSet { self.shareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    var iPadBackButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +80,11 @@ class IssuesViewController : UITableViewController {
             let controller = R.storyboard.main.issueDetailViewController()!
             controller.issuesManager = issuesManager
             controller.issue = issuesManager.issues[indexPath.row]
+            controller.iPadBackButton = self.iPadBackButton
 
             let nav = UINavigationController(rootViewController: controller)
             split.showDetailViewController(nav, sender: self)
-            self.shareButton?.isHidden = false
+            self.iPadShareButton?.isHidden = false
             return false
         }
         return true

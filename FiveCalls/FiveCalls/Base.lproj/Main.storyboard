@@ -51,9 +51,14 @@
                                                         <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="m1W-bt-ywO"/>
                                                     </connections>
                                                 </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
                                                     <rect key="frame" x="374" y="46.666666666666671" width="19" height="27.000000000000014"/>
                                                     <state key="normal" image="share"/>
+                                                </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6r-sA-mFW">
+                                                    <rect key="frame" x="298" y="51" width="51" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                    <state key="normal" title=" Back" image="back"/>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,6 +74,8 @@
                                                 <constraint firstItem="fft-Ag-RIT" firstAttribute="top" secondItem="PdA-pk-ZlR" secondAttribute="bottom" constant="8" id="fBd-FE-TSF"/>
                                                 <constraint firstItem="PdA-pk-ZlR" firstAttribute="top" secondItem="Mi6-Us-zfc" secondAttribute="top" id="gUu-ao-jZu"/>
                                                 <constraint firstItem="6mh-1s-XbV" firstAttribute="centerX" secondItem="Mi6-Us-zfc" secondAttribute="centerX" id="gzT-IE-0dw"/>
+                                                <constraint firstItem="f6r-sA-mFW" firstAttribute="centerY" secondItem="Mi6-Us-zfc" secondAttribute="centerY" constant="2.5" id="mj3-fv-hHr"/>
+                                                <constraint firstAttribute="trailing" secondItem="f6r-sA-mFW" secondAttribute="trailing" constant="65" id="sXu-Uy-asX"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -157,8 +164,9 @@
                     <connections>
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerView" destination="ivK-ea-Dlh" id="xvP-Uo-kZc"/>
+                        <outlet property="iPadBackButton" destination="f6r-sA-mFW" id="jaG-wz-tom"/>
+                        <outlet property="iPadShareButton" destination="Kza-be-BC6" id="X3q-NP-kBW"/>
                         <outlet property="locationButton" destination="6mh-1s-XbV" id="NN0-il-Akw"/>
-                        <outlet property="shareButton" destination="Kza-be-BC6" id="JK5-sh-Ay2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVy-Ix-9Py" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1000,6 +1008,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
+        <image name="back" width="13" height="23"/>
         <image name="icon-office" width="100" height="100"/>
         <image name="share" width="19" height="27"/>
     </resources>

@@ -13,7 +13,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var iPadShareButton: UIButton!
+    @IBOutlet weak var iPadBackButton: UIButton!
 
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
@@ -32,7 +33,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             let splitController = UISplitViewController()
             splitController.preferredDisplayMode = .allVisible
             childController = splitController
-            issuesVC.shareButton = self.shareButton
+            issuesVC.iPadShareButton = self.iPadShareButton
+            issuesVC.iPadBackButton = self.iPadBackButton
+            self.iPadBackButton?.isHidden = true
             splitController.viewControllers = [issuesVC, UIViewController()]
         } else {
             childController = issuesVC
