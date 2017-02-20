@@ -19,6 +19,14 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
     }
+    
+    lazy var effectView: UIVisualEffectView = {
+        let effectView = UIVisualEffectView(frame: self.headerContainer.bounds)
+        effectView.translatesAutoresizingMaskIntoConstraints = false
+        effectView.effect = UIBlurEffect(style: .light)
+        
+        return effectView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +48,10 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         issuesVC.didMove(toParentViewController: self)
         issuesViewController = issuesVC
         
-        let effectView = UIVisualEffectView(frame: headerContainer.bounds)
-        effectView.translatesAutoresizingMaskIntoConstraints = false
-        effectView.effect = UIBlurEffect(style: .light)
-        
+        setupHeaderWithBlurEffect()
+    }
+    
+    private func setupHeaderWithBlurEffect() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         effectView.contentView.addSubview(headerView)
         headerContainer.addSubview(effectView)
