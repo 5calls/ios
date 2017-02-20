@@ -69,12 +69,22 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.resultUnavailableButton.isSelected = method == .unavailable
         self.resultVoicemailButton.isSelected = method == .voicemail
         self.iPadBackButton?.isHidden = false
+        self.iPadBackButton?.transform = CGAffineTransform(translationX: 100, y: 0)
+        self.iPadBackButton?.alpha = 0.0
+        
+        UIView.animate(withDuration: 0.2) {
+            self.iPadBackButton?.alpha = 1.0
+            self.iPadBackButton?.transform = .identity
+        }
         self.iPadBackButton?.addTarget(self, action: #selector(back), for: .touchUpInside)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.iPadBackButton?.isHidden = true
+        UIView.animate(withDuration: 0.2) {
+            self.iPadBackButton?.alpha = 0.0
+            self.iPadBackButton?.transform = CGAffineTransform(translationX: 100, y: 0)
+        }
         self.iPadBackButton?.removeTarget(self, action: #selector(back), for: .touchUpInside)
     }
     
