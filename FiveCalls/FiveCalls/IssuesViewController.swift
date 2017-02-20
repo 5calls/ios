@@ -17,6 +17,7 @@ class IssuesViewController : UITableViewController {
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
     var shareButton: UIButton? { didSet { self.shareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    var iPadBackButton: UIButton?
     
     struct ViewModel {
         let issues: [Issue]
@@ -85,6 +86,7 @@ class IssuesViewController : UITableViewController {
             let controller = R.storyboard.main.issueDetailViewController()!
             controller.issuesManager = issuesManager
             controller.issue = issuesManager.issues[indexPath.row]
+            controller.iPadBackButton = self.iPadBackButton
 
             let nav = UINavigationController(rootViewController: controller)
             split.showDetailViewController(nav, sender: self)

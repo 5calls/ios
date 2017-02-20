@@ -16,6 +16,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
+    var iPadBackButton: UIButton?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -67,6 +68,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             call.issuesManager = issuesManager
             call.issue = issue
             call.contact = issue.contacts[indexPath.row]
+            call.iPadBackButton = self.iPadBackButton
         }        
     }
     
