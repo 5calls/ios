@@ -18,6 +18,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var contact: Contact!
     var logs = ContactLogs.load()
     var lastPhoneDialed: String?
+    var iPadBackButton: UIButton?
     
     var isLastContactForIssue: Bool {
         let contactIndex = issue.contacts.index(of: contact)
@@ -67,6 +68,18 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.resultContactedButton.isSelected = method == .contacted
         self.resultUnavailableButton.isSelected = method == .unavailable
         self.resultVoicemailButton.isSelected = method == .voicemail
+        self.iPadBackButton?.isHidden = false
+        self.iPadBackButton?.addTarget(self, action: #selector(back), for: .touchUpInside)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.iPadBackButton?.isHidden = true
+        self.iPadBackButton?.removeTarget(self, action: #selector(back), for: .touchUpInside)
+    }
+    
+    func back() {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func callButtonPressed(_ button: UIButton) {

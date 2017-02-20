@@ -16,7 +16,7 @@ class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
-    var shareButton: UIButton? { didSet { self.shareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     var iPadBackButton: UIButton?
     
     struct ViewModel {
@@ -90,7 +90,7 @@ class IssuesViewController : UITableViewController {
 
             let nav = UINavigationController(rootViewController: controller)
             split.showDetailViewController(nav, sender: self)
-            self.shareButton?.isHidden = false
+            self.iPadShareButton?.isHidden = false
             return false
         }
         return true
