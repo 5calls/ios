@@ -81,11 +81,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIView.animate(withDuration: 0.2) {
-            self.iPadBackButton?.alpha = 0.0
-            self.iPadBackButton?.transform = CGAffineTransform(translationX: 100, y: 0)
+        if self.navigationController != nil {
+            UIView.animate(withDuration: 0.2) {
+                self.iPadBackButton?.alpha = 0.0
+                self.iPadBackButton?.transform = CGAffineTransform(translationX: 100, y: 0)
+            }
+            self.iPadBackButton?.removeTarget(self, action: #selector(back), for: .touchUpInside)
         }
-        self.iPadBackButton?.removeTarget(self, action: #selector(back), for: .touchUpInside)
     }
     
     func back() {
@@ -163,6 +165,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         newController.issuesManager = issuesManager
         newController.issue = issue
         newController.contact = contact
+        newController.iPadBackButton = self.iPadBackButton
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
     
