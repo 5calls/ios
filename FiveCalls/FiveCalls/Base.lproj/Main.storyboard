@@ -51,7 +51,7 @@
                                                         <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="m1W-bt-ywO"/>
                                                     </connections>
                                                 </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
                                                     <rect key="frame" x="374" y="46.666666666666671" width="19" height="27.000000000000014"/>
                                                     <state key="normal" image="share"/>
                                                 </button>
