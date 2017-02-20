@@ -44,6 +44,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             childController = splitController
             issuesVC.iPadShareButton = self.iPadShareButton
             issuesVC.iPadBackButton = self.iPadBackButton
+            self.iPadBackButton?.isHidden = true
             splitController.viewControllers = [issuesVC, UIViewController()]
         } else {
             childController = issuesVC
