@@ -16,6 +16,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
+    var iPadBackButton: UIButton?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,8 +46,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         logs = ContactLogs.load()
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+
+        if let nav = self.navigationController, nav.viewControllers.count > 1 {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        } else {
+            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,11 +68,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             call.issuesManager = issuesManager
             call.issue = issue
             call.contact = issue.contacts[indexPath.row]
+            call.iPadBackButton = self.iPadBackButton
         }        
     }
     
     func shareButtonPressed(_ button: UIBarButtonItem) {
-        shareIssue()
+        shareIssue(from: button)
     }
 }
 

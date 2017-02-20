@@ -13,7 +13,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
-    
+    @IBOutlet weak var iPadShareButton: UIButton!
+    @IBOutlet weak var iPadBackButton: UIButton!
+
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
@@ -22,21 +24,36 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitleLabel(location: UserLocation.current)
-        
+
+        let runningOnIPad = UIDevice.current.userInterfaceIdiom == .pad
         let issuesVC = R.storyboard.main.issuesViewController()!
-        addChildViewController(issuesVC)
+        let childController: UIViewController
+
+        if runningOnIPad {
+            let splitController = UISplitViewController()
+            splitController.preferredDisplayMode = .allVisible
+            childController = splitController
+            issuesVC.iPadShareButton = self.iPadShareButton
+            issuesVC.iPadBackButton = self.iPadBackButton
+            self.iPadBackButton?.isHidden = true
+            splitController.viewControllers = [issuesVC, UIViewController()]
+        } else {
+            childController = issuesVC
+        }
+
+        addChildViewController(childController)
         
-        view.insertSubview(issuesVC.view, belowSubview: headerView)
-        issuesVC.view.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(childController.view, belowSubview: headerView)
+        childController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            issuesVC.view.topAnchor.constraint(equalTo: view.topAnchor),
-            issuesVC.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-            issuesVC.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            issuesVC.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
+            childController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            childController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            childController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            childController.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
             ])
         
-        issuesVC.didMove(toParentViewController: self)
+        childController.didMove(toParentViewController: self)
         issuesViewController = issuesVC
     }
     

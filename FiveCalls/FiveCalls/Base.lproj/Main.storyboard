@@ -51,17 +51,31 @@
                                                         <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="m1W-bt-ywO"/>
                                                     </connections>
                                                 </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-be-BC6">
+                                                    <rect key="frame" x="374" y="46.666666666666671" width="19" height="27.000000000000014"/>
+                                                    <state key="normal" image="share"/>
+                                                </button>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6r-sA-mFW">
+                                                    <rect key="frame" x="298" y="51" width="51" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                    <state key="normal" title=" Back" image="back"/>
+                                                </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="fft-Ag-RIT" firstAttribute="trailing" secondItem="Mi6-Us-zfc" secondAttribute="trailingMargin" id="9dz-gk-u11"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="34" id="Bwu-Eb-gFB"/>
+                                                <constraint firstItem="Kza-be-BC6" firstAttribute="centerY" secondItem="Mi6-Us-zfc" secondAttribute="centerY" id="CQQ-xm-eO7"/>
                                                 <constraint firstItem="6mh-1s-XbV" firstAttribute="top" secondItem="fft-Ag-RIT" secondAttribute="bottom" constant="4" id="Nuk-OF-MC4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kza-be-BC6" secondAttribute="trailing" constant="21" id="V7A-Mb-LQe"/>
                                                 <constraint firstAttribute="trailing" secondItem="PdA-pk-ZlR" secondAttribute="trailing" id="Z25-em-KHq"/>
                                                 <constraint firstItem="fft-Ag-RIT" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leadingMargin" id="bmg-NQ-TnJ"/>
                                                 <constraint firstItem="PdA-pk-ZlR" firstAttribute="leading" secondItem="Mi6-Us-zfc" secondAttribute="leading" id="cWg-U4-h7j"/>
                                                 <constraint firstItem="fft-Ag-RIT" firstAttribute="top" secondItem="PdA-pk-ZlR" secondAttribute="bottom" constant="8" id="fBd-FE-TSF"/>
                                                 <constraint firstItem="PdA-pk-ZlR" firstAttribute="top" secondItem="Mi6-Us-zfc" secondAttribute="top" id="gUu-ao-jZu"/>
                                                 <constraint firstItem="6mh-1s-XbV" firstAttribute="centerX" secondItem="Mi6-Us-zfc" secondAttribute="centerX" id="gzT-IE-0dw"/>
+                                                <constraint firstItem="f6r-sA-mFW" firstAttribute="centerY" secondItem="Mi6-Us-zfc" secondAttribute="centerY" constant="2.5" id="mj3-fv-hHr"/>
+                                                <constraint firstAttribute="trailing" secondItem="f6r-sA-mFW" secondAttribute="trailing" constant="65" id="sXu-Uy-asX"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -150,6 +164,8 @@
                     <connections>
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerView" destination="ivK-ea-Dlh" id="xvP-Uo-kZc"/>
+                        <outlet property="iPadBackButton" destination="f6r-sA-mFW" id="jaG-wz-tom"/>
+                        <outlet property="iPadShareButton" destination="Kza-be-BC6" id="X3q-NP-kBW"/>
                         <outlet property="locationButton" destination="6mh-1s-XbV" id="NN0-il-Akw"/>
                     </connections>
                 </viewController>
@@ -322,7 +338,7 @@
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
             <objects>
-                <viewController id="ejI-vB-vnF" customClass="IssueDetailViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IssueDetailViewController" id="ejI-vB-vnF" customClass="IssueDetailViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XyM-jU-9QS"/>
                         <viewControllerLayoutGuide type="bottom" id="kiY-NH-qGH"/>
@@ -523,7 +539,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <!--Custom Navigation Controller-->
         <scene sceneID="JhW-PA-feF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -858,7 +874,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <!--My Impact-->
         <scene sceneID="Hib-0u-CEN">
             <objects>
-                <tableViewController id="V9a-DA-ySZ" customClass="MyImpactViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="pageSheet" id="V9a-DA-ySZ" customClass="MyImpactViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="w0T-OJ-9RG">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -973,7 +989,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <!--Custom Navigation Controller-->
         <scene sceneID="2hy-4t-bv1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -992,9 +1008,11 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
+        <image name="back" width="13" height="23"/>
         <image name="icon-office" width="100" height="100"/>
+        <image name="share" width="19" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6tF-q1-2tT"/>
+        <segue reference="m1W-bt-ywO"/>
     </inferredMetricsTieBreakers>
 </document>

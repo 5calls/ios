@@ -16,6 +16,8 @@ class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
+    var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    var iPadBackButton: UIButton?
     
     struct ViewModel {
         let issues: [Issue]
@@ -58,6 +60,12 @@ class IssuesViewController : UITableViewController {
         }
     }
 
+    func share(button: UIButton) {
+        if let nav = self.splitViewController?.viewControllers.last as? UINavigationController, let shareable = nav.viewControllers.last as? IssueShareable {
+            shareable.shareIssue(from: button)
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -70,6 +78,22 @@ class IssuesViewController : UITableViewController {
     private func issuesLoaded() {
         viewModel = ViewModel(issues: issuesManager.issues)
         tableView.reloadData()
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return true }
+            let controller = R.storyboard.main.issueDetailViewController()!
+            controller.issuesManager = issuesManager
+            controller.issue = issuesManager.issues[indexPath.row]
+            controller.iPadBackButton = self.iPadBackButton
+
+            let nav = UINavigationController(rootViewController: controller)
+            split.showDetailViewController(nav, sender: self)
+            self.iPadShareButton?.isHidden = false
+            return false
+        }
+        return true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

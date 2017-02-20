@@ -236,7 +236,7 @@
         <!--Navigation Controller-->
         <scene sceneID="GF3-XK-xZp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZRq-uX-bkA" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="pageSheet" id="ZRq-uX-bkA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="r70-ye-hKT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
