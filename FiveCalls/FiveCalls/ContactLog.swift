@@ -9,6 +9,11 @@
 import Foundation
 import Pantry
 
+extension Date {
+    static let secondsPerHour: TimeInterval = 60 * 60
+    static let secondsPerDay: TimeInterval = 60 * 60 * 24
+}
+
 enum ContactOutcome : String {
     case contacted
     case voicemail = "vm"
@@ -36,13 +41,23 @@ struct ContactLog {
 }
 
 extension ContactLog : Storable {
-
-    init(warehouse: Warehouseable) {
+    static let unavailableStalenessTimeout: TimeInterval = Date.secondsPerHour * 12    //if a call marked as 'unavailable' is older than this limit, we remove it from the log
+    
+    init?(warehouse: Warehouseable) {
         issueId = warehouse.get("issueId") ?? ""
         contactId = warehouse.get("contactId") ?? ""
         phone = warehouse.get("phone") ?? ""
         outcome = warehouse.get("outcome").flatMap(ContactOutcome.init) ?? .unknown
         date = ContactLog.dateFormatter.date(from: warehouse.get("date") ?? "") ?? Date()
+        
+        if isOldAndUnavailable {
+            print("Removing old available log from \(date)")
+            return nil
+        }
+    }
+    
+    var isOldAndUnavailable: Bool {
+        return outcome == .unavailable && -date.timeIntervalSinceNow > ContactLog.unavailableStalenessTimeout
     }
     
     func toDictionary() -> [String : Any] {
@@ -86,6 +101,14 @@ struct ContactLogs {
         all.append(log)
         save()
         NotificationCenter.default.post(name: .callMade, object: log)
+    }
+    
+    mutating func clearOldUnavailable() {
+        for call in all {
+            if call.isOldAndUnavailable, let index = all.index(of: call) {
+                all.remove(at: index)
+            }
+        }
     }
     
     func save() {
