@@ -50,7 +50,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         if let nav = self.navigationController, nav.viewControllers.count > 1 {
             navigationController?.setNavigationBarHidden(false, animated: true)
         } else {
-            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
         }
     }
     

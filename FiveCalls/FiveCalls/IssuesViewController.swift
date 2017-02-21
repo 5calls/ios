@@ -89,6 +89,7 @@ class IssuesViewController : UITableViewController {
             controller.iPadBackButton = self.iPadBackButton
 
             let nav = UINavigationController(rootViewController: controller)
+            nav.setNavigationBarHidden(true, animated: false)
             split.showDetailViewController(nav, sender: self)
             self.iPadShareButton?.isHidden = false
             return false

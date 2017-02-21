@@ -49,7 +49,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         if UIDevice.current.userInterfaceIdiom == .pad {
-            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
         }
 
     }
