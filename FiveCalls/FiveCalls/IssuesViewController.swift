@@ -37,6 +37,15 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(removeOldAndUnavailableCalls), name: .UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    func removeOldAndUnavailableCalls() {
+        if logs?.hasOldAndUnavailableCalls == true {
+            logs = ContactLogs.load()
+            tableView.reloadData()
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

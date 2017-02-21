@@ -111,6 +111,13 @@ struct ContactLogs {
         }
     }
     
+    var hasOldAndUnavailableCalls: Bool {
+        for call in all {
+            if call.isOldAndUnavailable { return true }
+        }
+        return false
+    }
+    
     func save() {
         Pantry.pack(all, key: ContactLogs.persistenceKey)
     }

@@ -47,6 +47,14 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        NotificationCenter.default.addObserver(self, selector: #selector(removeOldAndUnavailableCalls), name: .UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    func removeOldAndUnavailableCalls() {
+        if logs.hasOldAndUnavailableCalls {
+            logs = ContactLogs.load()
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
