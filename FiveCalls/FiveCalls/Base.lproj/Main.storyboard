@@ -312,7 +312,7 @@
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
             <objects>
-                <viewController id="ejI-vB-vnF" customClass="IssueDetailViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IssueDetailViewController" id="ejI-vB-vnF" customClass="IssueDetailViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XyM-jU-9QS"/>
                         <viewControllerLayoutGuide type="bottom" id="kiY-NH-qGH"/>
