@@ -53,12 +53,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         }
 
         addChildViewController(childController)
-        
-        let issuesVC = R.storyboard.main.issuesViewController()!
-        addChildViewController(issuesVC)
-        
-        view.insertSubview(issuesVC.view, belowSubview: headerContainer)
-        issuesVC.view.translatesAutoresizingMaskIntoConstraints = false
+		
+        view.insertSubview(childController.view, belowSubview: headerContainer)
+        childController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             childController.view.topAnchor.constraint(equalTo: view.topAnchor),
