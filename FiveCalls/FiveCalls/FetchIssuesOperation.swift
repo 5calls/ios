@@ -27,7 +27,7 @@ class FetchIssuesOperation : BaseOperation {
         return URLSessionProvider.buildSession(configuration: self.sessionConfiguration)
     }()
     
-    func buildIssuesURL() -> URL {
+    func buildIssuesURL() -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "5calls.org"
@@ -37,7 +37,7 @@ class FetchIssuesOperation : BaseOperation {
             urlComponents.query = query
         }
         
-        return urlComponents.url!
+        return urlComponents.url
     }
     
     func addressQueryString() -> String? {
@@ -49,25 +49,17 @@ class FetchIssuesOperation : BaseOperation {
     }
     
     override func execute() {
-        let url = buildIssuesURL()
+        guard let url = buildIssuesURL() else {
+            print("Invalid issues url")
+            finish()
+            return
+        }
 
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 print("Error fetching issues: \(e.localizedDescription)")
             } else {
-                let http = response as! HTTPURLResponse
-                print("HTTP \(http.statusCode)")
-                self.httpResponse = http
-                if http.statusCode == 200 {
-                    do {
-                        try self.parseIssues(data: data!)
-                        print("Returned \(self.issuesList!.issues.count) issues with normalized location: \(self.issuesList!.normalizedLocation)")
-                    } catch let e {
-                        print("Error parsing issues: \(e.localizedDescription)")
-                    }
-                } else {
-                    print("Received HTTP \(http.statusCode)")
-                }
+                self.handleResponse(data: data, response: response)
             }
             
             self.finish()
@@ -78,8 +70,39 @@ class FetchIssuesOperation : BaseOperation {
         task.resume()
     }
     
+    private func handleResponse(data: Data?, response: URLResponse?) {
+        guard let data = data else {
+            print("data was nil, ignoring response")
+            return
+        }
+        guard let http = response as? HTTPURLResponse else {
+            print("Response was not an HTTP URL response (or was nil), ignoring")
+            return
+        }
+        
+        print("HTTP \(http.statusCode)")
+        httpResponse = http
+        
+        if http.statusCode == 200 {
+            do {
+                try parseIssues(data: data)
+                
+                if let list = issuesList {
+                    print("Returned \(list.issues.count) issues with normalized location: \(list.normalizedLocation)")
+                }
+            } catch let e {
+                print("Error parsing issues: \(e.localizedDescription)")
+            }
+        } else {
+            print("Received HTTP \(http.statusCode)")
+        }
+    }
+    
     private func parseIssues(data: Data) throws {
-        let json = try JSONSerialization.jsonObject(with: data, options: []) as! JSONDictionary
+        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary else {
+            return
+        }
+        
         issuesList = IssuesList(dictionary: json)
     }
 }

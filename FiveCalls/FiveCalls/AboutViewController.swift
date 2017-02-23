@@ -14,8 +14,6 @@ import Crashlytics
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
 
-//    Test App id:
-//    static let appId = "364909474"
     static let appId = "1202558609"
 
     static let appUrl = URL(string: "https://itunes.apple.com/us/app/myapp/id\(appId)?ls=1&mt=8")
