@@ -49,6 +49,9 @@ extension IssueShareable where Self: UIViewController {
                 activityViewController.modalPresentationStyle = .popover
                 activityViewController.popoverPresentationController?.sourceView = button
                 activityViewController.popoverPresentationController?.sourceRect = button.bounds
+            } else if let item = from as? UIBarButtonItem {
+                activityViewController.modalPresentationStyle = .popover
+                activityViewController.popoverPresentationController?.barButtonItem = item
             }
         }
 

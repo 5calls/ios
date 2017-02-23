@@ -59,6 +59,21 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == R.segue.issueDetailViewController.callScript.identifier, UIDevice.current.userInterfaceIdiom == .pad, let indexPath = tableView.indexPathForSelectedRow {
+            let controller = R.storyboard.main.callScriptController()!
+            controller.issuesManager = issuesManager
+            controller.issue = issue
+            controller.contact = issue.contacts[indexPath.row]
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .formSheet
+            nav.navigationBar.barTintColor = .fvc_darkBlue
+            self.present(nav, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? UINavigationController,
             let loc = nav.viewControllers.first as? EditLocationViewController {
