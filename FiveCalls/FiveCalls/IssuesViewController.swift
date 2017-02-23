@@ -39,6 +39,8 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -78,6 +80,11 @@ class IssuesViewController : UITableViewController {
     private func issuesLoaded() {
         viewModel = ViewModel(issues: issuesManager.issues)
         tableView.reloadData()
+    }
+    
+    func madeCall() {
+        logs = ContactLogs.load()
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

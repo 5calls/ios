@@ -37,6 +37,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+    }
+    
+    func madeCall() {
+        logs = ContactLogs.load()
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
     override func viewWillAppear(_ animated: Bool) {
