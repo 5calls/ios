@@ -97,21 +97,6 @@ class IssuesViewController : UITableViewController {
         return true
     }
 
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return true }
-            let controller = R.storyboard.main.issueDetailViewController()!
-            controller.issuesManager = issuesManager
-            controller.issue = issuesManager.issues[indexPath.row]
-
-            let nav = UINavigationController(rootViewController: controller)
-            split.showDetailViewController(nav, sender: self)
-            self.shareButton?.isHidden = false
-            return false
-        }
-        return true
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
