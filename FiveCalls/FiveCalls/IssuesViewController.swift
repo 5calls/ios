@@ -143,8 +143,20 @@ class IssuesViewController : UITableViewController {
 
 extension IssuesViewController : DZNEmptyDataSetSource {
     
+    private func appropriateErrorMessage(for result: IssuesLoadResult) -> String {
+        switch result {
+        case .offline: return R.string.localizable.issueLoadFailedConnection()
+        case .serverError(_): return R.string.localizable.issueLoadFailedServer()
+        default:
+            return ""
+        }
+    }
+    
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "The issues failed to load. Please check your connection and try again.",
+        
+        let message = appropriateErrorMessage(for: lastLoadResult ?? .offline)
+        
+        return NSAttributedString(string: message,
                                   attributes: [
                                     NSFontAttributeName: Appearance.instance.bodyFont
                 ])
