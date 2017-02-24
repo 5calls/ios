@@ -48,7 +48,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         if UIDevice.current.userInterfaceIdiom == .pad {
-            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
+            self.navigationItem.leftBarButtonItem = self.iPadDoneButton
         }
 
     }
@@ -67,6 +68,18 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.resultContactedButton.isSelected = method == .contacted
         self.resultUnavailableButton.isSelected = method == .unavailable
         self.resultVoicemailButton.isSelected = method == .voicemail
+    }
+    
+    func back() {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func dismissCallScript() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    var iPadDoneButton: UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissCallScript))
     }
     
     func callButtonPressed(_ button: UIButton) {

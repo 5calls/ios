@@ -48,7 +48,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
             
         case feedbackCell:          sendFeedback()
         case followOnTwitterCell:   followOnTwitter()
-        case shareCell:             shareApp()
+        case shareCell:             shareApp(from: tableView.cellForRow(at: indexPath))
         case rateCell:              promptForRating()
         case openSourceCell:        showOpenSource()
         case showWelcomeCell:       showWelcome()
@@ -81,11 +81,15 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         UIApplication.shared.fvc_open(url)
     }
     
-    func shareApp() {
+    func shareApp(from view: UIView?) {
         Answers.logCustomEvent(withName: "Action: Share The App")
         guard let url = AboutViewController.appUrl else { return }
         let vc = UIActivityViewController(activityItems: [R.string.localizable.shareTheAppMessage(), url], applicationActivities: [])
         vc.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            vc.popoverPresentationController?.sourceRect = view?.bounds ?? self.view.bounds
+            vc.popoverPresentationController?.sourceView = view ?? self.view
+        }
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -106,8 +110,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
 
     func showWelcome() {
-        let welcomeStoryboard = R.storyboard.welcome()
-        let welcomeVC = welcomeStoryboard.instantiateInitialViewController()! as! WelcomeViewController
+        let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         welcomeVC.completionBlock = { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }

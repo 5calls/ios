@@ -25,7 +25,7 @@ class ContactCell : UITableViewCell {
     }
     
     var separatorColor: UIColor = .lightGray
-    var labelTextColor: UIColor = UIColor(white: 0.4, alpha: 1)
+    var labelTextColor: UIColor = .fvc_darkGray
     
     @IBOutlet weak var avatarImageView: RemoteImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -42,7 +42,7 @@ class ContactCell : UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
+        avatarImageView.fvc_circleify()
     }
     
     override func draw(_ rect: CGRect) {
@@ -52,7 +52,7 @@ class ContactCell : UITableViewCell {
         context?.setStrokeColor(separatorColor.cgColor)
         
         if borderTop {
-            context?.move(to: CGPoint(x: 0, y: 0))
+            context?.move(to: .zero)
             context?.addLine(to: CGPoint(x: bounds.size.width, y: 0))
         }
         

@@ -19,7 +19,7 @@ class ContactDetailCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
+        avatarImageView.fvc_circleify()
     }
     
 }

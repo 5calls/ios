@@ -16,7 +16,12 @@ class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
-    var shareButton: UIButton? { didSet { self.shareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
+    
+    struct ViewModel {
+        let issues: [Issue]
+    }
+    var viewModel = ViewModel(issues: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,8 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -70,7 +77,13 @@ class IssuesViewController : UITableViewController {
     }
 
     private func issuesLoaded() {
+        viewModel = ViewModel(issues: issuesManager.issues)
         tableView.reloadData()
+    }
+    
+    func madeCall() {
+        logs = ContactLogs.load()
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -81,8 +94,9 @@ class IssuesViewController : UITableViewController {
             controller.issue = issuesManager.issues[indexPath.row]
 
             let nav = UINavigationController(rootViewController: controller)
+            nav.setNavigationBarHidden(true, animated: false)
             split.showDetailViewController(nav, sender: self)
-            self.shareButton?.isHidden = false
+            self.iPadShareButton?.isHidden = false
             return false
         }
         return true
@@ -92,7 +106,7 @@ class IssuesViewController : UITableViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
-            typedInfo.destination.issue = issuesManager.issues[indexPath.row]
+            typedInfo.destination.issue = viewModel.issues[indexPath.row]
         }
     }
     
@@ -103,18 +117,16 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issuesManager.issues.count
+        return viewModel.issues.count
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let blueTextColor = UIColor(colorLiteralRed:0.09, green:0.46, blue:0.82, alpha:1.0)
-
         let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
         notAButton.setTitle(R.string.localizable.whatsImportantTitle(), for: .normal)
-        notAButton.setTitleColor(blueTextColor, for: .normal)
-        notAButton.backgroundColor = UIColor(colorLiteralRed:0.96, green:0.96, blue:0.96, alpha:1.0)
+        notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
+        notAButton.backgroundColor = .fvc_superLightGray
         notAButton.borderWidth = 1
-        notAButton.borderColor = UIColor(colorLiteralRed:0.88, green:0.88, blue:0.88, alpha:1.0)
+        notAButton.borderColor = .fvc_mediumGray
         notAButton.topBorder = true
         notAButton.bottomBorder = true
         return notAButton
@@ -126,7 +138,7 @@ class IssuesViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
-        let issue = issuesManager.issues[indexPath.row]
+        let issue = viewModel.issues[indexPath.row]
         cell.titleLabel.text = issue.name
         if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
             cell.checkboxView.isChecked = hasContacted

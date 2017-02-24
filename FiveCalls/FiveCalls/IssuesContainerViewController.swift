@@ -13,12 +13,22 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var shareButton: UIButton!
-
+    @IBOutlet weak var headerContainer: UIView!
+    @IBOutlet weak var iPadShareButton: UIButton!
+    
+    static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
     }
+    
+    lazy var effectView: UIVisualEffectView = {
+        let effectView = UIVisualEffectView(frame: self.headerContainer.bounds)
+        effectView.translatesAutoresizingMaskIntoConstraints = false
+        effectView.effect = UIBlurEffect(style: .light)
+        
+        return effectView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +40,18 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
         if runningOnIPad {
             let splitController = UISplitViewController()
+            splitController.viewControllers = [issuesVC, UIViewController()]
             splitController.preferredDisplayMode = .allVisible
             childController = splitController
-            issuesVC.shareButton = self.shareButton
-            splitController.viewControllers = [issuesVC, UIViewController()]
+            issuesVC.iPadShareButton = self.iPadShareButton
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
         } else {
             childController = issuesVC
         }
 
         addChildViewController(childController)
-        
-        view.insertSubview(childController.view, belowSubview: headerView)
+		
+        view.insertSubview(childController.view, belowSubview: headerContainer)
         childController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -52,11 +63,33 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         childController.didMove(toParentViewController: self)
         issuesViewController = issuesVC
+        
+        setupHeaderWithBlurEffect()
+    }
+    
+    private func setupHeaderWithBlurEffect() {
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        effectView.contentView.addSubview(headerView)
+        headerContainer.addSubview(effectView)
+        
+        NSLayoutConstraint.activate([
+            effectView.contentView.topAnchor.constraint(equalTo: headerView.topAnchor),
+            effectView.contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            effectView.contentView.leftAnchor.constraint(equalTo: headerView.leftAnchor),
+            effectView.contentView.rightAnchor.constraint(equalTo: headerView.rightAnchor),
+            
+            headerContainer.topAnchor.constraint(equalTo: effectView.topAnchor),
+            headerContainer.bottomAnchor.constraint(equalTo: effectView.bottomAnchor),
+            headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor),
+            headerContainer.rightAnchor.constraint(equalTo: effectView.rightAnchor)
+            ])
     }
     
     private func setContentInset() {
-        issuesViewController.tableView.contentInset.top = headerView.frame.size.height
-        issuesViewController.tableView.scrollIndicatorInsets.top = headerView.frame.size.height
+        // Fix for odd force unwrapping in crash noted in bug #75
+        guard issuesViewController != nil && headerContainer != nil else { return }
+        issuesViewController.tableView.contentInset.top = headerContainer.frame.size.height
+        issuesViewController.tableView.scrollIndicatorInsets.top = headerContainer.frame.size.height
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
