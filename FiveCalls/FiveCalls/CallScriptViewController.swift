@@ -18,7 +18,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var contact: Contact!
     var logs = ContactLogs.load()
     var lastPhoneDialed: String?
-    var iPadBackButton: UIButton?
     
     var isLastContactForIssue: Bool {
         let contactIndex = issue.contacts.index(of: contact)
@@ -69,26 +68,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.resultContactedButton.isSelected = method == .contacted
         self.resultUnavailableButton.isSelected = method == .unavailable
         self.resultVoicemailButton.isSelected = method == .voicemail
-        self.iPadBackButton?.isHidden = false
-        self.iPadBackButton?.transform = CGAffineTransform(translationX: 100, y: 0)
-        self.iPadBackButton?.alpha = 0.0
-        
-        UIView.animate(withDuration: 0.2) {
-            self.iPadBackButton?.alpha = 1.0
-            self.iPadBackButton?.transform = .identity
-        }
-        self.iPadBackButton?.addTarget(self, action: #selector(back), for: .touchUpInside)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if self.navigationController != nil {
-            UIView.animate(withDuration: 0.2) {
-                self.iPadBackButton?.alpha = 0.0
-                self.iPadBackButton?.transform = CGAffineTransform(translationX: 100, y: 0)
-            }
-            self.iPadBackButton?.removeTarget(self, action: #selector(back), for: .touchUpInside)
-        }
     }
     
     func back() {
@@ -174,7 +153,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
         newController.issuesManager = issuesManager
         newController.issue = issue
         newController.contact = contact
-        newController.iPadBackButton = self.iPadBackButton
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
     

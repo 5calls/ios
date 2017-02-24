@@ -15,7 +15,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
     @IBOutlet weak var iPadShareButton: UIButton!
-    @IBOutlet weak var iPadBackButton: UIButton!
     
     static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
@@ -41,12 +40,10 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
         if runningOnIPad {
             let splitController = UISplitViewController()
+            splitController.viewControllers = [issuesVC, UIViewController()]
             splitController.preferredDisplayMode = .allVisible
             childController = splitController
             issuesVC.iPadShareButton = self.iPadShareButton
-            issuesVC.iPadBackButton = self.iPadBackButton
-            self.iPadBackButton?.isHidden = true
-            splitController.viewControllers = [issuesVC, UIViewController()]
             self.navigationController?.setNavigationBarHidden(true, animated: false)
         } else {
             childController = issuesVC

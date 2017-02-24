@@ -103,7 +103,6 @@
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerContainer" destination="Jlg-f3-h08" id="etS-dw-Kub"/>
                         <outlet property="headerView" destination="hWw-bF-wTS" id="Y5s-Vp-Jdt"/>
-                        <outlet property="iPadBackButton" destination="V2d-C3-r1N" id="n4S-qA-dlO"/>
                         <outlet property="iPadShareButton" destination="5rR-pP-thF" id="ULN-p1-A1g"/>
                         <outlet property="locationButton" destination="1uQ-iF-VA7" id="Zqw-Ux-2O6"/>
                     </connections>
@@ -133,27 +132,20 @@
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-pP-thF">
-                            <rect key="frame" x="387" y="47" width="19" height="27"/>
+                            <rect key="frame" x="375" y="47" width="19" height="27"/>
                             <state key="normal" image="share"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2d-C3-r1N">
-                            <rect key="frame" x="317" y="49" width="48" height="23"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                            <state key="normal" title="Back" image="back"/>
                         </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="5rR-pP-thF" firstAttribute="centerY" secondItem="hWw-bF-wTS" secondAttribute="centerY" id="3O9-8C-IhR"/>
-                        <constraint firstItem="5rR-pP-thF" firstAttribute="leading" secondItem="V2d-C3-r1N" secondAttribute="trailing" constant="22" id="KAZ-Nd-ujz"/>
                         <constraint firstAttribute="bottomMargin" secondItem="VW0-qD-WqW" secondAttribute="bottom" constant="34" id="Mzu-Di-ENL"/>
                         <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="VW0-qD-WqW" secondAttribute="bottom" constant="4" id="N24-Fz-FpH"/>
-                        <constraint firstAttribute="trailing" secondItem="5rR-pP-thF" secondAttribute="trailing" constant="8" id="RqA-JY-eIs"/>
+                        <constraint firstAttribute="trailing" secondItem="5rR-pP-thF" secondAttribute="trailing" constant="20" id="RqA-JY-eIs"/>
                         <constraint firstItem="VW0-qD-WqW" firstAttribute="trailing" secondItem="hWw-bF-wTS" secondAttribute="trailingMargin" id="TDl-je-Uop"/>
                         <constraint firstItem="VW0-qD-WqW" firstAttribute="leading" secondItem="hWw-bF-wTS" secondAttribute="leadingMargin" id="aC7-gX-P29"/>
                         <constraint firstItem="1uQ-iF-VA7" firstAttribute="centerX" secondItem="hWw-bF-wTS" secondAttribute="centerX" id="gTo-eM-EG1"/>
                         <constraint firstItem="0Uq-fn-96J" firstAttribute="leading" secondItem="hWw-bF-wTS" secondAttribute="leading" id="lt1-cr-n1A"/>
                         <constraint firstItem="VW0-qD-WqW" firstAttribute="top" secondItem="0Uq-fn-96J" secondAttribute="bottom" constant="8" id="mmi-DM-UlH"/>
-                        <constraint firstItem="V2d-C3-r1N" firstAttribute="centerY" secondItem="5rR-pP-thF" secondAttribute="centerY" id="nXj-ob-Pzi"/>
                         <constraint firstAttribute="trailing" secondItem="0Uq-fn-96J" secondAttribute="trailing" id="v56-uQ-xre"/>
                         <constraint firstItem="0Uq-fn-96J" firstAttribute="top" secondItem="hWw-bF-wTS" secondAttribute="top" id="vWj-Wf-6Lj"/>
                     </constraints>
@@ -996,7 +988,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
-        <image name="back" width="13" height="23"/>
         <image name="icon-office" width="100" height="100"/>
         <image name="share" width="19" height="27"/>
     </resources>
