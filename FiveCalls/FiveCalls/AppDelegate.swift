@@ -63,22 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setAppearance() {
-        let pageControlAppearance = UIPageControl.appearance()
-        pageControlAppearance.pageIndicatorTintColor = .fvc_lightBlue
-        pageControlAppearance.currentPageIndicatorTintColor = .fvc_darkBlue
-        
-        // Fonts
-        let fontDescriptor = UIFontDescriptor(fontAttributes: [
-            UIFontDescriptorFamilyAttribute: "Roboto Condensed"
-        ]).withSymbolicTraits([.traitBold, .traitCondensed]) // To match the website, fonts should be Bold and Condensed
-        
-        if let substituteDescriptor = fontDescriptor {
-            UILabel.appearance().substituteFontDescriptor = substituteDescriptor
-        }
-        
-        UINavigationBar.appearance().titleTextAttributes =
-            [NSFontAttributeName: R.font.robotoCondensedBold(size: 18.0)!,
-            NSForegroundColorAttributeName : UIColor.white]
+        Appearance.instance.setup()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

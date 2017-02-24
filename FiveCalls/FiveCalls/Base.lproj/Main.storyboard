@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -101,6 +100,7 @@
                     <navigationItem key="navigationItem" id="DNh-Vj-zPa"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ssk-NJ-Fc0" id="5mI-34-fC5"/>
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerContainer" destination="Jlg-f3-h08" id="etS-dw-Kub"/>
                         <outlet property="headerView" destination="hWw-bF-wTS" id="Y5s-Vp-Jdt"/>
@@ -123,7 +123,7 @@
                             <rect key="frame" x="8" y="28" width="398" height="50"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uQ-iF-VA7">
-                            <rect key="frame" x="161.66666666666666" y="82" width="91" height="32"/>
+                            <rect key="frame" x="162" y="82" width="91" height="32"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                             <state key="normal" title="Set Location"/>
                             <connections>
@@ -131,10 +131,14 @@
                                 <segue destination="vbp-Kz-LRR" kind="presentation" identifier="locationSegue" id="XV8-ty-hbB"/>
                             </connections>
                         </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ssk-NJ-Fc0">
+                            <rect key="frame" x="349" y="50" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottomMargin" secondItem="VW0-qD-WqW" secondAttribute="bottom" constant="34" id="Mzu-Di-ENL"/>
                         <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="VW0-qD-WqW" secondAttribute="bottom" constant="4" id="N24-Fz-FpH"/>
+                        <constraint firstItem="Ssk-NJ-Fc0" firstAttribute="top" secondItem="VW0-qD-WqW" secondAttribute="top" constant="22" id="PNd-qb-nrO"/>
                         <constraint firstItem="VW0-qD-WqW" firstAttribute="trailing" secondItem="hWw-bF-wTS" secondAttribute="trailingMargin" id="TDl-je-Uop"/>
                         <constraint firstItem="VW0-qD-WqW" firstAttribute="leading" secondItem="hWw-bF-wTS" secondAttribute="leadingMargin" id="aC7-gX-P29"/>
                         <constraint firstItem="1uQ-iF-VA7" firstAttribute="centerX" secondItem="hWw-bF-wTS" secondAttribute="centerX" id="gTo-eM-EG1"/>
@@ -142,6 +146,7 @@
                         <constraint firstItem="VW0-qD-WqW" firstAttribute="top" secondItem="0Uq-fn-96J" secondAttribute="bottom" constant="8" id="mmi-DM-UlH"/>
                         <constraint firstAttribute="trailing" secondItem="0Uq-fn-96J" secondAttribute="trailing" id="v56-uQ-xre"/>
                         <constraint firstItem="0Uq-fn-96J" firstAttribute="top" secondItem="hWw-bF-wTS" secondAttribute="top" id="vWj-Wf-6Lj"/>
+                        <constraint firstItem="Ssk-NJ-Fc0" firstAttribute="leading" secondItem="VW0-qD-WqW" secondAttribute="trailing" constant="-57" id="zsZ-Mn-iKq"/>
                     </constraints>
                 </view>
             </objects>
@@ -260,7 +265,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
@@ -882,21 +887,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statCell" textLabel="ZSx-yb-8Qy" detailTextLabel="RlJ-Rz-RYb" style="IBUITableViewCellStyleValue1" id="TVv-gW-ZKZ">
-                                <rect key="frame" x="0.0" y="242.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="243" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVv-gW-ZKZ" id="Ns2-UU-Wpo">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZSx-yb-8Qy">
-                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
+                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RlJ-Rz-RYb">
-                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="342" y="11" width="57" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -906,21 +911,21 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="contactStatCell" textLabel="SJ8-g0-JAP" detailTextLabel="kbU-0d-lcn" style="IBUITableViewCellStyleValue1" id="mE9-Jg-tD4">
-                                <rect key="frame" x="0.0" y="286.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="287" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mE9-Jg-tD4" id="4mP-T1-Hr3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Made Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SJ8-g0-JAP">
-                                            <rect key="frame" x="14.999999999999993" y="11.999999999999998" width="108.33333333333333" height="20.333333333333332"/>
+                                            <rect key="frame" x="15" y="11" width="109" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2 times" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kbU-0d-lcn">
-                                            <rect key="frame" x="342.66666666666669" y="11.999999999999998" width="56.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="342" y="11" width="57" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>

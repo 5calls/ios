@@ -11,6 +11,7 @@ import CoreLocation
 
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
@@ -33,6 +34,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         setTitleLabel(location: UserLocation.current)
         
         let issuesVC = R.storyboard.main.issuesViewController()!
+        issuesVC.issuesDelegate = self
         addChildViewController(issuesVC)
         
         view.insertSubview(issuesVC.view, belowSubview: headerContainer)
@@ -134,5 +136,15 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     private func setTitleLabel(location: UserLocation?) {
         locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
+    }
+}
+
+extension IssuesContainerViewController : IssuesViewControllerDelegate {
+    func didStartLoadingIssues() {
+        activityIndicator.startAnimating()
+    }
+    
+    func didFinishLoadingIssues() {
+        activityIndicator.stopAnimating()
     }
 }
