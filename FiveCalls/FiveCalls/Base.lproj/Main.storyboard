@@ -187,37 +187,6 @@
                                     <action selector="useMyLocationTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="w4g-PD-9WK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Enter Your Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-pd-kKj">
-                                <rect key="frame" x="118.66666666666669" y="94" width="177" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
-                                <rect key="frame" x="44" y="130" width="220" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="MkO-so-yUl"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0o-QZ-kcL" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
-                                <rect key="frame" x="270" y="137.66666666666666" width="100" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="KTK-f0-lqy"/>
-                                    <constraint firstAttribute="width" constant="100" id="vDF-j1-Q3J"/>
-                                </constraints>
-                                <state key="normal" title="Submit"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="customFontSize">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="submitZipCodeTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="zWm-0b-uhZ"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Czh-eH-GW2">
                                 <rect key="frame" x="310" y="47" width="20" height="20"/>
                                 <constraints>
@@ -225,20 +194,55 @@
                                     <constraint firstAttribute="height" constant="20" id="RyP-Pd-DBq"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mge-y2-c4r">
+                                <rect key="frame" x="20" y="109.00000000000001" width="374" height="129.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Enter Manually:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-pd-kKj">
+                                        <rect key="frame" x="116.66666666666667" y="0.0" width="141" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip or Address" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Y0-Fwm">
+                                        <rect key="frame" x="0.0" y="32.333333333333343" width="374" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="MkO-so-yUl"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0o-QZ-kcL" customClass="BlueButton" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="137" y="89.333333333333343" width="100" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="KTK-f0-lqy"/>
+                                            <constraint firstAttribute="width" constant="100" id="vDF-j1-Q3J"/>
+                                        </constraints>
+                                        <state key="normal" title="Submit"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="customFontSize">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitAddressTapped:" destination="mvc-KU-4ug" eventType="touchUpInside" id="T9u-vM-waq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8JR-Y0-Fwm" firstAttribute="width" secondItem="mge-y2-c4r" secondAttribute="width" id="J2O-Jb-xor"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="S0o-QZ-kcL" firstAttribute="centerY" secondItem="8JR-Y0-Fwm" secondAttribute="centerY" id="2P6-YJ-o2d"/>
-                            <constraint firstItem="8JR-Y0-Fwm" firstAttribute="leading" secondItem="KQU-J2-YtO" secondAttribute="leadingMargin" constant="24" id="2hr-BI-3Au"/>
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="top" secondItem="Et2-qp-YNn" secondAttribute="bottom" constant="15" id="4T8-uL-Dh5"/>
-                            <constraint firstItem="8JR-Y0-Fwm" firstAttribute="top" secondItem="7Xf-pd-kKj" secondAttribute="bottom" constant="15" id="7A2-4j-2Kd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="S0o-QZ-kcL" secondAttribute="trailing" constant="24" id="BD1-tr-VbL"/>
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" id="E3V-Vx-8rH"/>
-                            <constraint firstItem="S0o-QZ-kcL" firstAttribute="leading" secondItem="8JR-Y0-Fwm" secondAttribute="trailing" constant="6" id="Jvz-Vm-DCI"/>
-                            <constraint firstItem="7Xf-pd-kKj" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" id="ZLE-fH-J6V"/>
-                            <constraint firstItem="7Xf-pd-kKj" firstAttribute="top" secondItem="5Be-hS-t4B" secondAttribute="bottom" constant="15" id="cUU-yE-4HQ"/>
+                            <constraint firstItem="mge-y2-c4r" firstAttribute="leading" secondItem="KQU-J2-YtO" secondAttribute="leadingMargin" id="Okl-Sh-BhL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mge-y2-c4r" secondAttribute="trailing" id="Vng-cm-fQ6"/>
                             <constraint firstItem="Czh-eH-GW2" firstAttribute="centerX" secondItem="KQU-J2-YtO" secondAttribute="centerX" constant="113" id="eWC-8Z-mLR"/>
                             <constraint firstItem="Czh-eH-GW2" firstAttribute="centerY" secondItem="5Be-hS-t4B" secondAttribute="centerY" id="ig9-pr-Tul"/>
+                            <constraint firstItem="mge-y2-c4r" firstAttribute="top" secondItem="5Be-hS-t4B" secondAttribute="bottom" constant="30" id="jo1-As-l5m"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Set Your Location" id="fjz-4h-IsH">
@@ -251,8 +255,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="Czh-eH-GW2" id="MxA-Wv-if7"/>
+                        <outlet property="addressTextField" destination="8JR-Y0-Fwm" id="ZBK-ZW-7FM"/>
                         <outlet property="useMyLocationButton" destination="5Be-hS-t4B" id="gVx-vZ-p5q"/>
-                        <outlet property="zipCodeTextField" destination="8JR-Y0-Fwm" id="wdq-Vp-v97"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4o-MU-xOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -509,7 +513,7 @@ The Department of the Army's Civil Works division will be accepting public comme
         <scene sceneID="VLC-fS-43C">
             <objects>
                 <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Kdw-tv-5oW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -527,7 +531,7 @@ The Department of the Army's Civil Works division will be accepting public comme
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="vbp-Kz-LRR" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="jhT-Oj-KcC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jhT-Oj-KcC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -977,7 +981,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="formSheet" id="uCI-we-dEY" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3VD-Ro-n8g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
