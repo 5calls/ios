@@ -14,8 +14,8 @@
 /* Class = "UIButton"; normalTitle = "Set Location"; ObjectID = "6mh-1s-XbV"; */
 "6mh-1s-XbV.normalTitle" = "Set Location";
 
-/* Class = "UILabel"; text = "Or Enter Your Zip Code or Address"; ObjectID = "7Xf-pd-kKj"; */
-"7Xf-pd-kKj.text" = "Or Enter Your Zip Code or Address";
+/* Class = "UILabel"; text = "Or Enter Manually:"; ObjectID = "7Xf-pd-kKj"; */
+"7Xf-pd-kKj.text" = "Or Enter Manually:";
 
 /* Class = "UILabel"; text = "Why you're calling this office:"; ObjectID = "7w9-Gc-EBX"; */
 "7w9-Gc-EBX.text" = "Why you're calling this office:";
