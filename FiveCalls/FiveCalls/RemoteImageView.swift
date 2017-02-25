@@ -62,7 +62,9 @@ class RemoteImageView : UIImageView {
                         self.currentImageURL = url
                         ImageCache.shared.set(image: image, forKey: url)
                         DispatchQueue.main.async {
-                            completion(image)
+                            if self.currentImageURL == url {
+                                completion(image)
+                            }
                         }
                     }
                 } else {
