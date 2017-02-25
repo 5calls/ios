@@ -65,8 +65,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func submitAddressTapped(_ sender: Any) {
-            //TODO: Does this event need to be renamed?
-            Answers.logCustomEvent(withName:"Action: Used Zip Code")
+            Answers.logCustomEvent(withName:"Action: Used Address")
             let userLocation = UserLocation.current
             userLocation.setFrom(address: addressTextField.text ?? "")
             delegate?.editLocationViewController(self, didUpdateLocation: userLocation)

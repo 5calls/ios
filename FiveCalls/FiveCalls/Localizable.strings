@@ -7,8 +7,6 @@
 */
 
 "i-just-called-my-rep"                = "I just called my rep to %@ — you should too: http://5calls.org/#issue/%@?utm_campaign=twshare";
-"invalid-zip-title"                   = "Invalid Zip Code";
-"invalid-zip-message"                 = "Please enter a 5-digit zip code";
 "ok-button-title"                     = "OK";
 "location-permission-denied-title"    = "Location permission denied.";
 "location-permission-denied-message"  = "To use Location please change the permissions in the Settings and try again.";
