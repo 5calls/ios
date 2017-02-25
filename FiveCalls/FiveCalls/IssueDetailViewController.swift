@@ -47,7 +47,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         }
         logs = ContactLogs.load()
 
-        if let nav = self.navigationController, nav.viewControllers.count > 1 {
+        if self.splitViewController == nil {
             navigationController?.setNavigationBarHidden(false, animated: true)
         } else {
             tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
@@ -60,7 +60,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == R.segue.issueDetailViewController.callScript.identifier, UIDevice.current.userInterfaceIdiom == .pad, let indexPath = tableView.indexPathForSelectedRow {
+        if identifier == R.segue.issueDetailViewController.callScript.identifier, self.splitViewController != nil, let indexPath = tableView.indexPathForSelectedRow {
             let controller = R.storyboard.main.callScriptController()!
             controller.issuesManager = issuesManager
             controller.issue = issue
