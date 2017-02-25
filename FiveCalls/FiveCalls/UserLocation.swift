@@ -12,7 +12,7 @@ import CoreLocation
 class UserLocation {
     
     enum LocationType: String {
-        case zipCode
+        case address
         case coordinates
     }
     
@@ -50,10 +50,10 @@ class UserLocation {
         }
     }
     
-    func setFrom(zipCode: String) {
-        locationType = .zipCode
-        locationValue = zipCode
-        locationDisplay = zipCode
+    func setFrom(address: String) {
+        locationType = .address
+        locationValue = address
+        locationDisplay = address
         locationChanged()
     }
     

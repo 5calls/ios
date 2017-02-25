@@ -28,8 +28,9 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }()
 
     @IBOutlet weak var useMyLocationButton: UIButton!
-    @IBOutlet weak var zipCodeTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
 
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -37,16 +38,16 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Answers.logCustomEvent(withName:"Screen: Edit Location")
-        zipCodeTextField.becomeFirstResponder()
+        addressTextField.becomeFirstResponder()
         
-        if case .zipCode? = UserLocation.current.locationType {
-            zipCodeTextField.text = UserLocation.current.locationValue
+        if case .address? = UserLocation.current.locationType {
+            addressTextField.text = UserLocation.current.locationValue
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        zipCodeTextField.resignFirstResponder()
+        addressTextField.resignFirstResponder()
     }
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
@@ -63,27 +64,12 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
         delegate?.editLocationViewControllerDidCancel(self)
     }
     
-    @IBAction func submitZipCodeTapped(_ sender: Any) {
-        if validateZipCode() {
+    @IBAction func submitAddressTapped(_ sender: Any) {
+            //TODO: Does this event need to be renamed?
             Answers.logCustomEvent(withName:"Action: Used Zip Code")
             let userLocation = UserLocation.current
-            userLocation.setFrom(zipCode: zipCodeTextField.text!)
+            userLocation.setFrom(address: addressTextField.text ?? "")
             delegate?.editLocationViewController(self, didUpdateLocation: userLocation)
-        }
-    }
-    
-    private func validateZipCode() -> Bool {
-        let zip = zipCodeTextField.text!
-        let regex = try! NSRegularExpression(pattern: "^\\d{5}$", options: [])
-        if let _ = regex.firstMatch(in: zip, options: [], range: NSMakeRange(0, zip.characters.count)) {
-            return true
-        }
-
-        let alert = UIAlertController(title: R.string.localizable.invalidZipTitle(), message: R.string.localizable.invalidZipMessage(), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-        
-        return false
     }
 
     //Mark: CLLocationManagerDelegate methods

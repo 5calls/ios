@@ -14,14 +14,14 @@
 /* Class = "UIButton"; normalTitle = "Set Location"; ObjectID = "6mh-1s-XbV"; */
 "6mh-1s-XbV.normalTitle" = "Set Location";
 
-/* Class = "UILabel"; text = "Or Enter Your Zip Code"; ObjectID = "7Xf-pd-kKj"; */
-"7Xf-pd-kKj.text" = "Or Enter Your Zip Code";
+/* Class = "UILabel"; text = "Or Enter Your Address"; ObjectID = "7Xf-pd-kKj"; */
+"7Xf-pd-kKj.text" = "Or Enter Your Address";
 
 /* Class = "UILabel"; text = "Why you're calling this office:"; ObjectID = "7w9-Gc-EBX"; */
 "7w9-Gc-EBX.text" = "Why you're calling this office:";
 
-/* Class = "UITextField"; placeholder = "Zip Code"; ObjectID = "8JR-Y0-Fwm"; */
-"8JR-Y0-Fwm.placeholder" = "Zip Code";
+/* Class = "UITextField"; placeholder = "Address"; ObjectID = "8JR-Y0-Fwm"; */
+"8JR-Y0-Fwm.placeholder" = "Address";
 
 /* Class = "UIButton"; normalTitle = "SKIP"; ObjectID = "9Ef-iV-1bu"; */
 "9Ef-iV-1bu.normalTitle" = "SKIP";
