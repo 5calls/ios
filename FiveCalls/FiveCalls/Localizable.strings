@@ -32,3 +32,7 @@
 "issue-load-failed-connection"        = "The issues failed to load. Please check your connection and try again.";
 "issue-load-failed-server"            = "We encountered an error loading issues. Please try again later.";
 "fallback-user-location-desc"         = "My Location";
+"first-call-alert-title"              = "Ready?";
+"first-call-alert-message"            = "We're about to place the call. When it starts dialing, turn on Speaker phone, then double tap the home button and return to this app so you can read the script.";
+"first-call-alert-cancel"             = "Cancel";
+"first-call-alert-call"               = "Call";
