@@ -68,4 +68,3 @@ fastlane/screenshots
 fastlane/test_output
 .env
 .ruby-version
-.DS_Store
