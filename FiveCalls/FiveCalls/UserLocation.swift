@@ -14,6 +14,18 @@ class UserLocation {
     enum LocationType: String {
         case address
         case coordinates
+        
+        init?(rawValue: String) {
+            switch rawValue {
+            //handle legacy persisted zipCodes as addresses
+            case "address", "zipCode":
+                self = .address
+            case "coordinates":
+                self = .coordinates
+            default:
+                return nil
+            }
+        }
     }
     
     static let current = UserLocation()
