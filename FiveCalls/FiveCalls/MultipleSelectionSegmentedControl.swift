@@ -9,9 +9,19 @@
 import Foundation
 
 class MultipleSelectionControl: UIControl {
-    @IBInspectable var selectedColor: UIColor = UIColor.lightGray
-    @IBInspectable var deSelectedColor: UIColor = UIColor.white
-    @IBInspectable var titlesString: String = ""
+    @IBInspectable var selectedColor: UIColor = .lightGray
+    @IBInspectable var deSelectedColor: UIColor = .white
+    @IBInspectable var titlesString = ""
+
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis  = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 0.5
+        return stackView
+    }()
 
     private var titles: [String]?
     var buttons: [UIButton]?
@@ -36,16 +46,9 @@ class MultipleSelectionControl: UIControl {
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    private func addButtons(to stackView: UIStackView) {
         let titles = titlesString.components(separatedBy: ",")
-        guard titles.count > 0 else { return }
-        let stackView = UIStackView()
-        stackView.axis  = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 0.5
-        addSubview(stackView)
+
         buttons = titles.flatMap({ title in
             guard !title.isEmpty else { return nil }
             let button = UIButton()
@@ -53,28 +56,35 @@ class MultipleSelectionControl: UIControl {
             button.setTitle(title, for: .normal)
             button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
             stackView.addArrangedSubview(button)
+            setColor(button: button)
             return button
         })
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
         layer.cornerRadius = 4
         layer.masksToBounds = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(stackView)
+        addButtons(to: stackView)
+
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 0.0),
-            stackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0.0),
-            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0.0),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0.0),
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.leftAnchor.constraint(equalTo: leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: rightAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
-        buttons?.forEach({ color(button: $0) })
     }
 
     @objc func buttonAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        color(button: sender)
+        setColor(button: sender)
         sendActions(for: .valueChanged)
     }
 
-    func color(button: UIButton) {
+    func setColor(button: UIButton) {
         let titleColor = button.isSelected ? deSelectedColor : selectedColor
         button.setTitleColor(titleColor, for: .normal)
         button.backgroundColor = button.isSelected ? selectedColor : deSelectedColor

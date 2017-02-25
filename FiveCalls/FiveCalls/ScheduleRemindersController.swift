@@ -13,34 +13,100 @@ class ScheduleRemindersController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
 
+    lazy var blurOverlay: UIVisualEffectView = {
+        let blur = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        blur.translatesAutoresizingMaskIntoConstraints = false
+        return blur
+    }()
+
     var notificationsChanged: Bool = true
+
+    private func switchButton(on: Bool) -> UIBarButtonItem {
+        let switchControl = UISwitch()
+        switchControl.isOn = on
+        switchControl.addTarget(self, action: #selector(ScheduleRemindersController.switchValueChanged), for: .valueChanged)
+        let barButtonItem = UIBarButtonItem(customView: switchControl)
+        return barButtonItem
+    }
+
+    func switchValueChanged(_ sender: UISwitch) {
+        setBlur(visible: !sender.isOn, animated: true)
+
+        if sender.isOn {
+            requestNotificationAccess()
+        } else {
+            clearNotifications()
+        }
+    }
+
+    private func requestNotificationAccess() {
+        UIApplication.shared.registerUserNotificationSettings(
+            UIUserNotificationSettings(types: [.alert, .badge],
+                                       categories: nil)
+        )
+    }
+
+    func setBlur(visible: Bool, animated: Bool) {
+        let duration = animated ? 0.3 : 0
+
+        if visible {
+            view.addSubview(blurOverlay)
+            blurOverlay.alpha = 0
+
+            NSLayoutConstraint.activate([
+                blurOverlay.leftAnchor.constraint(equalTo: view.leftAnchor),
+                blurOverlay.rightAnchor.constraint(equalTo: view.rightAnchor),
+                blurOverlay.topAnchor.constraint(equalTo: view.topAnchor),
+                blurOverlay.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
+
+            UIView.animate(withDuration: duration) {
+                self.blurOverlay.alpha = 0.95
+            }
+        } else {
+            UIView.animate(withDuration: duration, animations: {
+                self.blurOverlay.alpha = 0
+            }) { _ in
+                self.blurOverlay.removeFromSuperview()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        var notificationsEnabled = false
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
             daysOfWeekSelector.setSelectedButtons(at: indices(from: notifications))
             if let date = notifications.first?.fireDate {
                 timePicker.setDate(date, animated: true)
             }
+
+            notificationsEnabled = true
+        } else {
+
         }
 
-        var types = UIUserNotificationType()
-        types.insert(.alert)
-        types.insert(.badge)
-        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: nil))
+        navigationItem.rightBarButtonItem = switchButton(on: notificationsEnabled)
+        setBlur(visible: !notificationsEnabled, animated: false)
 
-        timePicker.setValue(UIColor(red:0.12, green:0.47, blue:0.81, alpha:1.00), forKey: "textColor")
+
+        timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard notificationsChanged == true else { return }
 
-        UIApplication.shared.cancelAllLocalNotifications()
+        clearNotifications()
         for selectorIndex in daysOfWeekSelector.selectedIndices {
             let localNotif = createNotification(with: selectorIndex, chosenTime: timePicker.date)
             UIApplication.shared.scheduleLocalNotification(localNotif)
         }
+    }
+
+    private func clearNotifications() {
+        UIApplication.shared.cancelAllLocalNotifications()
     }
 
     @IBAction func timePickerChanged(_ sender: UIDatePicker) {
