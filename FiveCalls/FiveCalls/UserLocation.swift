@@ -62,11 +62,24 @@ class UserLocation {
         }
     }
     
+    private static let geocoder = CLGeocoder()
+    
     func setFrom(address: String) {
         locationType = .address
         locationValue = address
-        locationDisplay = address
-        locationChanged()
+        
+        UserLocation.geocoder.geocodeAddressString(address) { results, error in
+            defer {
+                self.locationChanged()
+            }
+            
+            guard let placemark = results?.first else {
+                self.locationDisplay = NSLocalizedString("My Location", comment: "Fallback display description for unrecognized user location")
+                return
+            }
+            
+            self.locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode
+        }
     }
     
     func setFrom(location: CLLocation, completion: @escaping (Void) -> Void) {
