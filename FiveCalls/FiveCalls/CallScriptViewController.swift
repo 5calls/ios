@@ -87,10 +87,40 @@ class CallScriptViewController : UIViewController, IssueShareable {
         callNumber(contact.phone)
     }
 
-    func callNumber(_ number: String) {
-        lastPhoneDialed = number
-        guard let dialURL = URL(string: "telprompt:\(number)") else { return }
-        UIApplication.shared.fvc_open(dialURL)
+    fileprivate func callNumber(_ number: String) {
+        
+        self.lastPhoneDialed = number
+        
+        let defaults = UserDefaults.standard
+        let firstCallInstructionsKey =  UserDefaultsKeys.hasSeenFirstCallInstructions.rawValue
+        
+        if defaults.bool(forKey: firstCallInstructionsKey) {
+            guard let dialURL = URL(string: "telprompt:\(number)") else { return }
+            UIApplication.shared.fvc_open(dialURL)
+        } else {
+            let alertController = UIAlertController(title: R.string.localizable.firstCallAlertTitle(),
+                                                    message:  R.string.localizable.firstCallAlertMessage(),
+                                                    preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: R.string.localizable.firstCallAlertCancel(),
+                                             style: .cancel) { _ in
+                                                alertController.dismiss(animated: true, completion: nil)
+            }
+            
+            let callAction = UIAlertAction(title: R.string.localizable.firstCallAlertCall(),
+                                             style: .default) { _ in
+                                                alertController.dismiss(animated: true, completion: nil)
+                                                guard let dialURL = URL(string: "tel:\(number)") else { return }
+                                                UIApplication.shared.fvc_open(dialURL)
+                                                
+                                                defaults.set(true, forKey: firstCallInstructionsKey)
+            }
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(callAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
     }
     
     func reportCallOutcome(_ log: ContactLog) {
