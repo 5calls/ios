@@ -15,7 +15,7 @@
 "whats-important-title"               = "What's important to you?";
 "call-your-reps"                      = "Call your representatives";
 "split-district-title"                = "Split Congressional District";
-"split-district-message"              = "Your ZIP code belongs to more than one congressional district. Select “Use My Location” to locate your particular representative.";
+"split-district-message"              = "Your location information could belong to more than one congressional district. Try a more specific address, or select “Use My Location” to locate your particular representative.";
 "set-your-location"                   = "Set your location to find your representatives";
 "cant-send-email-title"               = "Can't send mail";
 "cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
