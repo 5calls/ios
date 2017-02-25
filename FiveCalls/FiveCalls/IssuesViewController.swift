@@ -34,8 +34,9 @@ class IssuesViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.emptyDataSetSource = self
+
         tableView.emptyDataSetDelegate = self
+        tableView.emptyDataSetSource = self
         
         Answers.logCustomEvent(withName:"Screen: Issues List")
         
@@ -152,7 +153,7 @@ extension IssuesViewController : DZNEmptyDataSetSource {
         }
     }
     
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
         
         let message = appropriateErrorMessage(for: lastLoadResult ?? .offline)
         
@@ -163,7 +164,7 @@ extension IssuesViewController : DZNEmptyDataSetSource {
     }
     
     
-    func buttonImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> UIImage! {
+    func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
         return #imageLiteral(resourceName: "refresh")
     }
     
@@ -172,11 +173,11 @@ extension IssuesViewController : DZNEmptyDataSetSource {
 
 extension IssuesViewController : DZNEmptyDataSetDelegate {
     
-    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
         return !isLoading
     }
     
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+    func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         loadIssues()
         tableView.reloadEmptyDataSet()
     }
