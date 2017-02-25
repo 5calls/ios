@@ -11,8 +11,7 @@ import CoreLocation
 import Crashlytics
 
 class IssueDetailViewController : UIViewController, IssueShareable {
-    
-    
+
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
@@ -21,10 +20,6 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
     
     override func viewDidLoad() {
@@ -193,7 +188,9 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
         issuesManager.userLocation = location
-        issuesManager.fetchIssues {
+        issuesManager.fetchIssues { result in
+            
+            
             if self.issuesManager.isSplitDistrict {
                 let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))

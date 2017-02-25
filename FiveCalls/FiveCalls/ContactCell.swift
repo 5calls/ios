@@ -39,7 +39,13 @@ class ContactCell : UITableViewCell {
         textLabel?.textColor = labelTextColor
         detailTextLabel?.textColor = labelTextColor
     }
-    
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.currentTask?.cancel()
+        avatarImageView.image = nil
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         avatarImageView.fvc_circleify()

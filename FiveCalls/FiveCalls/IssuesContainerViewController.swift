@@ -11,6 +11,7 @@ import CoreLocation
 
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
@@ -29,16 +30,14 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         return effectView
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setTitleLabel(location: UserLocation.current)
-
-        let runningOnIPad = UIDevice.current.userInterfaceIdiom == .pad
+    
+    private func configureChildViewController() {
+        let isRegularWidth = traitCollection.horizontalSizeClass == .regular
         let issuesVC = R.storyboard.main.issuesViewController()!
+        issuesVC.issuesDelegate = self
         let childController: UIViewController
-
-        if runningOnIPad {
+        
+        if isRegularWidth {
             let splitController = UISplitViewController()
             splitController.viewControllers = [issuesVC, UIViewController()]
             splitController.preferredDisplayMode = .allVisible
@@ -48,9 +47,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         } else {
             childController = issuesVC
         }
-
+        
         addChildViewController(childController)
-		
+        
         view.insertSubview(childController.view, belowSubview: headerContainer)
         childController.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -63,8 +62,14 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         childController.didMove(toParentViewController: self)
         issuesViewController = issuesVC
-        
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTitleLabel(location: UserLocation.current)
+        configureChildViewController()
         setupHeaderWithBlurEffect()
+        
     }
     
     private func setupHeaderWithBlurEffect() {
@@ -94,6 +99,18 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        
+        if previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
+            issuesViewController.willMove(toParentViewController: nil)
+            issuesViewController.view.constraints.forEach { constraint in
+                issuesViewController.view.removeConstraint(constraint)
+            }
+            issuesViewController.view.removeFromSuperview()
+            issuesViewController.removeFromParentViewController()
+            
+            configureChildViewController()
+        }
+        
         setContentInset()
     }
 
@@ -150,5 +167,15 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     private func setTitleLabel(location: UserLocation?) {
         locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
+    }
+}
+
+extension IssuesContainerViewController : IssuesViewControllerDelegate {
+    func didStartLoadingIssues() {
+        activityIndicator.startAnimating()
+    }
+    
+    func didFinishLoadingIssues() {
+        activityIndicator.stopAnimating()
     }
 }

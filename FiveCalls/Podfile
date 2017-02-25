@@ -13,7 +13,8 @@ target 'FiveCalls' do
   pod 'DropDown'
   pod 'CPDAcknowledgements'
   pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'Crashlytics', '~> 3.8.4'
+  pod 'DZNEmptyDataSet', git: 'https://github.com/subdigital/DZNEmptyDataSet'
 end
 
 target 'FiveCallsTests' do

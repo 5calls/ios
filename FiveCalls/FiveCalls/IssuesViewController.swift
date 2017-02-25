@@ -8,8 +8,18 @@
 
 import UIKit
 import Crashlytics
+import DZNEmptyDataSet
+
+protocol IssuesViewControllerDelegate : class {
+    func didStartLoadingIssues()
+    func didFinishLoadingIssues()
+}
 
 class IssuesViewController : UITableViewController {
+    
+    weak var issuesDelegate: IssuesViewControllerDelegate?
+    var lastLoadResult: IssuesLoadResult?
+    var isLoading = false
     
     // keep track of when calls are made, so we know if we need to reload any cells
     var needToReloadVisibleRowsOnNextAppearance = false
@@ -25,6 +35,10 @@ class IssuesViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.emptyDataSetDelegate = self
+        tableView.emptyDataSetSource = self
+        
         Answers.logCustomEvent(withName:"Screen: Issues List")
         
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -72,13 +86,23 @@ class IssuesViewController : UITableViewController {
     }
 
     func loadIssues() {
+        isLoading = true
+        tableView.reloadEmptyDataSet()
+        issuesDelegate?.didStartLoadingIssues()
         issuesManager.userLocation = UserLocation.current
         issuesManager.fetchIssues(completion: issuesLoaded)
     }
 
-    private func issuesLoaded() {
-        viewModel = ViewModel(issues: issuesManager.issues)
-        tableView.reloadData()
+    private func issuesLoaded(result: IssuesLoadResult) {
+        isLoading = false
+        lastLoadResult = result
+        issuesDelegate?.didFinishLoadingIssues()
+        if case .success = result {
+            viewModel = ViewModel(issues: issuesManager.issues)
+            tableView.reloadData()
+        } else {
+            tableView.reloadEmptyDataSet()
+        }
     }
     
     func madeCall() {
@@ -144,5 +168,46 @@ class IssuesViewController : UITableViewController {
             cell.checkboxView.isChecked = hasContacted
         }
         return cell
+    }
+}
+
+extension IssuesViewController : DZNEmptyDataSetSource {
+    
+    private func appropriateErrorMessage(for result: IssuesLoadResult) -> String {
+        switch result {
+        case .offline: return R.string.localizable.issueLoadFailedConnection()
+        case .serverError(_): return R.string.localizable.issueLoadFailedServer()
+        default:
+            return ""
+        }
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        
+        let message = appropriateErrorMessage(for: lastLoadResult ?? .offline)
+        
+        return NSAttributedString(string: message,
+                                  attributes: [
+                                    NSFontAttributeName: Appearance.instance.bodyFont
+                ])
+    }
+    
+    
+    func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
+        return #imageLiteral(resourceName: "refresh")
+    }
+    
+}
+
+
+extension IssuesViewController : DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView) -> Bool {
+        return !isLoading
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
+        loadIssues()
+        tableView.reloadEmptyDataSet()
     }
 }
