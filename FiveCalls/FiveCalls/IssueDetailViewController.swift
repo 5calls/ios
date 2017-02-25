@@ -11,8 +11,7 @@ import CoreLocation
 import Crashlytics
 
 class IssueDetailViewController : UIViewController, IssueShareable {
-    
-    
+
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
@@ -21,10 +20,6 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
     
     override func viewDidLoad() {
