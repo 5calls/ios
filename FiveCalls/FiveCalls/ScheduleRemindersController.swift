@@ -13,13 +13,44 @@ class ScheduleRemindersController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
 
-    lazy var blurOverlay: UIVisualEffectView = {
-        let blur = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    lazy private var blurOverlay: UIView = {
+        let blur = UIVisualEffectView()
+        blur.backgroundColor = .white
+        // blur.effect = UIBlurEffect(style: .dark)
         blur.translatesAutoresizingMaskIntoConstraints = false
+        
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor.fvc_lightGray
+        label.font = Appearance.instance.bodyFont
+        label.numberOfLines = 0
+        label.text = "Turn these on to get a quick local reminder to make your 5 calls.\n\nYou can pick which days of the week and what time you would like to be notified."
+        label.textAlignment = .center
+        blur.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(lessThanOrEqualTo: blur.widthAnchor, multiplier: 0.8),
+            label.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: blur.centerYAnchor),
+        ])
+        
         return blur
     }()
-
-    var notificationsChanged: Bool = true
+    
+    private var remindersEnabled: Bool {
+        get { return UserDefaults.standard.bool(forKey: UserDefaultsKeys.reminderEnabled.rawValue) }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.reminderEnabled.rawValue)
+            if newValue {
+                requestNotificationAccess()
+            } else {
+                clearNotifications()
+            }
+        }
+        
+    }
+    
+    private var notificationsChanged = true
 
     private func switchButton(on: Bool) -> UIBarButtonItem {
         let switchControl = UISwitch()
@@ -30,13 +61,8 @@ class ScheduleRemindersController: UIViewController {
     }
 
     func switchValueChanged(_ sender: UISwitch) {
+        remindersEnabled = sender.isOn
         setBlur(visible: !sender.isOn, animated: true)
-
-        if sender.isOn {
-            requestNotificationAccess()
-        } else {
-            clearNotifications()
-        }
     }
 
     private func requestNotificationAccess() {
@@ -61,7 +87,7 @@ class ScheduleRemindersController: UIViewController {
                 ])
 
             UIView.animate(withDuration: duration) {
-                self.blurOverlay.alpha = 0.95
+                self.blurOverlay.alpha = 1.0
             }
         } else {
             UIView.animate(withDuration: duration, animations: {
@@ -74,21 +100,16 @@ class ScheduleRemindersController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var notificationsEnabled = false
+        
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
             daysOfWeekSelector.setSelectedButtons(at: indices(from: notifications))
             if let date = notifications.first?.fireDate {
                 timePicker.setDate(date, animated: true)
             }
-
-            notificationsEnabled = true
-        } else {
-
         }
 
-        navigationItem.rightBarButtonItem = switchButton(on: notificationsEnabled)
-        setBlur(visible: !notificationsEnabled, animated: false)
+        navigationItem.rightBarButtonItem = switchButton(on: remindersEnabled)
+        setBlur(visible: !remindersEnabled, animated: false)
 
 
         timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
@@ -96,7 +117,7 @@ class ScheduleRemindersController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard notificationsChanged == true else { return }
+        guard notificationsChanged == true && remindersEnabled else { return }
 
         clearNotifications()
         for selectorIndex in daysOfWeekSelector.selectedIndices {
