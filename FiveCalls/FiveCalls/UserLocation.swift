@@ -74,7 +74,7 @@ class UserLocation {
             }
             
             guard let placemark = results?.first else {
-                self.locationDisplay = NSLocalizedString("My Location", comment: "Fallback display description for unrecognized user location")
+                self.locationDisplay = R.string.localizable.fallbackUserLocationDesc()
                 return
             }
             

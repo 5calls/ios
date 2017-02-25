@@ -31,3 +31,4 @@
 "called-single"                       = "%d time";
 "issue-load-failed-connection"        = "The issues failed to load. Please check your connection and try again.";
 "issue-load-failed-server"            = "We encountered an error loading issues. Please try again later.";
+"fallback-user-location-desc"         = "My Location";
