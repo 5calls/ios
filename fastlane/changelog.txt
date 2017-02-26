@@ -1,16 +1,17 @@
+- Add option to remind you to make your calls (Thanks, @chrisbrandow!)
 
-Call Result Tweaks.
-	No longer pushes the last contact over & over again.
-	Instead, the result buttons hide and a checkmark appears for
-	the last contact in the list.
+- Fix some memory leaks (Thanks, @tomburns!)
 
-Fix Tableview inconsistency crash on first launch after setting location
+- Better messaging around what to do when the call is placed
 
-Fix flashing images for contacts
-	Images are now cached in memory and load instantly when already cached.
+- iPad support (Thanks, @bengottlieb!)
 
-Fix layout issues with smaller screens
+- Full Address support for those of you who still had split district results
+  even after using GPS. (Thanks, @tomburns!)
 
-Better messaging of split districts
-	Prompts you to use your full location if you enter a zip
-	and that zip code is a split district
+- Better handling of connection errors, or cases where the server is down
+
+- Fix issue on some devices where the blur effect didn't work, resulting in
+  broken interface
+
+- Fix a couple of crashes that affected a small number of users
