@@ -96,6 +96,7 @@ def app_icon_files
 end
 
 def prompt_for_release_notes
+    puts "Opening changelog.txt. Edit it and quit the editor to continue."
     `open changelog.txt -W`
     File.read('changelog.txt')
 end
