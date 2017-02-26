@@ -48,7 +48,7 @@ platform :ios do
 
     gym(workspace: workspace, scheme: scheme)
     changelog = prompt_for_release_notes
-    pilot(changelog: changelog, distribute_external: true)
+    pilot(changelog: changelog)
     git_commit(file: 'changelog.txt', message: 'Updated changelog.txt')
 
     reset_git_repo(files: app_icon_files)
