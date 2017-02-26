@@ -64,13 +64,14 @@ class UserLocation {
     
     private static let geocoder = CLGeocoder()
     
-    func setFrom(address: String) {
+    func setFrom(address: String, completion: ((UserLocation) -> Void)? = nil) {
         locationType = .address
         locationValue = address
         
         UserLocation.geocoder.geocodeAddressString(address) { results, error in
             defer {
                 self.locationChanged()
+                completion?(self)
             }
             
             guard let placemark = results?.first else {

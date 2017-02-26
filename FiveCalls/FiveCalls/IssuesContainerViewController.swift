@@ -156,11 +156,14 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        dismiss(animated: true) { [weak self] in
-            self?.issuesManager.userLocation = location
-            self?.issuesViewController.loadIssues()
-            self?.setTitleLabel(location: location)
+        DispatchQueue.main.async { [weak self] in
+            self?.dismiss(animated: true) {
+                self?.issuesManager.userLocation = location
+                self?.issuesViewController.loadIssues()
+                self?.setTitleLabel(location: location)
+            }
         }
+        
     }
     
     // MARK: - Private functions
