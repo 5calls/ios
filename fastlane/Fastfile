@@ -47,7 +47,7 @@ platform :ios do
     badge(shield: "Version-#{app_version}-red", shield_no_resize: true)
 
     gym(workspace: workspace, scheme: scheme)
-    changelog = prompt_for_changelog
+    changelog = prompt_for_release_notes
     pilot(changelog: changelog, distribute_external: true)
     git_commit(file: 'changelog.txt', message: 'Updated changelog.txt')
 
