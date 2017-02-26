@@ -12,8 +12,20 @@ import CoreLocation
 class UserLocation {
     
     enum LocationType: String {
-        case zipCode
+        case address
         case coordinates
+        
+        init?(rawValue: String) {
+            switch rawValue {
+            //handle legacy persisted zipCodes as addresses
+            case "address", "zipCode":
+                self = .address
+            case "coordinates":
+                self = .coordinates
+            default:
+                return nil
+            }
+        }
     }
     
     static let current = UserLocation()
@@ -50,11 +62,25 @@ class UserLocation {
         }
     }
     
-    func setFrom(zipCode: String) {
-        locationType = .zipCode
-        locationValue = zipCode
-        locationDisplay = zipCode
-        locationChanged()
+    private static let geocoder = CLGeocoder()
+    
+    func setFrom(address: String, completion: ((UserLocation) -> Void)? = nil) {
+        locationType = .address
+        locationValue = address
+        
+        UserLocation.geocoder.geocodeAddressString(address) { results, error in
+            defer {
+                self.locationChanged()
+                completion?(self)
+            }
+            
+            guard let placemark = results?.first else {
+                self.locationDisplay = R.string.localizable.fallbackUserLocationDesc()
+                return
+            }
+            
+            self.locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode
+        }
     }
     
     func setFrom(location: CLLocation, completion: @escaping (Void) -> Void) {

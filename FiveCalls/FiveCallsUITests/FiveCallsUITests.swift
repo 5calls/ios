@@ -45,7 +45,7 @@ class FiveCallsUITests: XCTestCase {
 
         app.buttons["GET STARTED"].tap()
         app.buttons["Set Location"].tap()
-        app.textFields["Zip Code"].tap()
+        app.textFields["Zip or Address"].tap()
         app.typeText("77429")
         app.buttons["SUBMIT"].tap()
 

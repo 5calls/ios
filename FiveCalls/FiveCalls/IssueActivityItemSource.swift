@@ -35,13 +35,26 @@ class IssueActivityItemSource: NSObject, UIActivityItemSource {
 
 protocol IssueShareable: class {
     var issue: Issue! { get }
+    func shareIssue(from: Any?)
 }
 
 extension IssueShareable where Self: UIViewController {
-    func shareIssue() {
+    func shareIssue(from: Any?) {
         Answers.logCustomEvent(withName:"Action: Share Issue", customAttributes: ["issue_id":issue.id])
         let activityViewController = UIActivityViewController(activityItems: [IssueActivityItemSource(issue: issue)], applicationActivities: nil)
         activityViewController.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let button = from as? UIButton {
+                activityViewController.modalPresentationStyle = .popover
+                activityViewController.popoverPresentationController?.sourceView = button
+                activityViewController.popoverPresentationController?.sourceRect = button.bounds
+            } else if let item = from as? UIBarButtonItem {
+                activityViewController.modalPresentationStyle = .popover
+                activityViewController.popoverPresentationController?.barButtonItem = item
+            }
+        }
+
         present(activityViewController, animated: true, completion: nil)
     }
 }

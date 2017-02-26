@@ -15,7 +15,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
+    @IBOutlet weak var iPadShareButton: UIButton!
     
+    static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
@@ -28,29 +30,46 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         return effectView
     }()
+    
+    private func configureChildViewController() {
+        let isRegularWidth = traitCollection.horizontalSizeClass == .regular
+        let issuesVC = R.storyboard.main.issuesViewController()!
+        issuesVC.issuesDelegate = self
+        let childController: UIViewController
+        
+        if isRegularWidth {
+            let splitController = UISplitViewController()
+            splitController.viewControllers = [issuesVC, UIViewController()]
+            splitController.preferredDisplayMode = .allVisible
+            childController = splitController
+            issuesVC.iPadShareButton = self.iPadShareButton
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+        } else {
+            childController = issuesVC
+        }
+        
+        addChildViewController(childController)
+        
+        view.insertSubview(childController.view, belowSubview: headerContainer)
+        childController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            childController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            childController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            childController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            childController.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
+            ])
+        
+        childController.didMove(toParentViewController: self)
+        issuesViewController = issuesVC
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitleLabel(location: UserLocation.current)
-        
-        let issuesVC = R.storyboard.main.issuesViewController()!
-        issuesVC.issuesDelegate = self
-        addChildViewController(issuesVC)
-        
-        view.insertSubview(issuesVC.view, belowSubview: headerContainer)
-        issuesVC.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            issuesVC.view.topAnchor.constraint(equalTo: view.topAnchor),
-            issuesVC.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-            issuesVC.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            issuesVC.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
-            ])
-        
-        issuesVC.didMove(toParentViewController: self)
-        issuesViewController = issuesVC
-        
+        configureChildViewController()
         setupHeaderWithBlurEffect()
+        
     }
     
     private func setupHeaderWithBlurEffect() {
@@ -80,6 +99,18 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        
+        if previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
+            issuesViewController.willMove(toParentViewController: nil)
+            issuesViewController.view.constraints.forEach { constraint in
+                issuesViewController.view.removeConstraint(constraint)
+            }
+            issuesViewController.view.removeFromSuperview()
+            issuesViewController.removeFromParentViewController()
+            
+            configureChildViewController()
+        }
+        
         setContentInset()
     }
 
@@ -125,11 +156,14 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        dismiss(animated: true) { [weak self] in
-            self?.issuesManager.userLocation = location
-            self?.issuesViewController.loadIssues()
-            self?.setTitleLabel(location: location)
+        DispatchQueue.main.async { [weak self] in
+            self?.dismiss(animated: true) {
+                self?.issuesManager.userLocation = location
+                self?.issuesViewController.loadIssues()
+                self?.setTitleLabel(location: location)
+            }
         }
+        
     }
     
     // MARK: - Private functions

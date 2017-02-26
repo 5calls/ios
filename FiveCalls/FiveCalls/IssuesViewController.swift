@@ -26,6 +26,7 @@ class IssuesViewController : UITableViewController {
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
+    var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
     struct ViewModel {
         let issues: [Issue]
@@ -51,6 +52,8 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -72,6 +75,12 @@ class IssuesViewController : UITableViewController {
         }
     }
 
+    func share(button: UIButton) {
+        if let nav = self.splitViewController?.viewControllers.last as? UINavigationController, let shareable = nav.viewControllers.last as? IssueShareable {
+            shareable.shareIssue(from: button)
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -81,20 +90,42 @@ class IssuesViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
         issuesManager.userLocation = UserLocation.current
-        issuesManager.fetchIssues(completion: issuesLoaded)
+        issuesManager.fetchIssues { [weak self] in
+            self?.issuesLoaded(result: $0)
+        }
     }
 
     private func issuesLoaded(result: IssuesLoadResult) {
         isLoading = false
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
-        
         if case .success = result {
             viewModel = ViewModel(issues: issuesManager.issues)
             tableView.reloadData()
         } else {
             tableView.reloadEmptyDataSet()
         }
+    }
+    
+    func madeCall() {
+        logs = ContactLogs.load()
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return true }
+            let controller = R.storyboard.main.issueDetailViewController()!
+            controller.issuesManager = issuesManager
+            controller.issue = issuesManager.issues[indexPath.row]
+
+            let nav = UINavigationController(rootViewController: controller)
+            nav.setNavigationBarHidden(true, animated: false)
+            split.showDetailViewController(nav, sender: self)
+            self.iPadShareButton?.isHidden = false
+            return false
+        }
+        return true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

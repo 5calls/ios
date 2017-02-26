@@ -15,5 +15,6 @@ enum UserDefaultsKeys : String {
     case locationType
     case locationValue
     
+    case hasSeenFirstCallInstructions
     case reminderEnabled
 }

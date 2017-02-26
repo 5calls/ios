@@ -31,6 +31,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+    }
+    
+    func madeCall() {
+        logs = ContactLogs.load()
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -40,13 +46,32 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         logs = ContactLogs.load()
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+
+        if let nav = self.navigationController, nav.viewControllers.count > 1 {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        } else {
+            tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == R.segue.issueDetailViewController.callScript.identifier, UIDevice.current.userInterfaceIdiom == .pad, let indexPath = tableView.indexPathForSelectedRow {
+            let controller = R.storyboard.main.callScriptController()!
+            controller.issuesManager = issuesManager
+            controller.issue = issue
+            controller.contact = issue.contacts[indexPath.row]
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .formSheet
+            nav.navigationBar.barTintColor = .fvc_darkBlue
+            self.present(nav, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,7 +87,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     }
     
     func shareButtonPressed(_ button: UIBarButtonItem) {
-        shareIssue()
+        shareIssue(from: button)
     }
 }
 

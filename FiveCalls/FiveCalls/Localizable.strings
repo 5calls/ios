@@ -7,9 +7,8 @@
 */
 
 "i-just-called-my-rep"                = "I just called my rep to %@ — you should too: http://5calls.org/#issue/%@?utm_campaign=twshare";
-"invalid-zip-title"                   = "Invalid Zip Code";
-"invalid-zip-message"                 = "Please enter a 5-digit zip code";
 "ok-button-title"                     = "OK";
+"cancel-button-title"                 = "Cancel";
 "location-permission-denied-title"    = "Location permission denied.";
 "location-permission-denied-message"  = "To use Location please change the permissions in the Settings and try again.";
 "open-settings-title"                 = "Open Settings";
@@ -17,7 +16,7 @@
 "whats-important-title"               = "What's important to you?";
 "call-your-reps"                      = "Call your representatives";
 "split-district-title"                = "Split Congressional District";
-"split-district-message"              = "Your ZIP code belongs to more than one congressional district. Select “Use My Location” to locate your particular representative.";
+"split-district-message"              = "Your location information could belong to more than one congressional district. Try a more specific address, or select “Use My Location” to locate your particular representative.";
 "set-your-location"                   = "Set your location to find your representatives";
 "cant-send-email-title"               = "Can't send mail";
 "cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
@@ -33,7 +32,13 @@
 "called-single"                       = "%d time";
 "issue-load-failed-connection"        = "The issues failed to load. Please check your connection and try again.";
 "issue-load-failed-server"            = "We encountered an error loading issues. Please try again later.";
-"scheduled-reminders-description"     = "Turn these on to get a quick local reminder to make your 5 calls.";
+"fallback-user-location-desc"         = "My Location";
+"first-call-alert-title"              = "Ready?";
+"first-call-alert-message"            = "We're about to place the call. When it starts dialing, turn on Speaker phone, then double tap the home button and return to this app so you can read the script.";
+"first-call-alert-call"               = "Call";
+"place-call-failed-title"             = "Unable to Call";
+"place-call-failed-message"           = "Sorry, it looks like we can't place a call on this device. If you prefer to, you can use your phone to call, and read the script from this screen.";
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
 "scheduled-reminder-alert-title"      = "Time to Make Some Calls";
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
+"scheduled-reminders-description"     = "Turn these on to get a quick local reminder to make your 5 calls.";
