@@ -66,9 +66,14 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     
     @IBAction func submitAddressTapped(_ sender: Any) {
             Answers.logCustomEvent(withName:"Action: Used Address")
-            let userLocation = UserLocation.current
-            userLocation.setFrom(address: addressTextField.text ?? "")
-            delegate?.editLocationViewController(self, didUpdateLocation: userLocation)
+        
+        UserLocation.current.setFrom(address: addressTextField.text ?? "") { [weak self] updatedLocation in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.delegate?.editLocationViewController(strongSelf, didUpdateLocation: updatedLocation)
+        }
     }
 
     //Mark: CLLocationManagerDelegate methods
