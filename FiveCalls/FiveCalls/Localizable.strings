@@ -36,3 +36,5 @@
 "first-call-alert-message"            = "We're about to place the call. When it starts dialing, turn on Speaker phone, then double tap the home button and return to this app so you can read the script.";
 "first-call-alert-cancel"             = "Cancel";
 "first-call-alert-call"               = "Call";
+"place-call-failed-title"             = "Unable to Call";
+"place-call-failed-message"           = "Sorry, it looks like we can't place a call on this device. If you prefer to, you can use your phone to call, and read the script from this screen.";

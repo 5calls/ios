@@ -94,9 +94,17 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let defaults = UserDefaults.standard
         let firstCallInstructionsKey =  UserDefaultsKeys.hasSeenFirstCallInstructions.rawValue
         
+        let callErrorCompletion: (Bool) -> Void = { [weak self] successful in
+            if !successful {
+                DispatchQueue.main.async {
+                    self?.showCallFailedAlert()
+                }
+            }
+        }
+        
         if defaults.bool(forKey: firstCallInstructionsKey) {
             guard let dialURL = URL(string: "telprompt:\(number)") else { return }
-            UIApplication.shared.fvc_open(dialURL)
+            UIApplication.shared.fvc_open(dialURL, completion: callErrorCompletion)
         } else {
             let alertController = UIAlertController(title: R.string.localizable.firstCallAlertTitle(),
                                                     message:  R.string.localizable.firstCallAlertMessage(),
@@ -111,7 +119,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
                                              style: .default) { _ in
                                                 alertController.dismiss(animated: true, completion: nil)
                                                 guard let dialURL = URL(string: "tel:\(number)") else { return }
-                                                UIApplication.shared.fvc_open(dialURL)
+                                                UIApplication.shared.fvc_open(dialURL, completion: callErrorCompletion)
                                                 
                                                 defaults.set(true, forKey: firstCallInstructionsKey)
             }
@@ -188,6 +196,21 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     func shareButtonPressed(_ button: UIBarButtonItem) {
         shareIssue(from: button)
+    }
+        
+    private func showCallFailedAlert() {
+        let alertController = UIAlertController(title: R.string.localizable.placeCallFailedTitle(),
+                                                message:  R.string.localizable.placeCallFailedMessage(),
+                                                preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: R.string.localizable.okButtonTitle(),
+                                     style: .default) { _ in
+                                        alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
