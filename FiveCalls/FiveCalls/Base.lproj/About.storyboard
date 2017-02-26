@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E163f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZRq-uX-bkA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZRq-uX-bkA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -250,7 +250,7 @@
                                 </connections>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="pgL-vc-xhW">
-                                <rect key="frame" x="0.0" y="343" width="375" height="160"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="cn6-EL-2Ax"/>
                                 </constraints>
@@ -261,11 +261,14 @@
                                     <action selector="timePickerChanged:" destination="r3M-VD-RuJ" eventType="valueChanged" id="WKC-ee-1a5"/>
                                 </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LX5-gE-C8x">
-                                <rect key="frame" x="20" y="20" width="335" height="119.5"/>
-                                <string key="text">Select what time of day you'd like to be reminded to make calls
-
-Also, choose which days of the week this reminder will be triggered.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select what time of day you'd like to be reminded to make calls:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LX5-gE-C8x">
+                                <rect key="frame" x="20" y="20" width="335" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which days of the week?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvj-Tf-rza">
+                                <rect key="frame" x="75" y="501" width="225" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -273,11 +276,13 @@ Also, choose which days of the week this reminder will be triggered.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pgL-vc-xhW" firstAttribute="top" secondItem="LX5-gE-C8x" secondAttribute="bottom" constant="36" id="0ta-Sa-VUr"/>
                             <constraint firstItem="yah-e7-5L0" firstAttribute="leading" secondItem="l2f-16-hXo" secondAttribute="leading" constant="16" id="9P8-N0-bvk"/>
                             <constraint firstAttribute="trailing" secondItem="LX5-gE-C8x" secondAttribute="trailing" constant="20" id="9p9-8D-3S2"/>
                             <constraint firstAttribute="trailing" secondItem="yah-e7-5L0" secondAttribute="trailing" constant="16" id="Mf0-h2-4hl"/>
                             <constraint firstItem="LX5-gE-C8x" firstAttribute="leading" secondItem="l2f-16-hXo" secondAttribute="leading" constant="20" id="Pou-e0-oiM"/>
-                            <constraint firstItem="yah-e7-5L0" firstAttribute="top" secondItem="pgL-vc-xhW" secondAttribute="bottom" constant="30" id="XUQ-jV-yIl"/>
+                            <constraint firstItem="uvj-Tf-rza" firstAttribute="centerX" secondItem="l2f-16-hXo" secondAttribute="centerX" id="WWr-p8-eFF"/>
+                            <constraint firstItem="yah-e7-5L0" firstAttribute="top" secondItem="uvj-Tf-rza" secondAttribute="bottom" constant="8" id="Ys3-hR-weo"/>
                             <constraint firstAttribute="trailing" secondItem="pgL-vc-xhW" secondAttribute="trailing" id="qEu-2S-EMB"/>
                             <constraint firstItem="VJl-BZ-EkK" firstAttribute="top" secondItem="yah-e7-5L0" secondAttribute="bottom" constant="20" id="sb2-ri-4nF"/>
                             <constraint firstItem="pgL-vc-xhW" firstAttribute="leading" secondItem="l2f-16-hXo" secondAttribute="leading" id="waQ-0f-lpw"/>
@@ -333,7 +338,7 @@ Also, choose which days of the week this reminder will be triggered.</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZRq-uX-bkA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="r70-ye-hKT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="r70-ye-hKT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

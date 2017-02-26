@@ -13,28 +13,27 @@ class ScheduleRemindersController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
 
-    lazy private var blurOverlay: UIView = {
-        let blur = UIVisualEffectView()
-        blur.backgroundColor = .white
-        // blur.effect = UIBlurEffect(style: .dark)
-        blur.translatesAutoresizingMaskIntoConstraints = false
+    lazy private var overlay: UIView = {
+        let overlay = UIVisualEffectView()
+        overlay.backgroundColor = .white
+        overlay.translatesAutoresizingMaskIntoConstraints = false
         
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.fvc_lightGray
         label.font = Appearance.instance.bodyFont
         label.numberOfLines = 0
-        label.text = "Turn these on to get a quick local reminder to make your 5 calls.\n\nYou can pick which days of the week and what time you would like to be notified."
+        label.text = R.string.localizable.scheduledRemindersDescription()
         label.textAlignment = .center
-        blur.addSubview(label)
+        overlay.addSubview(label)
         
         NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(lessThanOrEqualTo: blur.widthAnchor, multiplier: 0.8),
-            label.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: blur.centerYAnchor),
+            label.widthAnchor.constraint(lessThanOrEqualTo: overlay.widthAnchor, multiplier: 0.8),
+            label.centerXAnchor.constraint(equalTo: overlay.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: overlay.centerYAnchor),
         ])
         
-        return blur
+        return overlay
     }()
     
     private var remindersEnabled: Bool {
@@ -47,7 +46,6 @@ class ScheduleRemindersController: UIViewController {
                 clearNotifications()
             }
         }
-        
     }
     
     private var notificationsChanged = true
@@ -62,7 +60,7 @@ class ScheduleRemindersController: UIViewController {
 
     func switchValueChanged(_ sender: UISwitch) {
         remindersEnabled = sender.isOn
-        setBlur(visible: !sender.isOn, animated: true)
+        setOverlay(visible: !sender.isOn, animated: true)
     }
 
     private func requestNotificationAccess() {
@@ -72,28 +70,28 @@ class ScheduleRemindersController: UIViewController {
         )
     }
 
-    func setBlur(visible: Bool, animated: Bool) {
+    func setOverlay(visible: Bool, animated: Bool) {
         let duration = animated ? 0.3 : 0
 
         if visible {
-            view.addSubview(blurOverlay)
-            blurOverlay.alpha = 0
+            view.addSubview(overlay)
+            overlay.alpha = 0
 
             NSLayoutConstraint.activate([
-                blurOverlay.leftAnchor.constraint(equalTo: view.leftAnchor),
-                blurOverlay.rightAnchor.constraint(equalTo: view.rightAnchor),
-                blurOverlay.topAnchor.constraint(equalTo: view.topAnchor),
-                blurOverlay.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                overlay.leftAnchor.constraint(equalTo: view.leftAnchor),
+                overlay.rightAnchor.constraint(equalTo: view.rightAnchor),
+                overlay.topAnchor.constraint(equalTo: view.topAnchor),
+                overlay.bottomAnchor.constraint(equalTo: view.bottomAnchor)
                 ])
 
             UIView.animate(withDuration: duration) {
-                self.blurOverlay.alpha = 1.0
+                self.overlay.alpha = 1.0
             }
         } else {
             UIView.animate(withDuration: duration, animations: {
-                self.blurOverlay.alpha = 0
+                self.overlay.alpha = 0
             }) { _ in
-                self.blurOverlay.removeFromSuperview()
+                self.overlay.removeFromSuperview()
             }
         }
     }
@@ -109,7 +107,7 @@ class ScheduleRemindersController: UIViewController {
         }
 
         navigationItem.rightBarButtonItem = switchButton(on: remindersEnabled)
-        setBlur(visible: !remindersEnabled, animated: false)
+        setOverlay(visible: !remindersEnabled, animated: false)
 
 
         timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
@@ -159,10 +157,10 @@ class ScheduleRemindersController: UIViewController {
     private func createNotification(with index: Int, chosenTime: Date) -> UILocalNotification {
         let localNotif = UILocalNotification()
         localNotif.fireDate = fireDate(for: index, date: chosenTime)
-        localNotif.alertBody = "Tap here to open 5 Calls and get started"
+        localNotif.alertTitle = R.string.localizable.scheduledReminderAlertTitle()
+        localNotif.alertBody = R.string.localizable.scheduledReminderAlertBody()
         localNotif.repeatInterval = .weekOfYear
-        localNotif.alertTitle = "Time to Make Some Calls"
-        localNotif.alertAction = "OK"
+        localNotif.alertAction = R.string.localizable.okButtonTitle()
         localNotif.timeZone = TimeZone(identifier: "default")
         localNotif.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber + 1
         return localNotif
