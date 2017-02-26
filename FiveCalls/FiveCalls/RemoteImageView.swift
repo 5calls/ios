@@ -25,8 +25,8 @@ class RemoteImageView : UIImageView {
     private var currentImageURL: URL?
     
     func setRemoteImage(url: URL) {
-        setRemoteImage(url: url) { image in
-            self.image = image
+        setRemoteImage(url: url) { [weak self] image in
+            self?.image = image
         }
     }
     
@@ -45,8 +45,11 @@ class RemoteImageView : UIImageView {
             return completion(preferredImage!)
         }
         currentTask?.cancel()
-        currentTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
-            guard self.currentTask!.state != .canceling else { return }
+        currentTask = session.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
+            guard let strongSelf = self,
+                strongSelf.currentTask!.state != .canceling else {
+                    return
+            }
             
             if let e = error as NSError? {
                 if e.domain == NSURLErrorDomain && e.code == NSURLErrorCancelled {
@@ -59,10 +62,11 @@ class RemoteImageView : UIImageView {
 
                 if http.statusCode == 200 {
                     if let data = data, let image = UIImage(data: data) {
-                        self.currentImageURL = url
+                        strongSelf.currentImageURL = url
                         ImageCache.shared.set(image: image, forKey: url)
-                        DispatchQueue.main.async {
-                            if self.currentImageURL == url {
+                        
+                        if strongSelf.currentImageURL == url {
+                            DispatchQueue.main.async {
                                 completion(image)
                             }
                         }

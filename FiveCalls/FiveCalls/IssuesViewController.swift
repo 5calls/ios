@@ -90,7 +90,9 @@ class IssuesViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
         issuesManager.userLocation = UserLocation.current
-        issuesManager.fetchIssues(completion: issuesLoaded)
+        issuesManager.fetchIssues { [weak self] in
+            self?.issuesLoaded(result: $0)
+        }
     }
 
     private func issuesLoaded(result: IssuesLoadResult) {
