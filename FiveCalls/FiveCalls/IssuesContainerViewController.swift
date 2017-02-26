@@ -100,7 +100,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        if previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
+        if previousTraitCollection != nil && previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
             issuesViewController.willMove(toParentViewController: nil)
             issuesViewController.view.constraints.forEach { constraint in
                 issuesViewController.view.removeConstraint(constraint)
