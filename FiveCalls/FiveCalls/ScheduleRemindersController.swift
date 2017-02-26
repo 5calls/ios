@@ -14,7 +14,7 @@ class ScheduleRemindersController: UIViewController {
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
 
     lazy private var overlay: UIView = {
-        let overlay = UIVisualEffectView()
+        let overlay = UIView()
         overlay.backgroundColor = .white
         overlay.translatesAutoresizingMaskIntoConstraints = false
         
