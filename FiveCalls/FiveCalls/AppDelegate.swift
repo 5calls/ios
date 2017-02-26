@@ -100,11 +100,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UIApplication {
-    func fvc_open(_ url: URL) {
+    func fvc_open(_ url: URL, completion: ((Bool) -> Void)? = nil) {
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
+            UIApplication.shared.open(url) {
+                completion?($0)
+            }
         } else {
-            UIApplication.shared.openURL(url)
+            let result = UIApplication.shared.openURL(url)
+            completion?(result)
         }
     }
 }
