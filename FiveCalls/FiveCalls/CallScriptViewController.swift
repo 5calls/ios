@@ -47,8 +47,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
+        if self.presentingViewController != nil {
             self.navigationItem.leftBarButtonItem = self.iPadDoneButton
         }
 

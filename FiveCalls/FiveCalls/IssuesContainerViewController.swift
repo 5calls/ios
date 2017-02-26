@@ -17,7 +17,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerContainer: UIView!
     @IBOutlet weak var iPadShareButton: UIButton!
     
-    static let headerHeight: CGFloat = 90
+    static let headerHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 90 : 105
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
