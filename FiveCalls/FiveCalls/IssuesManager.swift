@@ -34,7 +34,7 @@ class IssuesManager {
         
         let operation = FetchIssuesOperation(location: userLocation)
         
-        operation.completionBlock = { [weak self] in
+        operation.completionBlock = { [weak self, unowned operation] in
             if let issuesList = operation.issuesList {
                 self?.issuesList = issuesList
                 // notification!
