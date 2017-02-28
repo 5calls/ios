@@ -1,3 +1,9 @@
+- Fix numeric keyboard when entering full address
+
+- Update About page to match website.
+
+Previously:
+
 - Add option to remind you to make your calls (Thanks, @chrisbrandow!)
 
 - Fix some memory leaks (Thanks, @tomburns!)
@@ -15,3 +21,4 @@
   broken interface
 
 - Fix a couple of crashes that affected a small number of users
+
