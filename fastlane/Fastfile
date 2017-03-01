@@ -49,7 +49,7 @@ platform :ios do
     gym(workspace: workspace, scheme: scheme)
     changelog = prompt_for_release_notes
     pilot(changelog: changelog)
-    git_commit(path: 'changelog.txt', message: 'Updated changelog.txt')
+    git_commit(path: 'fastlane/changelog.txt', message: 'Updated changelog.txt')
 
     reset_git_repo(files: app_icon_files)
     add_git_tag

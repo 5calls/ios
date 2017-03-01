@@ -1,24 +1,17 @@
-- Fix numeric keyboard when entering full address
-
-- Update About page to match website.
+- Remove notification badge on app launch
 
 Previously:
 
+- Fix numeric keyboard when entering full address
+- Update About page to match website.
 - Add option to remind you to make your calls (Thanks, @chrisbrandow!)
-
 - Fix some memory leaks (Thanks, @tomburns!)
-
 - Better messaging around what to do when the call is placed
-
 - iPad support (Thanks, @bengottlieb!)
-
 - Full Address support for those of you who still had split district results
   even after using GPS. (Thanks, @tomburns!)
-
 - Better handling of connection errors, or cases where the server is down
-
 - Fix issue on some devices where the blur effect didn't work, resulting in
   broken interface
-
 - Fix a couple of crashes that affected a small number of users
 
