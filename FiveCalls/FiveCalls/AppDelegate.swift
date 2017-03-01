@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BuddyBuildSDK.setup()
         Fabric.with([Crashlytics.self])
 
+        clearNotificationBadge()
         setAppearance()
         
         if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
@@ -96,6 +97,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // clear any saved location data
         Pantry.removeAllCache()
+    }
+    
+    private func clearNotificationBadge() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 }
 
