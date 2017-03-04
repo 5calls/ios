@@ -56,6 +56,18 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 2, let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            let label = UILabel(frame: .zero)
+            label.text = "v" + version
+            label.textColor = .lightGray
+            label.textAlignment = .center
+            label.font = R.font.robotoCondensedRegular(size: 12)
+            return label
+        }
+        return nil
+    }
+    
     func sendFeedback() {
         Answers.logCustomEvent(withName: "Action: Feedback")
         if MFMailComposeViewController.canSendMail() {
