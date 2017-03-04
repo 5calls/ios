@@ -42,10 +42,11 @@ class IssuesManager {
                     completion(.success)
                 }
             } else {
+                let error = operation.error
                 print("Could not load issues..")
                 
                 DispatchQueue.main.async {
-                    if let e = operation.error {
+                    if let e = error {
                         print(e.localizedDescription)
                         
                         if self?.isOfflineError(error: e) == true {
