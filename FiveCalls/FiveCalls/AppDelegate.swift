@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BuddyBuildSDK.setup()
         Fabric.with([Crashlytics.self])
 
+        migrateSavedData()
+        Pantry.useApplicationSupportDirectory = true
+
         clearNotificationBadge()
         setAppearance()
         
@@ -33,6 +36,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    func migrateSavedData() {
+        let pantryDirName = "com.thatthinginswift.pantry"
+        // Pantry used to store data in the caches folder. If this exists, we need to move it
+        // and delete it, to avoid this getting purged when the device is low on disk space.
+        let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
+        let oldPantryPath = URL(fileURLWithPath: cachesDir).appendingPathComponent(pantryDirName).path
+
+        if FileManager.default.fileExists(atPath: oldPantryPath) {
+            print("Saved data found in caches folder, moving to Application Support...")
+            let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
+            let targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).path
+            do {
+                try FileManager.default.moveItem(atPath: oldPantryPath, toPath: targetPath)
+                print("Files migrated.")
+            } catch let e {
+                print("Error moving files: \(e)")
+            }
+        }
     }
     
     func transitionTo(rootViewController viewController: UIViewController) {

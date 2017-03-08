@@ -4,7 +4,7 @@ use_frameworks!
 plugin 'cocoapods-acknowledgements'
 
 def common_pods
-  pod 'Pantry'
+  pod 'Pantry', git: 'https://github.com/nickoneill/pantry.git', branch: 'nick-file-protection' # needed for app support folder change
   pod 'R.swift'
 end
 
