@@ -16,17 +16,23 @@ DEPENDENCIES:
   - DropDown
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - Fabric
-  - Pantry
+  - Pantry (from `https://github.com/nickoneill/pantry.git`, branch `nick-file-protection`)
   - R.swift
 
 EXTERNAL SOURCES:
   DZNEmptyDataSet:
     :git: https://github.com/subdigital/DZNEmptyDataSet
+  Pantry:
+    :branch: nick-file-protection
+    :git: https://github.com/nickoneill/pantry.git
 
 CHECKOUT OPTIONS:
   DZNEmptyDataSet:
     :commit: ee32a46e6e79f9c84b2e3caf75f52b4948b01406
     :git: https://github.com/subdigital/DZNEmptyDataSet
+  Pantry:
+    :commit: 2d666b78df5c2782f28c0f2b62b941c7c15946d2
+    :git: https://github.com/nickoneill/pantry.git
 
 SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
@@ -38,6 +44,6 @@ SPEC CHECKSUMS:
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
 
-PODFILE CHECKSUM: a01f3e98da0ebd079cf9e2a87c086b918e5b5f86
+PODFILE CHECKSUM: 62654a3403745858f7d5d1e21f1e39df459ce6f1
 
 COCOAPODS: 1.2.0
