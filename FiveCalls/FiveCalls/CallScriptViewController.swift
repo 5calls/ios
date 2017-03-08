@@ -242,7 +242,7 @@ extension CallScriptViewController : UITableViewDataSource {
             cell.moreNumbersButton.isHidden = contact.fieldOffices.isEmpty
             if contact.fieldOffices.count > 0 {
                 dropdown = DropDown(anchorView: cell.moreNumbersButton)
-                dropdown?.dataSource = contact.fieldOffices.map { "\($0.phone) (\($0.city))" }
+                dropdown?.dataSource = contact.fieldOffices.map { $0.city.isEmpty ? $0.phone : "\($0.phone) (\($0.city))" }
                 dropdown?.dismissMode = .automatic
                 dropdown?.selectionAction = { [weak self] index, item in
                     guard let strongSelf = self else { return }
