@@ -28,7 +28,8 @@
 		9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA601E461C920024B991 /* PaddedLabel.swift */; };
 		9C46B1F81E46D638009B2C11 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F71E46D638009B2C11 /* BlueButton.swift */; };
 		9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */; };
-		AA7442D91E722B110017CD99 /* ImpactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7442D81E722B110017CD99 /* ImpactViewModelTests.swift */; };
+		AACC2AEB1E732775004B2F2B /* StreakCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC2AEA1E732775004B2F2B /* StreakCounter.swift */; };
+		AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */; };
 		B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9AA735873694488D24C260 /* QuartzCore.framework */; };
 		B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280511E46A7A300749ED7 /* EllipsisButton.swift */; };
 		B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280531E46A91F00749ED7 /* AreaOffice.swift */; };
@@ -140,7 +141,8 @@
 		9C18DA601E461C920024B991 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		9C46B1F71E46D638009B2C11 /* BlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutcomeOperation.swift; sourceTree = "<group>"; };
-		AA7442D81E722B110017CD99 /* ImpactViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactViewModelTests.swift; sourceTree = "<group>"; };
+		AACC2AEA1E732775004B2F2B /* StreakCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreakCounter.swift; sourceTree = "<group>"; };
+		AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreakCounterTests.swift; sourceTree = "<group>"; };
 		AC9AA735873694488D24C260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B50280511E46A7A300749ED7 /* EllipsisButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllipsisButton.swift; sourceTree = "<group>"; };
@@ -290,7 +292,7 @@
 			children = (
 				B502805F1E478BC200749ED7 /* Info.plist */,
 				B50280671E478BF500749ED7 /* ContactLogsTests.swift */,
-				AA7442D81E722B110017CD99 /* ImpactViewModelTests.swift */,
+				AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */,
 			);
 			path = FiveCallsTests;
 			sourceTree = "<group>";
@@ -409,6 +411,7 @@
 				B5E806FE1E463FE300EBE553 /* UserLocation.swift */,
 				B50280531E46A91F00749ED7 /* AreaOffice.swift */,
 				B50280551E47875500749ED7 /* ContactLog.swift */,
+				AACC2AEA1E732775004B2F2B /* StreakCounter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -564,7 +567,7 @@
 					};
 					B52805101E3FA94D00EE832A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = RN5GEV2KT8;
+						DevelopmentTeam = C2K3864N2N;
 						ProvisioningStyle = Automatic;
 					};
 					B5A70A571E4C01A00031DF58 = {
@@ -776,8 +779,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7442D91E722B110017CD99 /* ImpactViewModelTests.swift in Sources */,
 				B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */,
+				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +820,7 @@
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				9C46B1F81E46D638009B2C11 /* BlueButton.swift in Sources */,
 				B5E98E311E50C895005221B7 /* SetLocationCell.swift in Sources */,
+				AACC2AEB1E732775004B2F2B /* StreakCounter.swift in Sources */,
 				FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */,
 				B5E98E381E529EE4005221B7 /* SeededURLSession.swift in Sources */,
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
@@ -1032,7 +1036,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 20;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = RN5GEV2KT8;
+				DEVELOPMENT_TEAM = C2K3864N2N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1055,7 +1059,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 20;
-				DEVELOPMENT_TEAM = RN5GEV2KT8;
+				DEVELOPMENT_TEAM = C2K3864N2N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
