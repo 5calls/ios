@@ -21,9 +21,12 @@
 "cant-send-email-title"               = "Can't send mail";
 "cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
 "share-the-app-message"               = "Make 5 Calls to your elected officials and let your voice be heard!";
-"your-impact-multiple"                = "Your impact is %d calls!";
-"your-impact-single"                  = "Your impact is %d call!";
-"your-impact-zero"                    = "Your impact is %d calls.";
+"your-impact-multiple"                = "Your total impact is %d calls.";
+"your-impact-single"                  = "Your total impact is %d call.";
+"your-impact-zero"                    = "Your total impact is %d calls.";
+"your-weekly-streak-multiple"         = "Your current weekly call streak is %d weeks in a row. You're on a roll!";
+"your-weekly-streak-single"           = "Your current weekly call streak just started. Keep it going!";
+"your-weekly-streak-zero"             = "Your current weekly call streak is %d.";
 "community-calls"                     = "The 5 Calls community has contributed %@ calls!";
 "made-contact"                        = "Made Contact";
 "unavailable"                         = "Unavailable";
