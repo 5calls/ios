@@ -38,7 +38,8 @@ class IssuesViewController : UITableViewController {
 
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
-        
+        self.registerForPreviewing(with: self, sourceView: tableView)
+
         Answers.logCustomEvent(withName:"Screen: Issues List")
         
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -171,6 +172,27 @@ class IssuesViewController : UITableViewController {
         }
         return cell
     }
+
+}
+
+extension IssuesViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        guard let detailViewController = R.storyboard.main.issueDetailViewController() else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
+        
+        detailViewController.issuesManager = issuesManager
+        detailViewController.issue = issuesManager.issues[indexPath.row]
+        previewingContext.sourceRect = cell.frame
+        
+        return detailViewController
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.show(viewControllerToCommit, sender: self)
+    }
+    
 }
 
 extension IssuesViewController : DZNEmptyDataSetSource {
