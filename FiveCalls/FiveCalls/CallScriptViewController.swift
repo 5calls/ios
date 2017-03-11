@@ -42,7 +42,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.tintColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(IssueDetailViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
