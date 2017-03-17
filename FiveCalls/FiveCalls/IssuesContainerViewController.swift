@@ -133,6 +133,14 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBAction func setLocationTapped(_ sender: Any) {
     }
     
+    @IBAction func addReminderTapped(_ sender: UIButton) {
+        if let reminderViewController = R.storyboard.about.enableReminderVC(),
+            let navController = R.storyboard.about.aboutNavController() {
+            navController.setViewControllers([reminderViewController], animated: false)
+            present(navController, animated: true, completion: nil)
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
