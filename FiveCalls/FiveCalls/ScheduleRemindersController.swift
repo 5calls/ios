@@ -105,7 +105,12 @@ class ScheduleRemindersController: UIViewController {
                 timePicker.setDate(date, animated: true)
             }
         }
-
+        if navigationController?.viewControllers.first == self {
+            let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissAction(_:)))
+            item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .normal)
+            navigationItem.leftBarButtonItem = item
+        }
+        
         navigationItem.rightBarButtonItem = switchButton(on: remindersEnabled)
         setOverlay(visible: !remindersEnabled, animated: false)
 
@@ -124,6 +129,10 @@ class ScheduleRemindersController: UIViewController {
         }
     }
 
+    @objc private func dismissAction(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func clearNotifications() {
         UIApplication.shared.cancelAllLocalNotifications()
     }
