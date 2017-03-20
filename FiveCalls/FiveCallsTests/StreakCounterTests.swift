@@ -23,7 +23,7 @@ class StreakCounterTests: XCTestCase {
     
     func testDaysApart() {
         let t1 = dates[1]
-        let expected = [84, 0, 0, 1, 2, 9, 14]
+        let expected = [85, 0, 0, 1, 2, 9, 13]
         for (index, t2) in dates.enumerated() {
             XCTAssertEqual(StreakCounter.daysApart(from: t1, to: t2), expected[index])
             XCTAssertEqual(StreakCounter.daysApart(from: t2, to: t1), expected[index])
