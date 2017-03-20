@@ -914,7 +914,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="statCell" textLabel="ZSx-yb-8Qy" detailTextLabel="RlJ-Rz-RYb" style="IBUITableViewCellStyleValue1" id="TVv-gW-ZKZ">
-                                <rect key="frame" x="0.0" y="243" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="299" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TVv-gW-ZKZ" id="Ns2-UU-Wpo">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -938,7 +938,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="contactStatCell" textLabel="SJ8-g0-JAP" detailTextLabel="kbU-0d-lcn" style="IBUITableViewCellStyleValue1" id="mE9-Jg-tD4">
-                                <rect key="frame" x="0.0" y="287" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="343" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mE9-Jg-tD4" id="4mP-T1-Hr3">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
