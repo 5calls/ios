@@ -16,6 +16,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
     @IBOutlet weak var iPadShareButton: UIButton!
+    @IBOutlet weak var editRemindersButton: UIButton!
     
     static let headerHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 90 : 105
     var issuesViewController: IssuesViewController!
@@ -119,6 +120,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         navigationController?.setNavigationBarHidden(true, animated: true)
         setContentInset()
         
+        setReminderBellStatus()
+        
         // don't need to listen anymore because any change comes from this VC (otherwise we'll end up fetching twice)
         NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)
     }
@@ -178,6 +181,11 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     private func setTitleLabel(location: UserLocation?) {
         locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
+    }
+    
+    private func setReminderBellStatus() {
+        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.reminderEnabled.rawValue)
+        editRemindersButton.isSelected = remindersEnabled
     }
 }
 
