@@ -15,7 +15,8 @@ class MyImpactViewController : UITableViewController {
     var viewModel: ImpactViewModel!
     var totalCalls: Int?
     
-    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var streakLabel: UILabel!
+    @IBOutlet weak var impactLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
     
     enum Sections: Int {
@@ -48,9 +49,10 @@ class MyImpactViewController : UITableViewController {
         Answers.logCustomEvent(withName:"Screen: My Impact")
         
         viewModel = ImpactViewModel(logs: ContactLogs.load().all)
-      
+        let weeklyStreakCount = viewModel.weeklyStreakCount
+        streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
         let numberOfCalls = viewModel.numberOfCalls
-        headerLabel.text = impactMessage(for: numberOfCalls)
+        impactLabel.text = impactMessage(for: numberOfCalls)
         subheadLabel.isHidden = numberOfCalls == 0
         
         let op = FetchStatsOperation()
@@ -62,6 +64,14 @@ class MyImpactViewController : UITableViewController {
             
         }
         OperationQueue.main.addOperation(op)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if let headerView = tableView.tableHeaderView {
+            let height = subheadLabel.isHidden ? impactLabel.frame.maxY : (subheadLabel.frame.maxY + 25.0)
+            headerView.frame.size.height = height
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,6 +108,17 @@ class MyImpactViewController : UITableViewController {
         guard let total = totalCalls, section == Sections.stats.rawValue else { return nil }
         let statsVm = StatsViewModel(numberOfCalls: total)
         return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
+    }
+
+    private func weeklyStreakMessage(for weeklyStreakCount: Int) -> String {
+        switch weeklyStreakCount {
+        case 0:
+            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
+        case 1:
+            return R.string.localizable.yourWeeklyStreakSingle()
+        default:
+            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
+        }
     }
   
     private func impactMessage(for numberOfCalls: Int) -> String {

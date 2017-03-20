@@ -30,4 +30,9 @@ struct ImpactViewModel {
     var voicemailCount: Int {
         return logs.filter { $0.outcome == .voicemail }.count
     }
+    
+    var weeklyStreakCount: Int {
+        let logDates = logs.map { $0.date }
+        return StreakCounter(dates: logDates, referenceDate: Date()).weekly
+    }
 }
