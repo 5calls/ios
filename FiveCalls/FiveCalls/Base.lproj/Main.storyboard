@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -101,6 +101,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Ssk-NJ-Fc0" id="5mI-34-fC5"/>
+                        <outlet property="editRemindersButton" destination="mya-7X-ILr" id="VgH-Wd-pb9"/>
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerContainer" destination="Jlg-f3-h08" id="etS-dw-Kub"/>
                         <outlet property="headerView" destination="hWw-bF-wTS" id="Y5s-Vp-Jdt"/>
@@ -139,10 +140,10 @@
                             <rect key="frame" x="375" y="43" width="19" height="27"/>
                             <state key="normal" image="share"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mya-7X-ILr">
-                            <rect key="frame" x="20" y="28" width="50" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                            <state key="normal" title="🔔"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mya-7X-ILr">
+                            <rect key="frame" x="20" y="42" width="18" height="22"/>
+                            <state key="normal" image="bell"/>
+                            <state key="selected" image="bell-selected"/>
                             <connections>
                                 <action selector="addReminderTapped:" destination="NcD-22-I7g" eventType="touchUpInside" id="q2e-9I-dwl"/>
                             </connections>
@@ -1014,6 +1015,8 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     </scenes>
     <resources>
         <image name="5calls-logotype" width="567" height="158"/>
+        <image name="bell" width="18" height="22"/>
+        <image name="bell-selected" width="18" height="22"/>
         <image name="icon-office" width="100" height="100"/>
         <image name="share" width="19" height="27"/>
     </resources>
