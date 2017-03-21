@@ -240,20 +240,6 @@ extension CallScriptViewController : UITableViewDataSource {
             }
             
             cell.moreNumbersButton.isHidden = contact.fieldOffices.isEmpty
-            if contact.fieldOffices.count > 0 {
-                cell.moreNumbersButton.setTitle(R.string.localizable.lineBusy(), for: .normal)
-                dropdown = DropDown(anchorView: cell.moreNumbersButton)
-                dropdown?.dataSource = contact.fieldOffices.map { $0.city.isEmpty ? "\($0.phone)" : "\($0.phone) (\($0.city))" }
-                dropdown?.dismissMode = .automatic
-                dropdown?.selectionAction = { [weak self] index, item in
-                    guard let strongSelf = self else { return }
-                    if strongSelf.contact.fieldOffices.indices.contains(index) {
-                        let phone = strongSelf.contact.fieldOffices[index].phone
-                        Answers.logCustomEvent(withName:"Action: Dialed Alternate Number", customAttributes: ["contact_id":strongSelf.contact.id])
-                        self?.callNumber(phone)
-                    }
-                }
-            }
             cell.moreNumbersButton.addTarget(self, action: #selector(CallScriptViewController.moreNumbersTapped), for: .touchUpInside)
             // This helps both resizing labels we have actually display correctly 
             cell.layoutIfNeeded()
@@ -272,7 +258,21 @@ extension CallScriptViewController : UITableViewDataSource {
     
     func moreNumbersTapped() {
         Answers.logCustomEvent(withName:"Action: Opened More Numbers", customAttributes: ["contact_id":contact.id])
-        dropdown?.show()
+        if contact.fieldOffices.count > 0 {
+            let contactID = contact.id
+            let sheet = UIAlertController(title: R.string.localizable.chooseANumber(), message: nil, preferredStyle: .actionSheet)
+            for office in contact.fieldOffices {
+                let title = office.city.isEmpty ? "\(office.phone)" : "\(office.city): \(office.phone)"
+                sheet.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] action in
+                    Answers.logCustomEvent(withName:"Action: Dialed Alternate Number", customAttributes: ["contact_id":contactID])
+                    self?.callNumber(office.phone)
+                }))
+            }
+            sheet.addAction(UIAlertAction(title: R.string.localizable.cancelButtonTitle(), style: .default, handler: { [weak self] action in
+                self?.dismiss(animated: true, completion: nil)
+            }))
+            self.present(sheet, animated: true, completion: nil)
+        }
     }
 }
 
