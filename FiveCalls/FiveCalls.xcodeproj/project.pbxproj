@@ -12,7 +12,6 @@
 		1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */; };
 		271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625401E52502D0042222E /* ScheduleRemindersController.swift */; };
 		271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */; };
-		1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
 		33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */; };
 		33C2E0E81E52ADC200F810C6 /* UIColor+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */; };
@@ -119,7 +118,6 @@
 		1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueScriptCell.swift; sourceTree = "<group>"; };
 		271625401E52502D0042222E /* ScheduleRemindersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRemindersController.swift; sourceTree = "<group>"; };
 		271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionSegmentedControl.swift; sourceTree = "<group>"; };
-		1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueScriptCell.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-FiveCallsTests-metadata.plist"; path = "Pods/Pods-FiveCallsTests-metadata.plist"; sourceTree = "<group>"; };
 		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
