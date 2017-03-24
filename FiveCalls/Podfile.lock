@@ -2,7 +2,6 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - DropDown (2)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.11)
   - Pantry (0.3)
@@ -13,7 +12,6 @@ PODS:
 DEPENDENCIES:
   - CPDAcknowledgements
   - Crashlytics (~> 3.8.4)
-  - DropDown
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - Fabric
   - Pantry (from `https://github.com/nickoneill/pantry.git`, branch `nick-file-protection`)
@@ -37,13 +35,12 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
   R.swift: 207a372a2b5977caef440c696a368009460641d1
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
 
-PODFILE CHECKSUM: 62654a3403745858f7d5d1e21f1e39df459ce6f1
+PODFILE CHECKSUM: b1fa26f65677f9f8d1139d771123c52f4a215ea2
 
 COCOAPODS: 1.2.0

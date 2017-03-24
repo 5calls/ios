@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreLocation
-import DropDown
 import Crashlytics
 
 class CallScriptViewController : UIViewController, IssueShareable {
@@ -31,9 +30,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
     @IBOutlet weak var resultContactedButton: BlueButton!
     @IBOutlet weak var resultSkipButton: BlueButton!
     @IBOutlet weak var checkboxView: CheckboxView!
-    
-    var dropdown: DropDown?
-    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
