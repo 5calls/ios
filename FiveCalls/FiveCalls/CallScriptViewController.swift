@@ -267,7 +267,7 @@ extension CallScriptViewController : UITableViewDataSource {
                     self?.callNumber(office.phone)
                 }))
             }
-            sheet.addAction(UIAlertAction(title: R.string.localizable.cancelButtonTitle(), style: .default, handler: { [weak self] action in
+            sheet.addAction(UIAlertAction(title: R.string.localizable.cancelButtonTitle(), style: .cancel, handler: { [weak self] action in
                 self?.dismiss(animated: true, completion: nil)
             }))
             self.present(sheet, animated: true, completion: nil)
