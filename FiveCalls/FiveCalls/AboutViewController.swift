@@ -31,7 +31,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = .white
         Answers.logCustomEvent(withName:"Screen: About")
     }
 
