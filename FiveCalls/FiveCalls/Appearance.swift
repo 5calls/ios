@@ -37,7 +37,7 @@ class Appearance {
             [NSFontAttributeName: headerFont,
              NSForegroundColorAttributeName : UIColor.white]
         
-        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().tintColor = .white
     }
     
     private func appFont(size: CGFloat, bold: Bool) -> UIFont! {
