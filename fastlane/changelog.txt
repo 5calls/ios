@@ -1,7 +1,19 @@
-- Remove notification badge on app launch
+1.3.22
+
+- Use action sheet instead of the custom dropdown popover for additional numbers
+- 3D Touch support for previewing issue details
+- Call reminders elevated to main screen, with a bell icon indicating if they are turned on or not
+- Add weekly streak count to "My Impact" View
+- Add some treatment to phone number labels to better indicate you can tap on them
+- Move saved call data from caches to app support. This will resolve the issue where low disk space meant that this data would get cleaned up by the OS.  (This was unintentionally left in caches)
+- Added the version number to the About screen
+- Fixed memory leak when fetching issues
+- Allow copying issue text
+
 
 Previously:
 
+- Remove notification badge on app launch
 - Fix numeric keyboard when entering full address
 - Update About page to match website.
 - Add option to remind you to make your calls (Thanks, @chrisbrandow!)
