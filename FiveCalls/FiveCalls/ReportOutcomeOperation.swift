@@ -28,7 +28,7 @@ class ReportOutcomeOperation : BaseOperation {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let query = "result=\(log.outcome)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)"
+        let query = "result=\(log.outcome)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=ios"
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return
