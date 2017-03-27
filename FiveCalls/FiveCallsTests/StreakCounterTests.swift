@@ -10,7 +10,7 @@ import XCTest
 @testable import FiveCalls
 
 class StreakCounterTests: XCTestCase {
-    
+    let oldTimeZone = NSTimeZone.default
     let dates: [Date] = [
         Date(timeIntervalSince1970: TimeInterval(1478649600)), // Wed, 09 Nov 2016 00:00:00 GMT
         Date(timeIntervalSince1970: TimeInterval(1485928846)), // Wed, 01 Feb 2017 06:00:46 GMT
@@ -21,9 +21,17 @@ class StreakCounterTests: XCTestCase {
         Date(timeIntervalSince1970: TimeInterval(1487073600)), // Tue, 14 Feb 2017 12:00:00 GMT
     ]
     
+    override func setUp() {
+        NSTimeZone.default = TimeZone(abbreviation: "PDT")!
+    }
+    
+    override func tearDown() {
+        NSTimeZone.default = oldTimeZone
+    }
+    
     func testDaysApart() {
         let t1 = dates[1]
-        let expected = [85, 0, 0, 1, 2, 9, 13]
+        let expected = [84, 0, 0, 1, 2, 9, 14]
         for (index, t2) in dates.enumerated() {
             XCTAssertEqual(StreakCounter.daysApart(from: t1, to: t2), expected[index])
             XCTAssertEqual(StreakCounter.daysApart(from: t2, to: t1), expected[index])
