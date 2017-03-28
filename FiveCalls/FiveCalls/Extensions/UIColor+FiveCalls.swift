@@ -39,7 +39,8 @@ extension UIColor {
     static let fvc_superLightGray = UIColor(white: 0.96, alpha: 1.0)
     
     static let fvc_lightGray = UIColor(white: 0.90, alpha: 1.0)
-    
+    static let fvc_lightGrayBackground = UIColor(white: 245.0/255.0, alpha: 1.0)
+
     static let fvc_mediumGray = UIColor(white:0.88, alpha: 1.0)
     
     static let fvc_darkGray = UIColor(white: 0.4, alpha: 1.0)

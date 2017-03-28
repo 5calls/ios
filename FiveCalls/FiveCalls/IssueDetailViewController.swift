@@ -31,6 +31,26 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.rowHeight = UITableViewAutomaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
     }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard section == IssueSections.header.rawValue else {
+            return nil
+        }
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40.0))
+        let label = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.frame.width - 32.0, height: 40))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        view.addSubview(label)
+        view.addSubview(button)
+
+        view.backgroundColor = .fvc_lightGrayBackground
+        label.text = R.string.localizable.callYourReps()
+        button.addTarget(self, action: #selector(footerAction(_:)), for: .touchUpInside)
+        return view
+    }
+
+    @objc func footerAction(_ sender: UIButton) {
+        self.tableView.scrollToRow(at: IndexPath(item: 0, section: 1), at: .top, animated: true)
+    }
     
     func madeCall() {
         logs = ContactLogs.load()
@@ -145,13 +165,6 @@ extension IssueDetailViewController : UITableViewDataSource {
                 return cell
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if !issue.contacts.isEmpty && section == IssueSections.contacts.rawValue {
-            return R.string.localizable.callYourReps()
-        }
-        return nil
     }
     
     private func headerCell(at indexPath: IndexPath) -> UITableViewCell {
