@@ -122,6 +122,7 @@ class ScheduleRemindersController: UIViewController {
         super.viewWillAppear(animated)
         updateDaysWarning()
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard notificationsChanged == true && remindersEnabled else { return }
@@ -157,12 +158,12 @@ class ScheduleRemindersController: UIViewController {
 
     func updateDaysWarning() {
         if daysOfWeekSelector.selectedIndices.count == 0 {
-            self.daysOfWeekSelector.layer.borderColor = UIColor.red.cgColor
-            self.daysOfWeekSelector.layer.borderWidth = 1.0
-            self.noDaysWarningLabel.isHidden = false
+            daysOfWeekSelector.layer.borderColor = UIColor.red.cgColor
+            daysOfWeekSelector.layer.borderWidth = 1.0
+            noDaysWarningLabel.isHidden = false
         } else {
-            self.daysOfWeekSelector.layer.borderWidth = 0.0
-            self.noDaysWarningLabel.isHidden = true
+            daysOfWeekSelector.layer.borderWidth = 0.0
+            noDaysWarningLabel.isHidden = true
         }
     }
 
@@ -173,7 +174,7 @@ class ScheduleRemindersController: UIViewController {
     private func shakeDays() {
         UIView.animate(withDuration: 0.14, animations: {
             self.daysOfWeekSelector.transform = CGAffineTransform(translationX: 10, y: 0)
-        }) { (complete) in
+        }) { (_) in
             UIView.animate(withDuration: 0.22, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 1.0, options: .curveLinear, animations: {
                 self.daysOfWeekSelector.transform = CGAffineTransform(translationX: 0, y: 0)
             }, completion: nil)
