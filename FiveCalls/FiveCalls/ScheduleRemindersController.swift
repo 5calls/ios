@@ -12,6 +12,7 @@ class ScheduleRemindersController: UIViewController {
 
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var daysOfWeekSelector: MultipleSelectionControl!
+    @IBOutlet weak var noDaysWarningLabel: UILabel!
 
     lazy private var overlay: UIView = {
         let overlay = UIView()
@@ -98,7 +99,6 @@ class ScheduleRemindersController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
             daysOfWeekSelector.setSelectedButtons(at: indices(from: notifications))
             if let date = notifications.first?.fireDate {
@@ -118,6 +118,11 @@ class ScheduleRemindersController: UIViewController {
         timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateDaysWarning()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard notificationsChanged == true && remindersEnabled else { return }
@@ -130,7 +135,12 @@ class ScheduleRemindersController: UIViewController {
     }
 
     @objc private func dismissAction(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        let cannotDismiss = noDaysSelected() && remindersEnabled
+        if cannotDismiss {
+            shakeDays()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     private func clearNotifications() {
@@ -143,6 +153,32 @@ class ScheduleRemindersController: UIViewController {
 
     @IBAction func dayPickerAction(_ sender: MultipleSelectionControl) {
         notificationsChanged = true
+        updateDaysWarning()
+    }
+
+    func updateDaysWarning() {
+        if daysOfWeekSelector.selectedIndices.count == 0 {
+            daysOfWeekSelector.layer.borderColor = UIColor.red.cgColor
+            daysOfWeekSelector.layer.borderWidth = 1.0
+            noDaysWarningLabel.isHidden = false
+        } else {
+            daysOfWeekSelector.layer.borderWidth = 0.0
+            noDaysWarningLabel.isHidden = true
+        }
+    }
+
+    private func noDaysSelected() -> Bool {
+        return daysOfWeekSelector.selectedIndices.count == 0
+    }
+
+    private func shakeDays() {
+        UIView.animate(withDuration: 0.14, animations: {
+            self.daysOfWeekSelector.transform = CGAffineTransform(translationX: 10, y: 0)
+        }) { (_) in
+            UIView.animate(withDuration: 0.22, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 1.0, options: .curveLinear, animations: {
+                self.daysOfWeekSelector.transform = CGAffineTransform(translationX: 0, y: 0)
+            }, completion: nil)
+        }
     }
 
     private func indices(from notifications: [UILocalNotification]) -> [Int] {
