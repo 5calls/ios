@@ -29,10 +29,6 @@ class Appearance {
         
         // Fonts
         
-        if let substituteDescriptor = fontDescriptor {
-            UILabel.appearance().substituteFontDescriptor = substituteDescriptor
-        }
-        
         UINavigationBar.appearance().titleTextAttributes =
             [NSFontAttributeName: headerFont,
              NSForegroundColorAttributeName : UIColor.white]
@@ -42,9 +38,9 @@ class Appearance {
     
     private func appFont(size: CGFloat, bold: Bool) -> UIFont! {
         if bold {
-            return R.font.robotoCondensedBold(size: size)
+            return UIFont.boldSystemFont(ofSize: size)
         } else {
-            return R.font.robotoCondensedRegular(size: size)
+            return UIFont.systemFont(ofSize: size)
         }
     }
     
