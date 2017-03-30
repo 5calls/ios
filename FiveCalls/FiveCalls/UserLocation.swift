@@ -85,7 +85,7 @@ class UserLocation {
     
     func setFrom(location: CLLocation, completion: @escaping (Void) -> Void) {
         locationType = .coordinates
-        locationValue = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
+        locationValue = String(format: "%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude)
         locationDisplay = "..."
         getLocationInfo(from: location) { locationInfo in
             self.locationDisplay = locationInfo["displayName"] as? String
