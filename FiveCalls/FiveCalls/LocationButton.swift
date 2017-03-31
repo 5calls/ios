@@ -26,8 +26,7 @@ class LocationButton : UIButton {
         get { return _highlited }
         set {
             _highlited = newValue
-            backgroundColor = isHighlighted ? tintColor : .white
-            titleLabel?.textColor = isHighlighted ? .white : tintColor
+            backgroundColor = isHighlighted ? tintColor : .clear
             titleLabel?.textColor = isHighlighted ? .white : tintColor
         }
     }
