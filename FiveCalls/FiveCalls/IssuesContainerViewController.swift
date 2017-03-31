@@ -144,10 +144,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         }
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nc = segue.destination as? UINavigationController,
             let vc = nc.topViewController as? EditLocationViewController {
