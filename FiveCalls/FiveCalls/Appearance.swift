@@ -33,11 +33,9 @@ class Appearance {
             UILabel.appearance().substituteFontDescriptor = substituteDescriptor
         }
         
-        UINavigationBar.appearance().titleTextAttributes =
-            [NSFontAttributeName: headerFont,
-             NSForegroundColorAttributeName : UIColor.white]
-        
-        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName: headerFont
+        ]
     }
     
     private func appFont(size: CGFloat, bold: Bool) -> UIFont! {

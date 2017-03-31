@@ -31,10 +31,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
     @IBOutlet weak var resultSkipButton: BlueButton!
     @IBOutlet weak var checkboxView: CheckboxView!
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

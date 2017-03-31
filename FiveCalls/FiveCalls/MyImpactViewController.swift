@@ -48,6 +48,11 @@ class MyImpactViewController : UITableViewController {
         super.viewDidLoad()
         Answers.logCustomEvent(withName:"Screen: My Impact")
         
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: Appearance.instance.headerFont,
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        
         viewModel = ImpactViewModel(logs: ContactLogs.load().all)
         let weeklyStreakCount = viewModel.weeklyStreakCount
         streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
