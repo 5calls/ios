@@ -32,6 +32,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         guard section == IssueSections.header.rawValue else {
             return nil
         }
+        
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40.0))
         let label = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.frame.width - 32.0, height: 40))
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
@@ -40,6 +41,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
 
         view.backgroundColor = .fvc_lightGrayBackground
         label.text = R.string.localizable.callYourReps()
+        label.textAlignment = .center
+        label.font = Appearance.instance.headerFont
         button.addTarget(self, action: #selector(footerAction(_:)), for: .touchUpInside)
         return view
     }

@@ -152,6 +152,7 @@ class IssuesViewController : UITableViewController {
         notAButton.setTitle(R.string.localizable.whatsImportantTitle(), for: .normal)
         notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
         notAButton.backgroundColor = .fvc_superLightGray
+        notAButton.titleLabel?.font = Appearance.instance.headerFont
         notAButton.borderWidth = 1
         notAButton.borderColor = .fvc_mediumGray
         notAButton.topBorder = true

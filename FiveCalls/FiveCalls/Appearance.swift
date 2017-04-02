@@ -27,12 +27,6 @@ class Appearance {
         pageControlAppearance.pageIndicatorTintColor = .fvc_lightBlue
         pageControlAppearance.currentPageIndicatorTintColor = .fvc_darkBlue
         
-        // Fonts
-        
-        if let substituteDescriptor = fontDescriptor {
-            UILabel.appearance().substituteFontDescriptor = substituteDescriptor
-        }
-        
         UINavigationBar.appearance().titleTextAttributes = [
             NSFontAttributeName: headerFont
         ]
@@ -48,10 +42,6 @@ class Appearance {
     
     var headerFont: UIFont {
         return appFont(size: 18, bold: true)
-    }
-    
-    var bodyTitleFont: UIFont {
-        return appFont(size: 16, bold: true)
     }
     
     var bodyFont: UIFont {

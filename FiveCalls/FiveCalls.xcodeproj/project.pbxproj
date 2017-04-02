@@ -355,6 +355,8 @@
 				B5E7626D1E40D72D00D63D62 /* View Models */,
 				B5E7626C1E40D72400D63D62 /* Models */,
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
+				B5E98E341E529E66005221B7 /* functions.swift */,
+				B5FFBB981E5EA60E00647121 /* Appearance.swift */,
 				F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */,
 				B5E762641E40480300D63D62 /* UserDefaultsKeys.swift */,
 				2732D7C61E4300F300F149EF /* NotificationNames.swift */,
@@ -364,8 +366,6 @@
 				791C9FC91E4E5E000074A8B7 /* Main.storyboard */,
 				791C9FD01E4E5E510074A8B7 /* About.storyboard */,
 				B52805201E3FA94D00EE832A /* Info.plist */,
-				B5E98E341E529E66005221B7 /* functions.swift */,
-				B5FFBB981E5EA60E00647121 /* Appearance.swift */,
 			);
 			path = FiveCalls;
 			sourceTree = "<group>";
