@@ -267,6 +267,3 @@ extension CallScriptViewController : UITableViewDataSource {
     }
 }
 
-extension IssueDetailViewController : UITableViewDelegate {
-
-}
