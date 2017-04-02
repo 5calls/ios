@@ -81,7 +81,6 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             controller.contact = issue.contacts[indexPath.row]
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .formSheet
-            nav.navigationBar.barTintColor = .fvc_darkBlue
             self.present(nav, animated: true, completion: nil)
             return false
         }
