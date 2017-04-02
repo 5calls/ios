@@ -30,7 +30,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var addressTextField: UITextField!
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Answers.logCustomEvent(withName:"Screen: Edit Location")
