@@ -1,3 +1,13 @@
+1.3.23
+
+- Change to system font
+- Remove unnecessary text “Why you’re calling this office” — the value label is enough
+- Remove red nav bar, conflicts with system recording UI
+- Tappable “Call your representatives” header, sticks to bottom. Tap to scroll the contacts into view
+- Location Button rounded border, highlight styles. This makes it look more like a button.
+- Reminders: Force the user to choose a day if the reminders are enabled
+- Send via=ios on report endpoint for stats
+
 1.3.22
 
 - Use action sheet instead of the custom dropdown popover for additional numbers
