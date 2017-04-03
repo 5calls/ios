@@ -222,7 +222,7 @@
                                         <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="deSelectedBackgroundColor">
-                                        <color key="value" red="0.85366972684461806" green="0.92374724665008434" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
                                         <color key="value" red="0.85366972679999997" green="0.92374724669999997" blue="0.98168426750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
