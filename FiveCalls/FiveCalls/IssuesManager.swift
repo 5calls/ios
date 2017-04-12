@@ -34,15 +34,15 @@ class IssuesManager {
         
         let operation = FetchIssuesOperation(location: userLocation)
         
-        operation.completionBlock = { [weak self, unowned operation] in
-            if let issuesList = operation.issuesList {
+        operation.completionBlock = { [weak self, weak operation] in
+            if let issuesList = operation?.issuesList {
                 self?.issuesList = issuesList
                 // notification!
                 DispatchQueue.main.async {
                     completion(.success)
                 }
             } else {
-                let error = operation.error
+                let error = operation?.error
                 print("Could not load issues..")
                 
                 DispatchQueue.main.async {
