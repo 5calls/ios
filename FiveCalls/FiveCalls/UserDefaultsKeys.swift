@@ -17,4 +17,6 @@ enum UserDefaultsKeys : String {
     
     case hasSeenFirstCallInstructions
     case reminderEnabled
+
+    case hasWarnedAboutDangersOfCopying
 }
