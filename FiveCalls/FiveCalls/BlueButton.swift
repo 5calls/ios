@@ -59,10 +59,25 @@ class BlueButton: UIButton {
         }
     }
 
+    override var isEnabled: Bool {
+        didSet {
+            updateColors()
+        }
+    }
+    
     func updateColors() {
         if isHighlighted { backgroundColor = highlightBackgroundColor }
         else if isSelected { backgroundColor = selectedBackgroundColor }
         else { backgroundColor = normalBackgroundColor }
+        
+        if isEnabled {
+            alpha = 1.0
+            titleLabel?.alpha = 1.0
+        }
+        else {
+            alpha = 0.4
+            titleLabel?.alpha = 0.4
+        }
 
         setTitleColor(.white, for: .selected)
         setTitleColor(.white, for: .highlighted)
