@@ -27,7 +27,6 @@ class MultipleSelectionControl: UIControl {
         stackView.axis  = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 0.0
         return stackView
     }()
 
