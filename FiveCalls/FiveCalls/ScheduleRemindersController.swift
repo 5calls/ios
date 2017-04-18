@@ -114,12 +114,13 @@ class ScheduleRemindersController: UIViewController {
         navigationItem.rightBarButtonItem = switchButton(on: remindersEnabled)
         setOverlay(visible: !remindersEnabled, animated: false)
 
-
         timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        daysOfWeekSelector.warningBorderColor = UIColor.fvc_red.cgColor
+        noDaysWarningLabel.textColor = .fvc_red
         updateDaysWarning()
     }
 
@@ -158,11 +159,8 @@ class ScheduleRemindersController: UIViewController {
 
     func updateDaysWarning() {
         if daysOfWeekSelector.selectedIndices.count == 0 {
-            daysOfWeekSelector.layer.borderColor = UIColor.red.cgColor
-            daysOfWeekSelector.layer.borderWidth = 1.0
             noDaysWarningLabel.isHidden = false
         } else {
-            daysOfWeekSelector.layer.borderWidth = 0.0
             noDaysWarningLabel.isHidden = true
         }
     }
