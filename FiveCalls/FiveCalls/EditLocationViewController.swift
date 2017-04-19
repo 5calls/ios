@@ -38,7 +38,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
         
         if case .address? = UserLocation.current.locationType {
             addressTextField.text = UserLocation.current.locationValue
-            submitButton.isEnabled = true
+            addressTextFieldChanged()
         }
     }
     
@@ -74,7 +74,8 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func addressTextFieldChanged() {
-        if let addressLength = addressTextField.text?.characters.count {
+        if let address = addressTextField.text?.trimmingCharacters(in: .whitespaces)  {
+            let addressLength = address.characters.count
             submitButton.isEnabled = addressLength > 0
         }
     }
