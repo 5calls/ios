@@ -20,6 +20,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     private var lookupLocation: CLLocation?
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var submitButton: BlueButton!
 
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -37,6 +38,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
         
         if case .address? = UserLocation.current.locationType {
             addressTextField.text = UserLocation.current.locationValue
+            addressTextFieldChanged()
         }
     }
     
@@ -70,8 +72,15 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
             strongSelf.delegate?.editLocationViewController(strongSelf, didUpdateLocation: updatedLocation)
         }
     }
+    
+    @IBAction func addressTextFieldChanged() {
+        if let address = addressTextField.text?.trimmingCharacters(in: .whitespaces)  {
+            let addressLength = address.characters.count
+            submitButton.isEnabled = addressLength > 0
+        }
+    }
 
-    //Mark: CLLocationManagerDelegate methods
+    //MARK: - CLLocationManagerDelegate methods
     
     func informUserOfPermissions() {
         let alertController = UIAlertController(title: R.string.localizable.locationPermissionDeniedTitle(), message:
