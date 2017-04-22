@@ -28,7 +28,7 @@ class SeededDataTask : URLSessionDataTask {
             completionHandler(jsonData, response, nil)
             
         } else {
-            fatalError("Fixture file not specified for \(request.url)")
+            fatalError("Fixture file not specified for \(request.url!)")
         }
     }
     
