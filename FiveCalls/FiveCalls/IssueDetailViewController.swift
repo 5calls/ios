@@ -15,7 +15,9 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
-    
+
+    var shouldAddLocationObserver: Bool = false
+
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,6 +28,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changedLocation), name: .locationChanged, object: nil)
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -54,6 +57,36 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     func madeCall() {
         logs = ContactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+    }
+
+    func changedLocation() {
+      didUpdateLocation()
+    }
+
+    func didUpdateLocation(using viewController: UIViewController? = nil) {
+        issuesManager.fetchIssues { result in
+            if let vc = viewController, self.issuesManager.isSplitDistrict {
+                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
+                vc.present(alertController, animated: true, completion: nil)
+            } else {
+                viewController?.dismiss(animated: true, completion: nil)
+            }
+
+            if let issue = self.issuesManager.issue(withId: self.issue.id) {
+                self.issue = issue
+                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
+                self.scrollToBottom()
+            } else {
+                // weird state to be in, but the issue we're looking at
+                // no longer exists, so we'll just quietly (read: not quietly)
+                // pop back to the issues list
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            if self.shouldAddLocationObserver {
+                NotificationCenter.default.addObserver(self, selector: #selector(self.changedLocation), name: .locationChanged, object: nil)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +126,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? UINavigationController,
             let loc = nav.viewControllers.first as? EditLocationViewController {
+            NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)
+            shouldAddLocationObserver = true
             loc.delegate = self
         } else if let call = segue.destination as? CallScriptViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -196,28 +231,6 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        issuesManager.userLocation = location
-        issuesManager.fetchIssues { result in
-            
-            if self.issuesManager.isSplitDistrict {
-                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
-                vc.present(alertController, animated: true, completion: nil)
-            } else {
-                self.dismiss(animated: true, completion: nil)
-            }
-        
-            
-            if let issue = self.issuesManager.issue(withId: self.issue.id) {
-                self.issue = issue
-                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
-                self.scrollToBottom()
-            } else {
-                // weird state to be in, but the issue we're looking at
-                // no longer exists, so we'll just quietly (read: not quietly) 
-                // pop back to the issues list
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-        }
+        didUpdateLocation(using: vc)
     }
 }
