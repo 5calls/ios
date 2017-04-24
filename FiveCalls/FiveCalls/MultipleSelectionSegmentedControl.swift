@@ -9,9 +9,17 @@
 import Foundation
 
 class MultipleSelectionControl: UIControl {
-    @IBInspectable var selectedColor: UIColor = .lightGray
-    @IBInspectable var deSelectedColor: UIColor = .white
+    @IBInspectable var selectedBackgroundColor: UIColor = .lightGray
+    @IBInspectable var deSelectedBackgroundColor: UIColor = .white
+    @IBInspectable var selectedTextColor: UIColor = .white
+    @IBInspectable var deSelectedTextColor: UIColor = .lightGray
     @IBInspectable var titlesString = ""
+
+    var warningBorderColor: CGColor? {
+        didSet {
+            setBorder()
+        }
+    }
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -19,7 +27,6 @@ class MultipleSelectionControl: UIControl {
         stackView.axis  = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 0.5
         return stackView
     }()
 
@@ -40,9 +47,7 @@ class MultipleSelectionControl: UIControl {
     func setSelectedButtons(at indices: [Int]) {
         for index in indices {
             buttons?[index].isSelected = true
-            let titleColor = (buttons?[index].isSelected)! ? deSelectedColor : selectedColor
-            buttons?[index].setTitleColor(titleColor, for: .normal)
-            buttons?[index].backgroundColor = (buttons?[index].isSelected)! ? selectedColor : deSelectedColor
+            buttons?.forEach { setColor(button: $0) }
         }
     }
 
@@ -54,6 +59,8 @@ class MultipleSelectionControl: UIControl {
             let button = UIButton()
             button.isSelected = false
             button.setTitle(title, for: .normal)
+            button.layer.borderWidth = 0.5
+            button.layer.borderColor = selectedBackgroundColor.cgColor
             button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
             stackView.addArrangedSubview(button)
             setColor(button: button)
@@ -66,10 +73,9 @@ class MultipleSelectionControl: UIControl {
 
         layer.cornerRadius = 4
         layer.masksToBounds = true
-
+        layer.borderWidth = 1.0
         addSubview(stackView)
         addButtons(to: stackView)
-
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leftAnchor.constraint(equalTo: leftAnchor),
@@ -81,12 +87,18 @@ class MultipleSelectionControl: UIControl {
     @objc func buttonAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         setColor(button: sender)
+        setBorder()
         sendActions(for: .valueChanged)
     }
 
+    private func setBorder() {
+        let warningColor = warningBorderColor ?? selectedBackgroundColor.cgColor
+        layer.borderColor = selectedIndices.count == 0 ? warningColor : selectedBackgroundColor.cgColor
+    }
+
     func setColor(button: UIButton) {
-        let titleColor = button.isSelected ? deSelectedColor : selectedColor
+        let titleColor = button.isSelected ? selectedTextColor : deSelectedTextColor
         button.setTitleColor(titleColor, for: .normal)
-        button.backgroundColor = button.isSelected ? selectedColor : deSelectedColor
+        button.backgroundColor = button.isSelected ? selectedBackgroundColor : deSelectedBackgroundColor
     }
 }
