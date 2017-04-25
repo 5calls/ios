@@ -15,7 +15,7 @@ protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController)
 }
 
-class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
+class EditLocationViewController : UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     weak var delegate: EditLocationViewControllerDelegate?
     private var lookupLocation: CLLocation?
     @IBOutlet weak var addressLabel: UILabel!
@@ -30,6 +30,10 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var addressTextField: UITextField!
+    
+    override func viewDidLoad() {
+        addressTextField.delegate = self
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,6 +92,13 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
             let addressLength = address.characters.count
             submitButton.isEnabled = addressLength > 0
         }
+    }
+    
+    //MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        return true
     }
 
     //MARK: - CLLocationManagerDelegate methods
