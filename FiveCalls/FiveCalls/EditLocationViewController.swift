@@ -73,6 +73,11 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    /*TODO: create submitAddress func
+     copy submitAddressTapped implementation into submitAddress
+     implement textField delegate methods
+     use submitAddress in submitAddressTapped and textField delegate*/
+    
     @IBAction func addressTextFieldChanged() {
         if let address = addressTextField.text?.trimmingCharacters(in: .whitespaces)  {
             let addressLength = address.characters.count
