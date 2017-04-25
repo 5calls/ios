@@ -32,6 +32,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     @IBOutlet weak var addressTextField: UITextField!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         addressTextField.delegate = self
     }
 
@@ -70,11 +71,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
         
     }
     
-    /*TODO: create submitAddress func
-     copy submitAddressTapped implementation into submitAddress
-     implement textField delegate methods
-     use submitAddress in submitAddressTapped and textField delegate*/
-    
     func submitAddress() {
         Answers.logCustomEvent(withName:"Action: Used Address")
         
@@ -97,7 +93,14 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     //MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let address = addressTextField.text?.trimmingCharacters(in: .whitespaces) {
+            if address.isEmpty {
+                return false
+            }
+        }
         
+        textField.resignFirstResponder()
+        submitAddress()
         return true
     }
 
