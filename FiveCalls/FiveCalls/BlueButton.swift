@@ -19,9 +19,9 @@ class BlueButton: UIButton {
     }
     
     var normalBackgroundColor: UIColor = .fvc_lightBlueBackground
-    var highlightBackgroundColor: UIColor = .fvc_red
-    var selectedBackgroundColor: UIColor = .fvc_red
-    var defaultTextColor: UIColor = .fvc_darkBlueText
+    var highlightBackgroundColor: UIColor = .fvc_darkBlue
+    var selectedBackgroundColor: UIColor = .fvc_darkBlue
+    var defaultTextColor: UIColor = .white
         
     override init(frame: CGRect) {
         super.init(frame: frame)
