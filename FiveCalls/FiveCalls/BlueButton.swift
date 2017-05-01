@@ -39,7 +39,7 @@ class BlueButton: UIButton {
     
     private func _commonInit() {
         updateColors()
-        setTitle(titleLabel?.text?.uppercased(), for: .normal)
+        setTitle(titleLabel?.text?.capitalized, for: .normal)
         titleLabel?.font = R.font.robotoCondensedBold(size: customFontSize)
         layer.cornerRadius = 5
         clipsToBounds = true
