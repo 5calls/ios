@@ -157,6 +157,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     @IBAction func resultButtonPressed(_ button: UIButton) {
+        if let blueButton = button as? BlueButton {
+            blueButton.isSelected = true
+        }
+
         Answers.logCustomEvent(withName:"Action: Button \(button.titleLabel)", customAttributes: ["contact_id":contact.id])
         
         switch button {
