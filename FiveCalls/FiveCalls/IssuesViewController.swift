@@ -23,6 +23,8 @@ class IssuesViewController : UITableViewController {
     
     // keep track of when calls are made, so we know if we need to reload any cells
     var needToReloadVisibleRowsOnNextAppearance = false
+
+    private var notificationToken: NSObjectProtocol?
     
     var issuesManager = IssuesManager()
     var logs: ContactLogs?
@@ -32,6 +34,14 @@ class IssuesViewController : UITableViewController {
         let issues: [Issue]
     }
     var viewModel = ViewModel(issues: [])
+
+    deinit {
+        if let notificationToken = notificationToken {
+            NotificationCenter.default.removeObserver(notificationToken)
+        }
+        NotificationCenter.default.removeObserver(self, name: .callMade, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +63,12 @@ class IssuesViewController : UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
         
-        NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
+        notificationToken = NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -115,6 +126,10 @@ class IssuesViewController : UITableViewController {
     func madeCall() {
         logs = ContactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+    }
+
+    func willEnterForeground() {
+        loadIssues()
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
