@@ -49,6 +49,9 @@ class IssuesViewController : UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.tableFooterView = UIView()
+
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
         
         NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
@@ -106,6 +109,7 @@ class IssuesViewController : UITableViewController {
         } else {
             tableView.reloadEmptyDataSet()
         }
+        refreshControl?.endRefreshing()
     }
     
     func madeCall() {
