@@ -15,7 +15,7 @@ protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewControllerDidCancel(_ vc: EditLocationViewController)
 }
 
-class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
+class EditLocationViewController : UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     weak var delegate: EditLocationViewControllerDelegate?
     private var lookupLocation: CLLocation?
     @IBOutlet weak var addressLabel: UILabel!
@@ -30,6 +30,11 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var useMyLocationButton: UIButton!
     @IBOutlet weak var addressTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addressTextField.delegate = self
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,7 +67,12 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func submitAddressTapped(_ sender: Any) {
-            Answers.logCustomEvent(withName:"Action: Used Address")
+        submitAddress()
+        
+    }
+    
+    func submitAddress() {
+        Answers.logCustomEvent(withName:"Action: Used Address")
         
         UserLocation.current.setFrom(address: addressTextField.text ?? "") { [weak self] updatedLocation in
             guard let strongSelf = self else {
@@ -78,6 +88,20 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate {
             let addressLength = address.characters.count
             submitButton.isEnabled = addressLength > 0
         }
+    }
+    
+    //MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let address = addressTextField.text?.trimmingCharacters(in: .whitespaces) {
+            if address.isEmpty {
+                return false
+            }
+        }
+        
+        textField.resignFirstResponder()
+        submitAddress()
+        return true
     }
 
     //MARK: - CLLocationManagerDelegate methods
