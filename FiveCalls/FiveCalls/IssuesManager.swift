@@ -18,6 +18,7 @@ class IssuesManager {
     
     var issuesList: IssuesList?
     
+    var shouldFetchAllIssues: Bool = false
     var userLocation: UserLocation?
     
     var issues: [Issue] {
@@ -32,7 +33,7 @@ class IssuesManager {
     
     func fetchIssues(completion: @escaping (IssuesLoadResult) -> Void) {
         
-        let operation = FetchIssuesOperation(location: userLocation)
+        let operation = FetchIssuesOperation(location: userLocation, shouldFetchAllIssues: shouldFetchAllIssues)
         
         operation.completionBlock = { [weak self, weak operation] in
             if let issuesList = operation?.issuesList {

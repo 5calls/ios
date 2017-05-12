@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -343,8 +343,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="6XF-dC-bAq"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="moreIssuesButton" destination="NTC-EV-PQG" id="yCN-HP-RuZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Ne-HS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NTC-EV-PQG">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="More Issues"/>
+                    <connections>
+                        <segue destination="Ona-ZX-WCV" kind="show" id="l9T-nM-LZD"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="860" y="-226.23688155922042"/>
         </scene>
@@ -984,7 +996,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jom-0D-DR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165.217391304348" y="610.59782608695662"/>
+            <point key="canvasLocation" x="349" y="995"/>
         </scene>
         <!--About-->
         <scene sceneID="Tq7-Ud-ajB">
@@ -1012,6 +1024,74 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vu-S5-lE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-503" y="612"/>
+        </scene>
+        <!--All Issues-->
+        <scene sceneID="4tA-dH-hHO">
+            <objects>
+                <tableViewController storyboardIdentifier="AllIssuesViewController" id="Ona-ZX-WCV" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="NzE-NO-J6S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="9f3-O3-zTR" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9f3-O3-zTR" id="O15-Z8-eqA">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="74.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Huh-4g-fF0" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="15" width="44" height="44"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="7Ju-DF-etB"/>
+                                                <constraint firstAttribute="height" constant="44" id="v25-iX-ysM"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppose Muslim Travel Ban" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-uQ-f8l">
+                                            <rect key="frame" x="60" y="16" width="174" height="42"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Huh-4g-fF0" firstAttribute="centerY" secondItem="O15-Z8-eqA" secondAttribute="centerY" id="8s6-gN-ak1"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bCg-uQ-f8l" secondAttribute="trailing" constant="20" id="AeC-Dh-6ef"/>
+                                        <constraint firstItem="bCg-uQ-f8l" firstAttribute="centerY" secondItem="O15-Z8-eqA" secondAttribute="centerY" id="JIr-Hr-kbT"/>
+                                        <constraint firstItem="bCg-uQ-f8l" firstAttribute="top" secondItem="O15-Z8-eqA" secondAttribute="topMargin" constant="8" id="e4W-35-RZ5"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="bCg-uQ-f8l" secondAttribute="bottom" constant="8" id="jrS-HV-7Te"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="Huh-4g-fF0" secondAttribute="leading" id="rHB-vW-9aa"/>
+                                        <constraint firstItem="bCg-uQ-f8l" firstAttribute="leading" secondItem="Huh-4g-fF0" secondAttribute="trailing" constant="8" id="vnp-JA-pcH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="checkboxView" destination="Huh-4g-fF0" id="Ye3-Ve-wEP"/>
+                                    <outlet property="titleLabel" destination="bCg-uQ-f8l" id="IOd-xI-83Y"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ona-ZX-WCV" id="bxX-mb-icS"/>
+                            <outlet property="delegate" destination="Ona-ZX-WCV" id="59F-bj-x5l"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="All Issues" id="3pe-aA-zUC"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="allIssues" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFetchAllIssues" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="moreIssuesButton" destination="NTC-EV-PQG" id="0W5-4X-vMs"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V38-Db-EV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1778" y="598"/>
         </scene>
     </scenes>
     <resources>

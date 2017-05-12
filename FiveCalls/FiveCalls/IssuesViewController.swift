@@ -16,6 +16,13 @@ protocol IssuesViewControllerDelegate : class {
 }
 
 class IssuesViewController : UITableViewController {
+
+    @IBInspectable var shouldFetchAllIssues: Bool = false {
+        didSet {
+            issuesManager.shouldFetchAllIssues = true
+        }
+    }
+    @IBOutlet var moreIssuesButton: UIButton?
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: IssuesLoadResult?
@@ -58,7 +65,7 @@ class IssuesViewController : UITableViewController {
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = moreIssuesButton ?? UIView()
 
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
@@ -72,12 +79,15 @@ class IssuesViewController : UITableViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return shouldFetchAllIssues ? .default : .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
+        if shouldFetchAllIssues {
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -11,6 +11,7 @@ import Foundation
 class FetchIssuesOperation : BaseOperation {
     
     let location: UserLocation?
+    let shouldFetchAllIssues: Bool
     
     // Output properties.
     // Once the job has finished consumers can check one or more of these for values.
@@ -18,8 +19,9 @@ class FetchIssuesOperation : BaseOperation {
     var error: Error?
     var issuesList: IssuesList?
 
-    init(location: UserLocation?) {
+    init(location: UserLocation?, shouldFetchAllIssues: Bool) {
         self.location = location
+        self.shouldFetchAllIssues = shouldFetchAllIssues
     }
     
     lazy var sessionConfiguration = URLSessionConfiguration.default
@@ -41,6 +43,10 @@ class FetchIssuesOperation : BaseOperation {
     }
     
     func addressQueryString() -> String? {
+        guard !shouldFetchAllIssues else {
+            return "inactive=true"
+        }
+
         guard let location = self.location,
               let value = location.locationValue
             else { return nil }
