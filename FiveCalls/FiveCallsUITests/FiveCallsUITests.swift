@@ -36,11 +36,11 @@ class FiveCallsUITests: XCTestCase {
         
         snapshot("1-welcome2")
 
-        app.buttons["GET STARTED"].tap()
+        app.buttons["Get Started"].tap()
         app.buttons["Set Location"].tap()
         app.textFields["Zip or Address"].tap()
         app.typeText("77429")
-        app.buttons["SUBMIT"].tap()
+        app.buttons["Submit"].tap()
 
         snapshot("2-issues")
         
@@ -57,9 +57,8 @@ class FiveCallsUITests: XCTestCase {
     
     private func loadJSONFixtures(application: XCUIApplication) {
         let bundle = Bundle(for: FiveCallsUITests.self)
-        let env = application.launchEnvironment
-        env["GET:/issues"] = bundle.path(forResource: "GET-issues", ofType: "json")
-        env["GET:/report"] = bundle.path(forResource: "GET-report", ofType: "json")
-        env["POST:/report"] = bundle.path(forResource: "POST-report", ofType: "json")
+        application.launchEnvironment["GET:/issues"] = bundle.path(forResource: "GET-issues", ofType: "json")
+        application.launchEnvironment["GET:/report"] = bundle.path(forResource: "GET-report", ofType: "json")
+        application.launchEnvironment["POST:/report"] = bundle.path(forResource: "POST-report", ofType: "json")
     }
 }
