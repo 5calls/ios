@@ -164,7 +164,11 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.issues.count + 1
+        guard shouldFetchAllIssues else {
+            return viewModel.issues.count + 1
+        }
+
+        return viewModel.issues.count
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
