@@ -74,10 +74,6 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return shouldFetchAllIssues ? .default : .lightContent
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
