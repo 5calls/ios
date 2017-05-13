@@ -18,7 +18,6 @@ protocol IssuesViewControllerDelegate : class {
 class IssuesViewController : UITableViewController {
 
     @IBInspectable var shouldFetchAllIssues: Bool = false
-    @IBOutlet var moreIssuesButton: UIButton?
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: IssuesLoadResult?
@@ -61,7 +60,7 @@ class IssuesViewController : UITableViewController {
         tableView.estimatedRowHeight = 75
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.tableFooterView = moreIssuesButton ?? UIView()
+        tableView.tableFooterView = UIView()
 
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
@@ -165,7 +164,7 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.issues.count
+        return viewModel.issues.count + 1
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -186,6 +185,11 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < viewModel.issues.count else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.moreIssuesCell, for: indexPath)!
+            return cell
+        }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
         let issue = viewModel.issues[indexPath.row]
         cell.titleLabel.text = issue.name

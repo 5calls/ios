@@ -327,13 +327,37 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="pdL-nv-0bt" secondAttribute="bottom" constant="8" id="dSM-Xp-HZT"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="checkboxView" destination="wEs-9r-J66" id="vnx-78-vuF"/>
                                     <outlet property="titleLabel" destination="pdL-nv-0bt" id="fEW-mJ-On2"/>
                                     <segue destination="ejI-vB-vnF" kind="show" identifier="issueSegue" id="9Qg-9X-fjK"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreIssuesCell" rowHeight="44" id="u9f-BD-gFh">
+                                <rect key="frame" x="0.0" y="103" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9f-BD-gFh" id="mNd-M7-91s">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHv-8j-lgv">
+                                            <rect key="frame" x="8" y="0.0" width="271" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="More Issues">
+                                                <color key="titleColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="Ona-ZX-WCV" kind="show" id="u5t-0X-4MI"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -343,22 +367,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="6XF-dC-bAq"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="moreIssuesButton" destination="NTC-EV-PQG" id="yCN-HP-RuZ"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Ne-HS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NTC-EV-PQG">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="More Issues"/>
-                    <connections>
-                        <segue destination="Ona-ZX-WCV" kind="show" id="l9T-nM-LZD"/>
-                    </connections>
-                </button>
             </objects>
-            <point key="canvasLocation" x="860" y="-226.23688155922042"/>
+            <point key="canvasLocation" x="858.75" y="-227.11267605633802"/>
         </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
@@ -1085,9 +1097,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         <userDefinedRuntimeAttribute type="boolean" keyPath="allIssues" value="YES"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFetchAllIssues" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="moreIssuesButton" destination="NTC-EV-PQG" id="0W5-4X-vMs"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V38-Db-EV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
