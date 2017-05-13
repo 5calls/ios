@@ -17,11 +17,7 @@ protocol IssuesViewControllerDelegate : class {
 
 class IssuesViewController : UITableViewController {
 
-    @IBInspectable var shouldFetchAllIssues: Bool = false {
-        didSet {
-            issuesManager.shouldFetchAllIssues = true
-        }
-    }
+    @IBInspectable var shouldFetchAllIssues: Bool = false
     @IBOutlet var moreIssuesButton: UIButton?
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
@@ -114,8 +110,8 @@ class IssuesViewController : UITableViewController {
         isLoading = true
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
-        issuesManager.userLocation = UserLocation.current
-        issuesManager.fetchIssues { [weak self] in
+        let query: IssuesManager.Query = shouldFetchAllIssues ? .all : .top(UserLocation.current)
+        issuesManager.fetchIssues(query) { [weak self] in
             self?.issuesLoaded(result: $0)
         }
     }
