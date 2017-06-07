@@ -16,6 +16,8 @@ protocol IssuesViewControllerDelegate : class {
 }
 
 class IssuesViewController : UITableViewController {
+
+    @IBInspectable var shouldFetchAllIssues: Bool = false
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: IssuesLoadResult?
@@ -71,13 +73,12 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
+        if shouldFetchAllIssues {
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,8 +105,8 @@ class IssuesViewController : UITableViewController {
         isLoading = true
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
-        issuesManager.userLocation = UserLocation.current
-        issuesManager.fetchIssues { [weak self] in
+        let query: IssuesManager.Query = shouldFetchAllIssues ? .all : .top(UserLocation.current)
+        issuesManager.fetchIssues(query) { [weak self] in
             self?.issuesLoaded(result: $0)
         }
     }
@@ -163,6 +164,10 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard shouldFetchAllIssues else {
+            return viewModel.issues.count + 1
+        }
+
         return viewModel.issues.count
     }
     
@@ -184,6 +189,11 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < viewModel.issues.count else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.moreIssuesCell, for: indexPath)!
+            return cell
+        }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
         let issue = viewModel.issues[indexPath.row]
         cell.titleLabel.text = issue.name

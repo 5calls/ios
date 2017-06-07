@@ -15,10 +15,13 @@ enum IssuesLoadResult {
 }
 
 class IssuesManager {
+
+    enum Query {
+        case all
+        case top(UserLocation?)
+    }
     
     var issuesList: IssuesList?
-    
-    var userLocation: UserLocation?
     
     var issues: [Issue] {
         return issuesList?.issues ?? []
@@ -30,9 +33,9 @@ class IssuesManager {
         return issuesList?.issues.filter { $0.id == id }.first
     }
     
-    func fetchIssues(completion: @escaping (IssuesLoadResult) -> Void) {
+    func fetchIssues(_ query: Query, completion: @escaping (IssuesLoadResult) -> Void) {
         
-        let operation = FetchIssuesOperation(location: userLocation)
+        let operation = FetchIssuesOperation(query: query)
         
         operation.completionBlock = { [weak self, weak operation] in
             if let issuesList = operation?.issuesList {
