@@ -63,12 +63,6 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         logs = ContactLogs.load()
-
-        if self.splitViewController == nil {
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        } else {
-            tableView.contentInset = UIEdgeInsets(top: IssuesContainerViewController.headerHeight, left: 0, bottom: 0, right: 0)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

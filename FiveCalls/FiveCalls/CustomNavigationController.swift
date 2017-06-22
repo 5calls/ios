@@ -8,13 +8,7 @@
 
 import UIKit
 
-class CustomNavigationController : UINavigationController {
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return topViewController?.preferredStatusBarStyle ?? .lightContent
-    }
-}
-
-extension UINavigationController  {
+extension UINavigationController {
     func replaceTopViewController(with newViewController: UIViewController, animated: Bool) {
         var controllers = viewControllers
         let newIndex = viewControllers.count - 1

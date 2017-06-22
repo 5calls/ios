@@ -37,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showWelcome()
         }
 
+        if let splitViewController = window?.rootViewController as? UISplitViewController {
+            splitViewController.preferredDisplayMode = .allVisible
+            splitViewController.view.backgroundColor = .black
+        }
+
         return true
     }
 

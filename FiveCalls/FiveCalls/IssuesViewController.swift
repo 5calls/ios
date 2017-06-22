@@ -54,7 +54,6 @@ class IssuesViewController : UITableViewController {
 
         Answers.logCustomEvent(withName:"Screen: Issues List")
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
         loadIssues()
         
         tableView.estimatedRowHeight = 75
@@ -76,9 +75,6 @@ class IssuesViewController : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
-        if shouldFetchAllIssues {
-            navigationController?.setNavigationBarHidden(false, animated: animated)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,10 +91,6 @@ class IssuesViewController : UITableViewController {
         if let nav = self.splitViewController?.viewControllers.last as? UINavigationController, let shareable = nav.viewControllers.last as? IssueShareable {
             shareable.shareIssue(from: button)
         }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
 
     func loadIssues() {
@@ -135,28 +127,20 @@ class IssuesViewController : UITableViewController {
         loadIssues()
     }
 
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return true }
-            let controller = R.storyboard.main.issueDetailViewController()!
-            controller.issuesManager = issuesManager
-            controller.issue = issuesManager.issues[indexPath.row]
-
-            let nav = UINavigationController(rootViewController: controller)
-            nav.setNavigationBarHidden(true, animated: false)
-            split.showDetailViewController(nav, sender: self)
-            self.iPadShareButton?.isHidden = false
-            return false
-        }
-        return true
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
+
+        var issueDetailViewController: IssueDetailViewController?
+
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
-            typedInfo.destination.issuesManager = issuesManager
-            typedInfo.destination.issue = viewModel.issues[indexPath.row]
+            issueDetailViewController = typedInfo.destination.viewControllers.first as? IssueDetailViewController
+        } else if let typedInfo = R.segue.issuesViewController.moreIssueSegue(segue: segue) {
+            issueDetailViewController = typedInfo.destination.viewControllers.first as? IssueDetailViewController
         }
+
+        issueDetailViewController?.issuesManager = issuesManager
+        issueDetailViewController?.issue = viewModel.issues[indexPath.row]
+
     }
     
     // MARK: - UITableViewDataSource
