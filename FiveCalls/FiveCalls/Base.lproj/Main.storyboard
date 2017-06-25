@@ -133,89 +133,6 @@
             </objects>
             <point key="canvasLocation" x="1944" y="-226"/>
         </scene>
-        <!--5 Calls-->
-        <scene sceneID="URD-JJ-gfS">
-            <objects>
-                <tableViewController storyboardIdentifier="IssuesViewController" id="GRZ-cT-aT3" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xqk-9j-kez">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="gyL-0a-wGJ" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="75"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="74.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="15" width="44" height="44"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="M00-0u-O9S"/>
-                                                <constraint firstAttribute="width" constant="44" id="sge-sG-n0s"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppose Muslim Travel Ban" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-nv-0bt">
-                                            <rect key="frame" x="60" y="16" width="174" height="42"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="top" secondItem="sKx-hn-UH9" secondAttribute="topMargin" constant="8" id="0TI-qG-QQc"/>
-                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="7xd-WT-WNb"/>
-                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="leading" secondItem="wEs-9r-J66" secondAttribute="trailing" constant="8" id="FeY-Hp-huw"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="wEs-9r-J66" secondAttribute="leading" id="Izu-kz-OvP"/>
-                                        <constraint firstItem="wEs-9r-J66" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="RLQ-9O-x19"/>
-                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pdL-nv-0bt" secondAttribute="trailing" constant="20" id="VuS-Le-l6T"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pdL-nv-0bt" secondAttribute="bottom" constant="8" id="dSM-Xp-HZT"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="checkboxView" destination="wEs-9r-J66" id="vnx-78-vuF"/>
-                                    <outlet property="titleLabel" destination="pdL-nv-0bt" id="fEW-mJ-On2"/>
-                                    <segue destination="dIj-p4-QKg" kind="showDetail" identifier="issueSegue" id="VIn-bs-Vql"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreIssuesCell" rowHeight="44" id="u9f-BD-gFh">
-                                <rect key="frame" x="0.0" y="103" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9f-BD-gFh" id="mNd-M7-91s">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More Issues" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dec-XN-O9l">
-                                            <rect key="frame" x="16" y="0.0" width="174" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <segue destination="Ona-ZX-WCV" kind="show" id="S0W-r7-tLs"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="GRZ-cT-aT3" id="lzG-ZM-rw6"/>
-                            <outlet property="delegate" destination="GRZ-cT-aT3" id="WxN-Nm-vng"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="5 Calls" id="6XF-dC-bAq"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Ne-HS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="858.75" y="-227.11267605633802"/>
-        </scene>
         <!--Issue Detail View Controller-->
         <scene sceneID="oRn-uc-kFJ">
             <objects>
@@ -427,7 +344,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="GRZ-cT-aT3" kind="relationship" relationship="rootViewController" id="3OJ-AC-8wp"/>
+                        <segue destination="Bud-5A-gZp" kind="relationship" relationship="rootViewController" id="txT-c5-izG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vi8-gM-n31" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -872,6 +789,130 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             </objects>
             <point key="canvasLocation" x="-504" y="1349"/>
         </scene>
+        <!--Issues-->
+        <scene sceneID="PDg-xJ-3HD">
+            <objects>
+                <viewController id="Bud-5A-gZp" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cr3-8M-PXT"/>
+                        <viewControllerLayoutGuide type="bottom" id="AJ6-yh-hwW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NTD-4R-tOm">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laS-K4-S2F">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="8" right="8"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qpO-2t-vMI"/>
+                                    <barButtonItem title="Item" id="NJo-H1-NFY">
+                                        <connections>
+                                            <segue destination="vbp-Kz-LRR" kind="presentation" identifier="issuesLocationSegue" id="6hu-Bz-rL5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0jr-St-MWr"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="Bud-5A-gZp" id="jc4-hE-uFs"/>
+                                </connections>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xqk-9j-kez">
+                                <rect key="frame" x="0.0" y="44" width="320" height="372"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="gyL-0a-wGJ" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyL-0a-wGJ" id="sKx-hn-UH9">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="74.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEs-9r-J66" customClass="CheckboxView" customModule="FiveCalls" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="15" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="M00-0u-O9S"/>
+                                                        <constraint firstAttribute="width" constant="44" id="sge-sG-n0s"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppose Muslim Travel Ban" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-nv-0bt">
+                                                    <rect key="frame" x="60" y="16" width="174" height="42"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pdL-nv-0bt" firstAttribute="top" secondItem="sKx-hn-UH9" secondAttribute="topMargin" constant="8" id="0TI-qG-QQc"/>
+                                                <constraint firstItem="pdL-nv-0bt" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="7xd-WT-WNb"/>
+                                                <constraint firstItem="pdL-nv-0bt" firstAttribute="leading" secondItem="wEs-9r-J66" secondAttribute="trailing" constant="8" id="FeY-Hp-huw"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="wEs-9r-J66" secondAttribute="leading" id="Izu-kz-OvP"/>
+                                                <constraint firstItem="wEs-9r-J66" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="RLQ-9O-x19"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pdL-nv-0bt" secondAttribute="trailing" constant="20" id="VuS-Le-l6T"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pdL-nv-0bt" secondAttribute="bottom" constant="8" id="dSM-Xp-HZT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="checkboxView" destination="wEs-9r-J66" id="vnx-78-vuF"/>
+                                            <outlet property="titleLabel" destination="pdL-nv-0bt" id="fEW-mJ-On2"/>
+                                            <segue destination="dIj-p4-QKg" kind="showDetail" identifier="issueSegue" id="VIn-bs-Vql"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreIssuesCell" rowHeight="44" id="u9f-BD-gFh">
+                                        <rect key="frame" x="0.0" y="103" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9f-BD-gFh" id="mNd-M7-91s">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="More Issues" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dec-XN-O9l">
+                                                    <rect key="frame" x="16" y="0.0" width="174" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="Ona-ZX-WCV" kind="show" id="bdV-DH-G5o"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Bud-5A-gZp" id="oK2-BL-zIM"/>
+                                    <outlet property="delegate" destination="Bud-5A-gZp" id="wca-He-S4g"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Xqk-9j-kez" secondAttribute="trailing" id="90h-Ye-Rbb"/>
+                            <constraint firstItem="Xqk-9j-kez" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leading" id="DhB-Lp-A3j"/>
+                            <constraint firstItem="Xqk-9j-kez" firstAttribute="top" secondItem="laS-K4-S2F" secondAttribute="bottom" id="IIQ-rU-jsN"/>
+                            <constraint firstItem="laS-K4-S2F" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leadingMargin" constant="-16" id="S89-bX-S08"/>
+                            <constraint firstItem="AJ6-yh-hwW" firstAttribute="top" secondItem="Xqk-9j-kez" secondAttribute="bottom" id="Z9K-by-Muk"/>
+                            <constraint firstItem="laS-K4-S2F" firstAttribute="top" secondItem="cr3-8M-PXT" secondAttribute="bottom" id="gcH-iz-tYW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="laS-K4-S2F" secondAttribute="trailing" constant="-16" id="hWo-ca-1NV"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Issues" id="545-Ip-jEI"/>
+                    <connections>
+                        <outlet property="locationButtonItem" destination="NJo-H1-NFY" id="GNH-OF-M4e"/>
+                        <outlet property="tableView" destination="Xqk-9j-kez" id="kVF-0h-IMf"/>
+                        <outlet property="view" destination="NTD-4R-tOm" id="RDf-bL-W1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fge-1A-mmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="-226"/>
+        </scene>
         <!--About-->
         <scene sceneID="Tq7-Ud-ajB">
             <objects>
@@ -960,6 +1001,9 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         <userDefinedRuntimeAttribute type="boolean" keyPath="allIssues" value="YES"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFetchAllIssues" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="tableView" destination="NzE-NO-J6S" id="omZ-bL-L8d"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V38-Db-EV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -970,6 +1014,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <image name="icon-office" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="6hu-Bz-rL5"/>
         <segue reference="VIn-bs-Vql"/>
     </inferredMetricsTieBreakers>
 </document>

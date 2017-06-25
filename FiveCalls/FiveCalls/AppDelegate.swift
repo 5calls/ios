@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         migrateSavedData()
         
-        
         Pantry.useApplicationSupportDirectory = true
 
         clearNotificationBadge()

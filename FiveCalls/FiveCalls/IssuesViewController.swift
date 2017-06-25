@@ -15,7 +15,11 @@ protocol IssuesViewControllerDelegate : class {
     func didFinishLoadingIssues()
 }
 
-class IssuesViewController : UITableViewController {
+class IssuesViewController : UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var locationButtonItem: UIBarButtonItem?
+    private var refreshControl: UIRefreshControl!
 
     @IBInspectable var shouldFetchAllIssues: Bool = false
     
@@ -62,7 +66,13 @@ class IssuesViewController : UITableViewController {
         tableView.tableFooterView = UIView()
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
+
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
         
         notificationToken = NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
@@ -70,11 +80,20 @@ class IssuesViewController : UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+
+        setTitleLabel(location: UserLocation.current)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
+        
+        // don't need to listen anymore because any change comes from this VC (otherwise we'll end up fetching twice)
+        NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)
+
+        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPathForSelectedRow, animated: animated)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +104,18 @@ class IssuesViewController : UITableViewController {
             tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
             needToReloadVisibleRowsOnNextAppearance = false
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        // we need to know if location changes by any other VC so we can update our UI
+        NotificationCenter.default.addObserver(self, selector: #selector(locationDidChange(_:)), name: .locationChanged, object: nil)
+    }
+
+    func locationDidChange(_ notification: Notification) {
+        let location = notification.object as! UserLocation
+        setTitleLabel(location: location)
     }
 
     func share(button: UIButton) {
@@ -127,7 +158,16 @@ class IssuesViewController : UITableViewController {
         loadIssues()
     }
 
+    fileprivate func setTitleLabel(location: UserLocation?) {
+        locationButtonItem?.title = location?.locationDisplay ?? "Set Location"
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nc = segue.destination as? UINavigationController, let vc = nc.topViewController as? EditLocationViewController {
+            vc.delegate = self
+            return
+        }
+
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
 
         var issueDetailViewController: IssueDetailViewController?
@@ -142,14 +182,16 @@ class IssuesViewController : UITableViewController {
         issueDetailViewController?.issue = viewModel.issues[indexPath.row]
 
     }
-    
-    // MARK: - UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
+
+}
+
+extension IssuesViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard shouldFetchAllIssues else {
             return viewModel.issues.count + 1
         }
@@ -157,7 +199,7 @@ class IssuesViewController : UITableViewController {
         return viewModel.issues.count
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
         notAButton.setTitle(R.string.localizable.whatsImportantTitle(), for: .normal)
         notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
@@ -170,11 +212,11 @@ class IssuesViewController : UITableViewController {
         return notAButton
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 26.0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard indexPath.row < viewModel.issues.count else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.moreIssuesCell, for: indexPath)!
             return cell
@@ -209,6 +251,12 @@ extension IssuesViewController: UIViewControllerPreviewingDelegate {
         self.show(viewControllerToCommit, sender: self)
     }
     
+}
+
+extension IssuesViewController: UIBarPositioningDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .top
+    }
 }
 
 extension IssuesViewController : DZNEmptyDataSetSource {
@@ -250,4 +298,21 @@ extension IssuesViewController : DZNEmptyDataSetDelegate {
         loadIssues()
         tableView.reloadEmptyDataSet()
     }
+}
+
+extension IssuesViewController: EditLocationViewControllerDelegate {
+
+    func editLocationViewControllerDidCancel(_ vc: EditLocationViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
+        DispatchQueue.main.async { [weak self] in
+            self?.dismiss(animated: true) {
+                self?.loadIssues()
+                self?.setTitleLabel(location: location)
+            }
+        }
+    }
+
 }
