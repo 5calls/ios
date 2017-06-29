@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q8Z-Xw-vJk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A306f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q8Z-Xw-vJk">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -333,15 +333,11 @@ The Department of the Army's Civil Works division will be accepting public comme
         <!--Custom Navigation Controller-->
         <scene sceneID="VLC-fS-43C">
             <objects>
-                <navigationController id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Kdw-tv-5oW">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IFq-NR-IrM" customClass="CustomNavigationController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Bud-5A-gZp" kind="relationship" relationship="rootViewController" id="txT-c5-izG"/>
@@ -792,33 +788,17 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <!--Issues-->
         <scene sceneID="PDg-xJ-3HD">
             <objects>
-                <viewController id="Bud-5A-gZp" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Bud-5A-gZp" customClass="IssuesViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cr3-8M-PXT"/>
                         <viewControllerLayoutGuide type="bottom" id="AJ6-yh-hwW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NTD-4R-tOm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laS-K4-S2F">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="8" right="8"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qpO-2t-vMI"/>
-                                    <barButtonItem title="Item" id="NJo-H1-NFY">
-                                        <connections>
-                                            <segue destination="vbp-Kz-LRR" kind="presentation" identifier="issuesLocationSegue" id="6hu-Bz-rL5"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0jr-St-MWr"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="Bud-5A-gZp" id="jc4-hE-uFs"/>
-                                </connections>
-                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xqk-9j-kez">
-                                <rect key="frame" x="0.0" y="44" width="320" height="372"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <prototypes>
@@ -889,29 +869,48 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <outlet property="delegate" destination="Bud-5A-gZp" id="wca-He-S4g"/>
                                 </connections>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaw-gC-aIr">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="RzP-SJ-ulP">
+                                        <nil key="title"/>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="q6I-VC-QDk">
+                                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Location">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="vbp-Kz-LRR" kind="presentation" id="Rkc-r5-FhE"/>
+                                            </connections>
+                                        </button>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aaw-gC-aIr" firstAttribute="top" secondItem="cr3-8M-PXT" secondAttribute="bottom" id="1Dv-0a-DEg"/>
                             <constraint firstAttribute="trailing" secondItem="Xqk-9j-kez" secondAttribute="trailing" id="90h-Ye-Rbb"/>
                             <constraint firstItem="Xqk-9j-kez" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leading" id="DhB-Lp-A3j"/>
-                            <constraint firstItem="Xqk-9j-kez" firstAttribute="top" secondItem="laS-K4-S2F" secondAttribute="bottom" id="IIQ-rU-jsN"/>
-                            <constraint firstItem="laS-K4-S2F" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leadingMargin" constant="-16" id="S89-bX-S08"/>
-                            <constraint firstItem="AJ6-yh-hwW" firstAttribute="top" secondItem="Xqk-9j-kez" secondAttribute="bottom" id="Z9K-by-Muk"/>
-                            <constraint firstItem="laS-K4-S2F" firstAttribute="top" secondItem="cr3-8M-PXT" secondAttribute="bottom" id="gcH-iz-tYW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="laS-K4-S2F" secondAttribute="trailing" constant="-16" id="hWo-ca-1NV"/>
+                            <constraint firstItem="Xqk-9j-kez" firstAttribute="height" secondItem="NTD-4R-tOm" secondAttribute="height" id="QtE-cW-aPu"/>
+                            <constraint firstItem="aaw-gC-aIr" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leadingMargin" constant="-16" id="S9z-Ux-6nm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aaw-gC-aIr" secondAttribute="trailing" constant="-16" id="T32-tb-ayN"/>
+                            <constraint firstItem="Xqk-9j-kez" firstAttribute="centerY" secondItem="NTD-4R-tOm" secondAttribute="centerY" id="wPd-Pd-Hq7"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Issues" id="545-Ip-jEI"/>
                     <connections>
-                        <outlet property="locationButtonItem" destination="NJo-H1-NFY" id="GNH-OF-M4e"/>
+                        <outlet property="locationBar" destination="aaw-gC-aIr" id="5jc-Tc-4G9"/>
+                        <outlet property="locationButton" destination="q6I-VC-QDk" id="SSV-mS-gDA"/>
                         <outlet property="tableView" destination="Xqk-9j-kez" id="kVF-0h-IMf"/>
                         <outlet property="view" destination="NTD-4R-tOm" id="RDf-bL-W1o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fge-1A-mmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688" y="-226"/>
+            <point key="canvasLocation" x="686.25" y="-226.25"/>
         </scene>
         <!--About-->
         <scene sceneID="Tq7-Ud-ajB">
@@ -1007,14 +1006,14 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V38-Db-EV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859" y="611"/>
+            <point key="canvasLocation" x="686" y="611"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon-office" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6hu-Bz-rL5"/>
-        <segue reference="VIn-bs-Vql"/>
+        <segue reference="VDx-tz-LK6"/>
+        <segue reference="6tF-q1-2tT"/>
     </inferredMetricsTieBreakers>
 </document>

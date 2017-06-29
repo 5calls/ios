@@ -18,7 +18,8 @@ protocol IssuesViewControllerDelegate : class {
 class IssuesViewController : UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var locationButtonItem: UIBarButtonItem?
+    @IBOutlet weak var locationButton: UIButton?
+    @IBOutlet weak var locationBar: UINavigationBar?
     private var refreshControl: UIRefreshControl!
 
     @IBInspectable var shouldFetchAllIssues: Bool = false
@@ -113,6 +114,17 @@ class IssuesViewController : UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(locationDidChange(_:)), name: .locationChanged, object: nil)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let locationBar = locationBar else {
+            return
+        }
+
+        tableView.contentInset.top = locationBar.frame.maxY
+        tableView.scrollIndicatorInsets = tableView.contentInset
+    }
+
     func locationDidChange(_ notification: Notification) {
         let location = notification.object as! UserLocation
         setTitleLabel(location: location)
@@ -159,7 +171,8 @@ class IssuesViewController : UIViewController {
     }
 
     fileprivate func setTitleLabel(location: UserLocation?) {
-        locationButtonItem?.title = location?.locationDisplay ?? "Set Location"
+        let locationTitle = location?.locationDisplay ?? "Set Location"
+        locationButton?.setTitle(locationTitle, for: .normal)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
