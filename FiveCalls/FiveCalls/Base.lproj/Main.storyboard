@@ -337,7 +337,6 @@ The Department of the Army's Civil Works division will be accepting public comme
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kdw-tv-5oW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Bud-5A-gZp" kind="relationship" relationship="rootViewController" id="txT-c5-izG"/>
@@ -900,7 +899,13 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                             <constraint firstItem="Xqk-9j-kez" firstAttribute="centerY" secondItem="NTD-4R-tOm" secondAttribute="centerY" id="wPd-Pd-Hq7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Issues" id="545-Ip-jEI"/>
+                    <navigationItem key="navigationItem" title="Issues" id="545-Ip-jEI">
+                        <barButtonItem key="rightBarButtonItem" image="bell" id="J1k-gr-dEV">
+                            <connections>
+                                <action selector="editReminders" destination="Bud-5A-gZp" id="prd-cK-XuT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="locationBar" destination="aaw-gC-aIr" id="5jc-Tc-4G9"/>
                         <outlet property="locationButton" destination="q6I-VC-QDk" id="SSV-mS-gDA"/>
@@ -1010,10 +1015,11 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         </scene>
     </scenes>
     <resources>
+        <image name="bell" width="18" height="22"/>
         <image name="icon-office" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VDx-tz-LK6"/>
-        <segue reference="6tF-q1-2tT"/>
+        <segue reference="Rkc-r5-FhE"/>
+        <segue reference="VIn-bs-Vql"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -125,6 +125,14 @@ class IssuesViewController : UIViewController {
         tableView.scrollIndicatorInsets = tableView.contentInset
     }
 
+    @IBAction func editReminders() {
+        if let reminderViewController = R.storyboard.about.enableReminderVC(),
+            let navController = R.storyboard.about.aboutNavController() {
+            navController.setViewControllers([reminderViewController], animated: false)
+            present(navController, animated: true, completion: nil)
+        }
+    }
+
     func locationDidChange(_ notification: Notification) {
         let location = notification.object as! UserLocation
         setTitleLabel(location: location)
