@@ -85,6 +85,7 @@ class IssuesViewController : UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
 
         setTitleLabel(location: UserLocation.current)
+        locationButton?.titleLabel?.font = R.font.robotoCondensedRegular(size: 17)
     }
     
     override func viewWillAppear(_ animated: Bool) {
