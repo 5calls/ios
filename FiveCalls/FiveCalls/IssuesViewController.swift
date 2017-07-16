@@ -96,6 +96,8 @@ class IssuesViewController : UIViewController {
         if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPathForSelectedRow, animated: animated)
         }
+
+        setReminderBellStatus()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -144,6 +146,12 @@ class IssuesViewController : UIViewController {
         if let nav = self.splitViewController?.viewControllers.last as? UINavigationController, let shareable = nav.viewControllers.last as? IssueShareable {
             shareable.shareIssue(from: button)
         }
+    }
+
+    private func setReminderBellStatus() {
+        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.reminderEnabled.rawValue)
+        let remindersButtonItem = navigationItem.rightBarButtonItem
+        remindersButtonItem?.image = remindersEnabled ? R.image.bellSelected() : R.image.bell()
     }
 
     func loadIssues() {

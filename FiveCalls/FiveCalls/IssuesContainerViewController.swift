@@ -21,35 +21,6 @@ class IssuesContainerViewController : UIViewController {
         return issuesViewController.issuesManager
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setTitleLabel(location: UserLocation.current)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setReminderBellStatus()
-    }
-    
-    @IBAction func addReminderTapped(_ sender: UIButton) {
-        if let reminderViewController = R.storyboard.about.enableReminderVC(),
-            let navController = R.storyboard.about.aboutNavController() {
-            navController.setViewControllers([reminderViewController], animated: false)
-            present(navController, animated: true, completion: nil)
-        }
-    }
-    
-    // MARK: - Private functions
-
-    private func setTitleLabel(location: UserLocation?) {
-        locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
-    }
-    
-    private func setReminderBellStatus() {
-        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.reminderEnabled.rawValue)
-        editRemindersButton.isSelected = remindersEnabled
-    }
 }
 
 extension IssuesContainerViewController : IssuesViewControllerDelegate {
