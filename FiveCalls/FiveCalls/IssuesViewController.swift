@@ -20,6 +20,7 @@ class IssuesViewController : UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var locationButton: UIButton?
     @IBOutlet weak var locationBar: UINavigationBar?
+    @IBOutlet weak var toolbar: UIToolbar?
     private var refreshControl: UIRefreshControl!
 
     @IBInspectable var shouldFetchAllIssues: Bool = false
@@ -117,11 +118,12 @@ class IssuesViewController : UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        guard let locationBar = locationBar else {
+        guard let locationBar = locationBar, let toolbar = toolbar else {
             return
         }
 
         tableView.contentInset.top = locationBar.frame.maxY
+        tableView.contentInset.bottom = toolbar.frame.height
         tableView.scrollIndicatorInsets = tableView.contentInset
     }
 
@@ -335,5 +337,5 @@ extension IssuesViewController: EditLocationViewControllerDelegate {
             }
         }
     }
-
+    
 }
