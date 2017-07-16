@@ -161,7 +161,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
             blueButton.isSelected = true
         }
 
-        Answers.logCustomEvent(withName:"Action: Button \(button.titleLabel)", customAttributes: ["contact_id":contact.id])
+        Answers.logCustomEvent(withName:"Action: Button \(String(describing: button.titleLabel))", customAttributes: ["contact_id":contact.id])
         
         switch button {
         case resultContactedButton: handleCallOutcome(outcome: .contacted)
