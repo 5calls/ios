@@ -904,6 +904,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="s3J-4h-e5l"/>
                                 </items>
                             </toolbar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B6Z-JA-K7U">
+                                <rect key="frame" x="142" y="222" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -911,10 +915,12 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                             <constraint firstItem="aaw-gC-aIr" firstAttribute="top" secondItem="cr3-8M-PXT" secondAttribute="bottom" id="1Dv-0a-DEg"/>
                             <constraint firstAttribute="trailing" secondItem="Xqk-9j-kez" secondAttribute="trailing" id="90h-Ye-Rbb"/>
                             <constraint firstItem="Xqk-9j-kez" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leading" id="DhB-Lp-A3j"/>
+                            <constraint firstItem="B6Z-JA-K7U" firstAttribute="centerX" secondItem="NTD-4R-tOm" secondAttribute="centerX" id="Fed-D7-y9b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Eya-XI-0KA" secondAttribute="trailing" constant="-16" id="H3I-cL-Kse"/>
                             <constraint firstItem="Xqk-9j-kez" firstAttribute="height" secondItem="NTD-4R-tOm" secondAttribute="height" id="QtE-cW-aPu"/>
                             <constraint firstItem="aaw-gC-aIr" firstAttribute="leading" secondItem="NTD-4R-tOm" secondAttribute="leadingMargin" constant="-16" id="S9z-Ux-6nm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aaw-gC-aIr" secondAttribute="trailing" constant="-16" id="T32-tb-ayN"/>
+                            <constraint firstItem="B6Z-JA-K7U" firstAttribute="centerY" secondItem="NTD-4R-tOm" secondAttribute="centerY" id="tC5-rL-psj"/>
                             <constraint firstItem="Xqk-9j-kez" firstAttribute="centerY" secondItem="NTD-4R-tOm" secondAttribute="centerY" id="wPd-Pd-Hq7"/>
                             <constraint firstItem="AJ6-yh-hwW" firstAttribute="top" secondItem="Eya-XI-0KA" secondAttribute="bottom" id="waL-TM-KvL"/>
                         </constraints>
@@ -927,6 +933,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="B6Z-JA-K7U" id="m4H-nh-Fet"/>
                         <outlet property="locationBar" destination="aaw-gC-aIr" id="5jc-Tc-4G9"/>
                         <outlet property="locationButton" destination="q6I-VC-QDk" id="SSV-mS-gDA"/>
                         <outlet property="tableView" destination="Xqk-9j-kez" id="kVF-0h-IMf"/>

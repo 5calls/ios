@@ -21,6 +21,7 @@ class IssuesViewController : UIViewController {
     @IBOutlet weak var locationButton: UIButton?
     @IBOutlet weak var locationBar: UINavigationBar?
     @IBOutlet weak var toolbar: UIToolbar?
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView?
     private var refreshControl: UIRefreshControl!
 
     @IBInspectable var shouldFetchAllIssues: Bool = false
@@ -156,6 +157,9 @@ class IssuesViewController : UIViewController {
 
     func loadIssues() {
         isLoading = true
+        if let refreshControlIsRefreshing = refreshControl?.isRefreshing, !refreshControlIsRefreshing {
+            activityIndicatorView?.startAnimating()
+        }
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
 
@@ -168,6 +172,7 @@ class IssuesViewController : UIViewController {
 
     private func issuesLoaded(result: IssuesLoadResult) {
         isLoading = false
+        activityIndicatorView?.stopAnimating()
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
         if case .success = result {
