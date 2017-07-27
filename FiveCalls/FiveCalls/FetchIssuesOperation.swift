@@ -8,20 +8,10 @@
 
 import Foundation
 
-fileprivate extension IssuesManager.Query {
-    func queryString() -> String? {
-        switch self {
-        case .all:
-            return "inactive=true"
-        case .top(let location):
-            return location?.locationValue.flatMap { "address=\($0)" }
-        }
-    }
-}
-
 class FetchIssuesOperation : BaseOperation {
-    
-    let query: IssuesManager.Query
+
+    let fetchInactive: Bool
+    let location: UserLocation?
     
     // Output properties.
     // Once the job has finished consumers can check one or more of these for values.
@@ -29,8 +19,9 @@ class FetchIssuesOperation : BaseOperation {
     var error: Error?
     var issuesList: IssuesList?
 
-    init(query: IssuesManager.Query) {
-        self.query = query
+    init(inactive: Bool, location: UserLocation?) {
+        self.fetchInactive = inactive
+        self.location = location
     }
     
     lazy var sessionConfiguration = URLSessionConfiguration.default
@@ -43,11 +34,18 @@ class FetchIssuesOperation : BaseOperation {
         urlComponents.scheme = "https"
         urlComponents.host = "5calls.org"
         urlComponents.path = "/issues/"
-        
-        if let queryString = query.queryString() {
-            urlComponents.query = queryString
+
+        var queryItems: [URLQueryItem] = []
+        if fetchInactive {
+            let inactiveQueryItem = URLQueryItem(name: "inactive", value: "true")
+            queryItems.append(inactiveQueryItem)
         }
-        
+        if let location = self.location {
+            let locationQueryItem = URLQueryItem(name: "address", value: location.locationValue)
+            queryItems.append(locationQueryItem)
+        }
+        urlComponents.queryItems = queryItems
+
         return urlComponents.url
     }
 
