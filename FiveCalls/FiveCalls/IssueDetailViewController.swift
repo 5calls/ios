@@ -196,7 +196,7 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        issuesManager.fetchIssues(false, location: location) { result in
+        issuesManager.fetchIssues(forQuery: .active, location: location) { result in
             
             if self.issuesManager.isSplitDistrict {
                 let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
