@@ -119,7 +119,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     func reportCallOutcome(_ log: ContactLog) {
         logs.add(log: log)
-        let operation = ReportOutcomeOperation(log:log)
+        let operation = ReportOutcomeOperation(log: log)
         #if !debug  // don't report stats in debug builds
         OperationQueue.main.addOperation(operation)
         #endif
@@ -128,12 +128,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
     func hideResultButtons(animated: Bool) {
         let duration = animated ? 0.5 : 0
         let hideDuration = duration * 0.6
-//        UIView.animate(withDuration: hideDuration) {
-//            for button in [self.resultContactedButton, self.resultVoicemailButton, self.resultUnavailableButton, self.resultSkipButton] {
-//                button?.alpha = 0
-//            }
-//            self.resultInstructionsLabel.alpha = 0
-//        }
+        UIView.animate(withDuration: hideDuration) {
+            self.outcomesCollection.alpha = 0
+            self.resultInstructionsLabel.alpha = 0
+        }
 
         checkboxView.alpha = 0
         checkboxView.transform = checkboxView.transform.scaledBy(x: 0.2, y: 0.2)
@@ -267,7 +265,6 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let outcome = issue.outcomes[indexPath.row]
-        print("selected",outcome)
 
         Answers.logCustomEvent(withName:"Action: Button \(outcome)", customAttributes: ["contact_id":contact.id])
 
