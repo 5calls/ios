@@ -31,14 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         clearNotificationBadge()
         setAppearance()
-        
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
-            showWelcome()
-        }
 
+        // Set default parameters for the split vc. Note that this needs to get done before
+        // any attempt to display the welcome screen, as doing so replaces the root view controller
         if let splitViewController = window?.rootViewController as? UISplitViewController {
             splitViewController.preferredDisplayMode = .allVisible
             splitViewController.view.backgroundColor = .white
+        }
+
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
+            showWelcome()
         }
 
         return true
