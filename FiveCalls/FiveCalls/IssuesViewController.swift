@@ -195,7 +195,7 @@ class IssuesViewController : UIViewController {
     }
 
     fileprivate func setTitleLabel(location: UserLocation?) {
-        let locationTitle = location?.locationDisplay ?? "Set Location"
+        let locationTitle = location?.locationDisplay ?? R.string.localizable.setYourLocation()
         locationButton?.setTitle(locationTitle, for: .normal)
     }
 
