@@ -105,8 +105,10 @@ class IssuesViewController : UITableViewController {
         isLoading = true
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
-        let query: IssuesManager.Query = shouldFetchAllIssues ? .all : .top(UserLocation.current)
-        issuesManager.fetchIssues(query) { [weak self] in
+
+        let query: IssuesManager.Query = shouldFetchAllIssues ? .inactive : .active
+
+        issuesManager.fetchIssues(forQuery: query, location: UserLocation.current) { [weak self] in
             self?.issuesLoaded(result: $0)
         }
     }
