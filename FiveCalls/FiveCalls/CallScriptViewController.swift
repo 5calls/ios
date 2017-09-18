@@ -117,12 +117,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
         }
     }
     
-    func reportCallOutcome(_ log: ContactLog) {
+    func reportCallOutcome(log: ContactLog, outcome: Outcome) {
         logs.add(log: log)
-        let operation = ReportOutcomeOperation(log: log)
-        #if !debug  // don't report stats in debug builds
+        let operation = ReportOutcomeOperation(log: log, outcome: outcome)
         OperationQueue.main.addOperation(operation)
-        #endif
     }
     
     func hideResultButtons(animated: Bool) {
@@ -143,11 +141,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
         }, completion: nil)
     }
     
-    func handleCallOutcome(outcome: String) {
+    func handleCallOutcome(outcome: Outcome) {
         // save & send log entry
         let contactedPhone = lastPhoneDialed ?? contact.phone
-        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcome, date: Date())
-        reportCallOutcome(log)
+        // ContactLog status is "contacted", "unavailable", "vm", same for every issue
+        // whereas outcome can be anything passed by the server
+        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date())
+        reportCallOutcome(log: log, outcome: outcome)
     }
 
     func showNextContact(_ contact: Contact) {
@@ -250,13 +250,13 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.outcomeCell, for: indexPath)!
 
-        let outcome = issue.outcomes[indexPath.row]
-        let outcomeStringKey = "outcomes.\(outcome)"
-        var localizedOutcome = NSLocalizedString(outcomeStringKey, comment: "The outcome button title describing the outcome '\(outcome)'")
+        let outcomeModel = issue.outcomes[indexPath.row]
+        let outcomeStringKey = "outcomes.\(outcomeModel.label)"
+        var localizedOutcome = NSLocalizedString(outcomeStringKey, comment: "The outcome button title describing the outcome '\(outcomeModel.label)'")
 
         // if we can't schedule a release to translate a new outcome in time, just use a capitalized version of the outcome key
         if localizedOutcome == outcomeStringKey {
-            localizedOutcome = outcome.capitalized
+            localizedOutcome = outcomeModel.label.capitalized
         }
         cell.outcomeLabel.text = localizedOutcome
 
@@ -264,12 +264,12 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let outcome = issue.outcomes[indexPath.row]
+        let outcomeModel = issue.outcomes[indexPath.row]
 
-        Answers.logCustomEvent(withName:"Action: Button \(outcome)", customAttributes: ["contact_id":contact.id])
+        Answers.logCustomEvent(withName:"Action: Button \(outcomeModel.label)", customAttributes: ["contact_id":contact.id])
 
-        if outcome != "skip" {
-            handleCallOutcome(outcome: outcome)
+        if outcomeModel.label != "skip" {
+            handleCallOutcome(outcome: outcomeModel)
         }
 
         if isLastContactForIssue {
