@@ -12,23 +12,35 @@ class ReportOutcomeOperation : BaseOperation {
     
     //Input properties
     var log: ContactLog
+    var outcome: Outcome
     
     //Output properties
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
-    init(log: ContactLog) {
+    init(log: ContactLog, outcome: Outcome) {
         self.log = log
+        self.outcome = outcome
     }
     
     override func execute() {
         let config = URLSessionConfiguration.default
         let session = URLSessionProvider.buildSession(configuration: config)
         let url = URL(string: "https://5calls.org/report")!
+
+        // rather than avoiding network calls during debug,
+        // indicate they shouldn't be included in counts
+        let via: String
+        #if DEBUG
+            via = "test"
+        #else
+            via = "ios"
+        #endif
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let query = "result=\(log.outcome)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=ios"
+        let query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)"
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return

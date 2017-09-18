@@ -9,21 +9,12 @@
 import Foundation
 import Pantry
 
-enum ContactOutcome : String {
-    case contacted
-    case voicemail = "vm"
-    case unavailable
-    
-    // reserved for cases where we save something on disk that we later don't recognize
-    case unknown
-}
-
 struct ContactLog {
 
     let issueId: String
     let contactId: String
     let phone: String
-    let outcome: ContactOutcome
+    let outcome: String
     let date: Date
     
     static var dateFormatter: DateFormatter = {
@@ -41,7 +32,7 @@ extension ContactLog : Storable {
         issueId = warehouse.get("issueId") ?? ""
         contactId = warehouse.get("contactId") ?? ""
         phone = warehouse.get("phone") ?? ""
-        outcome = warehouse.get("outcome").flatMap(ContactOutcome.init) ?? .unknown
+        outcome = warehouse.get("outcome") ?? "unknown"
         date = ContactLog.dateFormatter.date(from: warehouse.get("date") ?? "") ?? Date()
     }
     
@@ -50,7 +41,7 @@ extension ContactLog : Storable {
             "issueId": issueId,
             "contactId": contactId,
             "phone": phone,
-            "outcome": outcome.rawValue,
+            "outcome": outcome,
             "date": ContactLog.dateFormatter.string(from: date)
         ]
     }
@@ -58,7 +49,7 @@ extension ContactLog : Storable {
 
 extension ContactLog : Hashable {
     var hashValue: Int {
-        return (issueId + contactId + phone + outcome.rawValue).hash
+        return (issueId + contactId + phone + outcome).hash
     }
     
     static func ==(lhs: ContactLog, rhs: ContactLog) -> Bool {
@@ -96,7 +87,7 @@ struct ContactLogs {
         return Pantry.unpack(persistenceKey).flatMap(ContactLogs.init) ?? ContactLogs()
     }
     
-    func methodOfContact(to contactId: String, forIssue issueId: String) -> ContactOutcome? {
+    func methodOfContact(to contactId: String, forIssue issueId: String) -> String? {
         return all.filter({$0.contactId == contactId && $0.issueId == issueId}).last?.outcome
     }
 
@@ -106,9 +97,10 @@ struct ContactLogs {
         }
         
         switch method {
-        case .contacted, .voicemail:
+        // contacted and vm for compatibility
+        case "contact", "contacted", "voicemail", "vm":
             return true
-        case .unknown, .unavailable:
+        default:
             return false
         }        
     }

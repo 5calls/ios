@@ -18,9 +18,9 @@ extension UIColor {
                                        blue:0.92,
                                        alpha:1.00)
 
-    static let fvc_lightBlueBackground = UIColor(red:0.73,
-                                                 green:0.87,
-                                                 blue:0.98,
+    static let fvc_lightBlueBackground = UIColor(red:0.09,
+                                                 green:0.46,
+                                                 blue:0.82,
                                                  alpha:1.0)
     
     static let fvc_darkBlue = UIColor(red:0.12,

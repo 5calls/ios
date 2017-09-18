@@ -26,6 +26,7 @@ struct Issue {
     let reason: String
     let script: String
     let contacts: [Contact]
+    let outcomes: [Outcome]
 }
 
 extension Issue : JSONSerializable {
@@ -34,14 +35,16 @@ extension Issue : JSONSerializable {
             let name = dictionary["name"] as? String,
             let reason = dictionary["reason"] as? String,
             let script = dictionary["script"] as? String,
-            let contactsJSON = dictionary["contacts"] as? [JSONDictionary]
+            let contactsJSON = dictionary["contacts"] as? [JSONDictionary],
+            let outcomesJSON = dictionary["outcomeModels"] as? [JSONDictionary]
         else {
             print("Unable to parse JSON as Issue: \(dictionary)")
             return nil
         }
         
         let contacts = contactsJSON.flatMap({ Contact(dictionary: $0) })
+        let outcomes = outcomesJSON.flatMap({ Outcome(dictionary: $0) })
         
-        self.init(id: id, name: name, reason: reason, script: script, contacts: contacts)
+        self.init(id: id, name: name, reason: reason, script: script, contacts: contacts, outcomes: outcomes)
     }
 }
