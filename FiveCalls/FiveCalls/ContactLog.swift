@@ -9,15 +9,6 @@
 import Foundation
 import Pantry
 
-//enum ContactOutcome : String {
-//    case contacted
-//    case voicemail = "vm"
-//    case unavailable
-//    
-//    // reserved for cases where we save something on disk that we later don't recognize
-//    case unknown
-//}
-
 struct ContactLog {
 
     let issueId: String
