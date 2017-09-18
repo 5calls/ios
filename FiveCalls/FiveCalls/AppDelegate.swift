@@ -10,6 +10,7 @@ import UIKit
 import Pantry
 import Fabric
 import Crashlytics
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
+
+        onesignalSetup(launchOptions)
 
         return true
     }
@@ -86,6 +89,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.transitionTo(rootViewController: mainVC)
         }
         window.rootViewController = welcomeVC
+    }
+
+    func onesignalSetup(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+
+        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+
+        // Recommend moving the below line to prompt for push after informing the user about
+        //   how your app will use them.
+//        OneSignal.promptForPushNotifications(userResponse: { accepted in
+//            print("User accepted notifications: \(accepted)")
+//        })
+
     }
     
     func setAppearance() {
