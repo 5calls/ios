@@ -106,7 +106,8 @@ struct ContactLogs {
         }
         
         switch method {
-        case "contact", "voicemail", "vm":
+        // contacted and vm for compatibility
+        case "contact", "contacted", "voicemail", "vm":
             return true
         default:
             return false
