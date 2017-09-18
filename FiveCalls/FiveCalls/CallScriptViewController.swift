@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import Crashlytics
+import OneSignal
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -174,6 +175,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
      
         if isLastContactForIssue {
             hideResultButtons(animated: true)
+
+            checkForNotifications()
         } else {
             let nextContact = issue.contacts[contactIndex + 1]
             showNextContact(nextContact)
@@ -191,7 +194,30 @@ class CallScriptViewController : UIViewController, IssueShareable {
     func shareButtonPressed(_ button: UIBarButtonItem) {
         shareIssue(from: button)
     }
-        
+
+    func checkForNotifications() {
+        let permissions = OneSignal.getPermissionSubscriptionState()
+        print("perms",permissions?.permissionStatus.hasPrompted)
+
+        if permissions?.permissionStatus.hasPrompted == .some(false) {
+            let alert = UIAlertController(title: "Nice work!", message: "5 Calls can send you alerts when news breaks about important issues", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes, all new issues", style: .default, handler: { (action) in
+                OneSignal.promptForPushNotifications(userResponse: { (success) in
+                    OneSignal.sendTag("all", value: "true")
+                })
+            }))
+            alert.addAction(UIAlertAction(title: "Yes, only important issues", style: .default, handler: { (action) in
+                OneSignal.promptForPushNotifications(userResponse: { (success) in
+                    //
+                })
+            }))
+            alert.addAction(UIAlertAction(title: "No, thanks", style: .cancel, handler: { (action) in
+                //
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
     private func showCallFailedAlert() {
         let alertController = UIAlertController(title: R.string.localizable.placeCallFailedTitle(),
                                                 message:  R.string.localizable.placeCallFailedMessage(),
