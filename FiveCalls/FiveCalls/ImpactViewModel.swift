@@ -20,7 +20,7 @@ struct ImpactViewModel {
     }
     
     var madeContactCount: Int {
-        return logs.filter { $0.outcome == "contact" }.count
+        return logs.filter { $0.outcome == "contact" || $0.outcome == "contacted" }.count
     }
     
     var unavailableCount: Int {
@@ -28,7 +28,7 @@ struct ImpactViewModel {
     }
     
     var voicemailCount: Int {
-        return logs.filter { $0.outcome == "voicemail" }.count
+        return logs.filter { $0.outcome == "voicemail" || $0.outcome == "vm" }.count
     }
     
     var weeklyStreakCount: Int {
