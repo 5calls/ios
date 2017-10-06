@@ -151,7 +151,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         }
     }
     
-    func locationDidChange(_ notification: Notification) {
+    @objc func locationDidChange(_ notification: Notification) {
         let location = notification.object as! UserLocation
         setTitleLabel(location: location)
     }

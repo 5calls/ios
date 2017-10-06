@@ -18,7 +18,7 @@ class Appearance {
     
     var fontDescriptor: UIFontDescriptor? {
         return UIFontDescriptor(fontAttributes: [
-                UIFontDescriptorFamilyAttribute: fontFamily
+                UIFontDescriptor.AttributeName.family: fontFamily
                 ]).withSymbolicTraits([.traitBold, .traitCondensed]) // To match the website, fonts should be Bold and Condensed
     }
     
@@ -28,7 +28,7 @@ class Appearance {
         pageControlAppearance.currentPageIndicatorTintColor = .fvc_darkBlue
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSFontAttributeName: headerFont
+            NSAttributedStringKey.font: headerFont
         ]
     }
     

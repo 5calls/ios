@@ -49,8 +49,8 @@ class MyImpactViewController : UITableViewController {
         Answers.logCustomEvent(withName:"Screen: My Impact")
         
         navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: Appearance.instance.headerFont,
-            NSForegroundColorAttributeName: UIColor.white
+            NSAttributedStringKey.font: Appearance.instance.headerFont,
+            NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         
         viewModel = ImpactViewModel(logs: ContactLogs.load().all)

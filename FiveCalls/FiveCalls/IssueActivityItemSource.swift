@@ -20,7 +20,7 @@ class IssueActivityItemSource: NSObject, UIActivityItemSource {
         return issue.name
     }
     
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
         return R.string.localizable.iJustCalledMyRep(issue.name, issue.id)
     }
     

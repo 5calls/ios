@@ -51,7 +51,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         self.tableView.scrollToRow(at: IndexPath(item: 0, section: 1), at: .top, animated: true)
     }
     
-    func madeCall() {
+    @objc func madeCall() {
         logs = ContactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
@@ -102,7 +102,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         }        
     }
     
-    func shareButtonPressed(_ button: UIBarButtonItem) {
+    @objc func shareButtonPressed(_ button: UIBarButtonItem) {
         shareIssue(from: button)
     }
 }

@@ -91,7 +91,7 @@ class IssuesViewController : UITableViewController {
         }
     }
 
-    func share(button: UIButton) {
+    @objc func share(button: UIButton) {
         if let nav = self.splitViewController?.viewControllers.last as? UINavigationController, let shareable = nav.viewControllers.last as? IssueShareable {
             shareable.shareIssue(from: button)
         }
@@ -101,7 +101,7 @@ class IssuesViewController : UITableViewController {
         super.viewWillDisappear(animated)
     }
 
-    func loadIssues() {
+    @objc func loadIssues() {
         isLoading = true
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
@@ -126,12 +126,12 @@ class IssuesViewController : UITableViewController {
         refreshControl?.endRefreshing()
     }
     
-    func madeCall() {
+    @objc func madeCall() {
         logs = ContactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
-    func willEnterForeground() {
+    @objc func willEnterForeground() {
         loadIssues()
     }
 
@@ -244,7 +244,7 @@ extension IssuesViewController : DZNEmptyDataSetSource {
         
         return NSAttributedString(string: message,
                                   attributes: [
-                                    NSFontAttributeName: Appearance.instance.bodyFont
+                                    NSAttributedStringKey.font: Appearance.instance.bodyFont
                 ])
     }
     
