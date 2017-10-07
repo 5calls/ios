@@ -1,13 +1,13 @@
 PODS:
   - CPDAcknowledgements (1.0.0)
-  - Crashlytics (3.8.4):
+  - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.6.11)
+  - Fabric (1.6.13)
   - Pantry (0.3)
-  - R.swift (3.2.0):
-    - R.swift.Library (~> 3.0.2)
-  - R.swift.Library (3.0.2)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
 
 DEPENDENCIES:
   - CPDAcknowledgements
@@ -34,12 +34,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
-  R.swift: 207a372a2b5977caef440c696a368009460641d1
-  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
 
 PODFILE CHECKSUM: b1fa26f65677f9f8d1139d771123c52f4a215ea2
 
