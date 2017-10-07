@@ -928,7 +928,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -945,7 +945,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1113,7 +1113,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1129,7 +1129,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
