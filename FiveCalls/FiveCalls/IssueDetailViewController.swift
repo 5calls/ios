@@ -28,7 +28,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard section == IssueSections.header.rawValue else {
             return nil
         }
