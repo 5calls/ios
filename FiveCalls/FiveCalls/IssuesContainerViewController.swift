@@ -179,7 +179,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     private func setReminderBellStatus() {
-        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.reminderEnabled.rawValue)
+        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue)
         editRemindersButton.isSelected = remindersEnabled
     }
 }

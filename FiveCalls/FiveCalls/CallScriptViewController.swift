@@ -78,7 +78,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.lastPhoneDialed = number
         
         let defaults = UserDefaults.standard
-        let firstCallInstructionsKey =  UserDefaultsKeys.hasSeenFirstCallInstructions.rawValue
+        let firstCallInstructionsKey =  UserDefaultsKey.hasSeenFirstCallInstructions.rawValue
         
         let callErrorCompletion: (Bool) -> Void = { [weak self] successful in
             if !successful {

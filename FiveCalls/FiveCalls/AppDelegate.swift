@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         clearNotificationBadge()
         setAppearance()
         
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
 
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         let mainVC = window.rootViewController!
         welcomeVC.completionBlock = {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue)
+            UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
             self.transitionTo(rootViewController: mainVC)
         }
         window.rootViewController = welcomeVC

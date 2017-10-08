@@ -1,5 +1,5 @@
 //
-//  UserDefaultsKeys.swift
+//  UserDefaultsKey.swift
 //  FiveCalls
 //
 //  Created by Ben Scheirman on 1/30/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UserDefaultsKeys : String {
+enum UserDefaultsKey : String {
     case hasShownWelcomeScreen
     
     case locationDisplay
