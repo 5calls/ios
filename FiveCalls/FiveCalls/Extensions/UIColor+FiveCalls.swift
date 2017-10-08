@@ -28,13 +28,13 @@ extension UIColor {
                                       blue:0.81,
                                       alpha:1.00)
     
-    static let fvc_darkBlueText = UIColor(colorLiteralRed:0.09,
+    static let fvc_darkBlueText = UIColor(red:0.09,
                                           green:0.46,
                                           blue:0.82,
                                           alpha:1.0)
     
     
-    //MARK - Grays
+    //MARK: - Grays
     
     static let fvc_superLightGray = UIColor(white: 0.96, alpha: 1.0)
     

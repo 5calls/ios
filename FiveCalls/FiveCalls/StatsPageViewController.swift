@@ -10,12 +10,12 @@ import UIKit
 import Crashlytics
 
 protocol FinalPage {
-    var didFinishBlock: ((Void) -> Void)? { get set }
+    var didFinishBlock: (() -> Void)? { get set }
 }
 
 class StatsPageViewController : UIViewController, FinalPage {
     
-    var didFinishBlock: ((Void) -> Void)?
+    var didFinishBlock: (() -> Void)?
     @IBOutlet weak var topMargin: NSLayoutConstraint!
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     @IBOutlet weak var buttonHeight: NSLayoutConstraint!

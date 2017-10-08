@@ -27,19 +27,11 @@ public extension UITableView {
     return dequeueReusableCell(withIdentifier: identifier.identifier, for: indexPath) as? Identifier.ReusableType
   }
 
-  /**
-   Returns a typed reusable table-view cell object for the specified reuse identifier and adds it to the table.
-
-   - parameter identifier: A R.reuseIdentifier.* value identifying the cell object to be reused.
-
-   - returns: The UITableViewCell subclass with the associated reuse identifier or nil if it couldn't be casted correctly.
-
-   - precondition: You must register a class or nib file using the registerNib: or registerClass:forCellReuseIdentifier: method before calling this method.
-   */
+  @available(*, unavailable, message: "Use dequeueReusableCell(withIdentifier:for:) instead")
   public func dequeueReusableCell<Identifier: ReuseIdentifierType>(withIdentifier identifier: Identifier) -> Identifier.ReusableType?
     where Identifier.ReusableType: UITableViewCell
   {
-    return dequeueReusableCell(withIdentifier: identifier.identifier) as? Identifier.ReusableType
+    fatalError()
   }
 
   /**

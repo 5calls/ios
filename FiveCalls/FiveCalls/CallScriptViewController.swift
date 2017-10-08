@@ -60,7 +60,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func dismissCallScript() {
+    @objc func dismissCallScript() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -68,7 +68,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissCallScript))
     }
     
-    func callButtonPressed(_ button: UIButton) {
+    @objc func callButtonPressed(_ button: UIButton) {
         Answers.logCustomEvent(withName:"Action: Dialed Number", customAttributes: ["contact_id":contact.id])
         callNumber(contact.phone)
     }
@@ -221,7 +221,7 @@ extension CallScriptViewController : UITableViewDataSource {
         }
     }
     
-    func moreNumbersTapped() {
+    @objc func moreNumbersTapped() {
         Answers.logCustomEvent(withName:"Action: Opened More Numbers", customAttributes: ["contact_id":contact.id])
         if contact.fieldOffices.count > 0 {
             let contactID = contact.id

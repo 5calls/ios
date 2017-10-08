@@ -59,7 +59,7 @@ class ScheduleRemindersController: UIViewController {
         return barButtonItem
     }
 
-    func switchValueChanged(_ sender: UISwitch) {
+    @objc func switchValueChanged(_ sender: UISwitch) {
         remindersEnabled = sender.isOn
         setOverlay(visible: !sender.isOn, animated: true)
     }
@@ -107,7 +107,7 @@ class ScheduleRemindersController: UIViewController {
         }
         if navigationController?.viewControllers.first == self {
             let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissAction(_:)))
-            item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .normal)
+            item.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
             navigationItem.leftBarButtonItem = item
         }
         

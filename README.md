@@ -6,7 +6,7 @@ This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 
 ## Requirements
 
-- Xcode 8
+- Xcode 9
 - iOS 10
 
 ## Getting Started

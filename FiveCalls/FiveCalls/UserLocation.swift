@@ -83,7 +83,7 @@ class UserLocation {
         }
     }
     
-    func setFrom(location: CLLocation, completion: @escaping (Void) -> Void) {
+    func setFrom(location: CLLocation, completion: @escaping () -> Void) {
         locationType = .coordinates
         locationValue = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         locationDisplay = "..."
