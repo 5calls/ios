@@ -19,4 +19,7 @@ enum UserDefaultsKey : String {
     case reminderEnabled
 
     case hasWarnedAboutDangersOfCopying
+
+    case appVersion // The current CFBundleShortVersionString
+    case countOfCallsForRatingPrompt
 }

@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         clearNotificationBadge()
         setAppearance()
+
+        resetOrInitializeCallsForRatingIfNecessary()
         
         if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
             showWelcome()
@@ -126,6 +128,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func clearNotificationBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+
+
+    private func resetOrInitializeCallsForRatingIfNecessary() {
+        let defaults = UserDefaults.standard
+
+        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+
+        if let storedVersion = defaults.string(forKey: UserDefaultsKey.appVersion.rawValue),
+            currentVersion == storedVersion {
+            return
+        }
+
+        defaults.setValue(currentVersion, forKey: UserDefaultsKey.appVersion.rawValue)
+        defaults.set(Int(0), forKey: UserDefaultsKey.countOfCallsForRatingPrompt.rawValue)
     }
 }
 
