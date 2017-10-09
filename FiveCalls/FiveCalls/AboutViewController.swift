@@ -91,7 +91,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
             SKStoreReviewController.requestReview()
         } else {
             guard let url = URL(string: "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(AboutViewController.appId)") else { return }
-            UIApplication.shared.fvc_open(url)
+            UIApplication.shared.open(url)
         }
     }
     
@@ -110,7 +110,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     func followOnTwitter() {
         Answers.logCustomEvent(withName: "Action: Follow On Twitter")
         guard let url = URL(string: "https://twitter.com/make5calls") else { return }
-        UIApplication.shared.fvc_open(url)
+        UIApplication.shared.open(url)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

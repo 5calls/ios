@@ -102,7 +102,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         if defaults.bool(forKey: firstCallInstructionsKey) {
             guard let dialURL = URL(string: "telprompt:\(number)") else { return }
-            UIApplication.shared.fvc_open(dialURL, completion: callErrorCompletion)
+            UIApplication.shared.open(dialURL, completionHandler: callErrorCompletion)
         } else {
             let alertController = UIAlertController(title: R.string.localizable.firstCallAlertTitle(),
                                                     message:  R.string.localizable.firstCallAlertMessage(),
@@ -117,7 +117,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
                                              style: .default) { _ in
                                                 alertController.dismiss(animated: true, completion: nil)
                                                 guard let dialURL = URL(string: "tel:\(number)") else { return }
-                                                UIApplication.shared.fvc_open(dialURL, completion: callErrorCompletion)
+                                                UIApplication.shared.open(dialURL, completionHandler: callErrorCompletion)
                                                 
                                                 defaults.set(true, forKey: firstCallInstructionsKey)
             }

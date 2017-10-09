@@ -145,16 +145,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.set(Int(0), forKey: UserDefaultsKey.countOfCallsForRatingPrompt.rawValue)
     }
 }
-
-extension UIApplication {
-    func fvc_open(_ url: URL, completion: ((Bool) -> Void)? = nil) {
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url) {
-                completion?($0)
-            }
-        } else {
-            let result = UIApplication.shared.openURL(url)
-            completion?(result)
-        }
-    }
-}
