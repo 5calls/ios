@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import Crashlytics
+import StoreKit
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -22,6 +23,17 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let contactIndex = issue.contacts.index(of: contact)
         return contactIndex == issue.contacts.count - 1
     }
+
+    lazy var ratingPromptCounter: RatingPromptCounter = {
+        let handler: (() -> Void)?
+        if #available(iOS 10.3, *) {
+            handler = { SKStoreReviewController.requestReview() }
+        } else {
+            handler = nil
+        }
+
+        return RatingPromptCounter(handler: handler)
+    }()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultInstructionsLabel: UILabel!
@@ -176,6 +188,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         present(alertController, animated: true, completion: nil)
     }
+
+    
 }
 
 enum CallScriptRows : Int {
@@ -274,6 +288,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
 
         if isLastContactForIssue {
             hideResultButtons(animated: true)
+            ratingPromptCounter.increment()
         } else {
             let nextContact = issue.contacts[contactIndex + 1]
             showNextContact(nextContact)
