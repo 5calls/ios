@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         clearNotificationBadge()
         setAppearance()
 
-        resetOrInitializeCallsForRatingIfNecessary()
+        resetOrInitializeCountForRating()
         
         if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
             showWelcome()
@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    private func resetOrInitializeCallsForRatingIfNecessary() {
+    private func resetOrInitializeCountForRating() {
         let defaults = UserDefaults.standard
 
         guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
