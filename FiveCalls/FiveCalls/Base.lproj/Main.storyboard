@@ -89,10 +89,12 @@
                                     <constraint firstItem="yMR-6E-6ld" firstAttribute="width" secondItem="Ad6-Ie-bsI" secondAttribute="width" id="Gnw-iz-w8g"/>
                                     <constraint firstItem="Ad6-Ie-bsI" firstAttribute="leading" secondItem="IwU-zA-nnh" secondAttribute="leading" id="JRM-tF-7di"/>
                                     <constraint firstAttribute="height" constant="44" id="Lfq-V1-EN4"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ad6-Ie-bsI" secondAttribute="trailing" constant="20" symbolic="YES" id="O4E-a8-b6O"/>
                                     <constraint firstItem="Ad6-Ie-bsI" firstAttribute="width" secondItem="IwU-zA-nnh" secondAttribute="width" multiplier="0.5" id="R76-yA-Pxi"/>
                                     <constraint firstItem="yMR-6E-6ld" firstAttribute="top" secondItem="IwU-zA-nnh" secondAttribute="top" id="T2p-c8-lbO"/>
                                     <constraint firstAttribute="bottom" secondItem="Ad6-Ie-bsI" secondAttribute="bottom" id="X3S-Mo-n0S"/>
                                     <constraint firstItem="Ad6-Ie-bsI" firstAttribute="top" secondItem="IwU-zA-nnh" secondAttribute="top" id="fc1-y4-6ff"/>
+                                    <constraint firstItem="yMR-6E-6ld" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IwU-zA-nnh" secondAttribute="leading" constant="20" symbolic="YES" id="lQe-1a-UfN"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -195,7 +197,7 @@
                                 <rect key="frame" x="25" y="79" width="270" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="HAO-vV-2NC"/>
-                                    <constraint firstAttribute="width" constant="270" id="Pdf-nI-tIb"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="270" id="Pdf-nI-tIb"/>
                                 </constraints>
                                 <state key="normal" title="Use My Location"/>
                                 <userDefinedRuntimeAttributes>
@@ -239,7 +241,7 @@
                                         <rect key="frame" x="94" y="89.5" width="100" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="KTK-f0-lqy"/>
-                                            <constraint firstAttribute="width" constant="100" id="vDF-j1-Q3J"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="vDF-j1-Q3J"/>
                                         </constraints>
                                         <state key="normal" title="Submit"/>
                                         <userDefinedRuntimeAttributes>
@@ -487,8 +489,9 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EGt-v6-UFC" secondAttribute="trailing" constant="5" id="7bb-LJ-0Xe"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="JQD-W8-GS8" secondAttribute="bottom" constant="6" id="PMq-LZ-mnE"/>
+                                                <constraint firstAttribute="trailing" secondItem="2w7-0y-u2B" secondAttribute="trailing" constant="22" id="PZj-ED-A5V"/>
                                                 <constraint firstItem="JQD-W8-GS8" firstAttribute="leading" secondItem="r0i-yC-dN5" secondAttribute="leadingMargin" constant="10" id="Ylr-8C-83v"/>
-                                                <constraint firstItem="2w7-0y-u2B" firstAttribute="leading" secondItem="EGt-v6-UFC" secondAttribute="leading" id="ZwD-mG-arU"/>
+                                                <constraint firstItem="2w7-0y-u2B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EGt-v6-UFC" secondAttribute="leading" id="ZwD-mG-arU"/>
                                                 <constraint firstItem="EGt-v6-UFC" firstAttribute="top" secondItem="JQD-W8-GS8" secondAttribute="top" constant="14" id="csQ-05-xKc"/>
                                                 <constraint firstItem="2w7-0y-u2B" firstAttribute="top" secondItem="EGt-v6-UFC" secondAttribute="bottom" constant="2.5" id="efc-or-EIc"/>
                                                 <constraint firstItem="EGt-v6-UFC" firstAttribute="leading" secondItem="JQD-W8-GS8" secondAttribute="trailing" constant="8" id="suA-wa-7jG"/>
@@ -663,6 +666,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                 <constraint firstItem="pkr-8w-SY8" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="AbF-0C-Mvm"/>
                                                 <constraint firstItem="Voe-9n-8a4" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="BJJ-Df-I1C"/>
                                                 <constraint firstItem="KPu-hW-gnx" firstAttribute="leading" secondItem="NoE-J1-wgV" secondAttribute="trailing" constant="8" id="LFx-DS-VBU"/>
+                                                <constraint firstItem="KPu-hW-gnx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="avw-nh-C54" secondAttribute="trailing" constant="8" symbolic="YES" id="MQ8-re-uhc"/>
                                                 <constraint firstItem="NoE-J1-wgV" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="OFs-oQ-FBb"/>
                                                 <constraint firstItem="MNK-X0-fDd" firstAttribute="centerX" secondItem="KPu-hW-gnx" secondAttribute="centerX" id="So3-gX-qqg"/>
                                                 <constraint firstAttribute="trailing" secondItem="KPu-hW-gnx" secondAttribute="trailing" constant="15" id="TKq-8Y-oli"/>
@@ -672,6 +676,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                 <constraint firstItem="NoE-J1-wgV" firstAttribute="top" secondItem="avw-nh-C54" secondAttribute="bottom" constant="4" id="lGT-Ge-76x"/>
                                                 <constraint firstItem="Voe-9n-8a4" firstAttribute="top" secondItem="pkr-8w-SY8" secondAttribute="bottom" constant="10.5" id="oIL-R9-OdH"/>
                                                 <constraint firstItem="Voe-9n-8a4" firstAttribute="bottom" secondItem="uLd-Vb-KSR" secondAttribute="bottomMargin" id="vYU-dQ-Thu"/>
+                                                <constraint firstItem="KPu-hW-gnx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pkr-8w-SY8" secondAttribute="trailing" constant="8" symbolic="YES" id="vc7-pU-rna"/>
                                                 <constraint firstItem="MNK-X0-fDd" firstAttribute="top" secondItem="KPu-hW-gnx" secondAttribute="bottom" constant="10" id="yHg-89-Vqx"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1054,7 +1059,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <image name="share" width="19" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XV8-ty-hbB"/>
+        <segue reference="6tF-q1-2tT"/>
         <segue reference="wpd-Rg-3EW"/>
     </inferredMetricsTieBreakers>
 </document>

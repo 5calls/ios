@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE YOUR VOICE HEARD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-4Q-3q1">
-                                <rect key="frame" x="24" y="24" width="327" height="67.5"/>
+                                <rect key="frame" x="24" y="44" width="327.5" height="31.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="N2E-i5-bCe"/>
                                 </constraints>
@@ -72,7 +73,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTN-TQ-Ssn">
-                                <rect key="frame" x="24" y="111.5" width="327" height="20.5"/>
+                                <rect key="frame" x="24" y="96" width="328" height="108.5"/>
                                 <string key="text">Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
@@ -84,10 +85,9 @@
                             <constraint firstItem="eV6-4Q-3q1" firstAttribute="centerX" secondItem="GTt-jg-HeU" secondAttribute="centerX" id="1qM-P3-bed"/>
                             <constraint firstItem="gTN-TQ-Ssn" firstAttribute="leading" secondItem="eV6-4Q-3q1" secondAttribute="leading" id="5ZA-J8-Nlk"/>
                             <constraint firstItem="gTN-TQ-Ssn" firstAttribute="top" secondItem="eV6-4Q-3q1" secondAttribute="bottom" constant="20" id="8QS-jM-Rw8"/>
-                            <constraint firstAttribute="trailing" secondItem="eV6-4Q-3q1" secondAttribute="trailing" priority="900" constant="24" id="96a-lB-6bv"/>
+                            <constraint firstItem="gTN-TQ-Ssn" firstAttribute="centerX" secondItem="eV6-4Q-3q1" secondAttribute="centerX" id="AXC-y2-n9V"/>
                             <constraint firstItem="eV6-4Q-3q1" firstAttribute="top" secondItem="iXw-mR-qko" secondAttribute="bottom" constant="24" id="EQb-UU-gye"/>
-                            <constraint firstItem="gTN-TQ-Ssn" firstAttribute="trailing" secondItem="eV6-4Q-3q1" secondAttribute="trailing" id="Jsw-Qy-4Vc"/>
-                            <constraint firstItem="eV6-4Q-3q1" firstAttribute="leading" secondItem="GTt-jg-HeU" secondAttribute="leading" priority="900" constant="24" id="VsC-4g-Qzk"/>
+                            <constraint firstItem="eV6-4Q-3q1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GTt-jg-HeU" secondAttribute="leading" priority="900" constant="24" id="VsC-4g-Qzk"/>
                             <constraint firstItem="PZB-P4-4Pj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTN-TQ-Ssn" secondAttribute="bottom" constant="20" id="hcV-86-ttY"/>
                         </constraints>
                     </view>
@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spend 5 minutes, make 5 calls." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HS-eY-5Py">
-                                <rect key="frame" x="24" y="24" width="327" height="67.5"/>
+                                <rect key="frame" x="46.5" y="44" width="282" height="63.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="sep-1D-tX1"/>
                                 </constraints>
@@ -142,7 +142,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-Uy-7K6">
-                                <rect key="frame" x="24" y="154" width="327" height="43"/>
+                                <rect key="frame" x="46.5" y="170" width="282" height="43"/>
                                 <string key="text">TOGETHER WE'VE MADE 
 ... CALLS</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -150,7 +150,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calling is the most effective way to influence your representative." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QTT-YD-26Z">
-                                <rect key="frame" x="24" y="101.5" width="327" height="42.5"/>
+                                <rect key="frame" x="46.5" y="117.5" width="282" height="42.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -158,19 +158,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hra-Uy-7K6" firstAttribute="trailing" secondItem="1HS-eY-5Py" secondAttribute="trailing" id="2L4-dP-G63"/>
-                            <constraint firstItem="1HS-eY-5Py" firstAttribute="leading" secondItem="ht3-ki-psO" secondAttribute="leading" priority="900" constant="24" id="Dok-6W-bbL"/>
+                            <constraint firstItem="1HS-eY-5Py" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ht3-ki-psO" secondAttribute="leading" priority="900" constant="24" id="Dok-6W-bbL"/>
                             <constraint firstItem="1HS-eY-5Py" firstAttribute="top" secondItem="Ne5-Ii-gp0" secondAttribute="bottom" constant="24" id="Mah-SM-w9f"/>
                             <constraint firstItem="Hra-Uy-7K6" firstAttribute="leading" secondItem="1HS-eY-5Py" secondAttribute="leading" id="Q3g-bL-kZB"/>
+                            <constraint firstItem="QTT-YD-26Z" firstAttribute="centerX" secondItem="1HS-eY-5Py" secondAttribute="centerX" id="RlJ-V7-NKN"/>
                             <constraint firstItem="QTT-YD-26Z" firstAttribute="top" secondItem="1HS-eY-5Py" secondAttribute="bottom" constant="10" id="XGQ-ct-r79"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="leading" secondItem="ht3-ki-psO" secondAttribute="leadingMargin" priority="900" constant="8" id="bWK-VM-XRv"/>
                             <constraint firstItem="1HS-eY-5Py" firstAttribute="centerX" secondItem="ht3-ki-psO" secondAttribute="centerX" id="cZc-jn-ONp"/>
-                            <constraint firstItem="QTT-YD-26Z" firstAttribute="trailing" secondItem="1HS-eY-5Py" secondAttribute="trailing" id="da8-CL-ScH"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="centerX" secondItem="ht3-ki-psO" secondAttribute="centerX" id="dfj-25-XtG"/>
-                            <constraint firstAttribute="trailing" secondItem="1HS-eY-5Py" secondAttribute="trailing" priority="900" constant="24" id="hqn-jR-rep"/>
                             <constraint firstItem="QTT-YD-26Z" firstAttribute="leading" secondItem="1HS-eY-5Py" secondAttribute="leading" id="iqV-RR-C0M"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FL3-kO-5GT" secondAttribute="trailing" priority="900" constant="8" id="kEf-zp-aA2"/>
                             <constraint firstItem="Hra-Uy-7K6" firstAttribute="top" secondItem="QTT-YD-26Z" secondAttribute="bottom" constant="10" id="nJF-bp-aA4"/>
+                            <constraint firstItem="Hra-Uy-7K6" firstAttribute="centerX" secondItem="QTT-YD-26Z" secondAttribute="centerX" id="qbb-aT-Fj0"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hra-Uy-7K6" secondAttribute="bottom" constant="4" id="r1q-fQ-bhS"/>
                             <constraint firstItem="rXb-W1-5JO" firstAttribute="top" secondItem="FL3-kO-5GT" secondAttribute="bottom" constant="14" id="zhQ-tU-Y1Y"/>
                         </constraints>
