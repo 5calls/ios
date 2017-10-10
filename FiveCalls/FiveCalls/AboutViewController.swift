@@ -131,11 +131,3 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         present(welcomeVC, animated: true)
     }
 }
-
-extension AboutViewController: SKStoreProductViewControllerDelegate {
-    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
-        dismiss(animated: true) {
-            //
-        }
-    }
-}
