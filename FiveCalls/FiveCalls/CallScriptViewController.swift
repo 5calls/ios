@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import Crashlytics
+import StoreKit
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -22,6 +23,17 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let contactIndex = issue.contacts.index(of: contact)
         return contactIndex == issue.contacts.count - 1
     }
+
+    lazy var ratingPromptCounter: RatingPromptCounter = {
+        let handler: (() -> Void)?
+        if #available(iOS 10.3, *) {
+            handler = { SKStoreReviewController.requestReview() }
+        } else {
+            handler = nil
+        }
+
+        return RatingPromptCounter(handler: handler)
+    }()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultInstructionsLabel: UILabel!
@@ -78,7 +90,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         self.lastPhoneDialed = number
         
         let defaults = UserDefaults.standard
-        let firstCallInstructionsKey =  UserDefaultsKeys.hasSeenFirstCallInstructions.rawValue
+        let firstCallInstructionsKey =  UserDefaultsKey.hasSeenFirstCallInstructions.rawValue
         
         let callErrorCompletion: (Bool) -> Void = { [weak self] successful in
             if !successful {
@@ -90,7 +102,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         if defaults.bool(forKey: firstCallInstructionsKey) {
             guard let dialURL = URL(string: "telprompt:\(number)") else { return }
-            UIApplication.shared.fvc_open(dialURL, completion: callErrorCompletion)
+            UIApplication.shared.open(dialURL, completionHandler: callErrorCompletion)
         } else {
             let alertController = UIAlertController(title: R.string.localizable.firstCallAlertTitle(),
                                                     message:  R.string.localizable.firstCallAlertMessage(),
@@ -105,7 +117,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
                                              style: .default) { _ in
                                                 alertController.dismiss(animated: true, completion: nil)
                                                 guard let dialURL = URL(string: "tel:\(number)") else { return }
-                                                UIApplication.shared.fvc_open(dialURL, completion: callErrorCompletion)
+                                                UIApplication.shared.open(dialURL, completionHandler: callErrorCompletion)
                                                 
                                                 defaults.set(true, forKey: firstCallInstructionsKey)
             }
@@ -176,6 +188,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         present(alertController, animated: true, completion: nil)
     }
+
+    
 }
 
 enum CallScriptRows : Int {
@@ -274,6 +288,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
 
         if isLastContactForIssue {
             hideResultButtons(animated: true)
+            ratingPromptCounter.increment()
         } else {
             let nextContact = issue.contacts[contactIndex + 1]
             showNextContact(nextContact)

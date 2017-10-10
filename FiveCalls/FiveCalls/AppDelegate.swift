@@ -32,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         clearNotificationBadge()
         setAppearance()
+
+        resetOrInitializeCountForRating()
         
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
 
@@ -82,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         let mainVC = window.rootViewController!
         welcomeVC.completionBlock = {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasShownWelcomeScreen.rawValue)
+            UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
             self.transitionTo(rootViewController: mainVC)
         }
         window.rootViewController = welcomeVC
@@ -127,17 +129,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func clearNotificationBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-}
 
-extension UIApplication {
-    func fvc_open(_ url: URL, completion: ((Bool) -> Void)? = nil) {
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url) {
-                completion?($0)
-            }
-        } else {
-            let result = UIApplication.shared.openURL(url)
-            completion?(result)
+
+    private func resetOrInitializeCountForRating() {
+        let defaults = UserDefaults.standard
+
+        guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+
+        if let storedVersion = defaults.string(forKey: UserDefaultsKey.appVersion.rawValue),
+            currentVersion == storedVersion {
+            return
         }
+
+        defaults.setValue(currentVersion, forKey: UserDefaultsKey.appVersion.rawValue)
+        defaults.set(Int(0), forKey: UserDefaultsKey.countOfCallsForRatingPrompt.rawValue)
     }
 }

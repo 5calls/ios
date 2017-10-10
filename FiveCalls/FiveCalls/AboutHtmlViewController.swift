@@ -36,7 +36,7 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
             // Open links in Safari
             guard let url = request.url else { return true }
             Answers.logCustomEvent(withName: "Action: Open External Link", customAttributes: ["url":url.absoluteString])
-            UIApplication.shared.fvc_open(url)
+            UIApplication.shared.open(url)
             
             return false
         default:

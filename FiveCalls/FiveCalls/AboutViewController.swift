@@ -11,6 +11,7 @@ import UIKit
 import MessageUI
 import CPDAcknowledgements
 import Crashlytics
+import StoreKit
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
 
@@ -86,8 +87,12 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func promptForRating() {
         Answers.logCustomEvent(withName: "Action: Rate the App")
-        guard let url = URL(string: "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(AboutViewController.appId)") else { return }
-        UIApplication.shared.fvc_open(url)
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        } else {
+            guard let url = URL(string: "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(AboutViewController.appId)") else { return }
+            UIApplication.shared.open(url)
+        }
     }
     
     func shareApp(from view: UIView?) {
@@ -105,7 +110,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     func followOnTwitter() {
         Answers.logCustomEvent(withName: "Action: Follow On Twitter")
         guard let url = URL(string: "https://twitter.com/make5calls") else { return }
-        UIApplication.shared.fvc_open(url)
+        UIApplication.shared.open(url)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

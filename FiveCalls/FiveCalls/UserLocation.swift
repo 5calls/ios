@@ -33,32 +33,32 @@ class UserLocation {
     var defaults: UserDefaults = .standard
     var locationType: LocationType? {
         get {
-            guard let typeString = defaults.string(forKey: UserDefaultsKeys.locationType.rawValue)
+            guard let typeString = defaults.string(forKey: UserDefaultsKey.locationType.rawValue)
                 else {
                     return nil
                 }
             return LocationType(rawValue: typeString)
         }
         set {
-            defaults.set(newValue?.rawValue, forKey: UserDefaultsKeys.locationType.rawValue)
+            defaults.set(newValue?.rawValue, forKey: UserDefaultsKey.locationType.rawValue)
         }
     }
     
     var locationValue: String? {
         get {
-            return defaults.string(forKey: UserDefaultsKeys.locationValue.rawValue)
+            return defaults.string(forKey: UserDefaultsKey.locationValue.rawValue)
         }
         set {
-            defaults.set(newValue, forKey: UserDefaultsKeys.locationValue.rawValue)
+            defaults.set(newValue, forKey: UserDefaultsKey.locationValue.rawValue)
         }
     }
     
     var locationDisplay: String? {
         get {
-            return defaults.string(forKey: UserDefaultsKeys.locationDisplay.rawValue)
+            return defaults.string(forKey: UserDefaultsKey.locationDisplay.rawValue)
         }
         set {
-            defaults.set(newValue, forKey: UserDefaultsKeys.locationDisplay.rawValue)
+            defaults.set(newValue, forKey: UserDefaultsKey.locationDisplay.rawValue)
         }
     }
     
