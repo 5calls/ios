@@ -94,6 +94,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     private func setContentInset() {
         // Fix for odd force unwrapping in crash noted in bug #75
         guard issuesViewController != nil && headerContainer != nil else { return }
+        if #available(iOS 11, *) {
+            issuesViewController.tableView.contentInsetAdjustmentBehavior = .never
+        }
         issuesViewController.tableView.contentInset.top = headerContainer.frame.size.height
         issuesViewController.tableView.scrollIndicatorInsets.top = headerContainer.frame.size.height
     }
