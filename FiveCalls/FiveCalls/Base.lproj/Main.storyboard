@@ -308,7 +308,7 @@
                                             <rect key="frame" x="8" y="15" width="44" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="M00-0u-O9S"/>
+                                                <constraint firstAttribute="height" priority="996" constant="44" id="M00-0u-O9S"/>
                                                 <constraint firstAttribute="width" constant="44" id="sge-sG-n0s"/>
                                             </constraints>
                                         </view>
@@ -320,13 +320,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="top" secondItem="sKx-hn-UH9" secondAttribute="topMargin" constant="8" id="0TI-qG-QQc"/>
+                                        <constraint firstItem="pdL-nv-0bt" firstAttribute="top" secondItem="sKx-hn-UH9" secondAttribute="topMargin" priority="993" constant="8" id="0TI-qG-QQc"/>
                                         <constraint firstItem="pdL-nv-0bt" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="7xd-WT-WNb"/>
                                         <constraint firstItem="pdL-nv-0bt" firstAttribute="leading" secondItem="wEs-9r-J66" secondAttribute="trailing" constant="8" id="FeY-Hp-huw"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="wEs-9r-J66" secondAttribute="leading" id="Izu-kz-OvP"/>
                                         <constraint firstItem="wEs-9r-J66" firstAttribute="centerY" secondItem="sKx-hn-UH9" secondAttribute="centerY" id="RLQ-9O-x19"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pdL-nv-0bt" secondAttribute="trailing" constant="20" id="VuS-Le-l6T"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pdL-nv-0bt" secondAttribute="bottom" constant="8" id="dSM-Xp-HZT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="pdL-nv-0bt" secondAttribute="bottom" priority="985" constant="8" id="dSM-Xp-HZT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -355,7 +355,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <segue destination="Ona-ZX-WCV" kind="show" id="S0W-r7-tLs"/>
+                                    <segue destination="Ona-ZX-WCV" kind="show" identifier="moreSegue" id="S0W-r7-tLs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1043,7 +1043,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                     <nil key="simulatedTopBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="allIssues" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFetchAllIssues" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowAllIssues" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V38-Db-EV4" userLabel="First Responder" sceneMemberID="firstResponder"/>

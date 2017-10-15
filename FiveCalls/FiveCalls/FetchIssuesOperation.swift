@@ -10,7 +10,6 @@ import Foundation
 
 class FetchIssuesOperation : BaseOperation {
 
-    let query: IssuesManager.Query
     let location: UserLocation?
     
     // Output properties.
@@ -19,8 +18,7 @@ class FetchIssuesOperation : BaseOperation {
     var error: Error?
     var issuesList: IssuesList?
 
-    init(query: IssuesManager.Query, location: UserLocation?) {
-        self.query = query
+    init(location: UserLocation?) {
         self.location = location
     }
     
@@ -36,10 +34,9 @@ class FetchIssuesOperation : BaseOperation {
         urlComponents.path = "/issues/"
 
         var queryItems: [URLQueryItem] = []
-        if query == .inactive {
-            let inactiveQueryItem = URLQueryItem(name: "inactive", value: "true")
-            queryItems.append(inactiveQueryItem)
-        }
+        let inactiveQueryItem = URLQueryItem(name: "all", value: "true")
+        queryItems.append(inactiveQueryItem)
+
         if let location = self.location {
             let locationQueryItem = URLQueryItem(name: "address", value: location.locationValue)
             queryItems.append(locationQueryItem)

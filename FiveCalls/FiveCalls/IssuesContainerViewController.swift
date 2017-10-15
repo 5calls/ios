@@ -35,6 +35,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     private func configureChildViewController() {
         let isRegularWidth = traitCollection.horizontalSizeClass == .regular
         let issuesVC = R.storyboard.main.issuesViewController()!
+        issuesVC.issuesManager = IssuesManager()
         issuesVC.issuesDelegate = self
         let childController: UIViewController
         
