@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 import Crashlytics
 import StoreKit
+import OneSignal
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -189,7 +190,27 @@ class CallScriptViewController : UIViewController, IssueShareable {
         present(alertController, animated: true, completion: nil)
     }
 
-    
+    func checkForNotifications() {
+        let permissions = OneSignal.getPermissionSubscriptionState()
+
+        if permissions?.permissionStatus.hasPrompted == .some(false) {
+            let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
+                OneSignal.promptForPushNotifications(userResponse: { (success) in
+                    OneSignal.sendTag("all", value: "true")
+                })
+            }))
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { (action) in
+                OneSignal.promptForPushNotifications(userResponse: { (success) in
+                    //
+                })
+            }))
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationNone(), style: .cancel, handler: { (action) in
+                //
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 enum CallScriptRows : Int {
@@ -287,6 +308,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
         }
 
         if isLastContactForIssue {
+            checkForNotifications()
             hideResultButtons(animated: true)
             ratingPromptCounter.increment()
         } else {

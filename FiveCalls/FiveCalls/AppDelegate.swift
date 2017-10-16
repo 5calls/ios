@@ -10,6 +10,7 @@ import UIKit
 import Pantry
 import Fabric
 import Crashlytics
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,7 +40,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showWelcome()
         }
 
+        oneSignalStartup(launchOptions: launchOptions)
+
         return true
+    }
+
+    func oneSignalStartup(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
     }
 
     func migrateSavedData() {
