@@ -308,9 +308,12 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
         }
 
         if isLastContactForIssue {
-            checkForNotifications()
             hideResultButtons(animated: true)
+
+            // these two should never show at the same time, rating will always
+            // wait until 5, notifications will trigger on the first one.
             ratingPromptCounter.increment()
+            checkForNotifications()
         } else {
             let nextContact = issue.contacts[contactIndex + 1]
             showNextContact(nextContact)
