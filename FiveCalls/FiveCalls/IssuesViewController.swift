@@ -36,10 +36,7 @@ class IssuesViewController : UITableViewController {
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
-    struct ViewModel {
-        let categories:[Category]
-    }
-    var viewModel = ViewModel(categories: [])
+    var viewModel = IssuesViewModel(categories: [], showAll: false)
 
     deinit {
         if let notificationToken = notificationToken {
@@ -52,7 +49,7 @@ class IssuesViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Construct viewModel from the issues already fetched by the caller.
-        viewModel = ViewModel(categories: self.issuesManager.categories)
+        viewModel = IssuesViewModel(categories: self.issuesManager.categories, showAll: shouldShowAllIssues)
 
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
@@ -63,15 +60,10 @@ class IssuesViewController : UITableViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         // Refetch data only if we don't have anything to display.
-        if viewModel.categories.count == 0 {
+        if viewModel.hasNoData() {
             loadIssues()
         }
 
-        // 'Whats important' header gets shown only when we are showing
-        // active issues only.
-        if !shouldShowAllIssues {
-            tableView.tableHeaderView = headerWithTitle(title: R.string.localizable.whatsImportantTitle())
-        }
         tableView.tableFooterView = UIView()
 
         refreshControl = UIRefreshControl()
@@ -128,8 +120,13 @@ class IssuesViewController : UITableViewController {
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
         if case .success = result {
-            viewModel = ViewModel(categories: issuesManager.categories)
-            tableView.reloadData()
+            DispatchQueue.global(qos: .background).async { [unowned self] () -> Void in
+                let viewModel = IssuesViewModel(categories: self.issuesManager.categories, showAll: self.shouldShowAllIssues)
+                DispatchQueue.main.async {
+                    self.viewModel = viewModel
+                    self.tableView.reloadData()
+                }
+            }
         } else {
             tableView.reloadEmptyDataSet()
         }
@@ -181,74 +178,51 @@ class IssuesViewController : UITableViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
-            typedInfo.destination.issue = viewModel.categories[indexPath.section].issues[indexPath.row]
+            typedInfo.destination.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         }
     }
     
     // MARK: - UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Empty tableview if we haven't fetched data yet.
-        if viewModel.categories.count == 0 {
-            return 0
-        }
-        // As many sections as there are unique categories.
-        return viewModel.categories.count
+        return viewModel.numberOfSections()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Display 'more issues' row in the last section, if we are showing 'active' issues only.
-        let isLastSection = (viewModel.categories.count - 1 == section)
+        let isLastSection = (viewModel.numberOfSections() - 1 == section)
         let moreIssuesRow = (isLastSection && !shouldShowAllIssues) ? 1 : 0
 
-        return viewModel.categories[section].issues.count + moreIssuesRow
+        return viewModel.numberOfRowsInSection(section: section) + moreIssuesRow
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if shouldShowAllIssues {
-            return headerWithTitle(title: viewModel.categories[section].name)
+        guard let title = viewModel.titleForHeaderInSection(section: section) else {
+            return nil
         }
-        return nil
+        return headerWithTitle(title: title)
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if shouldShowAllIssues {
+        if let _ = viewModel.titleForHeaderInSection(section: section) {
             return 26.0
         }
         return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.row < viewModel.categories[indexPath.section].issues.count else {
+        guard indexPath.row < viewModel.numberOfRowsInSection(section: indexPath.section) else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.moreIssuesCell, for: indexPath)!
             return cell
         }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
-        let issue = viewModel.categories[indexPath.section].issues[indexPath.row]
-        cell.isHidden = !shouldShowAllIssues && issue.inactive
+        let issue = viewModel.issueForIndexPath(indexPath: indexPath)
         cell.titleLabel.text = issue.name
         if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
             cell.checkboxView.isChecked = hasContacted
         }
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.row < viewModel.categories[indexPath.section].issues.count else {
-            return UITableViewAutomaticDimension
-        }
-        let issue = viewModel.categories[indexPath.section].issues[indexPath.row]
-        // Hide the row (height 0) if the issue for that cell is inactive and
-        // we are currently showing active issues only.
-        if !shouldShowAllIssues && issue.inactive {
-            return 0
-        }
-        return UITableViewAutomaticDimension
-    }
-
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
     }
 
 }
@@ -261,7 +235,7 @@ extension IssuesViewController: UIViewControllerPreviewingDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
         
         detailViewController.issuesManager = issuesManager
-        detailViewController.issue = viewModel.categories[indexPath.section].issues[indexPath.row]
+        detailViewController.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         previewingContext.sourceRect = cell.frame
         
         return detailViewController
