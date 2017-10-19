@@ -52,7 +52,7 @@
 		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
 		B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */; };
 		B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F51E41772D00966B7D /* IssueCell.swift */; };
-		B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F71E41779300966B7D /* CheckboxView.swift */; };
+		B5CA63F81E41779300966B7D /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F71E41779300966B7D /* ProgressView.swift */; };
 		B5CA63FB1E422D0700966B7D /* IssuesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */; };
 		B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */; };
 		B5D5C95A1E441FEC00C80D5F /* IssuesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */; };
@@ -176,7 +176,7 @@
 		B5A70A5C1E4C01A00031DF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		B5CA63F51E41772D00966B7D /* IssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCell.swift; sourceTree = "<group>"; };
-		B5CA63F71E41779300966B7D /* CheckboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
+		B5CA63F71E41779300966B7D /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesContainerViewController.swift; sourceTree = "<group>"; };
 		B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesManager.swift; sourceTree = "<group>"; };
@@ -395,7 +395,7 @@
 				B591EB841E44D946006C7D28 /* ContactCell.swift */,
 				9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */,
 				B5D5C95B1E44317700C80D5F /* IssueDetailCell.swift */,
-				B5CA63F71E41779300966B7D /* CheckboxView.swift */,
+				B5CA63F71E41779300966B7D /* ProgressView.swift */,
 				9C18DA601E461C920024B991 /* PaddedLabel.swift */,
 				B5E807031E46796A00EBE553 /* RemoteImageView.swift */,
 				B50280511E46A7A300749ED7 /* EllipsisButton.swift */,
@@ -877,7 +877,7 @@
 				B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
-				B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */,
+				B5CA63F81E41779300966B7D /* ProgressView.swift in Sources */,
 				B5E807041E46796A00EBE553 /* RemoteImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

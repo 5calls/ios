@@ -39,7 +39,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     @IBOutlet weak var resultInstructionsLabel: UILabel!
     @IBOutlet weak var outcomesCollection: UICollectionView!
     @IBOutlet weak var footerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var checkboxView: CheckboxView!
+    @IBOutlet weak var checkboxView: ProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

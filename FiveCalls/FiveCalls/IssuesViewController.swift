@@ -199,9 +199,17 @@ class IssuesViewController : UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
         let issue = viewModel.issues[indexPath.row]
         cell.titleLabel.text = issue.name
-        if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
-            cell.checkboxView.isChecked = hasContacted
+        
+        var numContactsContacted = 0
+        for contact in issue.contacts {
+            if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
+                if contacted {
+                    numContactsContacted = numContactsContacted + 1
+                }
+            }
         }
+        
+        cell.progressView.progress = Double(numContactsContacted) / Double(issue.contacts.count)
         return cell
     }
 

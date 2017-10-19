@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class CheckboxView : UIView {
+class ProgressView : UIView {
     
     var imageView: UIImageView!
     
@@ -30,7 +30,7 @@ class CheckboxView : UIView {
         let image = R.image.iconCheckmark()
         imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = !isChecked
+        imageView.isHidden = (progress < 1.0)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
         
@@ -57,9 +57,9 @@ class CheckboxView : UIView {
         }
     }
     
-    @IBInspectable var isChecked: Bool = false {
+    @IBInspectable var progress: Double = 0.0 {
         didSet {
-            imageView.isHidden = !isChecked
+            imageView.isHidden = (progress < 1.0)
             setNeedsDisplay()
         }
     }
@@ -70,7 +70,7 @@ class CheckboxView : UIView {
         
         let r = bounds.insetBy(dx: 2, dy: 2)
         
-        if isChecked {
+        if (progress >= 1.0) {
             context?.setFillColor(selectedBackgroundColor.cgColor)
             context?.fillEllipse(in: r)
             
@@ -78,6 +78,11 @@ class CheckboxView : UIView {
             context?.setLineWidth(3)
             context?.setStrokeColor(borderColor.cgColor)
             context?.strokeEllipse(in: r)
+            
+            let center = CGPoint(x: r.midX, y: r.midY)
+            context?.addArc(center: center, radius: r.width / 2.0, startAngle: CGFloat(3.0 * .pi / 2.0), endAngle: CGFloat(2 * .pi * progress) + (3.0 * .pi / 2.0), clockwise: false)
+            context?.setStrokeColor(UIColor.fvc_green.cgColor)
+            context?.strokePath()
         }
     }
 }
