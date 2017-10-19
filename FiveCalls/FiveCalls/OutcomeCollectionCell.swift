@@ -18,7 +18,7 @@ class OutcomeCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = .fvc_lightBlueBackground
+        backgroundColor = .fvc_green
         layer.cornerRadius = 10
         layer.masksToBounds = true
     }
