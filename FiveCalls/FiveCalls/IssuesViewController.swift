@@ -36,7 +36,7 @@ class IssuesViewController : UITableViewController {
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
-    var viewModel = IssuesViewModel(categories: [], showAll: false)
+    var viewModel : IssuesViewModel!
 
     deinit {
         if let notificationToken = notificationToken {
@@ -49,7 +49,7 @@ class IssuesViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Construct viewModel from the issues already fetched by the caller.
-        viewModel = IssuesViewModel(categories: self.issuesManager.categories, showAll: shouldShowAllIssues)
+        viewModel = createViewModelForCategories(categories: self.issuesManager.categories)
 
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
@@ -115,13 +115,20 @@ class IssuesViewController : UITableViewController {
         }
     }
 
+    private func createViewModelForCategories(categories: [Category]) -> IssuesViewModel {
+        if shouldShowAllIssues {
+            return AllIssuesViewModel(categories: categories)
+        }
+        return ActiveIssuesViewModel(categories: categories)
+    }
+
     private func issuesLoaded(result: IssuesLoadResult) {
         isLoading = false
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
         if case .success = result {
             DispatchQueue.global(qos: .background).async { [unowned self] () -> Void in
-                let viewModel = IssuesViewModel(categories: self.issuesManager.categories, showAll: self.shouldShowAllIssues)
+                let viewModel = self.createViewModelForCategories(categories: self.issuesManager.categories)
                 DispatchQueue.main.async {
                     self.viewModel = viewModel
                     self.tableView.reloadData()
@@ -160,7 +167,7 @@ class IssuesViewController : UITableViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return true }
             let controller = R.storyboard.main.issueDetailViewController()!
             controller.issuesManager = issuesManager
-            controller.issue = issuesManager.categories[indexPath.section].issues[indexPath.row]
+            controller.issue = viewModel.issueForIndexPath(indexPath: indexPath)
 
             let nav = UINavigationController(rootViewController: controller)
             nav.setNavigationBarHidden(true, animated: false)
@@ -197,17 +204,12 @@ class IssuesViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let title = viewModel.titleForHeaderInSection(section: section) else {
-            return nil
-        }
+        let title = viewModel.titleForHeaderInSection(section: section)
         return headerWithTitle(title: title)
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if let _ = viewModel.titleForHeaderInSection(section: section) {
-            return 26.0
-        }
-        return 0
+        return 26.0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

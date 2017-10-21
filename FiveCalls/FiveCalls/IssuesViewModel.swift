@@ -8,35 +8,30 @@
 
 import Foundation
 
-struct IssuesViewModel {
-    private let categories:[Category]
-    private let showAll: Bool
-    private let activeIssues: [Issue]
+protocol IssuesViewModel {
+    init(categories:[Category])
+    func numberOfSections() -> Int
+    func numberOfRowsInSection(section: Int) -> Int
+    func hasNoData() -> Bool
+    func issueForIndexPath(indexPath: IndexPath) -> Issue
+    func titleForHeaderInSection(section: Int) -> String
+}
 
-    init(categories:[Category], showAll: Bool) {
+// Shows all issues - grouped by categories.
+struct AllIssuesViewModel: IssuesViewModel {
+    private let categories: [Category]
+
+    init(categories:[Category]) {
         self.categories = categories
-        self.showAll = showAll
-        var activeIssues: [Issue] = []
-        if !showAll {
-            categories.forEach { (category) in
-                activeIssues.append(contentsOf: category.issues.filter({ $0.inactive == false }))
-            }
-        }
-        self.activeIssues = activeIssues
     }
 
     func numberOfSections() -> Int {
-        if showAll {
-            return categories.count
-        }
-        return 1
+        // As many section as there are unique categories.
+        return categories.count
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
-        if showAll {
-            return categories[section].issues.count
-        }
-        return activeIssues.count
+        return categories[section].issues.count
     }
 
     func hasNoData() -> Bool {
@@ -44,19 +39,45 @@ struct IssuesViewModel {
     }
 
     func issueForIndexPath(indexPath: IndexPath) -> Issue {
-        if showAll {
-            return categories[indexPath.section].issues[indexPath.row]
+        return categories[indexPath.section].issues[indexPath.row]
+    }
+
+    func titleForHeaderInSection(section: Int) -> String {
+        // Category name as section header.
+        return categories[section].name
+    }
+}
+
+// Shows only the active issues.
+struct ActiveIssuesViewModel: IssuesViewModel {
+    private let activeIssues: [Issue]
+
+    init(categories:[Category]) {
+        var activeIssues: [Issue] = []
+        // Filter issues to get only the active ones.
+        categories.forEach { (category) in
+            activeIssues.append(contentsOf: category.issues.filter({ $0.inactive == false }))
         }
+        self.activeIssues = activeIssues
+    }
+
+    func numberOfSections() -> Int {
+        return 1
+    }
+
+    func numberOfRowsInSection(section: Int) -> Int {
+        return activeIssues.count
+    }
+
+    func hasNoData() -> Bool {
+        return activeIssues.count == 0
+    }
+
+    func issueForIndexPath(indexPath: IndexPath) -> Issue {
         return activeIssues[indexPath.row]
     }
 
-    func titleForHeaderInSection(section: Int) -> String? {
-        if showAll {
-            return categories[section].name
-        }
-        else if (section == 0) {
-            return R.string.localizable.whatsImportantTitle()
-        }
-        return nil
+    func titleForHeaderInSection(section: Int) -> String {
+        return R.string.localizable.whatsImportantTitle()
     }
 }
