@@ -17,7 +17,9 @@ protocol IssuesViewControllerDelegate : class {
 
 class IssuesViewController : UITableViewController {
 
-    @IBInspectable var shouldFetchAllIssues: Bool = false
+    // When false, we show only 'active' issues.
+    // Otherwise we show all issues - plus issues are grouped by their categories.
+    @IBInspectable var shouldShowAllIssues: Bool = false
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: IssuesLoadResult?
@@ -27,15 +29,14 @@ class IssuesViewController : UITableViewController {
     var needToReloadVisibleRowsOnNextAppearance = false
 
     private var notificationToken: NSObjectProtocol?
-    
-    var issuesManager = IssuesManager()
+
+    // Should be passed by the caller.
+    var issuesManager: IssuesManager!
+
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
-    struct ViewModel {
-        let issues: [Issue]
-    }
-    var viewModel = ViewModel(issues: [])
+    var viewModel : IssuesViewModel!
 
     deinit {
         if let notificationToken = notificationToken {
@@ -47,6 +48,8 @@ class IssuesViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Construct viewModel from the issues already fetched by the caller.
+        viewModel = createViewModelForCategories(categories: self.issuesManager.categories)
 
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
@@ -55,11 +58,12 @@ class IssuesViewController : UITableViewController {
         Answers.logCustomEvent(withName:"Screen: Issues List")
         
         navigationController?.setNavigationBarHidden(true, animated: false)
-        loadIssues()
-        
-        tableView.estimatedRowHeight = 75
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
+
+        // Refetch data only if we don't have anything to display.
+        if viewModel.hasNoData() {
+            loadIssues()
+        }
+
         tableView.tableFooterView = UIView()
 
         refreshControl = UIRefreshControl()
@@ -76,7 +80,7 @@ class IssuesViewController : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
-        if shouldFetchAllIssues {
+        if shouldShowAllIssues {
             navigationController?.setNavigationBarHidden(false, animated: animated)
         }
     }
@@ -106,11 +110,16 @@ class IssuesViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
 
-        let query: IssuesManager.Query = shouldFetchAllIssues ? .inactive : .active
-
-        issuesManager.fetchIssues(forQuery: query, location: UserLocation.current) { [weak self] in
+        issuesManager.fetchIssues(location: UserLocation.current) { [weak self] in
             self?.issuesLoaded(result: $0)
         }
+    }
+
+    private func createViewModelForCategories(categories: [Category]) -> IssuesViewModel {
+        if shouldShowAllIssues {
+            return AllIssuesViewModel(categories: categories)
+        }
+        return ActiveIssuesViewModel(categories: categories)
     }
 
     private func issuesLoaded(result: IssuesLoadResult) {
@@ -118,12 +127,30 @@ class IssuesViewController : UITableViewController {
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
         if case .success = result {
-            viewModel = ViewModel(issues: issuesManager.issues)
-            tableView.reloadData()
+            DispatchQueue.global(qos: .background).async { [unowned self] () -> Void in
+                let viewModel = self.createViewModelForCategories(categories: self.issuesManager.categories)
+                DispatchQueue.main.async {
+                    self.viewModel = viewModel
+                    self.tableView.reloadData()
+                }
+            }
         } else {
             tableView.reloadEmptyDataSet()
         }
         refreshControl?.endRefreshing()
+    }
+
+    private func headerWithTitle(title: String) -> UIView {
+        let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
+        notAButton.setTitle(title, for: .normal)
+        notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
+        notAButton.backgroundColor = .fvc_superLightGray
+        notAButton.titleLabel?.font = Appearance.instance.headerFont
+        notAButton.borderWidth = 1
+        notAButton.borderColor = .fvc_mediumGray
+        notAButton.topBorder = true
+        notAButton.bottomBorder = true
+        return notAButton
     }
     
     @objc func madeCall() {
@@ -140,7 +167,7 @@ class IssuesViewController : UITableViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return true }
             let controller = R.storyboard.main.issueDetailViewController()!
             controller.issuesManager = issuesManager
-            controller.issue = issuesManager.issues[indexPath.row]
+            controller.issue = viewModel.issueForIndexPath(indexPath: indexPath)
 
             let nav = UINavigationController(rootViewController: controller)
             nav.setNavigationBarHidden(true, animated: false)
@@ -152,52 +179,47 @@ class IssuesViewController : UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.issuesViewController.moreSegue(segue: segue) {
+            typedInfo.destination.issuesManager = issuesManager
+        }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
-            typedInfo.destination.issue = viewModel.issues[indexPath.row]
+            typedInfo.destination.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         }
     }
     
     // MARK: - UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.numberOfSections()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard shouldFetchAllIssues else {
-            return viewModel.issues.count + 1
-        }
+        // Display 'more issues' row in the last section, if we are showing 'active' issues only.
+        let isLastSection = (viewModel.numberOfSections() - 1 == section)
+        let moreIssuesRow = (isLastSection && !shouldShowAllIssues) ? 1 : 0
 
-        return viewModel.issues.count
+        return viewModel.numberOfRowsInSection(section: section) + moreIssuesRow
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
-        notAButton.setTitle(R.string.localizable.whatsImportantTitle(), for: .normal)
-        notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
-        notAButton.backgroundColor = .fvc_superLightGray
-        notAButton.titleLabel?.font = Appearance.instance.headerFont
-        notAButton.borderWidth = 1
-        notAButton.borderColor = .fvc_mediumGray
-        notAButton.topBorder = true
-        notAButton.bottomBorder = true
-        return notAButton
+        let title = viewModel.titleForHeaderInSection(section: section)
+        return headerWithTitle(title: title)
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 26.0
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.row < viewModel.issues.count else {
+        guard indexPath.row < viewModel.numberOfRowsInSection(section: indexPath.section) else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.moreIssuesCell, for: indexPath)!
             return cell
         }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.issueCell, for: indexPath)!
-        let issue = viewModel.issues[indexPath.row]
+        let issue = viewModel.issueForIndexPath(indexPath: indexPath)
         cell.titleLabel.text = issue.name
         if let hasContacted = logs?.hasCompleted(issue: issue.id, allContacts: issue.contacts) {
             cell.checkboxView.isChecked = hasContacted
@@ -208,14 +230,14 @@ class IssuesViewController : UITableViewController {
 }
 
 extension IssuesViewController: UIViewControllerPreviewingDelegate {
-    
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         guard let detailViewController = R.storyboard.main.issueDetailViewController() else { return nil }
         guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
         
         detailViewController.issuesManager = issuesManager
-        detailViewController.issue = issuesManager.issues[indexPath.row]
+        detailViewController.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         previewingContext.sourceRect = cell.frame
         
         return detailViewController

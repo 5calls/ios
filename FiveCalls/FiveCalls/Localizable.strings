@@ -49,6 +49,7 @@
 "choose-a-number"                     = "Select a Different Office";
 "think-before-copying-alert-title"    = "Please Consider Before Texting, Faxing, or Emailing";
 "think-before-copying-alert-body"     = "Calling has been consistently shown to be the most effective way to make your voice heard with your Representatives.\n\nPlease consider this before using another method of communication.";
+"uncategorized-issues"                = "Uncategorized Issues";
 
 // outcomes
 "outcomes.contact"                    = "Made Contact";
