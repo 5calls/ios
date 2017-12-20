@@ -193,7 +193,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     func checkForNotifications() {
         let permissions = OneSignal.getPermissionSubscriptionState()
 
-        if permissions?.permissionStatus.hasPrompted == .some(false) {
+        if permissions?.permissionStatus.hasPrompted == false {
             let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
                 OneSignal.promptForPushNotifications(userResponse: { (success) in

@@ -209,7 +209,7 @@ Includes portions from BSMobileProvision:
 			<key>summary</key>
 			<string>OneSignal push notification library for mobile apps.</string>
 			<key>version</key>
-			<string>2.5.6</string>
+			<string>2.6.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>

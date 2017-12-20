@@ -10,7 +10,7 @@ end
 
 target 'FiveCalls' do
   common_pods
-  pod 'OneSignal', '>= 2.5.2', '< 3.0'
+  pod 'OneSignal', '~> 2.5'
   pod 'CPDAcknowledgements'
   pod 'Fabric'
   pod 'Crashlytics', '~> 3.8.4'
@@ -18,7 +18,7 @@ target 'FiveCalls' do
 end
 
 target 'NotificationsService' do
-    pod 'OneSignal', '>= 2.5.2', '< 3.0'
+    pod 'OneSignal', '~> 2.5'
 end
 
 target 'FiveCallsTests' do

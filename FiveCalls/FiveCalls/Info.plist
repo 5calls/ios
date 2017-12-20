@@ -42,6 +42,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>5 Calls would like to use your location in order to find your nearest representatives.</string>
+	<key>OneSignalAppID</key>
+	<string>$(ONE_SIGNAL_APP_ID)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoCondensed-Bold.ttf</string>

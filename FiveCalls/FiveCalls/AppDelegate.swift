@@ -48,12 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func oneSignalStartup(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
 
-        OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e",
-                                        handleNotificationAction: nil,
-                                        settings: onesignalInitSettings)
+        if let infoPlist = Bundle.main.infoDictionary, let oneSignalAppID = infoPlist["OneSignalAppID"] as? String {
+            OneSignal.initWithLaunchOptions(launchOptions,
+                                            appId: oneSignalAppID,
+                                            handleNotificationAction: nil,
+                                            settings: onesignalInitSettings)
 
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+            OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+        }
     }
 
     func migrateSavedData() {
