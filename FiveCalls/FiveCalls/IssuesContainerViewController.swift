@@ -17,8 +17,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerContainer: UIView!
     @IBOutlet weak var iPadShareButton: UIButton!
     @IBOutlet weak var editRemindersButton: UIButton!
+    @IBOutlet weak var fiveCallsButton: UIButton!
     
-    static let headerHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 90 : 105
+    static let headerHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 90 : 90
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
@@ -71,7 +72,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         setTitleLabel(location: UserLocation.current)
         configureChildViewController()
         setupHeaderWithBlurEffect()
-        
+        editRemindersButton.tintColor = .fvc_darkBlue
+        let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)
+        editRemindersButton.setImage(image, for: .normal)
     }
     
     private func setupHeaderWithBlurEffect() {
@@ -182,8 +185,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     private func setReminderBellStatus() {
-        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue)
-        editRemindersButton.isSelected = remindersEnabled
+//        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue)
+//        editRemindersButton.isSelected = remindersEnabled
     }
 }
 
