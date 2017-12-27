@@ -10,6 +10,7 @@ import UIKit
 import Pantry
 import Fabric
 import Crashlytics
+import Auth0
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return Auth0.resumeAuth(url, options: options)
+    }
+    
     func migrateSavedData() {
         let pantryDirName = "com.thatthinginswift.pantry"
         // Pantry used to store data in the caches folder. If this exists, we need to move it

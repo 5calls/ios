@@ -7,6 +7,56 @@
 		<dict>
 			<key>authors</key>
 			<dict>
+				<key>Auth0</key>
+				<string>support@auth0.com</string>
+				<key>Hernan Zalazar</key>
+				<string>hernan@auth0.com</string>
+				<key>Martin Walsh</key>
+				<string>martin.walsh@auth0.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;Auth0 API toolkit written in Swift for iOS, watchOS, tvOS &amp;amp; macOS apps&lt;/p&gt;
+</string>
+			<key>homepage</key>
+			<string>https://github.com/auth0/Auth0.swift</string>
+			<key>licenseText</key>
+			<string>The MIT License (MIT)
+
+Copyright (c) 2016 Auth0, Inc. &lt;support@auth0.com&gt; (http://auth0.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>Auth0</string>
+			<key>socialMediaURL</key>
+			<string>https://twitter.com/auth0</string>
+			<key>summary</key>
+			<string>Swift toolkit for Auth0 API</string>
+			<key>version</key>
+			<string>1.9.2</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
 				<key>Fabio Pelosin</key>
 				<string>fabiopelosin@gmail.com</string>
 				<key>Orta Therox</key>
@@ -268,6 +318,53 @@ THE SOFTWARE.
 			<string>Companion library for R.swift, featuring types used to type resources</string>
 			<key>version</key>
 			<string>4.0.0</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
+				<key>Auth0</key>
+				<string>support@auth0.com</string>
+				<key>Hernan Zalazar</key>
+				<string>hernan@auth0.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;A simple way to store items in iOS Keychain, without the hassle of dealing with iOS Keychain API directly.
+It has support for the new AccessControl for Keychain items added in iOS 8.&lt;/p&gt;
+</string>
+			<key>homepage</key>
+			<string>https://github.com/auth0/SimpleKeychain</string>
+			<key>licenseText</key>
+			<string>The MIT License (MIT)
+
+Copyright (c) 2014 Auth0 LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>SimpleKeychain</string>
+			<key>socialMediaURL</key>
+			<string>https://twitter.com/auth0</string>
+			<key>summary</key>
+			<string>A wrapper to make it really easy to deal with iOS Keychain and store your user's credentials securely.</string>
+			<key>version</key>
+			<string>0.8.0</string>
 		</dict>
 	</array>
 </dict>

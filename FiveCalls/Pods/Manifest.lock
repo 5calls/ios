@@ -1,4 +1,6 @@
 PODS:
+  - Auth0 (1.9.2):
+    - SimpleKeychain
   - CPDAcknowledgements (1.0.0)
   - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
@@ -8,8 +10,10 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
+  - SimpleKeychain (0.8.0)
 
 DEPENDENCIES:
+  - Auth0 (~> 1.9)
   - CPDAcknowledgements
   - Crashlytics (~> 3.8.4)
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
@@ -33,6 +37,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/nickoneill/pantry.git
 
 SPEC CHECKSUMS:
+  Auth0: 9eceebf97b6b3482eaed82193e090b50c3bd8ad6
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
@@ -40,7 +45,8 @@ SPEC CHECKSUMS:
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
 
-PODFILE CHECKSUM: b1fa26f65677f9f8d1139d771123c52f4a215ea2
+PODFILE CHECKSUM: 554adae2f3a1f1d9e9e8ede181b47da2db07a8ff
 
 COCOAPODS: 1.3.1
