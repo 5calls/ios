@@ -109,6 +109,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="Ssk-NJ-Fc0" id="5mI-34-fC5"/>
                         <outlet property="editRemindersButton" destination="mya-7X-ILr" id="VgH-Wd-pb9"/>
+                        <outlet property="fiveCallsButton" destination="g1u-cn-Q0z" id="wZV-Vb-x5h"/>
                         <outlet property="footerView" destination="yMR-6E-6ld" id="i6B-aC-NL5"/>
                         <outlet property="headerContainer" destination="Jlg-f3-h08" id="etS-dw-Kub"/>
                         <outlet property="headerView" destination="hWw-bF-wTS" id="Y5s-Vp-Jdt"/>
@@ -122,7 +123,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uQ-iF-VA7" customClass="LocationButton" customModule="FiveCalls" customModuleProvider="target">
-                            <rect key="frame" x="142" y="0.0" width="131" height="28"/>
+                            <rect key="frame" x="142" y="27" width="131" height="28"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                             <inset key="contentEdgeInsets" minX="20" minY="4" maxX="20" maxY="4"/>
                             <state key="normal" title="Set Location"/>
@@ -135,14 +136,14 @@
                             </connections>
                         </button>
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ssk-NJ-Fc0">
-                            <rect key="frame" x="288" y="4" width="20" height="20"/>
+                            <rect key="frame" x="288" y="31" width="20" height="20"/>
                         </activityIndicatorView>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-pP-thF">
-                            <rect key="frame" x="325" y="1" width="19" height="26"/>
+                            <rect key="frame" x="325" y="28" width="19" height="26"/>
                             <state key="normal" image="share"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mya-7X-ILr">
-                            <rect key="frame" x="20" y="-5.5" width="40" height="40"/>
+                            <rect key="frame" x="20" y="21.5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="WF6-Of-jqj"/>
                                 <constraint firstAttribute="width" constant="40" id="xGh-tq-5os"/>
@@ -153,17 +154,14 @@
                                 <action selector="addReminderTapped:" destination="NcD-22-I7g" eventType="touchUpInside" id="q2e-9I-dwl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1u-cn-Q0z">
-                            <rect key="frame" x="354" y="-6" width="40" height="40"/>
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1u-cn-Q0z">
+                            <rect key="frame" x="354" y="21" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="HYl-VE-l5t"/>
                                 <constraint firstAttribute="width" constant="40" id="vXJ-16-VoA"/>
                             </constraints>
                             <state key="normal" image="5calls-stars"/>
                             <state key="selected" image="bell-selected"/>
-                            <connections>
-                                <action selector="addReminderTapped:" destination="NcD-22-I7g" eventType="touchUpInside" id="7hx-pn-q0d"/>
-                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -174,12 +172,24 @@
                         <constraint firstItem="fsb-jH-Nbf" firstAttribute="trailing" secondItem="g1u-cn-Q0z" secondAttribute="trailing" constant="20" id="fA5-9K-jUz"/>
                         <constraint firstItem="1uQ-iF-VA7" firstAttribute="centerX" secondItem="hWw-bF-wTS" secondAttribute="centerX" id="gTo-eM-EG1"/>
                         <constraint firstItem="Ssk-NJ-Fc0" firstAttribute="centerY" secondItem="1uQ-iF-VA7" secondAttribute="centerY" id="p8a-a2-o0x"/>
-                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="fsb-jH-Nbf" secondAttribute="top" priority="750" id="s1G-cc-cuF"/>
+                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="fsb-jH-Nbf" secondAttribute="top" priority="250" id="s1G-cc-cuF"/>
                         <constraint firstItem="g1u-cn-Q0z" firstAttribute="centerY" secondItem="1uQ-iF-VA7" secondAttribute="centerY" id="tYY-dO-3pb"/>
-                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="hWw-bF-wTS" secondAttribute="top" priority="250" constant="5" id="wJe-E5-SXH"/>
+                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hWw-bF-wTS" secondAttribute="top" priority="750" constant="27" id="wJe-E5-SXH"/>
                         <constraint firstAttribute="trailing" secondItem="5rR-pP-thF" secondAttribute="trailing" constant="70" id="yfQ-3g-1RO"/>
+                        <constraint firstItem="1uQ-iF-VA7" firstAttribute="top" secondItem="hWw-bF-wTS" secondAttribute="top" constant="7" id="zMe-72-GcU"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="fsb-jH-Nbf"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="zMe-72-GcU"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <exclude reference="wJe-E5-SXH"/>
+                            <include reference="zMe-72-GcU"/>
+                        </mask>
+                    </variation>
                 </view>
             </objects>
             <point key="canvasLocation" x="-24.637681159420293" y="-798.91304347826087"/>
@@ -383,7 +393,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZj-s7-SHf" id="Hfa-Yw-Zoy">
@@ -408,7 +418,7 @@
                                             <outlet property="issueLabel" destination="IJo-u6-qUp" id="udk-tw-ajv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="150" width="320" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tFw-k8-nYx" id="J54-rP-g67">
@@ -452,15 +462,15 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <outlet property="issueLabel" destination="GGF-ef-DH0" id="xif-8O-jDo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="107" id="1Xd-sZ-QlP" customClass="ContactCell" customModule="FiveCalls" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="107" id="1Xd-sZ-QlP" customClass="ContactCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="472" width="320" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="1Xd-sZ-QlP" id="r0i-yC-dN5">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Xd-sZ-QlP" id="r0i-yC-dN5">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="JQD-W8-GS8" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
-                                                    <rect key="frame" x="25" y="13" width="80" height="80"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="JQD-W8-GS8" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
+                                                    <rect key="frame" x="25" y="16" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="Tc1-QS-PDh"/>
                                                         <constraint firstAttribute="height" constant="80" id="gRy-8w-BsQ"/>
@@ -469,13 +479,13 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                         <userDefinedRuntimeAttribute type="image" keyPath="defaultImage" value="icon-office"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="John Cornyn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-v6-UFC">
-                                                    <rect key="frame" x="113" y="27" width="123" height="26"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Cornyn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-v6-UFC">
+                                                    <rect key="frame" x="113" y="30" width="123" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                                     <color key="textColor" red="0.36615640862944165" green="0.36615640862944165" blue="0.36615640862944165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Senate • Republican • TX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2w7-0y-u2B">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senate • Republican • TX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2w7-0y-u2B">
                                                     <rect key="frame" x="113" y="55" width="185" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.56095336294416243" green="0.56095336294416243" blue="0.56095336294416243" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -484,12 +494,14 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EGt-v6-UFC" secondAttribute="trailing" constant="5" id="7bb-LJ-0Xe"/>
+                                                <constraint firstItem="2w7-0y-u2B" firstAttribute="top" secondItem="r0i-yC-dN5" secondAttribute="top" constant="55" id="NWn-fc-P6o"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="JQD-W8-GS8" secondAttribute="bottom" constant="6" id="PMq-LZ-mnE"/>
                                                 <constraint firstAttribute="trailing" secondItem="2w7-0y-u2B" secondAttribute="trailing" constant="22" id="PZj-ED-A5V"/>
                                                 <constraint firstItem="JQD-W8-GS8" firstAttribute="leading" secondItem="r0i-yC-dN5" secondAttribute="leadingMargin" constant="10" id="Ylr-8C-83v"/>
                                                 <constraint firstItem="2w7-0y-u2B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EGt-v6-UFC" secondAttribute="leading" id="ZwD-mG-arU"/>
                                                 <constraint firstItem="EGt-v6-UFC" firstAttribute="top" secondItem="JQD-W8-GS8" secondAttribute="top" constant="14" id="csQ-05-xKc"/>
                                                 <constraint firstItem="2w7-0y-u2B" firstAttribute="top" secondItem="EGt-v6-UFC" secondAttribute="bottom" constant="2.5" id="efc-or-EIc"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2w7-0y-u2B" secondAttribute="bottom" constant="20" id="nUh-F3-i8A"/>
                                                 <constraint firstItem="EGt-v6-UFC" firstAttribute="leading" secondItem="JQD-W8-GS8" secondAttribute="trailing" constant="8" id="suA-wa-7jG"/>
                                                 <constraint firstItem="JQD-W8-GS8" firstAttribute="top" secondItem="r0i-yC-dN5" secondAttribute="topMargin" constant="5" id="sy0-TZ-Zw2"/>
                                             </constraints>
@@ -510,7 +522,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your location to find your representatives" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-Fz-TPy">
-                                                    <rect key="frame" x="13" y="26" width="291" height="15"/>
+                                                    <rect key="frame" x="13" y="26" width="539" height="15"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
                                                     <color key="textColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -599,7 +611,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactDetailCell" rowHeight="183" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactDetailCell" rowHeight="183" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="183"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqZ-eY-ho4" id="uLd-Vb-KSR">
@@ -681,7 +693,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <outlet property="nameLabel" destination="NoE-J1-wgV" id="8zm-2Q-05W"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="312" id="DHa-Uy-Lsa" customClass="IssueScriptCell" customModule="FiveCalls" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="312" id="DHa-Uy-Lsa" customClass="IssueScriptCell" customModule="FiveCalls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="211" width="320" height="312"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHa-Uy-Lsa" id="gfW-bj-ars">
@@ -842,7 +854,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="4hO-va-xGA">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="4hO-va-xGA">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="243"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1046,9 +1058,9 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         </scene>
     </scenes>
     <resources>
-        <image name="5calls-stars" width="100" height="94"/>
+        <image name="5calls-stars" width="35" height="35"/>
         <image name="bell-selected" width="18" height="22"/>
-        <image name="gear" width="56" height="56"/>
+        <image name="gear" width="35" height="35"/>
         <image name="icon-office" width="100" height="100"/>
         <image name="share" width="19" height="26"/>
     </resources>
