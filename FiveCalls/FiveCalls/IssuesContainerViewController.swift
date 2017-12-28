@@ -19,7 +19,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var editRemindersButton: UIButton!
     @IBOutlet weak var fiveCallsButton: UIButton!
     
-    static let headerHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 90 : 90
+    static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
@@ -126,8 +126,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        setReminderBellStatus()
-        
         // don't need to listen anymore because any change comes from this VC (otherwise we'll end up fetching twice)
         NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)
     }
@@ -182,11 +180,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     private func setTitleLabel(location: UserLocation?) {
         locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
-    }
-    
-    private func setReminderBellStatus() {
-//        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue)
-//        editRemindersButton.isSelected = remindersEnabled
     }
 }
 
