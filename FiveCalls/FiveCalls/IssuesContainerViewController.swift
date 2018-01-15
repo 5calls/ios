@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import Kingfisher
 
 class IssuesContainerViewController : UIViewController, EditLocationViewControllerDelegate {
     @IBOutlet weak var headerView: UIView!
@@ -18,9 +17,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var headerContainer: UIView!
     @IBOutlet weak var iPadShareButton: UIButton!
     @IBOutlet weak var editRemindersButton: UIButton!
-    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var fiveCallsButton: UIButton!
     
-    static let headerHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 90 : 105
+    static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
         return issuesViewController.issuesManager
@@ -73,16 +72,13 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         setTitleLabel(location: UserLocation.current)
         configureChildViewController()
         setupHeaderWithBlurEffect()
-        profileButton.layer.cornerRadius = profileButton.frame.size.width / 2;
-        profileButton.clipsToBounds = true
-        NotificationCenter.default.addObserver(self, selector: #selector(userProfileChanged), name: Notification.Name("userProfileChanged"), object: nil)
+        editRemindersButton.tintColor = .fvc_darkBlue
+        locationButton.tintColor = .fvc_darkBlue
+        let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)
+        editRemindersButton.setImage(image, for: .normal)
         if (SessionManager.shared.userHasCredentials()) {
             SessionManager.shared.startSession()
         }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupHeaderWithBlurEffect() {
@@ -134,8 +130,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        setReminderBellStatus()
-        
         // don't need to listen anymore because any change comes from this VC (otherwise we'll end up fetching twice)
         NotificationCenter.default.removeObserver(self, name: .locationChanged, object: nil)
     }
@@ -155,25 +149,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             let navController = R.storyboard.about.aboutNavController() {
             navController.setViewControllers([reminderViewController], animated: false)
             present(navController, animated: true, completion: nil)
-        }
-    }
-
-    @IBAction func profileTapped(_ sender: UIButton) {
-        if (SessionManager.shared.userIsLoggedIn()) {
-            performSegue(withIdentifier: "profileSegue", sender: self)
-        } else {
-            SessionManager.shared.startSession()
-        }
-    }
-    
-    @objc func userProfileChanged(_ notification: NSNotification) {
-        // Update the profile icon on the main thread
-        DispatchQueue.main.async {
-            if let picUrl = SessionManager.shared.userProfile?.picture {
-                self.profileButton.kf.setImage(with: picUrl, for: .normal)
-            } else {
-                self.profileButton.setImage(UIImage(named: "profile"), for: .normal)
-            }
         }
     }
     
@@ -209,11 +184,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
 
     private func setTitleLabel(location: UserLocation?) {
         locationButton.setTitle(UserLocation.current.locationDisplay ?? "Set Location", for: .normal)
-    }
-    
-    private func setReminderBellStatus() {
-        let remindersEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue)
-        editRemindersButton.isSelected = remindersEnabled
     }
 }
 

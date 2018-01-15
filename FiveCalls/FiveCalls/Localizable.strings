@@ -56,3 +56,10 @@
 "outcomes.unavailable"                = "Unavailable";
 "outcomes.voicemail"                  = "Left Voicemail";
 "outcomes.skip"                       = "Skip";
+
+// notifications
+"notification-title" = "Nice work!";
+"notification-ask" = "Get 5 Calls alerts when news breaks about important issues?";
+"notification-all" = "Yes, all new issues";
+"notification-important" = "Yes, only important issues";
+"notification-none" = "No, thanks";

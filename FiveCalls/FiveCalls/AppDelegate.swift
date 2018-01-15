@@ -11,6 +11,7 @@ import Pantry
 import Fabric
 import Crashlytics
 import Auth0
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showWelcome()
         }
 
+        oneSignalStartup(launchOptions: launchOptions)
+
         return true
     }
 
@@ -47,6 +50,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return Auth0.resumeAuth(url, options: options)
     }
     
+    func oneSignalStartup(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+
+        if let infoPlist = Bundle.main.infoDictionary, let oneSignalAppID = infoPlist["OneSignalAppID"] as? String {
+            OneSignal.initWithLaunchOptions(launchOptions,
+                                            appId: oneSignalAppID,
+                                            handleNotificationAction: nil,
+                                            settings: onesignalInitSettings)
+
+            OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+        }
+    }
+
     func migrateSavedData() {
         let pantryDirName = "com.thatthinginswift.pantry"
         // Pantry used to store data in the caches folder. If this exists, we need to move it

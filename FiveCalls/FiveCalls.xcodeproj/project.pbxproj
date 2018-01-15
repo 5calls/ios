@@ -10,6 +10,7 @@
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
 		0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76D37F1E4FE05B00C14543 /* R.generated.swift */; };
 		1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */; };
+		239BA9656D9360513CD165B7 /* Pods-NotificationsService-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */; };
 		271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625401E52502D0042222E /* ScheduleRemindersController.swift */; };
 		271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
@@ -88,8 +89,11 @@
 		B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */; };
 		D029C6D01F6F42EA00E56CC7 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
+		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
+		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
+		E4B6B460FCA340794101D93B /* Pods_NotificationsService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */; };
 		E8C78D1D5F3255065257A4BC /* Pods_FiveCallsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */; };
 		EDD00E0AB48BA21129E0D1B1 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F09C09B6E04C594D0E13A80 /* BuddyBuildSDK.framework */; };
 		F57BD8B61E438E4200BD554C /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */; };
@@ -117,7 +121,28 @@
 			remoteGlobalIDString = B52805101E3FA94D00EE832A;
 			remoteInfo = FiveCalls;
 		};
+		D0BA59AD1F9546510069DA58 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B52805091E3FA94D00EE832A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0BA59A71F9546510069DA58;
+			remoteInfo = NotificationsService;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0BA59B31F9546510069DA58 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -129,13 +154,17 @@
 		271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionSegmentedControl.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-FiveCallsTests-metadata.plist"; path = "Pods/Pods-FiveCallsTests-metadata.plist"; sourceTree = "<group>"; };
+		3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-NotificationsService-metadata.plist"; path = "Pods/Pods-NotificationsService-metadata.plist"; sourceTree = "<group>"; };
 		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FiveCalls.swift"; sourceTree = "<group>"; };
 		33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+FiveCalls.swift"; sourceTree = "<group>"; };
+		3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.debug.xcconfig"; sourceTree = "<group>"; };
 		3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3F09C09B6E04C594D0E13A80 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.release.xcconfig"; sourceTree = "<group>"; };
+		57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationsService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		714B1EC1C91D8E5AED00D1D6 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		791C9FC81E4E5E000074A8B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -218,6 +247,11 @@
 		D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		D08630058C5382210630DE7E /* Pods_FiveCalls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCalls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeCollectionCell.swift; sourceTree = "<group>"; };
+		D0BA59A81F9546510069DA58 /* NotificationsService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationsService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0BA59AA1F9546510069DA58 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		D0BA59AC1F9546510069DA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationsService.entitlements; sourceTree = "<group>"; };
+		D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FiveCalls.entitlements; sourceTree = "<group>"; };
 		F57BD8B31E438E4200BD554C /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		F57BD8B41E438E4200BD554C /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		F57BD8B51E438E4200BD554C /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
@@ -262,6 +296,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0BA59A51F9546510069DA58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4B6B460FCA340794101D93B /* Pods_NotificationsService.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -274,6 +316,9 @@
 				3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */,
 				FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */,
 				276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */,
+				3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */,
+				56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */,
+				3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -301,6 +346,7 @@
 				97792E8AE44B5A2E12357E88 /* AVFoundation.framework */,
 				54BC1EE211AE6068BB864845 /* CoreMedia.framework */,
 				5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */,
+				57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,6 +388,7 @@
 				B52805131E3FA94D00EE832A /* FiveCalls */,
 				B502805C1E478BC200749ED7 /* FiveCallsTests */,
 				B5A70A591E4C01A00031DF58 /* FiveCallsUITests */,
+				D0BA59A91F9546510069DA58 /* NotificationsService */,
 				B52805121E3FA94D00EE832A /* Products */,
 				13FC26552E02495F4B111FD7 /* Pods */,
 				41C59A8CD8923A7D219FA9B5 /* Frameworks */,
@@ -355,6 +402,7 @@
 				B52805111E3FA94D00EE832A /* FiveCalls.app */,
 				B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */,
 				B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */,
+				D0BA59A81F9546510069DA58 /* NotificationsService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,6 +410,7 @@
 		B52805131E3FA94D00EE832A /* FiveCalls */ = {
 			isa = PBXGroup;
 			children = (
+				D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */,
 				B5E98E361E529EC1005221B7 /* Networking */,
 				B502806D1E497C1400749ED7 /* Resources */,
 				B5CA63F41E41772100966B7D /* Views */,
@@ -501,6 +550,16 @@
 			name = Fixtures;
 			sourceTree = "<group>";
 		};
+		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
+			isa = PBXGroup;
+			children = (
+				D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */,
+				D0BA59AA1F9546510069DA58 /* NotificationService.swift */,
+				D0BA59AC1F9546510069DA58 /* Info.plist */,
+			);
+			path = NotificationsService;
+			sourceTree = "<group>";
+		};
 		F57BD8B21E438E4200BD554C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,10 +607,12 @@
 				C0162342B60635266343A6AB /* [CP] Embed Pods Frameworks */,
 				63489A19CF92F5B3DC6E37CF /* [CP] Copy Pods Resources */,
 				B502807D1E4991E300749ED7 /* Crashlytics */,
+				D0BA59B31F9546510069DA58 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
 			);
 			name = FiveCalls;
 			productName = FiveCalls;
@@ -576,13 +637,32 @@
 			productReference = B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D0BA59A71F9546510069DA58 /* NotificationsService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0BA59B21F9546510069DA58 /* Build configuration list for PBXNativeTarget "NotificationsService" */;
+			buildPhases = (
+				719170E771EECA85B2E05ACD /* [CP] Check Pods Manifest.lock */,
+				D0BA59A41F9546510069DA58 /* Sources */,
+				D0BA59A51F9546510069DA58 /* Frameworks */,
+				D0BA59A61F9546510069DA58 /* Resources */,
+				A184ED9D5D351DCB0767DAD6 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationsService;
+			productName = NotificationsService;
+			productReference = D0BA59A81F9546510069DA58 /* NotificationsService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B52805091E3FA94D00EE832A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = 5calls;
 				TargetAttributes = {
@@ -598,6 +678,14 @@
 						DevelopmentTeam = 5A8RM3W5R7;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					B5A70A571E4C01A00031DF58 = {
 						CreatedOnToolsVersion = 8.0;
@@ -605,6 +693,16 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B52805101E3FA94D00EE832A;
+					};
+					D0BA59A71F9546510069DA58 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 5A8RM3W5R7;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -624,6 +722,7 @@
 				B52805101E3FA94D00EE832A /* FiveCalls */,
 				B502805A1E478BC200749ED7 /* FiveCallsTests */,
 				B5A70A571E4C01A00031DF58 /* FiveCallsUITests */,
+				D0BA59A71F9546510069DA58 /* NotificationsService */,
 			);
 		};
 /* End PBXProject section */
@@ -665,6 +764,14 @@
 				B5E98E3B1E52A566005221B7 /* GET-report.json in Resources */,
 				B5E98E3D1E52A570005221B7 /* GET-issues.json in Resources */,
 				B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0BA59A61F9546510069DA58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				239BA9656D9360513CD165B7 /* Pods-NotificationsService-metadata.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +860,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		719170E771EECA85B2E05ACD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotificationsService-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		84B6B1BDB198229A58DA97E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -769,6 +894,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A184ED9D5D351DCB0767DAD6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B502807D1E4991E300749ED7 /* Crashlytics */ = {
@@ -917,6 +1057,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0BA59A41F9546510069DA58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -929,6 +1077,11 @@
 			isa = PBXTargetDependency;
 			target = B52805101E3FA94D00EE832A /* FiveCalls */;
 			targetProxy = B5A70A5D1E4C01A00031DF58 /* PBXContainerItemProxy */;
+		};
+		D0BA59AE1F9546510069DA58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0BA59A71F9546510069DA58 /* NotificationsService */;
+			targetProxy = D0BA59AD1F9546510069DA58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1112,7 +1265,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 30;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
@@ -1123,6 +1279,7 @@
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
@@ -1137,7 +1294,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1147,6 +1307,7 @@
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
@@ -1189,6 +1350,50 @@
 			};
 			name = Release;
 		};
+		D0BA59B01F9546510069DA58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5A8RM3W5R7;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NotificationsService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0BA59B11F9546510069DA58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5A8RM3W5R7;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NotificationsService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1224,6 +1429,15 @@
 			buildConfigurations = (
 				B5A70A5F1E4C01A00031DF58 /* Debug */,
 				B5A70A601E4C01A00031DF58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0BA59B21F9546510069DA58 /* Build configuration list for PBXNativeTarget "NotificationsService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0BA59B01F9546510069DA58 /* Debug */,
+				D0BA59B11F9546510069DA58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
