@@ -9,12 +9,20 @@
 import UIKit
 import Crashlytics
 import Rswift
+import Kingfisher
 
 class MyImpactViewController : UITableViewController {
     
     var viewModel: ImpactViewModel!
     var totalCalls: Int?
     
+    @IBOutlet weak var navSignInButton: UIBarButtonItem!
+    @IBOutlet weak var signInContainer: UIView!
+    @IBOutlet weak var profileContainer: UIView!
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var impactLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
@@ -58,7 +66,27 @@ class MyImpactViewController : UITableViewController {
         streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
         let numberOfCalls = viewModel.numberOfCalls
         impactLabel.text = impactMessage(for: numberOfCalls)
-        subheadLabel.isHidden = numberOfCalls == 0
+        if (numberOfCalls == 0) {
+            subheadLabel.isHidden = true
+            subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
+        }
+        
+        signInContainer.layer.masksToBounds = false
+        signInContainer.layer.shadowColor = UIColor.black.cgColor
+        signInContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        signInContainer.layer.shadowOpacity = 0.2
+        signInContainer.layer.shadowRadius = 1.2
+
+        profileContainer.layer.masksToBounds = false
+        profileContainer.layer.shadowColor = UIColor.black.cgColor
+        profileContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        profileContainer.layer.shadowOpacity = 0.2
+        profileContainer.layer.shadowRadius = 1.2
+        
+        profilePic.layer.borderColor = UIColor.white.cgColor
+        profilePic.layer.borderWidth = 2.0
+
+        sizeHeaderToFit()
         
         let op = FetchStatsOperation()
         op.completionBlock = {
@@ -69,13 +97,57 @@ class MyImpactViewController : UITableViewController {
             
         }
         OperationQueue.main.addOperation(op)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userProfileChanged), name: .userProfileChanged, object: nil)
+        NotificationCenter.default.post(name: .userProfileChanged, object: nil, userInfo: nil)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if let headerView = tableView.tableHeaderView {
-            let height = subheadLabel.isHidden ? impactLabel.frame.maxY : (subheadLabel.frame.maxY + 25.0)
-            headerView.frame.size.height = height
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    func sizeHeaderToFit() {
+        let headerView = tableView.tableHeaderView!
+        
+        headerView.setNeedsLayout()
+        headerView.layoutIfNeeded()
+        
+        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        var frame = headerView.frame
+        frame.size.height = height
+        headerView.frame = frame
+        
+        tableView.tableHeaderView = headerView
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        if (SessionManager.shared.userIsLoggedIn()) {
+            SessionManager.shared.stopSession()
+        } else {
+            SessionManager.shared.startSession()
+        }
+    }
+    
+    @objc func userProfileChanged(_ notification: NSNotification) {
+        // Update the profile icon on the main thread
+        DispatchQueue.main.async {
+            let sessionManager = SessionManager.shared
+            if let picUrl = sessionManager.userProfile?.picture {
+                self.profilePic.kf.setImage(with: picUrl)
+            } else {
+                self.profilePic.image = UIImage(named: "profile")
+            }
+            if (sessionManager.userIsLoggedIn()) {
+                self.userName.text = sessionManager.userProfile?.nickname
+                self.email.text = sessionManager.userProfile?.email ?? sessionManager.userProfile?.name
+                self.navSignInButton.title = R.string.localizable.signOut()
+                self.profileContainer.isHidden = false
+                self.signInContainer.isHidden = true
+            } else {
+                self.navSignInButton.title = R.string.localizable.signIn()
+                self.profileContainer.isHidden = true
+                self.signInContainer.isHidden = false
+            }
         }
     }
     

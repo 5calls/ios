@@ -8,6 +8,10 @@
 
 import Auth0
 
+extension Notification.Name {
+    static let userProfileChanged = Notification.Name("userProfileChanged")
+}
+
 class SessionManager {
     
     // Set up our singleton
@@ -55,7 +59,7 @@ class SessionManager {
             print("Error clearing user credentials")
         }
         userProfile = nil
-        NotificationCenter.default.post(Notification(name: Notification.Name("userProfileChanged")))
+        NotificationCenter.default.post(Notification(name: .userProfileChanged))
     }
 
     private func updateUserProfile() {
@@ -73,7 +77,7 @@ class SessionManager {
                         switch(result) {
                         case .success(let profile):
                             self.userProfile = profile
-                            NotificationCenter.default.post(Notification(name: Notification.Name("userProfileChanged")))
+                            NotificationCenter.default.post(Notification(name: .userProfileChanged))
                         case .failure(let error):
                             print("Error fetching user profile: \(error)")
                         }

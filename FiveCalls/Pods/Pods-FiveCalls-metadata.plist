@@ -7,6 +7,56 @@
 		<dict>
 			<key>authors</key>
 			<dict>
+				<key>Auth0</key>
+				<string>support@auth0.com</string>
+				<key>Hernan Zalazar</key>
+				<string>hernan@auth0.com</string>
+				<key>Martin Walsh</key>
+				<string>martin.walsh@auth0.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;Auth0 API toolkit written in Swift for iOS, watchOS, tvOS &amp;amp; macOS apps&lt;/p&gt;
+</string>
+			<key>homepage</key>
+			<string>https://github.com/auth0/Auth0.swift</string>
+			<key>licenseText</key>
+			<string>The MIT License (MIT)
+
+Copyright (c) 2016 Auth0, Inc. &lt;support@auth0.com&gt; (http://auth0.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>Auth0</string>
+			<key>socialMediaURL</key>
+			<string>https://twitter.com/auth0</string>
+			<key>summary</key>
+			<string>Swift toolkit for Auth0 API</string>
+			<key>version</key>
+			<string>1.9.2</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
 				<key>Fabio Pelosin</key>
 				<string>fabiopelosin@gmail.com</string>
 				<key>Orta Therox</key>
@@ -128,6 +178,63 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			<string>Fabric by Google, Inc.</string>
 			<key>version</key>
 			<string>1.6.13</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
+				<key>onevcat</key>
+				<string>onevcat@gmail.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;Kingfisher is a lightweight and pure Swift implemented library for downloading and cacheing image from the web. It provides you a chance to use pure Swift alternation in your next app.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Everything in Kingfisher goes asynchronously, not only downloading, but also caching. That means you can never worry about blocking your UI thread.&lt;/li&gt;
+&lt;li&gt;Multiple-layer cache. Downloaded image will be cached in both memory and disk. So there is no need to download it again and this could boost your app dramatically.&lt;/li&gt;
+&lt;li&gt;Cache management. You can set the max duration or size the cache could take. And the cache will also be cleaned automatically to prevent taking too much resource.&lt;/li&gt;
+&lt;li&gt;Modern framework. Kingfisher uses &lt;code&gt;NSURLSession&lt;/code&gt; and the latest technology of GCD, which makes it a strong and swift framework. It also provides you easy APIs to use.&lt;/li&gt;
+&lt;li&gt;Cancellable processing task. You can cancel the downloading or retriving image process if it is not needed anymore.&lt;/li&gt;
+&lt;li&gt;Independent components. You can use the downloader or caching system separately. Or even create your own cache based on Kingfisher&amp;#39;s code.&lt;/li&gt;
+&lt;li&gt;Options to decompress the image in background before render it, which could improve the UI performance.&lt;/li&gt;
+&lt;li&gt;A category over &lt;code&gt;UIImageView&lt;/code&gt; for setting image from an url directly.&lt;/li&gt;
+&lt;/ul&gt;
+</string>
+			<key>homepage</key>
+			<string>https://github.com/onevcat/Kingfisher</string>
+			<key>licenseText</key>
+			<string>The MIT License (MIT)
+
+Copyright (c) 2017 Wei Wang
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>Kingfisher</string>
+			<key>socialMediaURL</key>
+			<string>http://twitter.com/onevcat</string>
+			<key>summary</key>
+			<string>A lightweight and pure Swift implemented library for downloading and cacheing image from the web.</string>
+			<key>version</key>
+			<string>4.5.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -350,6 +457,53 @@ THE SOFTWARE.
 			<string>Companion library for R.swift, featuring types used to type resources</string>
 			<key>version</key>
 			<string>4.0.0</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
+				<key>Auth0</key>
+				<string>support@auth0.com</string>
+				<key>Hernan Zalazar</key>
+				<string>hernan@auth0.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;A simple way to store items in iOS Keychain, without the hassle of dealing with iOS Keychain API directly.
+It has support for the new AccessControl for Keychain items added in iOS 8.&lt;/p&gt;
+</string>
+			<key>homepage</key>
+			<string>https://github.com/auth0/SimpleKeychain</string>
+			<key>licenseText</key>
+			<string>The MIT License (MIT)
+
+Copyright (c) 2014 Auth0 LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>SimpleKeychain</string>
+			<key>socialMediaURL</key>
+			<string>https://twitter.com/auth0</string>
+			<key>summary</key>
+			<string>A wrapper to make it really easy to deal with iOS Keychain and store your user's credentials securely.</string>
+			<key>version</key>
+			<string>0.8.0</string>
 		</dict>
 	</array>
 </dict>
