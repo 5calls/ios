@@ -40,7 +40,10 @@ class ReportOutcomeOperation : BaseOperation {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)"
+        var query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)"
+        if let userId = SessionManager.shared.userProfile?.sub {
+            query += "&userid=\(userId)"
+        }
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return
