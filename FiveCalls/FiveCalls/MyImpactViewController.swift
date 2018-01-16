@@ -71,18 +71,6 @@ class MyImpactViewController : UITableViewController {
             subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
         }
         
-        signInContainer.layer.masksToBounds = false
-        signInContainer.layer.shadowColor = UIColor.black.cgColor
-        signInContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        signInContainer.layer.shadowOpacity = 0.2
-        signInContainer.layer.shadowRadius = 1.2
-
-        profileContainer.layer.masksToBounds = false
-        profileContainer.layer.shadowColor = UIColor.black.cgColor
-        profileContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        profileContainer.layer.shadowOpacity = 0.2
-        profileContainer.layer.shadowRadius = 1.2
-        
         profilePic.layer.borderColor = UIColor.white.cgColor
         profilePic.layer.borderWidth = 2.0
 
