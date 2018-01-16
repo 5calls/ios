@@ -66,7 +66,7 @@ class MyImpactViewController : UITableViewController {
         streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
         let numberOfCalls = viewModel.numberOfCalls
         impactLabel.text = impactMessage(for: numberOfCalls)
-        if (numberOfCalls == 0) {
+        if numberOfCalls == 0 {
             subheadLabel.isHidden = true
             subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
         }
@@ -125,7 +125,7 @@ class MyImpactViewController : UITableViewController {
             } else {
                 self.profilePic.image = UIImage(named: "profile")
             }
-            if (sessionManager.userIsLoggedIn()) {
+            if sessionManager.userIsLoggedIn() {
                 self.userName.text = sessionManager.userProfile?.nickname
                 self.email.text = sessionManager.userProfile?.email ?? sessionManager.userProfile?.name
                 self.navSignInButton.title = R.string.localizable.signOut()

@@ -76,7 +76,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         locationButton.tintColor = .fvc_darkBlue
         let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)
         editRemindersButton.setImage(image, for: .normal)
-        if (SessionManager.shared.userHasCredentials()) {
+        if SessionManager.shared.userHasCredentials() {
             SessionManager.shared.startSession()
         }
     }
