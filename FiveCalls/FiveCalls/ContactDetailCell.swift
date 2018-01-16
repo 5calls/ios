@@ -10,7 +10,7 @@ import UIKit
 
 class ContactDetailCell : UITableViewCell {
     
-    @IBOutlet weak var avatarImageView: RemoteImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var callingReasonLabel: UILabel!

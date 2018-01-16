@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ContactCell : UITableViewCell {
     
@@ -27,7 +28,7 @@ class ContactCell : UITableViewCell {
     @objc var separatorColor: UIColor = .lightGray
     var labelTextColor: UIColor = .fvc_darkGray
     
-    @IBOutlet weak var avatarImageView: RemoteImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
@@ -42,7 +43,7 @@ class ContactCell : UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImageView.currentTask?.cancel()
+        avatarImageView.kf.cancelDownloadTask()
         avatarImageView.image = nil
     }
 

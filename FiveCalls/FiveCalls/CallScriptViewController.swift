@@ -10,6 +10,7 @@ import CoreLocation
 import Crashlytics
 import StoreKit
 import OneSignal
+import Kingfisher
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -234,9 +235,9 @@ extension CallScriptViewController : UITableViewDataSource {
             cell.nameLabel.text = contact.name
             cell.callingReasonLabel.text = contact.reason
             if let photoURL = contact.photoURL {
-                cell.avatarImageView.setRemoteImage(url: photoURL)
+                cell.avatarImageView.kf.setImage(with: photoURL)
             } else {
-                cell.avatarImageView.image = cell.avatarImageView.defaultImage
+                cell.avatarImageView.image = UIImage(named: "icon-office")
             }
             
             cell.moreNumbersButton.isHidden = contact.fieldOffices.isEmpty

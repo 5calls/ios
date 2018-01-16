@@ -77,7 +77,6 @@
 		B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */; };
 		B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762741E40E39000D63D62 /* IssuesList.swift */; };
 		B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E806FE1E463FE300EBE553 /* UserLocation.swift */; };
-		B5E807041E46796A00EBE553 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E807031E46796A00EBE553 /* RemoteImageView.swift */; };
 		B5E98E311E50C895005221B7 /* SetLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E301E50C895005221B7 /* SetLocationCell.swift */; };
 		B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E321E529E31005221B7 /* URLSessionProvider.swift */; };
 		B5E98E351E529E66005221B7 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E341E529E66005221B7 /* functions.swift */; };
@@ -234,7 +233,6 @@
 		B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchIssuesOperation.swift; sourceTree = "<group>"; };
 		B5E762741E40E39000D63D62 /* IssuesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesList.swift; sourceTree = "<group>"; };
 		B5E806FE1E463FE300EBE553 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
-		B5E807031E46796A00EBE553 /* RemoteImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
 		B5E98E301E50C895005221B7 /* SetLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLocationCell.swift; sourceTree = "<group>"; };
 		B5E98E321E529E31005221B7 /* URLSessionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
 		B5E98E341E529E66005221B7 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
@@ -458,7 +456,6 @@
 				B5D5C95B1E44317700C80D5F /* IssueDetailCell.swift */,
 				B5CA63F71E41779300966B7D /* CheckboxView.swift */,
 				9C18DA601E461C920024B991 /* PaddedLabel.swift */,
-				B5E807031E46796A00EBE553 /* RemoteImageView.swift */,
 				B50280511E46A7A300749ED7 /* EllipsisButton.swift */,
 				9C46B1F71E46D638009B2C11 /* BlueButton.swift */,
 				FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */,
@@ -1044,7 +1041,6 @@
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 				B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */,
-				B5E807041E46796A00EBE553 /* RemoteImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

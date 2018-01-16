@@ -457,15 +457,12 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="JQD-W8-GS8" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="JQD-W8-GS8">
                                                     <rect key="frame" x="25" y="16" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="Tc1-QS-PDh"/>
                                                         <constraint firstAttribute="height" constant="80" id="gRy-8w-BsQ"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="defaultImage" value="icon-office"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Cornyn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-v6-UFC">
                                                     <rect key="frame" x="113" y="30" width="123" height="23"/>
@@ -606,16 +603,13 @@ The Department of the Army's Civil Works division will be accepting public comme
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="183"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-hW-gnx" customClass="RemoteImageView" customModule="FiveCalls" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-hW-gnx">
                                                     <rect key="frame" x="225" y="15" width="80" height="80"/>
                                                     <color key="backgroundColor" red="0.96070033311843872" green="0.96083813905715942" blue="0.96067017316818237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="dZu-WQ-C9k"/>
                                                         <constraint firstAttribute="height" constant="80" id="qMn-6O-XeZ"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="defaultImage" value="icon-office"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Richard J. Durbin D-IL with a long name that wraps" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoE-J1-wgV">
                                                     <rect key="frame" x="15" y="37" width="202" height="20.5"/>

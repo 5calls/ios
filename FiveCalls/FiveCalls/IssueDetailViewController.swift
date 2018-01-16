@@ -153,9 +153,9 @@ extension IssueDetailViewController : UITableViewDataSource {
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
                 if let photoURL = contact.photoURL {
-                    cell.avatarImageView.setRemoteImage(url: photoURL)
+                    cell.avatarImageView.kf.setImage(with: photoURL)
                 } else {
-                    cell.avatarImageView.image = cell.avatarImageView.defaultImage
+                    cell.avatarImageView.image = UIImage(named: "icon-office")
                 }
                 if let hasContacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
                     cell.hasContacted = hasContacted
