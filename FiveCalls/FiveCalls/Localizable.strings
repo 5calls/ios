@@ -63,3 +63,7 @@
 "notification-all" = "Yes, all new issues";
 "notification-important" = "Yes, only important issues";
 "notification-none" = "No, thanks";
+
+// profile
+"sign-in" = "Sign In";
+"sign-out" = "Sign Out";

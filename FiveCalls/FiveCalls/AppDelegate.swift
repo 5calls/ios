@@ -10,6 +10,7 @@ import UIKit
 import Pantry
 import Fabric
 import Crashlytics
+import Auth0
 import OneSignal
 
 @UIApplicationMain
@@ -45,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return Auth0.resumeAuth(url, options: options)
+    }
+    
     func oneSignalStartup(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
 

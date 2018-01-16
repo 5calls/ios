@@ -73,8 +73,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         configureChildViewController()
         setupHeaderWithBlurEffect()
         editRemindersButton.tintColor = .fvc_darkBlue
+        locationButton.tintColor = .fvc_darkBlue
         let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)
         editRemindersButton.setImage(image, for: .normal)
+        if SessionManager.shared.userHasCredentials() {
+            SessionManager.shared.startSession()
+        }
     }
     
     private func setupHeaderWithBlurEffect() {
@@ -147,7 +151,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             present(navController, animated: true, completion: nil)
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nc = segue.destination as? UINavigationController,
             let vc = nc.topViewController as? EditLocationViewController {
