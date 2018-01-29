@@ -42,7 +42,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         
         if isRegularWidth {
             let splitController = UISplitViewController()
-            splitController.viewControllers = [issuesVC, UIViewController()]
+            let issuesNavigation = UINavigationController(rootViewController: issuesVC)
+            splitController.viewControllers = [issuesNavigation, UIViewController()]
             splitController.preferredDisplayMode = .allVisible
             childController = splitController
             issuesVC.iPadShareButton = self.iPadShareButton
@@ -86,6 +87,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         effectView.contentView.addSubview(headerView)
         headerContainer.addSubview(effectView)
         
+        let isRegularWidth = traitCollection.horizontalSizeClass == .regular
+        let leftConstraint = headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor)
+        if isRegularWidth {
+            leftConstraint.constant = -320
+        }
+        
         NSLayoutConstraint.activate([
             effectView.contentView.topAnchor.constraint(equalTo: headerView.topAnchor),
             effectView.contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
@@ -94,7 +101,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             
             headerContainer.topAnchor.constraint(equalTo: effectView.topAnchor),
             headerContainer.bottomAnchor.constraint(equalTo: effectView.bottomAnchor),
-            headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor),
+            leftConstraint,
             headerContainer.rightAnchor.constraint(equalTo: effectView.rightAnchor)
             ])
     }
