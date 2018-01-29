@@ -45,7 +45,7 @@
 "scheduled-reminder-alert-title"      = "Time to Make Some Calls";
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
 "scheduled-reminders-description"     = "Turn these on to get a quick local reminder to make your 5 calls.";
-"line-busy"                           = "Line Busy? ▼";
+"line-busy"                           = "Local Offices ▼";
 "choose-a-number"                     = "Select a Different Office";
 "think-before-copying-alert-title"    = "Please Consider Before Texting, Faxing, or Emailing";
 "think-before-copying-alert-body"     = "Calling has been consistently shown to be the most effective way to make your voice heard with your Representatives.\n\nPlease consider this before using another method of communication.";
