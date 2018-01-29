@@ -328,7 +328,7 @@ extension CallScriptViewController: UICollectionViewDelegateFlowLayout {
 
         // this width calculation kinda sucks
         // screenwidth, minus two 8pt sides and a 10pt min middle cell space
-        let width = ((UIScreen.main.bounds.width - 8 - 8) - 10) / 2
+        let width = ((view.bounds.width - 8 - 8) - 10) / 2
 
         return CGSize(width: width, height: OutcomeCollectionCell.cellHeight())
     }
