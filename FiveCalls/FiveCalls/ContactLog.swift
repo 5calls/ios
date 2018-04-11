@@ -16,6 +16,7 @@ struct ContactLog {
     let phone: String
     let outcome: String
     let date: Date
+    let reported: Bool
     
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -34,6 +35,7 @@ extension ContactLog : Storable {
         phone = warehouse.get("phone") ?? ""
         outcome = warehouse.get("outcome") ?? "unknown"
         date = ContactLog.dateFormatter.date(from: warehouse.get("date") ?? "") ?? Date()
+        reported = warehouse.get("reported") ?? false
     }
     
     func toDictionary() -> [String : Any] {
@@ -42,21 +44,23 @@ extension ContactLog : Storable {
             "contactId": contactId,
             "phone": phone,
             "outcome": outcome,
-            "date": ContactLog.dateFormatter.string(from: date)
+            "date": ContactLog.dateFormatter.string(from: date),
+            "reported": reported
         ]
     }
 }
 
 extension ContactLog : Hashable {
     var hashValue: Int {
-        return (issueId + contactId + phone + outcome).hash
+        return (issueId + contactId + phone + outcome + reported.description).hash
     }
     
     static func ==(lhs: ContactLog, rhs: ContactLog) -> Bool {
         return lhs.issueId == rhs.issueId &&
                 lhs.contactId == rhs.contactId &&
                 lhs.phone == rhs.phone &&
-                lhs.outcome == rhs.outcome
+                lhs.outcome == rhs.outcome &&
+                lhs.reported == rhs.reported
     }
 }
 
@@ -116,4 +120,20 @@ struct ContactLogs {
         }
         return true
     }
+    
+    // Gets a list of unreported contacts
+    func unreported() -> [ContactLog] {
+        return all.filter({$0.reported == false})
+    }
+    
+    // Marks a contact as reported.  This will have no effect if there
+    // is no matching ContactLog in our list of contacts.
+    mutating func markReported(_ log: ContactLog) {
+        if let index = all.index(of: log) {
+            // ContactLogs are immutable, so we'll need to replace it
+            all.remove(at: index)
+            all.append(ContactLog(issueId: log.issueId, contactId: log.contactId, phone: log.phone, outcome: log.outcome, date: log.date, reported: true))
+        }
+    }
+    
 }

@@ -160,7 +160,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let contactedPhone = lastPhoneDialed ?? contact.phone
         // ContactLog status is "contacted", "unavailable", "vm", same for every issue
         // whereas outcome can be anything passed by the server
-        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date())
+        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date(), reported: false)
         reportCallOutcome(log: log, outcome: outcome)
     }
 
