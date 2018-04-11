@@ -134,9 +134,10 @@ class SessionManager {
                     }
                     reportStatsOperation.start()
                 } else {
-                    // This will be the case most of the time, since stats only get stored
-                    // when we can't submit them immediately.
-                    seal.fulfill(())                  }
+                    // This will be the case most of the time, since contacts are usually
+                    // reported immediately.
+                    seal.fulfill(())
+                }
             } else {
                 // We can only report saved stats if the user is logged in
                 seal.reject(SessionManagerError.notLoggedIn)
