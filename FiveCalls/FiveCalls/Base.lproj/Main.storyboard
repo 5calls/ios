@@ -627,13 +627,13 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is one of your two senators" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-9n-8a4">
-                                                    <rect key="frame" x="15" y="134.5" width="135.5" height="37.5"/>
+                                                    <rect key="frame" x="15" y="134.5" width="195" height="37.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNK-X0-fDd">
-                                                    <rect key="frame" x="158.5" y="105" width="213" height="30"/>
+                                                    <rect key="frame" x="218" y="105" width="94" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <state key="normal" title="Local Offices">
                                                         <color key="titleColor" red="0.89566051959991455" green="0.2254079282283783" blue="0.20752480626106262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -648,6 +648,7 @@ The Department of the Army's Civil Works division will be accepting public comme
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="MNK-X0-fDd" secondAttribute="trailing" constant="8" id="0eY-2n-x4f"/>
                                                 <constraint firstItem="KPu-hW-gnx" firstAttribute="top" secondItem="uLd-Vb-KSR" secondAttribute="top" constant="15" id="3BA-ZH-GcA"/>
                                                 <constraint firstItem="pkr-8w-SY8" firstAttribute="top" secondItem="NoE-J1-wgV" secondAttribute="bottom" constant="8" id="92A-Ul-YGV"/>
                                                 <constraint firstItem="pkr-8w-SY8" firstAttribute="leading" secondItem="avw-nh-C54" secondAttribute="leading" id="AbF-0C-Mvm"/>
