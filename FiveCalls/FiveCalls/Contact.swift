@@ -62,7 +62,7 @@ extension Contact : JSONSerializable {
         
         let fieldOffices: [AreaOffice]
         if let fieldOfficesJSON = dictionary["field_offices"] as? [JSONDictionary] {
-            fieldOffices = fieldOfficesJSON.flatMap(AreaOffice.init)
+            fieldOffices = fieldOfficesJSON.compactMap(AreaOffice.init)
         } else {
             fieldOffices = []
         }

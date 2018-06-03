@@ -57,6 +57,9 @@ class ReportOutcomeOperation : BaseOperation {
                 self.httpResponse = http
                 if let _ = data, http.statusCode == 200 {
                     print("sent report successfully")
+                    var logs = ContactLogs.load()
+                    logs.markReported(self.log)
+                    logs.save()
                 }
             }
             self.finish()

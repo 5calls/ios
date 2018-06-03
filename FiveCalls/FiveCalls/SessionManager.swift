@@ -7,9 +7,17 @@
 //
 
 import Auth0
+import PromiseKit
 
 extension Notification.Name {
     static let userProfileChanged = Notification.Name("userProfileChanged")
+}
+
+public enum SessionManagerError : Error {
+    case failedWrite
+    case invalidStatus
+    case noAccessToken
+    case notLoggedIn
 }
 
 class SessionManager {
@@ -29,28 +37,24 @@ class SessionManager {
     func userIsLoggedIn() -> Bool {
         return userProfile != nil
     }
-
+    
     func startSession() {
-        guard credentialsManager.hasValid() else {
-            // No valid credentials exist, present the hosted login page
-            Auth0
-                .webAuth()
-                .audience("https://5callsos.auth0.com/userinfo")
-                .scope("openid profile offline_access")
-                .start { result in
-                    switch result {
-                    case .success(let credentials):
-                        if (!self.credentialsManager.store(credentials: credentials)) {
-                            print("Error writing the user's credentials")
-                        }
-                        self.updateUserProfile()
-                    case .failure(let error):
-                        print("User login failed with error: \(error)")
-                    }
+        firstly {
+            self.authenticate()
+        }.then { credentials -> Promise<UserInfo> in
+            guard self.credentialsManager.store(credentials: credentials) else {
+                print("Error writing the user's credentials")
+                return Promise(error: SessionManagerError.failedWrite)
             }
-            return
+            return self.fetchUserProfile(credentials)
+        }.then { userInfo -> Promise<Void> in
+            self.userProfile = userInfo
+            return self.sendUnreportedStats()
+        }.done {
+            NotificationCenter.default.post(Notification(name: .userProfileChanged))
+        }.catch { error in
+            print("Failed to start a user session: \(error)")
         }
-        updateUserProfile()
     }
     
     func stopSession() {
@@ -62,13 +66,35 @@ class SessionManager {
         NotificationCenter.default.post(Notification(name: .userProfileChanged))
     }
 
-    private func updateUserProfile() {
-        credentialsManager.credentials { error, credentials in
-            guard error == nil, let credentials = credentials else {
-                print("Error retreiving user credentials: \(String(describing: error))")
+    private func authenticate() -> Promise<Credentials> {
+        return Promise { seal in
+            guard credentialsManager.hasValid() else {
+                // No valid credentials exist, present the hosted login page
+                Auth0
+                    .webAuth()
+                    .audience("https://5callsos.auth0.com/userinfo")
+                    .scope("openid profile offline_access")
+                    .start { result in
+                        switch result {
+                        case .success(let credentials):
+                            seal.fulfill(credentials)
+                        case .failure(let error):
+                            print("User login failed with error: \(error)")
+                            seal.reject(error)
+                        }
+                }
                 return
             }
-            
+            // Most of the time we'll already have some credentials to work with.
+            // If our existing credentials are expired or otherwise invalid this
+            // call will handle refreshing them
+            credentialsManager.credentials(callback: seal.resolve)
+        }
+    }
+    
+    
+    private func fetchUserProfile(_ credentials: Credentials) -> Promise<UserInfo> {
+        return Promise { seal in
             if let accessToken = credentials.accessToken {
                 Auth0
                     .authentication()
@@ -77,11 +103,44 @@ class SessionManager {
                         switch(result) {
                         case .success(let profile):
                             self.userProfile = profile
-                            NotificationCenter.default.post(Notification(name: .userProfileChanged))
+                            seal.fulfill(profile)
                         case .failure(let error):
                             print("Error fetching user profile: \(error)")
+                            seal.reject(error)
                         }
                 }
+            } else {
+                seal.reject(SessionManagerError.noAccessToken)
+            }
+        }
+    }
+    
+    private func sendUnreportedStats() -> Promise<Void> {
+        return Promise { seal in
+            if userIsLoggedIn() {
+                let logs = ContactLogs.load()
+                let unreportedLogs = logs.unreported()
+                if unreportedLogs.count > 0 {
+                    // Send all of our unreported stats to the server.
+                    let reportStatsOperation = ReportUserStatsOperation(logs: logs)
+                    reportStatsOperation.completionBlock = {
+                        if let status = reportStatsOperation.httpResponse?.statusCode {
+                            if status >= 200 && status <= 299 {
+                                seal.fulfill(())
+                            } else {
+                                seal.reject(reportStatsOperation.error ?? SessionManagerError.invalidStatus)
+                            }
+                        }
+                    }
+                    reportStatsOperation.start()
+                } else {
+                    // This will be the case most of the time, since contacts are usually
+                    // reported immediately.
+                    seal.fulfill(())
+                }
+            } else {
+                // We can only report saved stats if the user is logged in
+                seal.reject(SessionManagerError.notLoggedIn)
             }
         }
     }
