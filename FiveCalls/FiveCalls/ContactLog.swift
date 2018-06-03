@@ -112,6 +112,10 @@ struct ContactLogs {
         return all.filter({$0.reported == false})
     }
     
+    mutating func markAllReported(_ logs: [ContactLog]) {
+        logs.forEach { self.markReported($0) }
+    }
+    
     // Marks a contact as reported.  This will have no effect if there
     // is no matching ContactLog in our list of contacts.
     mutating func markReported(_ log: ContactLog) {
