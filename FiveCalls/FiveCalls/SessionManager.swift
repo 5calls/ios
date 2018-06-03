@@ -47,10 +47,10 @@ class SessionManager {
                 return Promise(error: SessionManagerError.failedWrite)
             }
             return self.fetchUserProfile(credentials)
-        }.then { userInfo -> Promise<Void> in
+        }.then { userInfo -> Promise<Bool> in
             self.userProfile = userInfo
             return self.sendUnreportedStats()
-        }.done {
+        }.done { _ in
             NotificationCenter.default.post(Notification(name: .userProfileChanged))
         }.catch { error in
             print("Failed to start a user session: \(error)")
@@ -115,32 +115,37 @@ class SessionManager {
         }
     }
     
-    private func sendUnreportedStats() -> Promise<Void> {
+    private func sendUnreportedStats() -> Promise<Bool> {
+        guard userIsLoggedIn() else {
+            return Promise.init(error: SessionManagerError.notLoggedIn)
+        }
+        
+        let logs = ContactLogs.load()
+        let unreportedLogs = logs.unreported()
+        guard unreportedLogs.count > 0 else { return .value(true) }
+        
         return Promise { seal in
-            if userIsLoggedIn() {
-                let logs = ContactLogs.load()
-                let unreportedLogs = logs.unreported()
-                if unreportedLogs.count > 0 {
-                    // Send all of our unreported stats to the server.
-                    let reportStatsOperation = ReportUserStatsOperation(logs: logs)
-                    reportStatsOperation.completionBlock = {
-                        if let status = reportStatsOperation.httpResponse?.statusCode {
-                            if status >= 200 && status <= 299 {
-                                seal.fulfill(())
-                            } else {
-                                seal.reject(reportStatsOperation.error ?? SessionManagerError.invalidStatus)
-                            }
+            let logs = ContactLogs.load()
+            let unreportedLogs = logs.unreported()
+            if unreportedLogs.count > 0 {
+                // Send all of our unreported stats to the server.
+                let reportStatsOperation = ReportUserStatsOperation(logs: logs)
+                reportStatsOperation.completionBlock = {
+                    if let status = reportStatsOperation.httpResponse?.statusCode {
+                        
+                        
+                        if status >= 200 && status <= 299 {
+                            seal.fulfill(true)
+                        } else {
+                            seal.reject(reportStatsOperation.error ?? SessionManagerError.invalidStatus)
                         }
                     }
-                    reportStatsOperation.start()
-                } else {
-                    // This will be the case most of the time, since contacts are usually
-                    // reported immediately.
-                    seal.fulfill(())
                 }
+                reportStatsOperation.start()
             } else {
-                // We can only report saved stats if the user is logged in
-                seal.reject(SessionManagerError.notLoggedIn)
+                // This will be the case most of the time, since contacts are usually
+                // reported immediately.
+                seal.fulfill(true)
             }
         }
     }
