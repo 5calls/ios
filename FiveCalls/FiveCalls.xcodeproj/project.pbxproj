@@ -588,6 +588,7 @@
 				B50280581E478BC200749ED7 /* Frameworks */,
 				B50280591E478BC200749ED7 /* Resources */,
 				2FD3763A0D5CA022A518B1A9 /* [CP] Embed Pods Frameworks */,
+				4FD56AACD5EB1D07382C9438 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -612,6 +613,7 @@
 				C0162342B60635266343A6AB /* [CP] Embed Pods Frameworks */,
 				B502807D1E4991E300749ED7 /* Crashlytics */,
 				D0BA59B31F9546510069DA58 /* Embed App Extensions */,
+				08C764C7F5866854AE892B82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -649,6 +651,7 @@
 				D0BA59A41F9546510069DA58 /* Sources */,
 				D0BA59A51F9546510069DA58 /* Frameworks */,
 				D0BA59A61F9546510069DA58 /* Resources */,
+				CF8B53CC1727E69070CABA21 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -781,6 +784,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		08C764C7F5866854AE892B82 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0F76D37E1E4FDF4500C14543 /* Generate R.Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -813,6 +831,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FD56AACD5EB1D07382C9438 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DBAD4BAE9299D0E23AFC2FA /* [CP] Check Pods Manifest.lock */ = {
@@ -907,6 +940,7 @@
 				"${BUILT_PRODUCTS_DIR}/Auth0/Auth0.framework",
 				"${BUILT_PRODUCTS_DIR}/CPDAcknowledgements/CPDAcknowledgements.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Pantry/Pantry.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
@@ -918,6 +952,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Auth0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CPDAcknowledgements.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pantry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -927,6 +962,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF8B53CC1727E69070CABA21 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
