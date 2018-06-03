@@ -24,37 +24,37 @@ class FetchUserStatsOperation : BaseOperation {
                 return
             }
 
-            let credentials = creds
-            if let idToken = credentials?.idToken {
-        
-                let config = URLSessionConfiguration.default
-                let session = URLSessionProvider.buildSession(configuration: config)
-                let url = URL(string: "https://api.5calls.org/v1/users/stats")!
-                var request = URLRequest(url: url)
-                request.setValue("Bearer " + idToken, forHTTPHeaderField:"Authorization")
-                
-                let task = session.dataTask(with: request) { (data, response, error) in
-                    
-                    if let e = error {
-                        self.error = e
-                    } else {
-                        let http = response as! HTTPURLResponse
-                        self.httpResponse = http
-                        if let data = data, http.statusCode == 200 {
-                            do {
-                                try self.parseResponse(data: data)
-                            } catch let e as NSError {
-                                // log an continue, not worth crashing over
-                                print("Error parsing user stats: \(e.localizedDescription)")
-                            }
-                        }
-                    }
-                    
-                    self.finish()
-                }
-                task.resume()
-            }
+            creds?.idToken.flatMap(self.fetchStats)
         }
+    }
+    
+    private func fetchStats(withToken idToken: String) {
+        let config = URLSessionConfiguration.default
+        let session = URLSessionProvider.buildSession(configuration: config)
+        let url = URL(string: "https://api.5calls.org/v1/users/stats")!
+        var request = URLRequest(url: url)
+        request.setValue("Bearer " + idToken, forHTTPHeaderField:"Authorization")
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            if let e = error {
+                self.error = e
+            } else {
+                let http = response as! HTTPURLResponse
+                self.httpResponse = http
+                if let data = data, http.statusCode == 200 {
+                    do {
+                        try self.parseResponse(data: data)
+                    } catch let e as NSError {
+                        // log an continue, not worth crashing over
+                        print("Error parsing user stats: \(e.localizedDescription)")
+                    }
+                }
+            }
+            
+            self.finish()
+        }
+        task.resume()
     }
     
     private func parseResponse(data: Data) throws {
