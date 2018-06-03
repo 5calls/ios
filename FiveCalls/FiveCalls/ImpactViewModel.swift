@@ -9,30 +9,35 @@
 import Foundation
 
 struct ImpactViewModel {
-    let logs: [ContactLog]
     
-    init(logs: [ContactLog]) {
+    let userStats: UserStats?
+    let logs: ContactLogs
+    
+    init(logs: ContactLogs, stats: UserStats?) {
         self.logs = logs
+        self.userStats = stats
     }
     
     var numberOfCalls: Int {
-        return logs.count
+        return (userStats?.totalCalls() ?? 0) + logs.unreported().count
     }
     
     var madeContactCount: Int {
-        return logs.filter { $0.outcome == "contact" || $0.outcome == "contacted" }.count
+        return (userStats?.contact ?? 0) + logs.unreported().filter { $0.outcome == "contact" || $0.outcome == "contacted" }.count
     }
     
     var unavailableCount: Int {
-        return logs.filter { $0.outcome == "unavailable" }.count
+        return (userStats?.unavailable ?? 0) + logs.unreported().filter { $0.outcome == "unavailable" }.count
     }
     
     var voicemailCount: Int {
-        return logs.filter { $0.outcome == "voicemail" || $0.outcome == "vm" }.count
+        return (userStats?.voicemail ?? 0) + logs.unreported().filter { $0.outcome == "voicemail" || $0.outcome == "vm" }.count
     }
     
     var weeklyStreakCount: Int {
-        let logDates = logs.map { $0.date }
+        // Eventually the server will calculate call streaks and report them when we pull
+        // stats, but for now we are sourcing that data locally.
+        let logDates = logs.all.map { $0.date }
         return StreakCounter(dates: logDates, referenceDate: Date()).weekly
     }
 }

@@ -51,9 +51,9 @@ extension Issue : JSONSerializable {
             return nil
         }
         
-        let contacts = contactsJSON.flatMap({ Contact(dictionary: $0) })
-        let outcomes = outcomesJSON.flatMap({ Outcome(dictionary: $0) })
-        let category = categoriesJSON.flatMap({ Category(dictionary: $0) }).first
+        let contacts = contactsJSON.compactMap({ Contact(dictionary: $0) })
+        let outcomes = outcomesJSON.compactMap({ Outcome(dictionary: $0) })
+        let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
         self.init(id: id, name: name, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
     }

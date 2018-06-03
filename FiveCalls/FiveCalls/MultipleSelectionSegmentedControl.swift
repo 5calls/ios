@@ -54,7 +54,7 @@ class MultipleSelectionControl: UIControl {
     private func addButtons(to stackView: UIStackView) {
         let titles = titlesString.components(separatedBy: ",")
 
-        buttons = titles.flatMap({ title in
+        buttons = titles.compactMap({ title in
             guard !title.isEmpty else { return nil }
             let button = UIButton()
             button.isSelected = false
