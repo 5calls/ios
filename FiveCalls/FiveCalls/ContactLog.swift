@@ -9,7 +9,7 @@
 import Foundation
 import Pantry
 
-struct ContactLog {
+struct ContactLog : Hashable {
 
     let issueId: String
     let contactId: String
@@ -47,20 +47,6 @@ extension ContactLog : Storable {
             "date": ContactLog.dateFormatter.string(from: date),
             "reported": reported
         ]
-    }
-}
-
-extension ContactLog : Hashable {
-    var hashValue: Int {
-        return (issueId + contactId + phone + outcome + reported.description).hash
-    }
-    
-    static func ==(lhs: ContactLog, rhs: ContactLog) -> Bool {
-        return lhs.issueId == rhs.issueId &&
-                lhs.contactId == rhs.contactId &&
-                lhs.phone == rhs.phone &&
-                lhs.outcome == rhs.outcome &&
-                lhs.reported == rhs.reported
     }
 }
 
