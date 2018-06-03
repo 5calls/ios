@@ -204,7 +204,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			<key>licenseText</key>
 			<string>The MIT License (MIT)
 
-Copyright (c) 2017 Wei Wang
+Copyright (c) 2018 Wei Wang
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -234,7 +234,7 @@ SOFTWARE.
 			<key>summary</key>
 			<string>A lightweight and pure Swift implemented library for downloading and cacheing image from the web.</string>
 			<key>version</key>
-			<string>4.5.0</string>
+			<string>4.8.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>

@@ -6,7 +6,7 @@ PODS:
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.13)
-  - Kingfisher (4.5.0)
+  - Kingfisher (4.8.0)
   - OneSignal (2.6.0)
   - Pantry (0.3)
   - PromiseKit (6.2.1):
@@ -35,6 +35,19 @@ DEPENDENCIES:
   - PromiseKit (~> 6.0)
   - R.swift
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Auth0
+    - CPDAcknowledgements
+    - Crashlytics
+    - Fabric
+    - Kingfisher
+    - OneSignal
+    - PromiseKit
+    - R.swift
+    - R.swift.Library
+    - SimpleKeychain
+
 EXTERNAL SOURCES:
   DZNEmptyDataSet:
     :git: https://github.com/subdigital/DZNEmptyDataSet
@@ -56,7 +69,7 @@ SPEC CHECKSUMS:
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
-  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
   PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
@@ -66,4 +79,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 4cb75fb424e5389949739bc243bde5e9915a1b3f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
