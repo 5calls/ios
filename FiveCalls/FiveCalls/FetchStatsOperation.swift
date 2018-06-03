@@ -35,7 +35,9 @@ class FetchStatsOperation : BaseOperation {
                 }
             }
             
-            self.finish()
+            DispatchQueue.main.async {
+                self.finish()
+            }
         }
         task.resume()
     }
