@@ -181,7 +181,7 @@ class ScheduleRemindersController: UIViewController {
 
     private func indices(from notifications: [UILocalNotification]) -> [Int] {
         let calendar = Calendar(identifier: .gregorian)
-        return notifications.flatMap({ return calendar.component(.weekday, from: ($0.fireDate)!) - 2})
+        return notifications.compactMap({ return calendar.component(.weekday, from: ($0.fireDate)!) - 2})
     }
 
     private func fireDate(for index: Int, date: Date) -> Date? {

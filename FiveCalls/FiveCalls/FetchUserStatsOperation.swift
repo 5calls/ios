@@ -17,14 +17,14 @@ class FetchUserStatsOperation : BaseOperation {
     override func execute() {
         
         // We'll need the user's access token to authenticate the request
-        SessionManager.shared.credentialsManager.credentials {
-            guard $0 == nil else {
-                self.error = $0
+        SessionManager.shared.credentialsManager.credentials { error, creds in
+            guard error == nil else {
+                self.error = error
                 self.finish()
                 return
             }
 
-            let credentials = $1
+            let credentials = creds
             if let idToken = credentials?.idToken {
         
                 let config = URLSessionConfiguration.default

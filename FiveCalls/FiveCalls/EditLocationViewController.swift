@@ -84,10 +84,8 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     }
     
     @IBAction func addressTextFieldChanged() {
-        if let address = addressTextField.text?.trimmingCharacters(in: .whitespaces)  {
-            let addressLength = address.characters.count
-            submitButton.isEnabled = addressLength > 0
-        }
+        let address = addressTextField.text?.trimmingCharacters(in: .whitespaces) ?? ""
+        submitButton.isEnabled = address.count > 0
     }
     
     //MARK: - UITextFieldDelegate
