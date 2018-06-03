@@ -31,7 +31,8 @@ class FiveCallsUITests: XCTestCase {
     func testTakeScreenshots() {
         snapshot("0-welcome")
         
-        let label = app.staticTexts["Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can."]
+        let predicate = NSPredicate(format: "label LIKE 'Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.'")
+        let label = app.staticTexts.element(matching: predicate)
         label.swipeLeft()
         
         snapshot("1-welcome2")
