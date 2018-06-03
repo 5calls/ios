@@ -23,7 +23,7 @@ extension IssuesList : JSONSerializable {
                 return nil
         }
         
-        let issues = issuesJSON.flatMap(Issue.init)
+        let issues = issuesJSON.compactMap(Issue.init)
         self.init(splitDistrict: splitDistrict, normalizedLocation: normalizedLocation, issues: issues)
     }
 }
