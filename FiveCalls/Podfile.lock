@@ -57,7 +57,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DZNEmptyDataSet:
-    :commit: ee32a46e6e79f9c84b2e3caf75f52b4948b01406
+    :commit: d09b7c440cd2a13710fef74dc21bdb5f980fa109
     :git: https://github.com/subdigital/DZNEmptyDataSet
   Pantry:
     :commit: 2d666b78df5c2782f28c0f2b62b941c7c15946d2
