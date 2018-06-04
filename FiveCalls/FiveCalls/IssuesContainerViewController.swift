@@ -15,10 +15,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var headerContainer: UIView!
+    @IBOutlet weak var headerContainerConstraint: NSLayoutConstraint!
     @IBOutlet weak var iPadShareButton: UIButton!
     @IBOutlet weak var editRemindersButton: UIButton!
     @IBOutlet weak var fiveCallsButton: UIButton!
     
+    let splitController = UISplitViewController()
     static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
     var issuesManager: IssuesManager {
@@ -41,9 +43,10 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         let childController: UIViewController
         
         if isRegularWidth {
-            let splitController = UISplitViewController()
-            splitController.viewControllers = [issuesVC, UIViewController()]
+            let issuesNavigation = UINavigationController(rootViewController: issuesVC)
+            splitController.viewControllers = [issuesNavigation, UIViewController()]
             splitController.preferredDisplayMode = .allVisible
+            headerContainerConstraint.constant = self.splitController.primaryColumnWidth
             childController = splitController
             issuesVC.iPadShareButton = self.iPadShareButton
             self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -91,7 +94,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             effectView.contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
             effectView.contentView.leftAnchor.constraint(equalTo: headerView.leftAnchor),
             effectView.contentView.rightAnchor.constraint(equalTo: headerView.rightAnchor),
-            
             headerContainer.topAnchor.constraint(equalTo: effectView.topAnchor),
             headerContainer.bottomAnchor.constraint(equalTo: effectView.bottomAnchor),
             headerContainer.leftAnchor.constraint(equalTo: effectView.leftAnchor),
@@ -119,6 +121,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             
             configureChildViewController()
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            self.headerContainerConstraint.constant = self.splitController.primaryColumnWidth
+        })
     }
     
     override func viewDidLayoutSubviews() {

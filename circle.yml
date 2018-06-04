@@ -1,5 +1,0 @@
-machine:
-  timezone:
-    America/Los_Angeles
-  xcode:
-    version: "9.0"

@@ -4,6 +4,7 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
+  - Down (0.5.2)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.13)
   - Kingfisher (4.8.0)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - Auth0 (~> 1.9)
   - CPDAcknowledgements
   - Crashlytics (~> 3.8.4)
+  - Down
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - Fabric
   - Kingfisher (~> 4.0)
@@ -40,6 +42,7 @@ SPEC REPOS:
     - Auth0
     - CPDAcknowledgements
     - Crashlytics
+    - Down
     - Fabric
     - Kingfisher
     - OneSignal
@@ -67,6 +70,7 @@ SPEC CHECKSUMS:
   Auth0: 9eceebf97b6b3482eaed82193e090b50c3bd8ad6
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
+  Down: 587371ad58002b06023d9c602519216862c3acbc
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
@@ -77,6 +81,6 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
 
-PODFILE CHECKSUM: 4cb75fb424e5389949739bc243bde5e9915a1b3f
+PODFILE CHECKSUM: fa04586c46cd242dca955a2617812aa7b850bc93
 
 COCOAPODS: 1.5.3
