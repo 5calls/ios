@@ -14,6 +14,7 @@ import Kingfisher
 class MyImpactViewController : UITableViewController {
     
     var viewModel: ImpactViewModel!
+    var userStats: UserStats?
     var totalCalls: Int?
     
     @IBOutlet weak var navSignInButton: UIBarButtonItem!
@@ -61,31 +62,22 @@ class MyImpactViewController : UITableViewController {
             NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         
-        viewModel = ImpactViewModel(logs: ContactLogs.load().all)
-        let weeklyStreakCount = viewModel.weeklyStreakCount
-        streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
-        let numberOfCalls = viewModel.numberOfCalls
-        impactLabel.text = impactMessage(for: numberOfCalls)
-        if numberOfCalls == 0 {
-            subheadLabel.isHidden = true
-            subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
-        }
+        updateStats()
         
         profilePic.layer.borderColor = UIColor.white.cgColor
         profilePic.layer.borderWidth = 2.0
 
         sizeHeaderToFit()
         
-        let op = FetchStatsOperation()
-        op.completionBlock = {
-            self.totalCalls = op.numberOfCalls
+        let totalCallsOp = FetchStatsOperation()
+        totalCallsOp.completionBlock = {
+            self.totalCalls = totalCallsOp.numberOfCalls
             DispatchQueue.main.async {
                 self.tableView.reloadData()    
             }
-            
         }
-        OperationQueue.main.addOperation(op)
-        
+        OperationQueue.main.addOperation(totalCallsOp)
+
         NotificationCenter.default.addObserver(self, selector: #selector(userProfileChanged), name: .userProfileChanged, object: nil)
         NotificationCenter.default.post(name: .userProfileChanged, object: nil, userInfo: nil)
     }
@@ -108,6 +100,19 @@ class MyImpactViewController : UITableViewController {
         tableView.tableHeaderView = headerView
     }
     
+    func updateStats() {
+        viewModel = ImpactViewModel(logs: ContactLogs.load(), stats: userStats)
+        let weeklyStreakCount = viewModel.weeklyStreakCount
+        streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
+        let numberOfCalls = viewModel.numberOfCalls
+        impactLabel.text = impactMessage(for: numberOfCalls)
+        if numberOfCalls == 0 {
+            subheadLabel.isHidden = true
+            subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
+        }
+        tableView.reloadData()
+    }
+    
     @IBAction func loginButtonTapped(_ sender: Any) {
         if (SessionManager.shared.userIsLoggedIn()) {
             SessionManager.shared.stopSession()
@@ -117,6 +122,22 @@ class MyImpactViewController : UITableViewController {
     }
     
     @objc func userProfileChanged(_ notification: NSNotification) {
+
+        if SessionManager.shared.userIsLoggedIn() {
+            // Fetch the user's call stats
+            let userStatsOp = FetchUserStatsOperation()
+            userStatsOp.completionBlock = {
+                self.userStats = userStatsOp.userStats
+                DispatchQueue.main.async {
+                    self.updateStats()
+                }
+            }
+            OperationQueue.main.addOperation(userStatsOp)
+        } else {
+            userStats = nil
+            updateStats()
+        }
+
         // Update the profile icon on the main thread
         DispatchQueue.main.async {
             let sessionManager = SessionManager.shared

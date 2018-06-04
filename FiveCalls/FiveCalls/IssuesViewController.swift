@@ -83,6 +83,11 @@ class IssuesViewController : UITableViewController {
         if shouldShowAllIssues {
             navigationController?.setNavigationBarHidden(false, animated: animated)
         }
+        if !shouldShowAllIssues && UIDevice.current.userInterfaceIdiom == .pad {
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+            navigationItem.title = R.string.localizable.whatsImportantTitle()
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -209,6 +214,9 @@ class IssuesViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if !shouldShowAllIssues && UIDevice.current.userInterfaceIdiom == .pad {
+            return 0
+        }
         return 35.0
     }
 
