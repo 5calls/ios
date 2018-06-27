@@ -9,5 +9,5 @@
 import UIKit
 
 class IssueDetailCell : UITableViewCell {
-    @IBOutlet weak var issueLabel: UILabel!
+    @IBOutlet weak var issueTextView: UITextView!
 }

@@ -46,18 +46,6 @@ extension Issue : JSONSerializable {
         let outcomes = outcomesJSON.compactMap({ Outcome(dictionary: $0) })
         let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
-        var attributedReason = NSAttributedString(string: reason)
-//        var markdown = Down.init(markdownString: reason)
-//        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
-//            attributedReason = converted
-//        }
-
-        var attributedScript = NSAttributedString(string: script)
-//        markdown = Down.init(markdownString: script)
-//        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
-//            attributedScript = converted
-//        }
-
         self.init(id: id, name: name, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
     }
 }

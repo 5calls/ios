@@ -178,9 +178,9 @@ extension IssueDetailViewController : UITableViewDataSource {
 
             let markdown = Down.init(markdownString: issue.reason)
             if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
-                cell.issueLabel.attributedText = converted
+                cell.issueTextView.attributedText = converted
             } else {
-                cell.issueLabel.text = issue.reason
+                cell.issueTextView.text = issue.reason
             }
 
             return cell
