@@ -174,7 +174,7 @@ extension IssueDetailViewController : UITableViewDataSource {
             
         case IssueHeaderRows.description.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.descriptionCell, for: indexPath)!
-            cell.issueLabel.text = issue.reason
+            cell.issueLabel.attributedText = issue.reason
             return cell
             
         default:

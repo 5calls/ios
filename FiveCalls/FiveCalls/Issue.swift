@@ -7,33 +7,25 @@
 //
 
 import Foundation
-
-/*
- 
- {
- "contacts": [],
- "id": "recNqspdW0JHxisu8",
- "name": "Reject the Appointment of Steve Bannon to the National Security Council",
- "reason": "Trump has removed the existing Director of National Intelligence and Chairman of Joint Chiefs of Staff from the \u201cprincipals committee\u201d of the National Security Council and replaced them with his Chief Strategist, Steve Bannon. Bannon is the former leader of Breitbart News, an anti-Semitic and white supremacist right-wing opinion and \"news\" outlet whose notable output includes articles comparing Planned Parenthood to the Holocaust. \n\nThe purpose of the National Security Council is to ensure that the president has the best possible advice from his Cabinet, the military, and the intelligence community before making major decisions.  Steve Bannon not only lacks the considerable experience needed to be the principal foreign policy adviser to the president, he has personally avowed a desire to \"bring everything crashing down, and destroy all of today\u2019s establishment.\" Allowing Trump to continue to be guided by Bannon in matters of national security will bring about the deaths of many innocent people. ",
- "script": "Hi, my name is [NAME] and I\u2019m a constituent from [CITY, ZIP]. \n\nI\u2019m calling today becuase I am outraged by the appointment of Steve Bannon to the National Security Council. I expect [Senator/Rep's Name]  to take an immediate stand against both Bannon's appointment and the removal of more experienced staff from the \"principals committee\".                           \n\nThank you for your hard work answering the phones.\n\n[IF LEAVING A VOICEMAIL: please leave your full street address to ensure your call is tallied] ",
- "categories": [{
-   "name": "Foreign Affairs"
- }],
- "inactive": false,
- "outcomes": ["unavailable", "voicemail", "contact", "skip"]
- }
- 
- */
+import Down
+import Rswift
 
 struct Issue {
     let id: String
     let name: String
-    let reason: String
+    let reason: NSAttributedString
     let script: String
     let category: Category?
     let inactive: Bool
     let contacts: [Contact]
     let outcomes: [Outcome]
+
+    static var style: String {        
+        if let bytes = try? Data(resource: R.file.stylesCss)  {
+            return String(decoding: bytes, as: UTF8.self)
+        }
+        return ""
+    }
 }
 
 extension Issue : JSONSerializable {
@@ -55,6 +47,12 @@ extension Issue : JSONSerializable {
         let outcomes = outcomesJSON.compactMap({ Outcome(dictionary: $0) })
         let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
-        self.init(id: id, name: name, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
+        var attributedReason = NSAttributedString(string: reason)
+        let markdown = Down.init(markdownString: reason)
+        if let convertedReason = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+            attributedReason = convertedReason
+        }
+        
+        self.init(id: id, name: name, reason: attributedReason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
     }
 }
