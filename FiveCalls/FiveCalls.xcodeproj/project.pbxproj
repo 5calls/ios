@@ -29,6 +29,7 @@
 		9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA601E461C920024B991 /* PaddedLabel.swift */; };
 		9C46B1F81E46D638009B2C11 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F71E46D638009B2C11 /* BlueButton.swift */; };
 		9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */; };
+		9C507F6520E322EA0072C71F /* issuesStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 9C507F6420E322EA0072C71F /* issuesStyle.css */; };
 		A02018D9204E761A006078D1 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02018D8204E761A006078D1 /* UserStats.swift */; };
 		A051D0AB200E95CF007D54B2 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A051D0AA200E95CF007D54B2 /* ProfileCard.swift */; };
 		A086CA4B1FEB92780037B41F /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = A086CA4A1FEB92780037B41F /* Auth0.plist */; };
@@ -181,6 +182,7 @@
 		9C18DA601E461C920024B991 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		9C46B1F71E46D638009B2C11 /* BlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutcomeOperation.swift; sourceTree = "<group>"; };
+		9C507F6420E322EA0072C71F /* issuesStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = issuesStyle.css; sourceTree = "<group>"; };
 		A02018D8204E761A006078D1 /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		A051D0AA200E95CF007D54B2 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		A086CA4A1FEB92780037B41F /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				B50280731E497C4A00749ED7 /* styles.css */,
+				9C507F6420E322EA0072C71F /* issuesStyle.css */,
 				B50280751E497FB700749ED7 /* about-whoweare.html */,
 				B50280771E49837000749ED7 /* about-whycall.html */,
 			);
@@ -756,6 +759,7 @@
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
 				791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */,
 				DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */,
+				9C507F6520E322EA0072C71F /* issuesStyle.css in Resources */,
 				A086CA4B1FEB92780037B41F /* Auth0.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

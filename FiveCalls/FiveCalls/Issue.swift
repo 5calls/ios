@@ -14,14 +14,14 @@ struct Issue {
     let id: String
     let name: String
     let reason: NSAttributedString
-    let script: String
+    let script: NSAttributedString
     let category: Category?
     let inactive: Bool
     let contacts: [Contact]
     let outcomes: [Outcome]
 
     static var style: String {        
-        if let bytes = try? Data(resource: R.file.stylesCss)  {
+        if let bytes = try? Data(resource: R.file.issuesStyleCss)  {
             return String(decoding: bytes, as: UTF8.self)
         }
         return ""
@@ -48,11 +48,17 @@ extension Issue : JSONSerializable {
         let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
         var attributedReason = NSAttributedString(string: reason)
-        let markdown = Down.init(markdownString: reason)
-        if let convertedReason = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
-            attributedReason = convertedReason
+        var markdown = Down.init(markdownString: reason)
+        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+            attributedReason = converted
         }
         
-        self.init(id: id, name: name, reason: attributedReason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
+        var attributedScript = NSAttributedString(string: script)
+        markdown = Down.init(markdownString: script)
+        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+            attributedScript = converted
+        }
+        
+        self.init(id: id, name: name, reason: attributedReason, script: attributedScript, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
     }
 }

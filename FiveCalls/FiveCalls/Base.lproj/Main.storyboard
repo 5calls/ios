@@ -830,7 +830,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="4hO-va-xGA" userLabel="Header">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="4hO-va-xGA" userLabel="Header">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -951,7 +951,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="770" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSw-yP-80O">
-                                    <rect key="frame" x="16" y="239" width="288" height="12"/>
+                                    <rect key="frame" x="16" y="239" width="288" height="76"/>
                                     <string key="text">You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
