@@ -248,7 +248,7 @@ extension CallScriptViewController : UITableViewDataSource {
             
         case CallScriptRows.script.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
-            cell.scriptTextView.attributedText = issue.script
+            cell.scriptTextView.text = issue.script
             return cell
             
         default:

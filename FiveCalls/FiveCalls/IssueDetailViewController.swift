@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Crashlytics
+import Down
 
 class IssueDetailViewController : UIViewController, IssueShareable {
 
@@ -174,7 +175,14 @@ extension IssueDetailViewController : UITableViewDataSource {
             
         case IssueHeaderRows.description.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.descriptionCell, for: indexPath)!
-            cell.issueLabel.attributedText = issue.reason
+
+            let markdown = Down.init(markdownString: issue.reason)
+            if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+                cell.issueLabel.attributedText = converted
+            } else {
+                cell.issueLabel.text = issue.reason
+            }
+
             return cell
             
         default:

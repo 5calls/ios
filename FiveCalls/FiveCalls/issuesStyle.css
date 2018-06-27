@@ -1,40 +1,17 @@
 body {
-    font-family: "Roboto Condensed", sans-serif;
-    font-weight: bold;
-    color: black;
-    background-color: #fff;
+    font-family: -apple-system, sans-serif;
 }
-
-strong {
-    font-weight: bolder;
-}
-
 a {
     color: #e53935;
-    
 }
 p {
-    margin: 25px;
     font-size: 18px
 }
 li {
-    font-size: 1.3rem;
-    line-height: 1.3em;
+    font-size: 18px;
     margin: 0 0 0.5rem 0
 }
-.about__title {
-    font-size: 48px;
-    text-transform: uppercase
+blockquote {
+    background-color: #F5F5F5;
+    padding: 20px;
 }
-.about__subtitle {
-    font-size: 21px;
-    font-weight: bold;
-    font-style: italic
-}
-.about__source {
-    display: block;
-    padding: 0 0 0 3px;
-    font-size: 16px;
-    white-space: nowrap
-}
-

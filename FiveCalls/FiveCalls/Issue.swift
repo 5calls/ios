@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import Down
 import Rswift
 
 struct Issue {
     let id: String
     let name: String
-    let reason: NSAttributedString
-    let script: NSAttributedString
+    let reason: String
+    let script: String
     let category: Category?
     let inactive: Bool
     let contacts: [Contact]
@@ -48,17 +47,17 @@ extension Issue : JSONSerializable {
         let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
         var attributedReason = NSAttributedString(string: reason)
-        var markdown = Down.init(markdownString: reason)
-        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
-            attributedReason = converted
-        }
-        
+//        var markdown = Down.init(markdownString: reason)
+//        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+//            attributedReason = converted
+//        }
+
         var attributedScript = NSAttributedString(string: script)
-        markdown = Down.init(markdownString: script)
-        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
-            attributedScript = converted
-        }
-        
-        self.init(id: id, name: name, reason: attributedReason, script: attributedScript, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
+//        markdown = Down.init(markdownString: script)
+//        if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+//            attributedScript = converted
+//        }
+
+        self.init(id: id, name: name, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
     }
 }
