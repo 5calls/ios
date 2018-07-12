@@ -1,3 +1,4 @@
+/* not a lot is supported here, so we try our best */
 body {
     font-family: -apple-system, sans-serif;
 }
@@ -5,13 +6,12 @@ a {
     color: #e53935;
 }
 p {
-    font-size: 18px
+    font-size: 18px;
 }
 li {
     font-size: 18px;
-    margin: 0 0 0.5rem 0
+    margin: 0 0 0.5rem 0;
 }
 blockquote {
     background-color: #F5F5F5;
-    padding: 20px;
 }

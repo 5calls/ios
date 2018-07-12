@@ -8,6 +8,10 @@
 
 import UIKit
 
-class IssueDetailCell : UITableViewCell {
+class IssueDetailCell : UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var issueTextView: UITextView!
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return true
+    }
 }

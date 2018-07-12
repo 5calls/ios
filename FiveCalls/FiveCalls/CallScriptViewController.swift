@@ -11,6 +11,7 @@ import Crashlytics
 import StoreKit
 import OneSignal
 import Kingfisher
+import Down
 
 class CallScriptViewController : UIViewController, IssueShareable {
     
@@ -248,7 +249,14 @@ extension CallScriptViewController : UITableViewDataSource {
             
         case CallScriptRows.script.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
-            cell.scriptTextView.text = issue.script
+
+            let markdown = Down.init(markdownString: issue.script)
+            if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+                cell.scriptTextView.attributedText = converted
+            } else {
+                cell.scriptTextView.text = issue.script
+            }
+
             return cell
             
         default:

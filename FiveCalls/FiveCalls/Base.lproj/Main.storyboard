@@ -406,15 +406,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="322"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sBt-Uw-7vs">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sBt-Uw-7vs">
                                                     <rect key="frame" x="15" y="11" width="290" height="300"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="Dck-pa-5UE"/>
                                                     </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="tFw-k8-nYx" id="6cz-aV-1dZ"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -661,8 +664,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="312"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="hfS-Bt-m9T" customClass="CopyWarningTextView" customModule="FiveCalls" customModuleProvider="target">
-                                                    <rect key="frame" x="25" y="16" width="270" height="280"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfS-Bt-m9T" customClass="CopyWarningTextView" customModule="FiveCalls" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="11" width="290" height="290"/>
                                                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <string key="text">Hi, my name is [Name] and I'm a concerned constituent from [City, Zip].
@@ -671,7 +674,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
 
 [IF LEAVING A VOICEMAIL: please leave your entire home address to ensure your call is tallied]</string>
                                                     <color key="textColor" red="0.39996230602264404" green="0.40002405643463135" blue="0.3999488353729248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
                                                         <outlet property="viewController" destination="2z3-FP-x6s" id="ZIj-4t-FVn"/>
@@ -679,10 +682,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hfS-Bt-m9T" firstAttribute="leading" secondItem="gfW-bj-ars" secondAttribute="leadingMargin" constant="10" id="Mrm-WY-4yL"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hfS-Bt-m9T" secondAttribute="bottom" constant="5" id="N8e-JB-WpU"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hfS-Bt-m9T" secondAttribute="trailing" constant="10" id="Yg1-v1-mIC"/>
-                                                <constraint firstItem="hfS-Bt-m9T" firstAttribute="top" secondItem="gfW-bj-ars" secondAttribute="topMargin" constant="5" id="iMA-VS-Cog"/>
+                                                <constraint firstItem="hfS-Bt-m9T" firstAttribute="leading" secondItem="gfW-bj-ars" secondAttribute="leadingMargin" id="Mrm-WY-4yL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hfS-Bt-m9T" secondAttribute="bottom" id="N8e-JB-WpU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hfS-Bt-m9T" secondAttribute="trailing" id="Yg1-v1-mIC"/>
+                                                <constraint firstItem="hfS-Bt-m9T" firstAttribute="top" secondItem="gfW-bj-ars" secondAttribute="topMargin" id="iMA-VS-Cog"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
