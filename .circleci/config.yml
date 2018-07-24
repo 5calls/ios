@@ -11,7 +11,7 @@ jobs:
   build:
     working_directory: ~/5calls/ios
     parallelism: 1
-    shell: /bin/bash --login
+    shell: /bin/bash --login -eo pipefail
     # CircleCI 2.0 does not support environment variables that refer to each other the same way as 1.0 did.
     # If any of these refer to each other, rewrite them so that they don't or see https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables .
     environment:
@@ -20,7 +20,7 @@ jobs:
     # The `macos` block requests that builds will run on a machine running
     # macOS with the specified version of Xcode installed
     macos:
-      xcode: '9.3.0'
+      xcode: '9.4.0'
     steps:
     # Machine Setup
     #   If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
@@ -67,7 +67,7 @@ jobs:
     #   This would typically be a build job when using workflows, possibly combined with build
     # The following line was run implicitly in your 1.0 builds based on what CircleCI inferred about the structure of your project. In 2.0 you need to be explicit about which commands should be run. In some cases you can discard inferred commands if they are not relevant to your project.
 #   - run: set -o pipefail && xcodebuild clean build test -workspace 'FiveCalls/FiveCalls.xcworkspace' -scheme 'FiveCalls' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= PROVISIONING_PROFILE= | tee $CIRCLE_ARTIFACTS/xcode_raw.log | xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
-    - run: fastlane test
+    - run: bundle exec fastlane test
     # Teardown
     #   If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
     # The following line was run implicitly in your 1.0 builds based on what CircleCI inferred about the structure of your project. In 2.0 you need to be explicit about which commands should be run. In some cases you can discard inferred commands if they are not relevant to your project.
