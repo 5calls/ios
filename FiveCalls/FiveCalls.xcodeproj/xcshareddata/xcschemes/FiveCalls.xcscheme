@@ -20,6 +20,20 @@
                ReferencedContainer = "container:FiveCalls.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5A70A571E4C01A00031DF58"
+               BuildableName = "FiveCallsUITests.xctest"
+               BlueprintName = "FiveCallsUITests"
+               ReferencedContainer = "container:FiveCalls.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -35,16 +49,6 @@
                BlueprintIdentifier = "B502805A1E478BC200749ED7"
                BuildableName = "FiveCallsTests.xctest"
                BlueprintName = "FiveCallsTests"
-               ReferencedContainer = "container:FiveCalls.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5A70A571E4C01A00031DF58"
-               BuildableName = "FiveCallsUITests.xctest"
-               BlueprintName = "FiveCallsUITests"
                ReferencedContainer = "container:FiveCalls.xcodeproj">
             </BuildableReference>
          </TestableReference>
