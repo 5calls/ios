@@ -21,7 +21,7 @@ class IssueActivityItemSource: NSObject, UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType?) -> Any? {
-        return R.string.localizable.iJustCalledMyRep(issue.name, issue.id)
+        return R.string.localizable.iJustCalledMyRep(issue.name, issue.slug)
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivityType?) -> String {
@@ -42,7 +42,7 @@ extension IssueShareable where Self: UIViewController {
     func shareIssue(from: Any?) {
         Answers.logCustomEvent(withName:"Action: Share Issue", customAttributes: ["issue_id":issue.id])
         let activityViewController = UIActivityViewController(activityItems: [IssueActivityItemSource(issue: issue)], applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
+        activityViewController.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .openInIBooks, .print, .saveToCameraRoll]
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             if let button = from as? UIButton {

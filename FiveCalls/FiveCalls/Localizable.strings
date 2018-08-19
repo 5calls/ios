@@ -6,7 +6,7 @@
   Copyright © 2017 5calls. All rights reserved.
 */
 
-"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: http://5calls.org/#issue/%@?utm_campaign=twshare";
+"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: http://5calls.org/issue/%@?utm_campaign=twshare";
 "ok-button-title"                     = "OK";
 "cancel-button-title"                 = "Cancel";
 "location-permission-denied-title"    = "Location permission denied.";
