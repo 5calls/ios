@@ -47,7 +47,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(IssueDetailViewController.shareButtonPressed(_ :)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(CallScriptViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -173,7 +173,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
     
-    func shareButtonPressed(_ button: UIBarButtonItem) {
+    @objc func shareButtonPressed(_ button: UIBarButtonItem) {
         shareIssue(from: button)
     }
         
