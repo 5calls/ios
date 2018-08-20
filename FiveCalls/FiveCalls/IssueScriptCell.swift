@@ -16,7 +16,7 @@ class IssueScriptCell: UITableViewCell {
 }
 
 class CopyWarningTextView: UITextView {
-    @IBOutlet var viewController: UIViewController?
+    @IBOutlet weak var viewController: UIViewController?
     
     override func copy(_ sender: Any?) {
         if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasWarnedAboutDangersOfCopying.rawValue) {
