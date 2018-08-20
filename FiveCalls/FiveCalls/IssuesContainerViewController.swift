@@ -124,8 +124,10 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard splitController.viewControllers.count > 0 else { return }
         coordinator.animate(alongsideTransition: { [unowned self] _ in
-            self.headerContainerConstraint.constant = self.splitController.primaryColumnWidth
+            let showingSideBar = self.splitController.isCollapsed
+            self.headerContainerConstraint.constant = !showingSideBar ? self.splitController.primaryColumnWidth : 0
         })
     }
     
