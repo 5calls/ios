@@ -12,6 +12,7 @@ import Rswift
 struct Issue {
     let id: String
     let name: String
+    let slug: String
     let reason: String
     let script: String
     let category: Category?
@@ -31,6 +32,7 @@ extension Issue : JSONSerializable {
     init?(dictionary: JSONDictionary) {
         guard let id = dictionary["id"] as? String,
             let name = dictionary["name"] as? String,
+            let slug = dictionary["slug"] as? String,
             let reason = dictionary["reason"] as? String,
             let script = dictionary["script"] as? String,
             let contactsJSON = dictionary["contacts"] as? [JSONDictionary],
@@ -46,6 +48,6 @@ extension Issue : JSONSerializable {
         let outcomes = outcomesJSON.compactMap({ Outcome(dictionary: $0) })
         let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
-        self.init(id: id, name: name, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
+        self.init(id: id, name: name, slug:slug, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
     }
 }
