@@ -72,7 +72,9 @@ class MyImpactViewController : UITableViewController {
         let totalCallsOp = FetchStatsOperation()
         totalCallsOp.completionBlock = {
             self.totalCalls = totalCallsOp.numberOfCalls
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         OperationQueue.main.addOperation(totalCallsOp)
 
