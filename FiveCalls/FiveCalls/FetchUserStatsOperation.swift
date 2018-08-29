@@ -69,10 +69,8 @@ class FetchUserStatsOperation : BaseOperation {
             return
         }
 
-        if let stats = wrapper["stats"] as? JSONDictionary {
-            userStats = UserStats(contact: stats["contact"] as? Int,
-                                  voicemail: stats["voicemail"] as? Int,
-                                  unavailable: stats["unavailable"] as? Int)
+        if let statsDictionary = wrapper["stats"] as? JSONDictionary {
+            userStats = UserStats(dictionary: statsDictionary)
         }
     }
 }
