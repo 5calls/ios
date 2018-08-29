@@ -62,7 +62,9 @@ class MyImpactViewController : UITableViewController {
             NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         
-        updateStats()
+        displayProfileInfo()
+        displayStats()
+        fetchServerStats()
         
         profilePic.layer.borderColor = UIColor.white.cgColor
         profilePic.layer.borderWidth = 2.0
@@ -79,7 +81,6 @@ class MyImpactViewController : UITableViewController {
         OperationQueue.main.addOperation(totalCallsOp)
 
         NotificationCenter.default.addObserver(self, selector: #selector(userProfileChanged), name: .userProfileChanged, object: nil)
-        NotificationCenter.default.post(name: .userProfileChanged, object: nil, userInfo: nil)
     }
     
     deinit {
@@ -100,7 +101,7 @@ class MyImpactViewController : UITableViewController {
         tableView.tableHeaderView = headerView
     }
     
-    func updateStats() {
+    func displayStats() {
         viewModel = ImpactViewModel(logs: ContactLogs.load(), stats: userStats)
         let weeklyStreakCount = viewModel.weeklyStreakCount
         streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
@@ -122,40 +123,48 @@ class MyImpactViewController : UITableViewController {
     }
     
     @objc func userProfileChanged(_ notification: NSNotification) {
-
+        fetchServerStats()
+        
+        DispatchQueue.main.async {
+            self.displayProfileInfo()
+        }
+    }
+    
+    private func displayProfileInfo() {
+        let sessionManager = SessionManager.shared
+        if let picUrl = sessionManager.userProfile?.picture {
+            self.profilePic.kf.setImage(with: picUrl)
+        } else {
+            self.profilePic.image = UIImage(named: "profile")
+        }
+        if sessionManager.userIsLoggedIn() {
+            self.userName.text = sessionManager.userProfile?.nickname
+            self.email.text = sessionManager.userProfile?.email ?? sessionManager.userProfile?.name
+            self.navSignInButton.title = R.string.localizable.signOut()
+            self.profileContainer.isHidden = false
+            self.signInContainer.isHidden = true
+        } else {
+            self.navSignInButton.title = R.string.localizable.signIn()
+            self.profileContainer.isHidden = true
+            self.signInContainer.isHidden = false
+        }
+    }
+    
+    private func fetchServerStats() {
         if SessionManager.shared.userIsLoggedIn() {
             // Fetch the user's call stats
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
                 self.userStats = userStatsOp.userStats
                 DispatchQueue.main.async {
-                    self.updateStats()
+                    self.displayStats()
                 }
             }
             OperationQueue.main.addOperation(userStatsOp)
         } else {
             userStats = nil
-            updateStats()
-        }
-
-        // Update the profile icon on the main thread
-        DispatchQueue.main.async {
-            let sessionManager = SessionManager.shared
-            if let picUrl = sessionManager.userProfile?.picture {
-                self.profilePic.kf.setImage(with: picUrl)
-            } else {
-                self.profilePic.image = UIImage(named: "profile")
-            }
-            if sessionManager.userIsLoggedIn() {
-                self.userName.text = sessionManager.userProfile?.nickname
-                self.email.text = sessionManager.userProfile?.email ?? sessionManager.userProfile?.name
-                self.navSignInButton.title = R.string.localizable.signOut()
-                self.profileContainer.isHidden = false
-                self.signInContainer.isHidden = true
-            } else {
-                self.navSignInButton.title = R.string.localizable.signIn()
-                self.profileContainer.isHidden = true
-                self.signInContainer.isHidden = false
+            DispatchQueue.main.async {
+                self.displayStats()
             }
         }
     }
