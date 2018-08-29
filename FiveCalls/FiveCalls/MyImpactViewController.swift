@@ -13,9 +13,9 @@ import Kingfisher
 
 class MyImpactViewController : UITableViewController {
     
-    var viewModel: ImpactViewModel!
-    var userStats: UserStats?
-    var totalCalls: Int?
+    private var viewModel: ImpactViewModel!
+    private var userStats: UserStats?
+    private var totalCalls: Int?
     
     @IBOutlet weak var navSignInButton: UIBarButtonItem!
     @IBOutlet weak var signInContainer: UIView!
