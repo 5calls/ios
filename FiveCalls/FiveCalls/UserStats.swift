@@ -21,9 +21,9 @@ struct UserStats {
 
 extension UserStats : JSONSerializable {
     init?(dictionary: JSONDictionary) {
-        let contact = dictionary["contact"] as? Int;
-        let voicemail = dictionary["voicemail"] as? Int;
-        let unavailable = dictionary["unavailable"] as? Int;
+        let contact = dictionary["contact"] as? Int
+        let voicemail = dictionary["voicemail"] as? Int
+        let unavailable = dictionary["unavailable"] as? Int
         self.init(contact: contact, voicemail: voicemail, unavailable: unavailable)
     }
     
