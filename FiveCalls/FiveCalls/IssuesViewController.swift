@@ -65,6 +65,8 @@ class IssuesViewController : UITableViewController {
         }
 
         tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
 
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
