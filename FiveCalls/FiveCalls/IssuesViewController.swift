@@ -219,7 +219,7 @@ class IssuesViewController : UITableViewController {
         if !shouldShowAllIssues && UIDevice.current.userInterfaceIdiom == .pad {
             return 0
         }
-        return 0
+        return 35.0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
