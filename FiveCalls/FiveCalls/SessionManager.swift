@@ -8,6 +8,7 @@
 
 import Auth0
 import PromiseKit
+import Crashlytics
 
 extension Notification.Name {
     static let userProfileChanged = Notification.Name("userProfileChanged")
@@ -54,6 +55,7 @@ class SessionManager {
             NotificationCenter.default.post(Notification(name: .userProfileChanged))
         }.catch { error in
             print("Failed to start a user session: \(error)")
+            Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["message" : "Error starting session"])
         }
     }
     
