@@ -22,33 +22,54 @@
 
 import Foundation
 import SimpleKeychain
+#if os(iOS)
 import LocalAuthentication
+#endif
 
 /// Credentials management utility
 public struct CredentialsManager {
 
     private let storage = A0SimpleKeychain()
-    private let storeKey = "credentials"
+    private let storeKey: String
     private let authentication: Authentication
-    private var touchAuth: TouchAuthentication?
+    #if os(iOS)
+    private var bioAuth: BioAuthentication?
+    #endif
 
     /// Creates a new CredentialsManager instance
     ///
     /// - Parameters:
     ///   - authentication: Auth0 authentication instance
-    public init(authentication: Authentication) {
+    ///   - storeKey: Key used to store user credentials in the keychain, defaults to "credentials"
+    public init(authentication: Authentication, storeKey: String = "credentials") {
+        self.storeKey = storeKey
         self.authentication = authentication
     }
 
-    /// Enable TouchID Authentication for additional securtity during credentials retrieval.
+    /// Enable Touch ID Authentication for additional securtity during credentials retrieval.
     ///
     /// - Parameters:
     ///   - title: main message to display in TouchID prompt
     ///   - cancelTitle: cancel message to display in TouchID prompt (iOS 10+)
     ///   - fallbackTitle: fallback message to display in TouchID prompt after a failed match
+    #if os(iOS)
+    @available(*, deprecated, message: "see enableBiometrics(withTitle title:, cancelTitle:, fallbackTitle:)")
     public mutating func enableTouchAuth(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
-        self.touchAuth = TouchAuthentication(authContext: LAContext(), title: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
+        self.enableBiometrics(withTitle: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
     }
+    #endif
+
+    /// Enable Biometric Authentication for additional securtity during credentials retrieval.
+    ///
+    /// - Parameters:
+    ///   - title: main message to display when Touch ID is used
+    ///   - cancelTitle: cancel message to display when Touch ID is used (iOS 10+)
+    ///   - fallbackTitle: fallback message to display when Touch ID is used after a failed match
+    #if os(iOS)
+    public mutating func enableBiometrics(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
+        self.bioAuth = BioAuthentication(authContext: LAContext(), title: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
+    }
+    #endif
 
     /// Store credentials instance in keychain
     ///
@@ -70,7 +91,7 @@ public struct CredentialsManager {
     /// - Returns: if there are valid and non-expired credentials stored
     public func hasValid() -> Bool {
         guard
-            let data = self.storage.data(forKey:self.storeKey),
+            let data = self.storage.data(forKey: self.storeKey),
             let credentials = NSKeyedUnarchiver.unarchiveObject(with: data) as? Credentials,
             credentials.accessToken != nil,
             let expiresIn = credentials.expiresIn
@@ -95,10 +116,12 @@ public struct CredentialsManager {
     ///   - callback: callback with the user's credentials or the cause of the error.
     /// - Important: This method only works for a refresh token obtained after auth with OAuth 2.0 API Authorization.
     /// - Note: [Auth0 Refresh Tokens Docs](https://auth0.com/docs/tokens/refresh-token)
+    #if os(iOS)
     public func credentials(withScope scope: String? = nil, callback: @escaping (CredentialsManagerError?, Credentials?) -> Void) {
-        if let touchAuth = self.touchAuth {
-            guard touchAuth.available else { return callback(.touchFailed(LAError(LAError.touchIDNotAvailable)), nil) }
-            touchAuth.requireTouch {
+        guard self.hasValid() else { return callback(.noCredentials, nil) }
+        if let bioAuth = self.bioAuth {
+            guard bioAuth.available else { return callback(.touchFailed(LAError(LAError.touchIDNotAvailable)), nil) }
+            bioAuth.validateBiometric {
                 guard $0 == nil else {
                     return callback(.touchFailed($0!), nil)
                 }
@@ -108,10 +131,16 @@ public struct CredentialsManager {
             self.retrieveCredentials(withScope: scope, callback: callback)
         }
     }
+    #else
+    public func credentials(withScope scope: String? = nil, callback: @escaping (CredentialsManagerError?, Credentials?) -> Void) {
+        guard self.hasValid() else { return callback(.noCredentials, nil) }
+        self.retrieveCredentials(withScope: scope, callback: callback)
+    }
+    #endif
 
     private func retrieveCredentials(withScope scope: String? = nil, callback: @escaping (CredentialsManagerError?, Credentials?) -> Void) {
         guard
-            let data = self.storage.data(forKey:self.storeKey),
+            let data = self.storage.data(forKey: self.storeKey),
             let credentials = NSKeyedUnarchiver.unarchiveObject(with: data) as? Credentials
             else { return callback(.noCredentials, nil) }
         guard let expiresIn = credentials.expiresIn else { return callback(.noCredentials, nil) }
@@ -122,11 +151,11 @@ public struct CredentialsManager {
             switch $0 {
             case .success(let credentials):
                 let newCredentials = Credentials(accessToken: credentials.accessToken,
-                                                       tokenType: credentials.tokenType,
-                                                       idToken: credentials.idToken,
-                                                       refreshToken: refreshToken,
-                                                       expiresIn: credentials.expiresIn,
-                                                       scope: credentials.scope)
+                                                 tokenType: credentials.tokenType,
+                                                 idToken: credentials.idToken,
+                                                 refreshToken: refreshToken,
+                                                 expiresIn: credentials.expiresIn,
+                                                 scope: credentials.scope)
                 _ = self.store(credentials: newCredentials)
                 callback(nil, newCredentials)
             case .failure(let error):

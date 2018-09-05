@@ -23,6 +23,7 @@
 import Foundation
 
 struct Auth0Authentication: Authentication {
+
     let clientId: String
     let url: URL
     var telemetry: Telemetry
@@ -53,7 +54,8 @@ struct Auth0Authentication: Authentication {
         return Request(session: session, url: resourceOwner, method: "POST", handle: authenticationObject, payload: payload, logger: self.logger, telemetry: self.telemetry)
     }
 
-    func login(usernameOrEmail username: String, password: String, realm: String, audience: String?, scope: String?) -> Request<Credentials, AuthenticationError> {
+    // swiftlint:disable:next function_parameter_count
+    func login(usernameOrEmail username: String, password: String, realm: String, audience: String?, scope: String?, parameters: [String: Any]?) -> Request<Credentials, AuthenticationError> {
         let resourceOwner = URL(string: "/oauth/token", relativeTo: self.url)!
         var payload: [String: Any] = [
             "username": username,
@@ -64,7 +66,21 @@ struct Auth0Authentication: Authentication {
             ]
         payload["audience"] = audience
         payload["scope"] = scope
+        if let parameters = parameters {
+            parameters.forEach { key, value in payload[key] = value }
+        }
         return Request(session: session, url: resourceOwner, method: "POST", handle: authenticationObject, payload: payload, logger: self.logger, telemetry: self.telemetry)
+    }
+
+    func login(withOTP otp: String, mfaToken: String) -> Request<Credentials, AuthenticationError> {
+        let url = URL(string: "/oauth/token", relativeTo: self.url)!
+        let payload: [String: Any] = [
+            "otp": otp,
+            "mfa_token": mfaToken,
+            "grant_type": "http://auth0.com/oauth/grant-type/mfa-otp",
+            "client_id": self.clientId
+        ]
+        return Request(session: session, url: url, method: "POST", handle: authenticationObject, payload: payload, logger: self.logger, telemetry: self.telemetry)
     }
 
     func createUser(email: String, username: String? = nil, password: String, connection: String, userMetadata: [String: Any]? = nil) -> Request<DatabaseUser, AuthenticationError> {
@@ -190,7 +206,7 @@ struct Auth0Authentication: Authentication {
         return Request(session: session, url: oauthToken, method: "POST", handle: noBody, payload: payload, logger: self.logger, telemetry: self.telemetry)
     }
 
-    func delegation(withParameters parameters: [String : Any]) -> Request<[String : Any], AuthenticationError> {
+    func delegation(withParameters parameters: [String: Any]) -> Request<[String: Any], AuthenticationError> {
         var payload: [String: Any] = [
             "client_id": self.clientId,
             "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer"

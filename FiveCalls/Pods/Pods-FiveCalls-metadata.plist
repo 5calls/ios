@@ -52,7 +52,7 @@ SOFTWARE.
 			<key>summary</key>
 			<string>Swift toolkit for Auth0 API</string>
 			<key>version</key>
-			<string>1.9.2</string>
+			<string>1.12.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -111,7 +111,7 @@ THE SOFTWARE.
 			<key>homepage</key>
 			<string>http://try.crashlytics.com/</string>
 			<key>licenseText</key>
-			<string>Fabric: Copyright 2017 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2017 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt</string>
+			<string>Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2018 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt</string>
 			<key>licenseType</key>
 			<string>Commercial</string>
 			<key>name</key>
@@ -121,7 +121,7 @@ THE SOFTWARE.
 			<key>summary</key>
 			<string>Best and lightest-weight crash reporting for mobile, desktop and tvOS.</string>
 			<key>version</key>
-			<string>3.8.6</string>
+			<string>3.10.7</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -407,7 +407,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 			<key>homepage</key>
 			<string>https://fabric.io</string>
 			<key>licenseText</key>
-			<string>Fabric: Copyright 2017 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt</string>
+			<string>Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt</string>
 			<key>licenseType</key>
 			<string>Commercial</string>
 			<key>name</key>
@@ -417,7 +417,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 			<key>summary</key>
 			<string>Fabric by Google, Inc.</string>
 			<key>version</key>
-			<string>1.6.13</string>
+			<string>1.7.11</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -474,7 +474,7 @@ SOFTWARE.
 			<key>summary</key>
 			<string>A lightweight and pure Swift implemented library for downloading and cacheing image from the web.</string>
 			<key>version</key>
-			<string>4.8.0</string>
+			<string>4.9.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -787,7 +787,7 @@ SOFTWARE.</string>
 			<key>summary</key>
 			<string>A wrapper to make it really easy to deal with iOS Keychain and store your user's credentials securely.</string>
 			<key>version</key>
-			<string>0.8.0</string>
+			<string>0.8.1</string>
 		</dict>
 	</array>
 </dict>
