@@ -59,6 +59,18 @@ class SessionManager {
         }
     }
     
+    func refreshToken() -> Promise<Credentials> {
+        return firstly {
+            self.authenticate()
+        }.then { credentials -> Promise<Credentials> in
+            guard self.credentialsManager.store(credentials: credentials) else {
+                print("Error writing the user's credentials")
+                return Promise(error: SessionManagerError.failedWrite)
+            }
+            return Promise { seal in seal.fulfill(credentials) }
+        }
+    }
+    
     func stopSession() {
         let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
         if (!credentialsManager.clear()) {
