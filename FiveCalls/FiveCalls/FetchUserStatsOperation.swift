@@ -56,6 +56,7 @@ class FetchUserStatsOperation : BaseOperation {
                         // log an continue, not worth crashing over
                         print("Error parsing user stats: \(e.localizedDescription)")
                     }
+                    self.finish()
                 case 401:
                     if self.retryCount >= 2 {
                         self.error = TokenExpiredError()
