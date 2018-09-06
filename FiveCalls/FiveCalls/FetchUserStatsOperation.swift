@@ -13,6 +13,8 @@ class FetchUserStatsOperation : BaseOperation {
     class TokenExpiredError : Error { }
     
     var userStats: UserStats?
+    var weeklyStreak: Int?
+    var firstCallTime: Date?
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
@@ -88,7 +90,10 @@ class FetchUserStatsOperation : BaseOperation {
         //    "contact": 221,
         //    "voicemail": 158,
         //    "unavailable": 32
-        // } }
+        //   },
+        //   weeklyStreak: 10,
+        //   firstCallTime: 1487959763
+        // }
         guard let wrapper = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] else {
             print("Couldn't parse JSON data.")
             return
@@ -97,6 +102,14 @@ class FetchUserStatsOperation : BaseOperation {
         if let statsDictionary = wrapper["stats"] as? JSONDictionary {
             userStats = UserStats(dictionary: statsDictionary)
         }
+
+        if let streakCount = wrapper["weeklyStreak"] as? Int {
+            weeklyStreak = streakCount
+        }
+
+//        if let firstCallUnixSeconds = wrapper["firstCallTime"] as? Double {
+//            firstCallTime = Date(timeIntervalSince1970: firstCallUnixSeconds)
+//        }
     }
 }
 

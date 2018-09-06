@@ -15,6 +15,7 @@ class MyImpactViewController : UITableViewController {
     
     private var viewModel: ImpactViewModel!
     private var userStats: UserStats?
+    private var weeklyStreak: Int?
     private var totalCalls: Int?
     
     @IBOutlet weak var navSignInButton: UIBarButtonItem!
@@ -103,14 +104,19 @@ class MyImpactViewController : UITableViewController {
     
     func displayStats() {
         viewModel = ImpactViewModel(logs: ContactLogs.load(), stats: userStats)
-        let weeklyStreakCount = viewModel.weeklyStreakCount
+
+        // use the server weekly streak if we have it
+        let weeklyStreakCount = self.weeklyStreak ?? viewModel.weeklyStreakCount
         streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
+
         let numberOfCalls = viewModel.numberOfCalls
         impactLabel.text = impactMessage(for: numberOfCalls)
+
         if numberOfCalls == 0 {
             subheadLabel.isHidden = true
             subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
         }
+
         tableView.reloadData()
     }
     
@@ -156,6 +162,7 @@ class MyImpactViewController : UITableViewController {
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
                 self.userStats = userStatsOp.userStats
+                self.weeklyStreak = userStatsOp.weeklyStreak
                 DispatchQueue.main.async {
                     self.displayStats()
                 }
