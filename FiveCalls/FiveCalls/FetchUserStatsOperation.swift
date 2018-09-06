@@ -107,9 +107,9 @@ class FetchUserStatsOperation : BaseOperation {
             weeklyStreak = streakCount
         }
 
-//        if let firstCallUnixSeconds = wrapper["firstCallTime"] as? Double {
-//            firstCallTime = Date(timeIntervalSince1970: firstCallUnixSeconds)
-//        }
+        if let firstCallUnixSeconds = wrapper["firstCallTime"] as? Double {
+            firstCallTime = Date(timeIntervalSince1970: firstCallUnixSeconds)
+        }
     }
 }
 
