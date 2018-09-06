@@ -211,7 +211,8 @@ class SafariWebAuth: WebAuth {
             let returnTo = URLQueryItem(name: "returnTo", value: self.redirectURL?.absoluteString)
             let clientId = URLQueryItem(name: "client_id", value: self.clientId)
             var components = URLComponents(url: logoutURL, resolvingAgainstBaseURL: true)
-            components?.queryItems?.append(contentsOf: [returnTo, clientId])
+            let queryItems = components?.queryItems ?? []
+            components?.queryItems = queryItems + [returnTo, clientId]
             guard let clearSessionURL = components?.url, let redirectURL = returnTo.value else {
                 return callback(false)
             }
@@ -232,11 +233,12 @@ class SafariWebAuth: WebAuth {
 
 private func generateDefaultState() -> String? {
     var data = Data(count: 32)
+    var tempData = data
 
-    let result = data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<UInt8>) -> Int in
+    let result = tempData.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<UInt8>) -> Int in
         return Int(SecRandomCopyBytes(kSecRandomDefault, data.count, bytes))
     }
 
     guard result == 0 else { return nil }
-    return data.a0_encodeBase64URLSafe()
+    return tempData.a0_encodeBase64URLSafe()
 }

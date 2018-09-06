@@ -23,7 +23,7 @@ Swift toolkit that lets you communicate efficiently with many of the [Auth0 API]
 If you are using Carthage, add the following lines to your `Cartfile`:
 
 ```ruby
-github "auth0/Auth0.swift" ~> 1.9
+github "auth0/Auth0.swift" ~> 1.12
 ```
 
 Then run `carthage bootstrap`.
@@ -36,7 +36,7 @@ If you are using [Cocoapods](https://cocoapods.org/), add these lines to your `P
 
 ```ruby
 use_frameworks!
-pod 'Auth0', '~> 1.9'
+pod 'Auth0', '~> 1.12'
 ```
 
 Then run `pod install`.
@@ -44,7 +44,7 @@ Then run `pod install`.
 > For further reference on Cocoapods, check [their official documentation](http://guides.cocoapods.org/using/getting-started.html).
 
 > ### Upgrade Notes
-> If you are using the [clearSession](https://github.com/auth0/Auth0.swift/blob/master/Auth0/WebAuth.swift#L235) method in iOS 11+. You will need to ensure that the **Callback URL** has been added to the **Allowed Logout URLs** section of your client in the [Auth0 Dashboard](https://manage.auth0.com/#/clients/).
+> If you are using the [clearSession](https://github.com/auth0/Auth0.swift/blob/master/Auth0/WebAuth.swift#L235) method in iOS 11+. You will need to ensure that the **Callback URL** has been added to the **Allowed Logout URLs** section of your application in the [Auth0 Dashboard](https://manage.auth0.com/#/applications/).
 
 
 
@@ -72,7 +72,7 @@ Auth0
     }
 ```
 
-> This snippet sets the `audience` to ensure OIDC compliant responses, this can also be achieved by enabling the **OIDC Conformant** switch in your Auth0 dashboard under `Client / Settings / Advanced OAuth`. For more information please check [this documentation](https://auth0.com/docs/api-auth/intro#how-to-use-the-new-flows).
+> This snippet sets the `audience` to ensure OIDC compliant responses, this can also be achieved by enabling the **OIDC Conformant** switch in your Auth0 dashboard under `Application / Settings / Advanced OAuth`. For more information please check [this documentation](https://auth0.com/docs/api-auth/intro#how-to-use-the-new-flows).
 
 3. Allow Auth0 to handle authentication callbacks. In your `AppDelegate.swift` add the following:
 ```swift
@@ -186,6 +186,8 @@ Auth0
 
 ### Credentials Management Utility (iOS Only)
 
+The credentials manager utility provides a convenience to securely store and retrieve the user's credentials from the Keychain.
+
 ```swift
 let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
 ```
@@ -198,7 +200,9 @@ Store user credentials securely in the KeyChain.
 credentialsManager.store(credentials: credentials)
 ```
 
-#### Retrieve stored credentials and auto-renew if expired
+#### Retrieve stored credentials 
+
+Credentials will automatically be renewed (if expired) using the refresh token. The scope `offline_access` is required to ensure the refresh token is returned.
 
 ```swift
 credentialsManager.credentials { error, credentials in
@@ -207,12 +211,20 @@ credentialsManager.credentials { error, credentials in
 }
 ```
 
+#### Biometric authentication
+
+You can enable an additional level of user authentication before retrieving credentials using the biometric authentication supported by your device e.g. Face ID or Touch ID.
+
+```swift
+credentialsManager.enableBiometrics(withTitle: "Touch to Login")
+```
+
 ### Authentication API (iOS / macOS / tvOS)
 
 The Authentication API exposes AuthN/AuthZ functionality of Auth0, as well as the supported identity protocols like OpenID Connect, OAuth 2.0, and SAML.
 We recommend using our Hosted Login Page but if you wish to build your own UI you can use our API endpoints to do so. However some Auth flows (Grant types) are disabled by default so you will need to enable them via your Auth0 Dashboard as explained in [this guide](https://auth0.com/docs/clients/client-grant-types#edit-available-grant_types).
 
-These are the required Grant Types that needs to be enabled in your client:
+These are the required Grant Types that needs to be enabled in your application:
 
 * **Password**: For login with username/password using a realm (or connection name). If you set the grants via API you should activate both `http://auth0.com/oauth/grant-type/password-realm` and `password`, otherwise Auth0 Dashboard will take care of activating both when `Password` is enabled.
 

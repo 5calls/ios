@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// HTML specifically for showing the header information about a library
 ///
 /// This is the current default
-/// <p id='summary'>{{SUMMARY}}</p><p id='version'>{{VERSION}}</p><p id='license'>{{SHORT_LICENSE}}</p> <br class='clear-fix' />
+/// <p id='summary'>{{SUMMARY}}</p><p id='version'>{{VERSION}}</p><p id='license'>{{SHORT_LICENSE}}</p> <br class='clear-fix'>
 
 @property (nonatomic, copy) NSString * _Nullable libraryHeaderHTML;
 

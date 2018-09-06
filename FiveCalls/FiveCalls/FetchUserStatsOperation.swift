@@ -10,9 +10,13 @@ import Foundation
 
 class FetchUserStatsOperation : BaseOperation {
     
+    class TokenExpiredError : Error { }
+    
     var userStats: UserStats?
     var httpResponse: HTTPURLResponse?
     var error: Error?
+    
+    private var retryCount = 0
     
     override func execute() {
         
@@ -42,19 +46,39 @@ class FetchUserStatsOperation : BaseOperation {
             } else {
                 let http = response as! HTTPURLResponse
                 self.httpResponse = http
-                if let data = data, http.statusCode == 200 {
+                guard let data = data else { return }
+                
+                switch http.statusCode {
+                case 200:
                     do {
                         try self.parseResponse(data: data)
                     } catch let e as NSError {
                         // log an continue, not worth crashing over
                         print("Error parsing user stats: \(e.localizedDescription)")
                     }
+                case 401:
+                    if self.retryCount >= 2 {
+                        self.error = TokenExpiredError()
+                        self.finish()
+                    } else {
+                        self.retryCount += 1
+                        self.refreshToken()
+                    }
+                    
+                default:
+                    print("Received HTTP \(http.statusCode) while fetching stats")
+                    self.finish()
                 }
             }
-            
-            self.finish()
         }
         task.resume()
+    }
+    
+    private func refreshToken() {
+        print("Token is invalid or expired, try to refresh...")
+        _ = SessionManager.shared.refreshToken().done { _ in
+            self.execute()
+        }
     }
     
     private func parseResponse(data: Data) throws {
