@@ -15,7 +15,6 @@ class MyImpactViewController : UITableViewController {
     
     private var viewModel: ImpactViewModel!
     private var userStats: UserStats?
-    private var weeklyStreak: Int?
     private var totalCalls: Int?
     
     @IBOutlet weak var navSignInButton: UIBarButtonItem!
@@ -105,14 +104,10 @@ class MyImpactViewController : UITableViewController {
     func displayStats() {
         viewModel = ImpactViewModel(logs: ContactLogs.load(), stats: userStats)
 
-        // use the server weekly streak if we have it
-        let weeklyStreakCount = self.weeklyStreak ?? viewModel.weeklyStreakCount
-        streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
+        streakLabel.text = viewModel.weeklyStreakMessage
+        impactLabel.text = viewModel.impactMessage
 
-        let numberOfCalls = viewModel.numberOfCalls
-        impactLabel.text = impactMessage(for: numberOfCalls)
-
-        if numberOfCalls == 0 {
+        if viewModel.numberOfCalls == 0 {
             subheadLabel.isHidden = true
             subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
         }
@@ -162,7 +157,6 @@ class MyImpactViewController : UITableViewController {
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
                 self.userStats = userStatsOp.userStats
-                self.weeklyStreak = userStatsOp.weeklyStreak
                 DispatchQueue.main.async {
                     self.displayStats()
                 }
@@ -212,28 +206,6 @@ class MyImpactViewController : UITableViewController {
         return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
     }
 
-    private func weeklyStreakMessage(for weeklyStreakCount: Int) -> String {
-        switch weeklyStreakCount {
-        case 0:
-            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
-        case 1:
-            return R.string.localizable.yourWeeklyStreakSingle()
-        default:
-            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
-        }
-    }
-  
-    private func impactMessage(for numberOfCalls: Int) -> String {
-        switch numberOfCalls {
-        case 0:
-            return R.string.localizable.yourImpactZero(numberOfCalls)
-        case 1:
-            return R.string.localizable.yourImpactSingle(numberOfCalls)
-        default:
-            return R.string.localizable.yourImpactMultiple(numberOfCalls)
-        }
-    }
-  
     private func configureStatRow(cell: UITableViewCell, stat: StatRow) {
         switch stat {
         case .madeContact:

@@ -13,7 +13,6 @@ class FetchUserStatsOperation : BaseOperation {
     class TokenExpiredError : Error { }
     
     var userStats: UserStats?
-    var weeklyStreak: Int?
     var firstCallTime: Date?
     var httpResponse: HTTPURLResponse?
     var error: Error?
@@ -99,12 +98,8 @@ class FetchUserStatsOperation : BaseOperation {
             return
         }
 
-        if let statsDictionary = wrapper["stats"] as? JSONDictionary {
+        if let statsDictionary = wrapper as? JSONDictionary {
             userStats = UserStats(dictionary: statsDictionary)
-        }
-
-        if let streakCount = wrapper["weeklyStreak"] as? Int {
-            weeklyStreak = streakCount
         }
 
         if let firstCallUnixSeconds = wrapper["firstCallTime"] as? Double {
