@@ -17,14 +17,26 @@ struct UserStats {
     let contact: Int?
     let voicemail: Int?
     let unavailable: Int?
+    let weeklyStreak: Int?
 }
 
 extension UserStats : JSONSerializable {
     init?(dictionary: JSONDictionary) {
-        let contact = dictionary["contact"] as? Int
-        let voicemail = dictionary["voicemail"] as? Int
-        let unavailable = dictionary["unavailable"] as? Int
-        self.init(contact: contact, voicemail: voicemail, unavailable: unavailable)
+        let weeklyStreak = dictionary["weeklyStreak"] as? Int
+
+        var contact: Int?
+        var voicemail: Int?
+        var unavailable: Int?
+        if let stats = dictionary["stats"] as? JSONDictionary {
+            contact = stats["contact"] as? Int
+            voicemail = stats["voicemail"] as? Int
+            unavailable = stats["unavailable"] as? Int
+        }
+
+        self.init(contact: contact,
+                  voicemail: voicemail,
+                  unavailable: unavailable,
+                  weeklyStreak: weeklyStreak)
     }
     
     func totalCalls() -> Int {

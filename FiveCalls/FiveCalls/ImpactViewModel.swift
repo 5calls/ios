@@ -40,4 +40,30 @@ struct ImpactViewModel {
         let logDates = logs.all.map { $0.date }
         return StreakCounter(dates: logDates, referenceDate: Date()).weekly
     }
+
+    var weeklyStreakMessage: String {
+        // use the server weekly streak if available
+        let weeklyStreakCount = self.userStats?.weeklyStreak ?? self.weeklyStreakCount
+
+        switch weeklyStreakCount {
+        case 0:
+            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
+        case 1:
+            return R.string.localizable.yourWeeklyStreakSingle()
+        default:
+            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
+        }
+    }
+
+    var impactMessage: String {
+        switch self.numberOfCalls {
+        case 0:
+            return R.string.localizable.yourImpactZero(numberOfCalls)
+        case 1:
+            return R.string.localizable.yourImpactSingle(numberOfCalls)
+        default:
+            return R.string.localizable.yourImpactMultiple(numberOfCalls)
+        }
+    }
+
 }

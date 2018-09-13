@@ -103,14 +103,15 @@ class MyImpactViewController : UITableViewController {
     
     func displayStats() {
         viewModel = ImpactViewModel(logs: ContactLogs.load(), stats: userStats)
-        let weeklyStreakCount = viewModel.weeklyStreakCount
-        streakLabel.text = weeklyStreakMessage(for: weeklyStreakCount)
-        let numberOfCalls = viewModel.numberOfCalls
-        impactLabel.text = impactMessage(for: numberOfCalls)
-        if numberOfCalls == 0 {
+
+        streakLabel.text = viewModel.weeklyStreakMessage
+        impactLabel.text = viewModel.impactMessage
+
+        if viewModel.numberOfCalls == 0 {
             subheadLabel.isHidden = true
             subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
         }
+
         tableView.reloadData()
     }
     
@@ -205,28 +206,6 @@ class MyImpactViewController : UITableViewController {
         return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
     }
 
-    private func weeklyStreakMessage(for weeklyStreakCount: Int) -> String {
-        switch weeklyStreakCount {
-        case 0:
-            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
-        case 1:
-            return R.string.localizable.yourWeeklyStreakSingle()
-        default:
-            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
-        }
-    }
-  
-    private func impactMessage(for numberOfCalls: Int) -> String {
-        switch numberOfCalls {
-        case 0:
-            return R.string.localizable.yourImpactZero(numberOfCalls)
-        case 1:
-            return R.string.localizable.yourImpactSingle(numberOfCalls)
-        default:
-            return R.string.localizable.yourImpactMultiple(numberOfCalls)
-        }
-    }
-  
     private func configureStatRow(cell: UITableViewCell, stat: StatRow) {
         switch stat {
         case .madeContact:
