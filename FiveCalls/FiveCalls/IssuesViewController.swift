@@ -152,7 +152,7 @@ class IssuesViewController : UITableViewController {
         notAButton.setTitle(title, for: .normal)
         notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
         notAButton.backgroundColor = .fvc_superLightGray
-        notAButton.titleLabel?.font = Appearance.instance.headerFont
+        notAButton.titleLabel?.font = .fvc_header
         notAButton.borderWidth = 1
         notAButton.borderColor = .fvc_mediumGray
         notAButton.topBorder = true
@@ -276,7 +276,7 @@ extension IssuesViewController : DZNEmptyDataSetSource {
         
         return NSAttributedString(string: message,
                                   attributes: [
-                                    NSAttributedStringKey.font: Appearance.instance.bodyFont
+                                    NSAttributedStringKey.font: UIFont.fvc_body
                 ])
     }
     

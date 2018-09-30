@@ -22,7 +22,7 @@ class ScheduleRemindersController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.fvc_lightGray
-        label.font = Appearance.instance.bodyFont
+        label.font = .fvc_body
         label.numberOfLines = 0
         label.text = R.string.localizable.scheduledRemindersDescription()
         label.textAlignment = .center
