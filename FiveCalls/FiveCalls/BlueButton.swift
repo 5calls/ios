@@ -34,13 +34,14 @@ class BlueButton: UIButton {
     }
     
     override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
         _commonInit()
     }
     
     private func _commonInit() {
         updateColors()
         setTitle(titleLabel?.text?.capitalized, for: .normal)
-        titleLabel?.font = R.font.robotoCondensedBold(size: customFontSize)
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: customFontSize)
         layer.cornerRadius = 5
         clipsToBounds = true
     }
