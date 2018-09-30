@@ -62,7 +62,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
             label.text = "v" + version
             label.textColor = .lightGray
             label.textAlignment = .center
-            label.font = UIFont.preferredFont(forTextStyle: .caption1)
+            label.font = .preferredFont(forTextStyle: .caption1)
             return label
         }
         return nil
