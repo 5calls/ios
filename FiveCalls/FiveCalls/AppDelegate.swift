@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setAppearance() {
-        Appearance.instance.setup()
+        Appearance.setup()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -58,7 +58,7 @@ class MyImpactViewController : UITableViewController {
         Answers.logCustomEvent(withName:"Screen: My Impact")
         
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: Appearance.instance.headerFont,
+            NSAttributedStringKey.font: UIFont.fvc_header,
             NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         

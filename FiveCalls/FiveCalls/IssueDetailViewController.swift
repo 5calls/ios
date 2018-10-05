@@ -43,7 +43,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         view.backgroundColor = .fvc_lightGrayBackground
         label.text = R.string.localizable.callYourReps()
         label.textAlignment = .center
-        label.font = Appearance.instance.headerFont
+        label.font = .fvc_header
         button.addTarget(self, action: #selector(footerAction(_:)), for: .touchUpInside)
         return view
     }
