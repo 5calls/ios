@@ -615,6 +615,12 @@
                                                     <state key="normal" title="Local Offices">
                                                         <color key="titleColor" red="0.89566051959991455" green="0.2254079282283783" blue="0.20752480626106262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontForContentSizeCategory" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="titleLabel.numberOfLines">
+                                                            <integer key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkr-8w-SY8">
                                                     <rect key="frame" x="15" y="109.5" width="168" height="36"/>
@@ -622,6 +628,9 @@
                                                     <state key="normal" title="+1 444-444-4444">
                                                         <color key="titleColor" red="0.89566051960000004" green="0.2254079282" blue="0.2075248063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontForContentSizeCategory" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </button>
                                             </subviews>
                                             <constraints>
