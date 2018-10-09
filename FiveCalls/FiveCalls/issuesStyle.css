@@ -1,15 +1,12 @@
 /* not a lot is supported here, so we try our best */
 body {
+    font: -apple-system-body;
     font-family: -apple-system, sans-serif;
 }
 a {
     color: #e53935;
 }
-p {
-    font-size: 18px;
-}
 li {
-    font-size: 18px;
     margin: 0 0 0.5rem 0;
 }
 blockquote {
