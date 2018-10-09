@@ -409,9 +409,6 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sBt-Uw-7vs">
                                                     <rect key="frame" x="15" y="11" width="290" height="300"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="Dck-pa-5UE"/>
-                                                    </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -439,37 +436,36 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="JQD-W8-GS8">
-                                                    <rect key="frame" x="25" y="16" width="80" height="80"/>
+                                                    <rect key="frame" x="25" y="13.5" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="Tc1-QS-PDh"/>
                                                         <constraint firstAttribute="height" constant="80" id="gRy-8w-BsQ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Cornyn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-v6-UFC">
-                                                    <rect key="frame" x="113" y="30" width="123" height="23"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="John Cornyn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGt-v6-UFC">
+                                                    <rect key="frame" x="113" y="30.5" width="111.5" height="24"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.36615640862944165" green="0.36615640862944165" blue="0.36615640862944165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senate • Republican • TX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2w7-0y-u2B">
-                                                    <rect key="frame" x="113" y="55" width="185" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senate • Republican • TX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w7-0y-u2B">
+                                                    <rect key="frame" x="113" y="57.5" width="185" height="18.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <color key="textColor" red="0.56095336294416243" green="0.56095336294416243" blue="0.56095336294416243" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EGt-v6-UFC" secondAttribute="trailing" constant="5" id="7bb-LJ-0Xe"/>
-                                                <constraint firstItem="2w7-0y-u2B" firstAttribute="top" secondItem="r0i-yC-dN5" secondAttribute="top" constant="55" id="NWn-fc-P6o"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="JQD-W8-GS8" secondAttribute="bottom" constant="6" id="PMq-LZ-mnE"/>
+                                                <constraint firstItem="EGt-v6-UFC" firstAttribute="top" secondItem="r0i-yC-dN5" secondAttribute="top" constant="30" id="Dv8-Wj-2Er"/>
                                                 <constraint firstAttribute="trailing" secondItem="2w7-0y-u2B" secondAttribute="trailing" constant="22" id="PZj-ED-A5V"/>
                                                 <constraint firstItem="JQD-W8-GS8" firstAttribute="leading" secondItem="r0i-yC-dN5" secondAttribute="leadingMargin" constant="10" id="Ylr-8C-83v"/>
+                                                <constraint firstItem="JQD-W8-GS8" firstAttribute="centerY" secondItem="r0i-yC-dN5" secondAttribute="centerY" id="ZsB-Cy-NHz"/>
                                                 <constraint firstItem="2w7-0y-u2B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EGt-v6-UFC" secondAttribute="leading" id="ZwD-mG-arU"/>
-                                                <constraint firstItem="EGt-v6-UFC" firstAttribute="top" secondItem="JQD-W8-GS8" secondAttribute="top" constant="14" id="csQ-05-xKc"/>
                                                 <constraint firstItem="2w7-0y-u2B" firstAttribute="top" secondItem="EGt-v6-UFC" secondAttribute="bottom" constant="2.5" id="efc-or-EIc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2w7-0y-u2B" secondAttribute="bottom" constant="20" id="nUh-F3-i8A"/>
+                                                <constraint firstItem="2w7-0y-u2B" firstAttribute="leading" secondItem="EGt-v6-UFC" secondAttribute="leading" id="o1n-XK-YkS"/>
                                                 <constraint firstItem="EGt-v6-UFC" firstAttribute="leading" secondItem="JQD-W8-GS8" secondAttribute="trailing" constant="8" id="suA-wa-7jG"/>
-                                                <constraint firstItem="JQD-W8-GS8" firstAttribute="top" secondItem="r0i-yC-dN5" secondAttribute="topMargin" constant="5" id="sy0-TZ-Zw2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -487,9 +483,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your location to find your representatives" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-Fz-TPy">
-                                                    <rect key="frame" x="13" y="23" width="291" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set your location to find your representatives" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-Fz-TPy">
+                                                    <rect key="frame" x="20" y="26" width="277" height="15"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="1" green="0.00033646567799999999" blue="0.13182058469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
