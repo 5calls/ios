@@ -15,15 +15,15 @@
             <objects>
                 <viewController storyboardIdentifier="WelcomeViewController" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="afP-GL-3cb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2cu-hq-fJR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5calls-logotype" translatesAutoresizingMaskIntoConstraints="NO" id="5OW-04-u8c">
-                                <rect key="frame" x="42" y="28" width="292" height="158"/>
+                                <rect key="frame" x="41.5" y="28" width="292" height="158"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="292" id="248-fw-pMH"/>
                                 </constraints>
@@ -37,9 +37,9 @@
                         <constraints>
                             <constraint firstItem="HNZ-uJ-N1b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ALW-0Y-0LD"/>
                             <constraint firstAttribute="trailing" secondItem="HNZ-uJ-N1b" secondAttribute="trailing" id="BxC-On-6RH"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HNZ-uJ-N1b" secondAttribute="bottom" constant="24" id="Kck-Ne-Fyx"/>
+                            <constraint firstItem="2cu-hq-fJR" firstAttribute="top" secondItem="HNZ-uJ-N1b" secondAttribute="bottom" constant="24" id="Kck-Ne-Fyx"/>
                             <constraint firstItem="5OW-04-u8c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T4G-0A-H31"/>
-                            <constraint firstItem="5OW-04-u8c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Ydg-h6-bnD"/>
+                            <constraint firstItem="5OW-04-u8c" firstAttribute="top" secondItem="afP-GL-3cb" secondAttribute="bottom" constant="8" id="Ydg-h6-bnD"/>
                             <constraint firstItem="HNZ-uJ-N1b" firstAttribute="top" secondItem="5OW-04-u8c" secondAttribute="bottom" constant="8" id="kVq-eV-Bly"/>
                         </constraints>
                     </view>
@@ -56,15 +56,15 @@
             <objects>
                 <viewController storyboardIdentifier="Page1" id="KRo-lk-pfA" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iXw-mR-qko"/>
-                        <viewControllerLayoutGuide type="bottom" id="PZB-P4-4Pj"/>
+                        <viewControllerLayoutGuide type="top" id="AbD-uI-E9Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZTb-Lf-GVP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GTt-jg-HeU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE YOUR VOICE HEARD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-4Q-3q1">
-                                <rect key="frame" x="24" y="44" width="327.5" height="31.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE YOUR VOICE HEARD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eV6-4Q-3q1">
+                                <rect key="frame" x="24" y="44" width="327" height="31.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="N2E-i5-bCe"/>
                                 </constraints>
@@ -72,8 +72,8 @@
                                 <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTN-TQ-Ssn">
-                                <rect key="frame" x="24" y="96" width="328" height="108.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTN-TQ-Ssn">
+                                <rect key="frame" x="24" y="96" width="327.5" height="108.5"/>
                                 <string key="text">Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.094117647058823528" green="0.45882352941176469" blue="0.81960784313725488" alpha="1" colorSpace="deviceRGB"/>
@@ -86,16 +86,12 @@
                             <constraint firstItem="gTN-TQ-Ssn" firstAttribute="leading" secondItem="eV6-4Q-3q1" secondAttribute="leading" id="5ZA-J8-Nlk"/>
                             <constraint firstItem="gTN-TQ-Ssn" firstAttribute="top" secondItem="eV6-4Q-3q1" secondAttribute="bottom" constant="20" id="8QS-jM-Rw8"/>
                             <constraint firstItem="gTN-TQ-Ssn" firstAttribute="centerX" secondItem="eV6-4Q-3q1" secondAttribute="centerX" id="AXC-y2-n9V"/>
-                            <constraint firstItem="eV6-4Q-3q1" firstAttribute="top" secondItem="iXw-mR-qko" secondAttribute="bottom" constant="24" id="EQb-UU-gye"/>
+                            <constraint firstItem="eV6-4Q-3q1" firstAttribute="top" secondItem="AbD-uI-E9Q" secondAttribute="bottom" constant="24" id="EQb-UU-gye"/>
                             <constraint firstItem="eV6-4Q-3q1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GTt-jg-HeU" secondAttribute="leading" priority="900" constant="24" id="VsC-4g-Qzk"/>
-                            <constraint firstItem="PZB-P4-4Pj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTN-TQ-Ssn" secondAttribute="bottom" constant="20" id="hcV-86-ttY"/>
+                            <constraint firstItem="ZTb-Lf-GVP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTN-TQ-Ssn" secondAttribute="bottom" constant="20" id="hcV-86-ttY"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULD-BG-Di3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,14 +102,14 @@
             <objects>
                 <viewController storyboardIdentifier="Page2" id="fyU-dq-yax" customClass="StatsPageViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ne5-Ii-gp0"/>
-                        <viewControllerLayoutGuide type="bottom" id="rXb-W1-5JO"/>
+                        <viewControllerLayoutGuide type="top" id="Xe5-Vi-QNt"/>
+                        <viewControllerLayoutGuide type="bottom" id="x1k-Gj-1hf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ht3-ki-psO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spend 5 minutes, make 5 calls." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HS-eY-5Py">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spend 5 minutes, make 5 calls." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HS-eY-5Py">
                                 <rect key="frame" x="46.5" y="44" width="282" height="63.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="sep-1D-tX1"/>
@@ -141,7 +137,7 @@
                                     <action selector="getStartedTapped:" destination="fyU-dq-yax" eventType="touchUpInside" id="VfR-lg-kWZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-Uy-7K6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hra-Uy-7K6">
                                 <rect key="frame" x="46.5" y="170" width="282" height="42.5"/>
                                 <string key="text">TOGETHER WE'VE MADE 
 ... CALLS</string>
@@ -149,7 +145,7 @@
                                 <color key="textColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calling is the most effective way to influence your representative." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QTT-YD-26Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calling is the most effective way to influence your representative." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTT-YD-26Z">
                                 <rect key="frame" x="46.5" y="117.5" width="282" height="42.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="0.094119999999999995" green="0.45882000000000001" blue="0.81960999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -159,18 +155,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1HS-eY-5Py" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ht3-ki-psO" secondAttribute="leading" priority="900" constant="24" id="Dok-6W-bbL"/>
-                            <constraint firstItem="1HS-eY-5Py" firstAttribute="top" secondItem="Ne5-Ii-gp0" secondAttribute="bottom" constant="24" id="Mah-SM-w9f"/>
+                            <constraint firstItem="1HS-eY-5Py" firstAttribute="top" secondItem="Xe5-Vi-QNt" secondAttribute="bottom" constant="24" id="Mah-SM-w9f"/>
                             <constraint firstItem="Hra-Uy-7K6" firstAttribute="leading" secondItem="1HS-eY-5Py" secondAttribute="leading" id="Q3g-bL-kZB"/>
                             <constraint firstItem="QTT-YD-26Z" firstAttribute="centerX" secondItem="1HS-eY-5Py" secondAttribute="centerX" id="RlJ-V7-NKN"/>
                             <constraint firstItem="QTT-YD-26Z" firstAttribute="top" secondItem="1HS-eY-5Py" secondAttribute="bottom" constant="10" id="XGQ-ct-r79"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1HS-eY-5Py" secondAttribute="trailing" priority="900" constant="24" id="Zka-ZH-Hr3"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="leading" secondItem="ht3-ki-psO" secondAttribute="leadingMargin" priority="900" constant="8" id="bWK-VM-XRv"/>
                             <constraint firstItem="1HS-eY-5Py" firstAttribute="centerX" secondItem="ht3-ki-psO" secondAttribute="centerX" id="cZc-jn-ONp"/>
                             <constraint firstItem="FL3-kO-5GT" firstAttribute="centerX" secondItem="ht3-ki-psO" secondAttribute="centerX" id="dfj-25-XtG"/>
                             <constraint firstItem="QTT-YD-26Z" firstAttribute="leading" secondItem="1HS-eY-5Py" secondAttribute="leading" id="iqV-RR-C0M"/>
                             <constraint firstItem="Hra-Uy-7K6" firstAttribute="top" secondItem="QTT-YD-26Z" secondAttribute="bottom" constant="10" id="nJF-bp-aA4"/>
                             <constraint firstItem="Hra-Uy-7K6" firstAttribute="centerX" secondItem="QTT-YD-26Z" secondAttribute="centerX" id="qbb-aT-Fj0"/>
-                            <constraint firstItem="FL3-kO-5GT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hra-Uy-7K6" secondAttribute="bottom" constant="4" id="r1q-fQ-bhS"/>
-                            <constraint firstItem="rXb-W1-5JO" firstAttribute="top" secondItem="FL3-kO-5GT" secondAttribute="bottom" constant="14" id="zhQ-tU-Y1Y"/>
+                            <constraint firstItem="FL3-kO-5GT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hra-Uy-7K6" secondAttribute="bottom" priority="900" constant="4" id="r1q-fQ-bhS"/>
+                            <constraint firstItem="x1k-Gj-1hf" firstAttribute="top" secondItem="FL3-kO-5GT" secondAttribute="bottom" constant="14" id="zhQ-tU-Y1Y"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
