@@ -10,5 +10,5 @@ import UIKit
 
 class IssueCell : UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var checkboxView: CheckboxView!
+    @IBOutlet weak var progressView: ProgressView!
 }
