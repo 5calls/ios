@@ -42,7 +42,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     @IBOutlet weak var resultInstructionsLabel: UILabel!
     @IBOutlet weak var outcomesCollection: UICollectionView!
     @IBOutlet weak var footerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var checkboxView: CheckboxView!
+    @IBOutlet weak var progressView: ProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,13 +146,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
             self.resultInstructionsLabel.alpha = 0
         }
 
-        checkboxView.alpha = 0
-        checkboxView.transform = checkboxView.transform.scaledBy(x: 0.2, y: 0.2)
-        checkboxView.isHidden = false
+        progressView.alpha = 0
+        progressView.transform = progressView.transform.scaledBy(x: 0.2, y: 0.2)
+        progressView.isHidden = false
         
         UIView.animate(withDuration: duration, delay: duration * 0.75, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-            self.checkboxView.alpha = 1
-            self.checkboxView.transform = .identity
+            self.progressView.alpha = 1
+            self.progressView.transform = .identity
         }, completion: nil)
     }
     

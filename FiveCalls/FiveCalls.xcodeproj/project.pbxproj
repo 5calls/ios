@@ -14,6 +14,7 @@
 		271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625401E52502D0042222E /* ScheduleRemindersController.swift */; };
 		271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
+		27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA230D2182A99B004D70BD /* ProgressView.swift */; };
 		33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */; };
 		33C2E0E81E52ADC200F810C6 /* UIColor+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */; };
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
@@ -63,7 +64,6 @@
 		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
 		B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */; };
 		B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F51E41772D00966B7D /* IssueCell.swift */; };
-		B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63F71E41779300966B7D /* CheckboxView.swift */; };
 		B5CA63FB1E422D0700966B7D /* IssuesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */; };
 		B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */; };
 		B5D5C95A1E441FEC00C80D5F /* IssuesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */; };
@@ -156,6 +156,7 @@
 		271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionSegmentedControl.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-FiveCallsTests-metadata.plist"; path = "Pods/Pods-FiveCallsTests-metadata.plist"; sourceTree = "<group>"; };
+		27FA230D2182A99B004D70BD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-NotificationsService-metadata.plist"; path = "Pods/Pods-NotificationsService-metadata.plist"; sourceTree = "<group>"; };
 		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FiveCalls.swift"; sourceTree = "<group>"; };
@@ -222,7 +223,6 @@
 		B5A70A5C1E4C01A00031DF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		B5CA63F51E41772D00966B7D /* IssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCell.swift; sourceTree = "<group>"; };
-		B5CA63F71E41779300966B7D /* CheckboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesContainerViewController.swift; sourceTree = "<group>"; };
 		B5D5C9571E4391E200C80D5F /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
 		B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesManager.swift; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 				9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */,
 				B5D5C95B1E44317700C80D5F /* IssueDetailCell.swift */,
 				D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */,
-				B5CA63F71E41779300966B7D /* CheckboxView.swift */,
+				27FA230D2182A99B004D70BD /* ProgressView.swift */,
 				9C18DA601E461C920024B991 /* PaddedLabel.swift */,
 				B50280511E46A7A300749ED7 /* EllipsisButton.swift */,
 				9C46B1F71E46D638009B2C11 /* BlueButton.swift */,
@@ -949,6 +949,7 @@
 				B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */,
 				AD14A52121612BAA006F06FD /* UIFont+FiveCalls.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
+				27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */,
 				B5E98E351E529E66005221B7 /* functions.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
@@ -999,7 +1000,6 @@
 				B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */,
 				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
-				B5CA63F81E41779300966B7D /* CheckboxView.swift in Sources */,
 				D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

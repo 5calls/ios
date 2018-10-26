@@ -11,11 +11,11 @@ import Kingfisher
 
 class ContactCell : UITableViewCell {
     
-    var checkmarkView: CheckboxView!
+    var progressView: ProgressView!
     
     var hasContacted: Bool = false {
         didSet {
-            checkmarkView.isChecked = hasContacted
+            progressView.progress = hasContacted ? 1.0 : 0.0
         }
     }
     
@@ -34,8 +34,8 @@ class ContactCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkmarkView = CheckboxView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        accessoryView = checkmarkView
+        progressView = ProgressView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        accessoryView = progressView
         
         textLabel?.textColor = labelTextColor
         detailTextLabel?.textColor = labelTextColor
