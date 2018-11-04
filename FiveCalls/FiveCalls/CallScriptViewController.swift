@@ -194,8 +194,9 @@ class CallScriptViewController : UIViewController, IssueShareable {
 
     func checkForNotifications() {
         let permissions = OneSignal.getPermissionSubscriptionState()
-
-        if permissions?.permissionStatus.hasPrompted == false {
+        let nextPrompt = nextNotificationPromptDate() ?? Date()
+        
+        if permissions?.permissionStatus.hasPrompted == false && nextPrompt <= Date() {
             let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
                 OneSignal.promptForPushNotifications(userResponse: { (success) in
@@ -208,10 +209,18 @@ class CallScriptViewController : UIViewController, IssueShareable {
                 })
             }))
             alert.addAction(UIAlertAction(title: R.string.localizable.notificationNone(), style: .cancel, handler: { (action) in
-                //
+                let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+                UserDefaults.standard.set(Date(), forKey: key)
             }))
             present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func nextNotificationPromptDate() -> Date? {
+        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
+        
+        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }
 }
 

@@ -22,4 +22,6 @@ enum UserDefaultsKey : String {
 
     case appVersion // The current CFBundleShortVersionString
     case countOfCallsForRatingPrompt
+    
+    case lastAskedForNotificationPermission
 }
