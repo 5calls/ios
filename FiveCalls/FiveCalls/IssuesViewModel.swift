@@ -58,6 +58,10 @@ struct ActiveIssuesViewModel: IssuesViewModel {
         categories.forEach { (category) in
             activeIssues.append(contentsOf: category.issues.filter({ $0.inactive == false }))
         }
+
+        activeIssues.sort(by: { (d1, d2) -> Bool in
+            return d1.order < d2.order
+        })
         self.activeIssues = activeIssues
     }
 

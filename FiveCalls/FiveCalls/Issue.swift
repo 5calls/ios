@@ -19,6 +19,7 @@ struct Issue {
     let inactive: Bool
     let contacts: [Contact]
     let outcomes: [Outcome]
+    let order: Int
 
     static var style: String {        
         if let bytes = try? Data(resource: R.file.issuesStyleCss)  {
@@ -38,7 +39,8 @@ extension Issue : JSONSerializable {
             let contactsJSON = dictionary["contacts"] as? [JSONDictionary],
             let outcomesJSON = dictionary["outcomeModels"] as? [JSONDictionary],
             let categoriesJSON = dictionary["categories"] as? [JSONDictionary],
-            let inactive = dictionary["inactive"] as? Bool
+            let inactive = dictionary["inactive"] as? Bool,
+            let order = dictionary["order"] as? Int
         else {
             print("Unable to parse JSON as Issue: \(dictionary)")
             return nil
@@ -48,6 +50,6 @@ extension Issue : JSONSerializable {
         let outcomes = outcomesJSON.compactMap({ Outcome(dictionary: $0) })
         let category = categoriesJSON.compactMap({ Category(dictionary: $0) }).first
         
-        self.init(id: id, name: name, slug:slug, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes)
+        self.init(id: id, name: name, slug:slug, reason: reason, script: script, category: category, inactive: inactive, contacts: contacts, outcomes: outcomes, order: order)
     }
 }
