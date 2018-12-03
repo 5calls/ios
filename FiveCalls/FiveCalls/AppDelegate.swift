@@ -13,6 +13,7 @@ import Crashlytics
 import Auth0
 import OneSignal
 import Bugsnag
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         oneSignalStartup(launchOptions: launchOptions)
         bugsnagStartup()
+        Mixpanel.sharedInstance(withToken: "776fce75f7e3ddfbb13b615dcb94ff95")
 
         return true
     }

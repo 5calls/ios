@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import Crashlytics
 import Down
+import Mixpanel
 
 class IssueDetailViewController : UIViewController, IssueShareable {
 
@@ -27,6 +28,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+
+        Mixpanel.sharedInstance()?.track("Topic", properties: ["IssueID": self.issue.id])
     }
 
     @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

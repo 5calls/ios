@@ -9,6 +9,7 @@
 import UIKit
 import Crashlytics
 import DZNEmptyDataSet
+import Mixpanel
 
 protocol IssuesViewControllerDelegate : class {
     func didStartLoadingIssues()
@@ -56,7 +57,12 @@ class IssuesViewController : UITableViewController {
         self.registerForPreviewing(with: self, sourceView: tableView)
 
         Answers.logCustomEvent(withName:"Screen: Issues List")
-        
+        if self.shouldShowAllIssues {
+            Mixpanel.sharedInstance()?.track("More")
+        } else {
+            Mixpanel.sharedInstance()?.track("Home")
+        }
+
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         // Refetch data only if we don't have anything to display.
