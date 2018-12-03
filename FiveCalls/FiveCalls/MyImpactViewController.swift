@@ -156,6 +156,9 @@ class MyImpactViewController : UITableViewController {
             // Fetch the user's call stats
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
+                if let error = userStatsOp.error {
+                    Answers.logCustomEvent(withName: "userstats-error", customAttributes: ["message": error.localizedDescription])
+                }
                 self.userStats = userStatsOp.userStats
                 DispatchQueue.main.async {
                     self.displayStats()
