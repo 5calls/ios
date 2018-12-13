@@ -24,6 +24,13 @@ class IssuesViewController : UITableViewController {
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: IssuesLoadResult?
     var isLoading = false
+    var analyticsEvent: String {
+        if shouldShowAllIssues {
+            return "More"
+        } else {
+            return "Home"
+        }
+    }
     
     // keep track of when calls are made, so we know if we need to reload any cells
     var needToReloadVisibleRowsOnNextAppearance = false
@@ -56,7 +63,8 @@ class IssuesViewController : UITableViewController {
         self.registerForPreviewing(with: self, sourceView: tableView)
 
         Answers.logCustomEvent(withName:"Screen: Issues List")
-        
+        trackEvent(analyticsEvent)
+
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         // Refetch data only if we don't have anything to display.

@@ -13,6 +13,7 @@ import Crashlytics
 import Auth0
 import OneSignal
 import Bugsnag
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         oneSignalStartup(launchOptions: launchOptions)
         bugsnagStartup()
+        mixpanelStartup()
 
         return true
     }
@@ -67,6 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func bugsnagStartup() {
         if let infoPlist = Bundle.main.infoDictionary, let bugsnagAPIKey = infoPlist["BugsnagAPIKey"] as? String {
             Bugsnag.start(withApiKey: bugsnagAPIKey)
+        }
+    }
+
+    func mixpanelStartup() {
+        if let infoPlist = Bundle.main.infoDictionary, let mixpanelToken = infoPlist["MixpanelToken"] as? String {
+            Mixpanel.sharedInstance(withToken: mixpanelToken)
         }
     }
 

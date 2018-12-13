@@ -27,6 +27,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+
+        trackEvent("Topic", properties: ["IssueID": self.issue.id, "IssueTitle": self.issue.name])
     }
 
     @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
