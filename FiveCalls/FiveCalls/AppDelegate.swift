@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         oneSignalStartup(launchOptions: launchOptions)
-        bugsnapStartup()
+        bugsnagStartup()
 
         return true
     }
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func bugsnapStartup() {
+    func bugsnagStartup() {
         if let infoPlist = Bundle.main.infoDictionary, let bugsnagAPIKey = infoPlist["BugsnagAPIKey"] as? String {
             Bugsnag.start(withApiKey: bugsnagAPIKey)
         }
