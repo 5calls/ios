@@ -10,6 +10,7 @@ import UIKit
 import Crashlytics
 import Rswift
 import Kingfisher
+import Bugsnag
 
 class MyImpactViewController : UITableViewController {
     
@@ -157,7 +158,7 @@ class MyImpactViewController : UITableViewController {
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
                 if let error = userStatsOp.error {
-                    Answers.logCustomEvent(withName: "userstats-error", customAttributes: ["message": error.localizedDescription])
+                    Bugsnag.notifyError(error)
                 }
                 self.userStats = userStatsOp.userStats
                 DispatchQueue.main.async {
