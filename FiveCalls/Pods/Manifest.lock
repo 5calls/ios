@@ -1,6 +1,7 @@
 PODS:
   - Auth0 (1.12.0):
     - SimpleKeychain
+  - Bugsnag (5.17.2)
   - CPDAcknowledgements (1.0.0)
   - Crashlytics (3.10.7):
     - Fabric (~> 1.7.11)
@@ -26,6 +27,7 @@ PODS:
 
 DEPENDENCIES:
   - Auth0 (~> 1.9)
+  - Bugsnag
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
   - Crashlytics (~> 3.10.7)
   - Down
@@ -40,6 +42,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Auth0
+    - Bugsnag
     - Crashlytics
     - Down
     - Fabric
@@ -72,6 +75,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Auth0: a12ddb4ab08e7e207b48af393bfdeaaa91a8fbc4
+  Bugsnag: f44353744bf11b23118efba6e695dd453c63c1b2
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   Down: 587371ad58002b06023d9c602519216862c3acbc
@@ -85,6 +89,6 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
 
-PODFILE CHECKSUM: d7772be51cc68982167756e8fd91f8b0d9d847cd
+PODFILE CHECKSUM: 59fbad85ba994f57b3789579c70dbc3c7a78e63f
 
 COCOAPODS: 1.5.3
