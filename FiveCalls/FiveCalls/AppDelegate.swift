@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         oneSignalStartup(launchOptions: launchOptions)
         bugsnagStartup()
-        Mixpanel.sharedInstance(withToken: "776fce75f7e3ddfbb13b615dcb94ff95")
+        mixpanelStartup()
 
         return true
     }
@@ -69,6 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func bugsnagStartup() {
         if let infoPlist = Bundle.main.infoDictionary, let bugsnagAPIKey = infoPlist["BugsnagAPIKey"] as? String {
             Bugsnag.start(withApiKey: bugsnagAPIKey)
+        }
+    }
+
+    func mixpanelStartup() {
+        if let infoPlist = Bundle.main.infoDictionary, let mixpanelToken = infoPlist["MixpanelToken"] as? String {
+            Mixpanel.sharedInstance(withToken: mixpanelToken)
         }
     }
 

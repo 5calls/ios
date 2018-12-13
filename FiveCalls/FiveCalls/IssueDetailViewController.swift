@@ -29,7 +29,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.rowHeight = UITableViewAutomaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
 
-        Mixpanel.sharedInstance()?.track("Topic", properties: ["IssueID": self.issue.id])
+        trackEvent("Topic", properties: ["IssueID": self.issue.id, "IssueTitle": self.issue.name])
     }
 
     @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
