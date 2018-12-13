@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 import Crashlytics
 import Down
-import Mixpanel
 
 class IssueDetailViewController : UIViewController, IssueShareable {
 

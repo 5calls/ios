@@ -9,7 +9,6 @@
 import UIKit
 import Crashlytics
 import DZNEmptyDataSet
-import Mixpanel
 
 protocol IssuesViewControllerDelegate : class {
     func didStartLoadingIssues()
