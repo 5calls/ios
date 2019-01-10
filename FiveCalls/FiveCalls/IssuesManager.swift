@@ -19,7 +19,7 @@ class IssuesManager {
     // Read-only for users of this class.
     private(set) var categories: [Category] = []
     
-    private var issuesList: IssuesList? {
+    private var issuesList: [Issue] = [] {
         didSet {
             // Once we have all the issues downloaded, create the category->[issues] relationship.
             // This code runs on BG thread (and it should).
@@ -49,13 +49,11 @@ class IssuesManager {
     }
     
     private var issues: [Issue] {
-        return issuesList?.issues ?? []
+        return issuesList
     }
 
-    var isSplitDistrict: Bool { return self.issuesList?.splitDistrict == true }
-    
-    func issue(withId id: String) -> Issue? {
-        return issuesList?.issues.filter { $0.id == id }.first
+    func issue(withId id: Int64) -> Issue? {
+        return issues.first(where: { $0.id == id })
     }
     
     func fetchIssues(location: UserLocation?, completion: @escaping (IssuesLoadResult) -> Void) {

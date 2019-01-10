@@ -16,7 +16,7 @@ class FetchIssuesOperation : BaseOperation {
     // Once the job has finished consumers can check one or more of these for values.
     var httpResponse: HTTPURLResponse?
     var error: Error?
-    var issuesList: IssuesList?
+    var issuesList: [Issue]?
 
     init(location: UserLocation?) {
         self.location = location
@@ -27,32 +27,12 @@ class FetchIssuesOperation : BaseOperation {
         return URLSessionProvider.buildSession(configuration: self.sessionConfiguration)
     }()
     
-    func buildIssuesURL() -> URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "5calls.org"
-        urlComponents.path = "/issues/"
-
-        var queryItems: [URLQueryItem] = []
-        let inactiveQueryItem = URLQueryItem(name: "all", value: "true")
-        queryItems.append(inactiveQueryItem)
-
-        if let location = self.location {
-            let locationQueryItem = URLQueryItem(name: "address", value: location.locationValue)
-            queryItems.append(locationQueryItem)
-        }
-        urlComponents.queryItems = queryItems
-
-        return urlComponents.url
+    func buildIssuesURL() -> URL {
+        return URL(string: "https://api.5calls.org/v1/issues")!
     }
 
     override func execute() {
-        guard let url = buildIssuesURL() else {
-            print("Invalid issues url")
-            finish()
-            return
-        }
-
+        let url = buildIssuesURL()
         let task = session.dataTask(with: url) { (data, response, error) in
             if let e = error {
                 print("Error fetching issues: \(e.localizedDescription)")
@@ -84,11 +64,7 @@ class FetchIssuesOperation : BaseOperation {
         
         if http.statusCode == 200 {
             do {
-                try parseIssues(data: data)
-                
-                if let list = issuesList {
-                    print("Returned \(list.issues.count) issues with normalized location: \(list.normalizedLocation)")
-                }
+                self.issuesList = try parseIssues(data: data)
             } catch let e {
                 print("Error parsing issues: \(e.localizedDescription)")
             }
@@ -97,11 +73,9 @@ class FetchIssuesOperation : BaseOperation {
         }
     }
     
-    private func parseIssues(data: Data) throws {
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary else {
-            return
-        }
-        
-        issuesList = IssuesList(dictionary: json)
+    private func parseIssues(data: Data) throws -> [Issue] {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode([Issue].self, from: data)
     }
 }

@@ -56,7 +56,7 @@ struct ActiveIssuesViewModel: IssuesViewModel {
         var activeIssues: [Issue] = []
         // Filter issues to get only the active ones.
         categories.forEach { (category) in
-            activeIssues.append(contentsOf: category.issues.filter({ $0.inactive == false }))
+            activeIssues.append(contentsOf: category.issues.filter({ $0.active }))
         }
 
         activeIssues.sort(by: { (d1, d2) -> Bool in

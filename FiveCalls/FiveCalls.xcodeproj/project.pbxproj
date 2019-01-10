@@ -80,7 +80,6 @@
 		B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7626A1E40D6DD00D63D62 /* Contact.swift */; };
 		B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */; };
 		B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */; };
-		B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762741E40E39000D63D62 /* IssuesList.swift */; };
 		B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E806FE1E463FE300EBE553 /* UserLocation.swift */; };
 		B5E98E311E50C895005221B7 /* SetLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E301E50C895005221B7 /* SetLocationCell.swift */; };
 		B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E321E529E31005221B7 /* URLSessionProvider.swift */; };
@@ -240,7 +239,6 @@
 		B5E7626A1E40D6DD00D63D62 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchIssuesOperation.swift; sourceTree = "<group>"; };
-		B5E762741E40E39000D63D62 /* IssuesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesList.swift; sourceTree = "<group>"; };
 		B5E806FE1E463FE300EBE553 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		B5E98E301E50C895005221B7 /* SetLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLocationCell.swift; sourceTree = "<group>"; };
 		B5E98E321E529E31005221B7 /* URLSessionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
@@ -488,7 +486,6 @@
 				B5E762681E40D63800D63D62 /* Issue.swift */,
 				D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */,
 				B5E7626A1E40D6DD00D63D62 /* Contact.swift */,
-				B5E762741E40E39000D63D62 /* IssuesList.swift */,
 				B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */,
 				B5E806FE1E463FE300EBE553 /* UserLocation.swift */,
 				B50280531E46A91F00749ED7 /* AreaOffice.swift */,
@@ -1006,7 +1003,6 @@
 				B54228081E8EF8C5003C9956 /* LocationButton.swift in Sources */,
 				D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */,
 				B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */,
-				B5E762751E40E39000D63D62 /* IssuesList.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 				D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */,
 			);

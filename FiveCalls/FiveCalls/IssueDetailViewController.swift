@@ -27,8 +27,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
-
-        trackEvent("Topic", properties: ["IssueID": self.issue.id, "IssueTitle": self.issue.name])
+        
+        trackEvent("Topic", properties: ["IssueID": String(issue.id), "IssueTitle": issue.name])
     }
 
     @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -87,7 +87,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             let controller = R.storyboard.main.callScriptController()!
             controller.issuesManager = issuesManager
             controller.issue = issue
-            controller.contact = issue.contacts[indexPath.row]
+            // FIXME: Contacts will be provided some other way
+//            controller.contact = issue.contacts[indexPath.row]
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .formSheet
             self.present(nav, animated: true, completion: nil)
@@ -104,8 +105,9 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             call.issuesManager = issuesManager
             call.issue = issue
-            call.contact = issue.contacts[indexPath.row]
-        }        
+            // FIXME: Contacts will be provided some other way
+//            call.contact = issue.contacts[indexPath.row]
+        }
     }
     
     @objc func shareButtonPressed(_ button: UIBarButtonItem) {
@@ -126,6 +128,17 @@ enum IssueHeaderRows : Int {
 }
 
 extension IssueDetailViewController : UITableViewDataSource {
+    
+    // FIXME: Temporary stub
+    var contacts: [Contact] {
+        return []
+    }
+    
+    var isSplitDistrict: Bool {
+        // FIXME: determine split district another way
+        return false
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return IssueSections.count.rawValue
     }
@@ -134,7 +147,7 @@ extension IssueDetailViewController : UITableViewDataSource {
         if section == IssueSections.header.rawValue {
             return IssueHeaderRows.count.rawValue
         } else {
-            return max(1, issue.contacts.count)
+            return max(1, contacts.count)
         }
     }
     
@@ -144,9 +157,9 @@ extension IssueDetailViewController : UITableViewDataSource {
         case IssueSections.header.rawValue:
             return headerCell(at: indexPath)
         default:
-            if issue.contacts.isEmpty {
+            if contacts.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)! as SetLocationCell
-                if issuesManager.isSplitDistrict {
+                if isSplitDistrict {
                     cell.messageLabel.text = R.string.localizable.splitDistrictMessage()
                 } else {
                     cell.messageLabel.text = R.string.localizable.setYourLocation()
@@ -155,7 +168,7 @@ extension IssueDetailViewController : UITableViewDataSource {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contactCell, for: indexPath)!
                 cell.borderTop = indexPath.row == 0
-                let contact = issue.contacts[indexPath.row]
+                let contact = contacts[indexPath.row]
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
                 if let photoURL = contact.photoURL {
@@ -213,7 +226,7 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
         issuesManager.fetchIssues(location: location) { result in
             
-            if self.issuesManager.isSplitDistrict {
+            if self.isSplitDistrict {
                 let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
                 vc.present(alertController, animated: true, completion: nil)

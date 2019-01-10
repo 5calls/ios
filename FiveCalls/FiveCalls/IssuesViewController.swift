@@ -240,18 +240,19 @@ class IssuesViewController : UITableViewController {
         let issue = viewModel.issueForIndexPath(indexPath: indexPath)
         cell.titleLabel.text = issue.name
 
-        var numContactsContacted = 0
-        for contact in issue.contacts {
-            if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
-                if contacted {
-                    numContactsContacted = numContactsContacted + 1
-                }
-            }
-        }
-        
-        // avoid NaN problem if there are no contacts
-        let progress = issue.contacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issue.contacts.count)
-        cell.progressView.progress = progress
+        // TODO: Figure out a way to hand progress over to this cell
+//        var numContactsContacted = 0
+//        for contact in issue.contacts {
+//            if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
+//                if contacted {
+//                    numContactsContacted = numContactsContacted + 1
+//                }
+//            }
+//        }
+//
+//        // avoid NaN problem if there are no contacts
+//        let progress = issue.contacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issue.contacts.count)
+//        cell.progressView.progress = progress
         return cell
     }
 

@@ -23,8 +23,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var lastPhoneDialed: String?
     
     var isLastContactForIssue: Bool {
-        let contactIndex = issue.contacts.index(of: contact)
-        return contactIndex == issue.contacts.count - 1
+        return false
+        // FIXME: last contact
+        // let contactIndex = issue.contacts.index(of: contact)
+        // return contactIndex == issue.contacts.count - 1
     }
 
     lazy var ratingPromptCounter: RatingPromptCounter = {
@@ -58,13 +60,12 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue, let contactIndex = issue.contacts.index(of: contact) else {
-            return
-        }
+        guard let issue = issue else { return }
         
         Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
-        self.contactIndex = contactIndex
-        title = "Contact \(contactIndex+1) of \(issue.contacts.count)"
+        contactIndex = 0 // FIXME: contactIndex
+        let contactsCount = 1 // FIXME: contacts count
+        title = "Contact \(contactIndex+1) of \(contactsCount)"
 
         // set the footer height based on how many outcomes there are:
         // cell height (+ padding) + extra footer spacing
@@ -161,7 +162,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let contactedPhone = lastPhoneDialed ?? contact.phone
         // ContactLog status is "contacted", "unavailable", "vm", same for every issue
         // whereas outcome can be anything passed by the server
-        let log = ContactLog(issueId: issue.id, contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date(), reported: false)
+        let log = ContactLog(issueId: String(issue.id), contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date(), reported: false)
         reportCallOutcome(log: log, outcome: outcome)
     }
 
@@ -333,8 +334,9 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
             ratingPromptCounter.increment()
             checkForNotifications()
         } else {
-            let nextContact = issue.contacts[contactIndex + 1]
-            showNextContact(nextContact)
+            // FIXME: Move this responsibility out of this screen
+//            let nextContact = issue.contacts[contactIndex + 1]
+//            showNextContact(nextContact)
         }
 
     }
