@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum IssuesLoadResult {
+enum LoadResult {
     case success
     case serverError(Error)
     case offline
@@ -16,6 +16,8 @@ enum IssuesLoadResult {
 
 class IssuesManager {
 
+    private let queue: OperationQueue
+    
     // Read-only for users of this class.
     private(set) var categories: [Category] = []
     
@@ -51,31 +53,32 @@ class IssuesManager {
     private var issues: [Issue] {
         return issuesList
     }
+    
+    init() {
+        queue = .main
+    }
 
     func issue(withId id: Int64) -> Issue? {
         return issues.first(where: { $0.id == id })
     }
     
-    func fetchIssues(location: UserLocation?, completion: @escaping (IssuesLoadResult) -> Void) {
-        
-        let operation = FetchIssuesOperation(location: location)
-        
+    func fetchIssues(completion: @escaping (LoadResult) -> Void) {
+        let operation = FetchIssuesOperation()
         operation.completionBlock = { [weak self, weak operation] in
-            if let issuesList = operation?.issuesList {
-                self?.issuesList = issuesList
-                // notification!
+            if let issues = operation?.issuesList {
+                self?.issuesList = issues
                 DispatchQueue.main.async {
                     completion(.success)
                 }
             } else {
                 let error = operation?.error
-                print("Could not load issues..")
+                print("Could not load issues: \(error?.localizedDescription ?? "<unknown>")..")
                 
                 DispatchQueue.main.async {
                     if let e = error {
                         print(e.localizedDescription)
                         
-                        if self?.isOfflineError(error: e) == true {
+                        if e.isOfflineError() {
                             completion(.offline)
                         } else {
                             completion(.serverError(e))
@@ -86,18 +89,8 @@ class IssuesManager {
                         completion(.offline)
                     }
                 }
-                
             }
         }
-        OperationQueue.main.addOperation(operation)
-    }
-    
-    private func isOfflineError(error: Error) -> Bool {
-        let e = error as NSError
-        guard e.domain == NSURLErrorDomain else { return false }
-        
-        return e.code == NSURLErrorNetworkConnectionLost ||
-            e.code == NSURLErrorNotConnectedToInternet ||
-            e.code == NSURLErrorSecureConnectionFailed
+        queue.addOperation(operation)
     }
 }

@@ -8,22 +8,7 @@
 
 import Foundation
 
-
-/*
- "contacts": [
- {
- "area": "Senate",
- "id": "TX-JohnCornyn",
- "name": "John Cornyn",
- "party": "Republican",
- "phone": "202-224-2934",
- "photoURL": "http://bioguide.congress.gov/bioguide/photo/C/C001056.jpg",
- "reason": "This is one of your two senators",
- "state": "TX"
- }
- */
-
-struct Contact {
+struct Contact : Decodable {
     let id: String
     let area: String
     let name: String
@@ -33,6 +18,31 @@ struct Contact {
     let reason: String?
     let state: String?
     let fieldOffices: [AreaOffice]
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case area
+        case name
+        case party
+        case phone
+        case photoURL
+        case reason
+        case state
+        case fieldOffices = "field_offices"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        area = try container.decode(String.self, forKey: .area)
+        name = try container.decode(String.self, forKey: .name)
+        party = try container.decode(String.self, forKey: .party)
+        phone = try container.decode(String.self, forKey: .phone)
+        photoURL = (try container.decode(String?.self, forKey: .photoURL)).flatMap(URL.init)
+        reason = try container.decode(String.self, forKey: .reason)
+        state = try container.decode(String.self, forKey: .state)
+        fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
+    }
 }
 
 extension Contact : Hashable {
@@ -42,32 +52,5 @@ extension Contact : Hashable {
     
     static func ==(lhs: Contact, rhs: Contact) -> Bool {
         return lhs.id == rhs.id
-    }
-}
-
-extension Contact : JSONSerializable {
-    init?(dictionary: JSONDictionary) {
-        guard let id = dictionary["id"] as? String,
-            let area = dictionary["area"] as? String,
-            let name = dictionary["name"] as? String,
-            let party = dictionary["party"] as? String,
-            let phone = dictionary["phone"] as? String,
-            let photoURLString = dictionary["photoURL"] as? String,
-            let reason = dictionary["reason"] as? String,
-            let state = dictionary["state"] as? String
-        else {
-                print("Unable to parse Contact from JSON: \(dictionary)")
-                return nil
-        }
-        
-        let fieldOffices: [AreaOffice]
-        if let fieldOfficesJSON = dictionary["field_offices"] as? [JSONDictionary] {
-            fieldOffices = fieldOfficesJSON.compactMap(AreaOffice.init)
-        } else {
-            fieldOffices = []
-        }
-        
-        let photoURL = URL(string: photoURLString)
-        self.init(id: id, area: area, name: name, party: party, phone: phone, photoURL: photoURL, reason: reason, state: state, fieldOffices: fieldOffices)
     }
 }

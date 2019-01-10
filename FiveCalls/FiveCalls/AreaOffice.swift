@@ -8,19 +8,7 @@
 
 import Foundation
 
-struct AreaOffice {
+struct AreaOffice : Decodable {
     let city: String
     let phone: String
-}
-
-extension AreaOffice : JSONSerializable {
-    init?(dictionary: JSONDictionary) {
-        guard let city = dictionary["city"] as? String,
-        let phone = dictionary["phone"] as? String else {
-            return nil
-        }
-        
-        self.city = city
-        self.phone = phone
-    }
 }

@@ -22,7 +22,7 @@ class IssuesViewController : UITableViewController {
     @IBInspectable var shouldShowAllIssues: Bool = false
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
-    var lastLoadResult: IssuesLoadResult?
+    var lastLoadResult: LoadResult?
     var isLoading = false
     var analyticsEvent: String {
         if shouldShowAllIssues {
@@ -39,7 +39,7 @@ class IssuesViewController : UITableViewController {
 
     // Should be passed by the caller.
     var issuesManager: IssuesManager!
-
+    
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
@@ -125,7 +125,7 @@ class IssuesViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
 
-        issuesManager.fetchIssues(location: UserLocation.current) { [weak self] in
+        issuesManager.fetchIssues { [weak self] in
             self?.issuesLoaded(result: $0)
         }
     }
@@ -137,7 +137,7 @@ class IssuesViewController : UITableViewController {
         return ActiveIssuesViewModel(categories: categories)
     }
 
-    private func issuesLoaded(result: IssuesLoadResult) {
+    private func issuesLoaded(result: LoadResult) {
         isLoading = false
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
@@ -280,7 +280,7 @@ extension IssuesViewController: UIViewControllerPreviewingDelegate {
 
 extension IssuesViewController : DZNEmptyDataSetSource {
     
-    private func appropriateErrorMessage(for result: IssuesLoadResult) -> String {
+    private func appropriateErrorMessage(for result: LoadResult) -> String {
         switch result {
         case .offline: return R.string.localizable.issueLoadFailedConnection()
         case .serverError(_): return R.string.localizable.issueLoadFailedServer()

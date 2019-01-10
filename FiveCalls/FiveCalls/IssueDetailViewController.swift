@@ -16,6 +16,9 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
+    var contacts: [Contact] = []
+    
+    private var contactManager = ContactsManager()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -129,11 +132,6 @@ enum IssueHeaderRows : Int {
 
 extension IssueDetailViewController : UITableViewDataSource {
     
-    // FIXME: Temporary stub
-    var contacts: [Contact] {
-        return []
-    }
-    
     var isSplitDistrict: Bool {
         // FIXME: determine split district another way
         return false
@@ -224,27 +222,42 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        issuesManager.fetchIssues(location: location) { result in
-            
-            if self.isSplitDistrict {
-                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
-                vc.present(alertController, animated: true, completion: nil)
-            } else {
-                self.dismiss(animated: true, completion: nil)
-            }
         
-            
-            if let issue = self.issuesManager.issue(withId: self.issue.id) {
-                self.issue = issue
-                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
-                self.scrollToBottom()
-            } else {
-                // weird state to be in, but the issue we're looking at
-                // no longer exists, so we'll just quietly (read: not quietly) 
-                // pop back to the issues list
-                _ = self.navigationController?.popViewController(animated: true)
+        contactManager.fetchContacts(location: location) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let contacts):
+                self.contacts = contacts
+                self.tableView.reloadData()
+            case .failed(let error):
+                let alert = UIAlertController(title: "Error loading contacts",
+                                              message: "Contacts could not be loaded. \(error.localizedDescription)", preferredStyle: .alert)
+                self.show(alert, sender: nil)
             }
+            self.dismiss(animated: true, completion: nil)
         }
+        
+//        issuesManager.fetchContacts(location: location) { result in
+//
+//            if self.isSplitDistrict {
+//                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
+//                vc.present(alertController, animated: true, completion: nil)
+//            } else {
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//
+//
+//            if let issue = self.issuesManager.issue(withId: self.issue.id) {
+//                self.issue = issue
+//                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
+//                self.scrollToBottom()
+//            } else {
+//                // weird state to be in, but the issue we're looking at
+//                // no longer exists, so we'll just quietly (read: not quietly)
+//                // pop back to the issues list
+//                _ = self.navigationController?.popViewController(animated: true)
+//            }
+//        }
     }
 }
