@@ -40,6 +40,7 @@ class IssuesViewController : UITableViewController {
     // Should be passed by the caller.
     var issuesManager: IssuesManager!
     var contactsManager: ContactsManager!
+    private var contacts: [Contact]?
     
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
@@ -128,6 +129,13 @@ class IssuesViewController : UITableViewController {
 
         issuesManager.fetchIssues { [weak self] in
             self?.issuesLoaded(result: $0)
+        }
+
+        contactsManager.fetchContacts(location: UserLocation.current) { result in
+            if case .success(let contacts) = result {
+                self.contacts = contacts
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -243,19 +251,21 @@ class IssuesViewController : UITableViewController {
         let issue = viewModel.issueForIndexPath(indexPath: indexPath)
         cell.titleLabel.text = issue.name
 
-        // TODO: Figure out a way to hand progress over to this cell
-//        var numContactsContacted = 0
-//        for contact in issue.contacts {
-//            if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
-//                if contacted {
-//                    numContactsContacted = numContactsContacted + 1
-//                }
-//            }
-//        }
-//
+        let issueContacts = (contacts ?? []).filter {
+            issue.contactAreas.contains($0.area)
+        }
+
+        var numContactsContacted = 0
+        for contact in issueContacts {
+            if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
+                if contacted {
+                    numContactsContacted = numContactsContacted + 1
+                }
+            }
+        }
 //        // avoid NaN problem if there are no contacts
-//        let progress = issue.contacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issue.contacts.count)
-//        cell.progressView.progress = progress
+        let progress = issueContacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issueContacts.count)
+        cell.progressView.progress = progress
         return cell
     }
 

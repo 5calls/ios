@@ -19,14 +19,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var issue: Issue!
     var contactIndex = 0
     var contact: Contact!
+    var contacts: [Contact]!
     var logs = ContactLogs.load()
     var lastPhoneDialed: String?
     
     var isLastContactForIssue: Bool {
-        return false
-        // FIXME: last contact
-        // let contactIndex = issue.contacts.index(of: contact)
-        // return contactIndex == issue.contacts.count - 1
+        let contactIndex = contacts.index(of: contact)
+        return contactIndex == contacts.count - 1
     }
 
     lazy var ratingPromptCounter: RatingPromptCounter = {
@@ -60,16 +59,16 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue else { return }
+        guard let issue = issue, let contactIndex = contacts.index(of: contact) else { return }
         
         Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
-        contactIndex = 0 // FIXME: contactIndex
-        let contactsCount = 1 // FIXME: contacts count
+        self.contactIndex = contactIndex
+        let contactsCount = contacts.count
         title = "Contact \(contactIndex+1) of \(contactsCount)"
 
         // set the footer height based on how many outcomes there are:
         // cell height (+ padding) + extra footer spacing
-        footerHeightConstraint.constant = (ceil(CGFloat(issue.outcomes.count) / 2) * OutcomeCollectionCell.cellHeight() + 10) + 40
+        footerHeightConstraint.constant = (ceil(CGFloat(issue.outcomeModels.count) / 2) * OutcomeCollectionCell.cellHeight() + 10) + 40
     }
     
     func back() {
@@ -171,6 +170,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         newController.issuesManager = issuesManager
         newController.issue = issue
         newController.contact = contact
+        newController.contacts = contacts
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
     
@@ -298,13 +298,13 @@ extension CallScriptViewController : UITableViewDataSource {
 extension CallScriptViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return issue.outcomes.count
+        return issue.outcomeModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.outcomeCell, for: indexPath)!
 
-        let outcomeModel = issue.outcomes[indexPath.row]
+        let outcomeModel = issue.outcomeModels[indexPath.row]
         let outcomeStringKey = "outcomes.\(outcomeModel.label)"
         var localizedOutcome = NSLocalizedString(outcomeStringKey, comment: "The outcome button title describing the outcome '\(outcomeModel.label)'")
 
@@ -318,7 +318,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let outcomeModel = issue.outcomes[indexPath.row]
+        let outcomeModel = issue.outcomeModels[indexPath.row]
 
         Answers.logCustomEvent(withName:"Action: Button \(outcomeModel.label)", customAttributes: ["contact_id":contact.id])
 
@@ -334,9 +334,8 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
             ratingPromptCounter.increment()
             checkForNotifications()
         } else {
-            // FIXME: Move this responsibility out of this screen
-//            let nextContact = issue.contacts[contactIndex + 1]
-//            showNextContact(nextContact)
+            let nextContact = contacts[contactIndex + 1]
+            showNextContact(nextContact)
         }
 
     }

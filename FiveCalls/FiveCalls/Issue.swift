@@ -17,7 +17,7 @@ struct Issue : Decodable {
     let script: String
     let categories: [Category]
     let active: Bool
-//    let outcomes: [Outcome]
+    let outcomeModels: [Outcome]
     let contactType: String
     let contactAreas: [String]
     let createdAt: Date
@@ -27,9 +27,5 @@ struct Issue : Decodable {
             return String(decoding: bytes, as: UTF8.self)
         }
         return ""
-    }
-    
-    var outcomes: [Outcome] {
-        return []
     }
 }

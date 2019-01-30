@@ -105,15 +105,16 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadSections(IndexSet(integer: IssueSections.contacts.rawValue), with: .none)
-//        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard let contacts = contacts else { return false }
         if identifier == R.segue.issueDetailViewController.callScript.identifier, self.splitViewController != nil, let indexPath = tableView.indexPathForSelectedRow {
             let controller = R.storyboard.main.callScriptController()!
             controller.issuesManager = issuesManager
             controller.issue = issue
-            controller.contact = contacts?[indexPath.row]
+            controller.contact = contacts[indexPath.row]
+            controller.contacts = contacts
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .formSheet
             self.present(nav, animated: true, completion: nil)
@@ -128,9 +129,11 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             loc.delegate = self
         } else if let call = segue.destination as? CallScriptViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            guard let contacts = contacts else { return }
             call.issuesManager = issuesManager
             call.issue = issue
-            call.contact = contacts?[indexPath.row]
+            call.contact = contacts[indexPath.row]
+            call.contacts = contacts
         }
     }
     
