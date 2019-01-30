@@ -16,9 +16,9 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
-    var contacts: [Contact] = []
+    var contacts: [Contact]?
     
-    private var contactManager = ContactsManager()
+    var contactsManager: ContactsManager!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,6 +32,28 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         
         trackEvent("Topic", properties: ["IssueID": String(issue.id), "IssueTitle": issue.name])
+
+        loadContacts()
+    }
+
+    private func loadContacts() {
+        print("Loading contacts for: \(issue.contactAreas)")
+        contactsManager.fetchContacts(location: UserLocation.current) { result in
+            switch result {
+            case .success(let contacts):
+                self.contacts = contacts.filter {
+                     self.issue.contactAreas.contains($0.area)
+                }
+                self.tableView.reloadData()
+            case .failed(let error):
+                let alert = UIAlertController(title: "Loading Error", message: "There was an error loading your representatives. \(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                    self.loadContacts()
+                }))
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 
     @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -82,7 +104,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+        tableView.reloadSections(IndexSet(integer: IssueSections.contacts.rawValue), with: .none)
+//        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -90,8 +113,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             let controller = R.storyboard.main.callScriptController()!
             controller.issuesManager = issuesManager
             controller.issue = issue
-            // FIXME: Contacts will be provided some other way
-//            controller.contact = issue.contacts[indexPath.row]
+            controller.contact = contacts?[indexPath.row]
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .formSheet
             self.present(nav, animated: true, completion: nil)
@@ -108,8 +130,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             call.issuesManager = issuesManager
             call.issue = issue
-            // FIXME: Contacts will be provided some other way
-//            call.contact = issue.contacts[indexPath.row]
+            call.contact = contacts?[indexPath.row]
         }
     }
     
@@ -145,12 +166,16 @@ extension IssueDetailViewController : UITableViewDataSource {
         if section == IssueSections.header.rawValue {
             return IssueHeaderRows.count.rawValue
         } else {
-            return max(1, contacts.count)
+            if let contacts = self.contacts {
+                return max(1, contacts.count)
+            }
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        guard let contacts = contacts else { return UITableViewCell() }
+
         switch indexPath.section {
         case IssueSections.header.rawValue:
             return headerCell(at: indexPath)
@@ -222,21 +247,10 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        
-        contactManager.fetchContacts(location: location) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let contacts):
-                self.contacts = contacts
-                self.tableView.reloadData()
-            case .failed(let error):
-                let alert = UIAlertController(title: "Error loading contacts",
-                                              message: "Contacts could not be loaded. \(error.localizedDescription)", preferredStyle: .alert)
-                self.show(alert, sender: nil)
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
-        
+
+        loadContacts()
+        dismiss(animated: true, completion: nil)
+
 //        issuesManager.fetchContacts(location: location) { result in
 //
 //            if self.isSplitDistrict {

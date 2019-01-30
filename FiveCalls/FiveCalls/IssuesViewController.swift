@@ -39,6 +39,7 @@ class IssuesViewController : UITableViewController {
 
     // Should be passed by the caller.
     var issuesManager: IssuesManager!
+    var contactsManager: ContactsManager!
     
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
@@ -196,10 +197,12 @@ class IssuesViewController : UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.issuesViewController.moreSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
+            typedInfo.destination.contactsManager = contactsManager
         }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
+            typedInfo.destination.contactsManager = contactsManager
             typedInfo.destination.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         }
     }

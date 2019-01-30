@@ -16,8 +16,6 @@ enum ContactLoadResult {
 class ContactsManager {
     private let queue: OperationQueue
     
-    var contacts: [Contact]?
-    
     init() {
         queue = .main
     }
@@ -25,10 +23,8 @@ class ContactsManager {
     func fetchContacts(location: UserLocation, completion: @escaping (ContactLoadResult) -> Void) {
         let operation = FetchContactsOperation(location: location)
         
-        operation.completionBlock = { [weak self, weak operation] in
-            
+        operation.completionBlock = { [weak operation] in            
             if let contacts = operation?.contacts {
-                self?.contacts = contacts
                 DispatchQueue.main.async {
                     completion(.success(contacts))
                 }

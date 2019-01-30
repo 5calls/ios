@@ -23,9 +23,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     let splitController = UISplitViewController()
     static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
-    var issuesManager: IssuesManager {
-        return issuesViewController.issuesManager
-    }
+    var issuesManager = IssuesManager()
+    var contactsManager = ContactsManager()
     
     lazy var effectView: UIVisualEffectView = {
         let effectView = UIVisualEffectView(frame: self.headerContainer.bounds)
@@ -38,7 +37,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     private func configureChildViewController() {
         let isRegularWidth = traitCollection.horizontalSizeClass == .regular
         let issuesVC = R.storyboard.main.issuesViewController()!
-        issuesVC.issuesManager = IssuesManager()
+        issuesVC.issuesManager = issuesManager
+        issuesVC.contactsManager = contactsManager
+        
         issuesVC.issuesDelegate = self
         let childController: UIViewController
         
@@ -187,7 +188,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
                 self?.setTitleLabel(location: location)
             }
         }
-        
     }
     
     // MARK: - Private functions
