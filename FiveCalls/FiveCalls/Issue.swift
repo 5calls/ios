@@ -15,7 +15,7 @@ struct Issue : Decodable {
     let slug: String
     let reason: String
     let script: String
-//    let category: [Category]
+    let categories: [Category]
     let active: Bool
 //    let outcomes: [Outcome]
     let contactType: String
@@ -29,16 +29,7 @@ struct Issue : Decodable {
         return ""
     }
     
-    // REMOVE ME
-    var category: Category? {
-        return nil
-    }
-    
     var outcomes: [Outcome] {
         return []
-    }
-    
-    var order: Int {
-        return 0
     }
 }

@@ -56,7 +56,7 @@ class IssuesViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Construct viewModel from the issues already fetched by the caller.
-        viewModel = createViewModelForCategories(categories: self.issuesManager.categories)
+        viewModel = createViewModelForCategories(issues: self.issuesManager.issues)
 
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
@@ -130,11 +130,11 @@ class IssuesViewController : UITableViewController {
         }
     }
 
-    private func createViewModelForCategories(categories: [Category]) -> IssuesViewModel {
+    private func createViewModelForCategories(issues: [Issue]) -> IssuesViewModel {
         if shouldShowAllIssues {
-            return AllIssuesViewModel(categories: categories)
+            return AllIssuesViewModel(issues: issues)
         }
-        return ActiveIssuesViewModel(categories: categories)
+        return ActiveIssuesViewModel(issues: issues)
     }
 
     private func issuesLoaded(result: LoadResult) {
@@ -143,7 +143,7 @@ class IssuesViewController : UITableViewController {
         issuesDelegate?.didFinishLoadingIssues()
         if case .success = result {
             DispatchQueue.global(qos: .background).async { [unowned self] () -> Void in
-                let viewModel = self.createViewModelForCategories(categories: self.issuesManager.categories)
+                let viewModel = self.createViewModelForCategories(issues: self.issuesManager.issues)
                 DispatchQueue.main.async {
                     self.viewModel = viewModel
                     self.tableView.reloadData()
@@ -158,8 +158,8 @@ class IssuesViewController : UITableViewController {
     private func headerWithTitle(title: String) -> UIView {
         let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
         notAButton.setTitle(title, for: .normal)
-        notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
-        notAButton.backgroundColor = .fvc_superLightGray
+        notAButton.setTitleColor(.fvc_darkGray, for: .normal)
+        notAButton.backgroundColor = .fvc_lightGray
         notAButton.titleLabel?.font = .fvc_header
         notAButton.borderWidth = 1
         notAButton.borderColor = .fvc_mediumGray

@@ -92,6 +92,7 @@
 		B5E98E3B1E52A566005221B7 /* GET-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E3A1E52A566005221B7 /* GET-report.json */; };
 		B5E98E3D1E52A570005221B7 /* GET-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E3C1E52A570005221B7 /* GET-issues.json */; };
 		B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E401E52A8AB005221B7 /* POST-report.json */; };
+		B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */; };
 		B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFBB981E5EA60E00647121 /* Appearance.swift */; };
 		B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */; };
 		D016F9DA21C1F5B300E3BDAC /* UIViewController+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016F9D921C1F5B300E3BDAC /* UIViewController+FiveCalls.swift */; };
@@ -255,6 +256,7 @@
 		B5E98E3A1E52A566005221B7 /* GET-report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-report.json"; sourceTree = "<group>"; };
 		B5E98E3C1E52A570005221B7 /* GET-issues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-issues.json"; sourceTree = "<group>"; };
 		B5E98E401E52A8AB005221B7 /* POST-report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "POST-report.json"; sourceTree = "<group>"; };
+		B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedIssuesViewModel.swift; sourceTree = "<group>"; };
 		B5FFBB981E5EA60E00647121 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D016F9D921C1F5B300E3BDAC /* UIViewController+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FiveCalls.swift"; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 				B5E7625C1E403B8600D63D62 /* StatsViewModel.swift */,
 				B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */,
 				A5048C6E1F96BCD000C6163D /* IssuesViewModel.swift */,
+				B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -1019,6 +1022,7 @@
 				D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */,
 				B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
+				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
 				B512506C21E6F91C007D32DF /* ContactsManager.swift in Sources */,
 				D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */,
 			);
