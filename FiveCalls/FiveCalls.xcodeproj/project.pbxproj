@@ -797,11 +797,11 @@
 			);
 			name = "Generate R.Swift Code";
 			outputPaths = (
-				"$SRCROOT/[YOUR_PATH]/R.generated.swift",
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/[YOUR_PATH]/R.generated.swift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		2FD3763A0D5CA022A518B1A9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
