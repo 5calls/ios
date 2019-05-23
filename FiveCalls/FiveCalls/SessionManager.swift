@@ -55,7 +55,8 @@ class SessionManager {
             NotificationCenter.default.post(Notification(name: .userProfileChanged))
         }.catch { error in
             print("Failed to start a user session: \(error)")
-            Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["message" : "Error starting session"])
+            // this is likely the user cancelling the flow, not a critical error
+            // and tracking the error in crashlytics here causes a crash 😕
         }
     }
     
