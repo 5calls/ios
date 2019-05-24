@@ -1119,7 +1119,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiveCalls.app/FiveCalls";
 			};
 			name = Debug;
@@ -1136,7 +1136,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiveCalls.app/FiveCalls";
 			};
 			name = Release;
@@ -1322,7 +1322,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = FiveCalls;
 			};
 			name = Debug;
@@ -1338,7 +1338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = FiveCalls;
 			};
 			name = Release;
@@ -1360,7 +1360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1383,7 +1383,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
