@@ -36,7 +36,7 @@ class WelcomeViewController: UIViewController {
 
     private func loadPages() {
         pageContainer.backgroundColor = .white
-        addChildViewController(pageController)
+        addChild(pageController)
         pageContainer.addSubview(pageController.view)
         
         NSLayoutConstraint.activate([
@@ -45,7 +45,7 @@ class WelcomeViewController: UIViewController {
             pageController.view.rightAnchor.constraint(equalTo: pageContainer.rightAnchor),
             pageController.view.bottomAnchor.constraint(equalTo: pageContainer.bottomAnchor),
             ])
-        pageController.didMove(toParentViewController: self)
+        pageController.didMove(toParent: self)
         pageController.dataSource = self
         pageController.setViewControllers([viewController(atIndex: 0)], direction: .forward, animated: false, completion: nil)
     }

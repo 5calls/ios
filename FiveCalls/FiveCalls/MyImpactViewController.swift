@@ -59,8 +59,8 @@ class MyImpactViewController : UITableViewController {
         Answers.logCustomEvent(withName:"Screen: My Impact")
         
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.fvc_header,
-            NSAttributedStringKey.foregroundColor: UIColor.white
+            NSAttributedString.Key.font: UIFont.fvc_header,
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
         displayProfileInfo()
@@ -94,7 +94,7 @@ class MyImpactViewController : UITableViewController {
         headerView.setNeedsLayout()
         headerView.layoutIfNeeded()
         
-        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         var frame = headerView.frame
         frame.size.height = height
         headerView.frame = frame

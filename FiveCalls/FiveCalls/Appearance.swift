@@ -15,7 +15,7 @@ enum Appearance {
         pageControlAppearance.currentPageIndicatorTintColor = .fvc_darkBlue
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.font: UIFont.fvc_header
+            NSAttributedString.Key.font: UIFont.fvc_header
         ]
     }
 }

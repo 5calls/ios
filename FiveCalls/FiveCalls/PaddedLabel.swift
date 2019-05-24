@@ -30,17 +30,17 @@ class PaddedLabel : UILabel {
     }
 
     override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
-        let insetRect = UIEdgeInsetsInsetRect(bounds, contentInset)
+        let insetRect = bounds.inset(by: contentInset)
         let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: numberOfLines)
         let invertedInsets = UIEdgeInsets(top: -contentInset.top,
                                           left: -contentInset.left,
                                           bottom: -contentInset.bottom,
                                           right: -contentInset.right)
-        return UIEdgeInsetsInsetRect(textRect, invertedInsets)
+        return textRect.inset(by: invertedInsets)
     }
     
     override public func drawText(in rect: CGRect) {
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, contentInset))
+        super.drawText(in: rect.inset(by: contentInset))
     }
 
 }

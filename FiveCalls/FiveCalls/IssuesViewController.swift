@@ -52,7 +52,7 @@ class IssuesViewController : UITableViewController {
             NotificationCenter.default.removeObserver(notificationToken)
         }
         NotificationCenter.default.removeObserver(self, name: .callMade, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -75,7 +75,7 @@ class IssuesViewController : UITableViewController {
         }
 
         tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
 
         refreshControl = UIRefreshControl()
@@ -86,7 +86,7 @@ class IssuesViewController : UITableViewController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -308,12 +308,12 @@ extension IssuesViewController : DZNEmptyDataSetSource {
         
         return NSAttributedString(string: message,
                                   attributes: [
-                                    NSAttributedStringKey.font: UIFont.fvc_body
+                                    NSAttributedString.Key.font: UIFont.fvc_body
                 ])
     }
     
     
-    func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
+    func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
         return #imageLiteral(resourceName: "refresh")
     }
     

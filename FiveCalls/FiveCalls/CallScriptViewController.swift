@@ -51,7 +51,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(CallScriptViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         if self.presentingViewController != nil {
             self.navigationItem.leftBarButtonItem = self.iPadDoneButton
         }

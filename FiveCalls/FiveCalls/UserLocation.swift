@@ -9,8 +9,7 @@
 import Foundation
 import CoreLocation
 
-class UserLocation {
-    
+class UserLocation {    
     enum LocationType: String {
         case address
         case coordinates

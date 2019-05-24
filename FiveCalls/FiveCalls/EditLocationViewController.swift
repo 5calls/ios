@@ -110,7 +110,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
         let dismiss = UIAlertAction(title: R.string.localizable.dismissTitle(), style: .default ,handler: nil)
         alertController.addAction(dismiss)
         let openSettings = UIAlertAction(title: R.string.localizable.openSettingsTitle(), style: .default, handler: { action in
-            guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(url)
         })
         alertController.addAction(openSettings)

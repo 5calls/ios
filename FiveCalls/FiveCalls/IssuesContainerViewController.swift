@@ -55,7 +55,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             childController = issuesVC
         }
         
-        addChildViewController(childController)
+        addChild(childController)
         
         view.insertSubview(childController.view, belowSubview: headerContainer)
         childController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             childController.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
             ])
         
-        childController.didMove(toParentViewController: self)
+        childController.didMove(toParent: self)
         issuesViewController = issuesVC
     }
 
@@ -113,12 +113,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         super.traitCollectionDidChange(previousTraitCollection)
         
         if previousTraitCollection != nil && previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
-            issuesViewController.willMove(toParentViewController: nil)
+            issuesViewController.willMove(toParent: nil)
             issuesViewController.view.constraints.forEach { constraint in
                 issuesViewController.view.removeConstraint(constraint)
             }
             issuesViewController.view.removeFromSuperview()
-            issuesViewController.removeFromParentViewController()
+            issuesViewController.removeFromParent()
             
             configureChildViewController()
         }

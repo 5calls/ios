@@ -28,7 +28,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(IssueDetailViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         
         trackEvent("Topic", properties: ["IssueID": String(issue.id), "IssueTitle": issue.name])

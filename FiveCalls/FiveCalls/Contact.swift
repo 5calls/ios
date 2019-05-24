@@ -46,8 +46,8 @@ struct Contact : Decodable {
 }
 
 extension Contact : Hashable {
-    var hashValue: Int {
-        return id.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
     
     static func ==(lhs: Contact, rhs: Contact) -> Bool {
