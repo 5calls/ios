@@ -22,12 +22,12 @@ class CategorizedIssuesViewModel {
     }
 }
 
-extension CategorizedIssuesViewModel : Equatable, Hashable {
+extension CategorizedIssuesViewModel : Hashable {
     static func == (lhs: CategorizedIssuesViewModel, rhs: CategorizedIssuesViewModel) -> Bool {
         return lhs.category == rhs.category
     }
-
-    var hashValue: Int {
-        return category.hashValue
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.category)
     }
 }

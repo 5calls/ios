@@ -13,9 +13,9 @@ extension Error {
         let e = self as NSError
         guard e.domain == NSURLErrorDomain else { return false }
         
-        return e.code == NSURLErrorNetworkConnectionLost ||
-            e.code == NSURLErrorNotConnectedToInternet ||
-            e.code == NSURLErrorSecureConnectionFailed
+        return [NSURLErrorNetworkConnectionLost,
+                NSURLErrorNotConnectedToInternet,
+                NSURLErrorSecureConnectionFailed].contains(e.code)
     }
 }
 
