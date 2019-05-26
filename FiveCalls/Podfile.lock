@@ -1,5 +1,5 @@
 PODS:
-  - Auth0 (1.12.0):
+  - Auth0 (1.15.0):
     - SimpleKeychain
   - Bugsnag (5.17.2)
   - CPDAcknowledgements (1.0.0)
@@ -24,10 +24,10 @@ PODS:
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - SimpleKeychain (0.8.1)
+  - SimpleKeychain (0.9.0)
 
 DEPENDENCIES:
-  - Auth0 (~> 1.9)
+  - Auth0 (~> 1.15)
   - Bugsnag
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
   - Crashlytics (~> 3.10.7)
@@ -77,7 +77,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/nickoneill/pantry.git
 
 SPEC CHECKSUMS:
-  Auth0: a12ddb4ab08e7e207b48af393bfdeaaa91a8fbc4
+  Auth0: b741c805711a80eb698fce55d354cc32e0784dce
   Bugsnag: f44353744bf11b23118efba6e695dd453c63c1b2
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
@@ -91,8 +91,8 @@ SPEC CHECKSUMS:
   PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
+  SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: cc427240221e5219da2d6567086be0938fe7c45d
+PODFILE CHECKSUM: 041db8bfc3fe289e78a0d84bbbc0308d3bf2e8b8
 
 COCOAPODS: 1.6.1

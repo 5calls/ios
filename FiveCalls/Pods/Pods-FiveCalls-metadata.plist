@@ -52,7 +52,7 @@ SOFTWARE.
 			<key>summary</key>
 			<string>Swift toolkit for Auth0 API</string>
 			<key>version</key>
-			<string>1.12.0</string>
+			<string>1.15.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -1110,7 +1110,7 @@ SOFTWARE.</string>
 			<key>summary</key>
 			<string>A wrapper to make it really easy to deal with iOS Keychain and store your user's credentials securely.</string>
 			<key>version</key>
-			<string>0.8.1</string>
+			<string>0.9.0</string>
 		</dict>
 	</array>
 </dict>
