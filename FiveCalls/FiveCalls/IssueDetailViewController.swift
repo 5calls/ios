@@ -16,6 +16,9 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
+    var contacts: [Contact]?
+    
+    var contactsManager: ContactsManager!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,10 +28,32 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(IssueDetailViewController.shareButtonPressed(_ :)))
         
         tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
+        
+        trackEvent("Topic", properties: ["IssueID": String(issue.id), "IssueTitle": issue.name])
 
-        trackEvent("Topic", properties: ["IssueID": self.issue.id, "IssueTitle": self.issue.name])
+        loadContacts()
+    }
+
+    private func loadContacts() {
+        print("Loading contacts for: \(issue.contactAreas)")
+        contactsManager.fetchContacts(location: UserLocation.current) { result in
+            switch result {
+            case .success(let contacts):
+                self.contacts = contacts.filter {
+                     self.issue.contactAreas.contains($0.area)
+                }
+                self.tableView.reloadData()
+            case .failed(let error):
+                let alert = UIAlertController(title: "Loading Error", message: "There was an error loading your representatives. \(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                    self.loadContacts()
+                }))
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 
     @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -79,15 +104,17 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
+        tableView.reloadSections(IndexSet(integer: IssueSections.contacts.rawValue), with: .none)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard let contacts = contacts else { return false }
         if identifier == R.segue.issueDetailViewController.callScript.identifier, self.splitViewController != nil, let indexPath = tableView.indexPathForSelectedRow {
             let controller = R.storyboard.main.callScriptController()!
             controller.issuesManager = issuesManager
             controller.issue = issue
-            controller.contact = issue.contacts[indexPath.row]
+            controller.contact = contacts[indexPath.row]
+            controller.contacts = contacts
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .formSheet
             self.present(nav, animated: true, completion: nil)
@@ -102,10 +129,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             loc.delegate = self
         } else if let call = segue.destination as? CallScriptViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            guard let contacts = contacts else { return }
             call.issuesManager = issuesManager
             call.issue = issue
-            call.contact = issue.contacts[indexPath.row]
-        }        
+            call.contact = contacts[indexPath.row]
+            call.contacts = contacts
+        }
     }
     
     @objc func shareButtonPressed(_ button: UIBarButtonItem) {
@@ -126,6 +155,12 @@ enum IssueHeaderRows : Int {
 }
 
 extension IssueDetailViewController : UITableViewDataSource {
+    
+    var isSplitDistrict: Bool {
+        // FIXME: determine split district another way
+        return false
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return IssueSections.count.rawValue
     }
@@ -134,19 +169,23 @@ extension IssueDetailViewController : UITableViewDataSource {
         if section == IssueSections.header.rawValue {
             return IssueHeaderRows.count.rawValue
         } else {
-            return max(1, issue.contacts.count)
+            if let contacts = self.contacts {
+                return max(1, contacts.count)
+            }
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        guard let contacts = contacts else { return UITableViewCell() }
+
         switch indexPath.section {
         case IssueSections.header.rawValue:
             return headerCell(at: indexPath)
         default:
-            if issue.contacts.isEmpty {
+            if contacts.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)! as SetLocationCell
-                if issuesManager.isSplitDistrict {
+                if isSplitDistrict {
                     cell.messageLabel.text = R.string.localizable.splitDistrictMessage()
                 } else {
                     cell.messageLabel.text = R.string.localizable.setYourLocation()
@@ -155,7 +194,7 @@ extension IssueDetailViewController : UITableViewDataSource {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contactCell, for: indexPath)!
                 cell.borderTop = indexPath.row == 0
-                let contact = issue.contacts[indexPath.row]
+                let contact = contacts[indexPath.row]
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
                 if let photoURL = contact.photoURL {
@@ -211,27 +250,31 @@ extension IssueDetailViewController : EditLocationViewControllerDelegate {
     }
     
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
-        issuesManager.fetchIssues(location: location) { result in
-            
-            if self.issuesManager.isSplitDistrict {
-                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
-                vc.present(alertController, animated: true, completion: nil)
-            } else {
-                self.dismiss(animated: true, completion: nil)
-            }
-        
-            
-            if let issue = self.issuesManager.issue(withId: self.issue.id) {
-                self.issue = issue
-                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
-                self.scrollToBottom()
-            } else {
-                // weird state to be in, but the issue we're looking at
-                // no longer exists, so we'll just quietly (read: not quietly) 
-                // pop back to the issues list
-                _ = self.navigationController?.popViewController(animated: true)
-            }
-        }
+
+        loadContacts()
+        dismiss(animated: true, completion: nil)
+
+//        issuesManager.fetchContacts(location: location) { result in
+//
+//            if self.isSplitDistrict {
+//                let alertController = UIAlertController(title: R.string.localizable.splitDistrictTitle(), message: R.string.localizable.splitDistrictMessage(), preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: R.string.localizable.okButtonTitle(), style: .default ,handler: nil))
+//                vc.present(alertController, animated: true, completion: nil)
+//            } else {
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//
+//
+//            if let issue = self.issuesManager.issue(withId: self.issue.id) {
+//                self.issue = issue
+//                self.tableView.reloadSections([IssueSections.contacts.rawValue], with: .automatic)
+//                self.scrollToBottom()
+//            } else {
+//                // weird state to be in, but the issue we're looking at
+//                // no longer exists, so we'll just quietly (read: not quietly)
+//                // pop back to the issues list
+//                _ = self.navigationController?.popViewController(animated: true)
+//            }
+//        }
     }
 }

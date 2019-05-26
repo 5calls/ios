@@ -30,7 +30,7 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
         contentView.delegate = self
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         switch navigationType {
         case .linkClicked:
             // Open links in Safari

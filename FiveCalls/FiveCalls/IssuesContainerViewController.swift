@@ -23,9 +23,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     let splitController = UISplitViewController()
     static let headerHeight: CGFloat = 90
     var issuesViewController: IssuesViewController!
-    var issuesManager: IssuesManager {
-        return issuesViewController.issuesManager
-    }
+    var issuesManager = IssuesManager()
+    var contactsManager = ContactsManager()
     
     lazy var effectView: UIVisualEffectView = {
         let effectView = UIVisualEffectView(frame: self.headerContainer.bounds)
@@ -38,7 +37,9 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     private func configureChildViewController() {
         let isRegularWidth = traitCollection.horizontalSizeClass == .regular
         let issuesVC = R.storyboard.main.issuesViewController()!
-        issuesVC.issuesManager = IssuesManager()
+        issuesVC.issuesManager = issuesManager
+        issuesVC.contactsManager = contactsManager
+        
         issuesVC.issuesDelegate = self
         let childController: UIViewController
         
@@ -54,7 +55,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             childController = issuesVC
         }
         
-        addChildViewController(childController)
+        addChild(childController)
         
         view.insertSubview(childController.view, belowSubview: headerContainer)
         childController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +67,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             childController.view.bottomAnchor.constraint(equalTo: footerView.topAnchor)
             ])
         
-        childController.didMove(toParentViewController: self)
+        childController.didMove(toParent: self)
         issuesViewController = issuesVC
     }
 
@@ -112,12 +113,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         super.traitCollectionDidChange(previousTraitCollection)
         
         if previousTraitCollection != nil && previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
-            issuesViewController.willMove(toParentViewController: nil)
+            issuesViewController.willMove(toParent: nil)
             issuesViewController.view.constraints.forEach { constraint in
                 issuesViewController.view.removeConstraint(constraint)
             }
             issuesViewController.view.removeFromSuperview()
-            issuesViewController.removeFromParentViewController()
+            issuesViewController.removeFromParent()
             
             configureChildViewController()
         }
@@ -187,7 +188,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
                 self?.setTitleLabel(location: location)
             }
         }
-        
     }
     
     // MARK: - Private functions

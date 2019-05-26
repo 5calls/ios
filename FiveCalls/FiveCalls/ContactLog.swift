@@ -28,7 +28,6 @@ struct ContactLog : Hashable {
 }
 
 extension ContactLog : Storable {
-
     init(warehouse: Warehouseable) {
         issueId = warehouse.get("issueId") ?? ""
         contactId = warehouse.get("contactId") ?? ""
@@ -77,11 +76,11 @@ struct ContactLogs {
         return Pantry.unpack(persistenceKey).flatMap(ContactLogs.init) ?? ContactLogs()
     }
     
-    func methodOfContact(to contactId: String, forIssue issueId: String) -> String? {
-        return all.filter({$0.contactId == contactId && $0.issueId == issueId}).last?.outcome
+    func methodOfContact(to contactId: String, forIssue issueId: Int64) -> String? {
+        return all.filter({$0.contactId == contactId && $0.issueId == String(issueId)}).last?.outcome
     }
 
-    func hasContacted(contactId: String, forIssue issueId: String) -> Bool {
+    func hasContacted(contactId: String, forIssue issueId: Int64) -> Bool {
         guard let method = methodOfContact(to: contactId, forIssue: issueId) else {
             return false
         }
@@ -95,7 +94,7 @@ struct ContactLogs {
         }        
     }
     
-    func hasCompleted(issue: String, allContacts: [Contact]) -> Bool {
+    func hasCompleted(issue: Int64, allContacts: [Contact]) -> Bool {
         if (allContacts.count == 0) {
             return false
         }

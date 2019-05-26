@@ -7,7 +7,7 @@ def common_pods
   pod 'Pantry', git: 'https://github.com/nickoneill/pantry.git', 
     branch: 'nick-file-protection',
     inhibit_warnings: true
-  pod 'R.swift'
+  pod 'R.swift', '~> 5.0'
 end
 
 target 'FiveCalls' do

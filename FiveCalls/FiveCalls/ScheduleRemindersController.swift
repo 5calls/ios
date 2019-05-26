@@ -107,7 +107,7 @@ class ScheduleRemindersController: UIViewController {
         }
         if navigationController?.viewControllers.first == self {
             let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissAction(_:)))
-            item.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
+            item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
             navigationItem.leftBarButtonItem = item
         }
         

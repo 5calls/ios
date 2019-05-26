@@ -22,7 +22,7 @@ class IssuesViewController : UITableViewController {
     @IBInspectable var shouldShowAllIssues: Bool = false
     
     weak var issuesDelegate: IssuesViewControllerDelegate?
-    var lastLoadResult: IssuesLoadResult?
+    var lastLoadResult: LoadResult?
     var isLoading = false
     var analyticsEvent: String {
         if shouldShowAllIssues {
@@ -39,7 +39,9 @@ class IssuesViewController : UITableViewController {
 
     // Should be passed by the caller.
     var issuesManager: IssuesManager!
-
+    var contactsManager: ContactsManager!
+    private var contacts: [Contact]?
+    
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
     
@@ -50,13 +52,13 @@ class IssuesViewController : UITableViewController {
             NotificationCenter.default.removeObserver(notificationToken)
         }
         NotificationCenter.default.removeObserver(self, name: .callMade, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Construct viewModel from the issues already fetched by the caller.
-        viewModel = createViewModelForCategories(categories: self.issuesManager.categories)
+        viewModel = createViewModelForCategories(issues: self.issuesManager.issues)
 
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
@@ -73,7 +75,7 @@ class IssuesViewController : UITableViewController {
         }
 
         tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
 
         refreshControl = UIRefreshControl()
@@ -84,7 +86,7 @@ class IssuesViewController : UITableViewController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,25 +127,32 @@ class IssuesViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
         issuesDelegate?.didStartLoadingIssues()
 
-        issuesManager.fetchIssues(location: UserLocation.current) { [weak self] in
+        issuesManager.fetchIssues { [weak self] in
             self?.issuesLoaded(result: $0)
         }
-    }
 
-    private func createViewModelForCategories(categories: [Category]) -> IssuesViewModel {
-        if shouldShowAllIssues {
-            return AllIssuesViewModel(categories: categories)
+        contactsManager.fetchContacts(location: UserLocation.current) { result in
+            if case .success(let contacts) = result {
+                self.contacts = contacts
+                self.tableView.reloadData()
+            }
         }
-        return ActiveIssuesViewModel(categories: categories)
     }
 
-    private func issuesLoaded(result: IssuesLoadResult) {
+    private func createViewModelForCategories(issues: [Issue]) -> IssuesViewModel {
+        if shouldShowAllIssues {
+            return AllIssuesViewModel(issues: issues)
+        }
+        return ActiveIssuesViewModel(issues: issues)
+    }
+
+    private func issuesLoaded(result: LoadResult) {
         isLoading = false
         lastLoadResult = result
         issuesDelegate?.didFinishLoadingIssues()
         if case .success = result {
             DispatchQueue.global(qos: .background).async { [unowned self] () -> Void in
-                let viewModel = self.createViewModelForCategories(categories: self.issuesManager.categories)
+                let viewModel = self.createViewModelForCategories(issues: self.issuesManager.issues)
                 DispatchQueue.main.async {
                     self.viewModel = viewModel
                     self.tableView.reloadData()
@@ -158,8 +167,8 @@ class IssuesViewController : UITableViewController {
     private func headerWithTitle(title: String) -> UIView {
         let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
         notAButton.setTitle(title, for: .normal)
-        notAButton.setTitleColor(.fvc_darkBlueText, for: .normal)
-        notAButton.backgroundColor = .fvc_superLightGray
+        notAButton.setTitleColor(.fvc_darkGray, for: .normal)
+        notAButton.backgroundColor = .fvc_lightGray
         notAButton.titleLabel?.font = .fvc_header
         notAButton.borderWidth = 1
         notAButton.borderColor = .fvc_mediumGray
@@ -196,10 +205,12 @@ class IssuesViewController : UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.issuesViewController.moreSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
+            typedInfo.destination.contactsManager = contactsManager
         }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
+            typedInfo.destination.contactsManager = contactsManager
             typedInfo.destination.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         }
     }
@@ -240,17 +251,20 @@ class IssuesViewController : UITableViewController {
         let issue = viewModel.issueForIndexPath(indexPath: indexPath)
         cell.titleLabel.text = issue.name
 
+        let issueContacts = (contacts ?? []).filter {
+            issue.contactAreas.contains($0.area)
+        }
+
         var numContactsContacted = 0
-        for contact in issue.contacts {
+        for contact in issueContacts {
             if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
                 if contacted {
                     numContactsContacted = numContactsContacted + 1
                 }
             }
         }
-        
-        // avoid NaN problem if there are no contacts
-        let progress = issue.contacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issue.contacts.count)
+//        // avoid NaN problem if there are no contacts
+        let progress = issueContacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issueContacts.count)
         cell.progressView.progress = progress
         return cell
     }
@@ -279,7 +293,7 @@ extension IssuesViewController: UIViewControllerPreviewingDelegate {
 
 extension IssuesViewController : DZNEmptyDataSetSource {
     
-    private func appropriateErrorMessage(for result: IssuesLoadResult) -> String {
+    private func appropriateErrorMessage(for result: LoadResult) -> String {
         switch result {
         case .offline: return R.string.localizable.issueLoadFailedConnection()
         case .serverError(_): return R.string.localizable.issueLoadFailedServer()
@@ -294,12 +308,12 @@ extension IssuesViewController : DZNEmptyDataSetSource {
         
         return NSAttributedString(string: message,
                                   attributes: [
-                                    NSAttributedStringKey.font: UIFont.fvc_body
+                                    NSAttributedString.Key.font: UIFont.fvc_body
                 ])
     }
     
     
-    func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControlState) -> UIImage? {
+    func buttonImage(forEmptyDataSet scrollView: UIScrollView, for state: UIControl.State) -> UIImage? {
         return #imageLiteral(resourceName: "refresh")
     }
     

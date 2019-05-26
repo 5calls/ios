@@ -9,7 +9,10 @@
 import Foundation
 
 protocol IssuesViewModel {
-    init(categories:[Category])
+
+    var issues: [Issue] { get }
+
+    init(issues:[Issue])
     func numberOfSections() -> Int
     func numberOfRowsInSection(section: Int) -> Int
     func hasNoData() -> Bool
@@ -17,52 +20,62 @@ protocol IssuesViewModel {
     func titleForHeaderInSection(section: Int) -> String
 }
 
+extension IssuesViewModel {
+    var categorizedIssues: [CategorizedIssuesViewModel] {
+        var categoryViewModels = Set<CategorizedIssuesViewModel>()
+        for issue in issues {
+            for category in issue.categories {
+
+                if let categorized = categoryViewModels.first(where: { $0.category == category }) {
+                    categorized.issues.append(issue)
+                } else {
+                    categoryViewModels.insert(CategorizedIssuesViewModel(category: category, issues: [issue]))
+                }
+            }
+        }
+        return Array(categoryViewModels).sorted(by: { $0.category < $1.category })
+    }
+}
+
 // Shows all issues - grouped by categories.
 struct AllIssuesViewModel: IssuesViewModel {
-    private let categories: [Category]
+    let issues: [Issue]
 
-    init(categories:[Category]) {
-        self.categories = categories
+    init(issues: [Issue]) {
+        self.issues = issues
     }
 
     func numberOfSections() -> Int {
         // As many section as there are unique categories.
-        return categories.count
+        return categorizedIssues.count
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
-        return categories[section].issues.count
+        return categorizedIssues[section].issues.count
     }
 
     func hasNoData() -> Bool {
-        return categories.count == 0
+        return categorizedIssues.count == 0
     }
 
     func issueForIndexPath(indexPath: IndexPath) -> Issue {
-        return categories[indexPath.section].issues[indexPath.row]
+        return categorizedIssues[indexPath.section].issues[indexPath.row]
     }
 
     func titleForHeaderInSection(section: Int) -> String {
         // Category name as section header.
-        return categories[section].name
+        return categorizedIssues[section].name
     }
 }
 
 // Shows only the active issues.
 struct ActiveIssuesViewModel: IssuesViewModel {
     private let activeIssues: [Issue]
+    let issues: [Issue]
 
-    init(categories:[Category]) {
-        var activeIssues: [Issue] = []
-        // Filter issues to get only the active ones.
-        categories.forEach { (category) in
-            activeIssues.append(contentsOf: category.issues.filter({ $0.inactive == false }))
-        }
-
-        activeIssues.sort(by: { (d1, d2) -> Bool in
-            return d1.order < d2.order
-        })
-        self.activeIssues = activeIssues
+    init(issues: [Issue]) {
+        self.issues = issues
+        activeIssues = issues.filter { $0.active }
     }
 
     func numberOfSections() -> Int {

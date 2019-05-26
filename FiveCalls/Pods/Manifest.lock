@@ -21,9 +21,9 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.2.1):
     - PromiseKit/CorePromise
-  - R.swift (4.0.0):
-    - R.swift.Library (~> 4.0.0)
-  - R.swift.Library (4.0.0)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
   - SimpleKeychain (0.8.1)
 
 DEPENDENCIES:
@@ -39,7 +39,7 @@ DEPENDENCIES:
   - OneSignal (~> 2.5)
   - Pantry (from `https://github.com/nickoneill/pantry.git`, branch `nick-file-protection`)
   - PromiseKit (~> 6.0)
-  - R.swift
+  - R.swift (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -89,10 +89,10 @@ SPEC CHECKSUMS:
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
   PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
-  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
-  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
 
-PODFILE CHECKSUM: 825ada925d5ed162f70d01fda72d6afa0f1e2469
+PODFILE CHECKSUM: cc427240221e5219da2d6567086be0938fe7c45d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
