@@ -9,7 +9,6 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.7.11)
   - Kingfisher (4.9.0)
-  - Mixpanel (3.3.3)
   - OneSignal (2.6.0)
   - Pantry (0.3)
   - PromiseKit (6.2.1):
@@ -35,7 +34,6 @@ DEPENDENCIES:
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - Fabric
   - Kingfisher (~> 4.0)
-  - Mixpanel
   - OneSignal (~> 2.5)
   - Pantry (from `https://github.com/nickoneill/pantry.git`, branch `nick-file-protection`)
   - PromiseKit (~> 6.0)
@@ -49,7 +47,6 @@ SPEC REPOS:
     - Down
     - Fabric
     - Kingfisher
-    - Mixpanel
     - OneSignal
     - PromiseKit
     - R.swift
@@ -85,7 +82,6 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
   Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
-  Mixpanel: 3c3925c27f7a321d5978319a72f53f8f0885afc5
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
   PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
@@ -93,6 +89,6 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: 539cb0a676a73d496b2fc77d3929bf76681968d1
+PODFILE CHECKSUM: 093933ab7f0a21946b9b62986ddae739abb4df2a
 
 COCOAPODS: 1.6.1

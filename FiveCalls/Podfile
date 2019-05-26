@@ -22,7 +22,6 @@ target 'FiveCalls' do
   pod 'PromiseKit', '~> 6.0'
   pod 'Down', inhibit_warnings: true
   pod 'Bugsnag'
-  pod 'Mixpanel'
 end
 
 target 'NotificationsService' do
