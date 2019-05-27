@@ -31,6 +31,8 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.rowHeight = UITableView.automaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         
+        trackEvent("Topic", properties: ["IssueID": String(issue.id), "IssueTitle": issue.name])
+
         loadContacts()
     }
 
