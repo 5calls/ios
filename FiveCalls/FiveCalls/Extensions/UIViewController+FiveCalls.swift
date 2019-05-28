@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import Mixpanel
 
 extension UIViewController {
+    /// Does nothing - A placeholder for an eventual analytics call
     func trackEvent(_ name: String, properties: [String: String]? = nil) {
-        Mixpanel.sharedInstance()?.track(name, properties: properties)
+        // Do something with new analytics.
     }
 }

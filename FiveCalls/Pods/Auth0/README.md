@@ -6,15 +6,15 @@
 [![License](https://img.shields.io/cocoapods/l/Auth0.svg?style=flat-square)](http://cocoadocs.org/docsets/Auth0)
 [![Platform](https://img.shields.io/cocoapods/p/Auth0.svg?style=flat-square)](http://cocoadocs.org/docsets/Auth0)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
-![Swift 3.2](https://img.shields.io/badge/Swift-3.2-orange.svg?style=flat-square)
+![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat-square)
 
 Swift toolkit that lets you communicate efficiently with many of the [Auth0 API](https://auth0.com/docs/api/info) functions and enables you to seamlessly integrate the Auth0 login.
 
 ## Requirements
 
-- iOS 9 or later
-- Xcode 8.3 / 9.0
-- Swift 3.2
+- iOS 9+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+
+- Xcode 10.x
+- Swift 4.x/5.x
 
 ## Installation
 
@@ -23,7 +23,7 @@ Swift toolkit that lets you communicate efficiently with many of the [Auth0 API]
 If you are using Carthage, add the following lines to your `Cartfile`:
 
 ```ruby
-github "auth0/Auth0.swift" ~> 1.12
+github "auth0/Auth0.swift" ~> 1.15
 ```
 
 Then run `carthage bootstrap`.
@@ -36,7 +36,7 @@ If you are using [Cocoapods](https://cocoapods.org/), add these lines to your `P
 
 ```ruby
 use_frameworks!
-pod 'Auth0', '~> 1.12'
+pod 'Auth0', '~> 1.15'
 ```
 
 Then run `pod install`.
@@ -44,7 +44,7 @@ Then run `pod install`.
 > For further reference on Cocoapods, check [their official documentation](http://guides.cocoapods.org/using/getting-started.html).
 
 > ### Upgrade Notes
-> If you are using the [clearSession](https://github.com/auth0/Auth0.swift/blob/master/Auth0/WebAuth.swift#L235) method in iOS 11+. You will need to ensure that the **Callback URL** has been added to the **Allowed Logout URLs** section of your application in the [Auth0 Dashboard](https://manage.auth0.com/#/applications/).
+> If you are using the [clearSession](https://github.com/auth0/Auth0.swift/blob/master/Auth0/WebAuth.swift#L235) method in iOS 11+, you will need to ensure that the **Callback URL** has been added to the **Allowed Logout URLs** section of your application in the [Auth0 Dashboard](https://manage.auth0.com/#/applications/).
 
 
 
@@ -206,7 +206,9 @@ Credentials will automatically be renewed (if expired) using the refresh token. 
 
 ```swift
 credentialsManager.credentials { error, credentials in
-    guard error == nil else { return print("Failed with \(error)") }
+    guard error == nil, let credentials = credentials else { 
+        return print("Failed with \(error)") 
+    }
     print("Obtained credentials: \(credentials)")
 }
 ```
@@ -272,39 +274,18 @@ Auth0
     }
 ```
 
+### Custom Domains
+
+If you are using the [Custom Domains](https://auth0.com/docs/custom-domains) feature and need to use an Auth0 endpoint
+such as `/userinfo`, please use the Auth0 domain specified for your Application in the [Auth0 Dashboard](https://auth0.com/docs/dashboard).
+
+Example:  `.audience("https://{YOUR_AUTH0_DOMAIN}/userinfo")`
+
 ### Management API (Users)
 
-#### Retrieve user_metadata
+You can request more information about a user's profile and manage the user's metadata by accessing the Auth0 [Management API](https://auth0.com/docs/api/management/v2). For security reasons native mobile applications are restricted to a subset of User based functionality.
 
-```swift
-Auth0
-    .users(token: idToken)
-    .get("user identifier", fields: ["user_metadata"], include: true)
-    .start { result in
-        switch result {
-        case .success(let userInfo):
-            print("user: \(userInfo)")
-        case .failure(let error):
-            print(error)
-        }
-    }
-```
-
-#### Update user_metadata
-
-```swift
-Auth0
-    .users(token: idToken)
-    .patch("user identifier", userMetadata: ["first_name": "John", "last_name": "Doe"])
-    .start { result in
-        switch result {
-        case .success(let userInfo):
-            print("User: \(userInfo)")
-        case .failure(let error):
-            print("Failed with \(error)")
-        }
-    }
-```
+You can find a detailed guide in this [iOS Swift QuickStart](https://auth0.com/docs/quickstart/native/ios-swift/03-user-sessions#managing-metadata)
 
 #### Link an account
 
