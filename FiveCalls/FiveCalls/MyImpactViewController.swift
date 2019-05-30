@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 import Rswift
 import Kingfisher
 import Bugsnag
@@ -56,7 +55,7 @@ class MyImpactViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Answers.logCustomEvent(withName:"Screen: My Impact")
+        AnalyticsManager.shared.trackEvent(withName: "Screen: My Impact")
         
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont.fvc_header,

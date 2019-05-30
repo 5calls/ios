@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 import DZNEmptyDataSet
 
 protocol IssuesViewControllerDelegate : class {
@@ -64,7 +63,7 @@ class IssuesViewController : UITableViewController {
         tableView.emptyDataSetSource = self
         self.registerForPreviewing(with: self, sourceView: tableView)
 
-        Answers.logCustomEvent(withName:"Screen: Issues List")
+        AnalyticsManager.shared.trackEvent(withName: "Screen: Issues List")
         trackEvent(analyticsEvent)
 
         navigationController?.setNavigationBarHidden(true, animated: false)

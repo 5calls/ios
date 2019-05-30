@@ -1,13 +1,18 @@
 PODS:
+  - AppCenter (2.0.1):
+    - AppCenter/Analytics (= 2.0.1)
+    - AppCenter/Crashes (= 2.0.1)
+  - AppCenter/Analytics (2.0.1):
+    - AppCenter/Core
+  - AppCenter/Core (2.0.1)
+  - AppCenter/Crashes (2.0.1):
+    - AppCenter/Core
   - Auth0 (1.15.0):
     - SimpleKeychain
   - Bugsnag (5.17.2)
   - CPDAcknowledgements (1.0.0)
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
   - Down (0.5.2)
   - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.7.11)
   - Kingfisher (4.9.0)
   - OneSignal (2.6.0)
   - Pantry (0.3)
@@ -26,13 +31,12 @@ PODS:
   - SimpleKeychain (0.9.0)
 
 DEPENDENCIES:
+  - AppCenter
   - Auth0 (~> 1.15)
   - Bugsnag
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
-  - Crashlytics (~> 3.10.7)
   - Down
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
-  - Fabric
   - Kingfisher (~> 4.0)
   - OneSignal (~> 2.5)
   - Pantry (from `https://github.com/nickoneill/pantry.git`, branch `nick-file-protection`)
@@ -41,11 +45,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppCenter
     - Auth0
     - Bugsnag
-    - Crashlytics
     - Down
-    - Fabric
     - Kingfisher
     - OneSignal
     - PromiseKit
@@ -74,13 +77,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/nickoneill/pantry.git
 
 SPEC CHECKSUMS:
+  AppCenter: 6a5ff2fd007b53431259fdd74f91eb3d0dfea3d1
   Auth0: b741c805711a80eb698fce55d354cc32e0784dce
   Bugsnag: f44353744bf11b23118efba6e695dd453c63c1b2
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   Down: 587371ad58002b06023d9c602519216862c3acbc
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
   Pantry: 98481849be65d2b2cb9658976533e84ebd266192
@@ -89,6 +91,6 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: 093933ab7f0a21946b9b62986ddae739abb4df2a
+PODFILE CHECKSUM: 71a2798dd2675db554e74098deca67f9a2e5d018
 
 COCOAPODS: 1.6.1

@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreLocation
-import Crashlytics
 import StoreKit
 import OneSignal
 import Kingfisher
@@ -59,9 +58,11 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue, let contactIndex = contacts.index(of: contact) else { return }
+        guard let issue = issue, let contactIndex = contacts.index(of: contact) else {
+            return assertionFailure("no issue or contact in call script")
+        }
         
-        Answers.logCustomEvent(withName:"Action: Issue Call Script", customAttributes: ["issue_id":issue.id])
+        AnalyticsManager.shared.trackEvent(withName: "Action: Issue Call Script", andProperties: ["issue_id": String(issue.id)])
         self.contactIndex = contactIndex
         let contactsCount = contacts.count
         title = "Contact \(contactIndex+1) of \(contactsCount)"
@@ -84,7 +85,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     @objc func callButtonPressed(_ button: UIButton) {
-        Answers.logCustomEvent(withName:"Action: Dialed Number", customAttributes: ["contact_id":contact.id])
+        AnalyticsManager.shared.trackEvent(withName:"Action: Dialed Number", andProperties: ["contact_id":contact.id])
         callNumber(contact.phone)
     }
 
@@ -276,14 +277,14 @@ extension CallScriptViewController : UITableViewDataSource {
     }
     
     @objc func moreNumbersTapped() {
-        Answers.logCustomEvent(withName:"Action: Opened More Numbers", customAttributes: ["contact_id":contact.id])
+        AnalyticsManager.shared.trackEvent(withName: "Action: Opened More Numbers", andProperties: ["contact_id":contact.id])
         if contact.fieldOffices.count > 0 {
             let contactID = contact.id
             let sheet = UIAlertController(title: R.string.localizable.chooseANumber(), message: nil, preferredStyle: .actionSheet)
             for office in contact.fieldOffices {
                 let title = office.city.isEmpty ? "\(office.phone)" : "\(office.city): \(office.phone)"
                 sheet.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] action in
-                    Answers.logCustomEvent(withName:"Action: Dialed Alternate Number", customAttributes: ["contact_id":contactID])
+                    AnalyticsManager.shared.trackEvent(withName: "Action: Dialed Alternate Number", andProperties: ["contact_id":contactID])
                     self?.callNumber(office.phone)
                 }))
             }
@@ -320,7 +321,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let outcomeModel = issue.outcomeModels[indexPath.row]
 
-        Answers.logCustomEvent(withName:"Action: Button \(outcomeModel.label)", customAttributes: ["contact_id":contact.id])
+        AnalyticsManager.shared.trackEvent(withName: "Action: Button \(outcomeModel.label)", andProperties: ["contact_id":contact.id])
 
         if outcomeModel.label != "skip" {
             handleCallOutcome(outcome: outcomeModel)

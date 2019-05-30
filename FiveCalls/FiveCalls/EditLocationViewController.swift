@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import Crashlytics
 
 protocol EditLocationViewControllerDelegate : NSObjectProtocol {
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation)
@@ -38,7 +37,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Answers.logCustomEvent(withName:"Screen: Edit Location")
+        AnalyticsManager.shared.trackEvent(withName: "Screen: Edit Location")
         addressTextField.becomeFirstResponder()
         
         if case .address? = UserLocation.current.locationType {
@@ -54,10 +53,10 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
         if CLLocationManager.authorizationStatus() == .denied {
-            Answers.logCustomEvent(withName:"Action: Denied Location")
+            AnalyticsManager.shared.trackEvent(withName: "Action: Denied Location")
             informUserOfPermissions()
         } else {
-            Answers.logCustomEvent(withName:"Action: Used Location")
+            AnalyticsManager.shared.trackEvent(withName: "Action: Used Location")
             locationManager.requestWhenInUseAuthorization()
         }
     }
@@ -72,7 +71,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     }
     
     func submitAddress() {
-        Answers.logCustomEvent(withName:"Action: Used Address")
+        AnalyticsManager.shared.trackEvent(withName: "Action: Used Address")
         
         UserLocation.current.setFrom(address: addressTextField.text ?? "") { [weak self] updatedLocation in
             guard let strongSelf = self else {

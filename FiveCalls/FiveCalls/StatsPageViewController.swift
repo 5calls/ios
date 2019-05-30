@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 protocol FinalPage {
     var didFinishBlock: (() -> Void)? { get set }
@@ -42,7 +41,7 @@ class StatsPageViewController : UIViewController, FinalPage {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Answers.logCustomEvent(withName:"Screen: Stats Welcome")
+        AnalyticsManager.shared.trackEvent(withName: "Screen: Stats Welcome")
         if viewModel == nil {
             label.alpha = 0
             loadStats()

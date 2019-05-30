@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import MessageUI
 import CPDAcknowledgements
-import Crashlytics
 import StoreKit
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
@@ -32,7 +31,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Answers.logCustomEvent(withName:"Screen: About")
+        AnalyticsManager.shared.trackEvent(withName: "Screen: About")
     }
 
     @IBAction func close(_ sender: UIBarButtonItem) {
@@ -69,7 +68,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func sendFeedback() {
-        Answers.logCustomEvent(withName: "Action: Feedback")
+        AnalyticsManager.shared.trackEvent(withName: "Action: Feedback")
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -86,7 +85,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func promptForRating() {
-        Answers.logCustomEvent(withName: "Action: Rate the App")
+        AnalyticsManager.shared.trackEvent(withName: "Action: Rate the App")
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
         } else {
@@ -96,7 +95,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func shareApp(from view: UIView?) {
-        Answers.logCustomEvent(withName: "Action: Share The App")
+        AnalyticsManager.shared.trackEvent(withName: "Action: Share The App")
         guard let url = AboutViewController.appUrl else { return }
         let vc = UIActivityViewController(activityItems: [R.string.localizable.shareTheAppMessage(), url], applicationActivities: [])
         vc.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
@@ -108,7 +107,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func followOnTwitter() {
-        Answers.logCustomEvent(withName: "Action: Follow On Twitter")
+        AnalyticsManager.shared.trackEvent(withName: "Action: Follow On Twitter")
         guard let url = URL(string: "https://twitter.com/make5calls") else { return }
         UIApplication.shared.open(url)
     }
@@ -118,7 +117,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func showOpenSource() {
-        Answers.logCustomEvent(withName: "Screen: Open Source Libraries")
+        AnalyticsManager.shared.trackEvent(withName: "Screen: Open Source Libraries")
         let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
         navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }

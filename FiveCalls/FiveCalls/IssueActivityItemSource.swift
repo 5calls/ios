@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 class IssueActivityItemSource: NSObject, UIActivityItemSource {
     let issue: Issue
@@ -40,7 +39,12 @@ protocol IssueShareable: class {
 
 extension IssueShareable where Self: UIViewController {
     func shareIssue(from: Any?) {
-        Answers.logCustomEvent(withName:"Action: Share Issue", customAttributes: ["issue_id":issue.id])
+        guard let issue = issue else {
+            return assertionFailure("There was no issue to share")
+        }
+        
+        AnalyticsManager.shared.trackEvent(withName: "Action: Share Issue", andProperties: ["issue_id": String(issue.id)])
+
         let activityViewController = UIActivityViewController(activityItems: [IssueActivityItemSource(issue: issue)], applicationActivities: nil)
         activityViewController.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .openInIBooks, .print, .saveToCameraRoll]
 

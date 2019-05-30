@@ -8,7 +8,6 @@
 
 import Auth0
 import PromiseKit
-import Crashlytics
 
 extension Notification.Name {
     static let userProfileChanged = Notification.Name("userProfileChanged")

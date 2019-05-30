@@ -7,6 +7,72 @@
 		<dict>
 			<key>authors</key>
 			<dict>
+				<key>Microsoft</key>
+				<string>appcentersdk@microsoft.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;Visual Studio App Center is your continuous integration, delivery and learning solution for iOS and macOS apps.
+Get faster release cycles, higher-quality apps, and the insights to build what users want.&lt;/p&gt;
+
+&lt;p&gt;The App Center SDK uses a modular architecture so you can use any or all of the following services:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;App Center Analytics (iOS and macOS):
+App Center Analytics helps you understand user behavior and customer engagement to improve your app. The SDK automatically captures session count, device properties like model, OS version, etc. You can define your own custom events to measure things that matter to you. All the information captured is available in the App Center portal for you to analyze the data.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;App Center Crashes (iOS and macOS):
+App Center Crashes will automatically generate a crash log every time your app crashes. The log is first written to the device&amp;#39;s storage and when the user starts the app again, the crash report will be sent to App Center. Collecting crashes works for both beta and live apps, i.e. those submitted to the App Store. Crash logs contain valuable information for you to help fix the crash.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;App Center Distribute (iOS only):
+App Center Distribute lets your users install a new version of the app when you distribute it with App Center. With a new version of the app available, the SDK will present an update dialog to the users to either download or postpone the new version. Once they choose to update, the SDK will start to update your application. This feature is automatically disabled on versions of your app deployed to the Apple App Store.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;App Center Push (iOS and macOS):
+App Center Push enables you to send push notifications to users of your app from the App Center portal. You can also segment your user base based on a set of properties and send them targeted notifications.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;App Center Data (iOS only):
+The App Center Data service provides functionality enabling developers to persist app data in the cloud in both online and offline scenarios. This enables you to store and manage both user-specific data as well as data shared between users and across platforms.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;App Center Auth (iOS only):
+App Center Auth is a cloud-based identity management service that enables developers to authenticate application users and manage user identities. The service integrates with other parts of App Center, enabling developers to leverage the user identity to view user data in other services and even send push notifications to users instead of individual devices.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</string>
+			<key>homepage</key>
+			<string>https://appcenter.ms</string>
+			<key>licenseText</key>
+			<string>Visual Studio App Center SDK for Apple platforms
+
+Copyright (c) Microsoft Corporation
+
+All rights reserved.
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>AppCenter</string>
+			<key>socialMediaURL</key>
+			<string>https://twitter.com/vsappcenter</string>
+			<key>summary</key>
+			<string>Visual Studio App Center is your continuous integration, delivery and learning solution for iOS and macOS apps.</string>
+			<key>version</key>
+			<string>2.0.1</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
 				<key>Auth0</key>
 				<string>support@auth0.com</string>
 				<key>Hernan Zalazar</key>
@@ -140,29 +206,6 @@ THE SOFTWARE.
 			<string>Show your CocoaPods dependencies in-app.</string>
 			<key>version</key>
 			<string>1.0.0</string>
-		</dict>
-		<dict>
-			<key>authors</key>
-			<dict>
-				<key>Google</key>
-				<string></string>
-			</dict>
-			<key>description</key>
-			<string></string>
-			<key>homepage</key>
-			<string>http://try.crashlytics.com/</string>
-			<key>licenseText</key>
-			<string>Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. Crashlytics Kit: Copyright 2018 Crashlytics, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Crashlytics Terms of Service located at http://try.crashlytics.com/terms/terms-of-service.pdf and the Crashlytics Privacy Policy located at http://try.crashlytics.com/terms/privacy-policy.pdf. OSS: http://get.fabric.io/terms/opensource.txt</string>
-			<key>licenseType</key>
-			<string>Commercial</string>
-			<key>name</key>
-			<string>Crashlytics</string>
-			<key>socialMediaURL</key>
-			<string></string>
-			<key>summary</key>
-			<string>Best and lightest-weight crash reporting for mobile, desktop and tvOS.</string>
-			<key>version</key>
-			<string>3.10.7</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -436,29 +479,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 			<string>Blazing fast Markdown rendering in Swift, built upon cmark.</string>
 			<key>version</key>
 			<string>0.5.2</string>
-		</dict>
-		<dict>
-			<key>authors</key>
-			<dict>
-				<key>Google</key>
-				<string></string>
-			</dict>
-			<key>description</key>
-			<string></string>
-			<key>homepage</key>
-			<string>https://fabric.io</string>
-			<key>licenseText</key>
-			<string>Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt</string>
-			<key>licenseType</key>
-			<string>Commercial</string>
-			<key>name</key>
-			<string>Fabric</string>
-			<key>socialMediaURL</key>
-			<string></string>
-			<key>summary</key>
-			<string>Fabric by Google, Inc.</string>
-			<key>version</key>
-			<string>1.7.11</string>
 		</dict>
 		<dict>
 			<key>authors</key>

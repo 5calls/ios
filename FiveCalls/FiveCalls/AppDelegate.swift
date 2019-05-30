@@ -8,8 +8,6 @@
 
 import UIKit
 import Pantry
-import Fabric
-import Crashlytics
 import Auth0
 import OneSignal
 import Bugsnag
@@ -26,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         BuddyBuildSDK.setup()
-        Fabric.with([Crashlytics.self])
 
         migrateSavedData()
 
@@ -40,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
+
+        AnalyticsManager.shared.startup()
 
         oneSignalStartup(launchOptions: launchOptions)
         bugsnagStartup()
