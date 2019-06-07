@@ -170,13 +170,16 @@ class ScheduleRemindersController: UIViewController {
     }
 
     private func shakeDays() {
-        UIView.animate(withDuration: 0.14, animations: {
-            self.daysOfWeekSelector.transform = CGAffineTransform(translationX: 10, y: 0)
-        }) { (_) in
-            UIView.animate(withDuration: 0.22, delay: 0, usingSpringWithDamping: 0.23, initialSpringVelocity: 1.0, options: .curveLinear, animations: {
-                self.daysOfWeekSelector.transform = CGAffineTransform(translationX: 0, y: 0)
-            }, completion: nil)
-        }
+        let animation = CASpringAnimation(keyPath: "position")
+
+        animation.damping = 1
+        animation.mass = 0.1
+        animation.stiffness = 100
+        animation.duration = animation.settlingDuration
+        animation.fromValue = CGPoint(x: self.daysOfWeekSelector.center.x - 18, y: self.daysOfWeekSelector.center.y)
+        animation.toValue = CGPoint(x: self.daysOfWeekSelector.center.x, y: self.daysOfWeekSelector.center.y)
+
+        daysOfWeekSelector.layer.add(animation, forKey: "shakeIt")
     }
 
     private func indices(from notifications: [UILocalNotification]) -> [Int] {
