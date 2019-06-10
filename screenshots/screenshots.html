@@ -8,8 +8,26 @@
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
         font-weight: 300;
       }
-      .language {
-
+      #sortMenu {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        display: none;
+      }
+      #sortMenu button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+      }
+      #sortMenu button:hover {
+        background-color: #ddd;
+      }
+      #sortMenu button.active {
+        background-color: #ccc;
       }
       .deviceName {
         display: block;
@@ -21,6 +39,14 @@
         cursor: pointer;
         border: 1px #EEE solid;
         z-index: 0;
+      }
+      .caption {
+        font-size: 24px;
+        padding-bottom: 24px;
+        padding-top: 30px;
+      }
+      h1, h2 {
+        font-weight: bold;
       }
       th {
         text-align: left;
@@ -65,170 +91,329 @@
     </style>
   </head>
   <body>
-    <h1 id="en-US" class="language">en-US</h1>
-    <hr>
-    <table>
-      <tr>
-        <th colspan="5">
-          <a id="en-US-iPad Pro (12.9-inch)" class="deviceName" href="#en-US-iPad Pro (12.9-inch)">iPad Pro (12.9-inch)</a>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <a href="./en-US/iPad Pro (12.9-inch)-0-welcome.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-0-welcome.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-counter="1">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPad Pro (12.9-inch)-1-welcome2.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-1-welcome2.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-counter="2">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPad Pro (12.9-inch)-2-issues.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-2-issues.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-counter="3">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPad Pro (12.9-inch)-3-issue-detail.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-3-issue-detail.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-counter="4">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPad Pro (12.9-inch)-4-call-script.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-4-call-script.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-counter="5">
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th colspan="5">
-          <a id="en-US-iPhone 7 Plus (5.5-Inch)" class="deviceName" href="#en-US-iPhone 7 Plus (5.5-Inch)">iPhone 7 Plus (5.5-Inch)</a>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <a href="./en-US/iPhone 7 Plus-0-welcome.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7 Plus-0-welcome.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-counter="6">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7 Plus-1-welcome2.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7 Plus-1-welcome2.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-counter="7">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7 Plus-2-issues.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7 Plus-2-issues.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-counter="8">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7 Plus-3-issue-detail.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7 Plus-3-issue-detail.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-counter="9">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7 Plus-4-call-script.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7 Plus-4-call-script.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-counter="10">
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th colspan="5">
-          <a id="en-US-iPhone 7 (4.7-Inch)" class="deviceName" href="#en-US-iPhone 7 (4.7-Inch)">iPhone 7 (4.7-Inch)</a>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <a href="./en-US/iPhone 7-0-welcome.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7-0-welcome.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-counter="11">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7-1-welcome2.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7-1-welcome2.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-counter="12">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7-2-issues.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7-2-issues.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-counter="13">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7-3-issue-detail.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7-3-issue-detail.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-counter="14">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone 7-4-call-script.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone 7-4-call-script.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-counter="15">
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th colspan="5">
-          <a id="en-US-iPhone SE" class="deviceName" href="#en-US-iPhone SE">iPhone SE</a>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <a href="./en-US/iPhone SE-0-welcome.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone SE-0-welcome.png" style="width: 100%;" alt="en-US iPhone SE" data-counter="16">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone SE-1-welcome2.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone SE-1-welcome2.png" style="width: 100%;" alt="en-US iPhone SE" data-counter="17">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone SE-2-issues.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone SE-2-issues.png" style="width: 100%;" alt="en-US iPhone SE" data-counter="18">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone SE-3-issue-detail.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone SE-3-issue-detail.png" style="width: 100%;" alt="en-US iPhone SE" data-counter="19">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone SE-4-call-script.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone SE-4-call-script.png" style="width: 100%;" alt="en-US iPhone SE" data-counter="20">
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th colspan="5">
-          <a id="en-US-iPhone X" class="deviceName" href="#en-US-iPhone X">iPhone X</a>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <a href="./en-US/iPhone X-0-welcome.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone X-0-welcome.png" style="width: 100%;" alt="en-US iPhone X" data-counter="21">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone X-1-welcome2.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone X-1-welcome2.png" style="width: 100%;" alt="en-US iPhone X" data-counter="22">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone X-2-issues.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone X-2-issues.png" style="width: 100%;" alt="en-US iPhone X" data-counter="23">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone X-3-issue-detail.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone X-3-issue-detail.png" style="width: 100%;" alt="en-US iPhone X" data-counter="24">
-          </a>
-        </td>
-        <td>
-          <a href="./en-US/iPhone X-4-call-script.png" target="_blank" class="screenshotLink">
-            <img class="screenshot" src="./en-US/iPhone X-4-call-script.png" style="width: 100%;" alt="en-US iPhone X" data-counter="25">
-          </a>
-        </td>
-      </tr>
-    </table>
+    <div id="sortMenu">
+      <button id="defaultTab" class="tabLink" onclick="openTab(event, 'byLanguage')">By Language</button>
+      <button class="tabLink" onclick="openTab(event, 'byScreen')">By Screen</button>
+    </div>
+    <div id="byLanguage" class="tabContent"><h1 class="tabTitle">By Language:</h1>
+      <h2 id="en-US">en-US</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="4">
+            <a id="en-US-iPad Pro (12.9-inch)" class="deviceName" href="#en-US-iPad Pro (12.9-inch)">iPad Pro (12.9-inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch) (3rd generation)-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch) (3rd generation)-0-welcome.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="1" data-counter="1">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch) (3rd generation)-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch) (3rd generation)-1-welcome2.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="1" data-counter="2">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch)-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-0-welcome.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="1" data-counter="3">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch)-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-1-welcome2.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="1" data-counter="4">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <a id="en-US-iPhone 7 Plus (5.5-Inch)" class="deviceName" href="#en-US-iPhone 7 Plus (5.5-Inch)">iPhone 7 Plus (5.5-Inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone 7 Plus-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7 Plus-0-welcome.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-tab="1" data-counter="5">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPhone 7 Plus-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7 Plus-1-welcome2.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-tab="1" data-counter="6">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <a id="en-US-iPhone 7 (4.7-Inch)" class="deviceName" href="#en-US-iPhone 7 (4.7-Inch)">iPhone 7 (4.7-Inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone 7-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7-0-welcome.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-tab="1" data-counter="7">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPhone 7-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7-1-welcome2.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-tab="1" data-counter="8">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            <a id="en-US-iPhone SE" class="deviceName" href="#en-US-iPhone SE">iPhone SE</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone SE-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone SE-0-welcome.png" style="width: 100%;" alt="en-US iPhone SE" data-tab="1" data-counter="9">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPhone SE-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone SE-1-welcome2.png" style="width: 100%;" alt="en-US iPhone SE" data-tab="1" data-counter="10">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="4">
+            <a id="en-US-iPhone X" class="deviceName" href="#en-US-iPhone X">iPhone X</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone X-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone X-0-welcome.png" style="width: 100%;" alt="en-US iPhone X" data-tab="1" data-counter="11">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPhone X-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone X-1-welcome2.png" style="width: 100%;" alt="en-US iPhone X" data-tab="1" data-counter="12">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPhone Xs Max-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone Xs Max-0-welcome.png" style="width: 100%;" alt="en-US iPhone X" data-tab="1" data-counter="13">
+            </a>
+          </td>
+          <td>
+            <a href="./en-US/iPhone Xs Max-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone Xs Max-1-welcome2.png" style="width: 100%;" alt="en-US iPhone X" data-tab="1" data-counter="14">
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="byScreen" class="tabContent"><h1 class="tabTitle">By Screen:</h1>
+      <h2 id="iPad Pro (12.9-inch) (3rd generation)-0-welcome" class="screen">iPad Pro (12.9-inch) (3rd generation)-0-welcome</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="1">
+            <a id="iPad Pro (12.9-inch) (3rd generation)-0-welcome-iPad Pro (12.9-inch)" class="deviceName" href="#iPad Pro (12.9-inch) (3rd generation)-0-welcome-iPad Pro (12.9-inch)">iPad Pro (12.9-inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch) (3rd generation)-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch) (3rd generation)-0-welcome.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="2" data-counter="1">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+      </table>
+      <h2 id="iPad Pro (12.9-inch) (3rd generation)-1-welcome2" class="screen">iPad Pro (12.9-inch) (3rd generation)-1-welcome2</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="1">
+            <a id="iPad Pro (12.9-inch) (3rd generation)-1-welcome2-iPad Pro (12.9-inch)" class="deviceName" href="#iPad Pro (12.9-inch) (3rd generation)-1-welcome2-iPad Pro (12.9-inch)">iPad Pro (12.9-inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch) (3rd generation)-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch) (3rd generation)-1-welcome2.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="2" data-counter="2">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+      </table>
+      <h2 id="0-welcome" class="screen">0-welcome</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="1">
+            <a id="0-welcome-iPad Pro (12.9-inch)" class="deviceName" href="#0-welcome-iPad Pro (12.9-inch)">iPad Pro (12.9-inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch)-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-0-welcome.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="2" data-counter="3">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="0-welcome-iPhone 7 Plus (5.5-Inch)" class="deviceName" href="#0-welcome-iPhone 7 Plus (5.5-Inch)">iPhone 7 Plus (5.5-Inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone 7 Plus-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7 Plus-0-welcome.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-tab="2" data-counter="4">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="0-welcome-iPhone 7 (4.7-Inch)" class="deviceName" href="#0-welcome-iPhone 7 (4.7-Inch)">iPhone 7 (4.7-Inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone 7-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7-0-welcome.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-tab="2" data-counter="5">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="0-welcome-iPhone SE" class="deviceName" href="#0-welcome-iPhone SE">iPhone SE</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone SE-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone SE-0-welcome.png" style="width: 100%;" alt="en-US iPhone SE" data-tab="2" data-counter="6">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="0-welcome-iPhone X" class="deviceName" href="#0-welcome-iPhone X">iPhone X</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone X-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone X-0-welcome.png" style="width: 100%;" alt="en-US iPhone X" data-tab="2" data-counter="7">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+      </table>
+      <h2 id="1-welcome2" class="screen">1-welcome2</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="1">
+            <a id="1-welcome2-iPad Pro (12.9-inch)" class="deviceName" href="#1-welcome2-iPad Pro (12.9-inch)">iPad Pro (12.9-inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPad Pro (12.9-inch)-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPad Pro (12.9-inch)-1-welcome2.png" style="width: 100%;" alt="en-US iPad Pro (12.9-inch)" data-tab="2" data-counter="8">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="1-welcome2-iPhone 7 Plus (5.5-Inch)" class="deviceName" href="#1-welcome2-iPhone 7 Plus (5.5-Inch)">iPhone 7 Plus (5.5-Inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone 7 Plus-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7 Plus-1-welcome2.png" style="width: 100%;" alt="en-US iPhone 7 Plus (5.5-Inch)" data-tab="2" data-counter="9">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="1-welcome2-iPhone 7 (4.7-Inch)" class="deviceName" href="#1-welcome2-iPhone 7 (4.7-Inch)">iPhone 7 (4.7-Inch)</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone 7-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone 7-1-welcome2.png" style="width: 100%;" alt="en-US iPhone 7 (4.7-Inch)" data-tab="2" data-counter="10">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="1-welcome2-iPhone SE" class="deviceName" href="#1-welcome2-iPhone SE">iPhone SE</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone SE-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone SE-1-welcome2.png" style="width: 100%;" alt="en-US iPhone SE" data-tab="2" data-counter="11">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">
+            <a id="1-welcome2-iPhone X" class="deviceName" href="#1-welcome2-iPhone X">iPhone X</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone X-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone X-1-welcome2.png" style="width: 100%;" alt="en-US iPhone X" data-tab="2" data-counter="12">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+      </table>
+      <h2 id="iPhone Xs Max-0-welcome" class="screen">iPhone Xs Max-0-welcome</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="1">
+            <a id="iPhone Xs Max-0-welcome-iPhone X" class="deviceName" href="#iPhone Xs Max-0-welcome-iPhone X">iPhone X</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone Xs Max-0-welcome.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone Xs Max-0-welcome.png" style="width: 100%;" alt="en-US iPhone X" data-tab="2" data-counter="13">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+      </table>
+      <h2 id="iPhone Xs Max-1-welcome2" class="screen">iPhone Xs Max-1-welcome2</h2>
+      <hr>
+      <table>
+        <tr>
+          <th colspan="1">
+            <a id="iPhone Xs Max-1-welcome2-iPhone X" class="deviceName" href="#iPhone Xs Max-1-welcome2-iPhone X">iPhone X</a>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <a href="./en-US/iPhone Xs Max-1-welcome2.png" target="_blank" class="screenshotLink">
+              <img class="screenshot" src="./en-US/iPhone Xs Max-1-welcome2.png" style="width: 100%;" alt="en-US iPhone X" data-tab="2" data-counter="14">
+            </a>
+            <div class="caption">en-US</div>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div id="overlay">
       <img id="imageDisplay" src="" alt="" />
       <div id="imageInfo"></div>
@@ -238,6 +423,48 @@
       var imageDisplay   = document.getElementById('imageDisplay');
       var imageInfo      = document.getElementById('imageInfo');
       var screenshotLink = document.getElementsByClassName('screenshotLink');
+
+      window.onload = setup();
+
+      function setup() {
+        var i, menu, tabTitles;
+
+        // Since JS is enabled, show sort menu and hide tab titles
+        menu = document.getElementById("sortMenu");
+        menu.style.display = "block";
+
+        tabTitles = document.getElementsByClassName("tabTitle");
+        for (i = 0; i < tabTitles.length; i++) {
+          tabTitles[i].style.display = "none";
+        }
+
+        doClick(document.getElementById("defaultTab"));
+      }
+
+      function getCurrentTab() {
+        var i, tabs;
+        tabs = document.getElementsByClassName("tabContent");
+        for (i = 0; i < tabs.length; i++) {
+          if (tabs[i].style.display != "none") {
+            return i + 1;
+          }
+        }
+        return 1; // fallback
+      }
+
+      function openTab(evt, tabName) {
+        var i, tabContent, tabLinks;
+        tabs = document.getElementsByClassName("tabContent");
+        for (i = 0; i < tabs.length; i++) {
+          tabs[i].style.display = "none";
+        }
+        tabLinks = document.getElementsByClassName("tabLink");
+        for (i = 0; i < tabLinks.length; i++) {
+          tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
 
       function doClick(el) {
         if (document.createEvent) {
@@ -264,6 +491,7 @@
           tmpImg.src = img.src;
           imageDisplay.style.height     = 'auto';
           imageDisplay.style.width     = 'auto';
+          imageDisplay.style.paddingTop = 0;
           if (window.innerHeight < tmpImg.height) {
             imageDisplay.style.height = document.documentElement.clientHeight+'px';
           } else if (window.innerWidth < tmpImg.width) {
@@ -289,12 +517,13 @@
 
         overlay.style.display = "none";
 
+        img_tab = parseInt(getCurrentTab());
         img_counter = parseInt(e.target.dataset.counter) + 1;
         try {
-          link = document.body.querySelector('img[data-counter="'+img_counter+'"]').parentNode;
+          link = document.body.querySelector('img[data-tab="'+img_tab+'"][data-counter="'+img_counter+'"]').parentNode;
         } catch (e) {
           try {
-            link = document.body.querySelector('img[data-counter="0"]').parentNode;
+            link = document.body.querySelector('img[data-tab="'+img_tab+'"][data-counter="0"]').parentNode;
           } catch (e) {
             return false;
           }

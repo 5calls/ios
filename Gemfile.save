@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+gem "cocoapods", "1.5.3"
+gem "cocoapods-acknowledgements"
+gem "dotenv"
+gem "fastlane"
+gem "badge"
+
+
+
+gem 'fastlane'
+#gem 'fastlane', :github => 'fastlane/fastlane', :branch => 'master'
+
+gem 'cocoapods', '~> 1.6.0'
+
+gem 'cocoapods-fix-react-native'
+#gem 'cocoapods-fix-react-native', :github => 'MaximusMcCann/cocoapods-fix-react-native', :branch => 'master'
+#gem 'cocoapods-fix-react-native', path: '../../FORK/cocoapods-fix-react-native'
+
+gem 'rest-client'
+#gem 'rmagick' #ImageMagick
+#gem 'ghostscript'
+
+plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
+eval(File.read(plugins_path), binding) if File.exist?(plugins_path)
+
+
+
+

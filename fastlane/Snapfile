@@ -3,7 +3,10 @@ devices([
   "iPhone 7 Plus",
   "iPhone SE",
   "iPad Pro (12.9-inch)",
-  "iPhone X"
+  "iPad Pro (12.9-inch)",
+  "iPhone X",
+  "iPhone Xs Max",
+  "iPad Pro (12.9-inch) (3rd generation)"
 ])
 
 languages([
