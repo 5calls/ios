@@ -68,7 +68,7 @@ class ScheduleRemindersController: UIViewController {
     private func requestNotificationAccess() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge];
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
-            // ok
+            AnalyticsManager.shared.trackEvent(withName: "Notification Access", andProperties: ["success": "\(success)"])
         }
     }
 
@@ -135,12 +135,9 @@ class ScheduleRemindersController: UIViewController {
 
         clearNotifications()
         for index in daysOfWeekSelector.selectedIndices {
-            let notificationContent = createNotification()
-            var components = Calendar.current.dateComponents([.hour,.minute,.second], from: timePicker.date)
-            components.timeZone = TimeZone(identifier: "default")
-            components.weekday = index + 2
-            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
-            let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: trigger)
+            let notificationContent = self.notificationContent()
+            let notificationTrigger = self.notificationTrigger(date: timePicker.date, dayIndex: index)
+            let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
     }
@@ -202,36 +199,18 @@ class ScheduleRemindersController: UIViewController {
         })
     }
 
-    private func fireDate(for index: Int, date: Date) -> Date? {
-        let calendar = Calendar(identifier: .gregorian)
-        let currentDate = Date()
-        var dateComponents = DateComponents()
-        dateComponents.calendar = calendar
-        dateComponents.hour = calendar.component(.hour, from: date)
-        dateComponents.minute = calendar.component(.minute, from: date)
-        dateComponents.weekOfYear = calendar.component(.weekOfYear, from: currentDate)
-        dateComponents.year = calendar.component(.year, from: currentDate)
-        dateComponents.weekday = index + 2
-        return calendar.date(from: dateComponents)
-    }
-
-    private func createNotification() -> UNMutableNotificationContent {
+    private func notificationContent() -> UNMutableNotificationContent {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = R.string.localizable.scheduledReminderAlertTitle()
         notificationContent.body = R.string.localizable.scheduledReminderAlertBody()
         notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
         return notificationContent
-        
-//        let localNotif = UILocalNotification()
-//        • localNotif.fireDate = fireDate(for: index, date: chosenTime)
-//         localNotif.alertTitle = R.string.localizable.scheduledReminderAlertTitle()
-//        localNotif.alertBody = R.string.localizable.scheduledReminderAlertBody()
-//        localNotif.repeatInterval = .weekOfYear
-//        localNotif.alertAction = R.string.localizable.okButtonTitle()
-//        localNotif.timeZone = TimeZone(identifier: "default")
-//        localNotif.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber + 1
-//        return localNotif
     }
-
-
+    
+    private func notificationTrigger(date: Date, dayIndex: Int) -> UNCalendarNotificationTrigger {
+        var components = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+        components.timeZone = TimeZone(identifier: "default")
+        components.weekday = dayIndex + 2
+        return UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+    }
 }
