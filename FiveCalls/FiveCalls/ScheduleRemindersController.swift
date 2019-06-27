@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class ScheduleRemindersController: UIViewController {
 
@@ -65,10 +66,10 @@ class ScheduleRemindersController: UIViewController {
     }
 
     private func requestNotificationAccess() {
-        UIApplication.shared.registerUserNotificationSettings(
-            UIUserNotificationSettings(types: [.alert, .badge],
-                                       categories: nil)
-        )
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge];
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
+            AnalyticsManager.shared.trackEvent(withName: "Notification Access", andProperties: ["success": "\(success)"])
+        }
     }
 
     func setOverlay(visible: Bool, animated: Bool) {
@@ -99,12 +100,17 @@ class ScheduleRemindersController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let notifications = UIApplication.shared.scheduledLocalNotifications {
-            daysOfWeekSelector.setSelectedButtons(at: indices(from: notifications))
-            if let date = notifications.first?.fireDate {
-                timePicker.setDate(date, animated: true)
+        UNUserNotificationCenter.current().getPendingNotificationRequests { [weak self] (notificationRequests) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.daysOfWeekSelector.setSelectedButtons(at: self.indices(from: notificationRequests))
+                if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger {
+                    self.timePicker.setDate(trigger.nextTriggerDate() ?? Date(), animated: true)
+                }
+                self.updateDaysWarning()
             }
         }
+
         if navigationController?.viewControllers.first == self {
             let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissAction(_:)))
             item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
@@ -121,7 +127,6 @@ class ScheduleRemindersController: UIViewController {
         super.viewWillAppear(animated)
         daysOfWeekSelector.warningBorderColor = UIColor.fvc_red.cgColor
         noDaysWarningLabel.textColor = .fvc_red
-        updateDaysWarning()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -129,9 +134,11 @@ class ScheduleRemindersController: UIViewController {
         guard notificationsChanged == true && remindersEnabled else { return }
 
         clearNotifications()
-        for selectorIndex in daysOfWeekSelector.selectedIndices {
-            let localNotif = createNotification(with: selectorIndex, chosenTime: timePicker.date)
-            UIApplication.shared.scheduleLocalNotification(localNotif)
+        for index in daysOfWeekSelector.selectedIndices {
+            let notificationContent = self.notificationContent()
+            let notificationTrigger = self.notificationTrigger(date: timePicker.date, dayIndex: index)
+            let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
     }
 
@@ -145,7 +152,7 @@ class ScheduleRemindersController: UIViewController {
     }
     
     private func clearNotifications() {
-        UIApplication.shared.cancelAllLocalNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
     @IBAction func timePickerChanged(_ sender: UIDatePicker) {
@@ -159,8 +166,10 @@ class ScheduleRemindersController: UIViewController {
 
     func updateDaysWarning() {
         if daysOfWeekSelector.selectedIndices.count == 0 {
+            daysOfWeekSelector.warningBorderColor = UIColor.fvc_red.cgColor
             noDaysWarningLabel.isHidden = false
         } else {
+            daysOfWeekSelector.warningBorderColor = nil
             noDaysWarningLabel.isHidden = true
         }
     }
@@ -182,35 +191,29 @@ class ScheduleRemindersController: UIViewController {
         daysOfWeekSelector.layer.add(animation, forKey: "shakeIt")
     }
 
-    private func indices(from notifications: [UILocalNotification]) -> [Int] {
+    private func indices(from notifications: [UNNotificationRequest]) -> [Int] {
         let calendar = Calendar(identifier: .gregorian)
-        return notifications.compactMap({ return calendar.component(.weekday, from: ($0.fireDate)!) - 2})
+        return notifications.compactMap({ notification in
+            if let calendarTrigger = notification.trigger as? UNCalendarNotificationTrigger {
+                return calendar.component(.weekday, from: (calendarTrigger.nextTriggerDate()!)) - 2
+            }
+            
+            return nil
+        })
     }
 
-    private func fireDate(for index: Int, date: Date) -> Date? {
-        let calendar = Calendar(identifier: .gregorian)
-        let currentDate = Date()
-        var dateComponents = DateComponents()
-        dateComponents.calendar = calendar
-        dateComponents.hour = calendar.component(.hour, from: date)
-        dateComponents.minute = calendar.component(.minute, from: date)
-        dateComponents.weekOfYear = calendar.component(.weekOfYear, from: currentDate)
-        dateComponents.year = calendar.component(.year, from: currentDate)
-        dateComponents.weekday = index + 2
-        return calendar.date(from: dateComponents)
+    private func notificationContent() -> UNMutableNotificationContent {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = R.string.localizable.scheduledReminderAlertTitle()
+        notificationContent.body = R.string.localizable.scheduledReminderAlertBody()
+        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        return notificationContent
     }
-
-    private func createNotification(with index: Int, chosenTime: Date) -> UILocalNotification {
-        let localNotif = UILocalNotification()
-        localNotif.fireDate = fireDate(for: index, date: chosenTime)
-        localNotif.alertTitle = R.string.localizable.scheduledReminderAlertTitle()
-        localNotif.alertBody = R.string.localizable.scheduledReminderAlertBody()
-        localNotif.repeatInterval = .weekOfYear
-        localNotif.alertAction = R.string.localizable.okButtonTitle()
-        localNotif.timeZone = TimeZone(identifier: "default")
-        localNotif.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber + 1
-        return localNotif
+    
+    private func notificationTrigger(date: Date, dayIndex: Int) -> UNCalendarNotificationTrigger {
+        var components = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+        components.timeZone = TimeZone(identifier: "default")
+        components.weekday = dayIndex + 2
+        return UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
     }
-
-
 }
