@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Pantry
 import Auth0
 import OneSignal
 
@@ -21,10 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isUITesting() {
             resetData()
         }
-
-        migrateSavedData()
-
-        Pantry.useApplicationSupportDirectory = true
 
         clearNotificationBadge()
         setAppearance()
@@ -56,26 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                             settings: onesignalInitSettings)
 
             OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
-        }
-    }
-
-    func migrateSavedData() {
-        let pantryDirName = "com.thatthinginswift.pantry"
-        // Pantry used to store data in the caches folder. If this exists, we need to move it
-        // and delete it, to avoid this getting purged when the device is low on disk space.
-        let cachesDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
-        let oldPantryPath = URL(fileURLWithPath: cachesDir).appendingPathComponent(pantryDirName).path
-
-        if FileManager.default.fileExists(atPath: oldPantryPath) {
-            print("Saved data found in caches folder, moving to Application Support...")
-            let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
-            let targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).path
-            do {
-                try FileManager.default.moveItem(atPath: oldPantryPath, toPath: targetPath)
-                print("Files migrated.")
-            } catch let e {
-                print("Error moving files: \(e)")
-            }
         }
     }
     
@@ -140,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
 
         // clear any saved location data
-        Pantry.removeAllCache()
+        ContactLogs.removeData()
     }
     
     private func clearNotificationBadge() {
@@ -160,5 +135,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         defaults.setValue(currentVersion, forKey: UserDefaultsKey.appVersion.rawValue)
         defaults.set(Int(0), forKey: UserDefaultsKey.countOfCallsForRatingPrompt.rawValue)
+    }
+
+    static var isRunningUnitTests: Bool {
+        return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
     }
 }

@@ -7,14 +7,13 @@
 //
 
 import XCTest
-import Pantry
 @testable import FiveCalls
 
 class ContactLogsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Pantry.removeAllCache()
+        ContactLogs.removeData()
     }
     
     override func tearDown() {
@@ -32,19 +31,18 @@ class ContactLogsTests: XCTestCase {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.date(from: "1984-01-24")!
         let log = ContactLog(issueId: "issue1", contactId: "contact1", phone: "111-222-3333", outcome: "Left Voicemail", date: date, reported: true)
-        Pantry.pack([log], key: "log")
+        var logsToSave = ContactLogs()
+        logsToSave.all = [log]
+        logsToSave.save()
         
-        if let loadedLogs: [ContactLog] = Pantry.unpack("log") {
-            XCTAssertEqual([log], loadedLogs)
-        } else {
-            XCTFail()
-        }
+        let loadedLogs: [ContactLog] = ContactLogs.load().all
+        XCTAssertEqual([log], loadedLogs)
         
         var logs = ContactLogs()
         logs.add(log: log)
         
-        let loadedLogs = ContactLogs.load()
-        XCTAssertEqual(loadedLogs.all, [log])
+        let newlyLoadedLogs = ContactLogs.load()
+        XCTAssertEqual(newlyLoadedLogs.all, [log])
     }
     
 }
