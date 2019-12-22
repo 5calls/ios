@@ -93,10 +93,16 @@ struct ContactLogs {
     static private var filePath: URL {
         let pantryDirName = "com.thatthinginswift.pantry"
         let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
-        let targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
+
+        let targetPath: URL
+        if UserDefaults.standard.bool(forKey: "isBeingTested") {
+            targetPath = FileManager.default.temporaryDirectory.appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
+        } else {
+            targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
+        }
 
         return targetPath
-    }
+    }    
 }
 
 extension ContactLogs {

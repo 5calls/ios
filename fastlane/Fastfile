@@ -19,7 +19,8 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(workspace: workspace, scheme: scheme)
+    scan(workspace: workspace,
+         scheme: scheme)
   end
 
   desc "Increments build number"
