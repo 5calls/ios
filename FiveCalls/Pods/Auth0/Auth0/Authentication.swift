@@ -146,6 +146,40 @@ public protocol Authentication: Trackable, Loggable {
     func login(withOTP otp: String, mfaToken: String) -> Request<Credentials, AuthenticationError>
 
     /**
+     Login using username and password in the default directory
+     
+     ```
+     Auth0
+     .authentication(clientId: clientId, domain: "samples.auth0.com")
+     .loginDefaultDirectory(
+     withUsername: "support@auth0.com",
+     password: "a secret password")
+     ```
+     
+     You can also specify audience and scope
+     
+     ```
+     Auth0
+     .authentication(clientId: clientId, domain: "samples.auth0.com")
+     .loginDefaultDirectory(
+     withUsername: "support@auth0.com",
+     password: "a secret password",
+     audience: "https://myapi.com/api",
+     scope: "openid profile")
+     ```
+     
+     - parameter username:    username or email used of the user to authenticate
+     - parameter password:    password of the user
+     - parameter audience:    API Identifier that the client is requesting access to.
+     - parameter scope:       scope value requested when authenticating the user.
+     - parameter parameters:  additional parameters that are optionally sent with the authentication request
+     
+     - important: This only works if you have the OAuth 2.0 API Authorization flag on
+     - returns: authentication request that will yield Auth0 User Credentials
+     */
+    func loginDefaultDirectory(withUsername username: String, password: String, audience: String?, scope: String?, parameters: [String: Any]?) -> Request<Credentials, AuthenticationError>
+
+    /**
      Creates a user in a Database connection
 
      ```
@@ -155,7 +189,7 @@ public protocol Authentication: Trackable, Loggable {
         .start { print($0) }
      ```
 
-     you can also add additional attributes when creating the user
+     you can also add additional metadata when creating the user
 
      ```
      Auth0
@@ -178,10 +212,12 @@ public protocol Authentication: Trackable, Loggable {
      - parameter password:          password for the new user
      - parameter connection:        name where the user will be created (Database connection)
      - parameter userMetadata:      additional userMetadata parameters that will be added to the newly created user.
-
+     - parameter rootAttributes:    root attributes that will be added to the newly created user. See https://auth0.com/docs/api/authentication#signup for supported attributes. Will not overwrite existing parameters.
+     
      - returns: request that will yield a created database user (just email, username and email verified flag)
      */
-    func createUser(email: String, username: String?, password: String, connection: String, userMetadata: [String: Any]?) -> Request<DatabaseUser, AuthenticationError>
+    // swiftlint:disable:next function_parameter_count
+    func createUser(email: String, username: String?, password: String, connection: String, userMetadata: [String: Any]?, rootAttributes: [String: Any]?) -> Request<DatabaseUser, AuthenticationError>
 
     /**
      Resets a Database user password
@@ -600,6 +636,42 @@ public extension Authentication {
     }
 
     /**
+     Login using username and password in the default directory
+     
+     ```
+     Auth0
+     .authentication(clientId: clientId, domain: "samples.auth0.com")
+     .loginDefaultDirectory(
+     withUsername: "support@auth0.com",
+     password: "a secret password")
+     ```
+     
+     You can also specify audience and scope
+     
+     ```
+     Auth0
+     .authentication(clientId: clientId, domain: "samples.auth0.com")
+     .loginDefaultDirectory(
+     withUsername: "support@auth0.com",
+     password: "a secret password",
+     audience: "https://myapi.com/api",
+     scope: "openid profile")
+     ```
+     
+     - parameter username:    username or email used of the user to authenticate
+     - parameter password:    password of the user
+     - parameter audience:    API Identifier that the client is requesting access to.
+     - parameter scope:       scope value requested when authenticating the user.
+     - parameter parameters:  additional parameters that are optionally sent with the authentication request
+     
+     - important: This only works if you have the OAuth 2.0 API Authorization flag on
+     - returns: authentication request that will yield Auth0 User Credentials
+     */
+    func loginDefaultDirectory(withUsername username: String, password: String, audience: String? = nil, scope: String? = nil, parameters: [String: Any]? = nil) -> Request<Credentials, AuthenticationError> {
+        return self.loginDefaultDirectory(withUsername: username, password: password, audience: audience, scope: scope, parameters: parameters)
+    }
+
+    /**
      Creates a user in a Database connection
 
      ```
@@ -632,11 +704,27 @@ public extension Authentication {
      - parameter password:          password for the new user
      - parameter connection:        name where the user will be created (Database connection)
      - parameter userMetadata:      additional userMetadata parameters that will be added to the newly created user.
+     - parameter rootAttributes:    root attributes that will be added to the newly created user. See https://auth0.com/docs/api/authentication#signup for supported attributes. Will not overwrite existing parameters.
 
      - returns: request that will yield a created database user (just email, username and email verified flag)
      */
+    func createUser(email: String, username: String? = nil, password: String, connection: String, userMetadata: [String: Any]? = nil, rootAttributes: [String: Any]? = nil) -> Request<DatabaseUser, AuthenticationError> {
+        return self.createUser(email: email, username: username, password: password, connection: connection, userMetadata: userMetadata, rootAttributes: rootAttributes)
+    }
+
+    /**
+     Creates a user in a Database connection
+     
+     - parameter email:             email of the user to create
+     - parameter username:          username of the user if the connection requires username. By default is 'nil'
+     - parameter password:          password for the new user
+     - parameter connection:        name where the user will be created (Database connection)
+     - parameter userMetadata:      additional userMetadata parameters that will be added to the newly created user.
+    
+     - returns: request that will yield a created database user (just email, username and email verified flag)
+     */
     func createUser(email: String, username: String? = nil, password: String, connection: String, userMetadata: [String: Any]? = nil) -> Request<DatabaseUser, AuthenticationError> {
-        return self.createUser(email: email, username: username, password: password, connection: connection, userMetadata: userMetadata)
+        return self.createUser(email: email, username: username, password: password, connection: connection, userMetadata: userMetadata, rootAttributes: nil)
     }
 
     /**
@@ -806,5 +894,57 @@ public extension Authentication {
      */
     func renew(withRefreshToken refreshToken: String, scope: String? = nil) -> Request<Credentials, AuthenticationError> {
         return self.renew(withRefreshToken: refreshToken, scope: scope)
+    }
+
+    /**
+    Authenticate a user with their Sign In With Apple authorization code.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .tokenExchange(withAppleAuthorizationCode: authCode)
+       .start { print($0) }
+    ```
+
+    and if you need to specify a scope or add additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .tokenExchange(withAppleAuthorizationCode: authCode, scope: "openid profile offline_access", audience: "https://myapi.com/api, fullName: credentials.fullName)
+       .start { print($0) }
+    ```
+
+    - parameter authCode: Authorization Code retrieved from Apple Authorization
+    - parameter scope: requested scope value when authenticating the user. By default is 'openid profile offline_access'
+    - parameter audience: API Identifier that the client is requesting access to
+    - parameter fullName: The full name property returned with the Apple ID Credentials
+
+    - returns: a request that will yield Auth0 user's credentials
+    */
+    func tokenExchange(withAppleAuthorizationCode authCode: String, scope: String? = nil, audience: String? = nil, fullName: PersonNameComponents? = nil) -> Request<Credentials, AuthenticationError> {
+        var parameters: [String: String] =
+            [ "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+              "subject_token": authCode,
+              "subject_token_type": "http://auth0.com/oauth/token-type/apple-authz-code",
+              "scope": scope ?? "openid profile offline_access" ]
+        if let fullName = fullName {
+            let name = [
+                "firstName": fullName.givenName,
+                "lastName": fullName.familyName
+            ].filter { $0.value != nil }.mapValues { $0! }
+            if !name.isEmpty, let jsonData = try? String(
+                    data: JSONSerialization.data(
+                        withJSONObject: [
+                            "name": name
+                        ],
+                        options: []),
+                    encoding: String.Encoding.utf8
+            ) {
+                parameters["user_profile"] = jsonData
+            }
+        }
+        parameters["audience"] = audience
+        return self.tokenExchange(withParameters: parameters)
     }
 }

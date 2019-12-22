@@ -7,7 +7,7 @@ PODS:
   - AppCenter/Core (2.0.1)
   - AppCenter/Crashes (2.0.1):
     - AppCenter/Core
-  - Auth0 (1.15.0):
+  - Auth0 (1.19.3):
     - SimpleKeychain
   - CPDAcknowledgements (1.0.0)
   - Down (0.5.2)
@@ -30,7 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter
-  - Auth0 (~> 1.15)
+  - Auth0 (~> 1.17)
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
   - Down
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
@@ -42,13 +42,14 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
-    - Auth0
     - Down
     - Kingfisher
     - OneSignal
     - PromiseKit
     - R.swift
     - R.swift.Library
+  trunk:
+    - Auth0
     - SimpleKeychain
 
 EXTERNAL SOURCES:
@@ -67,7 +68,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppCenter: 6a5ff2fd007b53431259fdd74f91eb3d0dfea3d1
-  Auth0: b741c805711a80eb698fce55d354cc32e0784dce
+  Auth0: 195ea089de471c72bf95eb5320ff86c224debf3c
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Down: 587371ad58002b06023d9c602519216862c3acbc
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
@@ -78,6 +79,6 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: 5d8c0bcc03b1bb067cdf57dde0fa26882153fd76
+PODFILE CHECKSUM: 4cb8dc1b7061d9d6ccbfc7db606299667bda4c68
 
 COCOAPODS: 1.8.4

@@ -30,55 +30,118 @@ import AuthenticationServices
 @available(iOS 11.0, *)
 class SafariAuthenticationSession: AuthSession {
 
-    private var authSession: NSObject?
+    private enum AuthenticationSession {
+
+        @available(iOS 12.0, *)
+        case authenticationServices(ASWebAuthenticationSession)
+
+        case safariServices(SFAuthenticationSession)
+
+        @available(iOS 12.0, *)
+        init(_ session: ASWebAuthenticationSession) {
+            self = .authenticationServices(session)
+        }
+
+        init(_ session: SFAuthenticationSession) {
+            self = .safariServices(session)
+        }
+
+        func start() -> Bool {
+            switch self {
+            case .authenticationServices(let session):
+                return session.start()
+            case .safariServices(let session):
+                return session.start()
+            }
+        }
+
+        func cancel() {
+            switch self {
+            case .authenticationServices(let session):
+                return session.cancel()
+            case .safariServices(let session):
+                return session.cancel()
+            }
+        }
+    }
+
+    private var authSession: AuthenticationSession?
 
     init(authorizeURL: URL, redirectURL: URL, state: String? = nil, handler: OAuth2Grant, finish: @escaping FinishSession, logger: Logger?) {
         super.init(redirectURL: redirectURL, state: state, handler: handler, finish: finish, logger: logger)
         #if canImport(AuthenticationServices)
         if #available(iOS 12.0, *) {
-            let authSession = ASWebAuthenticationSession(url: authorizeURL, callbackURLScheme: self.redirectURL.absoluteString) { [unowned self] in
+            let webAuthenticationSession = ASWebAuthenticationSession(url: authorizeURL, callbackURLScheme: self.redirectURL.absoluteString) { [unowned self] in
                 guard $1 == nil, let callbackURL = $0 else {
-                    if case ASWebAuthenticationSessionError.canceledLogin = $1! {
+                    let authError = $1 ?? WebAuthError.unknownError
+                    if case ASWebAuthenticationSessionError.canceledLogin = authError {
                         self.finish(.failure(error: WebAuthError.userCancelled))
                     } else {
-                        self.finish(.failure(error: $1!))
+                        self.finish(.failure(error: authError))
                     }
                     return TransactionStore.shared.clear()
                 }
                 _ = TransactionStore.shared.resume(callbackURL, options: [:])
-                }
-            self.authSession = authSession
-            authSession.start()
+            }
+            #if swift(>=5.1)
+            if #available(iOS 13.0, *) {
+                webAuthenticationSession.presentationContextProvider = self
+            }
+            #endif
+            authSession = .init(webAuthenticationSession)
         } else {
-            let authSession = SFAuthenticationSession(url: authorizeURL, callbackURLScheme: self.redirectURL.absoluteString) { [unowned self] in
+            authSession = .init(SFAuthenticationSession(url: authorizeURL, callbackURLScheme: self.redirectURL.absoluteString) { [unowned self] in
                 guard $1 == nil, let callbackURL = $0 else {
-                    if case SFAuthenticationError.canceledLogin = $1! {
+                    let authError = $1 ?? WebAuthError.unknownError
+                    if case SFAuthenticationError.canceledLogin = authError {
                         self.finish(.failure(error: WebAuthError.userCancelled))
                     } else {
-                        self.finish(.failure(error: $1!))
+                        self.finish(.failure(error: authError))
                     }
                     return TransactionStore.shared.clear()
                 }
                 _ = TransactionStore.shared.resume(callbackURL, options: [:])
-                }
-            self.authSession = authSession
-            authSession.start()
+            })
         }
         #else
-        let authSession = SFAuthenticationSession(url: authorizeURL, callbackURLScheme: self.redirectURL.absoluteString) { [unowned self] in
+        authSession = .init(SFAuthenticationSession(url: authorizeURL, callbackURLScheme: self.redirectURL.absoluteString) { [unowned self] in
             guard $1 == nil, let callbackURL = $0 else {
-                if case SFAuthenticationError.canceledLogin = $1! {
+                let authError = $1 ?? WebAuthError.unknownError
+                if case SFAuthenticationError.canceledLogin = authError {
                     self.finish(.failure(error: WebAuthError.userCancelled))
                 } else {
-                    self.finish(.failure(error: $1!))
+                    self.finish(.failure(error: authError))
                 }
                 return TransactionStore.shared.clear()
             }
             _ = TransactionStore.shared.resume(callbackURL, options: [:])
-        }
-        self.authSession = authSession
-        authSession.start()
+        })
         #endif
+        _ = authSession?.start()
+    }
+
+    override func resume(_ url: URL, options: [A0URLOptionsKey: Any]) -> Bool {
+        if super.resume(url, options: options) {
+            authSession?.cancel()
+            authSession = nil
+            return true
+        }
+        return false
+    }
+
+    override func cancel() {
+        super.cancel()
+        authSession?.cancel()
+        authSession = nil
     }
 }
+
+#if swift(>=5.1)
+@available(iOS 13.0, *)
+extension SafariAuthenticationSession: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return UIApplication.shared.keyWindow ?? ASPresentationAnchor()
+    }
+}
+#endif
 #endif
