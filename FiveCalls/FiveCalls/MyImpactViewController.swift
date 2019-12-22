@@ -9,7 +9,6 @@
 import UIKit
 import Rswift
 import Kingfisher
-import Bugsnag
 
 class MyImpactViewController : UITableViewController {
     
@@ -157,7 +156,7 @@ class MyImpactViewController : UITableViewController {
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
                 if let error = userStatsOp.error {
-                    Bugsnag.notifyError(error)
+                    AnalyticsManager.shared.trackError(error: error)
                 }
                 self.userStats = userStatsOp.userStats
                 DispatchQueue.main.async {

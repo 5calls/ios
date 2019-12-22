@@ -6,7 +6,7 @@
 //  Copyright © 2017 5calls. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MultipleSelectionControl: UIControl {
     @IBInspectable var selectedBackgroundColor: UIColor = .lightGray

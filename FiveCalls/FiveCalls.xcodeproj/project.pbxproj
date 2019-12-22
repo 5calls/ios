@@ -106,7 +106,6 @@
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
 		E4B6B460FCA340794101D93B /* Pods_NotificationsService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */; };
 		E8C78D1D5F3255065257A4BC /* Pods_FiveCallsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */; };
-		EDD00E0AB48BA21129E0D1B1 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F09C09B6E04C594D0E13A80 /* BuddyBuildSDK.framework */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 		FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B339F1E485BA3004B9281 /* AboutViewController.swift */; };
 		FA1B33DB1E48FD0B004B9281 /* AboutHtmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */; };
@@ -169,7 +168,6 @@
 		33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+FiveCalls.swift"; sourceTree = "<group>"; };
 		3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.debug.xcconfig"; sourceTree = "<group>"; };
 		3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.release.xcconfig"; sourceTree = "<group>"; };
-		3F09C09B6E04C594D0E13A80 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.release.xcconfig"; sourceTree = "<group>"; };
@@ -293,7 +291,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				70770C04A9521B1852C594FD /* Pods_FiveCalls.framework in Frameworks */,
-				EDD00E0AB48BA21129E0D1B1 /* BuddyBuildSDK.framework in Frameworks */,
 				B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
 				8A7839350A8D2B6B70E5980D /* CoreTelephony.framework in Frameworks */,
@@ -356,7 +353,6 @@
 			children = (
 				D08630058C5382210630DE7E /* Pods_FiveCalls.framework */,
 				3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */,
-				3F09C09B6E04C594D0E13A80 /* BuddyBuildSDK.framework */,
 				CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */,
 				49B7C84D8023A9154688796F /* CoreText.framework */,
 				097A879D4BFD5431EF684F89 /* CoreTelephony.framework */,
@@ -799,7 +795,7 @@
 			);
 			name = "Generate R.Swift Code";
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
