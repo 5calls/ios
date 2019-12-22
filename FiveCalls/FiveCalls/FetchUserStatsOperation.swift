@@ -93,16 +93,14 @@ class FetchUserStatsOperation : BaseOperation {
         //   weeklyStreak: 10,
         //   firstCallTime: 1487959763
         // }
-        guard let wrapper = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] else {
+        guard let statsDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] else {
             print("Couldn't parse JSON data.")
             return
         }
 
-        if let statsDictionary = wrapper as? JSONDictionary {
-            userStats = UserStats(dictionary: statsDictionary)
-        }
+        userStats = UserStats(dictionary: statsDictionary as JSONDictionary)
 
-        if let firstCallUnixSeconds = wrapper["firstCallTime"] as? Double {
+        if let firstCallUnixSeconds = statsDictionary["firstCallTime"] as? Double {
             firstCallTime = Date(timeIntervalSince1970: firstCallUnixSeconds)
         }
     }

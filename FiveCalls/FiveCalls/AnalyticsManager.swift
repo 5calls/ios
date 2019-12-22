@@ -31,4 +31,8 @@ class AnalyticsManager {
         
         MSAnalytics.trackEvent(name, withProperties: properties)
     }
+    
+    func trackError(error: Error) {
+        // MSAnalytics...
+    }
 }

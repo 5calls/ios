@@ -10,7 +10,6 @@ import UIKit
 import Pantry
 import Auth0
 import OneSignal
-import Bugsnag
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isUITesting() {
             resetData()
         }
-
-        BuddyBuildSDK.setup()
 
         migrateSavedData()
 
@@ -41,8 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnalyticsManager.shared.startup()
 
         oneSignalStartup(launchOptions: launchOptions)
-        bugsnagStartup()
-
+        
         return true
     }
 
@@ -60,12 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                             settings: onesignalInitSettings)
 
             OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
-        }
-    }
-
-    func bugsnagStartup() {
-        if let infoPlist = Bundle.main.infoDictionary, let bugsnagAPIKey = infoPlist["BugsnagAPIKey"] as? String {
-            Bugsnag.start(withApiKey: bugsnagAPIKey)
         }
     }
 
