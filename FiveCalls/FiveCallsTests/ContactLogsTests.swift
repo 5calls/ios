@@ -35,17 +35,14 @@ class ContactLogsTests: XCTestCase {
         logsToSave.all = [log]
         logsToSave.save()
         
-        if let loadedLogs: [ContactLog] = ContactLogs.load().all {
-            XCTAssertEqual([log], loadedLogs)
-        } else {
-            XCTFail()
-        }
+        let loadedLogs: [ContactLog] = ContactLogs.load().all
+        XCTAssertEqual([log], loadedLogs)
         
         var logs = ContactLogs()
         logs.add(log: log)
         
-        let loadedLogs = ContactLogs.load()
-        XCTAssertEqual(loadedLogs.all, [log])
+        let newlyLoadedLogs = ContactLogs.load()
+        XCTAssertEqual(newlyLoadedLogs.all, [log])
     }
     
 }
