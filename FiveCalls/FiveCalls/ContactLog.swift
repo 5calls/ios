@@ -7,46 +7,19 @@
 //
 
 import Foundation
-import Pantry
 
-struct ContactLog : Hashable {
-
+struct ContactLog : Hashable, Codable {
     let issueId: String
     let contactId: String
     let phone: String
     let outcome: String
     let date: Date
     let reported: Bool
-    
-    static var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return formatter
-    }()
-    
 }
 
-extension ContactLog : Storable {
-    init(warehouse: Warehouseable) {
-        issueId = warehouse.get("issueId") ?? ""
-        contactId = warehouse.get("contactId") ?? ""
-        phone = warehouse.get("phone") ?? ""
-        outcome = warehouse.get("outcome") ?? "unknown"
-        date = ContactLog.dateFormatter.date(from: warehouse.get("date") ?? "") ?? Date()
-        reported = warehouse.get("reported") ?? false
-    }
-    
-    func toDictionary() -> [String : Any] {
-        return [
-            "issueId": issueId,
-            "contactId": contactId,
-            "phone": phone,
-            "outcome": outcome,
-            "date": ContactLog.dateFormatter.string(from: date),
-            "reported": reported
-        ]
-    }
+struct LegacyPantryWrapper: Codable {
+    let expires: Int
+    let storage: [ContactLog]
 }
 
 struct ContactLogs {
@@ -61,21 +34,13 @@ struct ContactLogs {
     private init(logs: [ContactLog]) {
         all = logs
     }
-    
+
     mutating func add(log: ContactLog) {
         all.append(log)
         save()
         NotificationCenter.default.post(name: .callMade, object: log)
     }
-    
-    func save() {
-        Pantry.pack(all, key: ContactLogs.persistenceKey)
-    }
-    
-    static func load() -> ContactLogs {
-        return Pantry.unpack(persistenceKey).flatMap(ContactLogs.init) ?? ContactLogs()
-    }
-    
+        
     func methodOfContact(to contactId: String, forIssue issueId: Int64) -> String? {
         return all.filter({$0.contactId == contactId && $0.issueId == String(issueId)}).last?.outcome
     }
@@ -125,4 +90,40 @@ struct ContactLogs {
         }
     }
     
+    static private var filePath: URL {
+        let pantryDirName = "com.thatthinginswift.pantry"
+        let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
+        let targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
+
+        return targetPath
+    }
+}
+
+extension ContactLogs {
+    func save() {
+        let wrapper = LegacyPantryWrapper(expires: 0, storage: self.all)
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        if let data = try? encoder.encode(wrapper) {
+            try? data.write(to: ContactLogs.filePath)
+        }
+    }
+    
+    static func load() -> ContactLogs {
+        if let fileData = try? Data(contentsOf: ContactLogs.filePath) {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            if let wrapper = try? decoder.decode(LegacyPantryWrapper.self, from: fileData) {
+                return ContactLogs(logs: wrapper.storage)
+            }
+        }
+        
+        // can't decode contact logs? make a new one
+        return ContactLogs()
+    }
+    
+    static func removeData() {
+        try? FileManager.default.removeItem(at: ContactLogs.filePath)
+    }
 }
