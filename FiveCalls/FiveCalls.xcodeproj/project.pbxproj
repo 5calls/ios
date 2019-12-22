@@ -1238,7 +1238,6 @@
 			buildSettings = {
 				APPCENTER_API_KEY = "7b7d63ea-901b-4e12-967b-830c35739800";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BUGSNAG_API_KEY = 0b3343ab9ac4cfd653e5d6db2a3a818c;
 				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 36;
@@ -1268,7 +1267,6 @@
 			buildSettings = {
 				APPCENTER_API_KEY = "7b7d63ea-901b-4e12-967b-830c35739800";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BUGSNAG_API_KEY = 0b3343ab9ac4cfd653e5d6db2a3a818c;
 				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 36;

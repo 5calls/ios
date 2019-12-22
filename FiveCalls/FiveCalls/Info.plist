@@ -4,8 +4,6 @@
 <dict>
 	<key>AppCenterAPIKey</key>
 	<string>$(APPCENTER_API_KEY)</string>
-	<key>BugsnagAPIKey</key>
-	<string>$(BUGSNAG_API_KEY)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
