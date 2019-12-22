@@ -95,7 +95,7 @@ struct ContactLogs {
         let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
 
         let targetPath: URL
-        if UserDefaults.standard.bool(forKey: "isBeingTested") {
+        if AppDelegate.isRunningUnitTests {
             targetPath = FileManager.default.temporaryDirectory.appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
         } else {
             targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)

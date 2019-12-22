@@ -136,4 +136,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.setValue(currentVersion, forKey: UserDefaultsKey.appVersion.rawValue)
         defaults.set(Int(0), forKey: UserDefaultsKey.countOfCallsForRatingPrompt.rawValue)
     }
+
+    static var isRunningUnitTests: Bool {
+        return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
+    }
 }
