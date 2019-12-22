@@ -96,12 +96,15 @@ struct ContactLogs {
 
         let targetPath: URL
         if AppDelegate.isRunningUnitTests {
-            targetPath = FileManager.default.temporaryDirectory.appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
+            targetPath = FileManager.default.temporaryDirectory
         } else {
-            targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
+            targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName)
         }
 
-        return targetPath
+        // don't try to create a directory with the full path, even with "isDirectory: false"
+        try? FileManager.default.createDirectory(at: targetPath, withIntermediateDirectories: true)
+
+        return targetPath.appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
     }    
 }
 
@@ -112,7 +115,11 @@ extension ContactLogs {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         if let data = try? encoder.encode(wrapper) {
-            try? data.write(to: ContactLogs.filePath)
+            do {
+                try data.write(to: ContactLogs.filePath)
+            } catch {
+                AnalyticsManager.shared.trackError(error: error)
+            }
         }
     }
     
