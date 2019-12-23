@@ -45,8 +45,6 @@ platform :ios do
     increment_build
     commit_version_bump(xcodeproj: xcodeproj)
 
-    badge(shield: "Version-#{app_version}-red", shield_no_resize: true)
-
     gym(workspace: workspace, scheme: scheme)
     changelog = prompt_for_release_notes
     pilot(changelog: changelog)
