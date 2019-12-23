@@ -93,6 +93,7 @@ class SessionManager {
                         case .success(let credentials):
                             seal.fulfill(credentials)
                         case .failure(let error):
+                            AnalyticsManager.shared.trackError(error: error)
                             print("User login failed with error: \(error)")
                             seal.reject(error)
                         }
@@ -140,7 +141,14 @@ class SessionManager {
         
         return Promise { seal in
             let logs = ContactLogs.load()
-            let unreportedLogs = logs.unreported()
+            var unreportedLogs = logs.unreported()
+
+            // we kick off a check for unreported stats in a viewDidLoad so I suspect this was racing against regular stat network requests and doubling counts on the server
+            // instead, don't send unreported stats until they're a few minutes old
+            unreportedLogs = unreportedLogs.filter({
+                $0.date < Date().addingTimeInterval(-TimeInterval(3 * 60))
+            })
+
             if unreportedLogs.count > 0 {
                 // Send all of our unreported stats to the server.
                 let reportStatsOperation = ReportUserStatsOperation(logs: logs)

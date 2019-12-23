@@ -118,7 +118,7 @@ SOFTWARE.
 			<key>summary</key>
 			<string>Swift toolkit for Auth0 API</string>
 			<key>version</key>
-			<string>1.15.0</string>
+			<string>1.19.3</string>
 		</dict>
 		<dict>
 			<key>authors</key>

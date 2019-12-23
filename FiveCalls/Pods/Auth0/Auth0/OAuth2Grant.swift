@@ -106,7 +106,7 @@ struct PKCE: OAuth2Grant {
             .start { result in
                 // Special case for PKCE when the correct method for token endpoint authentication is not set (it should be None)
                 if case .failure(let cause as AuthenticationError) = result, cause.description == "Unauthorized" {
-                    let error = WebAuthError.pkceNotAllowed("Please go to 'https://manage.auth0.com/#/applications/\(clientId)/settings' and make sure 'Client Type' is 'Native' to enable PKCE.")
+                    let error = WebAuthError.pkceNotAllowed("Unable to complete authentication with PKCE. PKCE support can be enabled by setting Application Type to 'Native' and Token Endpoint Authentication Method to 'None' for this app at 'https://manage.auth0.com/#/applications/\(clientId)/settings'.")
                     callback(Result.failure(error: error))
                 } else {
                     callback(result)
@@ -130,26 +130,4 @@ private func validate(responseType: [ResponseType], token: String?, nonce: Strin
     let claims = decode(jwt: token)
     let actualNonce = claims?["nonce"] as? String
     return actualNonce == expectedNonce
-}
-
-private func decode(jwt: String) -> [String: Any]? {
-    let parts = jwt.components(separatedBy: ".")
-    guard parts.count == 3 else { return nil }
-    var base64 = parts[1]
-        .replacingOccurrences(of: "-", with: "+")
-        .replacingOccurrences(of: "_", with: "/")
-    let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
-    let requiredLength = 4 * ceil(length / 4.0)
-    let paddingLength = requiredLength - length
-    if paddingLength > 0 {
-        let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
-        base64 += padding
-    }
-
-    guard
-        let bodyData = Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
-        else { return nil }
-
-    let json = try? JSONSerialization.jsonObject(with: bodyData, options: [])
-    return json as? [String: Any]
 }
