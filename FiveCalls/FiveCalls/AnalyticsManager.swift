@@ -33,6 +33,6 @@ class AnalyticsManager {
     }
     
     func trackError(error: Error) {
-        // MSAnalytics...
+        MSAnalytics.trackEvent("Error", withProperties: ["message": error.localizedDescription])
     }
 }
