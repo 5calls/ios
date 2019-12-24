@@ -122,7 +122,7 @@ extension ContactLogs {
         let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
         let files = try? FileManager.default.contentsOfDirectory(atPath: URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).path)
 
-        print("directory is \(files)")
+        print("directory is \(String(describing: files))")
     }
     
     static func load() -> ContactLogs {
