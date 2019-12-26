@@ -15,7 +15,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     var issuesManager: IssuesManager!
     var issue: Issue!
     var logs: ContactLogs?
-    var contacts: [Contact]?
+    var contacts: [Contact] = []
     
     var contactsManager: ContactsManager!
     
@@ -37,6 +37,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
 
     private func loadContacts() {
         print("Loading contacts for: \(issue.contactAreas)")
+        
         contactsManager.fetchContacts(location: UserLocation.current) { result in
             switch result {
             case .success(let contacts):
@@ -106,11 +107,11 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         tableView.reloadSections(IndexSet(integer: IssueSections.contacts.rawValue), with: .none)
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard let contacts = contacts else { return false }
         if identifier == R.segue.issueDetailViewController.callScript.identifier, self.splitViewController != nil, let indexPath = tableView.indexPathForSelectedRow {
             let controller = R.storyboard.main.callScriptController()!
             controller.issuesManager = issuesManager
@@ -131,7 +132,6 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             loc.delegate = self
         } else if let call = segue.destination as? CallScriptViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            guard let contacts = contacts else { return }
             call.issuesManager = issuesManager
             call.issue = issue
             call.contact = contacts[indexPath.row]
@@ -171,16 +171,11 @@ extension IssueDetailViewController : UITableViewDataSource {
         if section == IssueSections.header.rawValue {
             return IssueHeaderRows.count.rawValue
         } else {
-            if let contacts = self.contacts {
-                return max(1, contacts.count)
-            }
-            return 0
+            return max(1, contacts.count)
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let contacts = contacts else { return UITableViewCell() }
-
         switch indexPath.section {
         case IssueSections.header.rawValue:
             return headerCell(at: indexPath)
