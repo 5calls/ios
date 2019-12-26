@@ -41,12 +41,12 @@ struct ContactLogs {
         NotificationCenter.default.post(name: .callMade, object: log)
     }
         
-    func methodOfContact(to contactId: String, forIssue issueId: Int64) -> String? {
-        return all.filter({$0.contactId == contactId && $0.issueId == String(issueId)}).last?.outcome
+    func methodOfContact(to contactId: String, forIssue issue: Issue) -> String? {
+        return all.filter({$0.contactId == contactId && ($0.issueId == String(issue.id) || $0.issueId == issue.meta)}).last?.outcome
     }
 
-    func hasContacted(contactId: String, forIssue issueId: Int64) -> Bool {
-        guard let method = methodOfContact(to: contactId, forIssue: issueId) else {
+    func hasContacted(contact: Contact, forIssue issue: Issue) -> Bool {
+        guard let method = methodOfContact(to: contact.id, forIssue: issue) else {
             return false
         }
         
@@ -58,23 +58,13 @@ struct ContactLogs {
             return false
         }        
     }
-    
-    func hasCompleted(issue: Int64, allContacts: [Contact]) -> Bool {
-        if (allContacts.count == 0) {
-            return false
-        }
-        for contact in allContacts {
-            if !hasContacted(contactId: contact.id, forIssue: issue) {
-                return false
-            }
-        }
-        return true
-    }
-    
+
     // Gets a list of unreported contacts
     func unreported() -> [ContactLog] {
         return all.filter({$0.reported == false})
     }
+
+    // MARK: mutating functions
     
     mutating func markAllReported(_ logs: [ContactLog]) {
         logs.forEach { self.markReported($0) }
@@ -89,6 +79,8 @@ struct ContactLogs {
             all.append(ContactLog(issueId: log.issueId, contactId: log.contactId, phone: log.phone, outcome: log.outcome, date: log.date, reported: true))
         }
     }
+
+    // MARK: the file path for locally saved contact logs that was inherited from pantry
     
     static private var filePath: URL {
         let pantryDirName = "com.thatthinginswift.pantry"
@@ -105,7 +97,7 @@ struct ContactLogs {
         try? FileManager.default.createDirectory(at: targetPath, withIntermediateDirectories: true)
 
         return targetPath.appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
-    }    
+    }
 }
 
 extension ContactLogs {
@@ -122,13 +114,28 @@ extension ContactLogs {
             }
         }
     }
+
+    static func debugContactLogs() {
+        print("file should be at \(ContactLogs.filePath)")
+
+        let pantryDirName = "com.thatthinginswift.pantry"
+        let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
+        let files = try? FileManager.default.contentsOfDirectory(atPath: URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).path)
+
+        print("directory is \(String(describing: files))")
+    }
     
     static func load() -> ContactLogs {
+//        ContactLogs.debugContactLogs()
+
         if let fileData = try? Data(contentsOf: ContactLogs.filePath) {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             if let wrapper = try? decoder.decode(LegacyPantryWrapper.self, from: fileData) {
                 return ContactLogs(logs: wrapper.storage)
+            } else {
+                print("couldn't decode wrapper")
+                AnalyticsManager.shared.trackError(error: ContactLogError.CantDecodeWrapper)
             }
         }
         
@@ -139,4 +146,8 @@ extension ContactLogs {
     static func removeData() {
         try? FileManager.default.removeItem(at: ContactLogs.filePath)
     }
+}
+
+enum ContactLogError: Error {
+    case CantDecodeWrapper
 }

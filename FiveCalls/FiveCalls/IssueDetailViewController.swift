@@ -204,7 +204,7 @@ extension IssueDetailViewController : UITableViewDataSource {
                 } else {
                     cell.avatarImageView.image = UIImage(named: "icon-office")
                 }
-                if let hasContacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
+                if let hasContacted = logs?.hasContacted(contact: contact, forIssue: issue) {
                     cell.hasContacted = hasContacted
                 }
                 return cell

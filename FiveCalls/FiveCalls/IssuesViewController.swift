@@ -256,12 +256,13 @@ class IssuesViewController : UITableViewController {
 
         var numContactsContacted = 0
         for contact in issueContacts {
-            if let contacted = logs?.hasContacted(contactId: contact.id, forIssue: issue.id) {
+            if let contacted = logs?.hasContacted(contact: contact, forIssue: issue) {
                 if contacted {
                     numContactsContacted = numContactsContacted + 1
                 }
             }
         }
+
 //        // avoid NaN problem if there are no contacts
         let progress = issueContacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issueContacts.count)
         cell.progressView.progress = progress

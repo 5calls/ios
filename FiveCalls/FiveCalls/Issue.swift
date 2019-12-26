@@ -11,6 +11,7 @@ import Rswift
 
 struct Issue : Decodable {
     let id: Int64
+    let meta: String
     let name: String
     let slug: String
     let reason: String
