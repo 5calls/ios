@@ -19,7 +19,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // When false, we show only 'active' issues.
     // Otherwise we show all issues - plus issues are grouped by their categories.
-    @IBInspectable var shouldShowAllIssues: Bool = false
+    var shouldShowAllIssues: Bool = false
 
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: LoadResult?
@@ -73,11 +73,6 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if viewModel.hasNoData() {
             loadIssues()
         }
-
-        tableView.contentInsetAdjustmentBehavior = .automatic
-//        tableView.insetsContentViewsToSafeArea = false
-//        tableView.insetsLayoutMarginsFromSafeArea = false
-//        self.tableView.safeAreaInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
 
         tableView.tableFooterView = UIView()
 
@@ -168,7 +163,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     private func headerWithTitle(title: String) -> UIView {
-        let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 16.0))
+        let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
         notAButton.setTitle(title, for: .normal)
         notAButton.setTitleColor(.fvc_darkGray, for: .normal)
         notAButton.backgroundColor = .fvc_lightGray
