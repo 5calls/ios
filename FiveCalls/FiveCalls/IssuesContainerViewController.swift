@@ -105,8 +105,12 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     private func setContentInset() {
         // Fix for odd force unwrapping in crash noted in bug #75
         guard issuesViewController != nil && headerContainer != nil else { return }
-        issuesViewController.tableView.contentInset.top = headerContainer.frame.size.height
-        issuesViewController.tableView.scrollIndicatorInsets.top = headerContainer.frame.size.height
+        
+        // headercontainer is attached to the top of the screen not the safe area so we get the behind effect all the way to the top
+        // however this means it's height grows from the expected 40 to safe area height + 40
+        let headerHeightSansSafeArea = headerContainer.frame.size.height - (UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0)
+        issuesViewController.tableView.contentInset.top = headerHeightSansSafeArea
+        issuesViewController.tableView.scrollIndicatorInsets.top = headerHeightSansSafeArea
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
