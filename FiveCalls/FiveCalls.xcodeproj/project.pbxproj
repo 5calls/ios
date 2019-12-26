@@ -1244,7 +1244,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.6;
 				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
@@ -1273,7 +1273,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.6;
 				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
