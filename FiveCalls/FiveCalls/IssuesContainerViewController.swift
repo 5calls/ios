@@ -138,7 +138,11 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setContentInset()
+        
+        // no content inset for iPads
+        if traitCollection.horizontalSizeClass != .regular {
+            setContentInset()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

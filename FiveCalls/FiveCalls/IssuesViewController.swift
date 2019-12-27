@@ -189,6 +189,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             guard let indexPath = tableView.indexPathForSelectedRow else { return true }
             let controller = R.storyboard.main.issueDetailViewController()!
             controller.issuesManager = issuesManager
+            controller.contactsManager = contactsManager
             controller.issue = viewModel.issueForIndexPath(indexPath: indexPath)
 
             let nav = UINavigationController(rootViewController: controller)
