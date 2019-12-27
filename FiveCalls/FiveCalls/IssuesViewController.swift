@@ -14,12 +14,13 @@ protocol IssuesViewControllerDelegate : class {
     func didFinishLoadingIssues()
 }
 
-class IssuesViewController : UITableViewController {
+class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var tableView: UITableView!
 
     // When false, we show only 'active' issues.
     // Otherwise we show all issues - plus issues are grouped by their categories.
-    @IBInspectable var shouldShowAllIssues: Bool = false
-    
+    var shouldShowAllIssues: Bool = false
+
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: LoadResult?
     var isLoading = false
@@ -30,7 +31,7 @@ class IssuesViewController : UITableViewController {
             return "Home"
         }
     }
-    
+
     // keep track of when calls are made, so we know if we need to reload any cells
     var needToReloadVisibleRowsOnNextAppearance = false
 
@@ -40,10 +41,10 @@ class IssuesViewController : UITableViewController {
     var issuesManager: IssuesManager!
     var contactsManager: ContactsManager!
     private var contacts: [Contact]?
-    
+
     var logs: ContactLogs?
     var iPadShareButton: UIButton? { didSet { self.iPadShareButton?.addTarget(self, action: #selector(share), for: .touchUpInside) }}
-    
+
     var viewModel : IssuesViewModel!
 
     deinit {
@@ -53,7 +54,7 @@ class IssuesViewController : UITableViewController {
         NotificationCenter.default.removeObserver(self, name: .callMade, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Construct viewModel from the issues already fetched by the caller.
@@ -74,20 +75,18 @@ class IssuesViewController : UITableViewController {
         }
 
         tableView.tableFooterView = UIView()
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 44
 
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
-        
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
+
         notificationToken = NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
         }
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         logs = ContactLogs.load()
@@ -100,10 +99,10 @@ class IssuesViewController : UITableViewController {
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         // only reload rows if we need to. this fixes a rare tableview inconsistency crash we've seen
         if needToReloadVisibleRowsOnNextAppearance {
             tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
@@ -160,7 +159,7 @@ class IssuesViewController : UITableViewController {
         } else {
             tableView.reloadEmptyDataSet()
         }
-        refreshControl?.endRefreshing()
+        tableView.refreshControl?.endRefreshing()
     }
 
     private func headerWithTitle(title: String) -> UIView {
@@ -175,7 +174,7 @@ class IssuesViewController : UITableViewController {
         notAButton.bottomBorder = true
         return notAButton
     }
-    
+
     @objc func madeCall() {
         logs = ContactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
@@ -203,6 +202,7 @@ class IssuesViewController : UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.issuesViewController.moreSegue(segue: segue) {
+            typedInfo.destination.shouldShowAllIssues = true
             typedInfo.destination.issuesManager = issuesManager
             typedInfo.destination.contactsManager = contactsManager
         }
@@ -213,34 +213,34 @@ class IssuesViewController : UITableViewController {
             typedInfo.destination.issue = viewModel.issueForIndexPath(indexPath: indexPath)
         }
     }
-    
+
     // MARK: - UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Display 'more issues' row in the last section, if we are showing 'active' issues only.
         let isLastSection = (viewModel.numberOfSections() - 1 == section)
         let moreIssuesRow = (isLastSection && !shouldShowAllIssues) ? 1 : 0
 
         return viewModel.numberOfRowsInSection(section: section) + moreIssuesRow
     }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let title = viewModel.titleForHeaderInSection(section: section)
         return headerWithTitle(title: title)
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if !shouldShowAllIssues && UIDevice.current.userInterfaceIdiom == .pad {
             return 0
         }
         return 35.0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard indexPath.row < viewModel.numberOfRowsInSection(section: indexPath.section) else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.moreIssuesCell, for: indexPath)!
             return cell
@@ -266,9 +266,13 @@ class IssuesViewController : UITableViewController {
 //        // avoid NaN problem if there are no contacts
         let progress = issueContacts.count < 1 ? 0.0 : Double(numContactsContacted) / Double(issueContacts.count)
         cell.progressView.progress = progress
+
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+    }
 }
 
 extension IssuesViewController: UIViewControllerPreviewingDelegate {
