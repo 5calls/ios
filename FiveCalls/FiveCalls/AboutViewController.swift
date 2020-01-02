@@ -86,12 +86,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func promptForRating() {
         AnalyticsManager.shared.trackEvent(withName: "Action: Rate the App")
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
-        } else {
-            guard let url = URL(string: "itms-apps://itunes.apple.com/app/viewContentsUserReviews?id=\(AboutViewController.appId)") else { return }
-            UIApplication.shared.open(url)
-        }
+        SKStoreReviewController.requestReview()
     }
     
     func shareApp(from view: UIView?) {

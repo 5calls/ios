@@ -4,7 +4,7 @@
 # All available actions: https://docs.fastlane.tools/actions
 # can also be listed using the `fastlane actions` command
 
-update_fastlane
+# update_fastlane
 
 default_platform :ios
 
@@ -14,7 +14,9 @@ scheme = 'FiveCalls'
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    before_all do
+      setup_circle_ci
+    end
   end
 
   desc "Runs all the tests"

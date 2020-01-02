@@ -28,14 +28,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
 
     lazy var ratingPromptCounter: RatingPromptCounter = {
-        let handler: (() -> Void)?
-        if #available(iOS 10.3, *) {
-            handler = { SKStoreReviewController.requestReview() }
-        } else {
-            handler = nil
-        }
-
-        return RatingPromptCounter(handler: handler)
+        return RatingPromptCounter(handler: { SKStoreReviewController.requestReview() })
     }()
     
     @IBOutlet weak var tableView: UITableView!

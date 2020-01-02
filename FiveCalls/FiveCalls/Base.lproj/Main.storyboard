@@ -18,7 +18,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlg-f3-h08" userLabel="Header Container">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-zA-nnh" userLabel="Footer">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
@@ -1201,6 +1200,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XV8-ty-hbB"/>
-        <segue reference="Yf8-1x-xfZ"/>
+        <segue reference="AAB-7d-kdh"/>
     </inferredMetricsTieBreakers>
 </document>
