@@ -45,20 +45,21 @@ class FiveCallsUITests: XCTestCase {
 
         snapshot("2-issues")
         
-        app.tables.cells.staticTexts["Defend the Affordable Care Act"].tap()
+        app.tables.cells.staticTexts["Urge Congress to Pass Legislation to Prevent Future Shutdowns"].tap()
         snapshot("3-issue-detail")
         let issueTable = app.tables.element(boundBy: 0)
         issueTable.swipeUp()
         issueTable.swipeUp()
         issueTable.swipeUp()
         
-        app.cells.staticTexts["Ted Cruz"].tap()
+        app.cells.staticTexts["Dianne Feinstein"].tap()
         snapshot("4-call-script")
     }
     
     private func loadJSONFixtures(application: XCUIApplication) {
         let bundle = Bundle(for: FiveCallsUITests.self)
-        application.launchEnvironment["GET:/issues"] = bundle.path(forResource: "GET-issues", ofType: "json")
+        application.launchEnvironment["GET:/v1/reps"] = bundle.path(forResource: "GET-v1-reps", ofType: "json")
+        application.launchEnvironment["GET:/v1/issues"] = bundle.path(forResource: "GET-v1-issues", ofType: "json")
         application.launchEnvironment["GET:/report"] = bundle.path(forResource: "GET-report", ofType: "json")
         application.launchEnvironment["POST:/report"] = bundle.path(forResource: "POST-report", ofType: "json")
     }

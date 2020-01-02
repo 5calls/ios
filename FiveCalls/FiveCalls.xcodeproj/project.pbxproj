@@ -101,6 +101,8 @@
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
+		D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
 		DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
@@ -268,6 +270,8 @@
 		D0BA59AC1F9546510069DA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationsService.entitlements; sourceTree = "<group>"; };
 		D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FiveCalls.entitlements; sourceTree = "<group>"; };
+		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
+		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 		FA1B339F1E485BA3004B9281 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -567,6 +571,8 @@
 			children = (
 				B5E98E3A1E52A566005221B7 /* GET-report.json */,
 				B5E98E3C1E52A570005221B7 /* GET-issues.json */,
+				D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */,
+				D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */,
 				B5E98E401E52A8AB005221B7 /* POST-report.json */,
 			);
 			name = Fixtures;
@@ -770,7 +776,9 @@
 			files = (
 				B5E98E3B1E52A566005221B7 /* GET-report.json in Resources */,
 				B5E98E3D1E52A570005221B7 /* GET-issues.json in Resources */,
+				D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */,
 				B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */,
+				D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,144 @@
+{
+  "location": "San Francisco",
+  "representatives": [
+    {
+      "id": "CA-GavinNewsom",
+      "name": "Gavin Newsom",
+      "phone": "916-445-2841",
+      "photoURL": "https://repimages.5calls.org/us-governors/512x512/gavin-newsom.jpg",
+      "ocdID": "",
+      "party": "democrat",
+      "state": "CA",
+      "reason": "This is your State Governor.",
+      "area": "Governor",
+      "field_offices": []
+    },
+    {
+      "id": "CA-NancyPelosi",
+      "name": "Nancy Pelosi",
+      "phone": "202-225-4965",
+      "photoURL": "https://repimages.5calls.org/us-house/512x512/nancy-pelosi.jpg",
+      "ocdID": "",
+      "party": "democrat",
+      "state": "CA",
+      "reason": "This is your representative in the House.",
+      "area": "US House",
+      "field_offices": [
+        {
+          "phone": "415-556-4862",
+          "city": ""
+        }
+      ]
+    },
+    {
+      "id": "CA-DianneFeinstein",
+      "name": "Dianne Feinstein",
+      "phone": "202-224-3841",
+      "photoURL": "https://repimages.5calls.org/us-senate/512x512/dianne-feinstein.jpg",
+      "ocdID": "",
+      "party": "democrat",
+      "state": "CA",
+      "reason": "This is one of your two Senators.",
+      "area": "US Senate",
+      "field_offices": [
+        {
+          "phone": "559-485-7430",
+          "city": "Fresno"
+        },
+        {
+          "phone": "310-914-7300",
+          "city": "Los Angeles"
+        },
+        {
+          "phone": "619-231-9712",
+          "city": "San Diego"
+        },
+        {
+          "phone": "415-393-0707",
+          "city": "San Francisco"
+        }
+      ]
+    },
+    {
+      "id": "CA-KamalaHarris",
+      "name": "Kamala Harris",
+      "phone": "202-224-3553",
+      "photoURL": "https://repimages.5calls.org/us-senate/512x512/kamala-harris.jpg",
+      "ocdID": "",
+      "party": "democrat",
+      "state": "CA",
+      "reason": "This is one of your two Senators.",
+      "area": "US Senate",
+      "field_offices": [
+        {
+          "phone": "916-448-2787",
+          "city": "Fresno"
+        },
+        {
+          "phone": "213-894-5000",
+          "city": "Los Angeles"
+        },
+        {
+          "phone": "916-448-2787",
+          "city": "Sacramento"
+        },
+        {
+          "phone": "619-239-3884",
+          "city": "San Diego"
+        },
+        {
+          "phone": "415-355-9041",
+          "city": "San Francisco"
+        }
+      ]
+    },
+    {
+      "id": "CA-DavidChiu",
+      "name": "David Chiu",
+      "phone": "415-557-3013",
+      "photoURL": "https://www.assembly.ca.gov/sites/assembly.ca.gov/files/memberphotos/AD17_Chiu_Portrait150_20141201.jpg",
+      "ocdID": "",
+      "party": "democrat",
+      "state": "CA",
+      "reason": "This is one of your State Legislators.",
+      "area": "StateLower",
+      "field_offices": []
+    },
+    {
+      "id": "CA-ScottD.Wiener",
+      "name": "Scott D. Wiener",
+      "phone": "415-557-1300",
+      "photoURL": "https://www.senate.ca.gov/sites/senate.ca.gov/files/senator_photos/wiener.jpg",
+      "ocdID": "",
+      "party": "democrat",
+      "state": "CA",
+      "reason": "This is one of your State Legislators.",
+      "area": "StateUpper",
+      "field_offices": []
+    },
+    {
+      "id": "CA-ag",
+      "name": "Xavier Becerra",
+      "phone": "916-445-9555",
+      "photoURL": "https://www.naag.org/assets/redesign/images/AGs/ag-CA-Becerra-2.jpg",
+      "ocdID": "",
+      "party": "",
+      "state": "CA",
+      "reason": "This is your State Attorney General.",
+      "area": "AttorneyGeneral",
+      "field_offices": []
+    },
+    {
+      "id": "CA-secstate",
+      "name": "Alex Padilla",
+      "phone": "916-653-7244",
+      "photoURL": "https://www.nass.org/sites/default/files/styles/secretary/public/2017-08/alex-padilla-opt.jpg",
+      "ocdID": "",
+      "party": "",
+      "state": "CA",
+      "reason": "This is your local Secretary of State.",
+      "area": "SecretaryOfState",
+      "field_offices": []
+    }
+  ]
+}
