@@ -47,10 +47,13 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
             let issuesNavigation = UINavigationController(rootViewController: issuesVC)
             splitController.viewControllers = [issuesNavigation, UIViewController()]
             splitController.preferredDisplayMode = .allVisible
-            headerContainerConstraint.constant = self.splitController.primaryColumnWidth
             childController = splitController
             issuesVC.iPadShareButton = self.iPadShareButton
             self.navigationController?.setNavigationBarHidden(true, animated: false)
+
+            // layout the split controller before we get the width, otherwise it's the whole screen
+            splitController.view.layoutIfNeeded()
+            headerContainerConstraint.constant = self.splitController.primaryColumnWidth
         } else {
             childController = issuesVC
         }
