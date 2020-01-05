@@ -73,7 +73,7 @@ struct ContactLogs {
     // Marks a contact as reported.  This will have no effect if there
     // is no matching ContactLog in our list of contacts.
     mutating func markReported(_ log: ContactLog) {
-        if let index = all.index(of: log) {
+        if let index = all.firstIndex(of: log) {
             // ContactLogs are immutable, so we'll need to replace it
             all.remove(at: index)
             all.append(ContactLog(issueId: log.issueId, contactId: log.contactId, phone: log.phone, outcome: log.outcome, date: log.date, reported: true))
