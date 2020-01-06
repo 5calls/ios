@@ -15,7 +15,6 @@ target 'FiveCalls' do
   pod 'Kingfisher', '~> 4.0'
   pod 'OneSignal', '~> 2.5'
   pod 'PromiseKit', '~> 6.0'
-  pod 'Down', inhibit_warnings: true
   pod 'AppCenter'
 end
 

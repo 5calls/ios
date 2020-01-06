@@ -255,7 +255,7 @@ extension CallScriptViewController : UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
 
             let markdown = Down.init(markdownString: issue.script)
-            if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+            if let converted = try? markdown.toAttributedString(styler: DownStyler()) {
                 cell.scriptTextView.attributedText = converted
             } else {
                 cell.scriptTextView.text = issue.script
