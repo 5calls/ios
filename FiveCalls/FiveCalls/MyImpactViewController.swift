@@ -108,7 +108,7 @@ class MyImpactViewController : UITableViewController {
 
         if viewModel.numberOfCalls == 0 {
             subheadLabel.isHidden = true
-            subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
+            subheadLabel.addConstraint(NSLayoutConstraint(item: subheadLabel as Any, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0))
         }
 
         tableView.reloadData()
