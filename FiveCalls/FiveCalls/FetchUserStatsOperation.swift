@@ -78,9 +78,9 @@ class FetchUserStatsOperation : BaseOperation {
     
     private func refreshToken() {
         print("Token is invalid or expired, try to refresh...")
-        _ = SessionManager.shared.refreshToken().done { _ in
+        SessionManager.shared.refreshToken(completion: { (result) in
             self.execute()
-        }
+        })
     }
     
     private func parseResponse(data: Data) throws {

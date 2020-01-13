@@ -14,7 +14,6 @@ target 'FiveCalls' do
   pod 'DZNEmptyDataSet', git: 'https://github.com/subdigital/DZNEmptyDataSet'
   pod 'Kingfisher', '~> 4.0'
   pod 'OneSignal', '~> 2.5'
-  pod 'PromiseKit', '~> 6.0'
   pod 'AppCenter'
 end
 

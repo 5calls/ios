@@ -13,15 +13,6 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - Kingfisher (4.9.0)
   - OneSignal (2.6.0)
-  - PromiseKit (6.2.1):
-    - PromiseKit/CorePromise (= 6.2.1)
-    - PromiseKit/Foundation (= 6.2.1)
-    - PromiseKit/UIKit (= 6.2.1)
-  - PromiseKit/CorePromise (6.2.1)
-  - PromiseKit/Foundation (6.2.1):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.2.1):
-    - PromiseKit/CorePromise
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
@@ -34,7 +25,6 @@ DEPENDENCIES:
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - Kingfisher (~> 4.0)
   - OneSignal (~> 2.5)
-  - PromiseKit (~> 6.0)
   - R.swift (~> 5.0)
 
 SPEC REPOS:
@@ -42,7 +32,6 @@ SPEC REPOS:
     - AppCenter
     - Kingfisher
     - OneSignal
-    - PromiseKit
     - R.swift
     - R.swift.Library
   trunk:
@@ -70,11 +59,10 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
   Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
-  PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: 4e9c0c9bf4cf6a3ea980ae2cf5484ab565fd9c49
+PODFILE CHECKSUM: 4dfe43258c674979a846b49e18bf1f28f32ef7ff
 
 COCOAPODS: 1.8.4
