@@ -725,10 +725,9 @@
 			};
 			buildConfigurationList = B528050C1E3FA94D00EE832A /* Build configuration list for PBXProject "FiveCalls" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
