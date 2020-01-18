@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "Down",
-        "repositoryURL": "https://github.com/iwasrobbed/Down",
+        "repositoryURL": "git@github.com:iwasrobbed/Down.git",
         "state": {
           "branch": null,
           "revision": "940b173fc1328b0539d0e3681fdfa679501d2bdb",
