@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -95,7 +95,6 @@
 		B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */; };
 		B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFBB981E5EA60E00647121 /* Appearance.swift */; };
 		B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */; };
-		D0064CBD23D3861B003D1B52 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = D0064CBC23D3861B003D1B52 /* Down */; };
 		D029C6D01F6F42EA00E56CC7 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */; };
 		D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
@@ -295,7 +294,6 @@
 			files = (
 				70770C04A9521B1852C594FD /* Pods_FiveCalls.framework in Frameworks */,
 				B875AA1AE8F7D7A6C6E3ADF8 /* AssetsLibrary.framework in Frameworks */,
-				D0064CBD23D3861B003D1B52 /* Down in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
 				8A7839350A8D2B6B70E5980D /* CoreTelephony.framework in Frameworks */,
 				E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */,
@@ -629,9 +627,6 @@
 				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
 			);
 			name = FiveCalls;
-			packageProductDependencies = (
-				D0064CBC23D3861B003D1B52 /* Down */,
-			);
 			productName = FiveCalls;
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
 			productType = "com.apple.product-type.application";
@@ -732,9 +727,6 @@
 				Base,
 			);
 			mainGroup = B52805081E3FA94D00EE832A;
-			packageReferences = (
-				D0064CBB23D3861B003D1B52 /* XCRemoteSwiftPackageReference "Down" */,
-			);
 			productRefGroup = B52805121E3FA94D00EE832A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -807,7 +799,7 @@
 			);
 			name = "Generate R.Swift Code";
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1442,25 +1434,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D0064CBB23D3861B003D1B52 /* XCRemoteSwiftPackageReference "Down" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/iwasrobbed/Down.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D0064CBC23D3861B003D1B52 /* Down */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D0064CBB23D3861B003D1B52 /* XCRemoteSwiftPackageReference "Down" */;
-			productName = Down;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B52805091E3FA94D00EE832A /* Project object */;
 }
