@@ -220,7 +220,7 @@ extension IssueDetailViewController : UITableViewDataSource {
             cell.issueTextView.isEditable = false
 
             let markdown = Down.init(markdownString: issue.reason)
-            if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+            if let converted = try? markdown.toAttributedString(styler: DownStyler()) {
                 cell.issueTextView.attributedText = converted
             } else {
                 cell.issueTextView.text = issue.reason

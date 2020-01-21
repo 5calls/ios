@@ -23,7 +23,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var lastPhoneDialed: String?
     
     var isLastContactForIssue: Bool {
-        let contactIndex = contacts.index(of: contact)
+        let contactIndex = contacts.firstIndex(of: contact)
         return contactIndex == contacts.count - 1
     }
 
@@ -51,7 +51,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue, let contactIndex = contacts.index(of: contact) else {
+        guard let issue = issue, let contactIndex = contacts.firstIndex(of: contact) else {
             return assertionFailure("no issue or contact in call script")
         }
         
@@ -255,7 +255,7 @@ extension CallScriptViewController : UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
 
             let markdown = Down.init(markdownString: issue.script)
-            if let converted = try? markdown.toAttributedString(.default, stylesheet: Issue.style) {
+            if let converted = try? markdown.toAttributedString(styler: DownStyler()) {
                 cell.scriptTextView.attributedText = converted
             } else {
                 cell.scriptTextView.text = issue.script

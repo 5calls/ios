@@ -10,7 +10,7 @@ PODS:
   - Auth0 (1.19.3):
     - SimpleKeychain
   - CPDAcknowledgements (1.0.0)
-  - Down (0.5.2)
+  - Down (0.9.0)
   - DZNEmptyDataSet (1.8.1)
   - Kingfisher (4.9.0)
   - OneSignal (2.6.0)
@@ -23,33 +23,33 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.2.1):
     - PromiseKit/CorePromise
-  - R.swift (5.0.3):
-    - R.swift.Library (~> 5.0.0)
-  - R.swift.Library (5.0.1)
+  - R.swift (5.1.0):
+    - R.swift.Library (~> 5.1.0)
+  - R.swift.Library (5.1.0)
   - SimpleKeychain (0.9.0)
 
 DEPENDENCIES:
   - AppCenter
-  - Auth0 (~> 1.17)
+  - Auth0 (~> 1.19)
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
-  - Down
+  - Down (~> 0.9)
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - Kingfisher (~> 4.0)
   - OneSignal (~> 2.5)
   - PromiseKit (~> 6.0)
-  - R.swift (~> 5.0)
+  - R.swift (~> 5.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
-    - Down
     - Kingfisher
     - OneSignal
     - PromiseKit
-    - R.swift
-    - R.swift.Library
   trunk:
     - Auth0
+    - Down
+    - R.swift
+    - R.swift.Library
     - SimpleKeychain
 
 EXTERNAL SOURCES:
@@ -70,15 +70,15 @@ SPEC CHECKSUMS:
   AppCenter: 6a5ff2fd007b53431259fdd74f91eb3d0dfea3d1
   Auth0: 195ea089de471c72bf95eb5320ff86c224debf3c
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
-  Down: 587371ad58002b06023d9c602519216862c3acbc
+  Down: 1cdbca4963b542d0ef34ebb3e10ff48382bdf761
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
   Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
   PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
-  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
-  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
+  R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: 4cb8dc1b7061d9d6ccbfc7db606299667bda4c68
+PODFILE CHECKSUM: 2a0f06e8148dd2fa780ff5fbb3911c281aec93f4
 
 COCOAPODS: 1.8.4

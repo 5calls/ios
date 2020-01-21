@@ -8,6 +8,7 @@
 
 import Foundation
 import Rswift
+import Down
 
 struct Issue : Decodable {
     let id: Int64
@@ -22,11 +23,4 @@ struct Issue : Decodable {
     let contactType: String
     let contactAreas: [String]
     let createdAt: Date
-    
-    static var style: String {        
-        if let bytes = try? Data(resource: R.file.issuesStyleCss)  {
-            return String(decoding: bytes, as: UTF8.self)
-        }
-        return ""
-    }
 }

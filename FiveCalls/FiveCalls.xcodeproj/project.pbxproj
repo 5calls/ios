@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,7 +30,6 @@
 		9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18DA601E461C920024B991 /* PaddedLabel.swift */; };
 		9C46B1F81E46D638009B2C11 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F71E46D638009B2C11 /* BlueButton.swift */; };
 		9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */; };
-		9C507F6520E322EA0072C71F /* issuesStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 9C507F6420E322EA0072C71F /* issuesStyle.css */; };
 		A02018D9204E761A006078D1 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02018D8204E761A006078D1 /* UserStats.swift */; };
 		A051D0AB200E95CF007D54B2 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A051D0AA200E95CF007D54B2 /* ProfileCard.swift */; };
 		A086CA4B1FEB92780037B41F /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = A086CA4A1FEB92780037B41F /* Auth0.plist */; };
@@ -188,7 +187,6 @@
 		9C18DA601E461C920024B991 /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		9C46B1F71E46D638009B2C11 /* BlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutcomeOperation.swift; sourceTree = "<group>"; };
-		9C507F6420E322EA0072C71F /* issuesStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = issuesStyle.css; sourceTree = "<group>"; };
 		A02018D8204E761A006078D1 /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		A051D0AA200E95CF007D54B2 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		A086CA4A1FEB92780037B41F /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
@@ -394,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				B50280731E497C4A00749ED7 /* styles.css */,
-				9C507F6420E322EA0072C71F /* issuesStyle.css */,
 				B50280751E497FB700749ED7 /* about-whoweare.html */,
 				B50280771E49837000749ED7 /* about-whycall.html */,
 			);
@@ -683,14 +680,14 @@
 					B502805A1E478BC200749ED7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5A8RM3W5R7;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B52805101E3FA94D00EE832A;
 					};
 					B52805101E3FA94D00EE832A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5A8RM3W5R7;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -704,13 +701,14 @@
 					B5A70A571E4C01A00031DF58 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = C2K3864N2N;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B52805101E3FA94D00EE832A;
 					};
 					D0BA59A71F9546510069DA58 = {
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = 5A8RM3W5R7;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -722,10 +720,9 @@
 			};
 			buildConfigurationList = B528050C1E3FA94D00EE832A /* Build configuration list for PBXProject "FiveCalls" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -765,7 +762,6 @@
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
 				791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */,
 				DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */,
-				9C507F6520E322EA0072C71F /* issuesStyle.css in Resources */,
 				A086CA4B1FEB92780037B41F /* Auth0.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -803,7 +799,7 @@
 			);
 			name = "Generate R.Swift Code";
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -814,13 +810,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -900,27 +895,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Auth0/Auth0.framework",
-				"${BUILT_PRODUCTS_DIR}/CPDAcknowledgements/CPDAcknowledgements.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Auth0.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CPDAcknowledgements.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1100,11 +1080,15 @@
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiveCalls.app/FiveCalls";
 			};
 			name = Debug;
@@ -1117,11 +1101,15 @@
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiveCalls.app/FiveCalls";
 			};
 			name = Release;
@@ -1253,14 +1241,17 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.6;
 				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1282,7 +1273,10 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.6;
 				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
@@ -1290,7 +1284,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1303,11 +1297,15 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = FiveCalls;
 			};
 			name = Debug;
@@ -1319,11 +1317,15 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = FiveCalls;
 			};
 			name = Release;
@@ -1341,12 +1343,16 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = NotificationsService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1364,13 +1370,17 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = NotificationsService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

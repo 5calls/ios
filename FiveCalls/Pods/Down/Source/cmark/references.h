@@ -20,12 +20,13 @@ struct cmark_reference {
 typedef struct cmark_reference cmark_reference;
 
 struct cmark_reference_map {
+  cmark_mem *mem;
   cmark_reference *table[REFMAP_SIZE];
 };
 
 typedef struct cmark_reference_map cmark_reference_map;
 
-cmark_reference_map *cmark_reference_map_new(void);
+cmark_reference_map *cmark_reference_map_new(cmark_mem *mem);
 void cmark_reference_map_free(cmark_reference_map *map);
 cmark_reference *cmark_reference_lookup(cmark_reference_map *map,
                                         cmark_chunk *label);

@@ -53,7 +53,7 @@ THE SOFTWARE.
 			<key>summary</key>
 			<string>Get strong typed, autocompleted resources like images, fonts and segues in Swift projects</string>
 			<key>version</key>
-			<string>5.0.3</string>
+			<string>5.1.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -100,7 +100,7 @@ THE SOFTWARE.
 			<key>summary</key>
 			<string>Companion library for R.swift, featuring types used to type resources</string>
 			<key>version</key>
-			<string>5.0.1</string>
+			<string>5.1.0</string>
 		</dict>
 	</array>
 </dict>

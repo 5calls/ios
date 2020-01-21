@@ -16,10 +16,9 @@ cmark_iter *cmark_iter_new(cmark_node *root) {
   if (root == NULL) {
     return NULL;
   }
-  cmark_iter *iter = (cmark_iter *)malloc(sizeof(cmark_iter));
-  if (iter == NULL) {
-    return NULL;
-  }
+  cmark_mem *mem = root->content.mem;
+  cmark_iter *iter = (cmark_iter *)mem->calloc(1, sizeof(cmark_iter));
+  iter->mem = mem;
   iter->root = root;
   iter->cur.ev_type = CMARK_EVENT_NONE;
   iter->cur.node = NULL;
@@ -28,7 +27,7 @@ cmark_iter *cmark_iter_new(cmark_node *root) {
   return iter;
 }
 
-void cmark_iter_free(cmark_iter *iter) { free(iter); }
+void cmark_iter_free(cmark_iter *iter) { iter->mem->free(iter); }
 
 static bool S_is_leaf(cmark_node *node) {
   return ((1 << node->type) & S_leaf_mask) != 0;
@@ -93,7 +92,7 @@ void cmark_consolidate_text_nodes(cmark_node *root) {
     return;
   }
   cmark_iter *iter = cmark_iter_new(root);
-  cmark_strbuf buf = GH_BUF_INIT;
+  cmark_strbuf buf = CMARK_BUF_INIT(iter->mem);
   cmark_event_type ev_type;
   cmark_node *cur, *tmp, *next;
 
@@ -107,11 +106,12 @@ void cmark_consolidate_text_nodes(cmark_node *root) {
       while (tmp && tmp->type == CMARK_NODE_TEXT) {
         cmark_iter_next(iter); // advance pointer
         cmark_strbuf_put(&buf, tmp->as.literal.data, tmp->as.literal.len);
+        cur->end_column = tmp->end_column;
         next = tmp->next;
         cmark_node_free(tmp);
         tmp = next;
       }
-      cmark_chunk_free(&cur->as.literal);
+      cmark_chunk_free(iter->mem, &cur->as.literal);
       cur->as.literal = cmark_chunk_buf_detach(&buf);
     }
   }
