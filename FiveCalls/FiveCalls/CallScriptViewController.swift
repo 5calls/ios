@@ -13,7 +13,6 @@ import Kingfisher
 import Down
 
 class CallScriptViewController : UIViewController, IssueShareable {
-    
     var issuesManager: IssuesManager!
     var issue: Issue!
     var contactIndex = 0
@@ -217,6 +216,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
+    }
 }
 
 enum CallScriptRows : Int {
@@ -321,12 +324,14 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
         }
 
         if isLastContactForIssue {
-            hideResultButtons(animated: true)
+            self.performSegue(withIdentifier: R.segue.callScriptViewController.callDone, sender: nil)
+//            hideResultButtons(animated: true)
 
+            // TODO: move these to the new done controller
             // these two should never show at the same time, rating will always
             // wait until 5, notifications will trigger on the first one.
-            ratingPromptCounter.increment()
-            checkForNotifications()
+//            ratingPromptCounter.increment()
+//            checkForNotifications()
         } else {
             let nextContact = contacts[contactIndex + 1]
             showNextContact(nextContact)

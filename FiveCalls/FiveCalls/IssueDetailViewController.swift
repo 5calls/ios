@@ -195,7 +195,7 @@ extension IssueDetailViewController : UITableViewDataSource {
                 cell.nameLabel.text = contact.name
                 cell.subtitleLabel.text = contact.area
                 if let photoURL = contact.photoURL {
-                    cell.avatarImageView.kf.setImage(with: photoURL)
+                    cell.avatarImageView.setImageFromURL(photoURL) //kf.setImage(with: photoURL)
                 } else {
                     cell.avatarImageView.image = UIImage(named: "icon-office")
                 }
