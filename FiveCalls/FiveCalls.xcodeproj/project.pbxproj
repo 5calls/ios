@@ -103,6 +103,7 @@
 		D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
 		D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */; };
+		D0D9270823D7D85C00777B2E /* DoneCallsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
 		DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
@@ -272,6 +273,7 @@
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+FiveCalls.swift"; sourceTree = "<group>"; };
+		D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneCallsViewController.swift; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 		FA1B339F1E485BA3004B9281 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */,
 				B50280791E49864D00749ED7 /* MyImpactViewController.swift */,
 				271625401E52502D0042222E /* ScheduleRemindersController.swift */,
+				D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -802,7 +805,7 @@
 			);
 			name = "Generate R.Swift Code";
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -954,6 +957,7 @@
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
 				271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */,
 				A02018D9204E761A006078D1 /* UserStats.swift in Sources */,
+				D0D9270823D7D85C00777B2E /* DoneCallsViewController.swift in Sources */,
 				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
 				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
 				B50280561E47875500749ED7 /* ContactLog.swift in Sources */,
