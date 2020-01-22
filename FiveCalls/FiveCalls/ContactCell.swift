@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class ContactCell : UITableViewCell {
     
@@ -43,7 +42,6 @@ class ContactCell : UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImageView.kf.cancelDownloadTask()
         avatarImageView.image = nil
     }
 

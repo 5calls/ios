@@ -8,6 +8,7 @@
 
 import UIKit
 
+// a very small set of tools that makes loading images from URLs easier, and doesn't require a library
 extension UIImageView {
     static let imageCache = Cache<URL, Data>()
     

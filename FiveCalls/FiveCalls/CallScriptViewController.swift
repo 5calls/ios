@@ -9,7 +9,6 @@ import UIKit
 import CoreLocation
 import StoreKit
 import OneSignal
-import Kingfisher
 import Down
 
 class CallScriptViewController : UIViewController, IssueShareable {
@@ -243,7 +242,7 @@ extension CallScriptViewController : UITableViewDataSource {
             cell.nameLabel.text = contact.name
             cell.callingReasonLabel.text = contact.reason
             if let photoURL = contact.photoURL {
-                cell.avatarImageView.kf.setImage(with: photoURL)
+                cell.avatarImageView.setImageFromURL(photoURL)
             } else {
                 cell.avatarImageView.image = UIImage(named: "icon-office")
             }
