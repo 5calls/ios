@@ -8,7 +8,6 @@
 
 import Foundation
 import Rswift
-import Down
 
 struct Issue : Decodable {
     let id: Int64
