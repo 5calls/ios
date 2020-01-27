@@ -22,4 +22,8 @@ struct Issue : Decodable {
     let contactType: String
     let contactAreas: [String]
     let createdAt: Date
+    
+    var shareURL: URL {
+        return URL(string: String(format: "https://shareimages.5calls.org/%d.png",self.id))!
+    }
 }

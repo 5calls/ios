@@ -192,16 +192,9 @@ extension IssueDetailViewController : UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.contactCell, for: indexPath)!
                 cell.borderTop = indexPath.row == 0
                 let contact = contacts[indexPath.row]
-                cell.nameLabel.text = contact.name
-                cell.subtitleLabel.text = contact.area
-                if let photoURL = contact.photoURL {
-                    cell.avatarImageView.setImageFromURL(photoURL) //kf.setImage(with: photoURL)
-                } else {
-                    cell.avatarImageView.image = UIImage(named: "icon-office")
-                }
-                if let hasContacted = logs?.hasContacted(contact: contact, forIssue: issue) {
-                    cell.hasContacted = hasContacted
-                }
+                let hasContacted = logs?.hasContacted(contact: contact, forIssue: issue) ?? false
+                
+                cell.configure(contact: contact, hasContacted: hasContacted)
                 return cell
             }
         }

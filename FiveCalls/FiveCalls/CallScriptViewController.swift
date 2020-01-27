@@ -45,6 +45,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         if self.presentingViewController != nil {
             self.navigationItem.leftBarButtonItem = self.iPadDoneButton
         }
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: nil, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +72,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     @objc func dismissCallScript() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     var iPadDoneButton: UIBarButtonItem {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissCallScript))
@@ -217,7 +220,11 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare")
+        if let typedSegue = R.segue.callScriptViewController.callDone(segue: segue) {
+            typedSegue.destination.issue = self.issue
+            typedSegue.destination.contacts = self.contacts
+        }
+
     }
 }
 

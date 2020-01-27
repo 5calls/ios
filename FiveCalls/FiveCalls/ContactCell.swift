@@ -66,4 +66,15 @@ class ContactCell : UITableViewCell {
         
         context?.strokePath()
     }
+    
+    func configure(contact: Contact, hasContacted: Bool) {
+        self.nameLabel.text = contact.name
+        self.subtitleLabel.text = contact.area
+        if let photoURL = contact.photoURL {
+            self.avatarImageView.setImageFromURL(photoURL)
+        } else {
+            self.avatarImageView.image = UIImage(named: "icon-office")
+        }
+        self.hasContacted = hasContacted
+    }
 }
