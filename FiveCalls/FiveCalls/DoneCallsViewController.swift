@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DoneCallsViewController: UIViewController {
+class DoneCallsViewController: UIViewController, IssueShareable {
     var issue: Issue!
     var contacts: [Contact]!
     var flowLogs: [ContactLog]!
@@ -41,6 +41,10 @@ class DoneCallsViewController: UIViewController {
     
     @objc func backToList() {
         self.performSegue(withIdentifier: R.segue.doneCallsViewController.unwindToIssueList.identifier, sender: nil)
+    }
+    
+    @IBAction func share() {
+        shareIssue(from: nil)
     }
 }
 
@@ -84,13 +88,13 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
             
             switch indexPath.row {
             case 0:
-                cell.progressTitle.text = "Total Calls"
-                cell.progress.progress = Float(self.totalCalls) / 5000000
-                cell.progressLabel.text = String(format: "%ld %@", locale: Locale.current, self.totalCalls, "Calls")
+                cell.progressTitle.text = R.string.localizable.totalCalls()
+                cell.progress.progress = Float(self.totalCalls) / Float(self.totalCalls).progressStep()
+                cell.progressLabel.text = String(format: "%ld %@", locale: Locale.current, self.totalCalls, R.string.localizable.calls())
             case 1:
-                cell.progressTitle.text = "Calls on this topic"
+                cell.progressTitle.text = R.string.localizable.totalIssueCalls()
                 cell.progress.progress = Float(self.issueCalls) / Float(self.issueCalls).progressStep()
-                cell.progressLabel.text = String(format: "%ld %@", locale: Locale.current, self.issueCalls, "Calls")
+                cell.progressLabel.text = String(format: "%ld %@", locale: Locale.current, self.issueCalls, R.string.localizable.calls())
             default:
                 break
             }
@@ -102,7 +106,7 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return UITableViewCell()
         }
-    }
+    }    
 }
 
 extension Float {
@@ -119,6 +123,14 @@ extension Float {
             return 10000
         } else if self < 45000 {
             return 50000
+        } else if self < 90000 {
+            return 100000
+        } else if self < 450000 {
+            return 500000
+        } else if self < 900000 {
+            return 1000000
+        } else if self < 4500000 {
+            return 5000000
         }
         
         return 0

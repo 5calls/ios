@@ -130,7 +130,7 @@
                             <rect key="frame" x="287.66666666666669" y="12" width="20" height="20"/>
                         </activityIndicatorView>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-pP-thF">
-                            <rect key="frame" x="325" y="8.6666666666666643" width="19" height="27"/>
+                            <rect key="frame" x="306" y="-5" width="38" height="54"/>
                             <state key="normal" image="share"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mya-7X-ILr">
@@ -1314,15 +1314,35 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PRW-c4-sVd">
+                                                    <rect key="frame" x="162" y="105.66666666666666" width="90" height="90.666666666666671"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="3gC-V3-Z9r"/>
+                                                        <constraint firstAttribute="width" secondItem="PRW-c4-sVd" secondAttribute="height" multiplier="1:1" id="E9u-up-7S2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqU-fN-FWf">
+                                                    <rect key="frame" x="20" y="48" width="374" height="187"/>
+                                                    <connections>
+                                                        <action selector="share" destination="KPh-a5-a5S" eventType="touchUpInside" id="ajk-QK-Cqb"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="KEk-QV-xyB" firstAttribute="trailing" secondItem="UHK-Rz-odS" secondAttribute="trailing" id="46g-YF-uUs"/>
                                                 <constraint firstItem="KEk-QV-xyB" firstAttribute="leading" secondItem="UHK-Rz-odS" secondAttribute="leading" id="99E-1E-zWg"/>
                                                 <constraint firstItem="UHK-Rz-odS" firstAttribute="top" secondItem="KEk-QV-xyB" secondAttribute="bottom" constant="8.6666666666666572" id="Ffn-XC-UKm"/>
                                                 <constraint firstItem="UHK-Rz-odS" firstAttribute="leading" secondItem="p2b-YQ-lC0" secondAttribute="leading" constant="20" id="QOY-rE-JQ6"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="height" secondItem="UHK-Rz-odS" secondAttribute="height" id="T8p-Wn-Fwy"/>
                                                 <constraint firstAttribute="trailing" secondItem="UHK-Rz-odS" secondAttribute="trailing" constant="20" id="Tua-PH-Kl1"/>
                                                 <constraint firstAttribute="bottom" secondItem="UHK-Rz-odS" secondAttribute="bottom" constant="15" id="WyD-DD-jOQ"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="width" secondItem="UHK-Rz-odS" secondAttribute="width" id="aMe-Yq-9BE"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="centerY" secondItem="UHK-Rz-odS" secondAttribute="centerY" id="axv-R5-1aX"/>
+                                                <constraint firstItem="PRW-c4-sVd" firstAttribute="centerY" secondItem="UHK-Rz-odS" secondAttribute="centerY" constant="10" id="em4-Uq-1O7"/>
                                                 <constraint firstItem="KEk-QV-xyB" firstAttribute="top" secondItem="p2b-YQ-lC0" secondAttribute="top" constant="14" id="pF0-cE-EcM"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="centerX" secondItem="UHK-Rz-odS" secondAttribute="centerX" id="rPN-0Q-iBD"/>
+                                                <constraint firstItem="PRW-c4-sVd" firstAttribute="centerX" secondItem="UHK-Rz-odS" secondAttribute="centerX" id="xHG-HW-Wwi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1363,6 +1383,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <image name="icon-office" width="100" height="100"/>
         <image name="profile" width="54" height="54"/>
         <image name="share" width="19" height="27"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="56" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6tF-q1-2tT"/>
