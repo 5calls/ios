@@ -11,14 +11,21 @@ import Foundation
 class FetchStatsOperation : BaseOperation {
     
     var numberOfCalls: Int?
+    var numberOfIssueCalls: Int?
+    var issueID: String?
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
     override func execute() {
         let config = URLSessionConfiguration.default
         let session = URLSessionProvider.buildSession(configuration: config)
-        let url = URL(string: "https://5calls.org/report")!
-        let task = session.dataTask(with: url) { (data, response, error) in
+        var urlComp = URLComponents(url: URL(string: "https://5calls.org/report")!, resolvingAgainstBaseURL: false)!
+        if let issueID = self.issueID {
+            let issueIDQuery = URLQueryItem(name: "issueID", value: issueID)
+            urlComp.queryItems = [issueIDQuery]
+        }
+        
+        let task = session.dataTask(with: urlComp.url!) { (data, response, error) in
             
             if let e = error {
                 self.error = e
@@ -48,12 +55,18 @@ class FetchStatsOperation : BaseOperation {
             return
         }
         
+        print("got back json \(json)")
+        
         if let count = json["count"] as? Int {
             numberOfCalls = count
         } else if let countString = json["count"] as? String {
             if let number = NumberFormatter().number(from: countString) {
                 numberOfCalls = number.intValue
             }
+        }
+        
+        if let issueCount = json["issueCount"] as? Int {
+            numberOfIssueCalls = issueCount
         }
     }
 }

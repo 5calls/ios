@@ -1289,7 +1289,9 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="progress" destination="ZQx-MJ-llt" id="dL0-ZT-qgC"/>
+                                            <outlet property="progress" destination="ZQx-MJ-llt" id="mu8-fO-YTD"/>
+                                            <outlet property="progressLabel" destination="UOm-Rh-s2S" id="aa7-gf-SQa"/>
+                                            <outlet property="progressTitle" destination="OB1-mi-Zbe" id="YGB-MH-Oct"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="shareCell" rowHeight="250" id="qUY-Mq-HEO" customClass="ShareCell" customModule="FiveCalls" customModuleProvider="target">

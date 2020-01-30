@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Rswift
 
 struct ContactLog : Hashable, Codable {
     let issueId: String
@@ -15,6 +16,21 @@ struct ContactLog : Hashable, Codable {
     let outcome: String
     let date: Date
     let reported: Bool
+    
+    var localizedOutcome: String {
+        switch self.outcome {
+        case "vm", "voicemail":
+            return R.string.localizable.outcomesVoicemail()
+        case "contact", "contacted":
+            return R.string.localizable.outcomesContact()
+        case "unavailable":
+            return R.string.localizable.outcomesUnavailable()
+        case "skip":
+            return R.string.localizable.outcomesSkip()
+        default:
+            return "Unknown"
+        }
+    }
 }
 
 struct LegacyPantryWrapper: Codable {
@@ -58,7 +74,7 @@ struct ContactLogs {
             return false
         }        
     }
-
+    
     // Gets a list of unreported contacts
     func unreported() -> [ContactLog] {
         return all.filter({$0.reported == false})
@@ -127,8 +143,10 @@ extension ContactLogs {
     
     static func load() -> ContactLogs {
 //        ContactLogs.debugContactLogs()
-
-        if let fileData = try? Data(contentsOf: ContactLogs.filePath) {
+        
+        // check for the file first, not having a file is not an error we want to log
+        if FileManager.default.fileExists(atPath: ContactLogs.filePath.path),
+           let fileData = try? Data(contentsOf: ContactLogs.filePath) {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             if let wrapper = try? decoder.decode(LegacyPantryWrapper.self, from: fileData) {

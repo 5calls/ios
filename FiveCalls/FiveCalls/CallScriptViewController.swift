@@ -19,6 +19,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var contacts: [Contact]!
     var logs = ContactLogs.load()
     var lastPhoneDialed: String?
+    var currentFlowLogs: [ContactLog] = []
     
     var isLastContactForIssue: Bool {
         let contactIndex = contacts.firstIndex(of: contact)
@@ -157,6 +158,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         // ContactLog status is "contacted", "unavailable", "vm", same for every issue
         // whereas outcome can be anything passed by the server
         let log = ContactLog(issueId: String(issue.id), contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date(), reported: false)
+        self.currentFlowLogs.append(log)
         reportCallOutcome(log: log, outcome: outcome)
     }
 
@@ -166,6 +168,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         newController.issue = issue
         newController.contact = contact
         newController.contacts = contacts
+        newController.currentFlowLogs = currentFlowLogs
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
     
@@ -221,8 +224,9 @@ class CallScriptViewController : UIViewController, IssueShareable {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedSegue = R.segue.callScriptViewController.callDone(segue: segue) {
-            typedSegue.destination.issue = self.issue
-            typedSegue.destination.contacts = self.contacts
+            typedSegue.destination.issue = issue
+            typedSegue.destination.contacts = contacts
+            typedSegue.destination.flowLogs = currentFlowLogs
         }
 
     }
@@ -322,6 +326,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let outcomeModel = issue.outcomeModels[indexPath.row]
+        
 
         AnalyticsManager.shared.trackEvent(withName: "Action: Button \(outcomeModel.label)", andProperties: ["contact_id":contact.id])
 

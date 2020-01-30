@@ -9,6 +9,8 @@
 import UIKit
 
 class ProgressCell: UITableViewCell {
-    @IBOutlet weak var progress: UIProgressView!
+    @IBOutlet var progressTitle: UILabel!
+    @IBOutlet var progress: UIProgressView!
+    @IBOutlet var progressLabel: UILabel!
 }
 
