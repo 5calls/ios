@@ -26,6 +26,8 @@
 "your-impact-zero"                    = "Your total impact is %d calls.";
 "total-calls"                         = "Total calls";
 "total-issue-calls"                   = "Calls on this topic";
+"done-screen-button"                  = "Done";
+"done-screen-title"                   = "Nice work!";
 "calls"                               = "Calls";
 "your-weekly-streak-multiple"         = "Your current weekly call streak is %d weeks in a row. You're on a roll!";
 "your-weekly-streak-single"           = "Your current weekly call streak just started. Keep it going!";

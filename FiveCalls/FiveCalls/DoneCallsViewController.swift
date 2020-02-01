@@ -23,9 +23,10 @@ class DoneCallsViewController: UIViewController, IssueShareable {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = 20
         tableView.sectionFooterHeight = 0
-        
+
+        self.navigationItem.title = R.string.localizable.doneScreenTitle()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(backToList)), animated: false)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(title: R.string.localizable.doneScreenButton(), style: .done, target: self, action: #selector(backToList)), animated: false)
         
         let callcountOp = FetchStatsOperation()
         callcountOp.issueID = String(issue.id)
