@@ -35,8 +35,6 @@ class DoneCallsViewController: UIViewController, IssueShareable {
             }
         }
         OperationQueue.main.addOperation(callcountOp)
-
-        // • tap to share
     }
     
     @objc func backToList() {
@@ -46,11 +44,15 @@ class DoneCallsViewController: UIViewController, IssueShareable {
     @IBAction func share() {
         shareIssue(from: nil)
     }
+    
+    func showsDonationSection() -> Bool {
+        return false
+    }
 }
 
 extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,6 +62,11 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             return 2 // number of progress bars
         case 2:
+            if showsDonationSection() {
+                return 1 // donate
+            }
+            return 0
+        case 3:
             return 1 // share
         default:
             return 0
@@ -100,6 +107,10 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.donateCell, for: indexPath)!
+            cell.configure()
+            return cell
+        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCell, for: indexPath)!
             cell.configure(issue: self.issue)
             return cell

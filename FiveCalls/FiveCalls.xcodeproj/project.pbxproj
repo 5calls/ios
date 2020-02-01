@@ -99,6 +99,7 @@
 		D017D95723DE6C26002F710C /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017D95623DE6C26002F710C /* ProgressCell.swift */; };
 		D029C6D01F6F42EA00E56CC7 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */; };
 		D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */; };
+		D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0773DC023E4C8F700C16985 /* DonateCell.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -267,6 +268,7 @@
 		D017D95623DE6C26002F710C /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderCell.swift; sourceTree = "<group>"; };
+		D0773DC023E4C8F700C16985 /* DonateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateCell.swift; sourceTree = "<group>"; };
 		D08630058C5382210630DE7E /* Pods_FiveCalls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCalls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeCollectionCell.swift; sourceTree = "<group>"; };
 		D0BA59A81F9546510069DA58 /* NotificationsService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationsService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,6 +483,7 @@
 				B5CA63F51E41772D00966B7D /* IssueCell.swift */,
 				B591EB841E44D946006C7D28 /* ContactCell.swift */,
 				D017D95423DE6BF9002F710C /* ShareCell.swift */,
+				D0773DC023E4C8F700C16985 /* DonateCell.swift */,
 				D017D95623DE6C26002F710C /* ProgressCell.swift */,
 				9C18DA5E1E458E480024B991 /* ContactDetailCell.swift */,
 				B5D5C95B1E44317700C80D5F /* IssueDetailCell.swift */,
@@ -937,6 +940,7 @@
 			files = (
 				1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */,
 				0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */,
+				D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */,
 				A5048C6F1F96BCD100C6163D /* IssuesViewModel.swift in Sources */,
 				A55647621F909C6F002737D4 /* Category.swift in Sources */,
 				B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */,

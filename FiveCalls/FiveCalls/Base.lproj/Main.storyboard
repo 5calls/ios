@@ -1349,6 +1349,50 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <outlet property="shareImage" destination="UHK-Rz-odS" id="F9j-fa-ieb"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="donateCell" rowHeight="80" id="B3h-gA-p5A" customClass="DonateCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="475.33333206176758" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B3h-gA-p5A" id="Ozj-mG-ECl">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWm-4P-bVr">
+                                                    <rect key="frame" x="20" y="19.000000000000004" width="207.33333333333334" height="42.333333333333343"/>
+                                                    <string key="text">Support 5 Calls to stay 
+updated on the latest news</string>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWL-vn-Uby">
+                                                    <rect key="frame" x="237.33333333333337" y="18" width="156.66666666666663" height="44"/>
+                                                    <color key="backgroundColor" red="0.89803921568627454" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8Ri-kV-hfm"/>
+                                                        <constraint firstAttribute="height" constant="44" id="FaF-EE-JuL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Donate today"/>
+                                                    <connections>
+                                                        <action selector="donate" destination="B3h-gA-p5A" eventType="touchUpInside" id="JnT-n3-AgP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="PWL-vn-Uby" secondAttribute="bottom" constant="18" id="KTF-qV-4Su"/>
+                                                <constraint firstItem="DWm-4P-bVr" firstAttribute="centerY" secondItem="Ozj-mG-ECl" secondAttribute="centerY" id="P0l-b6-dks"/>
+                                                <constraint firstAttribute="trailing" secondItem="PWL-vn-Uby" secondAttribute="trailing" constant="20" id="Ter-2r-Maz"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="top" secondItem="Ozj-mG-ECl" secondAttribute="top" constant="18" id="cRZ-Ta-hgx"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="centerY" secondItem="Ozj-mG-ECl" secondAttribute="centerY" id="dTz-4O-EKt"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="leading" secondItem="DWm-4P-bVr" secondAttribute="trailing" constant="10" id="lnJ-Ip-JbM"/>
+                                                <constraint firstItem="DWm-4P-bVr" firstAttribute="leading" secondItem="Ozj-mG-ECl" secondAttribute="leading" constant="20" id="n8I-Am-Aoy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="donateButton" destination="PWL-vn-Uby" id="p15-BJ-tgT"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="KPh-a5-a5S" id="o5I-TR-k16"/>
