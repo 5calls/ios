@@ -21,6 +21,8 @@ class DoneCallsViewController: UIViewController, IssueShareable {
     override func viewDidLoad() {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionHeaderHeight = 20
+        tableView.sectionFooterHeight = 0
         
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(backToList)), animated: false)
@@ -46,6 +48,11 @@ class DoneCallsViewController: UIViewController, IssueShareable {
     }
     
     func showsDonationSection() -> Bool {
+        let logs = ContactLogs.load()
+        if logs.all.count > 6 {
+            return true
+        }
+
         return false
     }
 }
@@ -117,7 +124,7 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return UITableViewCell()
         }
-    }    
+    }
 }
 
 extension Float {

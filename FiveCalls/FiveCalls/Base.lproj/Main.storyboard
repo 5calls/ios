@@ -1357,15 +1357,15 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWm-4P-bVr">
-                                                    <rect key="frame" x="20" y="19.000000000000004" width="207.33333333333334" height="42.333333333333343"/>
-                                                    <string key="text">Support 5 Calls to stay 
-updated on the latest news</string>
+                                                    <rect key="frame" x="20.000000000000007" y="19.000000000000004" width="119.66666666666669" height="42.333333333333343"/>
+                                                    <string key="text">Support 5 Calls
+to stay updated</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWL-vn-Uby">
-                                                    <rect key="frame" x="237.33333333333337" y="18" width="156.66666666666663" height="44"/>
+                                                    <rect key="frame" x="159.66666666666663" y="18" width="234.33333333333337" height="44"/>
                                                     <color key="backgroundColor" red="0.89803921568627454" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8Ri-kV-hfm"/>
@@ -1385,7 +1385,7 @@ updated on the latest news</string>
                                                 <constraint firstAttribute="trailing" secondItem="PWL-vn-Uby" secondAttribute="trailing" constant="20" id="Ter-2r-Maz"/>
                                                 <constraint firstItem="PWL-vn-Uby" firstAttribute="top" secondItem="Ozj-mG-ECl" secondAttribute="top" constant="18" id="cRZ-Ta-hgx"/>
                                                 <constraint firstItem="PWL-vn-Uby" firstAttribute="centerY" secondItem="Ozj-mG-ECl" secondAttribute="centerY" id="dTz-4O-EKt"/>
-                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="leading" secondItem="DWm-4P-bVr" secondAttribute="trailing" constant="10" id="lnJ-Ip-JbM"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="leading" secondItem="DWm-4P-bVr" secondAttribute="trailing" constant="20" id="lnJ-Ip-JbM"/>
                                                 <constraint firstItem="DWm-4P-bVr" firstAttribute="leading" secondItem="Ozj-mG-ECl" secondAttribute="leading" constant="20" id="n8I-Am-Aoy"/>
                                             </constraints>
                                         </tableViewCellContentView>

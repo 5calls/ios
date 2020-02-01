@@ -39,8 +39,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(CallScriptViewController.shareButtonPressed(_ :)))
-        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         if self.presentingViewController != nil {
@@ -171,11 +169,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         newController.currentFlowLogs = currentFlowLogs
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
-    
-    @objc func shareButtonPressed(_ button: UIBarButtonItem) {
-        shareIssue(from: button)
-    }
-        
+            
     private func showCallFailedAlert() {
         let alertController = UIAlertController(title: R.string.localizable.placeCallFailedTitle(),
                                                 message:  R.string.localizable.placeCallFailedMessage(),
