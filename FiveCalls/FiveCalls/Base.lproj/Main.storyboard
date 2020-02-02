@@ -666,19 +666,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <outlet property="delegate" destination="2z3-FP-x6s" id="s4W-nw-5k3"/>
                                         </connections>
                                     </collectionView>
-                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-9A-x3M" customClass="ProgressView" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="185" y="45" width="44" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="cAq-JJ-sWj"/>
-                                            <constraint firstAttribute="height" constant="44" id="cO7-Pr-Elw"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trv-H7-1Wo">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -691,7 +678,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 <constraints>
                                     <constraint firstItem="trv-H7-1Wo" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" id="37t-os-Ll4"/>
                                     <constraint firstAttribute="trailing" secondItem="trv-H7-1Wo" secondAttribute="trailing" id="6ee-Uz-mVd"/>
-                                    <constraint firstItem="WrH-9A-x3M" firstAttribute="centerX" secondItem="uNN-Im-dnc" secondAttribute="centerX" id="FG7-UM-DCw"/>
                                     <constraint firstAttribute="trailing" secondItem="a4y-bR-HnA" secondAttribute="trailing" constant="8" id="FYT-ZV-hvk"/>
                                     <constraint firstAttribute="trailing" secondItem="uid-xw-4R9" secondAttribute="trailing" constant="8" id="IBS-AQ-eZ8"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" constant="4" id="TJF-wn-3pw"/>
@@ -700,7 +686,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <constraint firstAttribute="bottom" secondItem="a4y-bR-HnA" secondAttribute="bottom" constant="8" id="Z4v-i8-2Th"/>
                                     <constraint firstItem="a4y-bR-HnA" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="cvI-6q-Clg"/>
                                     <constraint firstItem="trv-H7-1Wo" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" id="iTr-kO-f9N"/>
-                                    <constraint firstItem="WrH-9A-x3M" firstAttribute="centerY" secondItem="uNN-Im-dnc" secondAttribute="centerY" id="szS-g2-Gnb"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="x7t-4Z-Yqx"/>
                                 </constraints>
                             </view>
@@ -721,7 +706,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                     <connections>
                         <outlet property="footerHeightConstraint" destination="WSd-Og-Gqw" id="hf1-a2-ZrY"/>
                         <outlet property="outcomesCollection" destination="a4y-bR-HnA" id="fdy-oY-g3K"/>
-                        <outlet property="progressView" destination="WrH-9A-x3M" id="lb6-w6-EOx"/>
                         <outlet property="resultInstructionsLabel" destination="uid-xw-4R9" id="sU4-ej-xqa"/>
                         <outlet property="tableView" destination="lah-YB-s7v" id="BNy-Hp-tUY"/>
                         <segue destination="KPh-a5-a5S" kind="show" identifier="callDone" id="Hdv-4R-t5g"/>

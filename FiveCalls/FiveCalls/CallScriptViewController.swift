@@ -7,8 +7,6 @@
 
 import UIKit
 import CoreLocation
-import StoreKit
-import OneSignal
 import Down
 
 class CallScriptViewController : UIViewController, IssueShareable {
@@ -25,16 +23,11 @@ class CallScriptViewController : UIViewController, IssueShareable {
         let contactIndex = contacts.firstIndex(of: contact)
         return contactIndex == contacts.count - 1
     }
-
-    lazy var ratingPromptCounter: RatingPromptCounter = {
-        return RatingPromptCounter(handler: { SKStoreReviewController.requestReview() })
-    }()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultInstructionsLabel: UILabel!
     @IBOutlet weak var outcomesCollection: UICollectionView!
     @IBOutlet weak var footerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var progressView: ProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,24 +125,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
         OperationQueue.main.addOperation(operation)
     }
     
-    func hideResultButtons(animated: Bool) {
-        let duration = animated ? 0.5 : 0
-        let hideDuration = duration * 0.6
-        UIView.animate(withDuration: hideDuration) {
-            self.outcomesCollection.alpha = 0
-            self.resultInstructionsLabel.alpha = 0
-        }
-
-        progressView.alpha = 0
-        progressView.transform = progressView.transform.scaledBy(x: 0.2, y: 0.2)
-        progressView.isHidden = false
-        
-        UIView.animate(withDuration: duration, delay: duration * 0.75, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-            self.progressView.alpha = 1
-            self.progressView.transform = .identity
-        }, completion: nil)
-    }
-    
     func handleCallOutcome(outcome: Outcome) {
         // save & send log entry
         let contactedPhone = lastPhoneDialed ?? contact.phone
@@ -183,37 +158,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
         alertController.addAction(okAction)
         
         present(alertController, animated: true, completion: nil)
-    }
-
-    func checkForNotifications() {
-        let permissions = OneSignal.getPermissionSubscriptionState()
-        let nextPrompt = nextNotificationPromptDate() ?? Date()
-        
-        if permissions?.permissionStatus.hasPrompted == false && nextPrompt <= Date() {
-            let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
-                OneSignal.promptForPushNotifications(userResponse: { (success) in
-                    OneSignal.sendTag("all", value: "true")
-                })
-            }))
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { (action) in
-                OneSignal.promptForPushNotifications(userResponse: { (success) in
-                    //
-                })
-            }))
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationNone(), style: .cancel, handler: { (action) in
-                let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-                UserDefaults.standard.set(Date(), forKey: key)
-            }))
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func nextNotificationPromptDate() -> Date? {
-        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
-        
-        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -330,13 +274,6 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
 
         if isLastContactForIssue {
             self.performSegue(withIdentifier: R.segue.callScriptViewController.callDone, sender: nil)
-//            hideResultButtons(animated: true)
-
-            // TODO: move these to the new done controller
-            // these two should never show at the same time, rating will always
-            // wait until 5, notifications will trigger on the first one.
-//            ratingPromptCounter.increment()
-//            checkForNotifications()
         } else {
             let nextContact = contacts[contactIndex + 1]
             showNextContact(nextContact)

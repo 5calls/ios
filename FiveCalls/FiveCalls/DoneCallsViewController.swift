@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import StoreKit
+import OneSignal
 
 class DoneCallsViewController: UIViewController, IssueShareable {
     var issue: Issue!
     var contacts: [Contact]!
     var flowLogs: [ContactLog]!
     @IBOutlet weak var tableView: UITableView!
+    
+    lazy var ratingPromptCounter: RatingPromptCounter = {
+        return RatingPromptCounter(handler: { SKStoreReviewController.requestReview() })
+    }()
     
     var totalCalls = 0
     var issueCalls = 0
@@ -38,6 +44,11 @@ class DoneCallsViewController: UIViewController, IssueShareable {
             }
         }
         OperationQueue.main.addOperation(callcountOp)
+        
+        // these two should never show at the same time, rating will always
+        // wait until 5, notifications will trigger on the first one.
+        ratingPromptCounter.increment()
+        checkForNotifications()
     }
     
     @objc func backToList() {
@@ -125,6 +136,39 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return UITableViewCell()
         }
+    }
+}
+
+extension DoneCallsViewController {
+    func checkForNotifications() {
+        let permissions = OneSignal.getPermissionSubscriptionState()
+        let nextPrompt = nextNotificationPromptDate() ?? Date()
+        
+        if permissions?.permissionStatus.hasPrompted == false && nextPrompt <= Date() {
+            let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
+                OneSignal.promptForPushNotifications(userResponse: { (success) in
+                    OneSignal.sendTag("all", value: "true")
+                })
+            }))
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { (action) in
+                OneSignal.promptForPushNotifications(userResponse: { (success) in
+                    //
+                })
+            }))
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationNone(), style: .cancel, handler: { (action) in
+                let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+                UserDefaults.standard.set(Date(), forKey: key)
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func nextNotificationPromptDate() -> Date? {
+        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
+        
+        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }
 }
 
