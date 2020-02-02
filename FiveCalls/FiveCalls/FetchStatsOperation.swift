@@ -54,9 +54,7 @@ class FetchStatsOperation : BaseOperation {
             print("Couldn't parse JSON data.")
             return
         }
-        
-        print("got back json \(json)")
-        
+                
         if let count = json["count"] as? Int {
             numberOfCalls = count
         } else if let countString = json["count"] as? String {
