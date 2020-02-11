@@ -130,7 +130,7 @@
                             <rect key="frame" x="287.66666666666669" y="12" width="20" height="20"/>
                         </activityIndicatorView>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-pP-thF">
-                            <rect key="frame" x="325" y="8.6666666666666643" width="19" height="27"/>
+                            <rect key="frame" x="306" y="-5" width="38" height="54"/>
                             <state key="normal" image="share"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mya-7X-ILr">
@@ -666,19 +666,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             <outlet property="delegate" destination="2z3-FP-x6s" id="s4W-nw-5k3"/>
                                         </connections>
                                     </collectionView>
-                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrH-9A-x3M" customClass="ProgressView" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="185" y="45" width="44" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="cAq-JJ-sWj"/>
-                                            <constraint firstAttribute="height" constant="44" id="cO7-Pr-Elw"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trv-H7-1Wo">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -691,7 +678,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 <constraints>
                                     <constraint firstItem="trv-H7-1Wo" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" id="37t-os-Ll4"/>
                                     <constraint firstAttribute="trailing" secondItem="trv-H7-1Wo" secondAttribute="trailing" id="6ee-Uz-mVd"/>
-                                    <constraint firstItem="WrH-9A-x3M" firstAttribute="centerX" secondItem="uNN-Im-dnc" secondAttribute="centerX" id="FG7-UM-DCw"/>
                                     <constraint firstAttribute="trailing" secondItem="a4y-bR-HnA" secondAttribute="trailing" constant="8" id="FYT-ZV-hvk"/>
                                     <constraint firstAttribute="trailing" secondItem="uid-xw-4R9" secondAttribute="trailing" constant="8" id="IBS-AQ-eZ8"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" constant="4" id="TJF-wn-3pw"/>
@@ -700,7 +686,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                     <constraint firstAttribute="bottom" secondItem="a4y-bR-HnA" secondAttribute="bottom" constant="8" id="Z4v-i8-2Th"/>
                                     <constraint firstItem="a4y-bR-HnA" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="cvI-6q-Clg"/>
                                     <constraint firstItem="trv-H7-1Wo" firstAttribute="top" secondItem="uNN-Im-dnc" secondAttribute="top" id="iTr-kO-f9N"/>
-                                    <constraint firstItem="WrH-9A-x3M" firstAttribute="centerY" secondItem="uNN-Im-dnc" secondAttribute="centerY" id="szS-g2-Gnb"/>
                                     <constraint firstItem="uid-xw-4R9" firstAttribute="leading" secondItem="uNN-Im-dnc" secondAttribute="leading" constant="8" id="x7t-4Z-Yqx"/>
                                 </constraints>
                             </view>
@@ -721,9 +706,9 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                     <connections>
                         <outlet property="footerHeightConstraint" destination="WSd-Og-Gqw" id="hf1-a2-ZrY"/>
                         <outlet property="outcomesCollection" destination="a4y-bR-HnA" id="fdy-oY-g3K"/>
-                        <outlet property="progressView" destination="WrH-9A-x3M" id="lb6-w6-EOx"/>
                         <outlet property="resultInstructionsLabel" destination="uid-xw-4R9" id="sU4-ej-xqa"/>
                         <outlet property="tableView" destination="lah-YB-s7v" id="BNy-Hp-tUY"/>
+                        <segue destination="KPh-a5-a5S" kind="show" identifier="callDone" id="Hdv-4R-t5g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J8a-2E-WHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1190,6 +1175,235 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
             </objects>
             <point key="canvasLocation" x="1246" y="497"/>
         </scene>
+        <!--Done Calls View Controller-->
+        <scene sceneID="d4D-Ix-qdx">
+            <objects>
+                <viewController id="KPh-a5-a5S" customClass="DoneCallsViewController" customModule="FiveCalls" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kxD-Fr-c3X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="P6I-tL-3LW">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="90" id="HY3-F9-gZf" customClass="ContactCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HY3-F9-gZf" id="zcE-28-ybc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="John Cornyn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lag-Fx-09h">
+                                                    <rect key="frame" x="100" y="20" width="122" height="26.333333333333329"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <color key="textColor" red="0.36615640859999998" green="0.36615640859999998" blue="0.36615640859999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s17-9O-hZj">
+                                                    <rect key="frame" x="100" y="49" width="83.333333333333314" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <color key="textColor" red="0.56095336289999997" green="0.56095336289999997" blue="0.56095336289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-office" translatesAutoresizingMaskIntoConstraints="NO" id="duD-Ns-f3Z">
+                                                    <rect key="frame" x="20" y="10" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="duD-Ns-f3Z" secondAttribute="height" multiplier="1:1" id="YTu-4O-VQc"/>
+                                                        <constraint firstAttribute="width" constant="70" id="ZF0-Xb-MRP"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="s17-9O-hZj" secondAttribute="trailing" constant="10" id="0p9-GE-QqB"/>
+                                                <constraint firstItem="duD-Ns-f3Z" firstAttribute="centerY" secondItem="zcE-28-ybc" secondAttribute="centerY" id="2B7-1k-GKY"/>
+                                                <constraint firstItem="Lag-Fx-09h" firstAttribute="top" secondItem="zcE-28-ybc" secondAttribute="top" constant="20" id="ArH-52-Pm3"/>
+                                                <constraint firstItem="Lag-Fx-09h" firstAttribute="leading" secondItem="duD-Ns-f3Z" secondAttribute="trailing" constant="10" id="TmY-ku-9kt"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lag-Fx-09h" secondAttribute="trailing" constant="10" id="V1t-gY-MBH"/>
+                                                <constraint firstItem="duD-Ns-f3Z" firstAttribute="leading" secondItem="zcE-28-ybc" secondAttribute="leading" constant="20" id="VyZ-PC-EXY"/>
+                                                <constraint firstItem="s17-9O-hZj" firstAttribute="leading" secondItem="Lag-Fx-09h" secondAttribute="leading" id="hJ7-il-75Z"/>
+                                                <constraint firstItem="s17-9O-hZj" firstAttribute="top" secondItem="Lag-Fx-09h" secondAttribute="bottom" constant="2.5" id="lTm-VH-2d1"/>
+                                                <constraint firstAttribute="bottom" secondItem="s17-9O-hZj" secondAttribute="bottom" constant="21.666666666666671" id="rak-W9-i0j"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="duD-Ns-f3Z" id="SR6-MQ-n8l"/>
+                                            <outlet property="nameLabel" destination="Lag-Fx-09h" id="Uwd-UZ-t6I"/>
+                                            <outlet property="subtitleLabel" destination="s17-9O-hZj" id="2iA-xi-0G9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="progressCell" rowHeight="80" id="yWk-7n-6Rh" customClass="ProgressCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="145.33333206176758" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yWk-7n-6Rh" id="xFJ-yb-yFo">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call Bar Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB1-mi-Zbe">
+                                                    <rect key="frame" x="20" y="13" width="374" height="24"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQx-MJ-llt">
+                                                    <rect key="frame" x="20" y="42" width="374" height="3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="3" id="zOY-Cb-9cc"/>
+                                                    </constraints>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2,400 Calls" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOm-Rh-s2S">
+                                                    <rect key="frame" x="20" y="50" width="374" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <color key="textColor" red="0.56095336289999997" green="0.56095336289999997" blue="0.56095336289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZQx-MJ-llt" firstAttribute="leading" secondItem="xFJ-yb-yFo" secondAttribute="leadingMargin" id="2ug-QC-e27"/>
+                                                <constraint firstItem="OB1-mi-Zbe" firstAttribute="top" secondItem="xFJ-yb-yFo" secondAttribute="top" constant="13" id="FkV-B9-3Fl"/>
+                                                <constraint firstItem="UOm-Rh-s2S" firstAttribute="trailing" secondItem="ZQx-MJ-llt" secondAttribute="trailing" id="Gk0-TJ-z0r"/>
+                                                <constraint firstItem="UOm-Rh-s2S" firstAttribute="top" secondItem="ZQx-MJ-llt" secondAttribute="bottom" constant="5" id="JwK-wR-3lp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZQx-MJ-llt" secondAttribute="trailing" id="NT2-CR-Oq1"/>
+                                                <constraint firstItem="OB1-mi-Zbe" firstAttribute="leading" secondItem="ZQx-MJ-llt" secondAttribute="leading" id="Ukb-4K-iUf"/>
+                                                <constraint firstItem="UOm-Rh-s2S" firstAttribute="leading" secondItem="ZQx-MJ-llt" secondAttribute="leading" id="YPL-kP-Kcx"/>
+                                                <constraint firstItem="ZQx-MJ-llt" firstAttribute="top" secondItem="OB1-mi-Zbe" secondAttribute="bottom" constant="5" id="YXp-zv-vFK"/>
+                                                <constraint firstAttribute="bottom" secondItem="UOm-Rh-s2S" secondAttribute="bottom" constant="10" id="mq2-7f-haV"/>
+                                                <constraint firstItem="OB1-mi-Zbe" firstAttribute="trailing" secondItem="ZQx-MJ-llt" secondAttribute="trailing" id="zFU-CC-hut"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="progress" destination="ZQx-MJ-llt" id="mu8-fO-YTD"/>
+                                            <outlet property="progressLabel" destination="UOm-Rh-s2S" id="aa7-gf-SQa"/>
+                                            <outlet property="progressTitle" destination="OB1-mi-Zbe" id="YGB-MH-Oct"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="shareCell" rowHeight="250" id="qUY-Mq-HEO" customClass="ShareCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="225.33333206176758" width="414" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUY-Mq-HEO" id="p2b-YQ-lC0">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHK-Rz-odS">
+                                                    <rect key="frame" x="20" y="48" width="374" height="187"/>
+                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="UHK-Rz-odS" secondAttribute="height" multiplier="2:1" id="XwA-2H-OKT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share this topic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEk-QV-xyB">
+                                                    <rect key="frame" x="20" y="13.999999999999998" width="374" height="25.333333333333329"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PRW-c4-sVd">
+                                                    <rect key="frame" x="162" y="105.66666666666666" width="90" height="90.666666666666671"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="3gC-V3-Z9r"/>
+                                                        <constraint firstAttribute="width" secondItem="PRW-c4-sVd" secondAttribute="height" multiplier="1:1" id="E9u-up-7S2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqU-fN-FWf">
+                                                    <rect key="frame" x="20" y="48" width="374" height="187"/>
+                                                    <connections>
+                                                        <action selector="share" destination="KPh-a5-a5S" eventType="touchUpInside" id="ajk-QK-Cqb"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KEk-QV-xyB" firstAttribute="trailing" secondItem="UHK-Rz-odS" secondAttribute="trailing" id="46g-YF-uUs"/>
+                                                <constraint firstItem="KEk-QV-xyB" firstAttribute="leading" secondItem="UHK-Rz-odS" secondAttribute="leading" id="99E-1E-zWg"/>
+                                                <constraint firstItem="UHK-Rz-odS" firstAttribute="top" secondItem="KEk-QV-xyB" secondAttribute="bottom" constant="8.6666666666666572" id="Ffn-XC-UKm"/>
+                                                <constraint firstItem="UHK-Rz-odS" firstAttribute="leading" secondItem="p2b-YQ-lC0" secondAttribute="leading" constant="20" id="QOY-rE-JQ6"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="height" secondItem="UHK-Rz-odS" secondAttribute="height" id="T8p-Wn-Fwy"/>
+                                                <constraint firstAttribute="trailing" secondItem="UHK-Rz-odS" secondAttribute="trailing" constant="20" id="Tua-PH-Kl1"/>
+                                                <constraint firstAttribute="bottom" secondItem="UHK-Rz-odS" secondAttribute="bottom" constant="15" id="WyD-DD-jOQ"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="width" secondItem="UHK-Rz-odS" secondAttribute="width" id="aMe-Yq-9BE"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="centerY" secondItem="UHK-Rz-odS" secondAttribute="centerY" id="axv-R5-1aX"/>
+                                                <constraint firstItem="PRW-c4-sVd" firstAttribute="centerY" secondItem="UHK-Rz-odS" secondAttribute="centerY" constant="10" id="em4-Uq-1O7"/>
+                                                <constraint firstItem="KEk-QV-xyB" firstAttribute="top" secondItem="p2b-YQ-lC0" secondAttribute="top" constant="14" id="pF0-cE-EcM"/>
+                                                <constraint firstItem="HqU-fN-FWf" firstAttribute="centerX" secondItem="UHK-Rz-odS" secondAttribute="centerX" id="rPN-0Q-iBD"/>
+                                                <constraint firstItem="PRW-c4-sVd" firstAttribute="centerX" secondItem="UHK-Rz-odS" secondAttribute="centerX" id="xHG-HW-Wwi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="shareImage" destination="UHK-Rz-odS" id="F9j-fa-ieb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="donateCell" rowHeight="80" id="B3h-gA-p5A" customClass="DonateCell" customModule="FiveCalls" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="475.33333206176758" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B3h-gA-p5A" id="Ozj-mG-ECl">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWm-4P-bVr">
+                                                    <rect key="frame" x="20.000000000000007" y="19.000000000000004" width="119.66666666666669" height="42.333333333333343"/>
+                                                    <string key="text">Support 5 Calls
+to stay updated</string>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWL-vn-Uby">
+                                                    <rect key="frame" x="159.66666666666663" y="18" width="234.33333333333337" height="44"/>
+                                                    <color key="backgroundColor" red="0.89803921568627454" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8Ri-kV-hfm"/>
+                                                        <constraint firstAttribute="height" constant="44" id="FaF-EE-JuL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="Donate today"/>
+                                                    <connections>
+                                                        <action selector="donate" destination="B3h-gA-p5A" eventType="touchUpInside" id="JnT-n3-AgP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="PWL-vn-Uby" secondAttribute="bottom" constant="18" id="KTF-qV-4Su"/>
+                                                <constraint firstItem="DWm-4P-bVr" firstAttribute="centerY" secondItem="Ozj-mG-ECl" secondAttribute="centerY" id="P0l-b6-dks"/>
+                                                <constraint firstAttribute="trailing" secondItem="PWL-vn-Uby" secondAttribute="trailing" constant="20" id="Ter-2r-Maz"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="top" secondItem="Ozj-mG-ECl" secondAttribute="top" constant="18" id="cRZ-Ta-hgx"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="centerY" secondItem="Ozj-mG-ECl" secondAttribute="centerY" id="dTz-4O-EKt"/>
+                                                <constraint firstItem="PWL-vn-Uby" firstAttribute="leading" secondItem="DWm-4P-bVr" secondAttribute="trailing" constant="20" id="lnJ-Ip-JbM"/>
+                                                <constraint firstItem="DWm-4P-bVr" firstAttribute="leading" secondItem="Ozj-mG-ECl" secondAttribute="leading" constant="20" id="n8I-Am-Aoy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="donateButton" destination="PWL-vn-Uby" id="p15-BJ-tgT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="KPh-a5-a5S" id="o5I-TR-k16"/>
+                                    <outlet property="delegate" destination="KPh-a5-a5S" id="IfG-pW-2ju"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="P6I-tL-3LW" firstAttribute="top" secondItem="0Cd-r5-cOX" secondAttribute="top" id="Dmk-mk-iHv"/>
+                            <constraint firstItem="P6I-tL-3LW" firstAttribute="leading" secondItem="0Cd-r5-cOX" secondAttribute="leading" id="IiO-Un-FP0"/>
+                            <constraint firstItem="P6I-tL-3LW" firstAttribute="trailing" secondItem="0Cd-r5-cOX" secondAttribute="trailing" id="buj-Lz-ELm"/>
+                            <constraint firstItem="P6I-tL-3LW" firstAttribute="bottom" secondItem="0Cd-r5-cOX" secondAttribute="bottom" id="mPZ-rm-FcO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0Cd-r5-cOX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZOO-KM-eAL"/>
+                    <connections>
+                        <outlet property="tableView" destination="P6I-tL-3LW" id="czX-mJ-yA1"/>
+                        <segue destination="M7G-nC-JJg" kind="unwind" identifier="unwindToIssueList" unwindAction="unwindToIssueListWithSegue:" id="RJv-Us-VrH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Y0-fV-pNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="M7G-nC-JJg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3518.840579710145" y="-227.44565217391306"/>
+        </scene>
     </scenes>
     <resources>
         <image name="5calls-stars" width="35" height="35"/>
@@ -1197,9 +1411,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
         <image name="icon-office" width="100" height="100"/>
         <image name="profile" width="54" height="54"/>
         <image name="share" width="19" height="27"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="56" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XV8-ty-hbB"/>
-        <segue reference="AAB-7d-kdh"/>
+        <segue reference="6tF-q1-2tT"/>
+        <segue reference="Yf8-1x-xfZ"/>
     </inferredMetricsTieBreakers>
 </document>

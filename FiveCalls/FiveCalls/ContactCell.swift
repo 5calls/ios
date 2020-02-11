@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class ContactCell : UITableViewCell {
     
@@ -43,7 +42,6 @@ class ContactCell : UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        avatarImageView.kf.cancelDownloadTask()
         avatarImageView.image = nil
     }
 
@@ -67,5 +65,16 @@ class ContactCell : UITableViewCell {
         context?.addLine(to: CGPoint(x: bounds.size.width, y: bounds.size.height))
         
         context?.strokePath()
+    }
+    
+    func configure(contact: Contact, hasContacted: Bool) {
+        self.nameLabel.text = contact.name
+        self.subtitleLabel.text = contact.area
+        if let photoURL = contact.photoURL {
+            self.avatarImageView.setImageFromURL(photoURL)
+        } else {
+            self.avatarImageView.image = UIImage(named: "icon-office")
+        }
+        self.hasContacted = hasContacted
     }
 }

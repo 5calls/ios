@@ -8,7 +8,6 @@
 
 import UIKit
 import Rswift
-import Kingfisher
 
 class MyImpactViewController : UITableViewController {
     
@@ -133,7 +132,7 @@ class MyImpactViewController : UITableViewController {
     private func displayProfileInfo() {
         let sessionManager = SessionManager.shared
         if let picUrl = sessionManager.userProfile?.picture {
-            self.profilePic.kf.setImage(with: picUrl)
+            self.profilePic.setImageFromURL(picUrl)
         } else {
             self.profilePic.image = UIImage(named: "profile")
         }

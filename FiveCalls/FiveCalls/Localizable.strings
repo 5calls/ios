@@ -6,7 +6,7 @@
   Copyright © 2017 5calls. All rights reserved.
 */
 
-"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: https://5calls.org/issue/%@?utm_campaign=twshare";
+"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: https://5calls.org/issue/%@";
 "ok-button-title"                     = "OK";
 "cancel-button-title"                 = "Cancel";
 "location-permission-denied-title"    = "Location permission denied.";
@@ -24,6 +24,11 @@
 "your-impact-multiple"                = "Your total impact is %d calls.";
 "your-impact-single"                  = "Your total impact is %d call.";
 "your-impact-zero"                    = "Your total impact is %d calls.";
+"total-calls"                         = "Total calls";
+"total-issue-calls"                   = "Calls on this topic";
+"done-screen-button"                  = "Done";
+"done-screen-title"                   = "Nice work!";
+"calls"                               = "Calls";
 "your-weekly-streak-multiple"         = "Your current weekly call streak is %d weeks in a row. You're on a roll!";
 "your-weekly-streak-single"           = "Your current weekly call streak just started. Keep it going!";
 "your-weekly-streak-zero"             = "Your current weekly call streak is %d.";

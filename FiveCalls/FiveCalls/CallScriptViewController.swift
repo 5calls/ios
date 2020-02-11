@@ -7,13 +7,9 @@
 
 import UIKit
 import CoreLocation
-import StoreKit
-import OneSignal
-import Kingfisher
 import Down
 
 class CallScriptViewController : UIViewController, IssueShareable {
-    
     var issuesManager: IssuesManager!
     var issue: Issue!
     var contactIndex = 0
@@ -21,32 +17,28 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var contacts: [Contact]!
     var logs = ContactLogs.load()
     var lastPhoneDialed: String?
+    var currentFlowLogs: [ContactLog] = []
     
     var isLastContactForIssue: Bool {
         let contactIndex = contacts.firstIndex(of: contact)
         return contactIndex == contacts.count - 1
     }
-
-    lazy var ratingPromptCounter: RatingPromptCounter = {
-        return RatingPromptCounter(handler: { SKStoreReviewController.requestReview() })
-    }()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultInstructionsLabel: UILabel!
     @IBOutlet weak var outcomesCollection: UICollectionView!
     @IBOutlet weak var footerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var progressView: ProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(CallScriptViewController.shareButtonPressed(_ :)))
-        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         if self.presentingViewController != nil {
             self.navigationItem.leftBarButtonItem = self.iPadDoneButton
         }
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: nil, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +64,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     @objc func dismissCallScript() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     var iPadDoneButton: UIBarButtonItem {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissCallScript))
@@ -132,30 +125,13 @@ class CallScriptViewController : UIViewController, IssueShareable {
         OperationQueue.main.addOperation(operation)
     }
     
-    func hideResultButtons(animated: Bool) {
-        let duration = animated ? 0.5 : 0
-        let hideDuration = duration * 0.6
-        UIView.animate(withDuration: hideDuration) {
-            self.outcomesCollection.alpha = 0
-            self.resultInstructionsLabel.alpha = 0
-        }
-
-        progressView.alpha = 0
-        progressView.transform = progressView.transform.scaledBy(x: 0.2, y: 0.2)
-        progressView.isHidden = false
-        
-        UIView.animate(withDuration: duration, delay: duration * 0.75, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-            self.progressView.alpha = 1
-            self.progressView.transform = .identity
-        }, completion: nil)
-    }
-    
     func handleCallOutcome(outcome: Outcome) {
         // save & send log entry
         let contactedPhone = lastPhoneDialed ?? contact.phone
         // ContactLog status is "contacted", "unavailable", "vm", same for every issue
         // whereas outcome can be anything passed by the server
         let log = ContactLog(issueId: String(issue.id), contactId: contact.id, phone: contactedPhone, outcome: outcome.status, date: Date(), reported: false)
+        self.currentFlowLogs.append(log)
         reportCallOutcome(log: log, outcome: outcome)
     }
 
@@ -165,13 +141,10 @@ class CallScriptViewController : UIViewController, IssueShareable {
         newController.issue = issue
         newController.contact = contact
         newController.contacts = contacts
+        newController.currentFlowLogs = currentFlowLogs
         navigationController?.replaceTopViewController(with: newController, animated: true)
     }
-    
-    @objc func shareButtonPressed(_ button: UIBarButtonItem) {
-        shareIssue(from: button)
-    }
-        
+            
     private func showCallFailedAlert() {
         let alertController = UIAlertController(title: R.string.localizable.placeCallFailedTitle(),
                                                 message:  R.string.localizable.placeCallFailedMessage(),
@@ -186,36 +159,14 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         present(alertController, animated: true, completion: nil)
     }
-
-    func checkForNotifications() {
-        let permissions = OneSignal.getPermissionSubscriptionState()
-        let nextPrompt = nextNotificationPromptDate() ?? Date()
-        
-        if permissions?.permissionStatus.hasPrompted == false && nextPrompt <= Date() {
-            let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
-                OneSignal.promptForPushNotifications(userResponse: { (success) in
-                    OneSignal.sendTag("all", value: "true")
-                })
-            }))
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { (action) in
-                OneSignal.promptForPushNotifications(userResponse: { (success) in
-                    //
-                })
-            }))
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationNone(), style: .cancel, handler: { (action) in
-                let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-                UserDefaults.standard.set(Date(), forKey: key)
-            }))
-            present(alert, animated: true, completion: nil)
-        }
-    }
     
-    func nextNotificationPromptDate() -> Date? {
-        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
-        
-        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedSegue = R.segue.callScriptViewController.callDone(segue: segue) {
+            typedSegue.destination.issue = issue
+            typedSegue.destination.contacts = contacts
+            typedSegue.destination.flowLogs = currentFlowLogs
+        }
+
     }
 }
 
@@ -240,7 +191,7 @@ extension CallScriptViewController : UITableViewDataSource {
             cell.nameLabel.text = contact.name
             cell.callingReasonLabel.text = contact.reason
             if let photoURL = contact.photoURL {
-                cell.avatarImageView.kf.setImage(with: photoURL)
+                cell.avatarImageView.setImageFromURL(photoURL)
             } else {
                 cell.avatarImageView.image = UIImage(named: "icon-office")
             }
@@ -313,6 +264,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let outcomeModel = issue.outcomeModels[indexPath.row]
+        
 
         AnalyticsManager.shared.trackEvent(withName: "Action: Button \(outcomeModel.label)", andProperties: ["contact_id":contact.id])
 
@@ -321,12 +273,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
         }
 
         if isLastContactForIssue {
-            hideResultButtons(animated: true)
-
-            // these two should never show at the same time, rating will always
-            // wait until 5, notifications will trigger on the first one.
-            ratingPromptCounter.increment()
-            checkForNotifications()
+            self.performSegue(withIdentifier: R.segue.callScriptViewController.callDone, sender: nil)
         } else {
             let nextContact = contacts[contactIndex + 1]
             showNextContact(nextContact)

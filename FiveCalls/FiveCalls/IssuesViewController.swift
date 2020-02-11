@@ -16,6 +16,7 @@ protocol IssuesViewControllerDelegate : class {
 
 class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
+    @IBAction func unwindToIssueList(segue:UIStoryboardSegue) { }
 
     // When false, we show only 'active' issues.
     // Otherwise we show all issues - plus issues are grouped by their categories.

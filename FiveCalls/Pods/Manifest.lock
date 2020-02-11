@@ -12,16 +12,15 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Down (0.9.0)
   - DZNEmptyDataSet (1.8.1)
-  - Kingfisher (4.9.0)
   - OneSignal (2.6.0)
-  - PromiseKit (6.2.1):
-    - PromiseKit/CorePromise (= 6.2.1)
-    - PromiseKit/Foundation (= 6.2.1)
-    - PromiseKit/UIKit (= 6.2.1)
-  - PromiseKit/CorePromise (6.2.1)
-  - PromiseKit/Foundation (6.2.1):
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.2.1):
+  - PromiseKit/UIKit (6.13.1):
     - PromiseKit/CorePromise
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
   - Down (~> 0.9)
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
-  - Kingfisher (~> 4.0)
   - OneSignal (~> 2.5)
   - PromiseKit (~> 6.0)
   - R.swift (~> 5.1)
@@ -42,12 +40,11 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
-    - Kingfisher
     - OneSignal
-    - PromiseKit
   trunk:
     - Auth0
     - Down
+    - PromiseKit
     - R.swift
     - R.swift.Library
     - SimpleKeychain
@@ -72,13 +69,12 @@ SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Down: 1cdbca4963b542d0ef34ebb3e10ff48382bdf761
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
-  Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
-  PromiseKit: edaca6f0a7ed73b08c287600537d13867a7fabc7
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
 
-PODFILE CHECKSUM: 2a0f06e8148dd2fa780ff5fbb3911c281aec93f4
+PODFILE CHECKSUM: 4e49f03e144ea1ec7e3073f09420f1e526d14723
 
 COCOAPODS: 1.8.4
