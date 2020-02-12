@@ -1,11 +1,11 @@
 PODS:
-  - AppCenter (2.0.1):
-    - AppCenter/Analytics (= 2.0.1)
-    - AppCenter/Crashes (= 2.0.1)
-  - AppCenter/Analytics (2.0.1):
+  - AppCenter (2.5.3):
+    - AppCenter/Analytics (= 2.5.3)
+    - AppCenter/Crashes (= 2.5.3)
+  - AppCenter/Analytics (2.5.3):
     - AppCenter/Core
-  - AppCenter/Core (2.0.1)
-  - AppCenter/Crashes (2.0.1):
+  - AppCenter/Core (2.5.3)
+  - AppCenter/Crashes (2.5.3):
     - AppCenter/Core
   - Auth0 (1.19.3):
     - SimpleKeychain
@@ -39,9 +39,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AppCenter
     - OneSignal
   trunk:
+    - AppCenter
     - Auth0
     - Down
     - PromiseKit
@@ -64,7 +64,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/subdigital/DZNEmptyDataSet
 
 SPEC CHECKSUMS:
-  AppCenter: 6a5ff2fd007b53431259fdd74f91eb3d0dfea3d1
+  AppCenter: 765ff38c4d360fc5ec61b61a8be24d74cd6d4d83
   Auth0: 195ea089de471c72bf95eb5320ff86c224debf3c
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Down: 1cdbca4963b542d0ef34ebb3e10ff48382bdf761

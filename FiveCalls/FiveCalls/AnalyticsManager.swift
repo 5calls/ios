@@ -9,6 +9,7 @@
 import Foundation
 import AppCenter
 import AppCenterAnalytics
+import AppCenterCrashes
 
 class AnalyticsManager {
     static let shared = AnalyticsManager()
@@ -18,9 +19,12 @@ class AnalyticsManager {
     
     func startup() {
         if let infoPlist = Bundle.main.infoDictionary, let appCenterKey = infoPlist["AppCenterAPIKey"] as? String {
-            MSAppCenter.start(appCenterKey, withServices:[ MSAnalytics.self ])
+            MSAppCenter.start(appCenterKey, withServices: [
+                MSAnalytics.self,
+                MSCrashes.self
+            ])
         } else {
-            assertionFailure("no app center key present in infoplist")
+            assertionFailure("No AppCenterAPIKey was found in the Info.plist")
         }
 
         setupComplete = true
