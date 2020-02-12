@@ -1298,8 +1298,8 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PRW-c4-sVd">
-                                                    <rect key="frame" x="162" y="105.66666666666666" width="90" height="90.666666666666671"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share-topic" translatesAutoresizingMaskIntoConstraints="NO" id="PRW-c4-sVd">
+                                                    <rect key="frame" x="162" y="106.66666666666669" width="90" height="90"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="3gC-V3-Z9r"/>
@@ -1411,7 +1411,7 @@ to stay updated</string>
         <image name="icon-office" width="100" height="100"/>
         <image name="profile" width="54" height="54"/>
         <image name="share" width="19" height="27"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="56" height="64"/>
+        <image name="share-topic" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6tF-q1-2tT"/>
