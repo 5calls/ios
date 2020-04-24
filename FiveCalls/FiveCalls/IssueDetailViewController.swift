@@ -37,6 +37,12 @@ class IssueDetailViewController : UIViewController, IssueShareable {
 
     private func loadContacts() {
         print("Loading contacts for: \(issue.contactAreas)")
+
+        // we pass this contact manager around and there's some case where it doesn't make it here,
+        // create it here if it doesnt exist, with the addition of some latency in fetchContacts for getting contacts again
+        if contactsManager == nil {
+            contactsManager = ContactsManager()
+        }
         
         contactsManager.fetchContacts(location: UserLocation.current) { result in
             switch result {

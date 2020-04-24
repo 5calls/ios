@@ -9,7 +9,7 @@
 import UIKit
 
 class DonateCell: UITableViewCell {
-    let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate")!
+    let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios")!
     @IBOutlet var donateButton: UIButton!
     
     func configure() {
