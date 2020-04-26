@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 import CPDAcknowledgements
+import WebKit
 
-class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
+class AboutHtmlViewController : UIViewController {
     
-    @IBOutlet weak var contentView: UIWebView!
+    @IBOutlet weak var contentView: WKWebView!
     var contentName: String { get { return "" } }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -26,21 +27,26 @@ class AboutHtmlViewController : UIViewController, UIWebViewDelegate {
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let htmlString = String(data: data, encoding: .utf8)!
         contentView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL)
-        contentView.delegate = self
+        contentView.navigationDelegate = self
     }
-    
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        switch navigationType {
-        case .linkClicked:
+}
+
+extension AboutHtmlViewController : WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        switch navigationAction.navigationType {
+        case .linkActivated:
             // Open links in Safari
-            guard let url = request.url else { return true }
+            guard let url = navigationAction.request.url else {
+                decisionHandler(.allow)
+                return
+            }
             AnalyticsManager.shared.trackEvent(withName: "Action: Open External Link", andProperties: ["url":url.absoluteString])
             UIApplication.shared.open(url)
             
-            return false
+            decisionHandler(.cancel)
         default:
             // Handle other navigation types...
-            return true
+            decisionHandler(.allow)
         }
     }
 }
