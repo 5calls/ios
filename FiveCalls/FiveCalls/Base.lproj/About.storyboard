@@ -379,6 +379,9 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Who Made 5 Calls" id="AJc-zc-hod"/>
+                    <connections>
+                        <outlet property="contentView" destination="O0l-7I-3xo" id="tqu-Fi-OWk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCR-c7-T8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
