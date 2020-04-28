@@ -204,12 +204,13 @@ extension CallScriptViewController : UITableViewDataSource {
             
         case CallScriptRows.script.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
+            let script = contact.customizeScript(script: issue.script) ?? issue.script
 
-            let markdown = Down.init(markdownString: issue.script)
+            let markdown = Down.init(markdownString: script)
             if let converted = try? markdown.toAttributedString(styler: DownStyler()) {
                 cell.scriptTextView.attributedText = converted
             } else {
-                cell.scriptTextView.text = issue.script
+                cell.scriptTextView.text = script
             }
 
             return cell

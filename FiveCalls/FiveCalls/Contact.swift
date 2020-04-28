@@ -54,3 +54,36 @@ extension Contact : Hashable {
         return lhs.id == rhs.id
     }
 }
+
+extension Contact {
+    func customizeScript(script: String) -> String? {
+        let pattern = #"\[REP\/SEN NAME\]|\[SENATOR\/REP NAME\]"#
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return nil
+        }
+
+        var template = "";
+        switch self.area {
+        case "US House", "House":
+            template = "Rep. ";
+        case "US Senate", "Senate":
+            template = "Senator ";
+        case "StateLower", "StateUpper":
+            template = "Legislator ";
+        case "Governor":
+            template = "Governor ";
+        case "AttorneyGeneral":
+            template = "Attorney General ";
+        case "SecretaryOfState":
+            template = "Secretary of State ";
+        default:
+            // nothing, append the name on the empty template
+            break
+        }
+        template = template + self.name
+
+        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
+        let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
+        return scriptWithContactName
+    }
+}
