@@ -18,8 +18,6 @@ enum UserDefaultsKey : String {
     case hasSeenFirstCallInstructions
     case reminderEnabled
 
-    case hasWarnedAboutDangersOfCopying
-
     case appVersion // The current CFBundleShortVersionString
     case countOfCallsForRatingPrompt
     
