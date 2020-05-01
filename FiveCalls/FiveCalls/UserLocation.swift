@@ -108,7 +108,8 @@ class UserLocation {
             let prefix = placemarks?.first?.subThoroughfare ?? ""
             let street = placemarks?.first?.thoroughfare ?? ""
             let streetAddress = prefix + " " + street
-            locationInfo["displayName"] = streetAddress != " " ? streetAddress : nil
+            // prefer locality (generally the city name) but can fall back to address if needed
+            locationInfo["displayName"] = placemarks?.first?.locality ?? (streetAddress != " " ? streetAddress : nil) ?? nil
             locationInfo["zipcode"] = placemarks?.first?.postalCode ?? ""
             completion(locationInfo)
         })
@@ -121,5 +122,22 @@ extension UserLocation : CustomStringConvertible {
         let valueString = locationValue ?? ""
         let displayString = locationDisplay ?? ""
         return "type: \(typeString) value: \(valueString) | display: \(displayString)"
+    }
+}
+
+extension UserLocation {
+    func customizeScript(script: String) -> String? {
+        guard let locationDisplay = self.locationDisplay else {
+            return nil
+        }
+
+        let pattern = #"\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]"#
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return nil
+        }
+
+        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
+        let scriptWithLocation = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: locationDisplay)
+        return scriptWithLocation
     }
 }

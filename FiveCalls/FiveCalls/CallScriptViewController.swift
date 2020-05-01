@@ -204,7 +204,8 @@ extension CallScriptViewController : UITableViewDataSource {
             
         case CallScriptRows.script.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.scriptCell, for: indexPath)!
-            let script = contact.customizeScript(script: issue.script) ?? issue.script
+            var script = contact.customizeScript(script: issue.script) ?? issue.script
+            script = UserLocation.current.customizeScript(script: script) ?? script
 
             let markdown = Down.init(markdownString: script)
             if let converted = try? markdown.toAttributedString(styler: DownStyler()) {
