@@ -65,22 +65,22 @@ extension Contact {
         var template = "";
         switch self.area {
         case "US House", "House":
-            template = "Rep. ";
+            template = "Rep.";
         case "US Senate", "Senate":
-            template = "Senator ";
+            template = "Senator";
         case "StateLower", "StateUpper":
-            template = "Legislator ";
+            template = "Legislator";
         case "Governor":
-            template = "Governor ";
+            template = "Governor";
         case "AttorneyGeneral":
-            template = "Attorney General ";
+            template = "Attorney General";
         case "SecretaryOfState":
-            template = "Secretary of State ";
+            template = "Secretary of State";
         default:
             // nothing, append the name on the empty template
             break
         }
-        template = template + self.name
+        template = template + " " + self.name
 
         let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
         let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
