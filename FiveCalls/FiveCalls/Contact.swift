@@ -43,6 +43,18 @@ struct Contact : Decodable {
         state = try container.decode(String.self, forKey: .state)
         fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
     }
+
+    init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212") {
+        self.id = id
+        self.area = area
+        self.name = name
+        self.party = party
+        self.phone = phone
+        self.photoURL = nil
+        self.reason = nil
+        self.state = nil
+        self.fieldOffices = []
+    }
 }
 
 extension Contact : Hashable {
