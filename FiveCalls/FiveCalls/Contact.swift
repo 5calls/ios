@@ -43,6 +43,18 @@ struct Contact : Decodable {
         state = try container.decode(String.self, forKey: .state)
         fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
     }
+
+    init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212") {
+        self.id = id
+        self.area = area
+        self.name = name
+        self.party = party
+        self.phone = phone
+        self.photoURL = nil
+        self.reason = nil
+        self.state = nil
+        self.fieldOffices = []
+    }
 }
 
 extension Contact : Hashable {
@@ -52,5 +64,38 @@ extension Contact : Hashable {
     
     static func ==(lhs: Contact, rhs: Contact) -> Bool {
         return lhs.id == rhs.id
+    }
+}
+
+extension Contact {
+    func customizeScript(script: String) -> String? {
+        let pattern = #"\[REP\/SEN NAME\]|\[SENATOR\/REP NAME\]"#
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return nil
+        }
+
+        var template = "";
+        switch self.area {
+        case "US House", "House":
+            template = "Rep.";
+        case "US Senate", "Senate":
+            template = "Senator";
+        case "StateLower", "StateUpper":
+            template = "Legislator";
+        case "Governor":
+            template = "Governor";
+        case "AttorneyGeneral":
+            template = "Attorney General";
+        case "SecretaryOfState":
+            template = "Secretary of State";
+        default:
+            // nothing, append the name on the empty template
+            break
+        }
+        template = template + " " + self.name
+
+        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
+        let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
+        return scriptWithContactName
     }
 }
