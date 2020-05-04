@@ -19,42 +19,33 @@ class ScriptCustomizationTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testSingleContactReplacement() {
+    func testSingleContactReplacement() throws {
         let contact = Contact()
         let script = "Hello [REP/SEN NAME], my name is a constituent"
 
-        guard let replacedScript = contact.customizeScript(script: script) else {
-            XCTFail("returned nil from script replacement")
-            return
-        }
+        let replacedScript = try XCTUnwrap(contact.customizeScript(script: script))
 
         let expectedScript = "Hello Rep. Test Name, my name is a constituent"
         XCTAssertEqual(replacedScript, expectedScript)
     }
 
-    func testMultipleContactReplacement() {
+    func testMultipleContactReplacement() throws {
         let contact = Contact()
         let script = "Hello [REP/SEN NAME], my name is a constituent and I would like [REP/SEN NAME] to do a thing"
 
-        guard let replacedScript = contact.customizeScript(script: script) else {
-            XCTFail("returned nil from script replacement")
-            return
-        }
+        let replacedScript = try XCTUnwrap(contact.customizeScript(script: script))
 
         let expectedScript = "Hello Rep. Test Name, my name is a constituent and I would like Rep. Test Name to do a thing"
         XCTAssertEqual(replacedScript, expectedScript)
     }
 
-    func testLocationReplacement() {
+    func testLocationReplacement() throws {
         let location = UserLocation()
         location.locationDisplay = "San Francisco"
-
         let script = "Hello, my name is a constituent from [CITY, STATE]"
 
-        guard let replacedScript = location.customizeScript(script: script) else {
-            XCTFail("returned nil from script replacement")
-            return
-        }
+        let replacedScript = try XCTUnwrap(location.customizeScript(script: script))
+
 
         let expectedScript = "Hello, my name is a constituent from San Francisco"
         XCTAssertEqual(replacedScript, expectedScript)
