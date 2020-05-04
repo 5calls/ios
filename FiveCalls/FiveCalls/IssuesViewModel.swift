@@ -17,6 +17,7 @@ protocol IssuesViewModel {
     func numberOfRowsInSection(section: Int) -> Int
     func hasNoData() -> Bool
     func issueForIndexPath(indexPath: IndexPath) -> Issue
+    func indexOfIssueWithID(id: Int64) -> Int?
     func titleForHeaderInSection(section: Int) -> String
 }
 
@@ -66,6 +67,10 @@ struct AllIssuesViewModel: IssuesViewModel {
         // Category name as section header.
         return categorizedIssues[section].name
     }
+
+    func indexOfIssueWithID(id: Int64) -> Int? {
+        return issues.firstIndex(where: { $0.id == id })
+    }
 }
 
 // Shows only the active issues.
@@ -96,5 +101,9 @@ struct ActiveIssuesViewModel: IssuesViewModel {
 
     func titleForHeaderInSection(section: Int) -> String {
         return R.string.localizable.whatsImportantTitle()
+    }
+
+    func indexOfIssueWithID(id: Int64) -> Int? {
+        return activeIssues.firstIndex(where: { $0.id == id })
     }
 }

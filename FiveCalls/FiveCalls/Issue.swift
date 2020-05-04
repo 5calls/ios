@@ -27,3 +27,9 @@ struct Issue : Decodable {
         return URL(string: String(format: "https://shareimages.5calls.org/%d.png",self.id))!
     }
 }
+
+extension Issue: Equatable {
+    static func == (lhs: Issue, rhs: Issue) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

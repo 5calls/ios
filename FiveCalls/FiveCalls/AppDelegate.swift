@@ -40,6 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         return Auth0.resumeAuth(url, options: options)
     }
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL else {
+            return false
+        }
+        // sets a string like 'usps-postal-service-covid-funding' that we can use when issues are loaded
+        UserDefaults.standard.set(incomingURL.lastPathComponent, forKey: UserDefaultsKey.selectIssuePath.rawValue)
+
+        return true
+    }
     
     func oneSignalStartup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]

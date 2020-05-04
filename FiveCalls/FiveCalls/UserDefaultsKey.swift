@@ -22,4 +22,6 @@ enum UserDefaultsKey : String {
     case countOfCallsForRatingPrompt
     
     case lastAskedForNotificationPermission
+
+    case selectIssuePath
 }

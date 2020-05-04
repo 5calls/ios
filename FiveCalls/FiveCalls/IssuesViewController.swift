@@ -24,6 +24,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: LoadResult?
+    var autoSelectIndexPath: IndexPath?
     var isLoading = false
     var analyticsEvent: String {
         if shouldShowAllIssues {
@@ -155,12 +156,32 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 DispatchQueue.main.async {
                     self.viewModel = viewModel
                     self.tableView.reloadData()
+                    self.moveForwardIfNeeded()
                 }
             }
         } else {
             tableView.reloadEmptyDataSet()
         }
         tableView.refreshControl?.endRefreshing()
+
+    }
+
+    func moveForwardIfNeeded() {
+        if let selectPath = UserDefaults.standard.string(forKey: UserDefaultsKey.selectIssuePath.rawValue) {
+            print("loaded issues, select path is \(selectPath)")
+//            guard let index = viewModel.issues.firstIndex(where: { $0.slug == selectPath }) else { return }
+//            guard let foundIssue = viewModel.issues.filter({ $0.slug == selectPath }).first else { return }
+//            print("found issues are \(foundIssue)")
+            guard let selectedIssueID = viewModel.issues.first(where: {$0.slug == selectPath})?.id else { return }
+            guard let index = viewModel.indexOfIssueWithID(id: selectedIssueID) else { return }
+            let indexPath = IndexPath(row: index, section: 0)
+            print("index of item is \(index) \(viewModel.issueForIndexPath(indexPath: indexPath))")
+
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            self.performSegue(withIdentifier: R.segue.issuesViewController.issueSegue.identifier, sender: nil)
+
+            UserDefaults.standard.set(nil, forKey: UserDefaultsKey.selectIssuePath.rawValue)
+        }
     }
 
     private func headerWithTitle(title: String) -> UIView {
@@ -187,19 +208,23 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == R.segue.issuesViewController.issueSegue.identifier, let split = self.splitViewController {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return true }
-            let controller = R.storyboard.main.issueDetailViewController()!
-            controller.issuesManager = issuesManager
-            controller.contactsManager = contactsManager
-            controller.issue = viewModel.issueForIndexPath(indexPath: indexPath)
-
-            let nav = UINavigationController(rootViewController: controller)
-            nav.setNavigationBarHidden(true, animated: false)
-            split.showDetailViewController(nav, sender: self)
-            self.iPadShareButton?.isHidden = false
+            showiPadIssueDetail(split: split)
             return false
         }
         return true
+    }
+
+    func showiPadIssueDetail(split: UISplitViewController) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let controller = R.storyboard.main.issueDetailViewController()!
+        controller.issuesManager = issuesManager
+        controller.contactsManager = contactsManager
+        controller.issue = viewModel.issueForIndexPath(indexPath: indexPath)
+
+        let nav = UINavigationController(rootViewController: controller)
+        nav.setNavigationBarHidden(true, animated: false)
+        split.showDetailViewController(nav, sender: self)
+        self.iPadShareButton?.isHidden = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
