@@ -11,14 +11,6 @@ import XCTest
 
 class ScriptCustomizationTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testSingleContactReplacement() throws {
         let contact = Contact()
         let script = "Hello [REP/SEN NAME], my name is a constituent"
