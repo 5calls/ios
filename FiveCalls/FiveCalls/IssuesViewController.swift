@@ -24,7 +24,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     weak var issuesDelegate: IssuesViewControllerDelegate?
     var lastLoadResult: LoadResult?
-    var autoSelectIndexPath: IndexPath?
+    var autoSelectIssue: Issue?
     var isLoading = false
     var analyticsEvent: String {
         if shouldShowAllIssues {
@@ -168,18 +168,19 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func moveForwardIfNeeded() {
         if let selectPath = UserDefaults.standard.string(forKey: UserDefaultsKey.selectIssuePath.rawValue) {
-            print("loaded issues, select path is \(selectPath)")
-//            guard let index = viewModel.issues.firstIndex(where: { $0.slug == selectPath }) else { return }
-//            guard let foundIssue = viewModel.issues.filter({ $0.slug == selectPath }).first else { return }
-//            print("found issues are \(foundIssue)")
-            guard let selectedIssueID = viewModel.issues.first(where: {$0.slug == selectPath})?.id else { return }
-            guard let index = viewModel.indexOfIssueWithID(id: selectedIssueID) else { return }
-            let indexPath = IndexPath(row: index, section: 0)
-            print("index of item is \(index) \(viewModel.issueForIndexPath(indexPath: indexPath))")
+            // set selected issue
+            let selectedIssue = issuesManager.issues.first(where: {$0.slug == selectPath})
+            autoSelectIssue = selectedIssue
+            
+            if let split = self.splitViewController {
+                // split contexts are shown manually
+                showiPadIssueDetail(split: split)
+            } else {
+                // non-split contexts use segues
+                self.performSegue(withIdentifier: R.segue.issuesViewController.issueSegue.identifier, sender: nil)
+            }
 
-            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
-            self.performSegue(withIdentifier: R.segue.issuesViewController.issueSegue.identifier, sender: nil)
-
+            // unset this so we don't do it next time we get issues
             UserDefaults.standard.set(nil, forKey: UserDefaultsKey.selectIssuePath.rawValue)
         }
     }
@@ -213,13 +214,28 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         return true
     }
+    
+    // sometimes we want to select an issue that is downloaded, but is not in the active view model
+    // (i.e. an issue that is in the More list when we're on the Active list)
+    func selectedIssue() -> Issue? {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            return viewModel.issueForIndexPath(indexPath: indexPath)
+        }
+        
+        // don't need to unset this after use because it's always a fallback to the table selection
+        if let issue = autoSelectIssue {
+            return issue
+        }
+        
+        return nil
+    }
 
     func showiPadIssueDetail(split: UISplitViewController) {
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        guard let selectedIssue = self.selectedIssue() else { return }
         let controller = R.storyboard.main.issueDetailViewController()!
         controller.issuesManager = issuesManager
         controller.contactsManager = contactsManager
-        controller.issue = viewModel.issueForIndexPath(indexPath: indexPath)
+        controller.issue = selectedIssue
 
         let nav = UINavigationController(rootViewController: controller)
         nav.setNavigationBarHidden(true, animated: false)
@@ -233,11 +249,11 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             typedInfo.destination.issuesManager = issuesManager
             typedInfo.destination.contactsManager = contactsManager
         }
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        guard let selectedIssue = self.selectedIssue() else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
             typedInfo.destination.issuesManager = issuesManager
             typedInfo.destination.contactsManager = contactsManager
-            typedInfo.destination.issue = viewModel.issueForIndexPath(indexPath: indexPath)
+            typedInfo.destination.issue = selectedIssue
         }
     }
 
