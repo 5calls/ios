@@ -169,15 +169,14 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func moveForwardIfNeeded() {
         if let selectPath = UserDefaults.standard.string(forKey: UserDefaultsKey.selectIssuePath.rawValue) {
             // set selected issue
-            let selectedIssue = issuesManager.issues.first(where: {$0.slug == selectPath})
-            autoSelectIssue = selectedIssue
+            autoSelectIssue = issuesManager.issue(withSlug: selectPath)
             
             if let split = self.splitViewController {
                 // split contexts are shown manually
                 showiPadIssueDetail(split: split)
             } else {
                 // non-split contexts use segues
-                self.performSegue(withIdentifier: R.segue.issuesViewController.issueSegue.identifier, sender: nil)
+                performSegue(withIdentifier: R.segue.issuesViewController.issueSegue.identifier, sender: nil)
             }
 
             // unset this so we don't do it next time we get issues
@@ -231,7 +230,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func showiPadIssueDetail(split: UISplitViewController) {
-        guard let selectedIssue = self.selectedIssue() else { return }
+        guard let selectedIssue = selectedIssue() else { return }
         let controller = R.storyboard.main.issueDetailViewController()!
         controller.issuesManager = issuesManager
         controller.contactsManager = contactsManager

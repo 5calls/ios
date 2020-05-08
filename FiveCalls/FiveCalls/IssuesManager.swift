@@ -59,4 +59,8 @@ class IssuesManager {
         }
         queue.addOperation(operation)
     }
+    
+    public func issue(withSlug slug: String) -> Issue? {
+        return issues.first(where: {$0.slug == slug})
+    }
 }
