@@ -248,8 +248,8 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             typedInfo.destination.issuesManager = issuesManager
             typedInfo.destination.contactsManager = contactsManager
         }
-        guard let selectedIssue = self.selectedIssue() else { return }
         if let typedInfo = R.segue.issuesViewController.issueSegue(segue: segue) {
+            guard let selectedIssue = self.selectedIssue() else { return }
             typedInfo.destination.issuesManager = issuesManager
             typedInfo.destination.contactsManager = contactsManager
             typedInfo.destination.issue = selectedIssue
