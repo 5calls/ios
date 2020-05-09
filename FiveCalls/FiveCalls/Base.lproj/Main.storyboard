@@ -593,9 +593,6 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                                     <color key="textColor" red="0.39996230602264404" green="0.40002405643463135" blue="0.3999488353729248" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <connections>
-                                                        <outlet property="viewController" destination="2z3-FP-x6s" id="ZIj-4t-FVn"/>
-                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
