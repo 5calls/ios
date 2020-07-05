@@ -66,6 +66,10 @@ struct Provider: TimelineProvider {
             completion(Timeline(entries: entries, policy: .after(Date())))
         }
     }
+    
+    private func fetchCallCount() -> Int {
+        return 0
+    }
 }
 
 struct FiveCallsEntry: TimelineEntry {

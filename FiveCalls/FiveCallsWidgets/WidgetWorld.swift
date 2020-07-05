@@ -6,4 +6,8 @@
 //  Copyright © 2020 5calls. All rights reserved.
 //
 
-var Current = World(analytics: EmptyAnalytics())
+var Current = World(
+    analytics: EmptyAnalytics(),
+    defaults: .fiveCalls,
+    contactLogs: ContactLogsLoader.self
+    )

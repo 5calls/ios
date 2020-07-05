@@ -15,7 +15,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     var contactIndex = 0
     var contact: Contact!
     var contacts: [Contact]!
-    var logs = ContactLogs.load()
+    var logs = Current.contactLogs.load()
     var lastPhoneDialed: String?
     var currentFlowLogs: [ContactLog] = []
     
@@ -79,7 +79,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         
         self.lastPhoneDialed = number
         
-        let defaults = UserDefaults.standard
+        let defaults = Current.defaults
         let firstCallInstructionsKey =  UserDefaultsKey.hasSeenFirstCallInstructions.rawValue
         
         let callErrorCompletion: (Bool) -> Void = { [weak self] successful in

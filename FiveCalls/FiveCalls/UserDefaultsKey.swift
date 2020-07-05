@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UserDefaultsKey : String {
+enum UserDefaultsKey: String, CaseIterable {
     case hasShownWelcomeScreen
     
     case locationDisplay

@@ -100,7 +100,7 @@ class MyImpactViewController : UITableViewController {
     }
     
     func displayStats() {
-        viewModel = ImpactViewModel(logs: ContactLogs.load(), stats: userStats)
+        viewModel = ImpactViewModel(logs: Current.contactLogs.load(), stats: userStats)
 
         streakLabel.text = viewModel.weeklyStreakMessage
         impactLabel.text = viewModel.impactMessage

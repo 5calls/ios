@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// An app-wide container for dependencies.
+/// Inspired by https://www.pointfree.co/blog/posts/21-how-to-control-the-world
 struct World {
-    var analytics: Analytics
+    let analytics: Analytics
+    let defaults: UserDefaults
+    let contactLogs: ContactLogsAccess.Type
 }

@@ -60,7 +60,7 @@ class DoneCallsViewController: UIViewController, IssueShareable {
     }
     
     func showsDonationSection() -> Bool {
-        let logs = ContactLogs.load()
+        let logs = Current.contactLogs.load()
         if logs.all.count > 6 {
             return true
         }
@@ -158,7 +158,7 @@ extension DoneCallsViewController {
             }))
             alert.addAction(UIAlertAction(title: R.string.localizable.notificationNone(), style: .cancel, handler: { (action) in
                 let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-                UserDefaults.standard.set(Date(), forKey: key)
+                Current.defaults.set(Date(), forKey: key)
             }))
             present(alert, animated: true, completion: nil)
         }
@@ -166,7 +166,7 @@ extension DoneCallsViewController {
     
     func nextNotificationPromptDate() -> Date? {
         let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
+        guard let lastPrompt = Current.defaults.object(forKey: key) as? Date else { return nil }
         
         return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }

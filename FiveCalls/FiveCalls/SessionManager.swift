@@ -135,12 +135,11 @@ class SessionManager {
             return Promise.init(error: SessionManagerError.notLoggedIn)
         }
         
-        let logs = ContactLogs.load()
+        let logs = Current.contactLogs.load()
         let unreportedLogs = logs.unreported()
         guard unreportedLogs.count > 0 else { return .value(true) }
         
         return Promise { seal in
-            let logs = ContactLogs.load()
             var unreportedLogs = logs.unreported()
 
             // we kick off a check for unreported stats in a viewDidLoad so I suspect this was racing against regular stat network requests and doubling counts on the server

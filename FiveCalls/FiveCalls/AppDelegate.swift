@@ -10,7 +10,11 @@ import UIKit
 import Auth0
 import OneSignal
 
-var Current = World(analytics: AppCenterIntegration())
+var Current = World(
+    analytics: AppCenterIntegration(),
+    defaults: .fiveCalls,
+    contactLogs: ContactLogsLoader.self
+)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,12 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             resetData()
         }
 
+        migrateUserDefaults()
         clearNotificationBadge()
         setAppearance()
 
         resetOrInitializeCountForRating()
         
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
+        if !Current.defaults.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
             showWelcome()
         }
 
@@ -51,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         // sets a string like 'usps-postal-service-covid-funding' that we can use when issues are loaded
-        UserDefaults.standard.set(incomingURL.lastPathComponent, forKey: UserDefaultsKey.selectIssuePath.rawValue)
+        Current.defaults.set(incomingURL.lastPathComponent, forKey: UserDefaultsKey.selectIssuePath.rawValue)
         Current.analytics.trackEvent("Info: Enter from Universal Link", properties: ["issue-slug": incomingURL.lastPathComponent])
 
         return true
@@ -92,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let welcomeVC = R.storyboard.welcome.welcomeViewController()!
         let mainVC = window.rootViewController!
         welcomeVC.completionBlock = {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
+            Current.defaults.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
             self.transitionTo(rootViewController: mainVC)
         }
         window.rootViewController = welcomeVC
@@ -124,14 +129,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    private func migrateUserDefaults() {
+        UserDefaultsMigrator().migrateIfNeeded()
+    }
 
     private func resetData() {
         // clear user defaults
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        let bundleIdentifier = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+        UserDefaults.fiveCalls.removeSuite(named: Configuration.appGroupIdentifier)
 
         // clear any saved location data
-        ContactLogs.removeData()
+        Current.contactLogs.clear()
     }
     
     private func clearNotificationBadge() {
@@ -140,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     private func resetOrInitializeCountForRating() {
-        let defaults = UserDefaults.standard
+        let defaults = Current.defaults
 
         guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
 

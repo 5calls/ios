@@ -14,7 +14,7 @@ struct RatingPromptCounter {
     let handler: (() -> Void)?
 
     func increment() {
-        let defaults = UserDefaults.standard
+        let defaults = Current.defaults
         let key = UserDefaultsKey.countOfCallsForRatingPrompt.rawValue
         let count = defaults.integer(forKey: key) + 1
 

@@ -39,9 +39,9 @@ class ScheduleRemindersController: UIViewController {
     }()
     
     private var remindersEnabled: Bool {
-        get { return UserDefaults.standard.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue) }
+        get { return Current.defaults.bool(forKey: UserDefaultsKey.reminderEnabled.rawValue) }
         set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.reminderEnabled.rawValue)
+            Current.defaults.set(newValue, forKey: UserDefaultsKey.reminderEnabled.rawValue)
             if newValue {
                 requestNotificationAccess()
             } else {

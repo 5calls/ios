@@ -25,24 +25,25 @@ struct LegacyPantryWrapper: Codable {
 }
 
 struct ContactLogs {
-    private static let persistenceKey = "ContactLogs"
-    
+    private let store: ContactLogsStore
     var all: [ContactLog]
     
-    init() {
-        all = []
+    /// Returns an empty set, storing new data in the provided store.
+    static func empty(store: ContactLogsStore) -> ContactLogs {
+        ContactLogs(store: store, logs: [])
     }
     
-    private init(logs: [ContactLog]) {
+    fileprivate init(store: ContactLogsStore, logs: [ContactLog]) {
+        self.store = store
         all = logs
     }
 
     mutating func add(log: ContactLog) {
         all.append(log)
-        save()
+        store.save(logs: self)
         NotificationCenter.default.post(name: .callMade, object: log)
     }
-        
+    
     func methodOfContact(to contactId: String, forIssue issue: Issue) -> String? {
         return all.filter({$0.contactId == contactId && ($0.issueId == String(issue.id) || $0.issueId == issue.meta)}).last?.outcome
     }
@@ -68,6 +69,10 @@ struct ContactLogs {
 
     // MARK: mutating functions
     
+    mutating func save() {
+        store.save(logs: self)
+    }
+    
     mutating func markAllReported(_ logs: [ContactLog]) {
         logs.forEach { self.markReported($0) }
     }
@@ -81,75 +86,62 @@ struct ContactLogs {
             all.append(ContactLog(issueId: log.issueId, contactId: log.contactId, phone: log.phone, outcome: log.outcome, date: log.date, reported: true))
         }
     }
-
-    // MARK: the file path for locally saved contact logs that was inherited from pantry
-    
-    static private var filePath: URL {
-        let pantryDirName = "com.thatthinginswift.pantry"
-        let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
-
-        let targetPath: URL
-        if isRunningUnitTests() {
-            targetPath = FileManager.default.temporaryDirectory
-        } else {
-            targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName)
-        }
-
-        // don't try to create a directory with the full path, even with "isDirectory: false"
-        try? FileManager.default.createDirectory(at: targetPath, withIntermediateDirectories: true)
-
-        return targetPath.appendingPathComponent(ContactLogs.persistenceKey, isDirectory: false)
-    }
-}
-
-extension ContactLogs {
-    func save() {
-        let wrapper = LegacyPantryWrapper(expires: 0, storage: self.all)
-        
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        if let data = try? encoder.encode(wrapper) {
-            do {
-                try data.write(to: ContactLogs.filePath)
-            } catch {
-                Current.analytics.trackError(error: error)
-            }
-        }
-    }
-
-    static func debugContactLogs() {
-        print("file should be at \(ContactLogs.filePath)")
-
-        let pantryDirName = "com.thatthinginswift.pantry"
-        let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
-        let files = try? FileManager.default.contentsOfDirectory(atPath: URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName).path)
-
-        print("directory is \(String(describing: files))")
-    }
-    
-    static func load() -> ContactLogs {
-        // check for the file first, not having a file is not an error we want to log
-        if FileManager.default.fileExists(atPath: ContactLogs.filePath.path),
-           let fileData = try? Data(contentsOf: ContactLogs.filePath) {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            if let wrapper = try? decoder.decode(LegacyPantryWrapper.self, from: fileData) {
-                return ContactLogs(logs: wrapper.storage)
-            } else {
-                print("couldn't decode wrapper")
-                Current.analytics.trackError(error: ContactLogError.CantDecodeWrapper)
-            }
-        }
-        
-        // can't decode contact logs? make a new one
-        return ContactLogs()
-    }
-    
-    static func removeData() {
-        try? FileManager.default.removeItem(at: ContactLogs.filePath)
-    }
 }
 
 enum ContactLogError: Error {
     case CantDecodeWrapper
 }
+
+protocol ContactLogsStore {
+    func save(logs: ContactLogs)
+    func load() -> ContactLogs
+    func removeData()
+}
+
+class FileContactLogsStore: ContactLogsStore {
+    let url: URL
+    private let analytics: Analytics
+    
+    init(url: URL, analytics: Analytics) {
+        self.url = url
+        self.analytics = analytics
+    }
+    
+    func save(logs: ContactLogs) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        
+        let wrapper = LegacyPantryWrapper(expires: 0, storage: logs.all)
+        if let data = try? encoder.encode(wrapper) {
+            do {
+                try data.write(to: url)
+            } catch {
+                analytics.trackError(error: error)
+            }
+        }
+    }
+    
+    func load() -> ContactLogs {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            // no file yet, return a new one
+            return .empty(store: self)
+        }
+        
+        guard let fileData = try? Data(contentsOf: url),
+              let wrapper = try? decoder.decode(LegacyPantryWrapper.self, from: fileData) else {
+            analytics.trackError(error: ContactLogError.CantDecodeWrapper)
+            return .empty(store: self)
+        }
+        
+        return ContactLogs(store: self, logs: wrapper.storage)
+    }
+    
+    func removeData() {
+        try? FileManager.default.removeItem(at: url)
+    }
+}
+
+

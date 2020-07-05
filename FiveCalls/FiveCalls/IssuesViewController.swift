@@ -91,7 +91,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        logs = ContactLogs.load()
+        logs = Current.contactLogs.load()
         if shouldShowAllIssues {
             navigationController?.setNavigationBarHidden(false, animated: animated)
         }
@@ -167,7 +167,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func moveForwardIfNeeded() {
-        if let selectPath = UserDefaults.standard.string(forKey: UserDefaultsKey.selectIssuePath.rawValue) {
+        if let selectPath = Current.defaults.string(forKey: UserDefaultsKey.selectIssuePath.rawValue) {
             // set selected issue
             autoSelectIssue = issuesManager.issue(withSlug: selectPath)
             
@@ -180,7 +180,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
 
             // unset this so we don't do it next time we get issues
-            UserDefaults.standard.set(nil, forKey: UserDefaultsKey.selectIssuePath.rawValue)
+            Current.defaults.set(nil, forKey: UserDefaultsKey.selectIssuePath.rawValue)
         }
     }
 
@@ -198,7 +198,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @objc func madeCall() {
-        logs = ContactLogs.load()
+        logs = Current.contactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 

@@ -86,7 +86,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
     }
     
     @objc func madeCall() {
-        logs = ContactLogs.load()
+        logs = Current.contactLogs.load()
         tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .none)
     }
 
@@ -102,7 +102,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             tableView.deselectRow(at: indexPath, animated: true)
         }
         
-        logs = ContactLogs.load()
+        logs = Current.contactLogs.load()
 
         if self.splitViewController == nil {
             navigationController?.setNavigationBarHidden(false, animated: true)
