@@ -22,7 +22,7 @@ class AboutHtmlViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AnalyticsManager.shared.trackEvent(withName: "Screen: About \(contentName)")
+        Current.analytics.trackEvent("Screen: About \(contentName)")
         let path = Bundle.main.path(forResource: "about-\(contentName)", ofType: "html")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let htmlString = String(data: data, encoding: .utf8)!
@@ -40,7 +40,7 @@ extension AboutHtmlViewController : WKNavigationDelegate {
                 decisionHandler(.allow)
                 return
             }
-            AnalyticsManager.shared.trackEvent(withName: "Action: Open External Link", andProperties: ["url":url.absoluteString])
+            Current.analytics.trackEvent("Action: Open External Link", properties: ["url":url.absoluteString])
             UIApplication.shared.open(url)
             
             decisionHandler(.cancel)

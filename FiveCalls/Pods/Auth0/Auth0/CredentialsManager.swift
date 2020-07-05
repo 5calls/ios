@@ -22,7 +22,8 @@
 
 import Foundation
 import SimpleKeychain
-#if os(iOS)
+import JWTDecode
+#if WEB_AUTH_PLATFORM
 import LocalAuthentication
 #endif
 
@@ -32,7 +33,7 @@ public struct CredentialsManager {
     private let storage: A0SimpleKeychain
     private let storeKey: String
     private let authentication: Authentication
-    #if os(iOS)
+    #if WEB_AUTH_PLATFORM
     private var bioAuth: BioAuthentication?
     #endif
 
@@ -54,7 +55,7 @@ public struct CredentialsManager {
     ///   - title: main message to display in TouchID prompt
     ///   - cancelTitle: cancel message to display in TouchID prompt (iOS 10+)
     ///   - fallbackTitle: fallback message to display in TouchID prompt after a failed match
-    #if os(iOS)
+    #if WEB_AUTH_PLATFORM
     @available(*, deprecated, message: "see enableBiometrics(withTitle title:, cancelTitle:, fallbackTitle:)")
     public mutating func enableTouchAuth(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
         self.enableBiometrics(withTitle: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
@@ -67,7 +68,7 @@ public struct CredentialsManager {
     ///   - title: main message to display when Touch ID is used
     ///   - cancelTitle: cancel message to display when Touch ID is used (iOS 10+)
     ///   - fallbackTitle: fallback message to display when Touch ID is used after a failed match
-    #if os(iOS)
+    #if WEB_AUTH_PLATFORM
     public mutating func enableBiometrics(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
         self.bioAuth = BioAuthentication(authContext: LAContext(), title: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
     }
@@ -129,7 +130,7 @@ public struct CredentialsManager {
     }
 
     /// Retrieve credentials from keychain and yield new credentials using refreshToken if accessToken has expired
-    /// otherwise the retrieved credentails will be returned as they have not expired. Renewed credentials will be 
+    /// otherwise the retrieved credentails will be returned as they have not expired. Renewed credentials will be
     /// stored in the keychain.
     ///
     ///
@@ -145,10 +146,10 @@ public struct CredentialsManager {
     ///   - callback: callback with the user's credentials or the cause of the error.
     /// - Important: This method only works for a refresh token obtained after auth with OAuth 2.0 API Authorization.
     /// - Note: [Auth0 Refresh Tokens Docs](https://auth0.com/docs/tokens/refresh-token)
-    #if os(iOS)
+    #if WEB_AUTH_PLATFORM
     public func credentials(withScope scope: String? = nil, callback: @escaping (CredentialsManagerError?, Credentials?) -> Void) {
         guard self.hasValid() else { return callback(.noCredentials, nil) }
-        if let bioAuth = self.bioAuth {
+        if #available(iOS 9.0, macOS 10.15, *), let bioAuth = self.bioAuth {
             guard bioAuth.available else { return callback(.touchFailed(LAError(LAError.touchIDNotAvailable)), nil) }
             bioAuth.validateBiometric {
                 guard $0 == nil else {
@@ -182,7 +183,7 @@ public struct CredentialsManager {
                 let newCredentials = Credentials(accessToken: credentials.accessToken,
                                                  tokenType: credentials.tokenType,
                                                  idToken: credentials.idToken,
-                                                 refreshToken: refreshToken,
+                                                 refreshToken: credentials.refreshToken ?? refreshToken,
                                                  expiresIn: credentials.expiresIn,
                                                  scope: credentials.scope)
                 _ = self.store(credentials: newCredentials)
@@ -194,39 +195,14 @@ public struct CredentialsManager {
     }
 
     func hasExpired(_ credentials: Credentials) -> Bool {
-
         if let expiresIn = credentials.expiresIn {
             if expiresIn < Date() { return true }
         }
 
-        if let token = credentials.idToken,
-            let tokenDecoded = decode(jwt: token),
-            let exp = tokenDecoded["exp"] as? Double {
-            if Date(timeIntervalSince1970: exp) < Date() { return true }
+        if let token = credentials.idToken, let jwt = try? decode(jwt: token) {
+            return jwt.expired
         }
 
         return false
     }
-}
-
-func decode(jwt: String) -> [String: Any]? {
-    let parts = jwt.components(separatedBy: ".")
-    guard parts.count == 3 else { return nil }
-    var base64 = parts[1]
-        .replacingOccurrences(of: "-", with: "+")
-        .replacingOccurrences(of: "_", with: "/")
-    let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
-    let requiredLength = 4 * ceil(length / 4.0)
-    let paddingLength = requiredLength - length
-    if paddingLength > 0 {
-        let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
-        base64 += padding
-    }
-
-    guard
-        let bodyData = Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
-        else { return nil }
-
-    let json = try? JSONSerialization.jsonObject(with: bodyData, options: [])
-    return json as? [String: Any]
 }

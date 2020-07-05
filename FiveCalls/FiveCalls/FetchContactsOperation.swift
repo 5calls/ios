@@ -75,4 +75,3 @@ class FetchContactsOperation : BaseOperation {
         return contactList.representatives
     }
 }
-

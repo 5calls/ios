@@ -73,8 +73,7 @@ class UserLocation {
                 completion?(self)
             }
             
-            guard let placemark = results?.first else {
-                self.locationDisplay = R.string.localizable.fallbackUserLocationDesc()
+            guard let placemark = results?.first else {                
                 return
             }
             

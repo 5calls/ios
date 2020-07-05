@@ -1,4 +1,4 @@
-// WebAuth.swift
+// WebAuthenticatable.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
 //
@@ -20,19 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
-#if canImport(AuthenticationServices)
-import AuthenticationServices
-#endif
-
-#if swift(>=4.2)
-public typealias A0URLOptionsKey = UIApplication.OpenURLOptionsKey
-#else
-public typealias A0URLOptionsKey = UIApplicationOpenURLOptionsKey
-#endif
-
 /**
- Auth0 iOS component for authenticating with web-based flow
+ Auth0 component for authenticating with web-based flow
 
  ```
  Auth0.webAuth()
@@ -64,7 +53,7 @@ public func webAuth(bundle: Bundle = Bundle.main) -> WebAuth {
 }
 
 /**
- Auth0 iOS component for authenticating with web-based flow
+ Auth0  component for authenticating with web-based flow
 
  ```
  Auth0.webAuth(clientId: clientId, domain: "samples.auth0.com")
@@ -76,29 +65,17 @@ public func webAuth(bundle: Bundle = Bundle.main) -> WebAuth {
  - returns: Auth0 WebAuth component
  */
 public func webAuth(clientId: String, domain: String) -> WebAuth {
-    return SafariWebAuth(clientId: clientId, url: .a0_url(domain))
-}
-
-/**
- Resumes the current Auth session (if any).
-
- - parameter url:     url received by iOS application in AppDelegate
- - parameter options: dictionary with launch options received by iOS application in AppDelegate
-
- - returns: if the url was handled by an on going session or not.
- */
-public func resumeAuth(_ url: URL, options: [A0URLOptionsKey: Any]) -> Bool {
-    return TransactionStore.shared.resume(url, options: options)
+    return Auth0WebAuth(clientId: clientId, url: .a0_url(domain))
 }
 
 /// WebAuth Authentication using Auth0
-public protocol WebAuth: Trackable, Loggable {
+public protocol WebAuthenticatable: Trackable, Loggable {
     var clientId: String { get }
     var url: URL { get }
     var telemetry: Telemetry { get set }
 
     /**
-     For redirect url instead of a custom scheme it will use `https` and iOS 9 Universal Links.
+     For redirect url instead of a custom scheme it will use `https` and Universal Links.
 
      Before enabling this flag you'll need to configure Universal Links
 
@@ -162,8 +139,14 @@ public protocol WebAuth: Trackable, Loggable {
     /// - Returns: the same WebAuth instance to allow method chaining
     func responseType(_ response: [ResponseType]) -> Self
 
-    /// Add nonce paramater for authentication, this is a requirement for
-    /// when response type .id_token is specified.
+    /// Specify a redirect url to be used instead of a custom scheme
+    ///
+    /// - Parameter redirectURL: custom redirect url
+    /// - Returns: the same WebAuth instance to allow method chaining
+    func redirectURL(_ redirectURL: URL) -> Self
+
+    /// Add `nonce` parameter for authentication, this is a requirement
+    /// when response type `.idToken` is specified.
     ///
     /// - Parameter nonce: nonce string
     /// - Returns: the same WebAuth instance to allow method chaining
@@ -176,6 +159,30 @@ public protocol WebAuth: Trackable, Loggable {
     /// - Returns: the same WebAuth instance to allow method chaining
     func audience(_ audience: String) -> Self
 
+    /// Add a leeway amount for ID Token validation.
+    /// This value represents the clock skew for the validation of date claims e.g. `exp`.
+    ///
+    /// - Parameter leeway: number of milliseconds. Defaults to `60000` (1 minute).
+    /// - Returns: the same WebAuth instance to allow method chaining
+    func leeway(_ leeway: Int) -> Self
+
+    /// Add `max_age` parameter for authentication, only when response type `.idToken` is specified.
+    /// Sending this parameter will require the presence of the `auth_time` claim in the ID Token.
+    ///
+    /// - Parameter maxAge: number of milliseconds
+    /// - Returns: the same WebAuth instance to allow method chaining
+    func maxAge(_ maxAge: Int) -> Self
+
+    #if swift(>=5.1)
+    /**
+     Disable Single Sign On (SSO) on iOS 13+ and macOS.
+     Has no effect on older versions of iOS.
+
+     - returns: the same WebAuth instance to allow method chaining
+     */
+    func useEphemeralSession() -> Self
+    #endif
+
     /**
      Change the default grant used for auth from `code` (w/PKCE) to `token` (implicit grant)
 
@@ -183,16 +190,6 @@ public protocol WebAuth: Trackable, Loggable {
      */
     @available(*, deprecated, message: "use response([.token])")
     func usingImplicitGrant() -> Self
-
-    /**
-     Use `SFSafariViewController` instead of `SFAuthenticationSession` for WebAuth
-     in iOS 11.0+.
-
-     - Parameter style: modal presentation style
-     - returns: the same WebAuth instance to allow method chaining
-     */
-    @available(iOS 11, *)
-    func useLegacyAuthentication(withStyle style: UIModalPresentationStyle) -> Self
 
     /**
      Starts the WebAuth flow by modally presenting a ViewController in the top-most controller.
@@ -227,7 +224,6 @@ public protocol WebAuth: Trackable, Loggable {
      For iOS 11+ you will need to ensure that the **Callback URL** has been added
      to the **Allowed Logout URLs** section of your application in the [Auth0 Dashboard](https://manage.auth0.com/#/applications/).
 
-
      ```
      Auth0
          .webAuth()
@@ -246,19 +242,4 @@ public protocol WebAuth: Trackable, Loggable {
      - parameter callback: callback called with bool outcome of the call
      */
     func clearSession(federated: Bool, callback: @escaping (Bool) -> Void)
-}
-
-public extension WebAuth {
-
-    /**
-     Use `SFSafariViewController` instead of `SFAuthenticationSession` for WebAuth
-     in iOS 11.0+.
-     Defaults to .fullScreen modal presentation style.
-     
-     - returns: the same WebAuth instance to allow method chaining
-     */
-    @available(iOS 11, *)
-    func useLegacyAuthentication() -> Self {
-        return useLegacyAuthentication(withStyle: .fullScreen)
-    }
 }

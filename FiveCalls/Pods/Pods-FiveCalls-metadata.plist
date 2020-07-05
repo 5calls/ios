@@ -118,7 +118,7 @@ SOFTWARE.
 			<key>summary</key>
 			<string>Swift toolkit for Auth0 API</string>
 			<key>version</key>
-			<string>1.19.3</string>
+			<string>1.26.0</string>
 		</dict>
 		<dict>
 			<key>authors</key>
@@ -442,6 +442,59 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 		<dict>
 			<key>authors</key>
 			<dict>
+				<key>Auth0</key>
+				<string>support@auth0.com</string>
+				<key>Hernan Zalazar</key>
+				<string>hernan@auth0.com</string>
+				<key>Martin Walsh</key>
+				<string>martin.walsh@auth0.com</string>
+			</dict>
+			<key>description</key>
+			<string>&lt;p&gt;Decode a JWT to retrieve it&amp;#39;s payload and also check for its expiration. &lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This library does not perform any validation of the JWT signature, it only decodes the token from Base64&lt;/p&gt;
+&lt;/blockquote&gt;
+</string>
+			<key>homepage</key>
+			<string>https://github.com/auth0/JWTDecode.swift</string>
+			<key>licenseText</key>
+			<string>The MIT License (MIT)
+ 
+Copyright (c) 2014 Auth0, Inc. &lt;support@auth0.com&gt; (http://auth0.com)
+ 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</string>
+			<key>licenseType</key>
+			<string>MIT</string>
+			<key>name</key>
+			<string>JWTDecode</string>
+			<key>socialMediaURL</key>
+			<string>https://twitter.com/auth0</string>
+			<key>summary</key>
+			<string>A JSON Web Token decoder for iOS, macOS, tvOS</string>
+			<key>version</key>
+			<string>2.4.1</string>
+		</dict>
+		<dict>
+			<key>authors</key>
+			<dict>
 				<key>Joseph Kalash</key>
 				<string>joseph@onesignal.com</string>
 				<key>Josh Kasten</key>
@@ -708,7 +761,7 @@ SOFTWARE.</string>
 			<key>summary</key>
 			<string>A wrapper to make it really easy to deal with iOS Keychain and store your user's credentials securely.</string>
 			<key>version</key>
-			<string>0.9.0</string>
+			<string>0.11.1</string>
 		</dict>
 	</array>
 </dict>

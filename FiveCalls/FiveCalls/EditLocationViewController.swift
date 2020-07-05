@@ -37,7 +37,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Edit Location")
+        Current.analytics.trackEvent("Screen: Edit Location")
         addressTextField.becomeFirstResponder()
         
         if case .address? = UserLocation.current.locationType {
@@ -53,10 +53,10 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
         if CLLocationManager.authorizationStatus() == .denied {
-            AnalyticsManager.shared.trackEvent(withName: "Action: Denied Location")
+            Current.analytics.trackEvent("Action: Denied Location")
             informUserOfPermissions()
         } else {
-            AnalyticsManager.shared.trackEvent(withName: "Action: Used Location")
+            Current.analytics.trackEvent("Action: Used Location")
             locationManager.requestWhenInUseAuthorization()
         }
     }
@@ -71,7 +71,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     }
     
     func submitAddress() {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Used Address")
+        Current.analytics.trackEvent("Action: Used Address")
         
         UserLocation.current.setFrom(address: addressTextField.text ?? "") { [weak self] updatedLocation in
             guard let strongSelf = self else {
@@ -138,7 +138,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
             userLocation.setFrom(location: location) {
                 self.delegate?.editLocationViewController(self, didUpdateLocation: userLocation)
             }
-            
         }
     }
 

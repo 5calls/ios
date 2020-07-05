@@ -35,6 +35,94 @@ public protocol Authentication: Trackable, Loggable {
     var url: URL { get }
 
     /**
+    Logs in a user using an email and an OTP code received via email (last part of the passwordless login flow)
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(email: "support@auth0.com", code: "123456")
+       .start { result in
+           switch result {
+           case .success(let credentials):
+               print(credentials)
+           case .failure(let error):
+               print(error)
+           }
+       }
+    ```
+
+    You can also specify audience, scope, and additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(email: "support@auth0.com",
+            code: "123456",
+            audience: "https://myapi.com/api",
+            scope: "openid email",
+            parameters: ["state": "a random state"])
+       .start { print($0) }
+    ```
+
+    When result is `.success`, its associated value will be a`Credentials` object containing at least an `access_token` (depending on the scopes used to authenticate)
+
+    - parameter email:             email the user used to start the passwordless login flow
+    - parameter code:              one time password (OTP) code the user received via email
+    - parameter audience:          API Identifier that the client is requesting access to. Default is `nil`
+    - parameter scope:             scope value requested when authenticating the user. Default is `openid`
+    - parameter parameters:        additional parameters that are optionally sent with the authentication request
+
+    - returns: authentication request that will yield Auth0 User Credentials
+    - seeAlso: Credentials
+    - requires: Passwordless OTP Grant `http://auth0.com/oauth/grant-type/passwordless/otp`. Check [our documentation](https://auth0.com/docs/clients/client-grant-types) for more info and how to enable it.
+    */
+    func login(email username: String, code otp: String, audience: String?, scope: String?, parameters: [String: Any]) -> Request<Credentials, AuthenticationError>
+
+    /**
+    Logs in a user using a phone number and an OTP code received via sms (last part of the passwordless login flow)
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(phoneNumber: "+4599134762367", code: "123456")
+       .start { result in
+           switch result {
+           case .success(let credentials):
+               print(credentials)
+           case .failure(let error):
+               print(error)
+           }
+       }
+    ```
+
+    You can also specify audience, scope, and additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(phoneNumber: "+4599134762367",
+            code: "123456",
+            audience: "https://myapi.com/api",
+            scope: "openid email",
+            parameters: ["state": "a random state"])
+       .start { print($0) }
+    ```
+
+    When result is `.success`, its associated value will be a`Credentials` object containing at least an `access_token` (depending on the scopes used to authenticate)
+
+    - parameter phoneNumber:       phone number the user used to start the passwordless login flow
+    - parameter code:              one time password (OTP) code the user received via sms
+    - parameter audience:          API Identifier that the client is requesting access to. Default is `nil`
+    - parameter scope:             scope value requested when authenticating the user. Default is `openid`
+    - parameter parameters:        additional parameters that are optionally sent with the authentication request
+
+    - returns: authentication request that will yield Auth0 User Credentials
+    - seeAlso: Credentials
+    - requires: Passwordless OTP Grant `http://auth0.com/oauth/grant-type/passwordless/otp`. Check [our documentation](https://auth0.com/docs/clients/client-grant-types) for more info and how to enable it.
+    */
+    func login(phoneNumber username: String, code otp: String, audience: String?, scope: String?, parameters: [String: Any]) -> Request<Credentials, AuthenticationError>
+
+    /**
      Logs in an user using email|username and password using a Database and Passwordless connection
 
      ```
@@ -71,7 +159,7 @@ public protocol Authentication: Trackable, Loggable {
 
      Also some enterprise connections, like Active Directory (AD), allows authentication using username/password without using the web flow.
 
-     When result is `Successful`, a `Credentials` object will be in it's associated value with at least an `access_token` (depending on the scopes used to authenticate)
+     When result is `.success`, its associated value will be a`Credentials` object containing at least an `access_token` (depending on the scopes used to authenticate)
 
      - parameter usernameOrEmail:   username or email used of the user to authenticate, e.g. in email in Database connections or phone number for SMS connections.
      - parameter password:          password of the user or one time password (OTP) for passwordless connection users
@@ -82,7 +170,7 @@ public protocol Authentication: Trackable, Loggable {
 
      - returns: authentication request that will yield Auth0 User Credentials
      - seeAlso: Credentials
-     - warning: this method is deprecated in favor of `login(usernameOrEmail username:, password:, realm:, audience:, scope:)`
+     - warning: this method is deprecated in favor of `login(usernameOrEmail username:, password:, realm:, audience:, scope:)` for Database connections. For Passwordless connections use `login(email:, code:, audience:, scope:, parameters:)` or `login(phoneNumber:, code:, audience:, scope:, parameters:)` instead.
      - requires: Legacy Grant `http://auth0.com/oauth/legacy/grant-type/ro`. Check [our documentation](https://auth0.com/docs/clients/client-grant-types) for more info and how to enable it.
      */
     @available(*, deprecated, message: "see login(usernameOrEmail username:, password:, realm:, audience:, scope:)")
@@ -146,26 +234,88 @@ public protocol Authentication: Trackable, Loggable {
     func login(withOTP otp: String, mfaToken: String) -> Request<Credentials, AuthenticationError>
 
     /**
+    Authenticate a user with their Sign In With Apple authorization code.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(appleAuthorizationCode: authCode)
+       .start { print($0) }
+    ```
+
+    and if you need to specify a scope or add additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(appleAuthorizationCode: authCode,
+            fullName: credentials.fullName,
+            scope: "openid profile email",
+            audience: "https://myapi.com/api")
+       .start { print($0) }
+    ```
+
+    - parameter authCode: Authorization Code retrieved from Apple Authorization
+    - parameter fullName: The full name property returned with the Apple ID Credentials
+    - parameter profile: Additional user profile data returned with the Apple ID Credentials
+    - parameter scope: Requested scope value when authenticating the user. By default is `openid profile offline_access`
+    - parameter audience: API Identifier that the client is requesting access to
+
+    - returns: a request that will yield Auth0 user's credentials
+    */
+    func login(appleAuthorizationCode authorizationCode: String, fullName: PersonNameComponents?, profile: [String: Any]?, scope: String?, audience: String?) -> Request<Credentials, AuthenticationError>
+
+    /**
+    Authenticate a user with their Facebook session info access token and profile data.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(facebookSessionAccessToken: sessionAccessToken, profile: profile)
+       .start { print($0) }
+    ```
+
+    and if you need to specify a scope or audience
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(facebookSessionAccessToken: sessionAccessToken,
+            scope: "openid profile email",
+            audience: "https://myapi.com/api")
+       .start { print($0) }
+    ```
+
+    - parameter sessionAccessToken: Session info access token retrieved from Facebook
+    - parameter profile: The user profile returned by Facebook
+    - parameter scope: Requested scope value when authenticating the user. By default is `openid profile offline_access`
+    - parameter audience: API Identifier that the client is requesting access to
+
+    - returns: a request that will yield Auth0 user's credentials
+    */
+    func login(facebookSessionAccessToken sessionAccessToken: String, profile: [String: Any], scope: String?, audience: String?) -> Request<Credentials, AuthenticationError>
+
+    /**
      Login using username and password in the default directory
      
      ```
      Auth0
-     .authentication(clientId: clientId, domain: "samples.auth0.com")
-     .loginDefaultDirectory(
-     withUsername: "support@auth0.com",
-     password: "a secret password")
+        .authentication(clientId: clientId, domain: "samples.auth0.com")
+        .loginDefaultDirectory(
+            withUsername: "support@auth0.com",
+            password: "a secret password")
      ```
      
      You can also specify audience and scope
      
      ```
      Auth0
-     .authentication(clientId: clientId, domain: "samples.auth0.com")
-     .loginDefaultDirectory(
-     withUsername: "support@auth0.com",
-     password: "a secret password",
-     audience: "https://myapi.com/api",
-     scope: "openid profile")
+        .authentication(clientId: clientId, domain: "samples.auth0.com")
+        .loginDefaultDirectory(
+            withUsername: "support@auth0.com",
+            password: "a secret password",
+            audience: "https://myapi.com/api",
+            scope: "openid profile")
      ```
      
      - parameter username:    username or email used of the user to authenticate
@@ -346,7 +496,7 @@ public protocol Authentication: Trackable, Loggable {
     func startPasswordless(phoneNumber: String, type: PasswordlessType, connection: String) -> Request<Void, AuthenticationError>
 
     /**
-     Returns token information by performing a request to /tokeninfo endpoint
+     Returns token information by performing a request to the `/tokeninfo` endpoint.
 
      ```
      Auth0
@@ -363,7 +513,7 @@ public protocol Authentication: Trackable, Loggable {
     func tokenInfo(token: String) -> Request<Profile, AuthenticationError>
 
     /**
-     Returns user information by performing a request to /userinfo endpoint.
+     Returns user information by performing a request to the `/userinfo` endpoint.
 
      ```
      Auth0
@@ -381,7 +531,7 @@ public protocol Authentication: Trackable, Loggable {
 
     /**
      Returns OIDC standard claims information by performing a request
-     to /userinfo endpoint.
+     to the `/userinfo` endpoint.
 
      ```
      Auth0
@@ -466,9 +616,42 @@ public protocol Authentication: Trackable, Loggable {
     func tokenExchange(withCode code: String, codeVerifier: String, redirectURI: String) -> Request<Credentials, AuthenticationError>
 
     /**
+    Authenticate a user with their Sign In With Apple authorization code.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .tokenExchange(withAppleAuthorizationCode: authCode)
+       .start { print($0) }
+    ```
+
+    and if you need to specify a scope or add additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .tokenExchange(withAppleAuthorizationCode: authCode,
+           scope: "openid profile email",
+           audience: "https://myapi.com/api",
+           fullName: credentials.fullName)
+       .start { print($0) }
+    ```
+
+    - parameter authCode: Authorization Code retrieved from Apple Authorization
+    - parameter scope: Requested scope value when authenticating the user. By default is `openid profile offline_access`
+    - parameter audience: API Identifier that the client is requesting access to
+    - parameter fullName: The full name property returned with the Apple ID Credentials
+
+    - returns: a request that will yield Auth0 user's credentials
+    - warning: this method is deprecated in favor of `login(appleAuthorizationCode authorizationCode:, fullName:, scope:, audience:)`
+    */
+    @available(*, deprecated, message: "see login(appleAuthorizationCode authorizationCode:, fullName:, scope:, audience:)")
+    func tokenExchange(withAppleAuthorizationCode authCode: String, scope: String?, audience: String?, fullName: PersonNameComponents?) -> Request<Credentials, AuthenticationError>
+
+    /**
      Renew user's credentials with a refresh_token grant for `/oauth/token`
      If you are not using OAuth 2.0 API Authorization please use `delegation(parameters:)`
-     - parameter refreshToken: the client's refresh token obtained on auth
+     - parameter refreshToken: the client's refresh token
      - parameter scope: scopes to request for the new tokens. By default is nil which will ask for the same ones requested during Auth.
      - important: This method only works for a refresh token obtained after auth with OAuth 2.0 API Authorization.
      - returns: a request that will yield Auth0 user's credentials
@@ -485,7 +668,7 @@ public protocol Authentication: Trackable, Loggable {
      .start { print($0) }
      ```
 
-     - parameter refreshToken: the client's refresh token obtained on auth
+     - parameter refreshToken: the client's refresh token
      - returns: a request
      */
     func revoke(refreshToken: String) -> Request<Void, AuthenticationError>
@@ -498,7 +681,21 @@ public protocol Authentication: Trackable, Loggable {
     */
     func delegation(withParameters parameters: [String: Any]) -> Request<[String: Any], AuthenticationError>
 
-#if os(iOS)
+    /**
+    Returns JSON Web Key Set (JWKS) information by performing a request to the `/.well-known/jwks.json` endpoint.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .jwks()
+       .start { print($0) }
+    ```
+    
+    - returns: a request that will yield JWKS information
+    */
+    func jwks() -> Request<JWKS, AuthenticationError>
+
+#if WEB_AUTH_PLATFORM
     /**
      Creates a new WebAuth request to authenticate using Safari browser and OAuth authorize flow.
 
@@ -506,9 +703,9 @@ public protocol Authentication: Trackable, Loggable {
      
      ```
      Auth0
-     .authentication(clientId: clientId, domain: "samples.auth0.com")
-     .webAuth(withConnection: "facebook")
-     .start { print($0) }
+        .authentication(clientId: clientId, domain: "samples.auth0.com")
+        .webAuth(withConnection: "facebook")
+        .start { print($0) }
      ```
 
      If you need to show your Auth0 account login page just create the WebAuth object directly
@@ -542,6 +739,98 @@ public enum PasswordlessType: String {
 }
 
 public extension Authentication {
+
+    /**
+    Logs in a user using an email and an OTP code received via email (last part of the passwordless login flow)
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(email: "support@auth0.com", code: "123456")
+       .start { result in
+           switch result {
+           case .success(let credentials):
+               print(credentials)
+           case .failure(let error):
+               print(error)
+           }
+       }
+    ```
+
+    You can also specify audience, scope, and additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(email: "support@auth0.com",
+            code: "123456",
+            audience: "https://myapi.com/api",
+            scope: "openid email",
+            parameters: ["state": "a random state"])
+       .start { print($0) }
+    ```
+
+    When result is `.success`, its associated value will be a`Credentials` object containing at least an `access_token` (depending on the scopes used to authenticate)
+
+    - parameter email:             email the user used to start the passwordless login flow
+    - parameter code:              one time password (OTP) code the user received via email
+    - parameter audience:          API Identifier that the client is requesting access to. Default is `nil`
+    - parameter scope:             scope value requested when authenticating the user. Default is `openid`
+    - parameter parameters:        additional parameters that are optionally sent with the authentication request
+
+    - returns: authentication request that will yield Auth0 User Credentials
+    - seeAlso: Credentials
+    - requires: Passwordless OTP Grant `http://auth0.com/oauth/grant-type/passwordless/otp`. Check [our documentation](https://auth0.com/docs/clients/client-grant-types) for more info and how to enable it.
+    */
+    func login(email username: String, code otp: String, audience: String? = nil, scope: String? = "openid", parameters: [String: Any] = [:]) -> Request<Credentials, AuthenticationError> {
+        return self.login(email: username, code: otp, audience: audience, scope: scope, parameters: parameters)
+    }
+
+    /**
+    Logs in a user using a phone number and an OTP code received via sms (last part of the passwordless login flow)
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(phoneNumber: "+4599134762367", code: "123456")
+       .start { result in
+           switch result {
+           case .success(let credentials):
+               print(credentials)
+           case .failure(let error):
+               print(error)
+           }
+       }
+    ```
+
+    You can also specify audience, scope, and additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(phoneNumber: "+4599134762367",
+            code: "123456",
+            audience: "https://myapi.com/api",
+            scope: "openid email",
+            parameters: ["state": "a random state"])
+       .start { print($0) }
+    ```
+
+    When result is `.success`, its associated value will be a`Credentials` object containing at least an `access_token` (depending on the scopes used to authenticate)
+
+    - parameter phoneNumber:       phone number the user used to start the passwordless login flow
+    - parameter code:              one time password (OTP) code the user received via sms
+    - parameter audience:          API Identifier that the client is requesting access to. Default is `nil`
+    - parameter scope:             scope value requested when authenticating the user. Default is `openid`
+    - parameter parameters:        additional parameters that are optionally sent with the authentication request
+
+    - returns: authentication request that will yield Auth0 User Credentials
+    - seeAlso: Credentials
+    - requires: Passwordless OTP Grant `http://auth0.com/oauth/grant-type/passwordless/otp`. Check [our documentation](https://auth0.com/docs/clients/client-grant-types) for more info and how to enable it.
+    */
+    func login(phoneNumber username: String, code otp: String, audience: String? = nil, scope: String? = "openid", parameters: [String: Any] = [:]) -> Request<Credentials, AuthenticationError> {
+        return self.login(phoneNumber: username, code: otp, audience: audience, scope: scope, parameters: parameters)
+    }
 
     /**
      Logs in an user using email|username and password using a Database and Passwordless connection
@@ -580,7 +869,7 @@ public extension Authentication {
 
      Also some enterprise connections, like Active Directory (AD), allows authentication using username/password without using the web flow.
 
-     When result is `Successful`, a `Credentials` object will be in it's associated value with at least an `access_token` (depending on the scopes used to authenticate)
+     When result is `.success`, its associated value will be a`Credentials` object containing at least an `access_token` (depending on the scopes used to authenticate)
 
      - parameter usernameOrEmail:   username or email used of the user to authenticate, e.g. in email in Database connections or phone number for SMS connections.
      - parameter password:          password of the user or one time password (OTP) for passwordless connection users
@@ -636,26 +925,92 @@ public extension Authentication {
     }
 
     /**
+    Authenticate a user with their Sign In With Apple authorization code.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(appleAuthorizationCode: authCode)
+       .start { print($0) }
+    ```
+
+    and if you need to specify a scope or add additional parameters
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(appleAuthorizationCode: authCode,
+            fullName: credentials.fullName,
+            scope: "openid profile email",
+            audience: "https://myapi.com/api")
+       .start { print($0) }
+    ```
+
+    - parameter authCode: Authorization Code retrieved from Apple Authorization
+    - parameter fullName: The full name property returned with the Apple ID Credentials
+    - parameter profile: Additional user profile data returned with the Apple ID Credentials
+    - parameter scope: Requested scope value when authenticating the user. By default is `openid profile offline_access`
+    - parameter audience: API Identifier that the client is requesting access to
+
+    - returns: a request that will yield Auth0 user's credentials
+    */
+    func login(appleAuthorizationCode authorizationCode: String, fullName: PersonNameComponents? = nil, profile: [String: Any]? = nil, scope: String? = "openid profile offline_access", audience: String? = nil) -> Request<Credentials, AuthenticationError> {
+        return self.login(appleAuthorizationCode: authorizationCode, fullName: fullName, profile: profile, scope: scope, audience: audience)
+    }
+
+    /**
+    Authenticate a user with their Facebook session info access token and profile data.
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(facebookSessionAccessToken: sessionAccessToken, profile: profile)
+       .start { print($0) }
+    ```
+
+    and if you need to specify a scope or audience
+
+    ```
+    Auth0
+       .authentication(clientId: clientId, domain: "samples.auth0.com")
+       .login(facebookSessionAccessToken: sessionAccessToken,
+            scope: "openid profile email",
+            audience: "https://myapi.com/api")
+       .start { print($0) }
+    ```
+
+    - parameter sessionAccessToken: Session info access token retrieved from Facebook
+    - parameter profile: The user profile returned by Facebook
+    - parameter scope: Requested scope value when authenticating the user. By default is `openid profile offline_access`
+    - parameter audience: API Identifier that the client is requesting access to
+
+    - returns: a request that will yield Auth0 user's credentials
+    */
+    func login(facebookSessionAccessToken sessionAccessToken: String, profile: [String: Any], scope: String? = "openid profile offline_access", audience: String? = nil) -> Request<Credentials, AuthenticationError> {
+        return self.login(facebookSessionAccessToken: sessionAccessToken, profile: profile, scope: scope, audience: audience)
+    }
+
+    /**
      Login using username and password in the default directory
      
      ```
      Auth0
-     .authentication(clientId: clientId, domain: "samples.auth0.com")
-     .loginDefaultDirectory(
-     withUsername: "support@auth0.com",
-     password: "a secret password")
+        .authentication(clientId: clientId, domain: "samples.auth0.com")
+        .loginDefaultDirectory(
+            withUsername: "support@auth0.com",
+            password: "a secret password")
      ```
      
      You can also specify audience and scope
      
      ```
      Auth0
-     .authentication(clientId: clientId, domain: "samples.auth0.com")
-     .loginDefaultDirectory(
-     withUsername: "support@auth0.com",
-     password: "a secret password",
-     audience: "https://myapi.com/api",
-     scope: "openid profile")
+        .authentication(clientId: clientId, domain: "samples.auth0.com")
+        .loginDefaultDirectory(
+            withUsername: "support@auth0.com",
+            password: "a secret password",
+            audience: "https://myapi.com/api",
+            scope: "openid profile")
      ```
      
      - parameter username:    username or email used of the user to authenticate
@@ -887,7 +1242,7 @@ public extension Authentication {
 
      - precondition: if you are not using OAuth 2.0 API Authorization please use `delegation(parameters:)`
 
-     - parameter refreshToken: the client's refresh token obtained on auth
+     - parameter refreshToken: the client's refresh token
      - parameter scope: scopes to request for the new tokens. By default is nil which will ask for the same ones requested during Auth.
      - important: This method only works for a refresh token obtained after auth with OAuth 2.0 API Authorization.
      - returns: a request that will yield Auth0 user's credentials
@@ -911,40 +1266,22 @@ public extension Authentication {
     ```
     Auth0
        .authentication(clientId: clientId, domain: "samples.auth0.com")
-       .tokenExchange(withAppleAuthorizationCode: authCode, scope: "openid profile offline_access", audience: "https://myapi.com/api, fullName: credentials.fullName)
+       .tokenExchange(withAppleAuthorizationCode: authCode,
+           scope: "openid profile email",
+           audience: "https://myapi.com/api",
+           fullName: credentials.fullName)
        .start { print($0) }
     ```
 
     - parameter authCode: Authorization Code retrieved from Apple Authorization
-    - parameter scope: requested scope value when authenticating the user. By default is 'openid profile offline_access'
+    - parameter scope: Requested scope value when authenticating the user. By default is `openid profile offline_access`
     - parameter audience: API Identifier that the client is requesting access to
     - parameter fullName: The full name property returned with the Apple ID Credentials
 
     - returns: a request that will yield Auth0 user's credentials
     */
-    func tokenExchange(withAppleAuthorizationCode authCode: String, scope: String? = nil, audience: String? = nil, fullName: PersonNameComponents? = nil) -> Request<Credentials, AuthenticationError> {
-        var parameters: [String: String] =
-            [ "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
-              "subject_token": authCode,
-              "subject_token_type": "http://auth0.com/oauth/token-type/apple-authz-code",
-              "scope": scope ?? "openid profile offline_access" ]
-        if let fullName = fullName {
-            let name = [
-                "firstName": fullName.givenName,
-                "lastName": fullName.familyName
-            ].filter { $0.value != nil }.mapValues { $0! }
-            if !name.isEmpty, let jsonData = try? String(
-                    data: JSONSerialization.data(
-                        withJSONObject: [
-                            "name": name
-                        ],
-                        options: []),
-                    encoding: String.Encoding.utf8
-            ) {
-                parameters["user_profile"] = jsonData
-            }
-        }
-        parameters["audience"] = audience
-        return self.tokenExchange(withParameters: parameters)
+    func tokenExchange(withAppleAuthorizationCode authCode: String, scope: String? = "openid profile offline_access", audience: String? = nil, fullName: PersonNameComponents? = nil) -> Request<Credentials, AuthenticationError> {
+        return self.tokenExchange(withAppleAuthorizationCode: authCode, scope: scope, audience: audience, fullName: fullName)
     }
+
 }

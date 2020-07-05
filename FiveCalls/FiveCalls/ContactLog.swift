@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Rswift
 
 struct ContactLog : Hashable, Codable {
     let issueId: String
@@ -17,20 +16,7 @@ struct ContactLog : Hashable, Codable {
     let date: Date
     let reported: Bool
     
-    var localizedOutcome: String {
-        switch self.outcome {
-        case "vm", "voicemail":
-            return R.string.localizable.outcomesVoicemail()
-        case "contact", "contacted":
-            return R.string.localizable.outcomesContact()
-        case "unavailable":
-            return R.string.localizable.outcomesUnavailable()
-        case "skip":
-            return R.string.localizable.outcomesSkip()
-        default:
-            return "Unknown"
-        }
-    }
+   
 }
 
 struct LegacyPantryWrapper: Codable {
@@ -103,7 +89,7 @@ struct ContactLogs {
         let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
 
         let targetPath: URL
-        if AppDelegate.isRunningUnitTests {
+        if isRunningUnitTests() {
             targetPath = FileManager.default.temporaryDirectory
         } else {
             targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName)
@@ -126,7 +112,7 @@ extension ContactLogs {
             do {
                 try data.write(to: ContactLogs.filePath)
             } catch {
-                AnalyticsManager.shared.trackError(error: error)
+                Current.analytics.trackError(error: error)
             }
         }
     }
@@ -142,8 +128,6 @@ extension ContactLogs {
     }
     
     static func load() -> ContactLogs {
-//        ContactLogs.debugContactLogs()
-        
         // check for the file first, not having a file is not an error we want to log
         if FileManager.default.fileExists(atPath: ContactLogs.filePath.path),
            let fileData = try? Data(contentsOf: ContactLogs.filePath) {
@@ -153,7 +137,7 @@ extension ContactLogs {
                 return ContactLogs(logs: wrapper.storage)
             } else {
                 print("couldn't decode wrapper")
-                AnalyticsManager.shared.trackError(error: ContactLogError.CantDecodeWrapper)
+                Current.analytics.trackError(error: ContactLogError.CantDecodeWrapper)
             }
         }
         

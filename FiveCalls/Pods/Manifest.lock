@@ -7,11 +7,13 @@ PODS:
   - AppCenter/Core (2.5.3)
   - AppCenter/Crashes (2.5.3):
     - AppCenter/Core
-  - Auth0 (1.19.3):
+  - Auth0 (1.26.0):
+    - JWTDecode
     - SimpleKeychain
   - CPDAcknowledgements (1.0.0)
   - Down (0.9.0)
   - DZNEmptyDataSet (1.8.1)
+  - JWTDecode (2.4.1)
   - OneSignal (2.6.0)
   - PromiseKit (6.13.1):
     - PromiseKit/CorePromise (= 6.13.1)
@@ -25,16 +27,16 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
-  - SimpleKeychain (0.9.0)
+  - SimpleKeychain (0.11.1)
 
 DEPENDENCIES:
   - AppCenter
-  - Auth0 (~> 1.19)
+  - Auth0
   - CPDAcknowledgements (from `https://github.com/CocoaPods/CPDAcknowledgements.git`)
   - Down (~> 0.9)
   - DZNEmptyDataSet (from `https://github.com/subdigital/DZNEmptyDataSet`)
   - OneSignal (~> 2.5)
-  - PromiseKit (~> 6.0)
+  - PromiseKit
   - R.swift (~> 5.1)
 
 SPEC REPOS:
@@ -44,6 +46,7 @@ SPEC REPOS:
     - AppCenter
     - Auth0
     - Down
+    - JWTDecode
     - PromiseKit
     - R.swift
     - R.swift.Library
@@ -65,16 +68,17 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppCenter: 765ff38c4d360fc5ec61b61a8be24d74cd6d4d83
-  Auth0: 195ea089de471c72bf95eb5320ff86c224debf3c
+  Auth0: bb6b64e4927e31ea62583c25bb9d2ed12b7642ee
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Down: 1cdbca4963b542d0ef34ebb3e10ff48382bdf761
   DZNEmptyDataSet: b94434220f87d9dda46660eb4f07a424778e93b4
+  JWTDecode: 4bd4da0cdf0f8154fd467fa48499f34ec057fb88
   OneSignal: 4786d2ed24ea315ceff66d83cbd418af0cc94311
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
-  SimpleKeychain: 3be49072fd2d82de8fa83d847ef1e548622f8fc5
+  SimpleKeychain: 0c657949c7afff92337d2ff64052d5eb5c53823e
 
-PODFILE CHECKSUM: 4e49f03e144ea1ec7e3073f09420f1e526d14723
+PODFILE CHECKSUM: 96c8aefe3f5b555a0461d1877772948c11083e8c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

@@ -1,0 +1,6 @@
+framework module Pods_FiveCallsWidgetsExtension {
+  umbrella header "Pods-FiveCallsWidgetsExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

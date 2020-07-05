@@ -43,7 +43,7 @@ extension IssueShareable where Self: UIViewController {
             return assertionFailure("There was no issue to share")
         }
         
-        AnalyticsManager.shared.trackEvent(withName: "Action: Share Issue", andProperties: ["issue_id": String(issue.id)])
+        Current.analytics.trackEvent("Action: Share Issue", properties: ["issue_id": String(issue.id)])
 
         let activityViewController = UIActivityViewController(activityItems: [IssueActivityItemSource(issue: issue)], applicationActivities: nil)
         activityViewController.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .openInIBooks, .print, .saveToCameraRoll]

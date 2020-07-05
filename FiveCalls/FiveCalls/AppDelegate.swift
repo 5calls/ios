@@ -10,10 +10,15 @@ import UIKit
 import Auth0
 import OneSignal
 
+var Current = World(analytics: AppCenterIntegration())
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    // keep this around to listen for changes that affect a widget timeline reload
+    private var widgetDataMonitor = WidgetDataMonitor()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -30,8 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showWelcome()
         }
 
-        AnalyticsManager.shared.startup()
-
+        Current.analytics.start()
         oneSignalStartup(launchOptions: launchOptions)
         
         return true
@@ -48,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // sets a string like 'usps-postal-service-covid-funding' that we can use when issues are loaded
         UserDefaults.standard.set(incomingURL.lastPathComponent, forKey: UserDefaultsKey.selectIssuePath.rawValue)
-        AnalyticsManager.shared.trackEvent(withName: "Info: Enter from Universal Link", andProperties: ["issue-slug": incomingURL.lastPathComponent])
+        Current.analytics.trackEvent("Info: Enter from Universal Link", properties: ["issue-slug": incomingURL.lastPathComponent])
 
         return true
     }
@@ -147,9 +151,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         defaults.setValue(currentVersion, forKey: UserDefaultsKey.appVersion.rawValue)
         defaults.set(Int(0), forKey: UserDefaultsKey.countOfCallsForRatingPrompt.rawValue)
-    }
-
-    static var isRunningUnitTests: Bool {
-        return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
     }
 }

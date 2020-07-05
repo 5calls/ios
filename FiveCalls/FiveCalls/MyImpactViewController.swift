@@ -53,7 +53,7 @@ class MyImpactViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AnalyticsManager.shared.trackEvent(withName: "Screen: My Impact")
+        Current.analytics.trackEvent("Screen: My Impact")
         
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont.fvc_header,
@@ -155,7 +155,7 @@ class MyImpactViewController : UITableViewController {
             let userStatsOp = FetchUserStatsOperation()
             userStatsOp.completionBlock = {
                 if let error = userStatsOp.error {
-                    AnalyticsManager.shared.trackError(error: error)
+                    Current.analytics.trackError(error: error)
                 }
                 self.userStats = userStatsOp.userStats
                 DispatchQueue.main.async {

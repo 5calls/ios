@@ -9,6 +9,9 @@
 import Foundation
 
 func isUITesting() -> Bool {
-    return ProcessInfo.processInfo.environment["UI_TESTING"] == "1"
+    ProcessInfo.processInfo.environment["UI_TESTING"] == "1"
 }
-    
+
+func isRunningUnitTests() -> Bool {
+    ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
+}

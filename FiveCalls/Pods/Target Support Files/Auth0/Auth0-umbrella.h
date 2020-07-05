@@ -11,6 +11,8 @@
 #endif
 
 #import "A0ChallengeGenerator.h"
+#import "A0RSA.h"
+#import "A0SHA.h"
 #import "Auth0.h"
 
 FOUNDATION_EXPORT double Auth0VersionNumber;

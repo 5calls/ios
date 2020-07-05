@@ -1,0 +1,6 @@
+framework module JWTDecode {
+  umbrella header "JWTDecode-umbrella.h"
+
+  export *
+  module * { export * }
+}

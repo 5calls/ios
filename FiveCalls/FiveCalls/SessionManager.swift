@@ -93,7 +93,7 @@ class SessionManager {
                         case .success(let credentials):
                             seal.fulfill(credentials)
                         case .failure(let error):
-                            AnalyticsManager.shared.trackError(error: error)
+                            Current.analytics.trackError(error: error)
                             print("User login failed with error: \(error)")
                             seal.reject(error)
                         }

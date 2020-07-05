@@ -66,7 +66,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.emptyDataSetSource = self
         self.registerForPreviewing(with: self, sourceView: tableView)
 
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Issues List")
+        Current.analytics.trackEvent("Screen: Issues List")
         trackEvent(analyticsEvent)
 
         navigationController?.setNavigationBarHidden(true, animated: false)
