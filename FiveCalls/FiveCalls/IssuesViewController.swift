@@ -131,10 +131,13 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self?.issuesLoaded(result: $0)
         }
 
-        contactsManager.fetchContacts(location: UserLocation.current) { result in
-            if case .success(let contacts) = result {
-                self.contacts = contacts
-                self.tableView.reloadData()
+        let location = UserLocation.current
+        if location.isPresent {
+            contactsManager.fetchContacts(location: UserLocation.current) { result in
+                if case .success(let contacts) = result {
+                    self.contacts = contacts
+                    self.tableView.reloadData()
+                }
             }
         }
     }

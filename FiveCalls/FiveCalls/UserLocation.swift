@@ -29,7 +29,15 @@ class UserLocation {
     
     static let current = UserLocation()
     
-    var defaults: UserDefaults = .standard
+    private let defaults: UserDefaults
+    init(defaults: UserDefaults = Current.defaults) {
+        self.defaults = defaults
+    }
+    
+    var isPresent: Bool {
+        locationType != nil
+    }
+    
     var locationType: LocationType? {
         get {
             guard let typeString = defaults.string(forKey: UserDefaultsKey.locationType.rawValue)
