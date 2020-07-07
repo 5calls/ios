@@ -34,7 +34,11 @@ class WelcomeViewController: UIViewController {
     }
 
     private func loadPages() {
-        pageContainer.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            pageContainer.backgroundColor = .systemBackground
+        } else {
+            pageContainer.backgroundColor = .white
+        }
         addChild(pageController)
         pageContainer.addSubview(pageController.view)
         

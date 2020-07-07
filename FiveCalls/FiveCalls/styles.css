@@ -1,9 +1,11 @@
+:root {
+    color-scheme: light dark;
+}
 body {
     font-family: -apple-system, sans-serif;
     font-weight: bold;
     color: #1875d1;
-    background-color: #fff;
-}
+}
 
 strong {
     font-weight: bolder;
