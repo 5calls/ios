@@ -16,7 +16,6 @@
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
 		27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA230D2182A99B004D70BD /* ProgressView.swift */; };
 		33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */; };
-		33C2E0E81E52ADC200F810C6 /* UIColor+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */; };
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
 		558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BC1EE211AE6068BB864845 /* CoreMedia.framework */; };
 		60C6E15E18B252A35EF14CFA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */; };
@@ -43,6 +42,7 @@
 		AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */; };
 		AD14A52121612BAA006F06FD /* UIFont+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD14A52021612BAA006F06FD /* UIFont+FiveCalls.swift */; };
 		AD377CCC229BEE93001F5CAE /* UIViewController+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD377CCB229BEE93001F5CAE /* UIViewController+FiveCalls.swift */; };
+		ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAA03E424B48B38006695DD /* Colors.xcassets */; };
 		ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB097691F8B212800B81661 /* RatingPromptCounter.swift */; };
 		B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9AA735873694488D24C260 /* QuartzCore.framework */; };
 		B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280511E46A7A300749ED7 /* EllipsisButton.swift */; };
@@ -172,7 +172,6 @@
 		3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-NotificationsService-metadata.plist"; path = "Pods/Pods-NotificationsService-metadata.plist"; sourceTree = "<group>"; };
 		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FiveCalls.swift"; sourceTree = "<group>"; };
-		33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+FiveCalls.swift"; sourceTree = "<group>"; };
 		3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.debug.xcconfig"; sourceTree = "<group>"; };
 		3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.release.xcconfig"; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -208,6 +207,7 @@
 		AC9AA735873694488D24C260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AD14A52021612BAA006F06FD /* UIFont+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+FiveCalls.swift"; sourceTree = "<group>"; };
 		AD377CCB229BEE93001F5CAE /* UIViewController+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+FiveCalls.swift"; sourceTree = "<group>"; };
+		ADAA03E424B48B38006695DD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		ADB097691F8B212800B81661 /* RatingPromptCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPromptCounter.swift; sourceTree = "<group>"; };
 		AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B50280511E46A7A300749ED7 /* EllipsisButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EllipsisButton.swift; sourceTree = "<group>"; };
@@ -357,7 +357,6 @@
 			children = (
 				B512506F21E702C0007D32DF /* Error+Offline.swift */,
 				D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */,
-				33C2E0E71E52ADC200F810C6 /* UIColor+FiveCalls.swift */,
 				AD14A52021612BAA006F06FD /* UIFont+FiveCalls.swift */,
 				33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */,
 				AD377CCB229BEE93001F5CAE /* UIViewController+FiveCalls.swift */,
@@ -469,6 +468,7 @@
 				791C9FD01E4E5E510074A8B7 /* About.storyboard */,
 				B52805201E3FA94D00EE832A /* Info.plist */,
 				A086CA4A1FEB92780037B41F /* Auth0.plist */,
+				ADAA03E424B48B38006695DD /* Colors.xcassets */,
 			);
 			path = FiveCalls;
 			sourceTree = "<group>";
@@ -783,6 +783,7 @@
 				791C9FD41E4E611C0074A8B7 /* Localizable.strings in Resources */,
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
 				791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */,
+				ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */,
 				DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */,
 				A086CA4B1FEB92780037B41F /* Auth0.plist in Resources */,
 			);
@@ -1007,7 +1008,6 @@
 				B5D5C9581E4391E200C80D5F /* IssueDetailViewController.swift in Sources */,
 				9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */,
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
-				33C2E0E81E52ADC200F810C6 /* UIColor+FiveCalls.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
 				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
 				B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */,

@@ -22,7 +22,7 @@ class ScheduleRemindersController: UIViewController {
         
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.fvc_lightGray
+        label.textColor = R.color.lightGray()
         label.font = .fvc_body
         label.numberOfLines = 0
         label.text = R.string.localizable.scheduledRemindersDescription()
@@ -124,13 +124,13 @@ class ScheduleRemindersController: UIViewController {
             timePicker.preferredDatePickerStyle = .wheels
         }
 
-        timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
+        timePicker.setValue(R.color.darkBlue(), forKey: "textColor")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        daysOfWeekSelector.warningBorderColor = UIColor.fvc_red.cgColor
-        noDaysWarningLabel.textColor = .fvc_red
+        daysOfWeekSelector.warningBorderColor = R.color.red()!.cgColor
+        noDaysWarningLabel.textColor = R.color.red()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -170,7 +170,7 @@ class ScheduleRemindersController: UIViewController {
 
     func updateDaysWarning() {
         if daysOfWeekSelector.selectedIndices.count == 0 {
-            daysOfWeekSelector.warningBorderColor = UIColor.fvc_red.cgColor
+            daysOfWeekSelector.warningBorderColor = R.color.red()!.cgColor
             noDaysWarningLabel.isHidden = false
         } else {
             daysOfWeekSelector.warningBorderColor = nil

@@ -73,7 +73,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         view.addSubview(label)
         view.addSubview(button)
 
-        view.backgroundColor = .fvc_lightGrayBackground
+        view.backgroundColor = R.color.lightGrayBackground()
         label.text = R.string.localizable.callYourReps()
         label.textAlignment = .center
         label.font = .fvc_header
