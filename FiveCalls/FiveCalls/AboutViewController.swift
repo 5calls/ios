@@ -81,7 +81,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
             alertController.addAction(UIAlertAction(title: R.string.localizable.dismissTitle(), style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
         }
-    
     }
     
     func promptForRating() {
