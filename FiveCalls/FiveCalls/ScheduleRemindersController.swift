@@ -120,6 +120,10 @@ class ScheduleRemindersController: UIViewController {
         navigationItem.rightBarButtonItem = switchButton(on: remindersEnabled)
         setOverlay(visible: !remindersEnabled, animated: false)
 
+        if #available(iOS 13.4, *) {
+            timePicker.preferredDatePickerStyle = .wheels
+        }
+
         timePicker.setValue(UIColor.fvc_darkBlue, forKey: "textColor")
     }
 
