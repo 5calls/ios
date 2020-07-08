@@ -37,6 +37,11 @@ struct ContactLogs {
         self.store = store
         all = logs
     }
+    
+    /// Returns all logs that have been created since a given date
+    func since(date: Date) -> [ContactLog] {
+        all.filter { $0.date > date }
+    }
 
     mutating func add(log: ContactLog) {
         all.append(log)

@@ -15,3 +15,5 @@ struct Outcome : Decodable {
     let label: String
     let status: String
 }
+
+extension Outcome: Equatable, Hashable { }

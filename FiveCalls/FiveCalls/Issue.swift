@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Issue : Decodable {
+struct Issue : Decodable, Hashable {
     let id: Int64
     let meta: String
     let name: String
