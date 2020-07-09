@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -79,7 +80,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="top" secondItem="Jlg-f3-h08" secondAttribute="top" id="Ak3-mD-P85"/>
                             <constraint firstItem="fSb-DX-eFb" firstAttribute="bottom" secondItem="IwU-zA-nnh" secondAttribute="bottom" id="QxE-9A-F3C"/>
@@ -816,7 +817,7 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="cTm-mN-ZeM" firstAttribute="top" secondItem="96k-Ka-few" secondAttribute="top" constant="18" id="0uG-uu-z2G"/>
                                         <constraint firstAttribute="trailing" secondItem="cTm-mN-ZeM" secondAttribute="trailing" id="Rvv-uw-mlE"/>
@@ -831,24 +832,23 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="300" verticalCompressionResistancePriority="790" text="Your current weekly call streak {{variable message}}" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1YH-PT-H7i" userLabel="Streak Label">
                                     <rect key="frame" x="16" y="138" width="382" height="43"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                    <color key="textColor" red="0.89411764709999997" green="0.22352941179999999" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="red"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="290" verticalCompressionResistancePriority="780" text="Your total impact is {{number}} {{calls}}{{punctuation}}" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ir8-NY-44G">
                                     <rect key="frame" x="16" y="196" width="382" height="43"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                    <color key="textColor" red="0.0" green="0.2254079282" blue="0.2075248063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="darkGreenText"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="770" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSw-yP-80O">
                                     <rect key="frame" x="16" y="254" width="382" height="61"/>
                                     <string key="text">You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.93735861778259277" green="0.93675893545150757" blue="0.95756477117538452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="ir8-NY-44G" firstAttribute="leading" secondItem="4hO-va-xGA" secondAttribute="leading" constant="16" id="061-gs-YBG"/>
                                 <constraint firstItem="1YH-PT-H7i" firstAttribute="top" secondItem="96k-Ka-few" secondAttribute="bottom" constant="35" id="7ce-cf-EbK"/>
@@ -1403,7 +1403,7 @@ to stay updated</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6tF-q1-2tT"/>
+        <segue reference="XV8-ty-hbB"/>
         <segue reference="Yf8-1x-xfZ"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1413,5 +1413,11 @@ to stay updated</string>
         <image name="profile" width="54" height="54"/>
         <image name="share" width="19" height="27"/>
         <image name="share-topic" width="256" height="256"/>
+        <namedColor name="darkGreenText">
+            <color red="0.0" green="0.22352941176470589" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red">
+            <color red="0.89999997615814209" green="0.2199999988079071" blue="0.20999999344348907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
