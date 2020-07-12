@@ -16,5 +16,6 @@ struct FiveCallsWidgets: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
         SmallCallsWidget()
+        IssuesWidget()
     }
 }
