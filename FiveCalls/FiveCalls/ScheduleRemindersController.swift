@@ -17,7 +17,11 @@ class ScheduleRemindersController: UIViewController {
 
     lazy private var overlay: UIView = {
         let overlay = UIView()
-        overlay.backgroundColor = .white
+        if #available(iOS 13, *) {
+            overlay.backgroundColor = .systemBackground
+        } else {
+            overlay.backgroundColor = .white
+        }
         overlay.translatesAutoresizingMaskIntoConstraints = false
         
         let label = UILabel()
