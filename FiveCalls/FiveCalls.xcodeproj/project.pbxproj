@@ -57,8 +57,14 @@
 		B50280781E49837000749ED7 /* about-whycall.html in Resources */ = {isa = PBXBuildFile; fileRef = B50280771E49837000749ED7 /* about-whycall.html */; };
 		B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280791E49864D00749ED7 /* MyImpactViewController.swift */; };
 		B502807C1E498B9B00749ED7 /* ImpactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */; };
+		B503A44A24BF8A67004D2241 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A44924BF8A67004D2241 /* Date+Extensions.swift */; };
+		B503A44B24BF8A6A004D2241 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A44924BF8A67004D2241 /* Date+Extensions.swift */; };
+		B503A45324BF9695004D2241 /* Issues+SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A45124BF9687004D2241 /* Issues+SampleData.swift */; };
+		B503A45524BF97A6004D2241 /* IssuesEntry+SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A45424BF97A6004D2241 /* IssuesEntry+SampleData.swift */; };
+		B503A45624BF97BE004D2241 /* IssuesEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A44E24BF960E004D2241 /* IssuesEntry.swift */; };
+		B503A45924BF98E5004D2241 /* CallCountsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A45724BF98D7004D2241 /* CallCountsEntry.swift */; };
+		B503A45C24BF992C004D2241 /* CallCountsTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503A45A24BF9919004D2241 /* CallCountsTimelineProvider.swift */; };
 		B505B84D24B54CC900A54E3F /* WidgetBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B84B24B54CB700A54E3F /* WidgetBackground.swift */; };
-		B505B85024B54D0B00A54E3F /* FiveCallsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B84E24B54CDF00A54E3F /* FiveCallsEntry.swift */; };
 		B505B85324B5574300A54E3F /* IssuesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B85124B5572000A54E3F /* IssuesWidget.swift */; };
 		B50FC0F424AFC1770062C2D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50FC0F324AFC1770062C2D8 /* WidgetKit.framework */; };
 		B50FC0F624AFC1770062C2D8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50FC0F524AFC1770062C2D8 /* SwiftUI.framework */; };
@@ -120,7 +126,7 @@
 		B54D66D724B2648200A9847B /* ContactLogsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66D624B2648200A9847B /* ContactLogsLoader.swift */; };
 		B54D66D824B2688200A9847B /* ContactLogsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66D624B2648200A9847B /* ContactLogsLoader.swift */; };
 		B54D66D924B268C200A9847B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66D424B253A600A9847B /* Configuration.swift */; };
-		B54D66DC24B2717300A9847B /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66DA24B2714400A9847B /* Provider.swift */; };
+		B54D66DC24B2717300A9847B /* IssuesTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66DA24B2714400A9847B /* IssuesTimelineProvider.swift */; };
 		B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591EB841E44D946006C7D28 /* ContactCell.swift */; };
 		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
 		B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */; };
@@ -299,8 +305,13 @@
 		B50280771E49837000749ED7 /* about-whycall.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "about-whycall.html"; sourceTree = "<group>"; };
 		B50280791E49864D00749ED7 /* MyImpactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImpactViewController.swift; sourceTree = "<group>"; };
 		B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactViewModel.swift; sourceTree = "<group>"; };
+		B503A44924BF8A67004D2241 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		B503A44E24BF960E004D2241 /* IssuesEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesEntry.swift; sourceTree = "<group>"; };
+		B503A45124BF9687004D2241 /* Issues+SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issues+SampleData.swift"; sourceTree = "<group>"; };
+		B503A45424BF97A6004D2241 /* IssuesEntry+SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IssuesEntry+SampleData.swift"; sourceTree = "<group>"; };
+		B503A45724BF98D7004D2241 /* CallCountsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCountsEntry.swift; sourceTree = "<group>"; };
+		B503A45A24BF9919004D2241 /* CallCountsTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallCountsTimelineProvider.swift; sourceTree = "<group>"; };
 		B505B84B24B54CB700A54E3F /* WidgetBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBackground.swift; sourceTree = "<group>"; };
-		B505B84E24B54CDF00A54E3F /* FiveCallsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsEntry.swift; sourceTree = "<group>"; };
 		B505B85124B5572000A54E3F /* IssuesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesWidget.swift; sourceTree = "<group>"; };
 		B50FC0F224AFC1770062C2D8 /* FiveCallsWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FiveCallsWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50FC0F324AFC1770062C2D8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -337,7 +348,7 @@
 		B54D66D124B2506100A9847B /* UserDefaultsMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMigrator.swift; sourceTree = "<group>"; };
 		B54D66D424B253A600A9847B /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B54D66D624B2648200A9847B /* ContactLogsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLogsLoader.swift; sourceTree = "<group>"; };
-		B54D66DA24B2714400A9847B /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		B54D66DA24B2714400A9847B /* IssuesTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesTimelineProvider.swift; sourceTree = "<group>"; };
 		B591EB841E44D946006C7D28 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsUITests.swift; sourceTree = "<group>"; };
@@ -481,6 +492,7 @@
 				AD14A52021612BAA006F06FD /* UIFont+FiveCalls.swift */,
 				33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */,
 				AD377CCB229BEE93001F5CAE /* UIViewController+FiveCalls.swift */,
+				B503A44924BF8A67004D2241 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,17 +551,45 @@
 			name = "HTML / CSS";
 			sourceTree = "<group>";
 		};
+		B503A44C24BF95F4004D2241 /* Issues Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B54D66DA24B2714400A9847B /* IssuesTimelineProvider.swift */,
+				B505B85124B5572000A54E3F /* IssuesWidget.swift */,
+				B503A44E24BF960E004D2241 /* IssuesEntry.swift */,
+			);
+			path = "Issues Widget";
+			sourceTree = "<group>";
+		};
+		B503A44D24BF95F9004D2241 /* Call Stats Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B5C3CCC224B54AD1000BCE7C /* SmallCallsWidget.swift */,
+				B503A45724BF98D7004D2241 /* CallCountsEntry.swift */,
+				B503A45A24BF9919004D2241 /* CallCountsTimelineProvider.swift */,
+			);
+			path = "Call Stats Widget";
+			sourceTree = "<group>";
+		};
+		B503A45024BF967D004D2241 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B503A45124BF9687004D2241 /* Issues+SampleData.swift */,
+				B503A45424BF97A6004D2241 /* IssuesEntry+SampleData.swift */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		B50FC0F724AFC1770062C2D8 /* FiveCallsWidgets */ = {
 			isa = PBXGroup;
 			children = (
+				B503A45024BF967D004D2241 /* Preview Content */,
+				B503A44D24BF95F9004D2241 /* Call Stats Widget */,
+				B503A44C24BF95F4004D2241 /* Issues Widget */,
 				B54D66C824B2492500A9847B /* WidgetWorld.swift */,
-				B54D66CC24B24F6C00A9847B /* FiveCallsWidgetsExtension.entitlements */,
-				B54D66DA24B2714400A9847B /* Provider.swift */,
-				B505B84E24B54CDF00A54E3F /* FiveCallsEntry.swift */,
 				B505B84B24B54CB700A54E3F /* WidgetBackground.swift */,
 				B50FC0F824AFC1770062C2D8 /* FiveCallsWidgets.swift */,
-				B5C3CCC224B54AD1000BCE7C /* SmallCallsWidget.swift */,
-				B505B85124B5572000A54E3F /* IssuesWidget.swift */,
+				B54D66CC24B24F6C00A9847B /* FiveCallsWidgetsExtension.entitlements */,
 				B50FC0FB24AFC1790062C2D8 /* Assets.xcassets */,
 				B50FC0FD24AFC1790062C2D8 /* Info.plist */,
 			);
@@ -1217,6 +1257,7 @@
 				B50FC10924AFCCB40062C2D8 /* BaseOperation.swift in Sources */,
 				B50FC10D24AFCCC00062C2D8 /* URLSessionProvider.swift in Sources */,
 				B505B85324B5574300A54E3F /* IssuesWidget.swift in Sources */,
+				B503A45624BF97BE004D2241 /* IssuesEntry.swift in Sources */,
 				B50FC11324AFCD040062C2D8 /* JSONSerializable.swift in Sources */,
 				B50FC11C24AFCD040062C2D8 /* IssuesManager.swift in Sources */,
 				B50FC11724AFCD040062C2D8 /* ContactsManager.swift in Sources */,
@@ -1235,18 +1276,22 @@
 				B54D66CF24B2500E00A9847B /* UserDefaults+FiveCalls.swift in Sources */,
 				B50FC12524AFD1BB0062C2D8 /* Error+Offline.swift in Sources */,
 				B50FC10B24AFCCB40062C2D8 /* FetchStatsOperation.swift in Sources */,
-				B54D66DC24B2717300A9847B /* Provider.swift in Sources */,
+				B54D66DC24B2717300A9847B /* IssuesTimelineProvider.swift in Sources */,
 				B50FC11F24AFCD040062C2D8 /* Contact.swift in Sources */,
 				B50FC10E24AFCCC00062C2D8 /* SeededURLSession.swift in Sources */,
 				B50FC11624AFCD040062C2D8 /* UserLocation.swift in Sources */,
 				B50FC11524AFCD040062C2D8 /* UserStats.swift in Sources */,
+				B503A45324BF9695004D2241 /* Issues+SampleData.swift in Sources */,
+				B503A44B24BF8A6A004D2241 /* Date+Extensions.swift in Sources */,
 				B50FC12024AFD0210062C2D8 /* functions.swift in Sources */,
 				B505B84D24B54CC900A54E3F /* WidgetBackground.swift in Sources */,
-				B505B85024B54D0B00A54E3F /* FiveCallsEntry.swift in Sources */,
+				B503A45C24BF992C004D2241 /* CallCountsTimelineProvider.swift in Sources */,
+				B503A45524BF97A6004D2241 /* IssuesEntry+SampleData.swift in Sources */,
 				B50FC11D24AFCD040062C2D8 /* AreaOffice.swift in Sources */,
 				B54D66CB24B2494400A9847B /* EmptyAnalytics.swift in Sources */,
 				B54D66BC24B2461200A9847B /* ContactLog.swift in Sources */,
 				B50FC10F24AFCCCB0062C2D8 /* StatsViewModel.swift in Sources */,
+				B503A45924BF98E5004D2241 /* CallCountsEntry.swift in Sources */,
 				B54D66C424B248D100A9847B /* World.swift in Sources */,
 				B50FC11024AFCCCF0062C2D8 /* CategorizedIssuesViewModel.swift in Sources */,
 			);
@@ -1257,6 +1302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */,
+				B503A44A24BF8A67004D2241 /* Date+Extensions.swift in Sources */,
 				0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */,
 				D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */,
 				A5048C6F1F96BCD100C6163D /* IssuesViewModel.swift in Sources */,
@@ -1484,6 +1530,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 48;
+				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/FiveCallsWidgets/Preview Content\"";
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FiveCallsWidgets/Info.plist;
@@ -1519,6 +1566,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 48;
+				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/FiveCallsWidgets/Preview Content\"";
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FiveCallsWidgets/Info.plist;

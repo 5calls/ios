@@ -24,7 +24,7 @@ struct CallsPlaceholderView: View {
 }
 
 struct CallsEntryView: View {
-    let entry: FiveCallsEntry
+    let entry: CallCountsEntry
     
     var body: some View {
         GeometryReader { proxy in
@@ -70,7 +70,7 @@ struct SmallCallsWidget: Widget {
     let kind = "SmallCallsWidget"
     
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider(),
+        StaticConfiguration(kind: kind, provider: CallCountsTimelineProvider(),
                             placeholder: CallsPlaceholderView(),
                             content: { entry in
                                 CallsEntryView(entry: entry)
@@ -83,7 +83,6 @@ struct SmallCallsWidget: Widget {
 
 struct SmallCallsWidget_Previews: PreviewProvider {
     static var previews: some View {
-        
         Group {
             CallsPlaceholderView()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
@@ -97,7 +96,6 @@ struct SmallCallsWidget_Previews: PreviewProvider {
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark mode")
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-      
         }
     }
 }

@@ -11,20 +11,20 @@ import WidgetKit
 
 struct IssuesEntryView: View {
     
-    let entry: FiveCallsEntry
+    let entry: IssuesEntry
     
     var body: some View {
         ZStack {
             WidgetBackground()
             
             VStack(alignment: .leading) {
-                ForEach(entry.topIssues, id: \.id) { issue in
+                ForEach(entry.issues, id: \.id) { issue in
                     Link(destination: issue.url) {
                         IssueRow(issue: issue)
                     }
                 }
                 
-                if entry.topIssues.isEmpty {
+                if entry.issues.isEmpty {
                     Text("No issues were loaded...")
                         .opacity(0.7)
                 }
@@ -36,8 +36,7 @@ struct IssuesEntryView: View {
 }
 
 struct IssueRow: View {
-    
-    let issue: FiveCallsEntry.IssueSummary
+    let issue: IssuesEntry.IssueSummary
     
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
@@ -63,7 +62,7 @@ struct IssuesWidget: Widget {
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,
-                            provider: Provider(),
+                            provider: IssuesTimelineProvider(),
                             placeholder: IssuesPlaceholder()) { entry in
             IssuesEntryView(entry: entry)
         }

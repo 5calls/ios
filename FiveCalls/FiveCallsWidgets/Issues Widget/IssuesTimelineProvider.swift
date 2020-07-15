@@ -11,7 +11,6 @@ import WidgetKit
 import Combine
 
 class IssuesTimelineProvider: TimelineProvider {
-    typealias Entry = IssuesEntry
     
     private let operationQueue = OperationQueue()
     
@@ -20,16 +19,9 @@ class IssuesTimelineProvider: TimelineProvider {
     private func fetchTimelineEntries() -> AnyPublisher<[IssuesEntry], Error> {
         issuesPublisher
             .map { issues in
-                
                 // aggregate the issues into a smaller view model that shows if they have been contacted already
                 let contactLogs = Current.contactLogs.load()
                 let issueSummaries = issues.map { self.issueSummary($0, contactLogs: contactLogs) }
-                
-                // we also need the call count stats
-                let lastMonthDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
-                let callCounts = FiveCallsEntry.CallCounts(
-                    total: contactLogs.all.count,
-                    lastMonth: contactLogs.since(date: lastMonthDate).count)
                 
                 // split up the issues in groups of 2 and add the issues
                 let numberOfIssuesPerEntry = 2
@@ -41,20 +33,18 @@ class IssuesTimelineProvider: TimelineProvider {
                 guard var date = calendar.date(bySetting: .hour, value: 8, of: Date()) else {
                     // can't set date to 8am for some reason, just return 1 entry for the current date
                     return [
-                        FiveCallsEntry(date: Date(), callCounts: callCounts, topIssues: Array(issueSummaries.prefix(2)), reps: [])
+                        IssuesEntry(date: Date(), issues: Array(issueSummaries.prefix(2)))
                     ]
                 }
                 
                 // create entries every 4 hours starting at 8am
                 for index in stride(from: 0, to: issues.count-1, by: numberOfIssuesPerEntry) {
                     let issuesForEntry = issues[index...index+1].map { self.issueSummary($0, contactLogs: contactLogs) }
-                    let entry = FiveCallsEntry(
+                    let entry = IssuesEntry(
                         date: date,
-                        callCounts: callCounts,
-                        topIssues: issuesForEntry,
-                        reps: [])
+                        issues: issuesForEntry)
                     
-                    date = date.adding(hours: 4)
+                    date = date.adding(4, .hours)
                     
                     // make sure that this entry will be visible in the 4 hour window, if it's already passed we don't need to return it
                     if date >= Date() {
@@ -68,7 +58,7 @@ class IssuesTimelineProvider: TimelineProvider {
     }
     
     private func issueSummary(_ issue: Issue, contactLogs: ContactLogs) -> IssuesEntry.IssueSummary {
-        FiveCallsEntry.IssueSummary(id: issue.id,
+        IssuesEntry.IssueSummary(id: issue.id,
                                     name: issue.name,
                                     hasCalled: contactLogs.hasContactAnyContact(forIssue: issue),
                                     url: issue.deepLinkURL)
