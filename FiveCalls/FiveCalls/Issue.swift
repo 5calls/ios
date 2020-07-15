@@ -29,7 +29,15 @@ extension Issue {
     }
     
     var deepLinkURL: URL {
-        URL(string: "fivecalls://issue/\(slug)")!
+        guard
+            let encodedSlug = slug.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+            let url = URL(string: "fivecalls://issue/\(encodedSlug)") else {
+            
+            // if we can't form a valid URL, just open the main app
+            return URL(string: "fivecalls://app")!
+        }
+        
+        return url
     }
 }
 
