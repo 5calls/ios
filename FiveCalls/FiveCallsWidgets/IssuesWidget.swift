@@ -15,14 +15,19 @@ struct IssuesEntryView: View {
     
     var body: some View {
         ZStack {
-            BackgroundGradient()
+            WidgetBackground()
             
             VStack(alignment: .leading) {
                 ForEach(entry.topIssues, id: \.id) { issue in
                     IssueRow(issue: issue)
+                        IssueRow(issue: issue)
+                }
+                if entry.topIssues.isEmpty {
+                    Text("No issues were loaded...")
+                        .opacity(0.7)
                 }
             }
-            .padding()
+            .padding(.horizontal)
             .foregroundColor(.white)
         }
     }
@@ -33,20 +38,21 @@ struct IssueRow: View {
     let issue: FiveCallsEntry.IssueSummary
     
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .firstTextBaseline, spacing: 10) {
             Image(systemName: issue.hasCalled ? "checkmark.circle.fill" : "circle")
                 .blendMode(.overlay)
             
             Text(issue.name)
                 .strikethrough(issue.hasCalled)
-                .lineLimit(issue.hasCalled ? nil : 2)
+                .lineLimit(nil)
+                .layoutPriority(1)
         }
     }
 }
 
 struct IssuesPlaceholder: View {
     var body: some View {
-        BackgroundGradient()
+        WidgetBackground()
     }
 }
 

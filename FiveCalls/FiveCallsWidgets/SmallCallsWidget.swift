@@ -12,7 +12,7 @@ import WidgetKit
 struct CallsPlaceholderView: View {
     var body: some View {
         ZStack {
-            BackgroundGradient()
+            WidgetBackground()
             
             VStack {
                 StatLine(stat: "--", label: "lifetime calls")
@@ -29,7 +29,7 @@ struct CallsEntryView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                BackgroundGradient()
+                WidgetBackground()
                     
                 VStack(spacing: 8) {
                     StatLine(stat: String(entry.callCounts.total), label: "all time calls")

@@ -57,7 +57,7 @@
 		B50280781E49837000749ED7 /* about-whycall.html in Resources */ = {isa = PBXBuildFile; fileRef = B50280771E49837000749ED7 /* about-whycall.html */; };
 		B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280791E49864D00749ED7 /* MyImpactViewController.swift */; };
 		B502807C1E498B9B00749ED7 /* ImpactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */; };
-		B505B84D24B54CC900A54E3F /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B84B24B54CB700A54E3F /* BackgroundGradient.swift */; };
+		B505B84D24B54CC900A54E3F /* WidgetBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B84B24B54CB700A54E3F /* WidgetBackground.swift */; };
 		B505B85024B54D0B00A54E3F /* FiveCallsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B84E24B54CDF00A54E3F /* FiveCallsEntry.swift */; };
 		B505B85324B5574300A54E3F /* IssuesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B505B85124B5572000A54E3F /* IssuesWidget.swift */; };
 		B50FC0F424AFC1770062C2D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50FC0F324AFC1770062C2D8 /* WidgetKit.framework */; };
@@ -296,7 +296,7 @@
 		B50280771E49837000749ED7 /* about-whycall.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "about-whycall.html"; sourceTree = "<group>"; };
 		B50280791E49864D00749ED7 /* MyImpactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImpactViewController.swift; sourceTree = "<group>"; };
 		B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactViewModel.swift; sourceTree = "<group>"; };
-		B505B84B24B54CB700A54E3F /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
+		B505B84B24B54CB700A54E3F /* WidgetBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBackground.swift; sourceTree = "<group>"; };
 		B505B84E24B54CDF00A54E3F /* FiveCallsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsEntry.swift; sourceTree = "<group>"; };
 		B505B85124B5572000A54E3F /* IssuesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesWidget.swift; sourceTree = "<group>"; };
 		B50FC0F224AFC1770062C2D8 /* FiveCallsWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FiveCallsWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -540,7 +540,7 @@
 				B54D66CC24B24F6C00A9847B /* FiveCallsWidgetsExtension.entitlements */,
 				B54D66DA24B2714400A9847B /* Provider.swift */,
 				B505B84E24B54CDF00A54E3F /* FiveCallsEntry.swift */,
-				B505B84B24B54CB700A54E3F /* BackgroundGradient.swift */,
+				B505B84B24B54CB700A54E3F /* WidgetBackground.swift */,
 				B50FC0F824AFC1770062C2D8 /* FiveCallsWidgets.swift */,
 				B5C3CCC224B54AD1000BCE7C /* SmallCallsWidget.swift */,
 				B505B85124B5572000A54E3F /* IssuesWidget.swift */,
@@ -1224,7 +1224,7 @@
 				B50FC11624AFCD040062C2D8 /* UserLocation.swift in Sources */,
 				B50FC11524AFCD040062C2D8 /* UserStats.swift in Sources */,
 				B50FC12024AFD0210062C2D8 /* functions.swift in Sources */,
-				B505B84D24B54CC900A54E3F /* BackgroundGradient.swift in Sources */,
+				B505B84D24B54CC900A54E3F /* WidgetBackground.swift in Sources */,
 				B505B85024B54D0B00A54E3F /* FiveCallsEntry.swift in Sources */,
 				B50FC11D24AFCD040062C2D8 /* AreaOffice.swift in Sources */,
 				B54D66CB24B2494400A9847B /* EmptyAnalytics.swift in Sources */,

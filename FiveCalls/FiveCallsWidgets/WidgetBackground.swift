@@ -9,7 +9,7 @@
 import SwiftUI
 import WidgetKit
 
-struct BackgroundGradient: View {
+struct WidgetBackground: View {
     var body: some View {
         LinearGradient(
             gradient: Gradient(
@@ -33,7 +33,7 @@ struct BackgroundGradient: View {
 
 struct BackgroundGradient_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundGradient()
+        WidgetBackground()
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
