@@ -20,14 +20,7 @@ class Provider: TimelineProvider {
     private let optimalRefreshInterval: TimeInterval = 60 * 60 * 24
     
     private var cancellables: Set<AnyCancellable> = []
-    
-    init() {
-    }
-    
-    deinit {
-        print("DEINIT!!!!")
-    }
-    
+
     private func fetchTimelineEntries() -> AnyPublisher<FiveCallsEntry, Error> {
         issuesPublisher
             .map { issues in
@@ -87,11 +80,6 @@ class Provider: TimelineProvider {
                     print("Error fetching issues for snapshot: \(error)")
                     completion(.sample)
                 }
-                
-                // prevent unhelpful Swift warning saying this variable is never read
-                if snapshotCancellable != nil {
-                    snapshotCancellable = nil
-                }
             }) { entries in
                 completion(entries)
             }
@@ -106,11 +94,6 @@ class Provider: TimelineProvider {
                 if case .failure(let error) = result {
                     print("Error fetching issues for timeline: \(error)")
                     
-                }
-                
-                // prevent unhelpful Swift warning saying this variable is never read
-                if timelineCancellable != nil {
-                    timelineCancellable = nil
                 }
             }) { entries in
                 completion(Timeline(entries: [entries], policy: .after(Date(timeIntervalSinceNow: self.optimalRefreshInterval))))
