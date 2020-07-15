@@ -557,6 +557,8 @@
 				B54D66DA24B2714400A9847B /* IssuesTimelineProvider.swift */,
 				B505B85124B5572000A54E3F /* IssuesWidget.swift */,
 				B503A44E24BF960E004D2241 /* IssuesEntry.swift */,
+				B503A45124BF9687004D2241 /* Issues+SampleData.swift */,
+				B503A45424BF97A6004D2241 /* IssuesEntry+SampleData.swift */,
 			);
 			path = "Issues Widget";
 			sourceTree = "<group>";
@@ -574,8 +576,6 @@
 		B503A45024BF967D004D2241 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				B503A45124BF9687004D2241 /* Issues+SampleData.swift */,
-				B503A45424BF97A6004D2241 /* IssuesEntry+SampleData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";

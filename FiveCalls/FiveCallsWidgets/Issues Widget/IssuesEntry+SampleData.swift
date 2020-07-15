@@ -14,7 +14,7 @@ extension IssuesEntry {
         IssuesEntry(
             date: Date(),
             issues: Issue.sampleIssues.enumerated().map { (offset, issue) in
-                IssueSummary(id: issue.id, name: issue.name, hasCalled: offset == 0, url: URL(string: "fivecalls://issue/0")!)
+                IssuesEntry.IssueSummary(id: issue.id, name: issue.name, hasCalled: offset == 0, url: URL(string: "fivecalls://issue/0")!)
             })
     }
 }
