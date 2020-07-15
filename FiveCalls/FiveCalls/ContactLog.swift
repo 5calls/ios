@@ -52,6 +52,10 @@ struct ContactLogs {
     func methodOfContact(to contactId: String, forIssue issue: Issue) -> String? {
         return all.filter({$0.contactId == contactId && ($0.issueId == String(issue.id) || $0.issueId == issue.meta)}).last?.outcome
     }
+    
+    func hasContactAnyContact(forIssue issue: Issue) -> Bool {
+        all.contains(where: { $0.issueId == String(issue.id) })
+    }
 
     func hasContacted(contact: Contact, forIssue issue: Issue) -> Bool {
         guard let method = methodOfContact(to: contact.id, forIssue: issue) else {

@@ -21,9 +21,15 @@ struct Issue : Decodable, Hashable {
     let contactType: String
     let contactAreas: [String]
     let createdAt: Date
-    
+}
+
+extension Issue {
     var shareURL: URL {
-        return URL(string: String(format: "https://shareimages.5calls.org/%d.png",self.id))!
+        return URL(string: String(format: "https://shareimages.5calls.org/%d.png", self.id))!
+    }
+    
+    var deepLinkURL: URL {
+        URL(string: "fivecalls://issue/\(slug)")!
     }
 }
 

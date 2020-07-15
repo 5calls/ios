@@ -8,29 +8,69 @@
 
 import Foundation
 import WidgetKit
+import Combine
 
-struct Provider: TimelineProvider {
+class Provider: TimelineProvider {
     
     typealias Entry = FiveCallsEntry
     
-    let operationQueue = OperationQueue()
+    private let operationQueue = OperationQueue()
     
     // request refresh every day
-    let optimalRefreshInterval: TimeInterval = 60 * 60 * 24
+    private let optimalRefreshInterval: TimeInterval = 60 * 60 * 24
     
-    func fetchIssues(completion: @escaping (Result<[Issue], Error>) -> Void) {
-        let fetchOp = FetchIssuesOperation()
-        fetchOp.completionBlock = { [weak fetchOp] in
-            guard let op = fetchOp else { return }
-            DispatchQueue.main.async {
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init() {
+    }
+    
+    deinit {
+        print("DEINIT!!!!")
+    }
+    
+    private func fetchTimelineEntries() -> AnyPublisher<FiveCallsEntry, Error> {
+        issuesPublisher
+            .map { issues in
+                let contactLogs = Current.contactLogs.load()
+                let lastMonthDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
+                
+                let callCounts = FiveCallsEntry.CallCounts(
+                    total: contactLogs.all.count,
+                    lastMonth: contactLogs.since(date: lastMonthDate).count)
+                
+                let issuesSummaries = issues.prefix(2).map { issue in
+                    self.issueSummary(issue, contactLogs: contactLogs)
+                }
+                
+                return FiveCallsEntry(
+                    date: Date(),
+                    callCounts: callCounts,
+                    topIssues: issuesSummaries,
+                    reps: [])
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private func issueSummary(_ issue: Issue, contactLogs: ContactLogs) -> FiveCallsEntry.IssueSummary {
+        FiveCallsEntry.IssueSummary(id: issue.id,
+                                    name: issue.name,
+                                    hasCalled: contactLogs.hasContactAnyContact(forIssue: issue),
+                                    url: issue.deepLinkURL)
+    }
+
+    private var issuesPublisher: AnyPublisher<[Issue], Error> {
+        Future { promise in
+            let fetchOp = FetchIssuesOperation()
+            fetchOp.completionBlock = { [weak fetchOp] in
+                guard let op = fetchOp else { return }
                 if let error = op.error {
-                    completion(.failure(error))
+                    promise(.failure(error))
                 } else {
-                    completion(.success(op.issuesList ?? []))
+                    promise(.success(op.issuesList ?? []))
                 }
             }
-        }
-        operationQueue.addOperation(fetchOp)
+            self.operationQueue.addOperation(fetchOp)
+        }.eraseToAnyPublisher()
     }
     
     func snapshot(with context: Context, completion: @escaping (FiveCallsEntry) -> ()) {
@@ -39,45 +79,42 @@ struct Provider: TimelineProvider {
             return
         }
         
-        fetchIssues { (result) in
-            switch result {
-            case .failure(_):
-                completion(.sample)
-            case .success(let issues):
-                let topIssues = Array(issues.prefix(3))
-                completion(FiveCallsEntry(date: Date(timeIntervalSinceNow: optimalRefreshInterval),
-                                          callCounts: fetchCallCounts(),
-                                          topIssues: topIssues.map { FiveCallsEntry.IssueSummary(id: $0.id, name: $0.name, hasCalled: false) },
-                                          reps: []))
+        var snapshotCancellable: AnyCancellable? = nil
+        snapshotCancellable = fetchTimelineEntries()
+            .sink(receiveCompletion: { result in
+                print("Fetched timeline entries: \(result)")
+                if case .failure(let error) = result {
+                    print("Error fetching issues for snapshot: \(error)")
+                    completion(.sample)
+                }
+                
+                // prevent unhelpful Swift warning saying this variable is never read
+                if snapshotCancellable != nil {
+                    snapshotCancellable = nil
+                }
+            }) { entries in
+                completion(entries)
             }
-        }
+        snapshotCancellable?.store(in: &cancellables)
     }
     
     func timeline(with context: Context, completion: @escaping (Timeline<FiveCallsEntry>) -> ()) {
-        fetchIssues { (result) in
-            let entries: [FiveCallsEntry]
-            switch result {
-            case .failure(_):
-                entries = [.sample]
+        var timelineCancellable: AnyCancellable? = nil
+        timelineCancellable = fetchTimelineEntries()
+            .sink(receiveCompletion: { result in
+                print("Fetched timeline entries: \(result)")
+                if case .failure(let error) = result {
+                    print("Error fetching issues for timeline: \(error)")
+                    
+                }
                 
-            case .success(let issues):
-                let topIssues = Array(issues.prefix(3))
-                entries = [FiveCallsEntry(date: Date(timeIntervalSinceNow: optimalRefreshInterval),
-                                          callCounts: fetchCallCounts(),
-                                          topIssues: topIssues.map { FiveCallsEntry.IssueSummary(id: $0.id, name: $0.name, hasCalled: false) },
-                                          reps: [])]
+                // prevent unhelpful Swift warning saying this variable is never read
+                if timelineCancellable != nil {
+                    timelineCancellable = nil
+                }
+            }) { entries in
+                completion(Timeline(entries: [entries], policy: .after(Date(timeIntervalSinceNow: self.optimalRefreshInterval))))
             }
-            
-            completion(Timeline(entries: entries, policy: .after(Date(timeIntervalSinceNow: optimalRefreshInterval))))
-        }
-    }
-    
-    private func fetchCallCounts() -> FiveCallsEntry.CallCounts {
-        let logs = Current.contactLogs.load()
-        
-        let lastMonthDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30)
-        return .init(total: logs.all.count,
-                     lastMonth: logs.since(date: lastMonthDate).count)
-        
+        timelineCancellable?.store(in: &cancellables)
     }
 }

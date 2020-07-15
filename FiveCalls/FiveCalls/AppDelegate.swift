@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Auth0
 import OneSignal
 
 var Current = World(
@@ -20,6 +19,11 @@ var Current = World(
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let urlHandlers: [AppURLHandler] = [
+        DeepLinkURLHandler(),
+        Auth0URLHandler()
+    ]
     
     // keep this around to listen for changes that affect a widget timeline reload
     private var widgetDataMonitor = WidgetDataMonitor()
@@ -47,7 +51,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return Auth0.resumeAuth(url, options: options)
+        print("open url: \(url)")
+        
+        guard let handler = urlHandlers.first(where: { $0.canHandle(url: url) }) else {
+            print("Nothing registered to handle URL: \(url)")
+            return false
+        }
+        
+        return handler.handle(url: url, options: options)
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {

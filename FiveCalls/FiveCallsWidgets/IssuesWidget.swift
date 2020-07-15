@@ -19,9 +19,11 @@ struct IssuesEntryView: View {
             
             VStack(alignment: .leading) {
                 ForEach(entry.topIssues, id: \.id) { issue in
-                    IssueRow(issue: issue)
+                    Link(destination: issue.url) {
                         IssueRow(issue: issue)
+                    }
                 }
+                
                 if entry.topIssues.isEmpty {
                     Text("No issues were loaded...")
                         .opacity(0.7)

@@ -98,6 +98,9 @@
 		B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52805181E3FA94D00EE832A /* Welcome.storyboard */; };
 		B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B528051B1E3FA94D00EE832A /* Assets.xcassets */; };
 		B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */; };
+		B5354C5A24BF802800F247F6 /* AppURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C5924BF802800F247F6 /* AppURLHandler.swift */; };
+		B5354C5D24BF808100F247F6 /* DeepLinkURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C5C24BF808100F247F6 /* DeepLinkURLHandler.swift */; };
+		B5354C5F24BF814E00F247F6 /* Auth0URLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C5E24BF814E00F247F6 /* Auth0URLHandler.swift */; };
 		B54228081E8EF8C5003C9956 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54228071E8EF8C5003C9956 /* LocationButton.swift */; };
 		B54D66B924B2436700A9847B /* WidgetDataMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66B824B2436700A9847B /* WidgetDataMonitor.swift */; };
 		B54D66BB24B245A000A9847B /* ContactLog+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66BA24B245A000A9847B /* ContactLog+Localizable.swift */; };
@@ -318,6 +321,9 @@
 		B528051B1E3FA94D00EE832A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B528051E1E3FA94D00EE832A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B52805201E3FA94D00EE832A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5354C5924BF802800F247F6 /* AppURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURLHandler.swift; sourceTree = "<group>"; };
+		B5354C5C24BF808100F247F6 /* DeepLinkURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkURLHandler.swift; sourceTree = "<group>"; };
+		B5354C5E24BF814E00F247F6 /* Auth0URLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth0URLHandler.swift; sourceTree = "<group>"; };
 		B54228071E8EF8C5003C9956 /* LocationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		B54D66B824B2436700A9847B /* WidgetDataMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataMonitor.swift; sourceTree = "<group>"; };
 		B54D66BA24B245A000A9847B /* ContactLog+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactLog+Localizable.swift"; sourceTree = "<group>"; };
@@ -599,6 +605,7 @@
 				B5CA63F41E41772100966B7D /* Views */,
 				33C2E0E41E52A94A00F810C6 /* Extensions */,
 				B5E7626F1E40D74900D63D62 /* Operations */,
+				B5354C5B24BF805B00F247F6 /* URL Handlers */,
 				B5E7626E1E40D73600D63D62 /* View Controllers */,
 				B5E7626D1E40D72D00D63D62 /* View Models */,
 				B5E7626C1E40D72400D63D62 /* Models */,
@@ -619,6 +626,16 @@
 				A086CA4A1FEB92780037B41F /* Auth0.plist */,
 			);
 			path = FiveCalls;
+			sourceTree = "<group>";
+		};
+		B5354C5B24BF805B00F247F6 /* URL Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				B5354C5924BF802800F247F6 /* AppURLHandler.swift */,
+				B5354C5C24BF808100F247F6 /* DeepLinkURLHandler.swift */,
+				B5354C5E24BF814E00F247F6 /* Auth0URLHandler.swift */,
+			);
+			name = "URL Handlers";
 			sourceTree = "<group>";
 		};
 		B54D66B724B2435900A9847B /* Widget Support */ = {
@@ -1272,6 +1289,7 @@
 				B54D66C124B2466B00A9847B /* AppCenterIntegration.swift in Sources */,
 				9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
+				B5354C5A24BF802800F247F6 /* AppURLHandler.swift in Sources */,
 				271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */,
 				A02018D9204E761A006078D1 /* UserStats.swift in Sources */,
 				D0D9270823D7D85C00777B2E /* DoneCallsViewController.swift in Sources */,
@@ -1290,6 +1308,7 @@
 				B5E7625F1E403C4700D63D62 /* StatsPageViewController.swift in Sources */,
 				B54D66CE24B24F9600A9847B /* UserDefaults+FiveCalls.swift in Sources */,
 				B5D5C95A1E441FEC00C80D5F /* IssuesManager.swift in Sources */,
+				B5354C5F24BF814E00F247F6 /* Auth0URLHandler.swift in Sources */,
 				A0EC261B205D787D00973A69 /* ReportUserStatsOperation.swift in Sources */,
 				2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
@@ -1322,6 +1341,7 @@
 				B54D66BB24B245A000A9847B /* ContactLog+Localizable.swift in Sources */,
 				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
 				B512506C21E6F91C007D32DF /* ContactsManager.swift in Sources */,
+				B5354C5D24BF808100F247F6 /* DeepLinkURLHandler.swift in Sources */,
 				D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
