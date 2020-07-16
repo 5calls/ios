@@ -130,6 +130,9 @@
 		B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591EB841E44D946006C7D28 /* ContactCell.swift */; };
 		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
 		B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */; };
+		B5A9D25C24BFA55200CECB87 /* CombinedRepsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D25A24BFA54400CECB87 /* CombinedRepsEntry.swift */; };
+		B5A9D25F24BFA8D400CECB87 /* CombinedRepsTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D25D24BFA8C600CECB87 /* CombinedRepsTimelineProvider.swift */; };
+		B5A9D26224BFB3B000CECB87 /* CombineRepsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D26024BFB39D00CECB87 /* CombineRepsEntryView.swift */; };
 		B5B1225224B0B157003D5BE8 /* FetchContactsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512506921E6F762007D32DF /* FetchContactsOperation.swift */; };
 		B5C3CCC124B544EC000BCE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B528051B1E3FA94D00EE832A /* Assets.xcassets */; };
 		B5C3CCC424B54B22000BCE7C /* SmallCallsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C3CCC224B54AD1000BCE7C /* SmallCallsWidget.swift */; };
@@ -354,6 +357,9 @@
 		B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCallsUITests.swift; sourceTree = "<group>"; };
 		B5A70A5C1E4C01A00031DF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
+		B5A9D25A24BFA54400CECB87 /* CombinedRepsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedRepsEntry.swift; sourceTree = "<group>"; };
+		B5A9D25D24BFA8C600CECB87 /* CombinedRepsTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedRepsTimelineProvider.swift; sourceTree = "<group>"; };
+		B5A9D26024BFB39D00CECB87 /* CombineRepsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineRepsEntryView.swift; sourceTree = "<group>"; };
 		B5C3CCC224B54AD1000BCE7C /* SmallCallsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCallsWidget.swift; sourceTree = "<group>"; };
 		B5CA63F51E41772D00966B7D /* IssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCell.swift; sourceTree = "<group>"; };
 		B5CA63FA1E422D0700966B7D /* IssuesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesContainerViewController.swift; sourceTree = "<group>"; };
@@ -586,6 +592,7 @@
 				B503A45024BF967D004D2241 /* Preview Content */,
 				B503A44D24BF95F9004D2241 /* Call Stats Widget */,
 				B503A44C24BF95F4004D2241 /* Issues Widget */,
+				B5A9D25924BFA51F00CECB87 /* Combined Reps Widget */,
 				B54D66C824B2492500A9847B /* WidgetWorld.swift */,
 				B505B84B24B54CB700A54E3F /* WidgetBackground.swift */,
 				B50FC0F824AFC1770062C2D8 /* FiveCallsWidgets.swift */,
@@ -724,6 +731,16 @@
 				B5A70A5C1E4C01A00031DF58 /* Info.plist */,
 			);
 			path = FiveCallsUITests;
+			sourceTree = "<group>";
+		};
+		B5A9D25924BFA51F00CECB87 /* Combined Reps Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B5A9D25A24BFA54400CECB87 /* CombinedRepsEntry.swift */,
+				B5A9D25D24BFA8C600CECB87 /* CombinedRepsTimelineProvider.swift */,
+				B5A9D26024BFB39D00CECB87 /* CombineRepsEntryView.swift */,
+			);
+			path = "Combined Reps Widget";
 			sourceTree = "<group>";
 		};
 		B5CA63F41E41772100966B7D /* Views */ = {
@@ -1258,16 +1275,19 @@
 				B50FC10D24AFCCC00062C2D8 /* URLSessionProvider.swift in Sources */,
 				B505B85324B5574300A54E3F /* IssuesWidget.swift in Sources */,
 				B503A45624BF97BE004D2241 /* IssuesEntry.swift in Sources */,
+				B5A9D25C24BFA55200CECB87 /* CombinedRepsEntry.swift in Sources */,
 				B50FC11324AFCD040062C2D8 /* JSONSerializable.swift in Sources */,
 				B50FC11C24AFCD040062C2D8 /* IssuesManager.swift in Sources */,
 				B50FC11724AFCD040062C2D8 /* ContactsManager.swift in Sources */,
 				B50FC11824AFCD040062C2D8 /* Issue.swift in Sources */,
+				B5A9D25F24BFA8D400CECB87 /* CombinedRepsTimelineProvider.swift in Sources */,
 				B50FC11E24AFCD040062C2D8 /* Outcome.swift in Sources */,
 				B54D66D924B268C200A9847B /* Configuration.swift in Sources */,
 				B50FC12324AFD0340062C2D8 /* NotificationNames.swift in Sources */,
 				B54D66C524B248DA00A9847B /* Analytics.swift in Sources */,
 				B5B1225224B0B157003D5BE8 /* FetchContactsOperation.swift in Sources */,
 				B50FC10624AFCCB40062C2D8 /* FetchIssuesOperation.swift in Sources */,
+				B5A9D26224BFB3B000CECB87 /* CombineRepsEntryView.swift in Sources */,
 				B50FC11B24AFCD040062C2D8 /* ContactList.swift in Sources */,
 				B50FC0F924AFC1770062C2D8 /* FiveCallsWidgets.swift in Sources */,
 				B50FC11924AFCD040062C2D8 /* StreakCounter.swift in Sources */,
