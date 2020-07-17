@@ -8,9 +8,25 @@
 
 import Foundation
 import WidgetKit
+import SwiftUI
 
 struct CombinedRepsEntry: TimelineEntry {
     let date: Date
-    let reps: [Contact]
+    let reps: [Rep]
     let hasLocation: Bool
+    
+    struct Rep {
+        let name: String
+        let party: String
+        let area: String
+        let photo: UIImage?
+        
+        var accentColor: Color {
+            switch party {
+            case "democratic": return Color.blue
+            case "republican": return Color.red
+            default: return Color.white
+            }
+        }
+    }
 }

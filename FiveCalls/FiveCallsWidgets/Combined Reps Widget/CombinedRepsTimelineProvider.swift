@@ -9,6 +9,7 @@
 import Foundation
 import WidgetKit
 import Combine
+import UIKit
 
 class CombinedRepsTimelineProvider: TimelineProvider {
     
@@ -52,32 +53,71 @@ class CombinedRepsTimelineProvider: TimelineProvider {
             .store(in: &cancellables)
     }
     
-    private func repsPublisher() -> AnyPublisher<[Contact], Error> {
+    private func repsPublisher() -> AnyPublisher<[CombinedRepsEntry.Rep], Error> {
         guard UserLocation.current.isPresent else {
             return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
-        
-        return Future { promise in
+
+        return Future<[Contact], Error> { promise in
             let fetchOp = FetchContactsOperation(location: UserLocation.current)
             fetchOp.completionBlock = { [weak fetchOp] in
                 guard let op = fetchOp else { return }
                 if let error = op.error {
                     promise(.failure(error))
                 } else {
-                    promise(.success(op.contacts ?? []))
+                    let contacts: [Contact] = op.contacts ?? []
+                    promise(.success(contacts))
                 }
             }
             self.operationQueue.addOperation(fetchOp)
-        }.eraseToAnyPublisher()
+        }
+        .flatMap { self.contactsToReps($0) }
+        .eraseToAnyPublisher()
     }
+    
+    private func contactsToReps(_ contacts: [Contact]) -> AnyPublisher<[CombinedRepsEntry.Rep], Error> {
+        let publishers = contacts.map { self.contactToRep($0) }
+        return Publishers.MergeMany(publishers)
+            .collect()
+            .eraseToAnyPublisher()
+    }
+    
+    private func contactToRep(_ contact: Contact) -> AnyPublisher<CombinedRepsEntry.Rep, Error> {
+        contactImagePublisher(contact)
+            .map { image in
+                CombinedRepsEntry.Rep(name: contact.name, party: contact.party, area: contact.area, photo: image)
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    private func contactImagePublisher(_ contact: Contact) -> AnyPublisher<UIImage?, Error> {
+        guard let photoURL = contact.photoURL else {
+            return Just(nil)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
+        return URLSession.shared.dataTaskPublisher(for: photoURL)
+            .map { $0.data }
+            .map { (data: Data) in UIImage(data: data) }
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
+    }
+    
 }
 
-extension Sequence where Element == Contact {
-    static var sample: [Contact] {
+extension Sequence where Element == CombinedRepsEntry.Rep {
+    static var sample: [CombinedRepsEntry.Rep] {
         [
-            Contact(id: "1", area: "US Senate", name: "Ted Cruz", party: "republican", phone: "123-123-1233"),
-            Contact(id: "2", area: "US Senate", name: "John Cornyn", party: "republican", phone: "123-123-1233"),
-            Contact(id: "3", area: "US House", name: "Michael McCaul", party: "republican", phone: "123-123-1233")
+            CombinedRepsEntry.Rep(name: "Ted Cruz", party: "republican", area: "US Senate", photo: loadPreviewContentImage("ted-cruz")),
+            CombinedRepsEntry.Rep(name: "John Cornyn", party: "republican", area: "US Senate", photo: loadPreviewContentImage("john-cornyn")),
+            CombinedRepsEntry.Rep(name: "Michael McCaul", party: "republican", area: "US House", photo: loadPreviewContentImage("michael-mccaul"))
         ]
+    }
+    
+    private static func loadPreviewContentImage(_ name: String) -> UIImage {
+        let url = Bundle.main.url(forResource: name, withExtension: "jpg")!
+        let data = try! Data(contentsOf: url)
+        return UIImage(data: data)!
     }
 }

@@ -77,7 +77,7 @@ struct SmallCallsWidget: Widget {
                             })
             .supportedFamilies([.systemSmall])
             .description("Shows the lifetime and past 30 days call counts")
-            .configurationDisplayName("Five Calls")
+            .configurationDisplayName("Call Stats")
     }
 }
 

@@ -107,6 +107,10 @@
 		B5354C5A24BF802800F247F6 /* AppURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C5924BF802800F247F6 /* AppURLHandler.swift */; };
 		B5354C5D24BF808100F247F6 /* DeepLinkURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C5C24BF808100F247F6 /* DeepLinkURLHandler.swift */; };
 		B5354C5F24BF814E00F247F6 /* Auth0URLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C5E24BF814E00F247F6 /* Auth0URLHandler.swift */; };
+		B5354C6424BFED1900F247F6 /* ted-cruz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5354C6124BFED1900F247F6 /* ted-cruz.jpg */; };
+		B5354C6524BFED1900F247F6 /* john-cornyn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5354C6224BFED1900F247F6 /* john-cornyn.jpg */; };
+		B5354C6624BFED1900F247F6 /* michael-mccaul.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5354C6324BFED1900F247F6 /* michael-mccaul.jpg */; };
+		B5354C6824C001C800F247F6 /* CombinedRepsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5354C6724C001C800F247F6 /* CombinedRepsWidget.swift */; };
 		B54228081E8EF8C5003C9956 /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54228071E8EF8C5003C9956 /* LocationButton.swift */; };
 		B54D66B924B2436700A9847B /* WidgetDataMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66B824B2436700A9847B /* WidgetDataMonitor.swift */; };
 		B54D66BB24B245A000A9847B /* ContactLog+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D66BA24B245A000A9847B /* ContactLog+Localizable.swift */; };
@@ -338,6 +342,10 @@
 		B5354C5924BF802800F247F6 /* AppURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURLHandler.swift; sourceTree = "<group>"; };
 		B5354C5C24BF808100F247F6 /* DeepLinkURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkURLHandler.swift; sourceTree = "<group>"; };
 		B5354C5E24BF814E00F247F6 /* Auth0URLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth0URLHandler.swift; sourceTree = "<group>"; };
+		B5354C6124BFED1900F247F6 /* ted-cruz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ted-cruz.jpg"; sourceTree = "<group>"; };
+		B5354C6224BFED1900F247F6 /* john-cornyn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "john-cornyn.jpg"; sourceTree = "<group>"; };
+		B5354C6324BFED1900F247F6 /* michael-mccaul.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "michael-mccaul.jpg"; sourceTree = "<group>"; };
+		B5354C6724C001C800F247F6 /* CombinedRepsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinedRepsWidget.swift; sourceTree = "<group>"; };
 		B54228071E8EF8C5003C9956 /* LocationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		B54D66B824B2436700A9847B /* WidgetDataMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataMonitor.swift; sourceTree = "<group>"; };
 		B54D66BA24B245A000A9847B /* ContactLog+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactLog+Localizable.swift"; sourceTree = "<group>"; };
@@ -579,17 +587,10 @@
 			path = "Call Stats Widget";
 			sourceTree = "<group>";
 		};
-		B503A45024BF967D004D2241 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		B50FC0F724AFC1770062C2D8 /* FiveCallsWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				B503A45024BF967D004D2241 /* Preview Content */,
+				B5354C6024BFEA4E00F247F6 /* Preview Content */,
 				B503A44D24BF95F9004D2241 /* Call Stats Widget */,
 				B503A44C24BF95F4004D2241 /* Issues Widget */,
 				B5A9D25924BFA51F00CECB87 /* Combined Reps Widget */,
@@ -685,6 +686,16 @@
 			name = "URL Handlers";
 			sourceTree = "<group>";
 		};
+		B5354C6024BFEA4E00F247F6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B5354C6224BFED1900F247F6 /* john-cornyn.jpg */,
+				B5354C6324BFED1900F247F6 /* michael-mccaul.jpg */,
+				B5354C6124BFED1900F247F6 /* ted-cruz.jpg */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		B54D66B724B2435900A9847B /* Widget Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,6 +750,7 @@
 				B5A9D25A24BFA54400CECB87 /* CombinedRepsEntry.swift */,
 				B5A9D25D24BFA8C600CECB87 /* CombinedRepsTimelineProvider.swift */,
 				B5A9D26024BFB39D00CECB87 /* CombineRepsEntryView.swift */,
+				B5354C6724C001C800F247F6 /* CombinedRepsWidget.swift */,
 			);
 			path = "Combined Reps Widget";
 			sourceTree = "<group>";
@@ -1059,10 +1071,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5354C6624BFED1900F247F6 /* michael-mccaul.jpg in Resources */,
 				B50FC0FC24AFC1790062C2D8 /* Assets.xcassets in Resources */,
 				B50FC12724AFD1FC0062C2D8 /* Localizable.strings in Resources */,
 				B5C3CCC124B544EC000BCE7C /* Assets.xcassets in Resources */,
+				B5354C6524BFED1900F247F6 /* john-cornyn.jpg in Resources */,
 				60DF7CE0E1B780A7CAE56927 /* Pods-FiveCallsWidgetsExtension-metadata.plist in Resources */,
+				B5354C6424BFED1900F247F6 /* ted-cruz.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,6 +1285,7 @@
 			files = (
 				B54D66CA24B2493700A9847B /* WidgetWorld.swift in Sources */,
 				B54D66D824B2688200A9847B /* ContactLogsLoader.swift in Sources */,
+				B5354C6824C001C800F247F6 /* CombinedRepsWidget.swift in Sources */,
 				B5C3CCC424B54B22000BCE7C /* SmallCallsWidget.swift in Sources */,
 				B50FC10924AFCCB40062C2D8 /* BaseOperation.swift in Sources */,
 				B50FC10D24AFCCC00062C2D8 /* URLSessionProvider.swift in Sources */,
