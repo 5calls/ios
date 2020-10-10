@@ -39,7 +39,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="XQN-Zs-7Xj" secondAttribute="trailing" id="16a-yU-NWU"/>
                             <constraint firstAttribute="trailing" secondItem="SiZ-OK-dMl" secondAttribute="trailing" id="4Ir-3q-E2O"/>
@@ -63,5 +63,8 @@
         <namedColor name="darkBlue">
             <color red="0.11999999731779099" green="0.4699999988079071" blue="0.81000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

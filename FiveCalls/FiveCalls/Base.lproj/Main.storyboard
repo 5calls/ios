@@ -244,7 +244,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="top" secondItem="MTs-wg-MRG" secondAttribute="top" constant="15" id="4T8-uL-Dh5"/>
                             <constraint firstItem="5Be-hS-t4B" firstAttribute="centerX" secondItem="MTs-wg-MRG" secondAttribute="centerX" id="E3V-Vx-8rH"/>
