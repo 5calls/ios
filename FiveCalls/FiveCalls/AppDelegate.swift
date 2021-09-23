@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Auth0
 import OneSignal
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,12 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnalyticsManager.shared.startup()
 
         oneSignalStartup(launchOptions: launchOptions)
-        
-        return true
-    }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return Auth0.resumeAuth(url, options: options)
+        FirebaseApp.configure()
+
+        return true
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -114,6 +112,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+        // log in if not already logged in, and save the auth token for later reuse
+        SessionManager.shared.startSession()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

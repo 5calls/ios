@@ -9,7 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 
-protocol IssuesViewControllerDelegate : class {
+protocol IssuesViewControllerDelegate : AnyObject {
     func didStartLoadingIssues()
     func didFinishLoadingIssues()
 }
@@ -65,9 +65,6 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         self.registerForPreviewing(with: self, sourceView: tableView)
-
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Issues List")
-        trackEvent(analyticsEvent)
 
         navigationController?.setNavigationBarHidden(true, animated: false)
 

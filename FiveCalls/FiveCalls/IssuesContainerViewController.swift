@@ -83,9 +83,6 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         locationButton.tintColor = R.color.darkBlue()
         let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)
         editRemindersButton.setImage(image, for: .normal)
-        if SessionManager.shared.userHasCredentials() {
-            SessionManager.shared.startSession()
-        }
     }
     
     private func setupHeaderWithBlurEffect() {

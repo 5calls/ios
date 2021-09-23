@@ -41,12 +41,11 @@ class StatsPageViewController : UIViewController, FinalPage {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Stats Welcome")
         if viewModel == nil {
             label.alpha = 0
             loadStats()
         }
-        
+
         // If iPhone 4S
         if UIScreen.main.bounds.size.height <= 480 {
             topMargin.constant = 0

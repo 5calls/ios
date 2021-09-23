@@ -29,7 +29,6 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Welcome")
         loadPages()
     }
 

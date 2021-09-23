@@ -32,7 +32,7 @@ class IssueActivityItemSource: NSObject, UIActivityItemSource {
     }
 }
 
-protocol IssueShareable: class {
+protocol IssueShareable: AnyObject {
     var issue: Issue! { get }
     func shareIssue(from: Any?)
 }

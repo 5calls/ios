@@ -24,7 +24,7 @@ struct Issue : Decodable {
     let createdAt: Date
     
     var shareURL: URL {
-        return URL(string: String(format: "https://shareimages.5calls.org/%d.png",self.id))!
+        return URL(string: String(format: "https://api.5calls.org/v1/issue/%d/share/t",self.id))!
     }
 }
 

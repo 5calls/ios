@@ -20,26 +20,15 @@ class FetchUserStatsOperation : BaseOperation {
     private var retryCount = 0
     
     override func execute() {
-        
-        // We'll need the user's access token to authenticate the request
-        SessionManager.shared.credentialsManager.credentials { error, creds in
-            guard error == nil else {
-                self.error = error
-                self.finish()
-                return
-            }
-
-            creds?.idToken.flatMap(self.fetchStats)
-        }
-    }
-    
-    private func fetchStats(withToken idToken: String) {
         let config = URLSessionConfiguration.default
         let session = URLSessionProvider.buildSession(configuration: config)
         let url = URL(string: "https://api.5calls.org/v1/users/stats")!
+
         var request = URLRequest(url: url)
-        request.setValue("Bearer " + idToken, forHTTPHeaderField:"Authorization")
-        
+        if let authToken = SessionManager.shared.idToken {
+            request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        }
+
         let task = session.dataTask(with: request) { (data, response, error) in
             
             if let e = error {
@@ -78,7 +67,7 @@ class FetchUserStatsOperation : BaseOperation {
     
     private func refreshToken() {
         print("Token is invalid or expired, try to refresh...")
-        _ = SessionManager.shared.refreshToken().done { _ in
+        SessionManager.shared.refreshToken {
             self.execute()
         }
     }

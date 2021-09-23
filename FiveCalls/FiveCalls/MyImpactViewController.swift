@@ -15,13 +15,6 @@ class MyImpactViewController : UITableViewController {
     private var userStats: UserStats?
     private var totalCalls: Int?
     
-    @IBOutlet weak var navSignInButton: UIBarButtonItem!
-    @IBOutlet weak var signInContainer: UIView!
-    @IBOutlet weak var profileContainer: UIView!
-    @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var email: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var impactLabel: UILabel!
     @IBOutlet weak var subheadLabel: UILabel!
@@ -53,19 +46,14 @@ class MyImpactViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AnalyticsManager.shared.trackEvent(withName: "Screen: My Impact")
         
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont.fvc_header,
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
-        displayProfileInfo()
         displayStats()
         fetchServerStats()
-        
-        profilePic.layer.borderColor = UIColor.white.cgColor
-        profilePic.layer.borderWidth = 2.0
 
         sizeHeaderToFit()
         
@@ -77,8 +65,6 @@ class MyImpactViewController : UITableViewController {
             }
         }
         OperationQueue.main.addOperation(totalCallsOp)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(userProfileChanged), name: .userProfileChanged, object: nil)
     }
     
     deinit {
@@ -113,62 +99,19 @@ class MyImpactViewController : UITableViewController {
         tableView.reloadData()
     }
     
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        if (SessionManager.shared.userIsLoggedIn()) {
-            SessionManager.shared.stopSession()
-        } else {
-            SessionManager.shared.startSession()
-        }
-    }
-    
-    @objc func userProfileChanged(_ notification: NSNotification) {
-        fetchServerStats()
-        
-        DispatchQueue.main.async {
-            self.displayProfileInfo()
-        }
-    }
-    
-    private func displayProfileInfo() {
-        let sessionManager = SessionManager.shared
-        if let picUrl = sessionManager.userProfile?.picture {
-            self.profilePic.setImageFromURL(picUrl)
-        } else {
-            self.profilePic.image = UIImage(named: "profile")
-        }
-        if sessionManager.userIsLoggedIn() {
-            self.userName.text = sessionManager.userProfile?.nickname
-            self.email.text = sessionManager.userProfile?.email ?? sessionManager.userProfile?.name
-            self.navSignInButton.title = R.string.localizable.signOut()
-            self.profileContainer.isHidden = false
-            self.signInContainer.isHidden = true
-        } else {
-            self.navSignInButton.title = R.string.localizable.signIn()
-            self.profileContainer.isHidden = true
-            self.signInContainer.isHidden = false
-        }
-    }
-    
     private func fetchServerStats() {
-        if SessionManager.shared.userIsLoggedIn() {
-            // Fetch the user's call stats
-            let userStatsOp = FetchUserStatsOperation()
-            userStatsOp.completionBlock = {
-                if let error = userStatsOp.error {
-                    AnalyticsManager.shared.trackError(error: error)
-                }
-                self.userStats = userStatsOp.userStats
-                DispatchQueue.main.async {
-                    self.displayStats()
-                }
+        // Fetch the user's call stats
+        let userStatsOp = FetchUserStatsOperation()
+        userStatsOp.completionBlock = {
+            if let error = userStatsOp.error {
+                AnalyticsManager.shared.trackError(error: error)
             }
-            OperationQueue.main.addOperation(userStatsOp)
-        } else {
-            userStats = nil
+            self.userStats = userStatsOp.userStats
             DispatchQueue.main.async {
                 self.displayStats()
             }
         }
+        OperationQueue.main.addOperation(userStatsOp)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

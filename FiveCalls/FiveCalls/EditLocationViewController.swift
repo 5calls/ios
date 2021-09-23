@@ -37,7 +37,6 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Edit Location")
         addressTextField.becomeFirstResponder()
         
         if case .address? = UserLocation.current.locationType {
