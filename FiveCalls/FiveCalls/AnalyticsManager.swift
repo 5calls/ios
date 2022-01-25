@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
+import FirebaseAnalytics
 
 class AnalyticsManager {
     static let shared = AnalyticsManager()
@@ -18,25 +16,20 @@ class AnalyticsManager {
     private init() {}
     
     func startup() {
-        if let infoPlist = Bundle.main.infoDictionary, let appCenterKey = infoPlist["AppCenterAPIKey"] as? String {
-            MSAppCenter.start(appCenterKey, withServices: [
-                MSAnalytics.self,
-                MSCrashes.self
-            ])
-        } else {
-            assertionFailure("No AppCenterAPIKey was found in the Info.plist")
-        }
 
         setupComplete = true
     }
     
     func trackEvent(withName name: String, andProperties properties: [String: String] = [:]) {
         if !setupComplete { assertionFailure("tracking before we've setup analytics") }
-        
-        MSAnalytics.trackEvent(name, withProperties: properties)
+
+        // firebase does not support colons in event names...
+        let sanitizedEventName = name.replacingOccurrences(of: ":", with: "_").replacingOccurrences(of: " ", with: "")
+        Analytics.logEvent(sanitizedEventName, parameters: properties)
+
     }
     
     func trackError(error: Error) {
-        MSAnalytics.trackEvent("Error", withProperties: ["message": error.localizedDescription])
+        // no remote error tracking right now
     }
 }

@@ -29,11 +29,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         return .lightContent
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        AnalyticsManager.shared.trackEvent(withName: "Screen: About")
-    }
-
     @IBAction func close(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -57,8 +52,12 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 2, let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+
             let label = UILabel(frame: .zero)
             label.text = "v" + version
+            if let userID = SessionManager.shared.userID {
+                label.text = "\(label.text ?? "") - \(userID)"
+            }
             label.textColor = .lightGray
             label.textAlignment = .center
             label.font = .preferredFont(forTextStyle: .caption1)

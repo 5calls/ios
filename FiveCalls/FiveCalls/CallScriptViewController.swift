@@ -47,7 +47,6 @@ class CallScriptViewController : UIViewController, IssueShareable {
             return assertionFailure("no issue or contact in call script")
         }
         
-        AnalyticsManager.shared.trackEvent(withName: "Action: Issue Call Script", andProperties: ["issue_id": String(issue.id)])
         self.contactIndex = contactIndex
         let contactsCount = contacts.count
         title = "Contact \(contactIndex+1) of \(contactsCount)"

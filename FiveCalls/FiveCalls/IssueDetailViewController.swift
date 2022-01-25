@@ -96,8 +96,6 @@ class IssueDetailViewController : UIViewController, IssueShareable {
             return assertionFailure("there was no issue for our issue detail controller")
         }
         
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Issue Detail", andProperties: ["issue_id": String(issue.id)])
-        
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }

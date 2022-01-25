@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-artifacts.sh
+${PODS_ROOT}/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework
+${PODS_ROOT}/GoogleAppMeasurement/Frameworks/GoogleAppMeasurementWithoutAdIdSupport.xcframework

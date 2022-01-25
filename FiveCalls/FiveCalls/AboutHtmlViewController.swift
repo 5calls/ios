@@ -22,7 +22,7 @@ class AboutHtmlViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AnalyticsManager.shared.trackEvent(withName: "Screen: About \(contentName)")
+
         let path = Bundle.main.path(forResource: "about-\(contentName)", ofType: "html")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let htmlString = String(data: data, encoding: .utf8)!
