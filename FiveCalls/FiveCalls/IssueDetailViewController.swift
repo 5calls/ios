@@ -92,7 +92,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let issue = issue else {
+        if issue == nil {
             return assertionFailure("there was no issue for our issue detail controller")
         }
         

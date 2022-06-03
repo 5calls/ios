@@ -52,15 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func oneSignalStartup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-
         if let infoPlist = Bundle.main.infoDictionary, let oneSignalAppID = infoPlist["OneSignalAppID"] as? String {
-            OneSignal.initWithLaunchOptions(launchOptions,
-                                            appId: oneSignalAppID,
-                                            handleNotificationAction: nil,
-                                            settings: onesignalInitSettings)
-
-            OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+            OneSignal.initWithLaunchOptions(launchOptions)
+            OneSignal.setAppId(oneSignalAppID)
         }
     }
     

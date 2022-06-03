@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
 		0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76D37F1E4FE05B00C14543 /* R.generated.swift */; };
 		1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */; };
-		239BA9656D9360513CD165B7 /* Pods-NotificationsService-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */; };
 		271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625401E52502D0042222E /* ScheduleRemindersController.swift */; };
 		271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
@@ -19,7 +18,6 @@
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
 		558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BC1EE211AE6068BB864845 /* CoreMedia.framework */; };
 		60C6E15E18B252A35EF14CFA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */; };
-		70770C04A9521B1852C594FD /* Pods_FiveCalls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08630058C5382210630DE7E /* Pods_FiveCalls.framework */; };
 		791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791C9FC91E4E5E000074A8B7 /* Main.storyboard */; };
 		791C9FCE1E4E5E510074A8B7 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791C9FD01E4E5E510074A8B7 /* About.storyboard */; };
 		791C9FD41E4E611C0074A8B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 791C9FD31E4E611C0074A8B7 /* Localizable.strings */; };
@@ -103,20 +101,30 @@
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0C08DF4284A99C000D41257 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF3284A99C000D41257 /* Down */; };
+		D0C08DF6284A99E500D41257 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF5284A99E500D41257 /* DZNEmptyDataSet */; };
+		D0C08DF8284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF7284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		D0C08DFA284A99F900D41257 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF9284A99F900D41257 /* FirebaseAuth */; };
+		D0C08DFC284A99F900D41257 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DFB284A99F900D41257 /* FirebaseCrashlytics */; };
+		D0CFF333284A835F0082693E /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF332284A835F0082693E /* OneSignal */; };
+		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
+		D0CFF33B284A877E0082693E /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33A284A877E0082693E /* DZNEmptyDataSet */; };
+		D0CFF33E284A88130082693E /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33D284A88130082693E /* Down */; };
+		D0CFF341284A884C0082693E /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF340284A884C0082693E /* PromiseKit */; };
+		D0CFF344284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF343284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		D0CFF346284A8A4F0082693E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF345284A8A4F0082693E /* FirebaseAuth */; };
+		D0CFF348284A8A4F0082693E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */; };
+		D0CFF34B284A8D770082693E /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF34A284A8D770082693E /* Rswift */; };
 		D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
 		D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */; };
 		D0D9270823D7D85C00777B2E /* DoneCallsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
-		DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
-		E4B6B460FCA340794101D93B /* Pods_NotificationsService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */; };
-		E8C78D1D5F3255065257A4BC /* Pods_FiveCallsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 		FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B339F1E485BA3004B9281 /* AboutViewController.swift */; };
 		FA1B33DB1E48FD0B004B9281 /* AboutHtmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */; };
 		FA20866F1E479E5D00D4EB16 /* IssueActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */; };
-		FE24EA14488F5BC4D9DC6CFC /* Pods-FiveCallsTests-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,24 +167,15 @@
 
 /* Begin PBXFileReference section */
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCalls.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls.release.xcconfig"; sourceTree = "<group>"; };
 		0F76D37F1E4FE05B00C14543 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCalls.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCalls/Pods-FiveCalls.debug.xcconfig"; sourceTree = "<group>"; };
 		1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueScriptCell.swift; sourceTree = "<group>"; };
 		271625401E52502D0042222E /* ScheduleRemindersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRemindersController.swift; sourceTree = "<group>"; };
 		271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionSegmentedControl.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
-		276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-FiveCallsTests-metadata.plist"; path = "Pods/Pods-FiveCallsTests-metadata.plist"; sourceTree = "<group>"; };
 		27FA230D2182A99B004D70BD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
-		3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-NotificationsService-metadata.plist"; path = "Pods/Pods-NotificationsService-metadata.plist"; sourceTree = "<group>"; };
-		3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCallsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FiveCalls.swift"; sourceTree = "<group>"; };
-		3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.debug.xcconfig"; sourceTree = "<group>"; };
-		3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.release.xcconfig"; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationsService.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationsService/Pods-NotificationsService.release.xcconfig"; sourceTree = "<group>"; };
-		57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationsService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		714B1EC1C91D8E5AED00D1D6 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		791C9FC81E4E5E000074A8B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -271,7 +270,6 @@
 		D03B684E26FE2B8600625076 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		D056F29726FD37E1000C15B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D0773DC023E4C8F700C16985 /* DonateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateCell.swift; sourceTree = "<group>"; };
-		D08630058C5382210630DE7E /* Pods_FiveCalls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiveCalls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeCollectionCell.swift; sourceTree = "<group>"; };
 		D0BA59A81F9546510069DA58 /* NotificationsService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationsService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA59AA1F9546510069DA58 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -287,8 +285,6 @@
 		FA1B339F1E485BA3004B9281 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutHtmlViewController.swift; sourceTree = "<group>"; };
 		FA20866E1E479E5D00D4EB16 /* IssueActivityItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueActivityItemSource.swift; sourceTree = "<group>"; };
-		FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-FiveCalls-metadata.plist"; path = "Pods/Pods-FiveCalls-metadata.plist"; sourceTree = "<group>"; };
-		FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiveCallsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +292,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8C78D1D5F3255065257A4BC /* Pods_FiveCallsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,14 +300,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC7D2DC2456462200D96A5B /* WebKit.framework in Frameworks */,
-				70770C04A9521B1852C594FD /* Pods_FiveCalls.framework in Frameworks */,
+				D0CFF344284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				D0CFF33E284A88130082693E /* Down in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
+				D0CFF341284A884C0082693E /* PromiseKit in Frameworks */,
+				D0CFF34B284A8D770082693E /* Rswift in Frameworks */,
 				8A7839350A8D2B6B70E5980D /* CoreTelephony.framework in Frameworks */,
 				E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */,
+				D0CFF333284A835F0082693E /* OneSignal in Frameworks */,
 				B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */,
+				D0CFF33B284A877E0082693E /* DZNEmptyDataSet in Frameworks */,
 				42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */,
+				D0CFF348284A8A4F0082693E /* FirebaseCrashlytics in Frameworks */,
 				558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */,
 				60C6E15E18B252A35EF14CFA /* CoreVideo.framework in Frameworks */,
+				D0CFF346284A8A4F0082693E /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +322,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0C08DF6284A99E500D41257 /* DZNEmptyDataSet in Frameworks */,
+				D0C08DF8284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				D0C08DFC284A99F900D41257 /* FirebaseCrashlytics in Frameworks */,
+				D0C08DF4284A99C000D41257 /* Down in Frameworks */,
+				D0C08DFA284A99F900D41257 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,29 +334,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B6B460FCA340794101D93B /* Pods_NotificationsService.framework in Frameworks */,
+				D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13FC26552E02495F4B111FD7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */,
-				0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */,
-				FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */,
-				3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */,
-				FADBF18C3DB1E1DEFE29B841 /* Pods-FiveCalls-metadata.plist */,
-				276D3D9C9BE74743772C8E99 /* Pods-FiveCallsTests-metadata.plist */,
-				3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */,
-				56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */,
-				3088457968B266C115F69347 /* Pods-NotificationsService-metadata.plist */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		33C2E0E41E52A94A00F810C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,8 +358,6 @@
 			children = (
 				9CC7D2DB2456462200D96A5B /* WebKit.framework */,
 				9CC7D2D92456460300D96A5B /* Photos.framework */,
-				D08630058C5382210630DE7E /* Pods_FiveCalls.framework */,
-				3202C128B897181FF4B6D7D8 /* Pods_FiveCallsTests.framework */,
 				CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */,
 				49B7C84D8023A9154688796F /* CoreText.framework */,
 				097A879D4BFD5431EF684F89 /* CoreTelephony.framework */,
@@ -377,7 +366,6 @@
 				97792E8AE44B5A2E12357E88 /* AVFoundation.framework */,
 				54BC1EE211AE6068BB864845 /* CoreMedia.framework */,
 				5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */,
-				57284822A0285FD800F836E3 /* Pods_NotificationsService.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -421,7 +409,6 @@
 				B5A70A591E4C01A00031DF58 /* FiveCallsUITests */,
 				D0BA59A91F9546510069DA58 /* NotificationsService */,
 				B52805121E3FA94D00EE832A /* Products */,
-				13FC26552E02495F4B111FD7 /* Pods */,
 				41C59A8CD8923A7D219FA9B5 /* Frameworks */,
 				714B1EC1C91D8E5AED00D1D6 /* Bridging-Header.h */,
 			);
@@ -611,11 +598,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B50280621E478BC200749ED7 /* Build configuration list for PBXNativeTarget "FiveCallsTests" */;
 			buildPhases = (
-				84B6B1BDB198229A58DA97E1 /* [CP] Check Pods Manifest.lock */,
 				B50280571E478BC200749ED7 /* Sources */,
 				B50280581E478BC200749ED7 /* Frameworks */,
 				B50280591E478BC200749ED7 /* Resources */,
-				2FD3763A0D5CA022A518B1A9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -631,13 +616,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B52805231E3FA94D00EE832A /* Build configuration list for PBXNativeTarget "FiveCalls" */;
 			buildPhases = (
-				5DBAD4BAE9299D0E23AFC2FA /* [CP] Check Pods Manifest.lock */,
-				0F76D37E1E4FDF4500C14543 /* Generate R.Swift Code */,
+				D0CFF34C284A8DEE0082693E /* Run Script */,
 				B528050D1E3FA94D00EE832A /* Sources */,
 				B528050E1E3FA94D00EE832A /* Frameworks */,
 				B528050F1E3FA94D00EE832A /* Resources */,
 				B5CA63F91E418B8E00966B7D /* Reveal */,
-				C0162342B60635266343A6AB /* [CP] Embed Pods Frameworks */,
 				D0BA59B31F9546510069DA58 /* Embed App Extensions */,
 				D074786C2702378E00C550EB /* ShellScript */,
 			);
@@ -647,6 +630,16 @@
 				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
 			);
 			name = FiveCalls;
+			packageProductDependencies = (
+				D0CFF332284A835F0082693E /* OneSignal */,
+				D0CFF33A284A877E0082693E /* DZNEmptyDataSet */,
+				D0CFF33D284A88130082693E /* Down */,
+				D0CFF340284A884C0082693E /* PromiseKit */,
+				D0CFF343284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport */,
+				D0CFF345284A8A4F0082693E /* FirebaseAuth */,
+				D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */,
+				D0CFF34A284A8D770082693E /* Rswift */,
+			);
 			productName = FiveCalls;
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
 			productType = "com.apple.product-type.application";
@@ -665,6 +658,13 @@
 				B5A70A5E1E4C01A00031DF58 /* PBXTargetDependency */,
 			);
 			name = FiveCallsUITests;
+			packageProductDependencies = (
+				D0C08DF3284A99C000D41257 /* Down */,
+				D0C08DF5284A99E500D41257 /* DZNEmptyDataSet */,
+				D0C08DF7284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				D0C08DF9284A99F900D41257 /* FirebaseAuth */,
+				D0C08DFB284A99F900D41257 /* FirebaseCrashlytics */,
+			);
 			productName = FiveCallsUITests;
 			productReference = B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -673,7 +673,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0BA59B21F9546510069DA58 /* Build configuration list for PBXNativeTarget "NotificationsService" */;
 			buildPhases = (
-				719170E771EECA85B2E05ACD /* [CP] Check Pods Manifest.lock */,
 				D0BA59A41F9546510069DA58 /* Sources */,
 				D0BA59A51F9546510069DA58 /* Frameworks */,
 				D0BA59A61F9546510069DA58 /* Resources */,
@@ -683,6 +682,9 @@
 			dependencies = (
 			);
 			name = NotificationsService;
+			packageProductDependencies = (
+				D0CFF334284A835F0082693E /* OneSignalExtension */,
+			);
 			productName = NotificationsService;
 			productReference = D0BA59A81F9546510069DA58 /* NotificationsService.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -747,6 +749,14 @@
 				Base,
 			);
 			mainGroup = B52805081E3FA94D00EE832A;
+			packageReferences = (
+				D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
+				D0CFF339284A877E0082693E /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+				D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */,
+				D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D0CFF349284A8D770082693E /* XCRemoteSwiftPackageReference "R.swift" */,
+			);
 			productRefGroup = B52805121E3FA94D00EE832A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -764,7 +774,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE24EA14488F5BC4D9DC6CFC /* Pods-FiveCallsTests-metadata.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,7 +792,6 @@
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
 				791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */,
 				ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */,
-				DC559EC377C23F84C65EA49B /* Pods-FiveCalls-metadata.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,101 +811,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				239BA9656D9360513CD165B7 /* Pods-NotificationsService-metadata.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F76D37E1E4FDF4500C14543 /* Generate R.Swift Code */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
-			);
-			name = "Generate R.Swift Code";
-			outputPaths = (
-				$SRCROOT/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
-		2FD3763A0D5CA022A518B1A9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FiveCallsTests/Pods-FiveCallsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5DBAD4BAE9299D0E23AFC2FA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FiveCalls-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		719170E771EECA85B2E05ACD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NotificationsService-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		84B6B1BDB198229A58DA97E1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FiveCallsTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B5CA63F91E418B8E00966B7D /* Reveal */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -910,53 +829,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi";
-		};
-		C0162342B60635266343A6AB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CPDAcknowledgements/CPDAcknowledgements.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CPDAcknowledgements.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FiveCalls/Pods-FiveCalls-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi\n";
 		};
 		D074786C2702378E00C550EB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -975,7 +848,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
+		D0CFF34C284A8DEE0082693E /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/../vendor/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1148,7 +1041,6 @@
 /* Begin XCBuildConfiguration section */
 		B50280631E478BC200749ED7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD64521687461F251492AC67 /* Pods-FiveCallsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
@@ -1161,7 +1053,11 @@
 				);
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1172,7 +1068,6 @@
 		};
 		B50280641E478BC200749ED7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3974FAF60EF8B491496DC6D0 /* Pods-FiveCallsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
@@ -1185,7 +1080,11 @@
 				);
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fivecalls.FiveCallsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1308,13 +1207,12 @@
 		};
 		B52805241E3FA94D00EE832A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B215EF9496565D48AC664AD /* Pods-FiveCalls.debug.xcconfig */;
 			buildSettings = {
 				APPCENTER_API_KEY = "7b7d63ea-901b-4e12-967b-830c35739800";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 50;
+				CURRENT_PROJECT_VERSION = 53;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1323,8 +1221,11 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.6.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.6.5;
 				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1338,13 +1239,12 @@
 		};
 		B52805251E3FA94D00EE832A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C879891BE224AEC07E153B3 /* Pods-FiveCalls.release.xcconfig */;
 			buildSettings = {
 				APPCENTER_API_KEY = "7b7d63ea-901b-4e12-967b-830c35739800";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 50;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1352,8 +1252,11 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.6.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.6.5;
 				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1374,7 +1277,11 @@
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1391,7 +1298,11 @@
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fivecalls.FiveCallsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1402,20 +1313,23 @@
 		};
 		D0BA59B01F9546510069DA58 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3525C5FE4C2920B05FEED82B /* Pods-NotificationsService.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 50;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = NotificationsService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.6.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1426,20 +1340,23 @@
 		};
 		D0BA59B11F9546510069DA58 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56FCA8F1E40593EDD765A0C2 /* Pods-NotificationsService.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 50;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = NotificationsService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.6.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1498,6 +1415,130 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		D0CFF339284A877E0082693E /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnxnguyen/Down";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		D0CFF349284A8D770082693E /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0C08DF3284A99C000D41257 /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+		D0C08DF5284A99E500D41257 /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF339284A877E0082693E /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
+		D0C08DF7284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		D0C08DF9284A99F900D41257 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D0C08DFB284A99F900D41257 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		D0CFF332284A835F0082693E /* OneSignal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignal;
+		};
+		D0CFF334284A835F0082693E /* OneSignalExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalExtension;
+		};
+		D0CFF33A284A877E0082693E /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF339284A877E0082693E /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
+		D0CFF33D284A88130082693E /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+		D0CFF340284A884C0082693E /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+		D0CFF343284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		D0CFF345284A8A4F0082693E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		D0CFF34A284A8D770082693E /* Rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0CFF349284A8D770082693E /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = Rswift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B52805091E3FA94D00EE832A /* Project object */;
 }

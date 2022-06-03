@@ -8,7 +8,7 @@
 
 import Foundation
 import UserNotifications
-import OneSignal
+import OneSignalExtension
 
 class NotificationService: UNNotificationServiceExtension {
 
@@ -22,8 +22,7 @@ class NotificationService: UNNotificationServiceExtension {
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
         if let bestAttemptContent = bestAttemptContent {
-            OneSignal.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
-            contentHandler(bestAttemptContent)
+            OneSignalExtension.didReceiveNotificationExtensionRequest(self.receivedRequest, with: bestAttemptContent, withContentHandler: contentHandler)
         }
     }
 
@@ -31,7 +30,7 @@ class NotificationService: UNNotificationServiceExtension {
         // Called just before the extension will be terminated by the system.
         // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
         if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            OneSignal.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
+            OneSignalExtension.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
             contentHandler(bestAttemptContent)
         }
     }

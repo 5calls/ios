@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import MessageUI
-import CPDAcknowledgements
+//import CPDAcknowledgements
 import StoreKit
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
@@ -111,8 +111,8 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func showOpenSource() {
         AnalyticsManager.shared.trackEvent(withName: "Screen: Open Source Libraries")
-        let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
-        navigationController?.pushViewController(acknowledgementsVC, animated: true)
+//        let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
+//        navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }
 
     func showWelcome() {
