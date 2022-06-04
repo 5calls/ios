@@ -141,10 +141,10 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension DoneCallsViewController {
     func checkForNotifications() {
-        let permissions = OneSignal.getPermissionSubscriptionState()
+        let deviceState = OneSignal.getDeviceState()
         let nextPrompt = nextNotificationPromptDate() ?? Date()
-        
-        if permissions?.permissionStatus.hasPrompted == false && nextPrompt <= Date() {
+                
+        if deviceState?.hasNotificationPermission == false && nextPrompt <= Date() {
             let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
                 OneSignal.promptForPushNotifications(userResponse: { (success) in

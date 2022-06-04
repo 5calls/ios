@@ -8,7 +8,6 @@
 
 default_platform :ios
 
-workspace = 'FiveCalls/FiveCalls.xcworkspace'
 xcodeproj = 'FiveCalls/FiveCalls.xcodeproj'
 scheme = 'FiveCalls'
 
@@ -21,8 +20,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(workspace: workspace,
-         scheme: scheme)
+    scan(project: xcodeproj, scheme: scheme)
   end
 
   desc "Increments build number"
@@ -47,7 +45,7 @@ platform :ios do
     increment_build
     commit_version_bump(xcodeproj: xcodeproj)
 
-    gym(workspace: workspace, scheme: scheme)
+    gym(project: xcodeproj, scheme: scheme)
     changelog = prompt_for_release_notes
     pilot(changelog: changelog)
     git_commit(path: 'fastlane/changelog.txt', message: 'Updated changelog.txt')
@@ -63,7 +61,7 @@ platform :ios do
     increment_build
     commit_version_bump
 
-    gym(workspace: workspace, scheme: scheme)
+    gym(project: xcodeproj, scheme: scheme)
     deliver(force: true)
 
     add_git_tag
