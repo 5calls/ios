@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IFq-NR-IrM">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -288,7 +288,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="122" id="uZj-s7-SHf" customClass="IssueDetailHeaderCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="122"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZj-s7-SHf" id="Hfa-Yw-Zoy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="122"/>
@@ -313,7 +313,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="322" id="tFw-k8-nYx" customClass="IssueDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="146.33333396911621" width="414" height="322"/>
+                                        <rect key="frame" x="0.0" y="166.66666603088379" width="414" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tFw-k8-nYx" id="J54-rP-g67">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
@@ -342,7 +342,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" rowHeight="107" id="1Xd-sZ-QlP" customClass="ContactCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="468.33333396911621" width="414" height="107"/>
+                                        <rect key="frame" x="0.0" y="488.66666603088379" width="414" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Xd-sZ-QlP" id="r0i-yC-dN5">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
@@ -390,7 +390,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="setLocationCell" rowHeight="66" id="boC-cV-bYf" customClass="SetLocationCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="575.33333396911621" width="414" height="66"/>
+                                        <rect key="frame" x="0.0" y="595.66666603088379" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="boC-cV-bYf" id="156-E5-ABg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
@@ -488,7 +488,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactDetailCell" rowHeight="183" id="AqZ-eY-ho4" customClass="ContactDetailCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="183"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="183"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqZ-eY-ho4" id="uLd-Vb-KSR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="183"/>
@@ -577,7 +577,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scriptCell" rowHeight="312" id="DHa-Uy-Lsa" customClass="IssueScriptCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="207.33333396911621" width="414" height="312"/>
+                                        <rect key="frame" x="0.0" y="227.66666603088379" width="414" height="312"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHa-Uy-Lsa" id="gfW-bj-ars">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="312"/>
@@ -853,10 +853,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" id="Axg-HL-osY" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="74.333335876464844"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="74.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Axg-HL-osY" id="9Mw-1f-qHY">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.33333333333331" height="74.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="385.33333333333331" height="74.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdX-Ap-pdT" customClass="ProgressView" customModule="FiveCalls" customModuleProvider="target">
@@ -897,10 +897,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreIssuesCell" rowHeight="44" id="vmS-Ly-Ipg">
-                                        <rect key="frame" x="0.0" y="98.666669845581055" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="119.00000190734863" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vmS-Ly-Ipg" id="W8R-kJ-Dss">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.33333333333331" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="385.33333333333331" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Issues" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atB-I7-icT">
@@ -958,6 +958,8 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3VD-Ro-n8g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="darkBlue"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.09546948224" green="0.45810282229999999" blue="0.81936717029999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -982,10 +984,10 @@ I'm calling to express my deep opposition to the confirmation of Betsy DeVos for
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IssueCell" rowHeight="75" id="esa-U6-7MB" customClass="IssueCell" customModule="FiveCalls" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="75"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="esa-U6-7MB" id="LXa-Ds-X6L">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.33333333333331" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="385.33333333333331" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pP4-Jm-1Rl" customClass="ProgressView" customModule="FiveCalls" customModuleProvider="target">
@@ -1310,6 +1312,9 @@ to stay updated</string>
         <image name="icon-office" width="100" height="100"/>
         <image name="share" width="19" height="27"/>
         <image name="share-topic" width="256" height="256"/>
+        <namedColor name="darkBlue">
+            <color red="0.11999999731779099" green="0.4699999988079071" blue="0.81000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="darkGreenText">
             <color red="0.0" green="0.22400000691413879" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
