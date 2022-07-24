@@ -58,7 +58,7 @@ class MultipleSelectionControl: UIControl {
             guard !title.isEmpty else { return nil }
             let button = UIButton()
             button.isSelected = false
-            button.setTitle(title, for: .normal)
+            button.setTitle(title.trimmingCharacters(in: .whitespaces), for: .normal)
             button.layer.borderWidth = 0.5
             button.layer.borderColor = selectedBackgroundColor.cgColor
             button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)

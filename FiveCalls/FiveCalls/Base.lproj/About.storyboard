@@ -218,7 +218,7 @@
                                     <constraint firstAttribute="height" constant="50" id="hQX-ZO-baD"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="titlesString" value="Mon, Tue, Wed, Thur, Fri"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titlesString" value="Sun, Mon, Tue, Wed, Thur, Fri, Sat"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
                                         <color key="value" name="darkBlue"/>
                                     </userDefinedRuntimeAttribute>

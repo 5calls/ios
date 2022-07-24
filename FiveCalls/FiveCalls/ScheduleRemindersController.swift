@@ -203,7 +203,8 @@ class ScheduleRemindersController: UIViewController {
         let calendar = Calendar(identifier: .gregorian)
         return notifications.compactMap({ notification in
             if let calendarTrigger = notification.trigger as? UNCalendarNotificationTrigger {
-                return calendar.component(.weekday, from: (calendarTrigger.nextTriggerDate()!)) - 2
+                // again, converting from 1-indexed weekdays to 0-indexed segmented controls
+                return calendar.component(.weekday, from: (calendarTrigger.nextTriggerDate()!)) - 1
             }
             
             return nil
@@ -221,7 +222,8 @@ class ScheduleRemindersController: UIViewController {
     private func notificationTrigger(date: Date, dayIndex: Int) -> UNCalendarNotificationTrigger {
         var components = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
         components.timeZone = TimeZone(identifier: "default")
-        components.weekday = dayIndex + 2
+        // segmented controls are zero-indexed while weekdays are 1-indexed, starting on Sunday
+        components.weekday = dayIndex + 1
         return UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
     }
 }
