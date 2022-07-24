@@ -68,15 +68,13 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         navigationController?.setNavigationBarHidden(true, animated: false)
 
-        // Refetch data only if we don't have anything to display.
-        if viewModel.hasNoData() {
-            loadIssues()
-        }
+        // Refetch issues data only if we have no model data, otherwise just ensure contacts are loaded
+        loadData(needsIssues: viewModel.hasNoData())
 
         tableView.tableFooterView = UIView()
 
         tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(loadIssues), for: .valueChanged)
+        tableView.refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
 
         notificationToken = NotificationCenter.default.addObserver(forName: .callMade, object: nil, queue: nil) { [weak self] _ in
             self?.needToReloadVisibleRowsOnNextAppearance = true
@@ -119,13 +117,15 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewWillDisappear(animated)
     }
 
-    @objc func loadIssues() {
-        isLoading = true
-        tableView.reloadEmptyDataSet()
-        issuesDelegate?.didStartLoadingIssues()
+    @objc func loadData(needsIssues: Bool = false) {
+        if needsIssues {
+            isLoading = true
+            tableView.reloadEmptyDataSet()
+            issuesDelegate?.didStartLoadingIssues()
 
-        issuesManager.fetchIssues { [weak self] in
-            self?.issuesLoaded(result: $0)
+            issuesManager.fetchIssues { [weak self] in
+                self?.issuesLoaded(result: $0)
+            }
         }
 
         contactsManager.fetchContacts(location: UserLocation.current) { result in
@@ -135,7 +135,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
-
+    
     private func createViewModelForCategories(issues: [Issue]) -> IssuesViewModel {
         if shouldShowAllIssues {
             return AllIssuesViewModel(issues: issues)
@@ -200,7 +200,7 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @objc func willEnterForeground() {
-        loadIssues()
+        loadData()
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -370,7 +370,7 @@ extension IssuesViewController : DZNEmptyDataSetDelegate {
     }
     
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
-        loadIssues()
+        loadData()
         tableView.reloadEmptyDataSet()
     }
 }

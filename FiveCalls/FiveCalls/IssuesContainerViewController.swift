@@ -192,7 +192,7 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
     func editLocationViewController(_ vc: EditLocationViewController, didUpdateLocation location: UserLocation) {
         DispatchQueue.main.async { [weak self] in
             self?.dismiss(animated: true) {
-                self?.issuesViewController.loadIssues()
+                self?.issuesViewController.loadData(needsIssues: true)
                 self?.setTitleLabel(location: location)
             }
         }
