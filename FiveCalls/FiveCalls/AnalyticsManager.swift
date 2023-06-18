@@ -20,6 +20,16 @@ class AnalyticsManager {
         setupComplete = true
     }
     
+    var callerID: String {
+        if let cid = UserDefaults.standard.string(forKey: UserDefaultsKey.callerID.rawValue) {
+            return cid
+        }
+        
+        let cid = UUID()
+        UserDefaults.standard.setValue(cid.uuidString, forKey: UserDefaultsKey.callerID.rawValue)
+        return cid.uuidString
+    }
+    
     func trackEvent(withName name: String, andProperties properties: [String: String] = [:]) {
         if !setupComplete { assertionFailure("tracking before we've setup analytics") }
 

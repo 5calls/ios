@@ -24,4 +24,6 @@ enum UserDefaultsKey : String {
     case lastAskedForNotificationPermission
 
     case selectIssuePath
+    
+    case callerID // an anoymous unique id
 }
