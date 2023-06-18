@@ -146,11 +146,6 @@ extension DoneCallsViewController {
                 
         if deviceState?.hasNotificationPermission == false && nextPrompt <= Date() {
             let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationAll(), style: .default, handler: { (action) in
-                OneSignal.promptForPushNotifications(userResponse: { (success) in
-                    OneSignal.sendTag("all", value: "true")
-                })
-            }))
             alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { (action) in
                 OneSignal.promptForPushNotifications(userResponse: { (success) in
                     //
