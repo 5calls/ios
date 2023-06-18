@@ -70,3 +70,5 @@ fastlane/test_output
 .env
 .ruby-version
 vendor/
+
+.DS_Store

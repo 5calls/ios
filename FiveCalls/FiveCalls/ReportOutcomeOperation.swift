@@ -45,7 +45,7 @@ class ReportOutcomeOperation : BaseOperation {
             request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         }
 
-        let query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)"
+        let query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)&callerid=\(AnalyticsManager.shared.callerID)"
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return

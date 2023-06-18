@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OneSignal
 
 class FetchContactsOperation : BaseOperation {
     
@@ -72,6 +73,9 @@ class FetchContactsOperation : BaseOperation {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let contactList = try decoder.decode(ContactList.self, from: data)
+        if contactList.generalizedLocationID != "-" {
+            OneSignal.sendTag("districtID", value: contactList.generalizedLocationID)
+        }
         return contactList.representatives
     }
 }

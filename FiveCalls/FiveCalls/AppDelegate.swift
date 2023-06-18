@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnalyticsManager.shared.startup()
 
         oneSignalStartup(launchOptions: launchOptions)
+        OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
 
         FirebaseApp.configure()
 
