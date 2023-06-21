@@ -61,7 +61,9 @@ platform :ios do
     increment_build
     commit_version_bump
 
-    gym(project: xcodeproj, scheme: scheme)
+    gym(project: xcodeproj,
+        scheme: scheme,
+        export_xcargs: "-allowProvisioningUpdates")
     deliver(force: true)
 
     add_git_tag
