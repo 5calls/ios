@@ -20,6 +20,12 @@ class SessionManager {
     func startSession() {
         Auth.auth().signInAnonymously { result, error in
             self.userID = result?.user.uid
+            
+            // store the firebase id if the key is empty or nil, we'll trust that this is right when firebase is removed
+            let storedID = UserDefaults.standard.string(forKey: UserDefaultsKey.legacyFirebaseID.rawValue)
+            if storedID == nil || storedID == "" {
+                UserDefaults.standard.setValue(self.userID ?? "", forKey: UserDefaultsKey.legacyFirebaseID.rawValue)
+            }
 
             result?.user.getIDToken { token, tokenError in
                 self.idToken = token

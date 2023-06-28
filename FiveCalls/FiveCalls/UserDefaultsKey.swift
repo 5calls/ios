@@ -25,5 +25,6 @@ enum UserDefaultsKey : String {
 
     case selectIssuePath
     
+    case legacyFirebaseID // userid from firebase, for stats
     case callerID // an anoymous unique id
 }
