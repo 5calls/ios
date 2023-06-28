@@ -100,7 +100,7 @@
 		D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0773DC023E4C8F700C16985 /* DonateCell.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
-		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0C08DF4284A99C000D41257 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF3284A99C000D41257 /* Down */; };
 		D0C08DF6284A99E500D41257 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF5284A99E500D41257 /* DZNEmptyDataSet */; };
 		D0C08DF8284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF7284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -152,15 +152,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D0BA59B31F9546510069DA58 /* Embed App Extensions */ = {
+		D0BA59B31F9546510069DA58 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed App Extensions */,
+				D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -620,8 +620,7 @@
 				B528050D1E3FA94D00EE832A /* Sources */,
 				B528050E1E3FA94D00EE832A /* Frameworks */,
 				B528050F1E3FA94D00EE832A /* Resources */,
-				B5CA63F91E418B8E00966B7D /* Reveal */,
-				D0BA59B31F9546510069DA58 /* Embed App Extensions */,
+				D0BA59B31F9546510069DA58 /* Embed Foundation Extensions */,
 				D074786C2702378E00C550EB /* ShellScript */,
 			);
 			buildRules = (
@@ -695,8 +694,9 @@
 		B52805091E3FA94D00EE832A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = 5calls;
 				TargetAttributes = {
 					B502805A1E478BC200749ED7 = {
@@ -817,20 +817,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B5CA63F91E418B8E00966B7D /* Reveal */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Reveal;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi\n";
-		};
 		D074786C2702378E00C550EB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
