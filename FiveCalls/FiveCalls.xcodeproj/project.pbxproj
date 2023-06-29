@@ -97,6 +97,10 @@
 		D02FFCE2245F5733003ADA2B /* ScriptCustomizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FFCE1245F5733003ADA2B /* ScriptCustomizationTests.swift */; };
 		D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */; };
 		D03B684F26FE2B8600625076 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B684E26FE2B8600625076 /* SessionManager.swift */; };
+		D0480AE32A4D45A700502818 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0480AE22A4D45A700502818 /* App.swift */; };
+		D0480AE52A4D462500502818 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0480AE42A4D462500502818 /* Dashboard.swift */; };
+		D0480B1E2A4D493B00502818 /* IssueListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0480B1D2A4D493B00502818 /* IssueListItem.swift */; };
+		D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0480B202A4D4B0400502818 /* PreviewIssues.swift */; };
 		D056F29826FD37E2000C15B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D056F29726FD37E1000C15B3 /* GoogleService-Info.plist */; };
 		D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D05745842A53E34300A8534A /* PlausibleSwift */; };
 		D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0773DC023E4C8F700C16985 /* DonateCell.swift */; };
@@ -270,6 +274,10 @@
 		D02FFCE1245F5733003ADA2B /* ScriptCustomizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCustomizationTests.swift; sourceTree = "<group>"; };
 		D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderCell.swift; sourceTree = "<group>"; };
 		D03B684E26FE2B8600625076 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		D0480AE22A4D45A700502818 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		D0480AE42A4D462500502818 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		D0480B1D2A4D493B00502818 /* IssueListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListItem.swift; sourceTree = "<group>"; };
+		D0480B202A4D4B0400502818 /* PreviewIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewIssues.swift; sourceTree = "<group>"; };
 		D056F29726FD37E1000C15B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D0773DC023E4C8F700C16985 /* DonateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateCell.swift; sourceTree = "<group>"; };
 		D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeCollectionCell.swift; sourceTree = "<group>"; };
@@ -442,6 +450,8 @@
 				B5E7626D1E40D72D00D63D62 /* View Models */,
 				B5E7626C1E40D72400D63D62 /* Models */,
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
+				D0480AE22A4D45A700502818 /* App.swift */,
+				D0480AE62A4D462F00502818 /* SwiftUI */,
 				ADB097691F8B212800B81661 /* RatingPromptCounter.swift */,
 				B5E98E341E529E66005221B7 /* functions.swift */,
 				B5FFBB981E5EA60E00647121 /* Appearance.swift */,
@@ -590,6 +600,24 @@
 			children = (
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		D0480AE62A4D462F00502818 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				D0480B1F2A4D4AF300502818 /* PreviewContent */,
+				D0480AE42A4D462500502818 /* Dashboard.swift */,
+				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
+			);
+			name = SwiftUI;
+			sourceTree = "<group>";
+		};
+		D0480B1F2A4D4AF300502818 /* PreviewContent */ = {
+			isa = PBXGroup;
+			children = (
+				D0480B202A4D4B0400502818 /* PreviewIssues.swift */,
+			);
+			name = PreviewContent;
 			sourceTree = "<group>";
 		};
 		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
@@ -902,9 +930,12 @@
 				AD14A52121612BAA006F06FD /* UIFont+FiveCalls.swift in Sources */,
 				B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
+				D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */,
 				27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */,
 				B5E98E351E529E66005221B7 /* functions.swift in Sources */,
+				D0480B1E2A4D493B00502818 /* IssueListItem.swift in Sources */,
 				D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */,
+				D0480AE32A4D45A700502818 /* App.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
 				B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */,
@@ -953,6 +984,7 @@
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */,
+				D0480AE52A4D462500502818 /* Dashboard.swift in Sources */,
 				B54228081E8EF8C5003C9956 /* LocationButton.swift in Sources */,
 				D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */,
 				B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */,
@@ -1214,6 +1246,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 62;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = FiveCalls/PreviewIssues.swift;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1221,7 +1254,7 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1245,7 +1278,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FiveCalls/FiveCalls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 62;
+=======
+				CURRENT_PROJECT_VERSION = 61;
+				DEVELOPMENT_ASSET_PATHS = FiveCalls/PreviewIssues.swift;
+>>>>>>> afabdfe (Starting to rebuild the dashboard in swiftui)
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1253,7 +1291,7 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
