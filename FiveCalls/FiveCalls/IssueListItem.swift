@@ -21,7 +21,7 @@ struct IssueListItem: View {
                     Circle()
                         .stroke(Color(.tertiaryLabel), lineWidth: 4)
                         .background(Circle().fill(Color(.quaternaryLabel)))
-                        .frame(width: 50)
+                        .frame(width: 45)
                         .padding(.vertical, 12)
                         .padding(.leading, 12)
                     VStack(alignment: .leading) {
@@ -58,7 +58,7 @@ struct IssueListItem: View {
                         .symbolRenderingMode(.monochrome)
                         .padding(.trailing, 10)
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(Color(.sRGB, red: 23/255, green: 116/255, blue: 209/255))
+                        .foregroundColor(Color("darkBlue"))
                 }
             }
         }
