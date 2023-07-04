@@ -84,9 +84,9 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         if shouldShowAllIssues {
-            self.trackPageview(path: "/all/")
+            AnalyticsManager.shared.trackPageview(path: "/all/")
         } else {
-            self.trackPageview(path: "/")
+            AnalyticsManager.shared.trackPageview(path: "/")
         }
     }
 
