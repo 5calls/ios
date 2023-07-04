@@ -72,7 +72,7 @@ class ScheduleRemindersController: UIViewController {
     private func requestNotificationAccess() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge];
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
-            AnalyticsManager.shared.trackEvent(withName: "Notification Access", andProperties: ["success": "\(success)"])
+            AnalyticsManager.shared.trackEventOld(withName: "Notification Access", andProperties: ["success": "\(success)"])
         }
     }
 

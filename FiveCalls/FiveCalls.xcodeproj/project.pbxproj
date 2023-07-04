@@ -97,6 +97,7 @@
 		D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */; };
 		D03B684F26FE2B8600625076 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B684E26FE2B8600625076 /* SessionManager.swift */; };
 		D056F29826FD37E2000C15B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D056F29726FD37E1000C15B3 /* GoogleService-Info.plist */; };
+		D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D05745842A53E34300A8534A /* PlausibleSwift */; };
 		D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0773DC023E4C8F700C16985 /* DonateCell.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
@@ -301,6 +302,7 @@
 			files = (
 				9CC7D2DC2456462200D96A5B /* WebKit.framework in Frameworks */,
 				D0CFF344284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */,
 				D0CFF33E284A88130082693E /* Down in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
 				D0CFF341284A884C0082693E /* PromiseKit in Frameworks */,
@@ -404,6 +406,7 @@
 		B52805081E3FA94D00EE832A = {
 			isa = PBXGroup;
 			children = (
+				D0480B222A538E1000502818 /* Packages */,
 				B52805131E3FA94D00EE832A /* FiveCalls */,
 				B502805C1E478BC200749ED7 /* FiveCallsTests */,
 				B5A70A591E4C01A00031DF58 /* FiveCallsUITests */,
@@ -581,6 +584,13 @@
 			name = Fixtures;
 			sourceTree = "<group>";
 		};
+		D0480B222A538E1000502818 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +648,7 @@
 				D0CFF345284A8A4F0082693E /* FirebaseAuth */,
 				D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */,
 				D0CFF34A284A8D770082693E /* Rswift */,
+				D05745842A53E34300A8534A /* PlausibleSwift */,
 			);
 			productName = FiveCalls;
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
@@ -756,6 +767,7 @@
 				D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D0CFF349284A8D770082693E /* XCRemoteSwiftPackageReference "R.swift" */,
+				D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */,
 			);
 			productRefGroup = B52805121E3FA94D00EE832A /* Products */;
 			projectDirPath = "";
@@ -1406,6 +1418,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nickoneill/PlausibleSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
@@ -1457,6 +1477,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D05745842A53E34300A8534A /* PlausibleSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */;
+			productName = PlausibleSwift;
+		};
 		D0C08DF3284A99C000D41257 /* Down */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */;

@@ -30,6 +30,7 @@ class IssueDetailViewController : UIViewController, IssueShareable {
         tableView.rowHeight = UITableView.automaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         
+        AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/")
         trackEvent("Topic", properties: ["IssueID": String(issue.id), "IssueTitle": issue.name])
 
         loadContacts()

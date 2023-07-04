@@ -52,10 +52,10 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     
     @IBAction func useMyLocationTapped(_ sender: Any) {
         if CLLocationManager.authorizationStatus() == .denied {
-            AnalyticsManager.shared.trackEvent(withName: "Action: Denied Location")
+            AnalyticsManager.shared.trackEventOld(withName: "Action: Denied Location")
             informUserOfPermissions()
         } else {
-            AnalyticsManager.shared.trackEvent(withName: "Action: Used Location")
+            AnalyticsManager.shared.trackEventOld(withName: "Action: Used Location")
             locationManager.requestWhenInUseAuthorization()
         }
     }
@@ -70,7 +70,7 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     }
     
     func submitAddress() {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Used Address")
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Used Address")
         
         UserLocation.current.setFrom(address: addressTextField.text ?? "") { [weak self] updatedLocation in
             guard let strongSelf = self else {
