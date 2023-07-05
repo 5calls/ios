@@ -28,15 +28,17 @@ class AnalyticsManager {
         return cid.uuidString
     }
     
-    func trackPageview(path: String) {
+    func trackPageview(path: String, properties: [String: String] = .init()) {
         #if !DEBUG
-        try? plausible?.trackPageview(path: path, properties: ["isiOSApp": "true"])
+        properties["isIOSApp"] = "true"
+        try? plausible?.trackPageview(path: path, properties: properties)
         #endif
     }
     
-    func trackEvent(name: String, path: String) {
+    func trackEvent(name: String, path: String, properties: [String: String] = .init()) {
         #if !DEBUG
-        try? plausible?.trackEvent(event: name, path: path, properties: ["isiOSApp": "true"])
+        properties["isIOSApp"] = "true"
+        try? plausible?.trackEvent(event: name, path: path, properties: properties)
         #endif
     }
     
