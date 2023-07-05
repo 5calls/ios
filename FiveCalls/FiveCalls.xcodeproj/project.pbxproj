@@ -111,7 +111,6 @@
 		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
 		D0CFF33B284A877E0082693E /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33A284A877E0082693E /* DZNEmptyDataSet */; };
 		D0CFF33E284A88130082693E /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33D284A88130082693E /* Down */; };
-		D0CFF341284A884C0082693E /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF340284A884C0082693E /* PromiseKit */; };
 		D0CFF344284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF343284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D0CFF346284A8A4F0082693E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF345284A8A4F0082693E /* FirebaseAuth */; };
 		D0CFF348284A8A4F0082693E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */; };
@@ -305,7 +304,6 @@
 				D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */,
 				D0CFF33E284A88130082693E /* Down in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
-				D0CFF341284A884C0082693E /* PromiseKit in Frameworks */,
 				D0CFF34B284A8D770082693E /* Rswift in Frameworks */,
 				8A7839350A8D2B6B70E5980D /* CoreTelephony.framework in Frameworks */,
 				E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */,
@@ -643,7 +641,6 @@
 				D0CFF332284A835F0082693E /* OneSignal */,
 				D0CFF33A284A877E0082693E /* DZNEmptyDataSet */,
 				D0CFF33D284A88130082693E /* Down */,
-				D0CFF340284A884C0082693E /* PromiseKit */,
 				D0CFF343284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport */,
 				D0CFF345284A8A4F0082693E /* FirebaseAuth */,
 				D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */,
@@ -764,7 +761,6 @@
 				D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 				D0CFF339284A877E0082693E /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
 				D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */,
-				D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D0CFF349284A8D770082693E /* XCRemoteSwiftPackageReference "R.swift" */,
 				D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */,
@@ -1450,14 +1446,6 @@
 				kind = branch;
 			};
 		};
-		D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mxcl/PromiseKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1526,11 +1514,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0CFF33C284A88130082693E /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
-		};
-		D0CFF340284A884C0082693E /* PromiseKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D0CFF33F284A884C0082693E /* XCRemoteSwiftPackageReference "PromiseKit" */;
-			productName = PromiseKit;
 		};
 		D0CFF343284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
