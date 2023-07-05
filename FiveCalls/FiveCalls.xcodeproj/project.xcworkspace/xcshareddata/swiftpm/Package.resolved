@@ -118,6 +118,15 @@
       }
     },
     {
+      "identity" : "plausibleswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nickoneill/PlausibleSwift",
+      "state" : {
+        "revision" : "522268b34b7f9ec4ebbe23a0209e74f6fbdc203e",
+        "version" : "0.3.0"
+      }
+    },
+    {
       "identity" : "promisekit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mxcl/PromiseKit",

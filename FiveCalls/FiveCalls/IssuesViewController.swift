@@ -82,6 +82,12 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         NotificationCenter.default.addObserver(self, selector: #selector(madeCall), name: .callMade, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        if shouldShowAllIssues {
+            AnalyticsManager.shared.trackPageview(path: "/all/")
+        } else {
+            AnalyticsManager.shared.trackPageview(path: "/")
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

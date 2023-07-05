@@ -67,7 +67,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func sendFeedback() {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Feedback")
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Feedback")
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -83,12 +83,12 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func promptForRating() {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Rate the App")
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Rate the App")
         SKStoreReviewController.requestReview()
     }
     
     func shareApp(from view: UIView?) {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Share The App")
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Share The App")
         guard let url = AboutViewController.appUrl else { return }
         let vc = UIActivityViewController(activityItems: [R.string.localizable.shareTheAppMessage(), url], applicationActivities: [])
         vc.excludedActivityTypes = [.addToReadingList, .airDrop, .assignToContact, .copyToPasteboard, .openInIBooks, .print, .saveToCameraRoll]
@@ -100,7 +100,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func followOnTwitter() {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Follow On Twitter")
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Follow On Twitter")
         guard let url = URL(string: "https://twitter.com/make5calls") else { return }
         UIApplication.shared.open(url)
     }
@@ -110,7 +110,7 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     }
     
     func showOpenSource() {
-        AnalyticsManager.shared.trackEvent(withName: "Screen: Open Source Libraries")
+        AnalyticsManager.shared.trackEventOld(withName: "Screen: Open Source Libraries")
 //        let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
 //        navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }

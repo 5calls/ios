@@ -40,7 +40,7 @@ extension AboutHtmlViewController : WKNavigationDelegate {
                 decisionHandler(.allow)
                 return
             }
-            AnalyticsManager.shared.trackEvent(withName: "Action: Open External Link", andProperties: ["url":url.absoluteString])
+            AnalyticsManager.shared.trackEventOld(withName: "Action: Open External Link", andProperties: ["url":url.absoluteString])
             UIApplication.shared.open(url)
             
             decisionHandler(.cancel)

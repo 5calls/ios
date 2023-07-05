@@ -39,6 +39,8 @@ class CallScriptViewController : UIViewController, IssueShareable {
         }
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: nil, action: nil)
+        
+        AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/\(contact.id)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +72,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
     }
     
     @objc func callButtonPressed(_ button: UIButton) {
-        AnalyticsManager.shared.trackEvent(withName:"Action: Dialed Number", andProperties: ["contact_id":contact.id])
+        AnalyticsManager.shared.trackEventOld(withName:"Action: Dialed Number", andProperties: ["contact_id":contact.id])
         callNumber(contact.phone)
     }
 
@@ -122,6 +124,7 @@ class CallScriptViewController : UIViewController, IssueShareable {
         logs.add(log: log)
         let operation = ReportOutcomeOperation(log: log, outcome: outcome)
         OperationQueue.main.addOperation(operation)
+        AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issue/\(issue.slug)/")
     }
     
     func handleCallOutcome(outcome: Outcome) {
@@ -222,14 +225,14 @@ extension CallScriptViewController : UITableViewDataSource {
     }
     
     @objc func moreNumbersTapped() {
-        AnalyticsManager.shared.trackEvent(withName: "Action: Opened More Numbers", andProperties: ["contact_id":contact.id])
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Opened More Numbers", andProperties: ["contact_id":contact.id])
         if contact.fieldOffices.count > 0 {
             let contactID = contact.id
             let sheet = UIAlertController(title: R.string.localizable.chooseANumber(), message: nil, preferredStyle: .actionSheet)
             for office in contact.fieldOffices {
                 let title = office.city.isEmpty ? "\(office.phone)" : "\(office.city): \(office.phone)"
                 sheet.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] action in
-                    AnalyticsManager.shared.trackEvent(withName: "Action: Dialed Alternate Number", andProperties: ["contact_id":contactID])
+                    AnalyticsManager.shared.trackEventOld(withName: "Action: Dialed Alternate Number", andProperties: ["contact_id":contactID])
                     self?.callNumber(office.phone)
                 }))
             }
@@ -267,7 +270,7 @@ extension CallScriptViewController: UICollectionViewDataSource, UICollectionView
         let outcomeModel = issue.outcomeModels[indexPath.row]
         
 
-        AnalyticsManager.shared.trackEvent(withName: "Action: Button \(outcomeModel.label)", andProperties: ["contact_id":contact.id])
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Button \(outcomeModel.label)", andProperties: ["contact_id":contact.id])
 
         if outcomeModel.label != "skip" {
             handleCallOutcome(outcome: outcomeModel)

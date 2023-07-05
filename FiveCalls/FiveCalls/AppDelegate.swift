@@ -30,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showWelcome()
         }
 
-        AnalyticsManager.shared.startup()
-
         oneSignalStartup(launchOptions: launchOptions)
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
 
@@ -47,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // sets a string like 'usps-postal-service-covid-funding' that we can use when issues are loaded
         UserDefaults.standard.set(incomingURL.lastPathComponent, forKey: UserDefaultsKey.selectIssuePath.rawValue)
-        AnalyticsManager.shared.trackEvent(withName: "Info: Enter from Universal Link", andProperties: ["issue-slug": incomingURL.lastPathComponent])
+        AnalyticsManager.shared.trackEventOld(withName: "Info: Enter from Universal Link", andProperties: ["issue-slug": incomingURL.lastPathComponent])
 
         return true
     }

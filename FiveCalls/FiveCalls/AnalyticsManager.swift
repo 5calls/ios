@@ -8,18 +8,16 @@
 
 import Foundation
 import FirebaseAnalytics
+import PlausibleSwift
 
 class AnalyticsManager {
     static let shared = AnalyticsManager()
-    private var setupComplete = false
+    private var plausible: PlausibleSwift?
     
-    private init() {}
-    
-    func startup() {
-
-        setupComplete = true
+    private init() {
+        plausible = try? PlausibleSwift(domain: "5calls.org")
     }
-    
+        
     var callerID: String {
         if let cid = UserDefaults.standard.string(forKey: UserDefaultsKey.callerID.rawValue) {
             return cid
@@ -30,13 +28,25 @@ class AnalyticsManager {
         return cid.uuidString
     }
     
-    func trackEvent(withName name: String, andProperties properties: [String: String] = [:]) {
-        if !setupComplete { assertionFailure("tracking before we've setup analytics") }
-
+    func trackPageview(path: String) {
+        #if !DEBUG
+        try? plausible?.trackPageview(path: path, properties: ["isiOSApp": "true"])
+        #endif
+    }
+    
+    func trackEvent(name: String, path: String) {
+        #if !DEBUG
+        try? plausible?.trackEvent(event: name, path: path, properties: ["isiOSApp": "true"])
+        #endif
+    }
+    
+    // not quite ready to remove all the references to this, but I don't want to push these all to plausible immediately
+    func trackEventOld(withName name: String, andProperties properties: [String: String] = [:]) {
+        #if !DEBUG
         // firebase does not support colons in event names...
         let sanitizedEventName = name.replacingOccurrences(of: ":", with: "_").replacingOccurrences(of: " ", with: "")
         Analytics.logEvent(sanitizedEventName, parameters: properties)
-
+        #endif
     }
     
     func trackError(error: Error) {

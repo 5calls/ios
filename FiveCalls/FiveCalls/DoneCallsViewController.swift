@@ -45,6 +45,7 @@ class DoneCallsViewController: UIViewController, IssueShareable {
         }
         OperationQueue.main.addOperation(callcountOp)
         
+        AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/done/")
         // these two should never show at the same time, rating will always
         // wait until 5, notifications will trigger on the first one.
         ratingPromptCounter.increment()
@@ -127,7 +128,7 @@ extension DoneCallsViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.donateCell, for: indexPath)!
-            cell.configure()
+            cell.configure(withPath: "/issue/\(issue.slug)/done/")
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.shareCell, for: indexPath)!
@@ -146,7 +147,10 @@ extension DoneCallsViewController {
                 
         if deviceState?.hasNotificationPermission == false && nextPrompt <= Date() {
             let alert = UIAlertController(title: R.string.localizable.notificationTitle(), message: R.string.localizable.notificationAsk(), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: R.string.localizable.notificationImportant(), style: .default, handler: { [weak self] (action) in
+                if let issue = self?.issue {
+                    AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/issue/\(issue.slug)/done/")
+                }
                 OneSignal.promptForPushNotifications(userResponse: { (success) in
                     //
                 })
