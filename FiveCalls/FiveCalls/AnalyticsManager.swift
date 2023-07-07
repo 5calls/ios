@@ -30,15 +30,15 @@ class AnalyticsManager {
     
     func trackPageview(path: String, properties: [String: String] = .init()) {
         #if !DEBUG
-        properties["isIOSApp"] = "true"
-        try? plausible?.trackPageview(path: path, properties: properties)
+        let alwaysUseProperties: [String: String] = ["isIOSApp": "true"]
+        try? plausible?.trackPageview(path: path, properties: properties.merging(alwaysUseProperties) { _, new in new })
         #endif
     }
     
     func trackEvent(name: String, path: String, properties: [String: String] = .init()) {
         #if !DEBUG
-        properties["isIOSApp"] = "true"
-        try? plausible?.trackEvent(event: name, path: path, properties: properties)
+        let alwaysUseProperties: [String: String] = ["isIOSApp": "true"]
+        try? plausible?.trackEvent(event: name, path: path, properties: properties.merging(alwaysUseProperties) { _, new in new })
         #endif
     }
     
