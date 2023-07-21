@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import SwiftUI
 import OneSignal
 import Firebase
 
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var navController: CustomNavigationController!
+    
+    let USE_NEW_SWIFTUI_INTERFACE = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -24,15 +29,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         resetOrInitializeCountForRating()
         
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
-            showWelcome()
-        }
-
         oneSignalStartup(launchOptions: launchOptions)
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
 
         FirebaseApp.configure()
+        
+        navController = R.storyboard.main.instantiateInitialViewController()
+        window = UIWindow()
+        if USE_NEW_SWIFTUI_INTERFACE {
+            window?.rootViewController = UIHostingController(rootView: Dashboard())
+        } else {
+            window?.rootViewController = navController
+        }
+        
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
+            showWelcome()
+        }
 
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
