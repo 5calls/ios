@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-@main
+//@main // TODO: once SwiftUI is done move main here
 struct FiveCallsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
