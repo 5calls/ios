@@ -595,13 +595,6 @@
 			name = Fixtures;
 			sourceTree = "<group>";
 		};
-		D0480B222A538E1000502818 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		D0480AE62A4D462F00502818 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +611,13 @@
 				D0480B202A4D4B0400502818 /* PreviewIssues.swift */,
 			);
 			name = PreviewContent;
+			sourceTree = "<group>";
+		};
+		D0480B222A538E1000502818 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
@@ -1084,7 +1084,7 @@
 					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
 				);
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1111,7 +1111,7 @@
 					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
 				);
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1316,7 +1316,7 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1337,7 +1337,7 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
