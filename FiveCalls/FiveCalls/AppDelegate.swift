@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navController: CustomNavigationController!
     
     let USE_NEW_SWIFTUI_INTERFACE = false
+    var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -37,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController = R.storyboard.main.instantiateInitialViewController()
         window = UIWindow()
         if USE_NEW_SWIFTUI_INTERFACE {
-            window?.rootViewController = UIHostingController(rootView: Dashboard())
+            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(appState))
         } else {
             window?.rootViewController = navController
         }

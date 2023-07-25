@@ -9,7 +9,7 @@
 import Foundation
 import Rswift
 
-struct Issue : Decodable {
+struct Issue: Identifiable, Decodable {
     let id: Int64
     let meta: String
     let name: String
@@ -33,3 +33,4 @@ extension Issue: Equatable {
         return lhs.id == rhs.id
     }
 }
+
