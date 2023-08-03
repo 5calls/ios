@@ -166,4 +166,12 @@ extension AppDelegate: AppStateDelegate {
     func setIssues(issues: [Issue]) {
         self.appState.issues = issues
     }
+    
+    func setContacts(contacts: [Contact]) {
+        self.appState.contacts = contacts
+    }
+    
+    func setLocation(location: UserLocation) {
+        self.appState.location = location
+    }
 }

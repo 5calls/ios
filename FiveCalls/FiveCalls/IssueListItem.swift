@@ -10,6 +10,7 @@ import SwiftUI
 
 struct IssueListItem: View {
     let issue: Issue
+    let contacts: [Contact]
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -45,7 +46,7 @@ struct IssueListItem: View {
                                 .frame(width: 20)
                                 .clipped()
                                 .offset(x: -20, y: 0)
-                            Text("Call House Rep, Senators")
+                            Text(repText)
                                 .font(.footnote)
                                 .offset(x: -15, y: 0)
                         }
@@ -63,16 +64,25 @@ struct IssueListItem: View {
             }
         }
         .clipped()
-
+    }
+    
+    var repText: String {
+        if issue.contactAreas.count == 0 {
+            // we should never ship an issue with no contacts, right?
+            return "No contacts"
+        } else {
+            let areas = issue.contactAreas.map({ a in AreaToNiceString(area: a) }).joined(separator: ", ")
+            return "Call \(areas)"
+        }
     }
 }
 
 struct IssueListItem_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            IssueListItem(issue: Issue.basicPreviewIssue)
+            IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.multilinePreviewIssue)
+            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
         }
     }

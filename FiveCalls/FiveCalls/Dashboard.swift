@@ -11,6 +11,8 @@ import SwiftUI
 struct Dashboard: View {
     @EnvironmentObject var appState: AppState
     
+    let op = Operator()
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -18,18 +20,33 @@ struct Dashboard: View {
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
                 ForEach(appState.issues) { issue in
-                    IssueListItem(issue: issue)
+                    IssueListItem(issue: issue, contacts: appState.contacts)
                 }
             }.padding(.horizontal, 10)
         }.onAppear {
-            NewIssuesManager().fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
-            if case let .serverError(error) = result {
-                print("error: \(error)")
+            // TODO: refresh if issues are old too?
+            if appState.issues.isEmpty {
+                op.fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
+                    if case let .serverError(error) = result {
+                        print("issues error: \(error)")
+                    }
+                    if case .offline = result {
+                        print("issues offline")
+                    }
+                })
             }
-            if case .offline = result {
-                print("offline")
+            
+            if appState.contacts.isEmpty && appState.location != nil {
+                op.fetchContacts(location: appState.location!, delegate: (UIApplication.shared.delegate as! AppDelegate)) { result in
+                    if case let .serverError(error) = result {
+                        print("contacts error: \(error)")
+                    }
+                    if case .offline = result {
+                        print("contacts offline")
+                    }
+
+                }
             }
-            })
         }
     }
 }
