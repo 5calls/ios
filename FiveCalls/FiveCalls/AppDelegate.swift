@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: CustomNavigationController!
     
-    let USE_NEW_SWIFTUI_INTERFACE = false
+    let USE_NEW_SWIFTUI_INTERFACE = true
     var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -159,5 +159,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var isRunningUnitTests: Bool {
         return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
+    }
+}
+
+extension AppDelegate: AppStateDelegate {
+    func setIssues(issues: [Issue]) {
+        self.appState.issues = issues
     }
 }

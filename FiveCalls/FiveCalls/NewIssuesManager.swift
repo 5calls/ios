@@ -16,12 +16,12 @@ class NewIssuesManager {
         queue = .main
     }
     
-    func fetchIssues(completion: @escaping (LoadResult) -> Void) {
+    func fetchIssues(delegate: AppStateDelegate, completion: @escaping (LoadResult) -> Void) {
         let operation = FetchIssuesOperation()
         operation.completionBlock = { [weak operation] in
             if let issues = operation?.issuesList {
                 DispatchQueue.main.async {
-                    (UIApplication.shared.delegate as! AppDelegate).appState.issues = issues
+                    delegate.setIssues(issues: issues)
                     completion(.success)
                 }
             } else {
