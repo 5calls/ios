@@ -99,3 +99,25 @@ extension Contact {
         return scriptWithContactName
     }
 }
+
+// AreaToNiceString converts an area name to a generic office name that can be used in the interface
+func AreaToNiceString(area: String) -> String {
+    switch area {
+    case "US House", "House":
+        return "House Rep";
+    case "US Senate", "Senate":
+        return "Senator";
+    case "StateUpper":
+        return "State Senator";
+    case "StateLower":
+        return "State Rep";
+    case "Governor":
+        return "Governor";
+    case "AttorneyGeneral":
+        return "Attorney General";
+    case "SecretaryOfState":
+        return "Secretary of State";
+    default:
+        return area
+    }
+}

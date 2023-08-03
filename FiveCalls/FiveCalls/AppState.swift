@@ -10,6 +10,8 @@ import Foundation
 
 class AppState: ObservableObject {
     @Published var issues: [Issue] = []
+    @Published var contacts: [Contact] = []
+    @Published var location: UserLocation?
     
     init() {
         // I guess we could load cached items here
@@ -18,4 +20,6 @@ class AppState: ObservableObject {
 
 protocol AppStateDelegate {
     func setIssues(issues: [Issue])
+    func setContacts(contacts: [Contact])
+    func setLocation(location: UserLocation)
 }
