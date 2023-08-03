@@ -15,3 +15,7 @@ class AppState: ObservableObject {
         // I guess we could load cached items here
     }
 }
+
+protocol AppStateDelegate {
+    func setIssues(issues: [Issue])
+}

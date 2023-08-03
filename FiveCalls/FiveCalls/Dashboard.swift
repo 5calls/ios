@@ -22,11 +22,11 @@ struct Dashboard: View {
                 }
             }.padding(.horizontal, 10)
         }.onAppear {
-            NewIssuesManager().fetchIssues(completion: { result in
+            NewIssuesManager().fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
             if case let .serverError(error) = result {
-                print("error")
+                print("error: \(error)")
             }
-            if case let .offline = result {
+            if case .offline = result {
                 print("offline")
             }
             })
