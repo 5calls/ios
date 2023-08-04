@@ -111,6 +111,7 @@
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */; };
+		D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */; };
 		D0C08DF4284A99C000D41257 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF3284A99C000D41257 /* Down */; };
 		D0C08DF6284A99E500D41257 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF5284A99E500D41257 /* DZNEmptyDataSet */; };
 		D0C08DF8284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF7284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -294,6 +295,7 @@
 		D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationsService.entitlements; sourceTree = "<group>"; };
 		D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FiveCalls.entitlements; sourceTree = "<group>"; };
 		D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCircle.swift; sourceTree = "<group>"; };
+		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+FiveCalls.swift"; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				B512506B21E6F91C007D32DF /* ContactsManager.swift */,
 				B512506D21E701DE007D32DF /* ContactList.swift */,
 				D0453EBE2A6F8E7000E19A81 /* AppState.swift */,
+				D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
 				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
+				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
 				B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */,
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,

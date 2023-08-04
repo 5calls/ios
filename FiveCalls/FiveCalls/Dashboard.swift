@@ -58,6 +58,11 @@ struct Dashboard_Previews: PreviewProvider {
             Issue.basicPreviewIssue,
             Issue.multilinePreviewIssue
         ]
+        state.contacts = [
+            Contact.housePreviewContact,
+            Contact.senatePreviewContact1,
+            Contact.senatePreviewContact2
+        ]
         return state
     }()
     

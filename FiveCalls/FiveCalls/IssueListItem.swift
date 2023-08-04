@@ -34,8 +34,11 @@ struct IssueListItem: View {
                         HStack(spacing: 0) {
                             ForEach(issue.contactsForIssue(allContacts: contacts).numbered()) { numberedContact in
                                 ContactCircle(contact: numberedContact.element)
-                                    .frame(width: 20)
+                                    .frame(width: 20, height: 20)
                                     .offset(x: -10 * CGFloat(numberedContact.number), y:0)
+                                    .onAppear {
+                                        print("contact for \(numberedContact.element.photoURL)")
+                                    }
                             }
                             Text(repText)
                                 .font(.footnote)
