@@ -12,21 +12,37 @@ struct ContactCircle: View {
     let contact: Contact
     
     var body: some View {
-        AsyncImage(url: contact.photoURL, content: { image in
-            image.resizable()
-                .aspectRatio(contentMode: .fit)
-                .mask {
-                    Circle()
-                }
-        }) {
-            Circle()
-                .fill(.red)
+        if contact.photoURL != nil {
+            AsyncImage(url: contact.photoURL, content: { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .mask {
+                        Circle()
+                    }
+            }) {
+                placeholder
+            }
+        } else {
+            placeholder
         }
+    }
+    
+    var placeholder: some View {
+        Image(uiImage: defaultImage(forContact: contact))
+            .resizable()
+            .mask {
+                Circle()
+            }
     }
 }
 
 struct ContactCircle_Previews: PreviewProvider {
     static var previews: some View {
-        ContactCircle(contact: Contact.housePreviewContact)
+        VStack {
+            ContactCircle(contact: Contact.housePreviewContact)
+                .frame(width: 40)
+            ContactCircle(contact: Contact.senatePreviewContact1)
+                .frame(width: 40)
+        }
     }
 }

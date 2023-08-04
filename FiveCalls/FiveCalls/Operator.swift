@@ -51,6 +51,8 @@ class Operator {
     }
     
     func fetchContacts(location: UserLocation, delegate: AppStateDelegate, completion: @escaping (OperationResult) -> Void) {
+        
+        
         let operation = FetchContactsOperation(location: location)
         operation.completionBlock = { [weak operation] in
             if var contacts = operation?.contacts, !contacts.isEmpty {
