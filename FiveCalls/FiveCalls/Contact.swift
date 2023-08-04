@@ -57,7 +57,7 @@ struct Contact : Decodable {
     }
 }
 
-extension Contact : Hashable {
+extension Contact: Hashable, Identifiable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
@@ -106,11 +106,10 @@ func AreaToNiceString(area: String) -> String {
     case "US House", "House":
         return "House Rep";
     case "US Senate", "Senate":
-        return "Senator";
-    case "StateUpper":
-        return "State Senator";
-    case "StateLower":
-        return "State Rep";
+        return "Senators";
+    // state legislatures call themselves different things by state, so let's use a generic term for all of them
+    case "StateLower", "StateUpper":
+        return "State Reps";
     case "Governor":
         return "Governor";
     case "AttorneyGeneral":
