@@ -28,7 +28,7 @@ extension Numbered: Identifiable where Element: Identifiable {
 }
 
 extension Sequence {
-  func numbered(startingAt start: Int = 1) -> [Numbered<Element>] {
+  func numbered(startingAt start: Int = 0) -> [Numbered<Element>] {
     zip(start..., self)
       .map { Numbered(number: $0.0, element: $0.1) }
   }
