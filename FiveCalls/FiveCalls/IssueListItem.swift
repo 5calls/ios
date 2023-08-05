@@ -19,12 +19,6 @@ struct IssueListItem: View {
                 .clipped()
             VStack {
                 HStack {
-                    Circle()
-                        .stroke(Color(.tertiaryLabel), lineWidth: 4)
-                        .background(Circle().fill(Color(.quaternaryLabel)))
-                        .frame(width: 45)
-                        .padding(.vertical, 12)
-                        .padding(.leading, 12)
                     VStack(alignment: .leading) {
                         Text(issue.name)
                             .font(.system(size: 20, weight: .semibold))
@@ -46,7 +40,7 @@ struct IssueListItem: View {
                             Spacer()
                         }
                     }
-                    .padding(.leading, 6)
+                    .padding(.leading, 10)
                     .padding(.vertical, 10)
                     Spacer()
                     Image(systemName: "chevron.right.circle.fill")
