@@ -16,6 +16,8 @@ struct Dashboard: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
+                LocationHeader(location: appState.location)
+                    .padding(.bottom, 10)
                 Text("What’s important to you?")
                     .font(.system(size: 20))
                     .fontWeight(.semibold)

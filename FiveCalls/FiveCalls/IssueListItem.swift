@@ -36,7 +36,7 @@ struct IssueListItem: View {
                             }
                             Text(repText)
                                 .font(.footnote)
-                                .offset(x: -15, y: 0)
+                                .offset(x: contacts.isEmpty ? 0 : -15, y: 0)
                             Spacer()
                         }
                     }
@@ -72,6 +72,8 @@ struct IssueListItem_Previews: PreviewProvider {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
+                .padding(.horizontal, 10)
+            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
         }
     }
