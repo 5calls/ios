@@ -32,7 +32,7 @@ class Operator {
                     completion(.success)
                 }
             } else if let error = operation?.error {
-                print("Could not load issues: \(error.localizedDescription ?? "<unknown>")..")
+                print("Could not load issues: \(error.localizedDescription)..")
                 
                 DispatchQueue.main.async {
                     print(error.localizedDescription)
