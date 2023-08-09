@@ -30,9 +30,6 @@ struct IssueListItem: View {
                                 ContactCircle(contact: numberedContact.element)
                                     .frame(width: 20, height: 20)
                                     .offset(x: -10 * CGFloat(numberedContact.number), y:0)
-                                    .onAppear {
-                                        print("contact for \(numberedContact.element.photoURL)")
-                                    }
                             }
                             Text(repText)
                                 .font(.footnote)
