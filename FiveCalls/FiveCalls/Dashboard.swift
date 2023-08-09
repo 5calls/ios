@@ -11,6 +11,8 @@ import SwiftUI
 struct Dashboard: View {
     @EnvironmentObject var appState: AppState
     
+    @State var showLocationSheet = false
+    
     let op = Operator()
     
     var body: some View {
@@ -18,6 +20,16 @@ struct Dashboard: View {
             VStack(alignment: .leading, spacing: 10) {
                 LocationHeader(location: appState.location)
                     .padding(.bottom, 10)
+                    .onTapGesture {
+                        showLocationSheet.toggle()
+                    }
+                    .sheet(isPresented: $showLocationSheet) {
+                        LocationSheet(location: appState.location, delegate: (UIApplication.shared.delegate as! AppDelegate))
+                            .presentationDetents([.medium])
+                            .presentationDragIndicator(.visible)
+                            .padding(.top, 40)
+                        Spacer()
+                    }
                 Text("What’s important to you?")
                     .font(.system(size: 20))
                     .fontWeight(.semibold)

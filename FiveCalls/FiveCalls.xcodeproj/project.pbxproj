@@ -109,6 +109,8 @@
 		D07829772A7B3795001EE5DB /* PreviewContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07829762A7B3795001EE5DB /* PreviewContacts.swift */; };
 		D082961C2A7BFE04005B002A /* Numbered.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082961B2A7BFE04005B002A /* Numbered.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
+		D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */; };
+		D0A76F252A814786006EC2F5 /* LocationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A76F242A814786006EC2F5 /* LocationSheet.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */; };
@@ -292,6 +294,8 @@
 		D07829762A7B3795001EE5DB /* PreviewContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContacts.swift; sourceTree = "<group>"; };
 		D082961B2A7BFE04005B002A /* Numbered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbered.swift; sourceTree = "<group>"; };
 		D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeCollectionCell.swift; sourceTree = "<group>"; };
+		D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
+		D0A76F242A814786006EC2F5 /* LocationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSheet.swift; sourceTree = "<group>"; };
 		D0BA59A81F9546510069DA58 /* NotificationsService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationsService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA59AA1F9546510069DA58 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		D0BA59AC1F9546510069DA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -542,6 +546,7 @@
 				B512506D21E701DE007D32DF /* ContactList.swift */,
 				D0453EBE2A6F8E7000E19A81 /* AppState.swift */,
 				D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */,
+				D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
 				D082961B2A7BFE04005B002A /* Numbered.swift */,
 				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
+				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -938,6 +944,7 @@
 				1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */,
 				0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */,
 				D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */,
+				D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */,
 				A5048C6F1F96BCD100C6163D /* IssuesViewModel.swift in Sources */,
 				A55647621F909C6F002737D4 /* Category.swift in Sources */,
 				B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */,
@@ -1011,6 +1018,7 @@
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */,
+				D0A76F252A814786006EC2F5 /* LocationSheet.swift in Sources */,
 				D0480AE52A4D462500502818 /* Dashboard.swift in Sources */,
 				B54228081E8EF8C5003C9956 /* LocationButton.swift in Sources */,
 				D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */,
@@ -1282,7 +1290,7 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1319,7 +1327,7 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
