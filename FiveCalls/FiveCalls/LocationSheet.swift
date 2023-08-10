@@ -12,7 +12,7 @@ import CoreLocation
 struct LocationSheet: View {
     @Environment(\.dismiss) var dismiss
     
-    let location: UserLocation?
+    let location: NewUserLocation?
     let delegate: AppStateDelegate?
     
     @State var locationText: String = ""
@@ -103,8 +103,8 @@ struct LocationSheet: View {
     }
     
     func locationSearch() {
-        UserLocation.current.setFrom(address: locationText) { updatedLocation in
-            delegate?.setLocation(location: updatedLocation)
+        _ = NewUserLocation(address: locationText) { loc in
+            delegate?.setLocation(location: loc)
             dismiss()
         }
     }
@@ -114,11 +114,11 @@ struct LocationSheet: View {
         
         Task {
             do {
-                let loc = try await locationCoordinator.getLocation()
-                UserLocation.current.setFrom(location: loc) {
-                    delegate?.setLocation(location: UserLocation.current)
+                let clLoc = try await locationCoordinator.getLocation()
+                _ = NewUserLocation(location: clLoc) { loc in
+                    delegate?.setLocation(location: loc)
+                    dismiss()
                 }
-                dismiss()
             } catch (let error as LocationCoordinatorError) {
                 switch error {
                 case .Unauthorized:

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LocationHeader: View {
-    let location: UserLocation?
+    let location: NewUserLocation?
     let fetchingContacts: Bool
     
     var body: some View {
@@ -40,7 +40,7 @@ struct LocationHeader: View {
             VStack(alignment: .leading) {
                 Text("Your location is:")
                     .font(.footnote)
-                Text(location!.locationDisplay ?? "Unknown location")
+                Text(location!.locationDisplay)
                     .font(.system(.title3))
                     .fontWeight(.medium)
             }
@@ -78,10 +78,8 @@ struct LocationHeader_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             LocationHeader(location: nil, fetchingContacts: true)
-            LocationHeader(location: UserLocation.current, fetchingContacts: false)
+            LocationHeader(location: NewUserLocation(address: "19444"), fetchingContacts: false)
             Spacer()
-        }.onAppear {
-            UserLocation.current.setFrom(address: "19444")
         }
     }
 }

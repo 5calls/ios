@@ -181,7 +181,7 @@ extension AppDelegate: AppStateDelegate {
         }
     }
     
-    func setLocation(location: UserLocation) {
+    func setLocation(location: NewUserLocation) {
         DispatchQueue.main.async {
             self.appState.location = location
         }
