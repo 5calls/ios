@@ -18,7 +18,7 @@ struct Dashboard: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                LocationHeader(location: appState.location)
+                LocationHeader(location: appState.location, fetchingContacts: appState.fetchingContacts)
                     .padding(.bottom, 10)
                     .onTapGesture {
                         showLocationSheet.toggle()

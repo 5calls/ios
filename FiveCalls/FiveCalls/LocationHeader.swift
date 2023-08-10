@@ -10,10 +10,14 @@ import SwiftUI
 
 struct LocationHeader: View {
     let location: UserLocation?
+    let fetchingContacts: Bool
     
     var body: some View {
         HStack {
             Spacer()
+            if fetchingContacts {
+                SwiftUI.ProgressView()
+            }
             if location == nil {
                 unsetLocationView
                     .background {
@@ -73,8 +77,8 @@ struct LocationHeader: View {
 struct LocationHeader_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            LocationHeader(location: nil)
-            LocationHeader(location: UserLocation.current)
+            LocationHeader(location: nil, fetchingContacts: true)
+            LocationHeader(location: UserLocation.current, fetchingContacts: false)
             Spacer()
         }.onAppear {
             UserLocation.current.setFrom(address: "19444")

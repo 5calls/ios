@@ -164,14 +164,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: AppStateDelegate {
     func setIssues(issues: [Issue]) {
-        self.appState.issues = issues
+        DispatchQueue.main.async {
+            self.appState.issues = issues
+        }
     }
     
     func setContacts(contacts: [Contact]) {
-        self.appState.contacts = contacts
+        DispatchQueue.main.async {
+            self.appState.contacts = contacts
+        }
+    }
+    
+    func setFetchingContacts(fetching: Bool) {
+        DispatchQueue.main.async {
+            self.appState.fetchingContacts = fetching
+        }
     }
     
     func setLocation(location: UserLocation) {
-        self.appState.location = location
+        DispatchQueue.main.async {
+            self.appState.location = location
+        }
+        Operator().fetchContacts(location: location, delegate: self) {_ in
+            // nothing I guess? report errors in the app state
+        }
     }
 }

@@ -51,8 +51,12 @@ class Operator {
     }
     
     func fetchContacts(location: UserLocation, delegate: AppStateDelegate, completion: @escaping (OperationResult) -> Void) {
+        delegate.setFetchingContacts(fetching: true)
+        
         let operation = FetchContactsOperation(location: location)
         operation.completionBlock = { [weak operation] in
+            delegate.setFetchingContacts(fetching: false)
+            
             if var contacts = operation?.contacts, !contacts.isEmpty {
                 // if we get more than one house rep here, select the first one.
                 // this is a split district situation and we should let the user
