@@ -11,6 +11,7 @@ import Foundation
 class AppState: ObservableObject {
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
+    @Published var fetchingContacts = false
     @Published var location: UserLocation?
     
     init() {
@@ -21,5 +22,6 @@ class AppState: ObservableObject {
 protocol AppStateDelegate {
     func setIssues(issues: [Issue])
     func setContacts(contacts: [Contact])
+    func setFetchingContacts(fetching: Bool)
     func setLocation(location: UserLocation)
 }
