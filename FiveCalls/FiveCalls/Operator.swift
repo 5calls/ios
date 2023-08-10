@@ -50,7 +50,7 @@ class Operator {
         queue.addOperation(operation)
     }
     
-    func fetchContacts(location: UserLocation, delegate: AppStateDelegate, completion: @escaping (OperationResult) -> Void) {
+    func fetchContacts(location: NewUserLocation, delegate: AppStateDelegate, completion: @escaping (OperationResult) -> Void) {
         delegate.setFetchingContacts(fetching: true)
         
         let operation = FetchContactsOperation(location: location)

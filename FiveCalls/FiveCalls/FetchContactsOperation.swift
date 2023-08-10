@@ -25,6 +25,13 @@ class FetchContactsOperation : BaseOperation {
     init(location: UserLocation) {
         self.location = location
     }
+    init(location: NewUserLocation) {
+        let loc = UserLocation()
+        loc.locationType = UserLocation.LocationType(rawValue: location.locationType.rawValue)
+        loc.locationValue = location.locationValue
+        loc.locationDisplay = location.locationDisplay
+        self.location = loc
+    }
     
     private func buildURL() -> URL? {
         var components = URLComponents(string: "https://api.5calls.org/v1/reps")
