@@ -26,15 +26,15 @@ struct IssueListItem: View {
                             .lineLimit(2)
                         Spacer()
                         HStack(spacing: 0) {
-                            ForEach(issue.contactsForIssue(allContacts: contacts).numbered()) { numberedContact in
+                            let contactsForIssue = issue.contactsForIssue(allContacts: contacts)
+                            ForEach(contactsForIssue.numbered()) { numberedContact in
                                 ContactCircle(contact: numberedContact.element)
                                     .frame(width: 20, height: 20)
                                     .offset(x: -10 * CGFloat(numberedContact.number), y:0)
                             }
                             Text(repText)
                                 .font(.footnote)
-                                .offset(x: contacts.isEmpty ? 0 : 8 + (-10 * CGFloat(contacts.count)), y: 0)
-                                .padding(.leading, 8)
+                                .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
                             Spacer()
                         }
                     }
