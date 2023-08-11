@@ -33,7 +33,8 @@ struct IssueListItem: View {
                             }
                             Text(repText)
                                 .font(.footnote)
-                                .offset(x: contacts.isEmpty ? 0 : -15, y: 0)
+                                .offset(x: contacts.isEmpty ? 0 : 8 + (-10 * CGFloat(contacts.count)), y: 0)
+                                .padding(.leading, 8)
                             Spacer()
                         }
                     }
@@ -68,7 +69,9 @@ struct IssueListItem_Previews: PreviewProvider {
         ScrollView {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
+            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
+                .padding(.horizontal, 10)
+            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
