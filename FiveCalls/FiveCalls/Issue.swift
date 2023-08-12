@@ -56,7 +56,7 @@ struct Issue: Identifiable, Decodable {
         return contactAreas
     }
     
-    var markdownAttributedString: AttributedString {
+    var markdownIssueReason: AttributedString {
         do {
             return try AttributedString(markdown: self.reason, options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
         } catch {
@@ -64,6 +64,16 @@ struct Issue: Identifiable, Decodable {
             return AttributedString("Could not parse issue markdown, email [hello@5calls.org](mailto:hello@5calls.org)")
         }
     }
+    
+    var markdownIssueScript: AttributedString {
+        do {
+            return try AttributedString(markdown: self.script, options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
+        } catch {
+            // TODO: notify us somehow that markdown parsing failed
+            return AttributedString("Could not parse script markdown, email [hello@5calls.org](mailto:hello@5calls.org)")
+        }
+    }
+
 }
 
 extension Issue: Equatable {

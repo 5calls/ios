@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct AreaOffice : Decodable {
+struct AreaOffice: Decodable, Identifiable {
     let city: String
     let phone: String
+    
+    var id: Int {
+        return phone.hashValue
+    }
 }

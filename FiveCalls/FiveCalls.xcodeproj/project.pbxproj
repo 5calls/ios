@@ -122,6 +122,7 @@
 		D0C08DF8284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF7284A99F900D41257 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D0C08DFA284A99F900D41257 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF9284A99F900D41257 /* FirebaseAuth */; };
 		D0C08DFC284A99F900D41257 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DFB284A99F900D41257 /* FirebaseCrashlytics */; };
+		D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */; };
 		D0CFF333284A835F0082693E /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF332284A835F0082693E /* OneSignal */; };
 		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
 		D0CFF33B284A877E0082693E /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33A284A877E0082693E /* DZNEmptyDataSet */; };
@@ -306,6 +307,7 @@
 		D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCircle.swift; sourceTree = "<group>"; };
 		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeader.swift; sourceTree = "<group>"; };
+		D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueContactDetail.swift; sourceTree = "<group>"; };
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+FiveCalls.swift"; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
 				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
 				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
+				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
 				D07829752A7B32A8001EE5DB /* Operator.swift in Sources */,
 				B50280561E47875500749ED7 /* ContactLog.swift in Sources */,
+				D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */,
 				B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */,
 				B5E762691E40D63800D63D62 /* Issue.swift in Sources */,
 				B5CA63FB1E422D0700966B7D /* IssuesContainerViewController.swift in Sources */,
