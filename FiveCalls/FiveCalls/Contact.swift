@@ -44,7 +44,7 @@ struct Contact : Decodable {
         fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
     }
 
-    init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212", photoURL: URL? = nil) {
+    init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212", photoURL: URL? = nil, fieldOffices: [AreaOffice] = []) {
         self.id = id
         self.area = area
         self.name = name
@@ -53,7 +53,7 @@ struct Contact : Decodable {
         self.photoURL = photoURL
         self.reason = nil
         self.state = nil
-        self.fieldOffices = []
+        self.fieldOffices = fieldOffices
     }
 }
 
