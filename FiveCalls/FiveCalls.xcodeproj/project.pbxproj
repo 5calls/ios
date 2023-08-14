@@ -91,6 +91,7 @@
 		B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E401E52A8AB005221B7 /* POST-report.json */; };
 		B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */; };
 		B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFBB981E5EA60E00647121 /* Appearance.swift */; };
+		D00C608D2A89F04400FF7D1D /* AdaptiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */; };
 		D017D95523DE6BF9002F710C /* ShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017D95423DE6BF9002F710C /* ShareCell.swift */; };
 		D017D95723DE6C26002F710C /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017D95623DE6C26002F710C /* ProgressCell.swift */; };
 		D029C6D01F6F42EA00E56CC7 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */; };
@@ -280,6 +281,7 @@
 		B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedIssuesViewModel.swift; sourceTree = "<group>"; };
 		B5FFBB981E5EA60E00647121 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveSheet.swift; sourceTree = "<group>"; };
 		D017D95423DE6BF9002F710C /* ShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCell.swift; sourceTree = "<group>"; };
 		D017D95623DE6C26002F710C /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
 				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
 				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
+				D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */,
 				D0480AE32A4D45A700502818 /* App.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
+				D00C608D2A89F04400FF7D1D /* AdaptiveSheet.swift in Sources */,
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
 				B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */,
 				9C18DA5F1E458E480024B991 /* ContactDetailCell.swift in Sources */,
@@ -1302,7 +1306,7 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1339,7 +1343,7 @@
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -23,10 +23,9 @@ struct Dashboard: View {
                     .onTapGesture {
                         showLocationSheet.toggle()
                     }
-                    .sheet(isPresented: $showLocationSheet) {
+                    // TODO(iOS 16): replace with presentationDetents
+                    .adaptiveSheet(isPresented: $showLocationSheet, detents: [.medium()], smallestUndimmedDetentIdentifier: .none) {
                         LocationSheet(location: appState.location, delegate: (UIApplication.shared.delegate as! AppDelegate))
-                            .presentationDetents([.medium])
-                            .presentationDragIndicator(.visible)
                             .padding(.top, 40)
                         Spacer()
                     }
