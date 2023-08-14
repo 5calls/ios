@@ -64,14 +64,16 @@ struct LocationSheet: View {
             .padding(.bottom)
             HStack(alignment: .top) {
                 Text("Or")
-                    .font(.system(.title3, weight: .regular))
+                    .font(.system(.title3))
+//                    .fontWeight: .regular)
                     .padding(.trailing)
                     .padding(.top, 10)
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("Detect my location")
-                                .font(.system(.title3, weight: .medium))
+                                .font(.system(.title3))
+                                .fontWeight( .medium)
                                 .foregroundColor(.white)
                         }
                         .padding(.leading)
