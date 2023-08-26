@@ -100,7 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setAppearance() {
-        Appearance.setup()
+        if USE_NEW_SWIFTUI_INTERFACE {
+            Appearance.swiftUISetup()
+        } else {
+            Appearance.setup()
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

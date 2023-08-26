@@ -18,4 +18,9 @@ enum Appearance {
             NSAttributedString.Key.font: UIFont.fvc_header
         ]
     }
+    
+    static func swiftUISetup() {
+        UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "chevron.backward.circle.fill")
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.backward.circle.fill")
+    }
 }

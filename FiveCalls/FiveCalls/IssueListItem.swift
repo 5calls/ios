@@ -22,8 +22,9 @@ struct IssueListItem: View {
                     VStack(alignment: .leading) {
                         Text(issue.name)
                             .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(Color("darkBlueText"))
+                            .foregroundColor(Color.FiveCallsDarkBlueText)
                             .lineLimit(2)
+                            .multilineTextAlignment(.leading)
                         Spacer()
                         HStack(spacing: 0) {
                             let contactsForIssue = issue.contactsForIssue(allContacts: contacts)
@@ -34,6 +35,7 @@ struct IssueListItem: View {
                             }
                             Text(repText)
                                 .font(.footnote)
+                                .foregroundColor(.primary)
                                 .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
                             Spacer()
                         }
@@ -46,7 +48,7 @@ struct IssueListItem: View {
                         .symbolRenderingMode(.monochrome)
                         .padding(.trailing, 10)
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(Color("darkBlue"))
+                        .foregroundColor(Color.FiveCallsDarkBlue)
                 }
             }
         }
