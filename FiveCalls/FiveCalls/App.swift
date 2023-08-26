@@ -9,13 +9,13 @@
 import SwiftUI
 
 //@main // TODO: once SwiftUI is done move main here
-struct FiveCallsApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
-    var body: some Scene {
-        WindowGroup {
-            Dashboard()
-        }
-    }
-}
+//struct FiveCallsApp: App {
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+//            
+//    var body: some Scene {
+//        WindowGroup {
+//            Dashboard().environmentObject(appDelegate.appState)
+//        }
+//    }
+//}
 

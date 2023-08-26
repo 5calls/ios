@@ -41,12 +41,11 @@ struct IssueDetail: View {
                     .frame(maxWidth: .infinity)
                     .background {
                         RoundedRectangle(cornerRadius: 6)
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color.FiveCallsDarkBlue)
                     }
                     
                 
             }.padding(.horizontal)
-
         }
     }
 }
