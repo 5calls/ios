@@ -100,6 +100,20 @@ extension Contact {
     }
 }
 
+extension Contact {
+    static func placeholderContact(for area: String) -> [Contact] {
+        switch area {
+        case "US House":
+            return [
+                    Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
+                    Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])
+                ]
+        default:
+            return [Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])]
+        }
+    }
+}
+
 // AreaToNiceString converts an area name to a generic office name that can be used in the interface
 func AreaToNiceString(area: String) -> String {
     switch area {

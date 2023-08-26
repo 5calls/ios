@@ -36,6 +36,7 @@ struct Dashboard: View {
                     ForEach(appState.issues) { issue in
                         NavigationLink(destination: IssueDetail(issue: issue)) {
                             IssueListItem(issue: issue, contacts: appState.contacts)
+                                .navigationTitle("Issues")
                         }
                     }
                 }.padding(.horizontal, 10)

@@ -15,7 +15,7 @@ struct ContactCircle: View {
         if contact.photoURL != nil {
             AsyncImage(url: contact.photoURL, content: { image in
                 image.resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .mask {
                         Circle()
                     }
@@ -38,11 +38,15 @@ struct ContactCircle: View {
 
 struct ContactCircle_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        HStack {
             ContactCircle(contact: Contact.housePreviewContact)
-                .frame(width: 40)
+                .frame(width: 40, height: 40)
             ContactCircle(contact: Contact.senatePreviewContact1)
                 .frame(width: 40)
+            ContactCircle(contact: Contact.weirdShapeImagePreviewContact)
+                .frame(width: 40, height: 40)
+            Circle()
+                .frame(width: 40, height: 40)
         }
     }
 }

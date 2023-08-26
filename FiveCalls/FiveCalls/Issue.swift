@@ -33,9 +33,14 @@ struct Issue: Identifiable, Decodable {
         var sortedContacts: [Contact] = []
         
         for area in sortedContactAreas(areas: contactAreas) {
-            sortedContacts.append(contentsOf: allContacts.filter({ area == $0.area }))
+            // return standin contacts if we haven't loaded contacts yet
+            if allContacts.isEmpty {
+                sortedContacts.append(contentsOf: Contact.placeholderContact(for: area))
+            } else {
+                sortedContacts.append(contentsOf: allContacts.filter({ area == $0.area }))
+            }
         }
-        
+
         return sortedContacts
     }
     
