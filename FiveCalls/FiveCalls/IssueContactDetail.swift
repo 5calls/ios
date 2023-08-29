@@ -14,24 +14,10 @@ struct IssueContactDetail: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                ContactCircle(contact: contact)
-                    .frame(width: 60)
-                    .padding(.vertical, 8)
-                    .padding(.leading, 8)
-                VStack(alignment: .leading) {
-                    Text(contact.name)
-                        .font(.title3)
-                        .fontWeight(.medium)
-                    Text("US House Rep. District 13")
-                        .font(.subheadline)
-                    
-                }
-                Spacer()
-            }
+            ContactListItem(contact: contact)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
+                        .foregroundColor(Color.FiveCallsLightBG)
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -41,13 +27,13 @@ struct IssueContactDetail: View {
                     Text(contact.phone)
                         .font(.title)
                         .fontWeight(.semibold)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color.FiveCallsDarkBlueText)
                     Menu {
-                        Section("Local offices") {
-                            ForEach(contact.fieldOffices) { office in
+                        ForEach(contact.fieldOffices) { office in
+                            Section(office.city) {
                                 Button{ } label: {
                                     VStack {
-                                        Text("\(office.phone)\n(\(office.city))")
+                                        Text(office.phone)
                                     }
                                 }
                             }
@@ -55,20 +41,18 @@ struct IssueContactDetail: View {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .font(.title2)
-                            .padding(6)
-                            .background() {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
-                            }
+                            .foregroundColor(Color.FiveCallsDarkBlue)
+                            .padding(.leading, 4)
                     }
                 }
-//                Text("Tap to dial")
-//                    .font(.caption)
             }
                 .padding(.horizontal)
                 .padding(.bottom)
             Text(issue.markdownIssueScript)
                 .padding(.horizontal)
+            PrimaryButton(title: "Next contact", systemImageName: "megaphone.fill")
+                .padding()
+            Spacer()
         }
 
     }

@@ -9,6 +9,7 @@
 import SwiftUI
 
 extension Color {
+    static let FiveCallsLightBG = Color(red: 0.85, green: 0.85, blue: 0.85)
     static let FiveCallsDarkBlue = Color("darkBlue")
     static let FiveCallsDarkBlueText = Color("darkBlueText")
 }
