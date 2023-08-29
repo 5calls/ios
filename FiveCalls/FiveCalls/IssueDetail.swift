@@ -14,10 +14,10 @@ struct IssueDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text(issue.name)
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .padding(.bottom, 16)
+//                Text(issue.name)
+//                    .font(.title2)
+//                    .fontWeight(.medium)
+//                    .padding(.bottom, 16)
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
                 Text("Relevant representatives for this issue:")
@@ -25,26 +25,20 @@ struct IssueDetail: View {
                     .foregroundColor(.secondary)
                     .padding(.bottom, 2)
                     .padding(.leading, 6)
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(height: 120)
-                    .foregroundColor(.secondary)
-                    .padding(.bottom, 16)
-                HStack {
-                    Text("See your script")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                    Image(systemName: "megaphone.fill")
-                        .foregroundColor(.white)
-                }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 6)
-                            .foregroundColor(Color.FiveCallsDarkBlue)
+                VStack(spacing: 0) {
+                    ForEach(0..<3, id: \.self) { count in
+                        ContactListItem(contact: .housePreviewContact)
+                        if count < 2 { Divider().padding(0) } else { EmptyView() }
                     }
-                    
-                
+                }.background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
+                }.padding(.bottom, 16)
+                NavigationLink(destination: IssueContactDetail(issue: issue, contact: .housePreviewContact)) {
+                    PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
+                        .navigationTitle(issue.name)
+                        .navigationBarTitleDisplayMode(.large)
+                }
             }.padding(.horizontal)
         }
     }

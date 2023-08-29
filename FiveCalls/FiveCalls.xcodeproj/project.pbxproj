@@ -91,6 +91,8 @@
 		B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E401E52A8AB005221B7 /* POST-report.json */; };
 		B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */; };
 		B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFBB981E5EA60E00647121 /* Appearance.swift */; };
+		D0002E172A9DB34D0098973F /* ContactListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0002E162A9DB34D0098973F /* ContactListItem.swift */; };
+		D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0002E182A9DB5FB0098973F /* PrimaryButton.swift */; };
 		D00C608D2A89F04400FF7D1D /* AdaptiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */; };
 		D010FF192A99B49D0032C089 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010FF182A99B49D0032C089 /* Colors.swift */; };
 		D017D95523DE6BF9002F710C /* ShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017D95423DE6BF9002F710C /* ShareCell.swift */; };
@@ -282,6 +284,8 @@
 		B5EADD2522013B8E00E3EA78 /* CategorizedIssuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedIssuesViewModel.swift; sourceTree = "<group>"; };
 		B5FFBB981E5EA60E00647121 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D0002E162A9DB34D0098973F /* ContactListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListItem.swift; sourceTree = "<group>"; };
+		D0002E182A9DB5FB0098973F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveSheet.swift; sourceTree = "<group>"; };
 		D010FF182A99B49D0032C089 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D017D95423DE6BF9002F710C /* ShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCell.swift; sourceTree = "<group>"; };
@@ -629,19 +633,45 @@
 			name = Fixtures;
 			sourceTree = "<group>";
 		};
-		D0480AE62A4D462F00502818 /* SwiftUI */ = {
+		D0002E132A9DB2E90098973F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D0480B1F2A4D4AF300502818 /* PreviewContent */,
-				D0480AE42A4D462500502818 /* Dashboard.swift */,
-				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
-				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
-				D082961B2A7BFE04005B002A /* Numbered.swift */,
-				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
 				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
 				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
 				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
+				D0480AE42A4D462500502818 /* Dashboard.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		D0002E142A9DB2F70098973F /* View Components */ = {
+			isa = PBXGroup;
+			children = (
+				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
+				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
+				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
+				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
+				D0002E182A9DB5FB0098973F /* PrimaryButton.swift */,
+			);
+			name = "View Components";
+			sourceTree = "<group>";
+		};
+		D0002E152A9DB32F0098973F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D082961B2A7BFE04005B002A /* Numbered.swift */,
 				D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		D0480AE62A4D462F00502818 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				D0002E142A9DB2F70098973F /* View Components */,
+				D0002E132A9DB2E90098973F /* Screens */,
+				D0480B1F2A4D4AF300502818 /* PreviewContent */,
+				D0002E152A9DB32F0098973F /* Utils */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -963,6 +993,7 @@
 				A5048C6F1F96BCD100C6163D /* IssuesViewModel.swift in Sources */,
 				A55647621F909C6F002737D4 /* Category.swift in Sources */,
 				B591EB851E44D946006C7D28 /* ContactCell.swift in Sources */,
+				D0002E172A9DB34D0098973F /* ContactListItem.swift in Sources */,
 				B512506E21E701DE007D32DF /* ContactList.swift in Sources */,
 				B5D5C95E1E44357100C80D5F /* CustomNavigationController.swift in Sources */,
 				B502807C1E498B9B00749ED7 /* ImpactViewModel.swift in Sources */,
@@ -1034,6 +1065,7 @@
 				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
+				D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */,
 				B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */,
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
