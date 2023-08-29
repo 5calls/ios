@@ -40,7 +40,8 @@ struct Dashboard: View {
                         }
                     }
                 }.padding(.horizontal, 10)
-            }.onAppear() {
+            }.navigationBarHidden(true)
+            .onAppear() {
 //              TODO: refresh if issues are old too?
                 if appState.issues.isEmpty {
                     op.fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
