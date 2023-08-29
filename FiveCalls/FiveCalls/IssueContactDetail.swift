@@ -50,11 +50,14 @@ struct IssueContactDetail: View {
                 .padding(.bottom)
             Text(issue.markdownIssueScript)
                 .padding(.horizontal)
-            PrimaryButton(title: "Next contact", systemImageName: "megaphone.fill")
+            PrimaryButton(title: nextButtonTitle(), systemImageName: "megaphone.fill")
                 .padding()
             Spacer()
         }
-
+    }
+    
+    func nextButtonTitle() -> String {
+        return "Next contact"
     }
 }
 
