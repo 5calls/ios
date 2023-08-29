@@ -37,7 +37,6 @@ struct IssueDetail: View {
                 NavigationLink(destination: IssueContactDetail(issue: issue, contact: .housePreviewContact)) {
                     PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
                         .navigationTitle(issue.name)
-                        .navigationBarTitleDisplayMode(.large)
                 }
             }.padding(.horizontal)
         }
