@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import MessageUI
-//import CPDAcknowledgements
 import StoreKit
 
 class AboutViewController : UITableViewController, MFMailComposeViewControllerDelegate {
@@ -22,7 +21,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     @IBOutlet weak var followOnTwitterCell: UITableViewCell!
     @IBOutlet weak var shareCell: UITableViewCell!
     @IBOutlet weak var rateCell: UITableViewCell!
-    @IBOutlet weak var openSourceCell: UITableViewCell!
     @IBOutlet weak var showWelcomeCell: UITableViewCell!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -42,7 +40,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
         case followOnTwitterCell:   followOnTwitter()
         case shareCell:             shareApp(from: tableView.cellForRow(at: indexPath))
         case rateCell:              promptForRating()
-        case openSourceCell:        showOpenSource()
         case showWelcomeCell:       showWelcome()
             
         default: break;
@@ -107,12 +104,6 @@ class AboutViewController : UITableViewController, MFMailComposeViewControllerDe
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
-    }
-    
-    func showOpenSource() {
-        AnalyticsManager.shared.trackEventOld(withName: "Screen: Open Source Libraries")
-//        let acknowledgementsVC = CPDAcknowledgementsViewController(style: nil, acknowledgements: nil, contributions: nil)
-//        navigationController?.pushViewController(acknowledgementsVC, animated: true)
     }
 
     func showWelcome() {

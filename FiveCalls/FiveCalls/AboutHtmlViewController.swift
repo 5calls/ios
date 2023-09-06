@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-//import CPDAcknowledgements
 import WebKit
 
 class AboutHtmlViewController : UIViewController {
