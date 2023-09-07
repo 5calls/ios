@@ -26,7 +26,7 @@ class ScheduleRemindersController: UIViewController {
         
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = R.color.lightGray()
+        label.textColor = R.color.darkGray()
         label.font = .fvc_body
         label.numberOfLines = 0
         label.text = R.string.localizable.scheduledRemindersDescription()
