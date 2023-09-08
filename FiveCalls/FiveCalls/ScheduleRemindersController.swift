@@ -47,7 +47,7 @@ class ScheduleRemindersController: UIViewController {
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.reminderEnabled.rawValue)
             if newValue {
-                requestNotificationAccess()
+                onRemindersEnabled()
             } else {
                 clearNotifications()
             }
@@ -68,12 +68,31 @@ class ScheduleRemindersController: UIViewController {
         remindersEnabled = sender.isOn
         setOverlay(visible: !sender.isOn, animated: true)
     }
+    
+    private func onRemindersEnabled() {
+        UNUserNotificationCenter.current().getNotificationSettings() { [weak self] settings in
+            if settings.authorizationStatus == .notDetermined {
+                self?.requestNotificationAccess()
+            } else if settings.authorizationStatus == .denied {
+                DispatchQueue.main.async {
+                    self?.showNotificationSettingsAlert()
+                }
+            }
+        }
+    }
 
     private func requestNotificationAccess() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge];
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
             AnalyticsManager.shared.trackEventOld(withName: "Notification Access", andProperties: ["success": "\(success)"])
         }
+    }
+    
+    private func showNotificationSettingsAlert() {
+        let alertController = UIAlertController.settingsAlertView(
+            title: R.string.localizable.notificationsDeniedAlertTitle(),
+            message: R.string.localizable.notificationsDeniedAlertBody())
+        present(alertController, animated: true, completion: nil)
     }
 
     func setOverlay(visible: Bool, animated: Bool) {
@@ -123,6 +142,9 @@ class ScheduleRemindersController: UIViewController {
         
         navigationItem.rightBarButtonItem = switchButton(on: remindersEnabled)
         setOverlay(visible: !remindersEnabled, animated: false)
+        if remindersEnabled {
+            self.onRemindersEnabled()
+        }
 
         if #available(iOS 13.4, *) {
             timePicker.preferredDatePickerStyle = .wheels

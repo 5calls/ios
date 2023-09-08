@@ -10,7 +10,7 @@
 "ok-button-title"                     = "OK";
 "cancel-button-title"                 = "Cancel";
 "location-permission-denied-title"    = "Location permission denied.";
-"location-permission-denied-message"  = "To use Location please change the permissions in the Settings and try again.";
+"location-permission-denied-message"  = "To use Location please change the permissions in the Settings app and try again.";
 "open-settings-title"                 = "Open Settings";
 "dismiss-title"                       = "Dismiss";
 "whats-important-title"               = "What's important to you?";
@@ -50,6 +50,8 @@
 "scheduled-reminder-alert-title"      = "Time to Make Some Calls";
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
 "scheduled-reminders-description"     = "Turn these on to get a quick local reminder to make your 5 calls.";
+"notifications-denied-alert-title"    = "Notifications permissions denied.";
+"notifications-denied-alert-body"     = "To use reminders please change notifications permissions in the Settings app and try again.";
 "line-busy"                           = "Local Offices ▼";
 "choose-a-number"                     = "Select a Different Office";
 "uncategorized-issues"                = "Uncategorized Issues";
