@@ -12,23 +12,51 @@ struct Dashboard: View {
     @EnvironmentObject var store: Store
 
     @State var showLocationSheet = false
+    @State var showRemindersSheet = false
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
-                        .padding(.bottom, 10)
-                        .onTapGesture {
-                            showLocationSheet.toggle()
+                    HStack {
+                        if USE_SHEET {
+                            Button(action: {
+                                showRemindersSheet.toggle()
+                            }, label: {
+                                if let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)  {
+                                    Image(uiImage: image)
+                                }
+                            })
+                            .sheet(isPresented: $showRemindersSheet) {
+                                ScheduleReminders()
+                            }
+                        } else {
+                            NavigationLink(destination: ScheduleReminders(), label: {
+                                if let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)  {
+                                    Image(uiImage: image)
+                                }
+                            })
                         }
-                        .sheet(isPresented: $showLocationSheet) {
-                            LocationSheet()
-                                .presentationDetents([.medium])
-                                .presentationDragIndicator(.visible)
-                                .padding(.top, 40)
-                            Spacer()
+                        
+                        LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
+                            .padding(.bottom, 10)
+                            .onTapGesture {
+                                showLocationSheet.toggle()
+                            }
+                            .sheet(isPresented: $showLocationSheet) {
+                                LocationSheet()
+                                    .presentationDetents([.medium])
+                                    .presentationDragIndicator(.visible)
+                                    .padding(.top, 40)
+                                Spacer()
+                            }
+                        if let image = UIImage(named: "5calls-stars") {
+                            Image(uiImage: image)
                         }
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 10)
+
                     Text("What’s important to you?")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
