@@ -15,13 +15,13 @@ struct ScheduleReminders: View {
     @Environment(\.dismiss) var dismiss
 
     @State var selectedTime = Date()
-    @State var showDaysWarning = false
+    @State var selectedDays = [Day]()
     
     var body: some View {
         if !USE_SHEET {
             ZStack {
                 DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                  showDaysWarning: $showDaysWarning)
+                                  selectedDays: $selectedDays)
                 RemindersDisabledView(remindersEnabled: $remindersEnabled)
                 Spacer()
             }
@@ -82,7 +82,7 @@ struct ScheduleReminders: View {
 
                 ZStack {
                     DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                      showDaysWarning: $showDaysWarning)
+                                      selectedDays: $selectedDays)
                     RemindersDisabledView(remindersEnabled: $remindersEnabled)
                     Spacer()
                 }
@@ -126,7 +126,7 @@ struct ScheduleReminders_Previews: PreviewProvider {
 
 struct DayAndTimePickers: View {
     @Binding var remindersEnabled: Bool
-    @Binding var showDaysWarning: Bool
+    @Binding var selectedDays: [Day]
     
     var body: some View {
         VStack {
@@ -145,13 +145,13 @@ struct DayAndTimePickers: View {
                 .foregroundColor(Color(R.color.darkBlue()!))
                 .multilineTextAlignment(.center)
                 .padding(20)
-            // https://xavier7t.com/day-of-the-week-picker-in-swiftui
+            MultipleDayPicker(selectedDays: $selectedDays)
             Text(R.string.localizable.scheduledRemindersNoDaysWarning())
                 .font(.system(size: 12))
                 .foregroundColor(Color(R.color.red()!))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
-                .opacity(showDaysWarning ? 1 : 0)
+                .opacity(selectedDays.isEmpty ? 1 : 0)
         }
         .opacity(remindersEnabled ? 1 : 0)
     }
