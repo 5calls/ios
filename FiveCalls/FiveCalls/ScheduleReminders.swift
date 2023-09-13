@@ -16,12 +16,14 @@ struct ScheduleReminders: View {
 
     @State var selectedTime = Date()
     @State var selectedDays = [Day]()
+    @State var shouldShake = false
     
     var body: some View {
         if !USE_SHEET {
             ZStack {
                 DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                  selectedDays: $selectedDays)
+                                  selectedDays: $selectedDays,
+                                  shouldShake: $shouldShake)
                 RemindersDisabledView(remindersEnabled: $remindersEnabled)
                 Spacer()
             }
@@ -32,7 +34,7 @@ struct ScheduleReminders: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        self.dismiss()
+                        self.onDismiss()
                     }) {
                         Text(R.string.localizable.doneButtonTitle())
                             .bold()
@@ -64,7 +66,7 @@ struct ScheduleReminders: View {
                 ZStack {
                     HStack {
                         Button(R.string.localizable.doneButtonTitle()) {
-                            self.dismiss()
+                            self.onDismiss()
                         }
                         Spacer()
                         Toggle(isOn: $remindersEnabled,
@@ -82,7 +84,8 @@ struct ScheduleReminders: View {
 
                 ZStack {
                     DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                      selectedDays: $selectedDays)
+                                      selectedDays: $selectedDays,
+                                      shouldShake: $shouldShake)
                     RemindersDisabledView(remindersEnabled: $remindersEnabled)
                     Spacer()
                 }
@@ -114,6 +117,15 @@ struct ScheduleReminders: View {
     private func clearNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
+    
+    private func onDismiss() {
+        let cannotDismiss = selectedDays.isEmpty && remindersEnabled
+        if cannotDismiss {
+            self.shouldShake = true
+        } else {
+            self.dismiss()
+        }
+    }
 }
 
 struct ScheduleReminders_Previews: PreviewProvider {
@@ -127,6 +139,7 @@ struct ScheduleReminders_Previews: PreviewProvider {
 struct DayAndTimePickers: View {
     @Binding var remindersEnabled: Bool
     @Binding var selectedDays: [Day]
+    @Binding var shouldShake: Bool
     
     var body: some View {
         VStack {
@@ -146,6 +159,13 @@ struct DayAndTimePickers: View {
                 .multilineTextAlignment(.center)
                 .padding(20)
             MultipleDayPicker(selectedDays: $selectedDays)
+                .offset(x: shouldShake ? -18 : 0)
+                .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
+                .onChange(of: shouldShake) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.shouldShake = false
+                    }
+                }
             Text(R.string.localizable.scheduledRemindersNoDaysWarning())
                 .font(.system(size: 12))
                 .foregroundColor(Color(R.color.red()!))
