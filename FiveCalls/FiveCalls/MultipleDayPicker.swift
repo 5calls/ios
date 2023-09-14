@@ -8,31 +8,43 @@
 
 import SwiftUI
 
-enum Day: String, CaseIterable {
-    case Sun, Mon, Tues, Wed, Thur, Fri, Sat
+struct Day: Hashable {
+    let index: Int
+    let name: String
 }
 
+let days = [
+    Day(index: 1, name: "Sun"),
+    Day(index: 2, name: "Mon"),
+    Day(index: 3, name: "Tues"),
+    Day(index: 4, name: "Wed"),
+    Day(index: 5, name: "Thur"),
+    Day(index: 6, name: "Fri"),
+    Day(index: 7, name: "Sat")
+]
+
 struct MultipleDayPicker: View {
-    @Binding var selectedDays: [Day]
-    var borderColor: Color { selectedDays.isEmpty ? Color(R.color.red()!) : Color(R.color.darkBlue()!)
+    @Binding var selectedDayIndices: [Int]
+
+    var borderColor: Color { selectedDayIndices.isEmpty ? Color(R.color.red()!) : Color(R.color.darkBlue()!)
     }
     
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(Day.allCases, id: \.self) { day in
-                Text(String(day.rawValue))
-                    .foregroundColor(isDaySelected(day) ? Color(R.color.lightBlue()!) : Color(R.color.mediumDarkGray()!))
+            ForEach(days, id: \.self) { day in
+                Text(String(day.name))
+                    .foregroundColor(isIndexSelected(day.index) ? Color(R.color.lightBlue()!) : Color(R.color.mediumDarkGray()!))
                     .padding(5)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(isDaySelected(day) ? Color(R.color.darkBlue()!) : Color(.systemBackground))
+                    .background(isIndexSelected(day.index) ? Color(R.color.darkBlue()!) : Color(.systemBackground))
                     .border(Color(R.color.darkBlue()!), width: 0.5)
                     .aspectRatio(1.0, contentMode: .fit)
                     .onTapGesture {
-                        if self.isDaySelected(day) {
-                            selectedDays.removeAll(where: {$0 == day})
+                        if self.isIndexSelected(day.index) {
+                            selectedDayIndices.removeAll(where: {$0 == day.index})
                         } else {
-                            selectedDays.append(day)
+                            selectedDayIndices.append(day.index)
                         }
                     }
             }
@@ -45,14 +57,14 @@ struct MultipleDayPicker: View {
         .padding(16)
     }
     
-    private func isDaySelected(_ day: Day) -> Bool {
-        return selectedDays.contains(day)
+    private func isIndexSelected(_ index: Int) -> Bool {
+        return selectedDayIndices.contains(index)
     }
 }
 
 struct MultipleDayPicker_Previews: PreviewProvider {
     static var previews: some View {
-        @State var selectedDays: [Day] = []
-        MultipleDayPicker(selectedDays: $selectedDays)
+        @State var selectedDayIndices: [Int] = []
+        MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
     }
 }

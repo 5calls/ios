@@ -22,5 +22,7 @@ enum Appearance {
     static func swiftUISetup() {
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "chevron.backward.circle.fill")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.backward.circle.fill")
+        UIDatePicker.appearance().minuteInterval = 10
+        UIDatePicker.appearance().roundsToMinuteInterval = true
     }
 }

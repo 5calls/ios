@@ -8,26 +8,26 @@
 
 import SwiftUI
 
-let USE_SHEET = false
+let USE_SHEET = true
 
 struct ScheduleReminders: View {
     @AppStorage("reminderEnabled") var remindersEnabled = false
     @Environment(\.dismiss) var dismiss
 
     @State var selectedTime = Date()
-    @State var selectedDays = [Day]()
+    @State var selectedDayIndices = [Int]()
     @State var shouldShake = false
     
     var body: some View {
         if !USE_SHEET {
             ZStack {
                 DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                  selectedDays: $selectedDays,
+                                  selectedTime: $selectedTime,
+                                  selectedDayIndices: $selectedDayIndices,
                                   shouldShake: $shouldShake)
                 RemindersDisabledView(remindersEnabled: $remindersEnabled)
                 Spacer()
             }
-            //                        .toolbarBackground(Color(R.color.darkBlue()!, for: .navigationBar))
             .navigationTitle(R.string.localizable.scheduledRemindersTitle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
@@ -50,6 +50,7 @@ struct ScheduleReminders: View {
             .animation(.easeInOut, value: self.remindersEnabled)
             .task {
                 let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+                self.selectedDayIndices = indices(from: notificationRequests)
                 if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
                     self.selectedTime = triggerDate
                 }
@@ -61,13 +62,27 @@ struct ScheduleReminders: View {
                     clearNotifications()
                 }
             }
+            .onChange(of: selectedTime) { _ in
+                clearNotifications()
+            }
+            .onChange(of: selectedDayIndices) { _ in
+                clearNotifications()
+            }
         } else {
-            VStack {
+            VStack(spacing: .zero) {
                 ZStack {
+                    Rectangle()
+                        .foregroundColor(Color(R.color.darkBlue()!))
+                        .frame(height: 56)
                     HStack {
-                        Button(R.string.localizable.doneButtonTitle()) {
+                        Button(action: {
                             self.onDismiss()
-                        }
+                        }, label: {
+                            Text(R.string.localizable.doneButtonTitle())
+                                .bold()
+                                .foregroundColor(.white)
+                        })
+
                         Spacer()
                         Toggle(isOn: $remindersEnabled,
                                label: {
@@ -75,23 +90,27 @@ struct ScheduleReminders: View {
                         }).toggleStyle(.switch)
                             .layoutPriority(-1)
                     }
-                    
+                    .padding(.horizontal)
+
                     Text(R.string.localizable.scheduledRemindersTitle())
                         .font(Font(UIFont.fvc_header))
                         .bold()
+                        .foregroundColor(.white)
                 }
-                .padding()
 
                 ZStack {
                     DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                      selectedDays: $selectedDays,
+                                      selectedTime: $selectedTime,
+                                      selectedDayIndices: $selectedDayIndices,
                                       shouldShake: $shouldShake)
                     RemindersDisabledView(remindersEnabled: $remindersEnabled)
                     Spacer()
                 }
+                .background()
                 .animation(.easeInOut, value: self.remindersEnabled)
                 .task {
                     let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+                    self.selectedDayIndices = indices(from: notificationRequests)
                     if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
                         self.selectedTime = triggerDate
                     }
@@ -102,6 +121,12 @@ struct ScheduleReminders: View {
                     } else {
                         clearNotifications()
                     }
+                }
+                .onChange(of: selectedTime) { _ in
+                    clearNotifications()
+                }
+                .onChange(of: selectedDayIndices) { _ in
+                    clearNotifications()
                 }
             }
         }
@@ -119,12 +144,45 @@ struct ScheduleReminders: View {
     }
     
     private func onDismiss() {
-        let cannotDismiss = selectedDays.isEmpty && remindersEnabled
+        let cannotDismiss = selectedDayIndices.isEmpty && remindersEnabled
         if cannotDismiss {
             self.shouldShake = true
         } else {
+            for index in selectedDayIndices {
+                let notificationContent = self.notificationContent()
+                let notificationTrigger = self.notificationTrigger(date: selectedTime, dayIndex: index)
+                let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
+                UNUserNotificationCenter.current().add(request)
+            }
+
             self.dismiss()
         }
+    }
+    
+    private func indices(from notifications: [UNNotificationRequest]) -> [Int] {
+        let calendar = Calendar(identifier: .gregorian)
+        return notifications.compactMap({ notification in
+            if let calendarTrigger = notification.trigger as? UNCalendarNotificationTrigger {
+                return calendar.component(.weekday, from: (calendarTrigger.nextTriggerDate()!))
+            }
+            
+            return nil
+        })
+    }
+    
+    private func notificationContent() -> UNMutableNotificationContent {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = R.string.localizable.scheduledReminderAlertTitle()
+        notificationContent.body = R.string.localizable.scheduledReminderAlertBody()
+        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
+        return notificationContent
+    }
+    
+    private func notificationTrigger(date: Date, dayIndex: Int) -> UNCalendarNotificationTrigger {
+        var components = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+        components.timeZone = TimeZone(identifier: "default")
+        components.weekday = dayIndex
+        return UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
     }
 }
 
@@ -138,27 +196,30 @@ struct ScheduleReminders_Previews: PreviewProvider {
 
 struct DayAndTimePickers: View {
     @Binding var remindersEnabled: Bool
-    @Binding var selectedDays: [Day]
+    @Binding var selectedTime: Date
+    @Binding var selectedDayIndices: [Int]
     @Binding var shouldShake: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(R.string.localizable.scheduledRemindersTimeLabel())
                 .font(.system(size: 20))
                 .foregroundColor(Color(R.color.darkBlue()!))
                 .multilineTextAlignment(.center)
                 .padding(20)
-            DatePicker("", selection: .constant(Date()), displayedComponents: .hourAndMinute)
+            DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
                 .labelsHidden()
                 .datePickerStyle(WheelDatePickerStyle())
+                .colorInvert() // TODO: this won't work in dark mode
+                .colorMultiply(Color(R.color.darkBlue()!))
                 .padding(.horizontal, 20)
             Spacer()
             Text(R.string.localizable.scheduledRemindersDayLabel())
                 .font(.system(size: 20))
                 .foregroundColor(Color(R.color.darkBlue()!))
                 .multilineTextAlignment(.center)
-                .padding(20)
-            MultipleDayPicker(selectedDays: $selectedDays)
+                .padding(.horizontal, 20)
+            MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
                 .offset(x: shouldShake ? -18 : 0)
                 .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
                 .onChange(of: shouldShake) { _ in
@@ -171,7 +232,7 @@ struct DayAndTimePickers: View {
                 .foregroundColor(Color(R.color.red()!))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
-                .opacity(selectedDays.isEmpty ? 1 : 0)
+                .opacity(selectedDayIndices.isEmpty ? 1 : 0)
         }
         .opacity(remindersEnabled ? 1 : 0)
     }
