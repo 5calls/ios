@@ -41,7 +41,7 @@ struct MultipleDayPicker: View {
                     .border(Color(R.color.darkBlue()!), width: 0.5)
                     .aspectRatio(1.0, contentMode: .fit)
                     .onTapGesture {
-                        if self.isIndexSelected(day.index) {
+                        if isIndexSelected(day.index) {
                             selectedDayIndices.removeAll(where: {$0 == day.index})
                         } else {
                             selectedDayIndices.append(day.index)

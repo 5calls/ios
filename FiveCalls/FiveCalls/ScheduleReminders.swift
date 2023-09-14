@@ -36,7 +36,7 @@ struct ScheduleReminders: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        self.onDismiss()
+                        onDismiss()
                     }) {
                         Text(R.string.localizable.doneButtonTitle())
                             .bold()
@@ -49,34 +49,34 @@ struct ScheduleReminders: View {
                     }).toggleStyle(.switch)
                 }
             }
-            .animation(.easeInOut, value: self.remindersEnabled)
+            .animation(.easeInOut, value: remindersEnabled)
             .task {
                 let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
                 let indices = indices(from: notificationRequests)
-                self.existingSelectedDayIndices = indices
-                self.selectedDayIndices = indices
+                existingSelectedDayIndices = indices
+                selectedDayIndices = indices
                 if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
-                    self.existingSelectedTime = triggerDate
-                    self.selectedTime = triggerDate
+                    existingSelectedTime = triggerDate
+                    selectedTime = triggerDate
                 }
             }
             .onChange(of: remindersEnabled) { newValue in
                 if newValue {
                     requestNotificationAccess()
-                } else {
-                    clearNotifications()
+//                } else {
+//                    clearNotifications()
                 }
             }
-            .onChange(of: selectedTime) { newValue in
-                if newValue != self.existingSelectedTime {
-                    clearNotifications()
-                }
-            }
-            .onChange(of: selectedDayIndices) { newValue in
-                if newValue != self.existingSelectedDayIndices {
-                    clearNotifications()
-                }
-            }
+//            .onChange(of: selectedTime) { newValue in
+//                if newValue != existingSelectedTime {
+//                    clearNotifications()
+//                }
+//            }
+//            .onChange(of: selectedDayIndices) { newValue in
+//                if newValue != existingSelectedDayIndices {
+//                    clearNotifications()
+//                }
+//            }
         } else {
             VStack(spacing: .zero) {
                 ZStack {
@@ -85,7 +85,7 @@ struct ScheduleReminders: View {
                         .frame(height: 56)
                     HStack {
                         Button(action: {
-                            self.onDismiss()
+                            onDismiss()
                         }, label: {
                             Text(R.string.localizable.doneButtonTitle())
                                 .bold()
@@ -116,34 +116,34 @@ struct ScheduleReminders: View {
                     Spacer()
                 }
                 .background()
-                .animation(.easeInOut, value: self.remindersEnabled)
+                .animation(.easeInOut, value: remindersEnabled)
                 .task {
                     let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
                     let indices = indices(from: notificationRequests)
-                    self.existingSelectedDayIndices = indices
-                    self.selectedDayIndices = indices
+                    existingSelectedDayIndices = indices
+                    selectedDayIndices = indices
                     if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
-                        self.existingSelectedTime = triggerDate
-                        self.selectedTime = triggerDate
+                        existingSelectedTime = triggerDate
+                        selectedTime = triggerDate
                     }
                 }
                 .onChange(of: remindersEnabled) { newValue in
                     if newValue {
                         requestNotificationAccess()
-                    } else {
-                        clearNotifications()
+//                    } else {
+//                        clearNotifications()
                     }
                 }
-                .onChange(of: selectedTime) { newValue in
-                    if newValue != self.existingSelectedTime {
-                        clearNotifications()
-                    }
-                }
-                .onChange(of: selectedDayIndices) { newValue in
-                    if newValue != self.existingSelectedDayIndices {
-                        clearNotifications()
-                    }
-                }
+//                .onChange(of: selectedTime) { newValue in
+//                    if newValue != existingSelectedTime {
+//                        clearNotifications()
+//                    }
+//                }
+//                .onChange(of: selectedDayIndices) { newValue in
+//                    if newValue != existingSelectedDayIndices {
+//                        clearNotifications()
+//                    }
+//                }
             }
         }
     }
@@ -162,17 +162,22 @@ struct ScheduleReminders: View {
     private func onDismiss() {
         let cannotDismiss = selectedDayIndices.isEmpty && remindersEnabled
         if cannotDismiss {
-            self.shouldShake = true
+            shouldShake = true
+        } else if existingSelectedTime == selectedTime &&
+                    existingSelectedDayIndices == selectedDayIndices && remindersEnabled {
+            dismiss()
         } else {
-            self.clearNotifications()
-            for index in selectedDayIndices {
-                let notificationContent = self.notificationContent()
-                let notificationTrigger = self.notificationTrigger(date: selectedTime, dayIndex: index)
-                let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
-                UNUserNotificationCenter.current().add(request)
+            clearNotifications()
+            if remindersEnabled {
+                for index in selectedDayIndices {
+                    let notificationContent = notificationContent()
+                    let notificationTrigger = notificationTrigger(date: selectedTime, dayIndex: index)
+                    let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
+                    UNUserNotificationCenter.current().add(request)
+                }
             }
 
-            self.dismiss()
+            dismiss()
         }
     }
     
@@ -241,7 +246,7 @@ struct DayAndTimePickers: View {
                 .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
                 .onChange(of: shouldShake) { _ in
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        self.shouldShake = false
+                        shouldShake = false
                     }
                 }
             Text(R.string.localizable.scheduledRemindersNoDaysWarning())
@@ -270,7 +275,7 @@ struct RemindersDisabledView: View {
                         .font(Font(UIFont.fvc_body))
                         .multilineTextAlignment(.center)
                         .frame(width: geometry.size.width * 0.8)
-                        .opacity(self.remindersEnabled ? 0 : 1)
+                        .opacity(remindersEnabled ? 0 : 1)
                     Spacer()
                 }
                 Spacer()
