@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import Rswift
 
 // NewUserLocation is like UserLocation from the old app but it doesn't need a singleton to maintain its state
 class NewUserLocation {
@@ -42,16 +43,16 @@ class NewUserLocation {
             gotDisplay?(self)
             return
         }
-        locationDisplay = "Locating..."
+        locationDisplay = R.string.localizable.locatingTemp()
         
         CLGeocoder().geocodeAddressString(address) { results, error in
             guard let placemark = results?.first else {
-                self.locationDisplay = "Unknown location"
+                self.locationDisplay = R.string.localizable.unknownLocation()
                 gotDisplay?(self)
                 return
             }
             
-            self.locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? "Unknown location"
+            self.locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? R.string.localizable.unknownLocation()
             gotDisplay?(self)
         }
     }
@@ -68,7 +69,7 @@ class NewUserLocation {
         }
         
         getLocationInfo(from: location) { locationInfo in
-            self.locationDisplay = locationInfo["displayName"] as? String ?? "Unknown location"
+            self.locationDisplay = locationInfo["displayName"] as? String ?? R.string.localizable.unknownLocation()
             gotDisplay?(self)
         }
     }
@@ -94,20 +95,3 @@ extension NewUserLocation : CustomStringConvertible {
         return "type: \(locationType.rawValue) value: \(locationValue) | display: \(locationDisplay)"
     }
 }
-
-//extension UserLocation {
-//    func customizeScript(script: String) -> String? {
-//        guard let locationDisplay = self.locationDisplay else {
-//            return nil
-//        }
-//
-//        let pattern = #"\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]"#
-//        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
-//            return nil
-//        }
-//
-//        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
-//        let scriptWithLocation = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: locationDisplay)
-//        return scriptWithLocation
-//    }
-//}
