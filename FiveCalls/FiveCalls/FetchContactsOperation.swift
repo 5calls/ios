@@ -25,6 +25,7 @@ class FetchContactsOperation : BaseOperation {
     init(location: UserLocation) {
         self.location = location
     }
+
     init(location: NewUserLocation) {
         let loc = UserLocation()
         loc.locationType = UserLocation.LocationType(rawValue: location.locationType.rawValue)
