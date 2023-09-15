@@ -54,6 +54,10 @@
 "choose-a-number"                     = "Select a Different Office";
 "uncategorized-issues"                = "Uncategorized Issues";
 
+// location detection
+"locating-temp"                       = "Locating...";
+"unknown-location"                    = "Unknown Location";
+
 // outcomes
 "outcomes.contact"                    = "Made Contact";
 "outcomes.unavailable"                = "Unavailable";
