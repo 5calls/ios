@@ -37,8 +37,8 @@ class NewUserLocation {
         locationValue = address
         
         // we can cache the display name when we've already fetched it, otherwise we'll go get it
-        if display != nil {
-            locationDisplay = display!
+        if let display {
+            locationDisplay = display
             gotDisplay?(self)
             return
         }
@@ -61,8 +61,8 @@ class NewUserLocation {
         locationValue = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         locationDisplay = "..."
         
-        if display != nil {
-            locationDisplay = display!
+        if let display {
+            locationDisplay = display
             gotDisplay?(self)
             return
         }
