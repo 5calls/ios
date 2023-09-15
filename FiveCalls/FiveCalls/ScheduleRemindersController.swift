@@ -126,7 +126,7 @@ class ScheduleRemindersController: UIViewController {
         UNUserNotificationCenter.current().getPendingNotificationRequests { [weak self] (notificationRequests) in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.daysOfWeekSelector.setSelectedButtons(at: self.indices(from: notificationRequests))
+                self.daysOfWeekSelector.setSelectedButtons(at: UNNotificationRequest.indices(from: notificationRequests, zeroBased: true))
                 if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger {
                     self.timePicker.setDate(trigger.nextTriggerDate() ?? Date(), animated: true)
                 }
@@ -165,8 +165,8 @@ class ScheduleRemindersController: UIViewController {
 
         clearNotifications()
         for index in daysOfWeekSelector.selectedIndices {
-            let notificationContent = self.notificationContent()
-            let notificationTrigger = self.notificationTrigger(date: timePicker.date, dayIndex: index)
+            let notificationContent = UNMutableNotificationContent.notificationContent()
+            let notificationTrigger = UNCalendarNotificationTrigger.notificationTrigger(date: timePicker.date, dayIndex: index, fromZeroBased: true)
             let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
@@ -219,33 +219,5 @@ class ScheduleRemindersController: UIViewController {
         animation.toValue = CGPoint(x: self.daysOfWeekSelector.center.x, y: self.daysOfWeekSelector.center.y)
 
         daysOfWeekSelector.layer.add(animation, forKey: "shakeIt")
-    }
-
-    private func indices(from notifications: [UNNotificationRequest]) -> [Int] {
-        let calendar = Calendar(identifier: .gregorian)
-        return notifications.compactMap({ notification in
-            if let calendarTrigger = notification.trigger as? UNCalendarNotificationTrigger {
-                // again, converting from 1-indexed weekdays to 0-indexed segmented controls
-                return calendar.component(.weekday, from: (calendarTrigger.nextTriggerDate()!)) - 1
-            }
-            
-            return nil
-        })
-    }
-
-    private func notificationContent() -> UNMutableNotificationContent {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = R.string.localizable.scheduledReminderAlertTitle()
-        notificationContent.body = R.string.localizable.scheduledReminderAlertBody()
-        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-        return notificationContent
-    }
-    
-    private func notificationTrigger(date: Date, dayIndex: Int) -> UNCalendarNotificationTrigger {
-        var components = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
-        components.timeZone = TimeZone(identifier: "default")
-        // segmented controls are zero-indexed while weekdays are 1-indexed, starting on Sunday
-        components.weekday = dayIndex + 1
-        return UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
     }
 }

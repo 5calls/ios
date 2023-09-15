@@ -11,7 +11,7 @@ import SwiftUI
 let USE_SHEET = true
 
 struct ScheduleReminders: View {
-    @AppStorage("reminderEnabled") var remindersEnabled = false
+    @AppStorage(UserDefaultsKey.reminderEnabled.rawValue) var remindersEnabled = false
     @Environment(\.dismiss) var dismiss
 
     @State var existingSelectedTime = Date.distantPast
@@ -52,7 +52,7 @@ struct ScheduleReminders: View {
             .animation(.easeInOut, value: remindersEnabled)
             .task {
                 let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-                let indices = indices(from: notificationRequests)
+                let indices = UNNotificationRequest.indices(from: notificationRequests)
                 existingSelectedDayIndices = indices
                 selectedDayIndices = indices
                 if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
@@ -63,20 +63,8 @@ struct ScheduleReminders: View {
             .onChange(of: remindersEnabled) { newValue in
                 if newValue {
                     requestNotificationAccess()
-//                } else {
-//                    clearNotifications()
                 }
             }
-//            .onChange(of: selectedTime) { newValue in
-//                if newValue != existingSelectedTime {
-//                    clearNotifications()
-//                }
-//            }
-//            .onChange(of: selectedDayIndices) { newValue in
-//                if newValue != existingSelectedDayIndices {
-//                    clearNotifications()
-//                }
-//            }
         } else {
             VStack(spacing: .zero) {
                 ZStack {
@@ -119,7 +107,7 @@ struct ScheduleReminders: View {
                 .animation(.easeInOut, value: remindersEnabled)
                 .task {
                     let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-                    let indices = indices(from: notificationRequests)
+                    let indices = UNNotificationRequest.indices(from: notificationRequests)
                     existingSelectedDayIndices = indices
                     selectedDayIndices = indices
                     if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
@@ -130,20 +118,8 @@ struct ScheduleReminders: View {
                 .onChange(of: remindersEnabled) { newValue in
                     if newValue {
                         requestNotificationAccess()
-//                    } else {
-//                        clearNotifications()
                     }
                 }
-//                .onChange(of: selectedTime) { newValue in
-//                    if newValue != existingSelectedTime {
-//                        clearNotifications()
-//                    }
-//                }
-//                .onChange(of: selectedDayIndices) { newValue in
-//                    if newValue != existingSelectedDayIndices {
-//                        clearNotifications()
-//                    }
-//                }
             }
         }
     }
@@ -170,8 +146,8 @@ struct ScheduleReminders: View {
             clearNotifications()
             if remindersEnabled {
                 for index in selectedDayIndices {
-                    let notificationContent = notificationContent()
-                    let notificationTrigger = notificationTrigger(date: selectedTime, dayIndex: index)
+                    let notificationContent = UNMutableNotificationContent.notificationContent()
+                    let notificationTrigger = UNCalendarNotificationTrigger.notificationTrigger(date: selectedTime, dayIndex: index)
                     let request = UNNotificationRequest(identifier: "5calls-reminder-\(index)", content: notificationContent, trigger: notificationTrigger)
                     UNUserNotificationCenter.current().add(request)
                 }
@@ -179,32 +155,6 @@ struct ScheduleReminders: View {
 
             dismiss()
         }
-    }
-    
-    private func indices(from notifications: [UNNotificationRequest]) -> [Int] {
-        let calendar = Calendar(identifier: .gregorian)
-        return notifications.compactMap({ notification in
-            if let calendarTrigger = notification.trigger as? UNCalendarNotificationTrigger {
-                return calendar.component(.weekday, from: (calendarTrigger.nextTriggerDate()!))
-            }
-            
-            return nil
-        })
-    }
-    
-    private func notificationContent() -> UNMutableNotificationContent {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = R.string.localizable.scheduledReminderAlertTitle()
-        notificationContent.body = R.string.localizable.scheduledReminderAlertBody()
-        notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
-        return notificationContent
-    }
-    
-    private func notificationTrigger(date: Date, dayIndex: Int) -> UNCalendarNotificationTrigger {
-        var components = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
-        components.timeZone = TimeZone(identifier: "default")
-        components.weekday = dayIndex
-        return UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
     }
 }
 
