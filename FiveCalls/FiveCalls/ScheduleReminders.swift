@@ -19,6 +19,7 @@ struct ScheduleReminders: View {
     @State var existingSelectedDayIndices = [Int]()
     @State var selectedDayIndices = [Int]()
     @State var shouldShake = false
+    @State var presentNotificationSettingsAlert = false
     
     var body: some View {
         if !USE_SHEET {
@@ -51,6 +52,10 @@ struct ScheduleReminders: View {
             }
             .animation(.easeInOut, value: remindersEnabled)
             .task {
+                if remindersEnabled {
+                    onRemindersEnabled()
+                }
+                
                 let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
                 let indices = UNNotificationRequest.indices(from: notificationRequests)
                 existingSelectedDayIndices = indices
@@ -62,9 +67,21 @@ struct ScheduleReminders: View {
             }
             .onChange(of: remindersEnabled) { newValue in
                 if newValue {
-                    requestNotificationAccess()
+                    onRemindersEnabled()
                 }
             }
+            .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
+                   isPresented: $presentNotificationSettingsAlert,
+                   actions: {
+                    Button(R.string.localizable.dismissTitle()) { }
+                    Button(R.string.localizable.openSettingsTitle()) {
+                        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                            UIApplication.shared.open(url)
+                    }.keyboardShortcut(.defaultAction)
+                   },
+                   message: {
+                    Text(R.string.localizable.notificationsDeniedAlertBody())
+                   })
         } else {
             VStack(spacing: .zero) {
                 ZStack {
@@ -106,6 +123,10 @@ struct ScheduleReminders: View {
                 .background()
                 .animation(.easeInOut, value: remindersEnabled)
                 .task {
+                    if remindersEnabled {
+                        onRemindersEnabled()
+                    }
+                    
                     let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
                     let indices = UNNotificationRequest.indices(from: notificationRequests)
                     existingSelectedDayIndices = indices
@@ -117,11 +138,33 @@ struct ScheduleReminders: View {
                 }
                 .onChange(of: remindersEnabled) { newValue in
                     if newValue {
-                        requestNotificationAccess()
+                        onRemindersEnabled()
                     }
                 }
+                .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
+                       isPresented: $presentNotificationSettingsAlert,
+                       actions: {
+                        Button(R.string.localizable.dismissTitle()) { }
+                        Button(R.string.localizable.openSettingsTitle()) {
+                            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                                UIApplication.shared.open(url)
+                        }.keyboardShortcut(.defaultAction)
+                       },
+                       message: {
+                        Text(R.string.localizable.notificationsDeniedAlertBody())
+                       })
             }
         }
+    }
+    
+    private func onRemindersEnabled() {
+         UNUserNotificationCenter.current().getNotificationSettings() { settings in
+             if settings.authorizationStatus == .notDetermined {
+                 requestNotificationAccess()
+             } else if settings.authorizationStatus == .denied {
+                    presentNotificationSettingsAlert = true
+             }
+         }
     }
     
     private func requestNotificationAccess() {
