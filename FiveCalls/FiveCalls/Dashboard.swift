@@ -54,8 +54,8 @@ struct Dashboard: View {
                     })
                 }
         
-                if let location = appState.location && appState.contacts.isEmpty {
-                    op.fetchContacts(location: appState.location!, delegate: (UIApplication.shared.delegate as! AppDelegate)) { result in
+                if let location = appState.location, appState.contacts.isEmpty {
+                    op.fetchContacts(location: location, delegate: (UIApplication.shared.delegate as! AppDelegate)) { result in
                         if case let .serverError(error) = result {
                             print("contacts error: \(error)")
                         }
