@@ -79,8 +79,8 @@ class IssuesContainerViewController : UIViewController, EditLocationViewControll
         setTitleLabel(location: UserLocation.current)
         configureChildViewController()
         setupHeaderWithBlurEffect()
-        editRemindersButton.tintColor = R.color.darkBlue()
-        locationButton.tintColor = R.color.darkBlue()
+        editRemindersButton.tintColor = R.color.fivecallsDarkBlue()
+        locationButton.tintColor = R.color.fivecallsDarkBlue()
         let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)
         editRemindersButton.setImage(image, for: .normal)
     }

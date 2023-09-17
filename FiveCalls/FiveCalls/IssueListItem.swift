@@ -22,7 +22,7 @@ struct IssueListItem: View {
                     VStack(alignment: .leading) {
                         Text(issue.name)
                             .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(Color.FiveCallsDarkBlueText)
+                            .foregroundColor(Color.fivecallsDarkBlueText)
                             .lineLimit(2)
                             .multilineTextAlignment(.leading)
                         Spacer()
@@ -48,7 +48,7 @@ struct IssueListItem: View {
                         .symbolRenderingMode(.monochrome)
                         .padding(.trailing, 10)
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(Color.FiveCallsDarkBlue)
+                        .foregroundColor(Color.fivecallsDarkBlue)
                 }
             }
         }

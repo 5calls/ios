@@ -17,7 +17,7 @@ struct IssueContactDetail: View {
             ContactListItem(contact: contact)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color.FiveCallsLightBG)
+                        .foregroundColor(Color.fivecallsLightBG)
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -27,7 +27,7 @@ struct IssueContactDetail: View {
                     Text(contact.phone)
                         .font(.title)
                         .fontWeight(.semibold)
-                        .foregroundColor(Color.FiveCallsDarkBlueText)
+                        .foregroundColor(Color.fivecallsDarkBlueText)
                     Menu {
                         ForEach(contact.fieldOffices) { office in
                             Section(office.city) {
@@ -41,7 +41,7 @@ struct IssueContactDetail: View {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .font(.title2)
-                            .foregroundColor(Color.FiveCallsDarkBlue)
+                            .foregroundColor(Color.fivecallsDarkBlue)
                             .padding(.leading, 4)
                     }
                 }

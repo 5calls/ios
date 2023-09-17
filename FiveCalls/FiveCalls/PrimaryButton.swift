@@ -25,7 +25,7 @@ struct PrimaryButton: View {
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 6)
-                    .foregroundColor(Color.FiveCallsDarkBlue)
+                    .foregroundColor(Color.fivecallsDarkBlue)
             }
 
     }
