@@ -19,8 +19,8 @@ class BlueButton: UIButton {
     }
     
     var normalBackgroundColor = R.color.lightBlueBackground()
-    var highlightBackgroundColor: UIColor = R.color.darkBlue()!
-    var selectedBackgroundColor: UIColor = R.color.darkBlue()!
+    var highlightBackgroundColor: UIColor = R.color.fivecallsDarkBlue()!
+    var selectedBackgroundColor: UIColor = R.color.fivecallsDarkBlue()!
     var defaultTextColor: UIColor = .white
         
     override init(frame: CGRect) {

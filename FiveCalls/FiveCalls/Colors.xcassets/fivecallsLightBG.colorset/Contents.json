@@ -5,23 +5,7 @@
         "color-space" : "gray-gamma-22",
         "components" : {
           "alpha" : "1.000",
-          "white" : "245"
-        }
-      },
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "color" : {
-        "color-space" : "gray-gamma-22",
-        "components" : {
-          "alpha" : "1.000",
-          "white" : "245"
+          "white" : "218"
         }
       },
       "idiom" : "universal"
@@ -37,7 +21,7 @@
         "color-space" : "gray-gamma-22",
         "components" : {
           "alpha" : "1.000",
-          "white" : "0.961"
+          "white" : "218"
         }
       },
       "idiom" : "universal"

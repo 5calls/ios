@@ -150,7 +150,7 @@ class ScheduleRemindersController: UIViewController {
             timePicker.preferredDatePickerStyle = .wheels
         }
 
-        timePicker.setValue(R.color.darkBlue(), forKey: "textColor")
+        timePicker.setValue(R.color.fivecallsDarkBlue(), forKey: "textColor")
     }
 
     override func viewWillAppear(_ animated: Bool) {
