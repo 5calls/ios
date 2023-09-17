@@ -81,9 +81,12 @@ struct Issue: Identifiable, Decodable {
 
 }
 
-extension Issue: Equatable {
+extension Issue: Equatable, Hashable {
     static func == (lhs: Issue, rhs: Issue) -> Bool {
         return lhs.id == rhs.id
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
-
