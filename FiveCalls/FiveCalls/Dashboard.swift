@@ -16,7 +16,7 @@ struct Dashboard: View {
     let op = Operator()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     LocationHeader(location: appState.location, fetchingContacts: appState.fetchingContacts)
@@ -35,13 +35,16 @@ struct Dashboard: View {
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                     ForEach(appState.issues) { issue in
-                        NavigationLink(destination: IssueDetail(issue: issue)) {
+                        NavigationLink(value: issue) {
                             IssueListItem(issue: issue, contacts: appState.contacts)
-                                .navigationTitle("Issues")
                         }
                     }
                 }.padding(.horizontal, 10)
-            }.navigationBarHidden(true)
+            }.navigationTitle("Issues")
+            .navigationDestination(for: Issue.self) { issue in
+                IssueDetail(issue: issue)
+            }
+            .navigationBarHidden(true)
             .onAppear() {
 //              TODO: refresh if issues are old too?
                 if appState.issues.isEmpty {
