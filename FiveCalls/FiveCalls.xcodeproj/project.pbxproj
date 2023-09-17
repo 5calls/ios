@@ -92,7 +92,6 @@
 		B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFBB981E5EA60E00647121 /* Appearance.swift */; };
 		D0002E172A9DB34D0098973F /* ContactListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0002E162A9DB34D0098973F /* ContactListItem.swift */; };
 		D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0002E182A9DB5FB0098973F /* PrimaryButton.swift */; };
-		D00C608D2A89F04400FF7D1D /* AdaptiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */; };
 		D010FF192A99B49D0032C089 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010FF182A99B49D0032C089 /* Colors.swift */; };
 		D017D95523DE6BF9002F710C /* ShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017D95423DE6BF9002F710C /* ShareCell.swift */; };
 		D017D95723DE6C26002F710C /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017D95623DE6C26002F710C /* ProgressCell.swift */; };
@@ -284,7 +283,6 @@
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D0002E162A9DB34D0098973F /* ContactListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListItem.swift; sourceTree = "<group>"; };
 		D0002E182A9DB5FB0098973F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveSheet.swift; sourceTree = "<group>"; };
 		D010FF182A99B49D0032C089 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D017D95423DE6BF9002F710C /* ShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCell.swift; sourceTree = "<group>"; };
 		D017D95623DE6C26002F710C /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
@@ -657,7 +655,6 @@
 			isa = PBXGroup;
 			children = (
 				D082961B2A7BFE04005B002A /* Numbered.swift */,
-				D00C608C2A89F04400FF7D1D /* AdaptiveSheet.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -804,7 +801,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = 5calls;
 				TargetAttributes = {
 					B502805A1E478BC200749ED7 = {
@@ -1009,7 +1006,6 @@
 				D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */,
 				D0480AE32A4D45A700502818 /* App.swift in Sources */,
 				B52805171E3FA94D00EE832A /* WelcomeViewController.swift in Sources */,
-				D00C608D2A89F04400FF7D1D /* AdaptiveSheet.swift in Sources */,
 				B5E7625D1E403B8600D63D62 /* StatsViewModel.swift in Sources */,
 				B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */,
 				9C18DA5F1E458E480024B991 /* ContactDetailCell.swift in Sources */,
@@ -1168,7 +1164,7 @@
 					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
 				);
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1195,7 +1191,7 @@
 					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
 				);
 				INFOPLIST_FILE = FiveCallsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1213,6 +1209,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1245,6 +1242,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1272,6 +1270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1304,6 +1303,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1332,13 +1332,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = FiveCalls/PreviewIssues.swift;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1365,13 +1366,14 @@
 				CURRENT_PROJECT_VERSION = 61;
 				DEVELOPMENT_ASSET_PATHS = FiveCalls/PreviewIssues.swift;
 				DEVELOPMENT_TEAM = 5A8RM3W5R7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FiveCalls/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "5 Calls";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1396,7 +1398,7 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1417,7 +1419,7 @@
 				DEVELOPMENT_TEAM = C2K3864N2N;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
