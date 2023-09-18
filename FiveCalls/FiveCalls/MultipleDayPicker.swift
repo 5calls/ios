@@ -26,19 +26,19 @@ let days = [
 struct MultipleDayPicker: View {
     @Binding var selectedDayIndices: [Int]
 
-    var borderColor: Color { selectedDayIndices.isEmpty ? R.color.red.color : R.color.darkBlue.color
+    var borderColor: Color { selectedDayIndices.isEmpty ? Color.fivecallsRed : Color.fivecallsDarkBlue
     }
     
     var body: some View {
         HStack(spacing: 0) {
             ForEach(days, id: \.self) { day in
                 Text(String(day.name))
-                    .foregroundColor(isIndexSelected(day.index) ? R.color.lightBlue.color : R.color.mediumDarkGray.color)
+                    .foregroundColor(isIndexSelected(day.index) ? Color.fivecallsLightBlue : Color.fivecallsMediumDarkGray)
                     .padding(5)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(isIndexSelected(day.index) ? R.color.darkBlue.color : Color(.systemBackground))
-                    .border(R.color.darkBlue.color, width: 0.5)
+                    .background(isIndexSelected(day.index) ? Color.fivecallsDarkBlue : Color(.systemBackground))
+                    .border(Color.fivecallsDarkBlue, width: 0.5)
                     .aspectRatio(1.0, contentMode: .fit)
                     .onTapGesture {
                         if isIndexSelected(day.index) {

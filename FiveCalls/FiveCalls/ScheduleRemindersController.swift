@@ -155,8 +155,8 @@ class ScheduleRemindersController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        daysOfWeekSelector.warningBorderColor = R.color.red()!.cgColor
-        noDaysWarningLabel.textColor = R.color.red()
+        daysOfWeekSelector.warningBorderColor = R.color.fivecallsRed()!.cgColor
+        noDaysWarningLabel.textColor = R.color.fivecallsRed()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -196,7 +196,7 @@ class ScheduleRemindersController: UIViewController {
 
     func updateDaysWarning() {
         if daysOfWeekSelector.selectedIndices.count == 0 {
-            daysOfWeekSelector.warningBorderColor = R.color.red()!.cgColor
+            daysOfWeekSelector.warningBorderColor = R.color.fivecallsRed()!.cgColor
             noDaysWarningLabel.isHidden = false
         } else {
             daysOfWeekSelector.warningBorderColor = nil

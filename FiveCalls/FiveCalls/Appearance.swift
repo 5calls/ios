@@ -11,7 +11,7 @@ import UIKit
 enum Appearance {
     static func setup() {
         let pageControlAppearance = UIPageControl.appearance()
-        pageControlAppearance.pageIndicatorTintColor = R.color.lightBlue()
+        pageControlAppearance.pageIndicatorTintColor = R.color.fivecallsLightBlue()
         pageControlAppearance.currentPageIndicatorTintColor = R.color.fivecallsDarkBlue()
         
         UINavigationBar.appearance().titleTextAttributes = [

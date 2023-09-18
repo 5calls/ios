@@ -86,7 +86,7 @@ struct ScheduleReminders: View {
             VStack(spacing: .zero) {
                 ZStack {
                     Rectangle()
-                        .foregroundColor(R.color.darkBlue.color)
+                        .foregroundColor(Color.fivecallsDarkBlue)
                         .frame(height: 56)
                     HStack {
                         Button(action: {
@@ -219,19 +219,19 @@ struct DayAndTimePickers: View {
         VStack(spacing: 0) {
             Text(R.string.localizable.scheduledRemindersTimeLabel())
                 .font(.system(size: 20))
-                .foregroundColor(R.color.darkBlue.color)
+                .foregroundColor(Color.fivecallsDarkBlue)
                 .multilineTextAlignment(.center)
                 .padding(20)
             DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
                 .labelsHidden()
                 .datePickerStyle(WheelDatePickerStyle())
                 .colorInvert() // TODO: this won't work in dark mode
-                .colorMultiply(R.color.darkBlue.color)
+                .colorMultiply(Color.fivecallsDarkBlue)
                 .padding(.horizontal, 20)
             Spacer()
             Text(R.string.localizable.scheduledRemindersDayLabel())
                 .font(.system(size: 20))
-                .foregroundColor(R.color.darkBlue.color)
+                .foregroundColor(Color.fivecallsDarkBlue)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
             MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
@@ -244,7 +244,7 @@ struct DayAndTimePickers: View {
                 }
             Text(R.string.localizable.scheduledRemindersNoDaysWarning())
                 .font(.system(size: 12))
-                .foregroundColor(R.color.red.color)
+                .foregroundColor(Color.fivecallsRed)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
                 .opacity(selectedDayIndices.isEmpty ? 1 : 0)
