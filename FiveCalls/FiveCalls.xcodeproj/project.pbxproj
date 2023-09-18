@@ -16,6 +16,7 @@
 		27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FA230D2182A99B004D70BD /* ProgressView.swift */; };
 		33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */; };
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
+		4F11A59C2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */; };
 		558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BC1EE211AE6068BB864845 /* CoreMedia.framework */; };
 		60C6E15E18B252A35EF14CFA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */; };
 		791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791C9FC91E4E5E000074A8B7 /* Main.storyboard */; };
@@ -175,6 +176,7 @@
 		27FA230D2182A99B004D70BD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FiveCalls.swift"; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+FiveCalls.swift"; sourceTree = "<group>"; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5ABA0689883ACB6DB0A09A37 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		714B1EC1C91D8E5AED00D1D6 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			children = (
 				B512506F21E702C0007D32DF /* Error+Offline.swift */,
 				D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */,
+				4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */,
 				AD14A52021612BAA006F06FD /* UIFont+FiveCalls.swift */,
 				33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */,
 				AD377CCB229BEE93001F5CAE /* UIViewController+FiveCalls.swift */,
@@ -944,6 +947,7 @@
 				9C18DA5D1E457F3D0024B991 /* CallScriptViewController.swift in Sources */,
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
+				4F11A59C2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift in Sources */,
 				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
 				B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */,
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,

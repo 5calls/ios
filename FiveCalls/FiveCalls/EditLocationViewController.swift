@@ -103,15 +103,9 @@ class EditLocationViewController : UIViewController, CLLocationManagerDelegate, 
     //MARK: - CLLocationManagerDelegate methods
     
     func informUserOfPermissions() {
-        let alertController = UIAlertController(title: R.string.localizable.locationPermissionDeniedTitle(), message:
-            R.string.localizable.locationPermissionDeniedMessage(), preferredStyle: .alert)
-        let dismiss = UIAlertAction(title: R.string.localizable.dismissTitle(), style: .default ,handler: nil)
-        alertController.addAction(dismiss)
-        let openSettings = UIAlertAction(title: R.string.localizable.openSettingsTitle(), style: .default, handler: { action in
-            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-            UIApplication.shared.open(url)
-        })
-        alertController.addAction(openSettings)
+        let alertController = UIAlertController.settingsAlertView(
+            title: R.string.localizable.locationPermissionDeniedTitle(),
+            message: R.string.localizable.locationPermissionDeniedMessage())
         present(alertController, animated: true, completion: nil)
     }
 
