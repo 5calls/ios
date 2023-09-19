@@ -89,3 +89,6 @@
 "day-picker-thursday" = "Thur";
 "day-picker-friday" = "Fri";
 "day-picker-saturday" = "Sat";
+
+// about
+"about-title" = "About";

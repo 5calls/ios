@@ -18,6 +18,7 @@
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
 		4F11A59C2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */; };
 		4F11A59E2AAB956C00AF30B9 /* ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */; };
+		4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D2EB52AB8C59500882759 /* AboutSheet.swift */; };
 		4FF4ABB42AB23FC8001A064A /* MultipleDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */; };
 		4FF4ABB82AB4DA64001A064A /* UNNotification+ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */; };
 		558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BC1EE211AE6068BB864845 /* CoreMedia.framework */; };
@@ -201,6 +202,7 @@
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+FiveCalls.swift"; sourceTree = "<group>"; };
 		4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleReminders.swift; sourceTree = "<group>"; };
+		4F4D2EB52AB8C59500882759 /* AboutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheet.swift; sourceTree = "<group>"; };
 		4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayPicker.swift; sourceTree = "<group>"; };
 		4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNNotification+ScheduleReminders.swift"; sourceTree = "<group>"; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -640,10 +642,11 @@
 		D0002E132A9DB2E90098973F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
-				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
-				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
+				4F4D2EB52AB8C59500882759 /* AboutSheet.swift */,
 				D0480AE42A4D462500502818 /* Dashboard.swift */,
+				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
+				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
+				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
 				4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */,
 			);
 			name = Screens;
@@ -1085,6 +1088,7 @@
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
 				D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */,
 				B502807A1E49864D00749ED7 /* MyImpactViewController.swift in Sources */,
+				4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */,
 				B502806A1E48C95700749ED7 /* BorderedButton.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				33C2E0E61E52A95900F810C6 /* UIView+FiveCalls.swift in Sources */,
