@@ -23,26 +23,26 @@ class Operator {
         queue = .main
     }
 
-    func fetchIssues(delegate: AppStateDelegate, completion: @escaping (OperationResult) -> Void) {
+    func fetchIssues(setIssues: @MainActor @escaping ([Issue]) -> ()) {
         let operation = FetchIssuesOperation()
         operation.completionBlock = { [weak operation] in
             if let issues = operation?.issuesList {
                 DispatchQueue.main.async {
-                    delegate.setIssues(issues: issues)
-                    completion(.success)
+                    setIssues(issues)
                 }
             } else if let error = operation?.error {
                 print("Could not load issues: \(error.localizedDescription)..")
                 
-                DispatchQueue.main.async {
-                    print(error.localizedDescription)
-                    
-                    if error.isOfflineError() {
-                        completion(.offline)
-                    } else {
-                        completion(.serverError(error))
-                    }
-                }
+                // TODO(nickoneill): do we need to return an error? does it make more sense to have a function that sets an error in app state? or make this async with a completion so state in the component can handle the error?
+//                DispatchQueue.main.async {
+//                    print(error.localizedDescription)
+//                    
+//                    if error.isOfflineError() {
+//                        completion(.offline)
+//                    } else {
+//                        completion(.serverError(error))
+//                    }
+//                }
             } else {
                 fatalError("unknown issue fetching issues")
             }
@@ -50,12 +50,16 @@ class Operator {
         queue.addOperation(operation)
     }
     
-    func fetchContacts(location: NewUserLocation, delegate: AppStateDelegate, completion: @escaping (OperationResult) -> Void) {
-        delegate.setFetchingContacts(fetching: true)
+    func fetchContacts(location: NewUserLocation, fetching: @MainActor @escaping (Bool) -> (), setContacts: @MainActor @escaping ([Contact]) -> ()) {
+        DispatchQueue.main.async {
+            fetching(true)
+        }
         
         let operation = FetchContactsOperation(location: location)
         operation.completionBlock = { [weak operation] in
-            delegate.setFetchingContacts(fetching: false)
+            DispatchQueue.main.async {
+                fetching(false)
+            }
             
             if var contacts = operation?.contacts, !contacts.isEmpty {
                 // if we get more than one house rep here, select the first one.
@@ -66,21 +70,24 @@ class Operator {
                     contacts = contacts.filter({ $0.area != "US House" })
                     contacts.append(houseReps[0])
                 }
-                delegate.setContacts(contacts: contacts)
-                
                 DispatchQueue.main.async {
-                    completion(.success)
+                    setContacts(contacts)
                 }
+
+                // TODO(nickoneill): do we need to return an error? does it make more sense to have a function that sets an error in app state? or make this async with a completion so state in the component can handle the error?
+//                DispatchQueue.main.async {
+//                    completion(.success)
+//                }
             } else if let error = operation?.error {
-                DispatchQueue.main.async {
-                    print(error.localizedDescription)
-                    
-                    if error.isOfflineError() {
-                        completion(.offline)
-                    } else {
-                        completion(.serverError(error))
-                    }
-                }
+//                DispatchQueue.main.async {
+//                    print(error.localizedDescription)
+//                    
+//                    if error.isOfflineError() {
+//                        return .failure(OperationResult.offline)
+//                    } else {
+//                        return .failure(.serverError(error))
+//                    }
+//                }
             } else {
                 fatalError("unknown issue fetching contacts")
             }

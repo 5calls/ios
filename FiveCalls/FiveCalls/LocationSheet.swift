@@ -13,7 +13,7 @@ struct LocationSheet: View {
     @Environment(\.dismiss) var dismiss
     
     let location: NewUserLocation?
-    let delegate: AppStateDelegate?
+    let setLocation: @MainActor (NewUserLocation) -> () // really? you have to specify mainactor here too?
     
     @State var locationText: String = ""
     @State var locationError: String?
@@ -106,7 +106,9 @@ struct LocationSheet: View {
     
     func locationSearch() {
         _ = NewUserLocation(address: locationText) { loc in
-            delegate?.setLocation(location: loc)
+            DispatchQueue.main.async {
+                setLocation(loc)
+            }
             dismiss()
         }
     }
@@ -118,7 +120,9 @@ struct LocationSheet: View {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
                 _ = NewUserLocation(location: clLoc) { loc in
-                    delegate?.setLocation(location: loc)
+                    DispatchQueue.main.async {
+                        setLocation(loc)
+                    }
                     dismiss()
                 }
             } catch (let error as LocationCoordinatorError) {
@@ -135,7 +139,7 @@ struct LocationSheet: View {
 
 struct LocationSheet_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSheet(location: nil, delegate: nil)
-        LocationSheet(location: nil, delegate: nil, locationError: "A location error string")
+        LocationSheet(location: nil, setLocation: { _ in } )
+        LocationSheet(location: nil, setLocation: { _ in }, locationError: "A location error string")
     }
 }

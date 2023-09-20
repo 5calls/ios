@@ -49,9 +49,26 @@ class AppState: ObservableObject {
     }
 }
 
-protocol AppStateDelegate {
-    func setIssues(issues: [Issue])
-    func setContacts(contacts: [Contact])
-    func setFetchingContacts(fetching: Bool)
-    func setLocation(location: NewUserLocation)
+extension AppState {
+    @MainActor
+    func setLocation(newLocation: NewUserLocation) {
+        location = newLocation
+        
+        Operator().fetchContacts(location: newLocation, fetching: self.setFetchingContacts, setContacts: self.setContacts)
+    }
+    
+    @MainActor
+    func setFetchingContacts(fetching: Bool) {
+        fetchingContacts = fetching
+    }
+    
+    @MainActor
+    func setContacts(newContacts: [Contact]) {
+        contacts = newContacts
+    }
+    
+    @MainActor
+    func setIssues(newIssues: [Issue]) {
+        issues = newIssues
+    }
 }

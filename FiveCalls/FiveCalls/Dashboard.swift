@@ -25,7 +25,7 @@ struct Dashboard: View {
                             showLocationSheet.toggle()
                         }
                         .sheet(isPresented: $showLocationSheet) {
-                            LocationSheet(location: appState.location, delegate: (UIApplication.shared.delegate as! AppDelegate))
+                            LocationSheet(location: appState.location, setLocation: appState.setLocation)
                                 .presentationDetents([.medium])
                                 .presentationDragIndicator(.visible)
                                 .padding(.top, 40)
@@ -48,26 +48,11 @@ struct Dashboard: View {
             .onAppear() {
 //              TODO: refresh if issues are old too?
                 if appState.issues.isEmpty {
-                    op.fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
-                        if case let .serverError(error) = result {
-                            print("issues error: \(error)")
-                        }
-                        if case .offline = result {
-                            print("issues offline")
-                        }
-                    })
+                    op.fetchIssues(setIssues: appState.setIssues)
                 }
         
                 if let location = appState.location, appState.contacts.isEmpty {
-                    op.fetchContacts(location: location, delegate: (UIApplication.shared.delegate as! AppDelegate)) { result in
-                        if case let .serverError(error) = result {
-                            print("contacts error: \(error)")
-                        }
-                        if case .offline = result {
-                            print("contacts offline")
-                        }
-        
-                    }
+                    op.fetchContacts(location: location, fetching: appState.setFetchingContacts, setContacts: appState.setContacts)
                 }
             }
         }

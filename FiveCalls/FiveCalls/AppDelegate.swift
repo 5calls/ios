@@ -165,32 +165,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
     }
 }
-
-extension AppDelegate: AppStateDelegate {
-    func setIssues(issues: [Issue]) {
-        DispatchQueue.main.async {
-            self.appState.issues = issues
-        }
-    }
-    
-    func setContacts(contacts: [Contact]) {
-        DispatchQueue.main.async {
-            self.appState.contacts = contacts
-        }
-    }
-    
-    func setFetchingContacts(fetching: Bool) {
-        DispatchQueue.main.async {
-            self.appState.fetchingContacts = fetching
-        }
-    }
-    
-    func setLocation(location: NewUserLocation) {
-        DispatchQueue.main.async {
-            self.appState.location = location
-        }
-        Operator().fetchContacts(location: location, delegate: self) {_ in
-            // nothing I guess? report errors in the app state
-        }
-    }
-}
