@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import os
 
-class AppState: ObservableObject {
+class AppState: ObservableObject, ReduxState {
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
     @Published var fetchingContacts = false
@@ -47,11 +47,4 @@ class AppState: ObservableObject {
             }
         }
     }
-}
-
-protocol AppStateDelegate {
-    func setIssues(issues: [Issue])
-    func setContacts(contacts: [Contact])
-    func setFetchingContacts(fetching: Bool)
-    func setLocation(location: NewUserLocation)
 }

@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navController: CustomNavigationController!
     
     let USE_NEW_SWIFTUI_INTERFACE = true
-    var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -38,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController = R.storyboard.main.instantiateInitialViewController()
         window = UIWindow()
         if USE_NEW_SWIFTUI_INTERFACE {
-            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(appState))
+            let store = Store(reducer: appReducer, state: AppState(), middlewares: [appMiddleware()])
+            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store))
         } else {
             window?.rootViewController = navController
         }
@@ -163,34 +163,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var isRunningUnitTests: Bool {
         return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
-    }
-}
-
-extension AppDelegate: AppStateDelegate {
-    func setIssues(issues: [Issue]) {
-        DispatchQueue.main.async {
-            self.appState.issues = issues
-        }
-    }
-    
-    func setContacts(contacts: [Contact]) {
-        DispatchQueue.main.async {
-            self.appState.contacts = contacts
-        }
-    }
-    
-    func setFetchingContacts(fetching: Bool) {
-        DispatchQueue.main.async {
-            self.appState.fetchingContacts = fetching
-        }
-    }
-    
-    func setLocation(location: NewUserLocation) {
-        DispatchQueue.main.async {
-            self.appState.location = location
-        }
-        Operator().fetchContacts(location: location, delegate: self) {_ in
-            // nothing I guess? report errors in the app state
-        }
     }
 }

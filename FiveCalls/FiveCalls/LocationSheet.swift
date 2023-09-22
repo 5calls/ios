@@ -12,8 +12,7 @@ import CoreLocation
 struct LocationSheet: View {
     @Environment(\.dismiss) var dismiss
     
-    let location: NewUserLocation?
-    let delegate: AppStateDelegate?
+    @EnvironmentObject var store: Store<AppState>
     
     @State var locationText: String = ""
     @State var locationError: String?
@@ -106,7 +105,7 @@ struct LocationSheet: View {
     
     func locationSearch() {
         _ = NewUserLocation(address: locationText) { loc in
-            delegate?.setLocation(location: loc)
+            store.dispatch(action: SetLocationAction(location: loc))
             dismiss()
         }
     }
@@ -118,7 +117,7 @@ struct LocationSheet: View {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
                 _ = NewUserLocation(location: clLoc) { loc in
-                    delegate?.setLocation(location: loc)
+                    store.dispatch(action: SetLocationAction(location: loc))
                     dismiss()
                 }
             } catch (let error as LocationCoordinatorError) {
@@ -135,7 +134,8 @@ struct LocationSheet: View {
 
 struct LocationSheet_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSheet(location: nil, delegate: nil)
-        LocationSheet(location: nil, delegate: nil, locationError: "A location error string")
+        let store = Store<AppState>(reducer: appReducer, state: AppState(), middlewares: [appMiddleware()])
+        LocationSheet().environmentObject(store)
+        LocationSheet(locationError: "A location error string").environmentObject(store)
     }
 }

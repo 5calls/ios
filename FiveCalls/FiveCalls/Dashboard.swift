@@ -9,23 +9,22 @@
 import SwiftUI
 
 struct Dashboard: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var store: Store<AppState>
 
     @State var showLocationSheet = false
-
-    let op = Operator()
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    LocationHeader(location: appState.location, fetchingContacts: appState.fetchingContacts)
+                    LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                         .padding(.bottom, 10)
                         .onTapGesture {
                             showLocationSheet.toggle()
                         }
                         .sheet(isPresented: $showLocationSheet) {
-                            LocationSheet(location: appState.location, delegate: (UIApplication.shared.delegate as! AppDelegate))
+                            LocationSheet()
+                                .environmentObject(store)
                                 .presentationDetents([.medium])
                                 .presentationDragIndicator(.visible)
                                 .padding(.top, 40)
@@ -34,9 +33,9 @@ struct Dashboard: View {
                     Text("What’s important to you?")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
-                    ForEach(appState.issues) { issue in
+                    ForEach(store.state.issues) { issue in
                         NavigationLink(value: issue) {
-                            IssueListItem(issue: issue, contacts: appState.contacts)
+                            IssueListItem(issue: issue, contacts: store.state.contacts)
                         }
                     }
                 }.padding(.horizontal, 10)
@@ -47,27 +46,29 @@ struct Dashboard: View {
             .navigationBarHidden(true)
             .onAppear() {
 //              TODO: refresh if issues are old too?
-                if appState.issues.isEmpty {
-                    op.fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
-                        if case let .serverError(error) = result {
-                            print("issues error: \(error)")
-                        }
-                        if case .offline = result {
-                            print("issues offline")
-                        }
-                    })
+                if store.state.issues.isEmpty {
+                    store.dispatch(action: FetchIssuesAction())
+//                    op.fetchIssues(delegate: (UIApplication.shared.delegate as! AppDelegate), completion: { result in
+//                        if case let .serverError(error) = result {
+//                            print("issues error: \(error)")
+//                        }
+//                        if case .offline = result {
+//                            print("issues offline")
+//                        }
+//                    })
                 }
         
-                if let location = appState.location, appState.contacts.isEmpty {
-                    op.fetchContacts(location: location, delegate: (UIApplication.shared.delegate as! AppDelegate)) { result in
-                        if case let .serverError(error) = result {
-                            print("contacts error: \(error)")
-                        }
-                        if case .offline = result {
-                            print("contacts offline")
-                        }
-        
-                    }
+                if let location = store.state.location, store.state.contacts.isEmpty {
+                    store.dispatch(action: FetchContactsAction(location: location))
+//                    op.fetchContacts(location: location, delegate: (UIApplication.shared.delegate as! AppDelegate)) { result in
+//                        if case let .serverError(error) = result {
+//                            print("contacts error: \(error)")
+//                        }
+//                        if case .offline = result {
+//                            print("contacts offline")
+//                        }
+//        
+//                    }
                 }
             }
         }
@@ -90,6 +91,7 @@ struct Dashboard_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        Dashboard().environmentObject(previewState)
+        let store = Store<AppState>(reducer: appReducer, state: previewState, middlewares: [appMiddleware()])
+        Dashboard().environmentObject(store)
     }
 }
