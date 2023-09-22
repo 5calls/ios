@@ -8,9 +8,9 @@
 
 import SwiftUI
 import MessageUI
+import StoreKit
 
 private let appId = "1202558609"
-
 private let appUrl = URL(string: "https://itunes.apple.com/us/app/myapp/id\(appId)?ls=1&mt=8")
 
 struct AboutSheet: View {
@@ -45,27 +45,61 @@ struct AboutSheet: View {
             
             List {
                 Section(header: Text("GENERAL")) {
-                    Button("Feedback") {
+                    AboutListItem(title: "Feedback") {
+                        AnalyticsManager.shared.trackEventOld(withName: "Action: Feedback")
                         if EmailComposerView.canSendEmail() {
                             showEmailComposer = true
                         } else {
                             showEmailComposerAlert = true
-                        }                    }
+                        }
+                    }
                     .sheet(isPresented: $showEmailComposer, content: {
                         EmailComposerView() { _ in }
                     })
                     .alert(isPresented: $showEmailComposerAlert) {
                         Alert(title: Text(R.string.localizable.cantSendEmailTitle()),
                               message: Text(R.string.localizable.cantSendEmailMessage()),
-                                dismissButton: .default(Text(R.string.localizable.dismissTitle())))
+                              dismissButton: .default(Text(R.string.localizable.dismissTitle())))
                     }
                 }
                 
                 Section(header: Text("SOCIAL")) {
-                    
+                    AboutListItem(title: "Follow on Twitter") {
+                        followOnTwitter()
+                    }
+                    if appUrl != nil {
+                        ShareLink(item: appUrl!) {
+                            HStack {
+                                Text("Share with Others")
+                                    .foregroundStyle(.black)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                        
+                    }
+                    AboutListItem(title: "Please Rate 5 Calls") { requestReview() }
                 }
             }
+            .listStyle(.grouped)
         }
+    }
+    
+    func followOnTwitter() {
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Follow On Twitter")
+        guard let url = URL(string: "https://twitter.com/make5calls") else { return }
+        UIApplication.shared.open(url)
+    }
+
+    
+    func requestReview() {
+        AnalyticsManager.shared.trackEventOld(withName: "Action: Rate the App")
+        guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            return
+        }
+        
+        SKStoreReviewController.requestReview(in: currentScene)
     }
 }
 
@@ -116,5 +150,22 @@ struct EmailComposerView: UIViewControllerRepresentable {
                 
                 parent.presentationMode.wrappedValue.dismiss()
             }
+    }
+}
+
+struct AboutListItem: View {
+    var title: String
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action, label: {
+            HStack {
+                Text(title)
+                    .foregroundStyle(.black)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.gray)
+            }
+        })
     }
 }
