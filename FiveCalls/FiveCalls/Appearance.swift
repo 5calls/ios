@@ -20,6 +20,7 @@ enum Appearance {
     }
     
     static func swiftUISetup() {
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backIndicatorImage = UIImage(systemName: "chevron.backward.circle.fill")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.backward.circle.fill")
         UIDatePicker.appearance().minuteInterval = 10

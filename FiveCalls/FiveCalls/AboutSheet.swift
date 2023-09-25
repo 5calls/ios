@@ -20,31 +20,25 @@ struct AboutSheet: View {
     @State var showEmailComposerAlert = false
     
     var body: some View {
-        VStack(spacing: .zero) {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(Color.fivecallsDarkBlue)
-                    .frame(height: 56)
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Text(R.string.localizable.doneButtonTitle())
-                            .bold()
-                            .foregroundColor(.white)
-                    })
-                }
-                .padding(.horizontal)
-                
-                Text(R.string.localizable.aboutTitle())
-                    .font(Font(UIFont.fvc_header))
-                    .bold()
-                    .foregroundColor(.white)
-            }
-            
+        NavigationStack {
             List {
                 Section(header: Text("GENERAL")) {
+                    NavigationLink(value: WebViewContent.whycall) {
+                        Text("Why Calling Works")
+                            .foregroundStyle(.black)
+                    }
+                    NavigationLink(value: WebViewContent.whoweare) {
+                        Text("Who Made 5 Calls?")
+                            .foregroundStyle(.black)
+                    }
+                    .navigationDestination(for: WebViewContent.self) { webViewContent in
+                        WebView(webViewContent: webViewContent)
+                            .navigationTitle(webViewContent.navigationTitle)
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbarBackground(.visible)
+                            .toolbarBackground(Color.fivecallsDarkBlue)
+                        
+                    }
                     AboutListItem(title: "Feedback") {
                         AnalyticsManager.shared.trackEventOld(withName: "Action: Feedback")
                         if EmailComposerView.canSendEmail() {
@@ -83,7 +77,23 @@ struct AboutSheet: View {
                 }
             }
             .listStyle(.grouped)
+            .navigationTitle("About")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .toolbarBackground(.visible)
+            .toolbarBackground(Color.fivecallsDarkBlue)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        self.dismiss()
+                    }) {
+                        Text(R.string.localizable.doneButtonTitle())
+                            .bold()
+                    }
+                }
+            }
         }
+        .accentColor(.white)
     }
     
     func followOnTwitter() {
