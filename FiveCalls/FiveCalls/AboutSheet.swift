@@ -70,7 +70,9 @@ struct AboutSheet: View {
                     }
                 }
                 
-                Section(header: Text("SOCIAL")) {
+                Section(header: Text("SOCIAL"),
+                        footer: Text("Sharing and Rating helps others find 5 Calls."))
+                {
                     AboutListItem(title: "Follow on Twitter") {
                         followOnTwitter()
                     }
