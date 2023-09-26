@@ -25,10 +25,11 @@ enum WebViewContent: String {
 
 struct WebView: UIViewRepresentable {
     let webViewContent: WebViewContent
-
     
     func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
+        let webView = WKWebView()
+        webView.navigationDelegate = context.coordinator
+        return webView
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
@@ -36,5 +37,29 @@ struct WebView: UIViewRepresentable {
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let htmlString = String(data: data, encoding: .utf8)!
         webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL)
+    }
+    
+    class Coordinator: NSObject, WKNavigationDelegate {
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            switch navigationAction.navigationType {
+            case .linkActivated:
+                // Open links in Safari
+                guard let url = navigationAction.request.url else {
+                    decisionHandler(.allow)
+                    return
+                }
+                AnalyticsManager.shared.trackEventOld(withName: "Action: Open External Link", andProperties: ["url":url.absoluteString])
+                UIApplication.shared.open(url)
+                
+                decisionHandler(.cancel)
+            default:
+                // Handle other navigation types...
+                decisionHandler(.allow)
+            }
+        }
+    }
+
+    func makeCoordinator() -> WebView.Coordinator {
+        Coordinator()
     }
 }
