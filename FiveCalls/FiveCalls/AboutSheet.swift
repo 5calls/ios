@@ -18,6 +18,18 @@ struct AboutSheet: View {
     
     @State var showEmailComposer = false
     @State var showEmailComposerAlert = false
+    private var versionString: String? = {
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return nil
+        }
+        
+        var string = "v" + version
+        if let userID = SessionManager.shared.userID {
+            string = "\(string) - \(userID)"
+        }
+        
+        return string
+    }()
     
     var body: some View {
         NavigationStack {
@@ -37,7 +49,8 @@ struct AboutSheet: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbarBackground(.visible)
                             .toolbarBackground(Color.fivecallsDarkBlue)
-                        
+                            .toolbarColorScheme(.dark, for: .navigationBar)
+
                     }
                     AboutListItem(title: "Feedback") {
                         AnalyticsManager.shared.trackEventOld(withName: "Action: Feedback")
@@ -75,6 +88,17 @@ struct AboutSheet: View {
                     }
                     AboutListItem(title: "Please Rate 5 Calls") { requestReview() }
                 }
+                
+                if let versionString {
+                    Section(header: HStack {
+                        Spacer()
+                        Text(versionString)
+                            .font(.caption)
+                            .foregroundStyle(.gray)
+                        Spacer()
+                    },
+                            content: {})
+                }
             }
             .listStyle(.grouped)
             .navigationTitle("About")
@@ -82,6 +106,7 @@ struct AboutSheet: View {
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
             .toolbarBackground(Color.fivecallsDarkBlue)
+            .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
