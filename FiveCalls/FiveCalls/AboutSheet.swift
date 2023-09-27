@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import MessageUI
 import StoreKit
 
 private let appId = "1202558609"
@@ -18,6 +17,8 @@ struct AboutSheet: View {
     
     @State var showEmailComposer = false
     @State var showEmailComposerAlert = false
+    @State var showWelcome = false
+    
     private var versionString: String? = {
         guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             return nil
@@ -35,14 +36,8 @@ struct AboutSheet: View {
         NavigationStack {
             List {
                 Section(header: Text("GENERAL")) {
-                    NavigationLink(value: WebViewContent.whycall) {
-                        Text("Why Calling Works")
-                            .foregroundStyle(.black)
-                    }
-                    NavigationLink(value: WebViewContent.whoweare) {
-                        Text("Who Made 5 Calls?")
-                            .foregroundStyle(.black)
-                    }
+                    AboutListItem(title: "Why Calling Works", navigationLinkValue: WebViewContent.whycall)
+                    AboutListItem(title: "Who Made 5 Calls?", navigationLinkValue: WebViewContent.whoweare)
                     .navigationDestination(for: WebViewContent.self) { webViewContent in
                         WebView(webViewContent: webViewContent)
                             .navigationTitle(webViewContent.navigationTitle)
@@ -68,6 +63,12 @@ struct AboutSheet: View {
                               message: Text(R.string.localizable.cantSendEmailMessage()),
                               dismissButton: .default(Text(R.string.localizable.dismissTitle())))
                     }
+                    AboutListItem(title: "Show Welcome Screen") {
+                        showWelcome = true
+                    }
+                    .sheet(isPresented: $showWelcome, content: {
+                        WelcomeView()
+                    })
                 }
                 
                 Section(header: Text("SOCIAL"),
@@ -77,29 +78,21 @@ struct AboutSheet: View {
                         followOnTwitter()
                     }
                     if appUrl != nil {
-                        ShareLink(item: appUrl!) {
-                            HStack {
-                                Text("Share with Others")
-                                    .foregroundStyle(.black)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        
+                        AboutListItem(title: "Share with Others", url: appUrl)
                     }
                     AboutListItem(title: "Please Rate 5 Calls") { requestReview() }
                 }
                 
                 if let versionString {
-                    Section(header: HStack {
-                        Spacer()
-                        Text(versionString)
-                            .font(.caption)
-                            .foregroundStyle(.gray)
-                        Spacer()
-                    },
-                            content: {})
+                    Section(
+                        header: HStack {
+                            Spacer()
+                            Text(versionString)
+                                .font(.caption)
+                                .foregroundStyle(.gray)
+                            Spacer()
+                        },
+                        content: {})
                 }
             }
             .listStyle(.grouped)
@@ -143,66 +136,5 @@ struct AboutSheet: View {
 struct AboutSheet_Previews: PreviewProvider {
     static var previews: some View {
         AboutSheet()
-    }
-}
-
-struct EmailComposerView: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) private var presentationMode
-    var result: (Result<MFMailComposeResult, Error>) -> Void
-    
-    static func canSendEmail() -> Bool {
-        MFMailComposeViewController.canSendMail()
-    }
-    
-    func makeUIViewController(context: Context) -> MFMailComposeViewController {
-        let emailComposer = MFMailComposeViewController()
-        emailComposer.mailComposeDelegate = context.coordinator
-        emailComposer.setToRecipients(["make5calls@gmail.com"])
-        emailComposer.setMessageBody("", isHTML: true)
-        return emailComposer
-    }
-    
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController,
-                                context: Context) { }
-    
-    func makeCoordinator() -> Coordinator {
-         Coordinator(self)
-     }
-    
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        var parent: EmailComposerView
-        
-        init(_ parent: EmailComposerView) {
-            self.parent = parent
-        }
-        
-        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-                
-                if let error = error {
-                    parent.result(.failure(error))
-                    return
-                }
-                
-                parent.result(.success(result))
-                
-                parent.presentationMode.wrappedValue.dismiss()
-            }
-    }
-}
-
-struct AboutListItem: View {
-    var title: String
-    var action: () -> Void
-
-    var body: some View {
-        Button(action: action, label: {
-            HStack {
-                Text(title)
-                    .foregroundStyle(.black)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.gray)
-            }
-        })
     }
 }

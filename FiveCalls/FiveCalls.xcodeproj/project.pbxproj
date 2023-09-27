@@ -19,6 +19,9 @@
 		4F11A59C2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */; };
 		4F11A59E2AAB956C00AF30B9 /* ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */; };
 		4F4868B92AC222B300E1733A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868B82AC222B300E1733A /* WebView.swift */; };
+		4F4868BB2AC3A3B400E1733A /* AboutListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */; };
+		4F4868BD2AC3A3E900E1733A /* EmailComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */; };
+		4F4868BF2AC3A6FA00E1733A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */; };
 		4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D2EB52AB8C59500882759 /* AboutSheet.swift */; };
 		4FF4ABB42AB23FC8001A064A /* MultipleDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */; };
 		4FF4ABB82AB4DA64001A064A /* UNNotification+ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */; };
@@ -204,6 +207,9 @@
 		4F11A59B2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+FiveCalls.swift"; sourceTree = "<group>"; };
 		4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleReminders.swift; sourceTree = "<group>"; };
 		4F4868B82AC222B300E1733A /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListItem.swift; sourceTree = "<group>"; };
+		4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailComposerView.swift; sourceTree = "<group>"; };
+		4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4F4D2EB52AB8C59500882759 /* AboutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheet.swift; sourceTree = "<group>"; };
 		4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayPicker.swift; sourceTree = "<group>"; };
 		4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNNotification+ScheduleReminders.swift"; sourceTree = "<group>"; };
@@ -657,13 +663,16 @@
 		D0002E142A9DB2F70098973F /* View Components */ = {
 			isa = PBXGroup;
 			children = (
+				4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */,
 				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
+				4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */,
 				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
 				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
 				4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */,
 				D0002E182A9DB5FB0098973F /* PrimaryButton.swift */,
 				4F4868B82AC222B300E1733A /* WebView.swift */,
+				4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */,
 			);
 			name = "View Components";
 			sourceTree = "<group>";
@@ -1028,6 +1037,7 @@
 				B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */,
 				AD14A52121612BAA006F06FD /* UIFont+FiveCalls.swift in Sources */,
 				B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */,
+				4F4868BB2AC3A3B400E1733A /* AboutListItem.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
 				D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */,
 				27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */,
@@ -1100,10 +1110,12 @@
 				D0480AE52A4D462500502818 /* Dashboard.swift in Sources */,
 				4FF4ABB42AB23FC8001A064A /* MultipleDayPicker.swift in Sources */,
 				B54228081E8EF8C5003C9956 /* LocationButton.swift in Sources */,
+				4F4868BD2AC3A3E900E1733A /* EmailComposerView.swift in Sources */,
 				D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */,
 				B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */,
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 				D03A20582AC53C6C008BBA6E /* Store.swift in Sources */,
+				4F4868BF2AC3A6FA00E1733A /* WelcomeView.swift in Sources */,
 				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
 				D0453EBF2A6F8E7000E19A81 /* AppState.swift in Sources */,
 				B512506C21E6F91C007D32DF /* ContactsManager.swift in Sources */,
