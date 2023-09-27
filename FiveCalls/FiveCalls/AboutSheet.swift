@@ -35,9 +35,9 @@ struct AboutSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text("GENERAL")) {
-                    AboutListItem(title: "Why Calling Works", navigationLinkValue: WebViewContent.whycall)
-                    AboutListItem(title: "Who Made 5 Calls?", navigationLinkValue: WebViewContent.whoweare)
+                Section(header: Text(R.string.localizable.aboutSectionHeaderGeneral())) {
+                    AboutListItem(title: R.string.localizable.aboutItemWhyCall(), navigationLinkValue: WebViewContent.whycall)
+                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(), navigationLinkValue: WebViewContent.whoweare)
                     .navigationDestination(for: WebViewContent.self) { webViewContent in
                         WebView(webViewContent: webViewContent)
                             .navigationTitle(webViewContent.navigationTitle)
@@ -47,7 +47,7 @@ struct AboutSheet: View {
                             .toolbarColorScheme(.dark, for: .navigationBar)
 
                     }
-                    AboutListItem(title: "Feedback") {
+                    AboutListItem(title: R.string.localizable.aboutItemFeedback()) {
                         AnalyticsManager.shared.trackEventOld(withName: "Action: Feedback")
                         if EmailComposerView.canSendEmail() {
                             showEmailComposer = true
@@ -63,7 +63,7 @@ struct AboutSheet: View {
                               message: Text(R.string.localizable.cantSendEmailMessage()),
                               dismissButton: .default(Text(R.string.localizable.dismissTitle())))
                     }
-                    AboutListItem(title: "Show Welcome Screen") {
+                    AboutListItem(title: R.string.localizable.aboutItemShowWelcome()) {
                         showWelcome = true
                     }
                     .sheet(isPresented: $showWelcome, content: {
@@ -71,16 +71,16 @@ struct AboutSheet: View {
                     })
                 }
                 
-                Section(header: Text("SOCIAL"),
-                        footer: Text("Sharing and Rating helps others find 5 Calls."))
+                Section(header: Text(R.string.localizable.aboutSectionHeaderSocial()),
+                        footer: Text(R.string.localizable.aboutSectionFooterSocial()))
                 {
-                    AboutListItem(title: "Follow on Twitter") {
+                    AboutListItem(title: R.string.localizable.aboutItemFollowTwitter()) {
                         followOnTwitter()
                     }
                     if appUrl != nil {
-                        AboutListItem(title: "Share with Others", url: appUrl)
+                        AboutListItem(title: R.string.localizable.aboutItemShare(), url: appUrl)
                     }
-                    AboutListItem(title: "Please Rate 5 Calls") { requestReview() }
+                    AboutListItem(title: R.string.localizable.aboutItemRate()) { requestReview() }
                 }
                 
                 if let versionString {
@@ -96,7 +96,7 @@ struct AboutSheet: View {
                 }
             }
             .listStyle(.grouped)
-            .navigationTitle("About")
+            .navigationTitle(R.string.localizable.aboutTitle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
