@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Dashboard: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var store: Store
 
     @State var showLocationSheet = false
 
@@ -19,13 +19,13 @@ struct Dashboard: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    LocationHeader(location: appState.location, fetchingContacts: appState.fetchingContacts)
+                    LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                         .padding(.bottom, 10)
                         .onTapGesture {
                             showLocationSheet.toggle()
                         }
                         .sheet(isPresented: $showLocationSheet) {
-                            LocationSheet(location: appState.location, setLocation: appState.setLocation)
+                            LocationSheet()
                                 .presentationDetents([.medium])
                                 .presentationDragIndicator(.visible)
                                 .padding(.top, 40)
@@ -34,9 +34,9 @@ struct Dashboard: View {
                     Text("What’s important to you?")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
-                    ForEach(appState.issues) { issue in
+                    ForEach(store.state.issues) { issue in
                         NavigationLink(value: issue) {
-                            IssueListItem(issue: issue, contacts: appState.contacts)
+                            IssueListItem(issue: issue, contacts: store.state.contacts)
                         }
                     }
                 }.padding(.horizontal, 10)
@@ -47,12 +47,12 @@ struct Dashboard: View {
             .navigationBarHidden(true)
             .onAppear() {
 //              TODO: refresh if issues are old too?
-                if appState.issues.isEmpty {
-                    op.fetchIssues(setIssues: appState.setIssues)
+                if store.state.issues.isEmpty {
+                    store.dispatch(action: FetchIssuesAction())
                 }
         
-                if let location = appState.location, appState.contacts.isEmpty {
-                    op.fetchContacts(location: location, fetching: appState.setFetchingContacts, setContacts: appState.setContacts)
+                if let location = store.state.location, store.state.contacts.isEmpty {
+                    store.dispatch(action: FetchContactsAction(location: location))
                 }
             }
         }

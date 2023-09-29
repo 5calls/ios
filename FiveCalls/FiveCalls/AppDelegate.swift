@@ -38,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController = R.storyboard.main.instantiateInitialViewController()
         window = UIWindow()
         if USE_NEW_SWIFTUI_INTERFACE {
-            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(appState))
+            let store = Store(state: AppState(), middlewares: [appMiddleware()])
+            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store))
         } else {
             window?.rootViewController = navController
         }

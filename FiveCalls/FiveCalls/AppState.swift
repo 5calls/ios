@@ -10,10 +10,9 @@ import Foundation
 import CoreLocation
 import os
 
-class AppState: ObservableObject {
+class AppState: ObservableObject, ReduxState {
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
-    @Published var fetchingContacts = false
     @Published var location: NewUserLocation? {
         didSet {
             guard let location = self.location else { return }
@@ -24,9 +23,11 @@ class AppState: ObservableObject {
             Logger().info("saved cached location as \(location)")
         }
     }
-    
+    @Published var fetchingContacts = false
+    @Published var issueLoadingError: Error? = nil
+    @Published var contactsLoadingError: Error? = nil
+
     init() {
-        
         // load user location cache
         if let locationType = UserDefaults.standard.string(forKey: UserDefaultsKey.locationType.rawValue),
             let locationValue = UserDefaults.standard.string(forKey: UserDefaultsKey.locationValue.rawValue) {
@@ -46,29 +47,5 @@ class AppState: ObservableObject {
                 Logger().warning("unknown stored location type data: \(locationType)")
             }
         }
-    }
-}
-
-extension AppState {
-    @MainActor
-    func setLocation(newLocation: NewUserLocation) {
-        location = newLocation
-        
-        Operator().fetchContacts(location: newLocation, fetching: self.setFetchingContacts, setContacts: self.setContacts)
-    }
-    
-    @MainActor
-    func setFetchingContacts(fetching: Bool) {
-        fetchingContacts = fetching
-    }
-    
-    @MainActor
-    func setContacts(newContacts: [Contact]) {
-        contacts = newContacts
-    }
-    
-    @MainActor
-    func setIssues(newIssues: [Issue]) {
-        issues = newIssues
     }
 }
