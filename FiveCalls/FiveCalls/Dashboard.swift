@@ -48,11 +48,11 @@ struct Dashboard: View {
             .onAppear() {
 //              TODO: refresh if issues are old too?
                 if store.state.issues.isEmpty {
-                    store.dispatch(action: FetchIssuesAction())
+                    store.dispatch(action: .FetchIssues)
                 }
         
                 if let location = store.state.location, store.state.contacts.isEmpty {
-                    store.dispatch(action: FetchContactsAction(location: location))
+                    store.dispatch(action: .FetchContacts(location))
                 }
             }
         }

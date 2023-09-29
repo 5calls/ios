@@ -10,10 +10,10 @@
  func appMiddleware() -> Middleware<AppState> {
      return { state, action, dispatch in
          switch action {
-         case _ as FetchIssuesAction:
+         case .FetchIssues:
              fetchIssues(dispatch: dispatch)
-         case let action as FetchContactsAction:
-             fetchContacts(action: action, dispatch: dispatch)
+         case let .FetchContacts(location):
+             fetchContacts(location: location, dispatch: dispatch)
          default:
              break
          }
@@ -26,13 +26,13 @@
      operation.completionBlock = { [weak operation] in
          if let issues = operation?.issuesList {
              DispatchQueue.main.async {
-                 dispatch(SetIssuesAction(issues: issues))
+                 dispatch(.SetIssues(issues))
              }
          } else if let error = operation?.error {
              print("Could not load issues: \(error.localizedDescription)..")
 
              DispatchQueue.main.async {
-                 dispatch(SetIssueErrorAction(error: error))
+                 dispatch(.SetLoadingIssuesError(error))
              }
          } else {
              fatalError("unknown issue fetching issues")
@@ -41,13 +41,13 @@
      queue.addOperation(operation)
  }
 
- private func fetchContacts(action: FetchContactsAction, dispatch: @escaping Dispatcher) {
-     dispatch(SetFetchingContactsAction(fetching: true))
+ private func fetchContacts(location: NewUserLocation, dispatch: @escaping Dispatcher) {
+     dispatch(.SetFetchingContacts(true))
 
      let queue = OperationQueue.main
-     let operation = FetchContactsOperation(location: action.location)
+     let operation = FetchContactsOperation(location: location)
      operation.completionBlock = { [weak operation] in
-         dispatch(SetFetchingContactsAction(fetching: false))
+         dispatch(.SetFetchingContacts(false))
 
          if var contacts = operation?.contacts, !contacts.isEmpty {
              // if we get more than one house rep here, select the first one.
@@ -59,10 +59,10 @@
                  contacts.append(houseReps[0])
              }
 
-             dispatch(SetContactsAction(contacts: contacts))
+             dispatch(.SetContacts(contacts))
          } else if let error = operation?.error {
              DispatchQueue.main.async {
-                 dispatch(SetContactsErrorAction(error: error))
+                 dispatch(.SetLoadingContactsError(error))
              }
          } else {
              fatalError("unknown issue fetching contacts")

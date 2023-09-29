@@ -105,7 +105,7 @@ struct LocationSheet: View {
     
     func locationSearch() {
         _ = NewUserLocation(address: locationText) { loc in
-            store.dispatch(action: SetLocationAction(location: loc))
+            store.dispatch(action: .SetLocation(loc))
             dismiss()
         }
     }
@@ -117,7 +117,7 @@ struct LocationSheet: View {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
                 _ = NewUserLocation(location: clLoc) { loc in
-                    store.dispatch(action: SetLocationAction(location: loc))
+                    store.dispatch(action: .SetLocation(loc))
                     dismiss()
                 }
             } catch (let error as LocationCoordinatorError) {

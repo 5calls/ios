@@ -7,35 +7,13 @@
 //
 import Foundation
 
-protocol Action { }
-
-struct FetchIssuesAction: Action {}
-
-struct SetIssuesAction: Action {
-    let issues: [Issue]
+enum Action {
+    case FetchIssues
+    case SetIssues([Issue])
+    case FetchContacts(NewUserLocation)
+    case SetContacts([Contact])
+    case SetLocation(NewUserLocation)
+    case SetFetchingContacts(Bool)
+    case SetLoadingIssuesError(Error)
+    case SetLoadingContactsError(Error)
 }
-
-struct FetchContactsAction: Action {
-    let location: NewUserLocation
-}
-
-struct SetContactsAction: Action {
-    let contacts: [Contact]
-}
-
-struct SetLocationAction: Action {
-    let location: NewUserLocation
-}
-
-struct SetFetchingContactsAction: Action {
-    let fetching: Bool
-}
-
-struct SetIssueErrorAction: Action {
-    let error: Error
-}
-
-struct SetContactsErrorAction: Action {
-    let error: Error
-}
-
