@@ -101,7 +101,7 @@
 		D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */; };
 		D031D73620E3F18B004F9DA0 /* IssueDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */; };
 		D03A20512AC53B9B008BBA6E /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A20502AC53B9B008BBA6E /* Actions.swift */; };
-		D03A20562AC53C54008BBA6E /* 5CallsAPIMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A20552AC53C54008BBA6E /* 5CallsAPIMiddleware.swift */; };
+		D03A20562AC53C54008BBA6E /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A20552AC53C54008BBA6E /* Middleware.swift */; };
 		D03A20582AC53C6C008BBA6E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A20572AC53C6C008BBA6E /* Store.swift */; };
 		D03B684F26FE2B8600625076 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B684E26FE2B8600625076 /* SessionManager.swift */; };
 		D0453EBF2A6F8E7000E19A81 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0453EBE2A6F8E7000E19A81 /* AppState.swift */; };
@@ -112,7 +112,6 @@
 		D056F29826FD37E2000C15B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D056F29726FD37E1000C15B3 /* GoogleService-Info.plist */; };
 		D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D05745842A53E34300A8534A /* PlausibleSwift */; };
 		D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0773DC023E4C8F700C16985 /* DonateCell.swift */; };
-		D07829752A7B32A8001EE5DB /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07829742A7B32A8001EE5DB /* Operator.swift */; };
 		D07829772A7B3795001EE5DB /* PreviewContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07829762A7B3795001EE5DB /* PreviewContacts.swift */; };
 		D082961C2A7BFE04005B002A /* Numbered.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082961B2A7BFE04005B002A /* Numbered.swift */; };
 		D0931AAF1F30110A00486FC0 /* OutcomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */; };
@@ -295,7 +294,7 @@
 		D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetail.swift; sourceTree = "<group>"; };
 		D031D73520E3F18B004F9DA0 /* IssueDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderCell.swift; sourceTree = "<group>"; };
 		D03A20502AC53B9B008BBA6E /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
-		D03A20552AC53C54008BBA6E /* 5CallsAPIMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 5CallsAPIMiddleware.swift; sourceTree = "<group>"; };
+		D03A20552AC53C54008BBA6E /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		D03A20572AC53C6C008BBA6E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D03B684E26FE2B8600625076 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		D0453EBE2A6F8E7000E19A81 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -305,7 +304,6 @@
 		D0480B202A4D4B0400502818 /* PreviewIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewIssues.swift; sourceTree = "<group>"; };
 		D056F29726FD37E1000C15B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D0773DC023E4C8F700C16985 /* DonateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateCell.swift; sourceTree = "<group>"; };
-		D07829742A7B32A8001EE5DB /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		D07829762A7B3795001EE5DB /* PreviewContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContacts.swift; sourceTree = "<group>"; };
 		D082961B2A7BFE04005B002A /* Numbered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbered.swift; sourceTree = "<group>"; };
 		D0931AAE1F30110A00486FC0 /* OutcomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutcomeCollectionCell.swift; sourceTree = "<group>"; };
@@ -607,7 +605,6 @@
 				B512506921E6F762007D32DF /* FetchContactsOperation.swift */,
 				9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */,
 				A0D474B3202A22B90012BC94 /* FetchUserStatsOperation.swift */,
-				D07829742A7B32A8001EE5DB /* Operator.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -668,7 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				D0453EBE2A6F8E7000E19A81 /* AppState.swift */,
-				D03A20552AC53C54008BBA6E /* 5CallsAPIMiddleware.swift */,
+				D03A20552AC53C54008BBA6E /* Middleware.swift */,
 				D03A20572AC53C6C008BBA6E /* Store.swift */,
 				D03A20502AC53B9B008BBA6E /* Actions.swift */,
 			);
@@ -1034,11 +1031,10 @@
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
 				271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */,
 				A02018D9204E761A006078D1 /* UserStats.swift in Sources */,
-				D03A20562AC53C54008BBA6E /* 5CallsAPIMiddleware.swift in Sources */,
+				D03A20562AC53C54008BBA6E /* Middleware.swift in Sources */,
 				D0D9270823D7D85C00777B2E /* DoneCallsViewController.swift in Sources */,
 				B5E762671E40CBB600D63D62 /* EditLocationViewController.swift in Sources */,
 				B5CA63F61E41772D00966B7D /* IssueCell.swift in Sources */,
-				D07829752A7B32A8001EE5DB /* Operator.swift in Sources */,
 				B50280561E47875500749ED7 /* ContactLog.swift in Sources */,
 				D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */,
 				B5E7625B1E4037B400D63D62 /* BaseOperation.swift in Sources */,
@@ -1073,7 +1069,6 @@
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
 				4F11A59C2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift in Sources */,
-				D010FF192A99B49D0032C089 /* Colors.swift in Sources */,
 				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,

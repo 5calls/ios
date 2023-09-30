@@ -14,7 +14,10 @@
              fetchIssues(dispatch: dispatch)
          case let .FetchContacts(location):
              fetchContacts(location: location, dispatch: dispatch)
-         default:
+         case let .SetLocation(location):
+             fetchContacts(location: location, dispatch: dispatch)
+         case .SetContacts, .SetFetchingContacts, .SetIssues, .SetLoadingIssuesError, .SetLoadingContactsError:
+             // no middleware actions for these, including for completeness
              break
          }
      }
@@ -35,7 +38,10 @@
                  dispatch(.SetLoadingIssuesError(error))
              }
          } else {
-             fatalError("unknown issue fetching issues")
+             // we don't really return errors from this endpoint so not much use in doing more parsing
+             DispatchQueue.main.async {
+                 dispatch(.SetLoadingContactsError(MiddlewareError.UnknownError))
+             }
          }
      }
      queue.addOperation(operation)
@@ -65,8 +71,15 @@
                  dispatch(.SetLoadingContactsError(error))
              }
          } else {
-             fatalError("unknown issue fetching contacts")
+             // TODO: parse error messages from the backend and return specifics
+             DispatchQueue.main.async {
+                 dispatch(.SetLoadingContactsError(MiddlewareError.UnknownError))
+             }
          }
      }
      queue.addOperation(operation)
  }
+
+enum MiddlewareError: Error {
+    case UnknownError
+}

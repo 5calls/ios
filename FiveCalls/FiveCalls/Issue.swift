@@ -49,6 +49,7 @@ struct Issue: Identifiable, Decodable {
     func sortedContactAreas(areas: [String]) -> [String] {
         var contactAreas: [String] = []
         
+        // TODO: convert these to enums when they are parsed in json
         for area in ["StateLower", "StateUpper", "US House", "US Senate", "Governor", "AttorneyGeneral", "SecretaryOfState"] {
             if areas.contains(area) {
                 contactAreas.append(area)

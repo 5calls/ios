@@ -24,7 +24,9 @@ class AppState: ObservableObject, ReduxState {
         }
     }
     @Published var fetchingContacts = false
+    // TODO: display this error on the dashboard issue list (and the More page when it exists)
     @Published var issueLoadingError: Error? = nil
+    // TODO: display this error on the dashboard (and location sheet?)
     @Published var contactsLoadingError: Error? = nil
 
     init() {

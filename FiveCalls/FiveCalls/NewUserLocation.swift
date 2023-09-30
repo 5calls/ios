@@ -33,6 +33,7 @@ class NewUserLocation {
     var locationValue: String
     var locationDisplay: String
     
+    // TODO: convert this closure to the unidirectional data flow-equivalent
     init(address: String, display: String? = nil, gotDisplay: ((NewUserLocation) -> Void)? = nil) {
         locationType = .address
         locationValue = address
@@ -57,6 +58,7 @@ class NewUserLocation {
         }
     }
     
+    // TODO: convert this closure to the unidirectional data flow-equivalent
     init(location: CLLocation, display: String? = nil, gotDisplay: ((NewUserLocation) -> Void)? = nil) {
         locationType = .coordinates
         locationValue = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
@@ -74,6 +76,7 @@ class NewUserLocation {
         }
     }
     
+    // TODO: convert this to async/await rather than closure
     private func getLocationInfo(from location: CLLocation, completion: @escaping (([String: Any]) -> ())) {
         var locationInfo = [String: Any]()
         locationInfo["longitude"] = location.coordinate.longitude

@@ -13,8 +13,6 @@ struct Dashboard: View {
 
     @State var showLocationSheet = false
 
-    let op = Operator()
-    
     var body: some View {
         NavigationStack {
             ScrollView {

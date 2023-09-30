@@ -64,7 +64,6 @@ struct LocationSheet: View {
             HStack(alignment: .top) {
                 Text("Or")
                     .font(.system(.title3))
-//                    .fontWeight: .regular)
                     .padding(.trailing)
                     .padding(.top, 10)
                 VStack {
