@@ -20,7 +20,7 @@ struct EmailComposerView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let emailComposer = MFMailComposeViewController()
         emailComposer.mailComposeDelegate = context.coordinator
-        emailComposer.setToRecipients(["make5calls@gmail.com"])
+        emailComposer.setToRecipients(["hello@5calls.org"])
         emailComposer.setMessageBody("", isHTML: true)
         return emailComposer
     }

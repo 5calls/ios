@@ -85,7 +85,7 @@ struct AboutSheet: View {
                 
                 if let versionString {
                     Section(
-                        header: HStack {
+                        footer: HStack {
                             Spacer()
                             Text(versionString)
                                 .font(.caption)
