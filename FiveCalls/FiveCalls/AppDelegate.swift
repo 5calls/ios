@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import SwiftUI
 import OneSignal
 import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
+    var navController: CustomNavigationController!
+    
+    let USE_NEW_SWIFTUI_INTERFACE = false
+    var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -26,15 +30,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         resetOrInitializeCountForRating()
         
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
-            showWelcome()
-        }
-
         oneSignalStartup(launchOptions: launchOptions)
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
 
         FirebaseApp.configure()
+        
+        navController = R.storyboard.main.instantiateInitialViewController()
+        window = UIWindow()
+        if USE_NEW_SWIFTUI_INTERFACE {
+            let store = Store(state: AppState(), middlewares: [appMiddleware()])
+            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store))
+        } else {
+            window?.rootViewController = navController
+        }
+        
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
+            showWelcome()
+        }
 
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
@@ -86,7 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setAppearance() {
-        Appearance.setup()
+        if USE_NEW_SWIFTUI_INTERFACE {
+            Appearance.swiftUISetup()
+        } else {
+            Appearance.setup()
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

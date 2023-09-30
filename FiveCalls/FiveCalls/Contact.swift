@@ -44,20 +44,20 @@ struct Contact : Decodable {
         fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
     }
 
-    init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212") {
+    init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212", photoURL: URL? = nil, fieldOffices: [AreaOffice] = []) {
         self.id = id
         self.area = area
         self.name = name
         self.party = party
         self.phone = phone
-        self.photoURL = nil
+        self.photoURL = photoURL
         self.reason = nil
         self.state = nil
-        self.fieldOffices = []
+        self.fieldOffices = fieldOffices
     }
 }
 
-extension Contact : Hashable {
+extension Contact: Hashable, Identifiable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
@@ -97,5 +97,40 @@ extension Contact {
         let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
         let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
         return scriptWithContactName
+    }
+}
+
+extension Contact {
+    static func placeholderContact(for area: String) -> [Contact] {
+        switch area {
+        case "US House":
+            return [
+                    Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
+                    Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])
+                ]
+        default:
+            return [Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])]
+        }
+    }
+}
+
+// AreaToNiceString converts an area name to a generic office name that can be used in the interface
+func AreaToNiceString(area: String) -> String {
+    switch area {
+    case "US House", "House":
+        return "House Rep";
+    case "US Senate", "Senate":
+        return "Senators";
+    // state legislatures call themselves different things by state, so let's use a generic term for all of them
+    case "StateLower", "StateUpper":
+        return "State Reps";
+    case "Governor":
+        return "Governor";
+    case "AttorneyGeneral":
+        return "Attorney General";
+    case "SecretaryOfState":
+        return "Secretary of State";
+    default:
+        return area
     }
 }
