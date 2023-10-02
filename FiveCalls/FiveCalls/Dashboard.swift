@@ -19,23 +19,15 @@ struct Dashboard: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        if USE_SHEET {
-                            Button(action: {
-                                showRemindersSheet.toggle()
-                            }, label: {
-                                if let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)  {
-                                    Image(uiImage: image)
-                                }
-                            })
-                            .sheet(isPresented: $showRemindersSheet) {
-                                ScheduleReminders()
+                        Button(action: {
+                            showRemindersSheet.toggle()
+                        }, label: {
+                            if let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)  {
+                                Image(uiImage: image)
                             }
-                        } else {
-                            NavigationLink(destination: ScheduleReminders(), label: {
-                                if let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)  {
-                                    Image(uiImage: image)
-                                }
-                            })
+                        })
+                        .sheet(isPresented: $showRemindersSheet) {
+                            ScheduleReminders()
                         }
                         
                         LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)

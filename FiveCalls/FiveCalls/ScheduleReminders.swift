@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-let USE_SHEET = true
-
 struct ScheduleReminders: View {
     @AppStorage(UserDefaultsKey.reminderEnabled.rawValue) var remindersEnabled = false
     @Environment(\.dismiss) var dismiss
@@ -22,7 +20,35 @@ struct ScheduleReminders: View {
     @State var presentNotificationSettingsAlert = false
     
     var body: some View {
-        if !USE_SHEET {
+        VStack(spacing: .zero) {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(Color.fivecallsDarkBlue)
+                    .frame(height: 56)
+                HStack {
+                    Button(action: {
+                        onDismiss()
+                    }, label: {
+                        Text(R.string.localizable.doneButtonTitle())
+                            .bold()
+                            .foregroundColor(.white)
+                    })
+                    
+                    Spacer()
+                    Toggle(isOn: $remindersEnabled,
+                           label: {
+                        Text("")
+                    }).toggleStyle(.switch)
+                        .layoutPriority(-1)
+                }
+                .padding(.horizontal)
+                
+                Text(R.string.localizable.scheduledRemindersTitle())
+                    .font(Font(UIFont.fvc_header))
+                    .bold()
+                    .foregroundColor(.white)
+            }
+            
             ZStack {
                 DayAndTimePickers(remindersEnabled: $remindersEnabled,
                                   selectedTime: $selectedTime,
@@ -31,25 +57,7 @@ struct ScheduleReminders: View {
                 RemindersDisabledView(remindersEnabled: $remindersEnabled)
                 Spacer()
             }
-            .navigationTitle(R.string.localizable.scheduledRemindersTitle())
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        onDismiss()
-                    }) {
-                        Text(R.string.localizable.doneButtonTitle())
-                            .bold()
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Toggle(isOn: $remindersEnabled,
-                           label: {
-                        Text("")
-                    }).toggleStyle(.switch)
-                }
-            }
+            .background()
             .animation(.easeInOut, value: remindersEnabled)
             .task {
                 if remindersEnabled {
@@ -73,87 +81,15 @@ struct ScheduleReminders: View {
             .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
                    isPresented: $presentNotificationSettingsAlert,
                    actions: {
-                    Button(R.string.localizable.dismissTitle()) { }
-                    Button(R.string.localizable.openSettingsTitle()) {
-                        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-                            UIApplication.shared.open(url)
-                    }.keyboardShortcut(.defaultAction)
-                   },
+                Button(R.string.localizable.dismissTitle()) { }
+                Button(R.string.localizable.openSettingsTitle()) {
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                    UIApplication.shared.open(url)
+                }.keyboardShortcut(.defaultAction)
+            },
                    message: {
-                    Text(R.string.localizable.notificationsDeniedAlertBody())
-                   })
-        } else {
-            VStack(spacing: .zero) {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(Color.fivecallsDarkBlue)
-                        .frame(height: 56)
-                    HStack {
-                        Button(action: {
-                            onDismiss()
-                        }, label: {
-                            Text(R.string.localizable.doneButtonTitle())
-                                .bold()
-                                .foregroundColor(.white)
-                        })
-
-                        Spacer()
-                        Toggle(isOn: $remindersEnabled,
-                               label: {
-                            Text("")
-                        }).toggleStyle(.switch)
-                            .layoutPriority(-1)
-                    }
-                    .padding(.horizontal)
-
-                    Text(R.string.localizable.scheduledRemindersTitle())
-                        .font(Font(UIFont.fvc_header))
-                        .bold()
-                        .foregroundColor(.white)
-                }
-
-                ZStack {
-                    DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                      selectedTime: $selectedTime,
-                                      selectedDayIndices: $selectedDayIndices,
-                                      shouldShake: $shouldShake)
-                    RemindersDisabledView(remindersEnabled: $remindersEnabled)
-                    Spacer()
-                }
-                .background()
-                .animation(.easeInOut, value: remindersEnabled)
-                .task {
-                    if remindersEnabled {
-                        onRemindersEnabled()
-                    }
-                    
-                    let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-                    let indices = UNNotificationRequest.indices(from: notificationRequests)
-                    existingSelectedDayIndices = indices
-                    selectedDayIndices = indices
-                    if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
-                        existingSelectedTime = triggerDate
-                        selectedTime = triggerDate
-                    }
-                }
-                .onChange(of: remindersEnabled) { newValue in
-                    if newValue {
-                        onRemindersEnabled()
-                    }
-                }
-                .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
-                       isPresented: $presentNotificationSettingsAlert,
-                       actions: {
-                        Button(R.string.localizable.dismissTitle()) { }
-                        Button(R.string.localizable.openSettingsTitle()) {
-                            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-                                UIApplication.shared.open(url)
-                        }.keyboardShortcut(.defaultAction)
-                       },
-                       message: {
-                        Text(R.string.localizable.notificationsDeniedAlertBody())
-                       })
-            }
+                Text(R.string.localizable.notificationsDeniedAlertBody())
+            })
         }
     }
     
