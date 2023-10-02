@@ -20,35 +20,7 @@ struct ScheduleReminders: View {
     @State var presentNotificationSettingsAlert = false
     
     var body: some View {
-        VStack(spacing: .zero) {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(Color.fivecallsDarkBlue)
-                    .frame(height: 56)
-                HStack {
-                    Button(action: {
-                        onDismiss()
-                    }, label: {
-                        Text(R.string.localizable.doneButtonTitle())
-                            .bold()
-                            .foregroundColor(.white)
-                    })
-                    
-                    Spacer()
-                    Toggle(isOn: $remindersEnabled,
-                           label: {
-                        Text("")
-                    }).toggleStyle(.switch)
-                        .layoutPriority(-1)
-                }
-                .padding(.horizontal)
-                
-                Text(R.string.localizable.scheduledRemindersTitle())
-                    .font(Font(UIFont.fvc_header))
-                    .bold()
-                    .foregroundColor(.white)
-            }
-            
+        VStack(spacing: .zero) {            
             ZStack {
                 DayAndTimePickers(remindersEnabled: $remindersEnabled,
                                   selectedTime: $selectedTime,
@@ -91,8 +63,31 @@ struct ScheduleReminders: View {
                 Text(R.string.localizable.notificationsDeniedAlertBody())
             })
         }
+        .navigationTitle(R.string.localizable.scheduledRemindersTitle())
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .toolbarBackground(.visible)
+        .toolbarBackground(Color.fivecallsDarkBlue)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    self.dismiss()
+                }) {
+                    Text(R.string.localizable.doneButtonTitle())
+                        .bold()
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Toggle(isOn: $remindersEnabled,
+                       label: {
+                    Text("")
+                }).toggleStyle(.switch)
+            }
+        }
+        .accentColor(.white)
     }
-    
+
     private func onRemindersEnabled() {
          UNUserNotificationCenter.current().getNotificationSettings() { settings in
              if settings.authorizationStatus == .notDetermined {
