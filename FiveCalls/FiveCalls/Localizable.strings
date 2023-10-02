@@ -80,3 +80,12 @@
 // profile
 "sign-in" = "Sign In";
 "sign-out" = "Sign Out";
+
+// day picker
+"day-picker-sunday" = "Sun";
+"day-picker-monday" = "Mon";
+"day-picker-tuesday" = "Tues";
+"day-picker-wednesday" = "Wed";
+"day-picker-thursday" = "Thur";
+"day-picker-friday" = "Fri";
+"day-picker-saturday" = "Sat";

@@ -14,13 +14,13 @@ struct Day: Hashable {
 }
 
 let days = [
-    Day(index: 1, name: "Sun"),
-    Day(index: 2, name: "Mon"),
-    Day(index: 3, name: "Tues"),
-    Day(index: 4, name: "Wed"),
-    Day(index: 5, name: "Thur"),
-    Day(index: 6, name: "Fri"),
-    Day(index: 7, name: "Sat")
+    Day(index: 1, name: R.string.localizable.dayPickerSunday()),
+    Day(index: 2, name: R.string.localizable.dayPickerMonday()),
+    Day(index: 3, name: R.string.localizable.dayPickerTuesday()),
+    Day(index: 4, name: R.string.localizable.dayPickerWednesday()),
+    Day(index: 5, name: R.string.localizable.dayPickerThursday()),
+    Day(index: 6, name: R.string.localizable.dayPickerFriday()),
+    Day(index: 7, name: R.string.localizable.dayPickerSaturday())
 ]
 
 struct MultipleDayPicker: View {
