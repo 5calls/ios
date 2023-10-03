@@ -20,69 +20,71 @@ struct ScheduleReminders: View {
     @State var presentNotificationSettingsAlert = false
     
     var body: some View {
-        VStack(spacing: .zero) {            
-            ZStack {
-                DayAndTimePickers(remindersEnabled: $remindersEnabled,
-                                  selectedTime: $selectedTime,
-                                  selectedDayIndices: $selectedDayIndices,
-                                  shouldShake: $shouldShake)
-                RemindersDisabledView(remindersEnabled: $remindersEnabled)
-                Spacer()
-            }
-            .background()
-            .animation(.easeInOut, value: remindersEnabled)
-            .task {
-                if remindersEnabled {
-                    onRemindersEnabled()
+        NavigationStack {
+            VStack(spacing: .zero) {
+                ZStack {
+                    DayAndTimePickers(remindersEnabled: $remindersEnabled,
+                                      selectedTime: $selectedTime,
+                                      selectedDayIndices: $selectedDayIndices,
+                                      shouldShake: $shouldShake)
+                    RemindersDisabledView(remindersEnabled: $remindersEnabled)
+                    Spacer()
                 }
-                
-                let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-                let indices = UNNotificationRequest.indices(from: notificationRequests)
-                existingSelectedDayIndices = indices
-                selectedDayIndices = indices
-                if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
-                    existingSelectedTime = triggerDate
-                    selectedTime = triggerDate
+                .background()
+                .animation(.easeInOut, value: remindersEnabled)
+                .task {
+                    if remindersEnabled {
+                        onRemindersEnabled()
+                    }
+                    
+                    let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+                    let indices = UNNotificationRequest.indices(from: notificationRequests)
+                    existingSelectedDayIndices = indices
+                    selectedDayIndices = indices
+                    if let trigger = notificationRequests.first?.trigger as? UNCalendarNotificationTrigger, let triggerDate = trigger.nextTriggerDate() {
+                        existingSelectedTime = triggerDate
+                        selectedTime = triggerDate
+                    }
                 }
-            }
-            .onChange(of: remindersEnabled) { newValue in
-                if newValue {
-                    onRemindersEnabled()
+                .onChange(of: remindersEnabled) { newValue in
+                    if newValue {
+                        onRemindersEnabled()
+                    }
                 }
+                .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
+                       isPresented: $presentNotificationSettingsAlert,
+                       actions: {
+                    Button(R.string.localizable.dismissTitle()) { }
+                    Button(R.string.localizable.openSettingsTitle()) {
+                        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                        UIApplication.shared.open(url)
+                    }.keyboardShortcut(.defaultAction)
+                },
+                       message: {
+                    Text(R.string.localizable.notificationsDeniedAlertBody())
+                })
             }
-            .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
-                   isPresented: $presentNotificationSettingsAlert,
-                   actions: {
-                Button(R.string.localizable.dismissTitle()) { }
-                Button(R.string.localizable.openSettingsTitle()) {
-                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-                    UIApplication.shared.open(url)
-                }.keyboardShortcut(.defaultAction)
-            },
-                   message: {
-                Text(R.string.localizable.notificationsDeniedAlertBody())
-            })
-        }
-        .navigationTitle(R.string.localizable.scheduledRemindersTitle())
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbarBackground(.visible)
-        .toolbarBackground(Color.fivecallsDarkBlue)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.dismiss()
-                }) {
-                    Text(R.string.localizable.doneButtonTitle())
-                        .bold()
+            .navigationTitle(R.string.localizable.scheduledRemindersTitle())
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .toolbarBackground(.visible)
+            .toolbarBackground(Color.fivecallsDarkBlue)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        self.onDismiss()
+                    }) {
+                        Text(R.string.localizable.doneButtonTitle())
+                            .bold()
+                    }
                 }
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Toggle(isOn: $remindersEnabled,
-                       label: {
-                    Text("")
-                }).toggleStyle(.switch)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Toggle(isOn: $remindersEnabled,
+                           label: {
+                        Text("")
+                    }).toggleStyle(.switch)
+                }
             }
         }
         .accentColor(.white)
