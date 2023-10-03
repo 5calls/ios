@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct IssueDetail: View {
+    @EnvironmentObject var store: Store
+
     let issue: Issue
     
     var body: some View {
@@ -26,15 +28,15 @@ struct IssueDetail: View {
                     .padding(.bottom, 2)
                     .padding(.leading, 6)
                 VStack(spacing: 0) {
-                    ForEach(0..<3, id: \.self) { count in
-                        ContactListItem(contact: .housePreviewContact)
-                        if count < 2 { Divider().padding(0) } else { EmptyView() }
+                    ForEach(issue.contactsForIssue(allContacts: store.state.contacts).numbered(), id: \.element.id) { contact in
+                        ContactListItem(contact: contact.element)
+                        if contact.number < 2 { Divider().padding(0) } else { EmptyView() }
                     }
                 }.background {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
                 }.padding(.bottom, 16)
-                NavigationLink(destination: IssueContactDetail(issue: issue, contact: .housePreviewContact)) {
+                NavigationLink(destination: IssueContactDetail(issue: issue, remainingContacts: issue.contactsForIssue(allContacts: store.state.contacts))) {
                     PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
                         .navigationTitle(issue.name)
                 }

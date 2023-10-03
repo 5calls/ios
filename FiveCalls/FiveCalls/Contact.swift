@@ -98,6 +98,27 @@ extension Contact {
         let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
         return scriptWithContactName
     }
+    
+    // this has some overlap with other area -> string conversions but I haven't thought about it long enough to combine them
+    func officeDescription() -> String {
+        switch self.area {
+        case "US House", "House":
+            // TODO: plumb the district through here too
+            return "US House Rep \(self.state ?? "")"
+        case "US Senate", "Senate":
+            return "US Senator \(self.state ?? "")"
+        case "StateLower", "StateUpper":
+            return "State Rep \(self.state ?? "")"
+        case "Governor":
+            return "Governor \(self.state ?? "")"
+        case "AttorneyGeneral":
+            return "Attorney General \(self.state ?? "")"
+        case "SecretaryOfState":
+            return "Secretary of State \(self.state ?? "")"
+        default:
+            return ""
+        }
+    }
 }
 
 extension Contact {

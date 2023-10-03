@@ -10,11 +10,11 @@ import SwiftUI
 
 struct IssueContactDetail: View {
     let issue: Issue
-    let contact: Contact
+    let remainingContacts: [Contact]
     
     var body: some View {
         VStack(spacing: 0) {
-            ContactListItem(contact: contact)
+            ContactListItem(contact: currentContact())
                 .background {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color.fivecallsLightBG)
@@ -24,12 +24,12 @@ struct IssueContactDetail: View {
             VStack(alignment: .trailing) {
                 HStack {
                     Spacer()
-                    Text(contact.phone)
+                    Text(currentContact().phone)
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundColor(Color.fivecallsDarkBlueText)
                     Menu {
-                        ForEach(contact.fieldOffices) { office in
+                        ForEach(currentContact().fieldOffices) { office in
                             Section(office.city) {
                                 Button{ } label: {
                                     VStack {
@@ -50,10 +50,29 @@ struct IssueContactDetail: View {
                 .padding(.bottom)
             Text(issue.markdownIssueScript)
                 .padding(.horizontal)
-            PrimaryButton(title: nextButtonTitle(), systemImageName: "megaphone.fill")
-                .padding()
+            if remainingContacts.count > 1 {
+                NavigationLink(destination: IssueContactDetail(issue: issue, remainingContacts: nextContacts())) {
+                    PrimaryButton(title: nextButtonTitle(),
+                                  systemImageName: "megaphone.fill")
+                        .padding()
+                }
+           } else {
+                    NavigationLink(destination: IssueDone(issue: issue)) {
+                        PrimaryButton(title: "Done calling",
+                                      systemImageName: "megaphone.fill")
+                            .padding()
+                    }
+            }
             Spacer()
         }
+    }
+    
+    func currentContact() -> Contact {
+        return remainingContacts.first!
+    }
+    
+    func nextContacts() -> [Contact] {
+        return Array(remainingContacts.dropFirst())
     }
     
     func nextButtonTitle() -> String {
@@ -63,6 +82,6 @@ struct IssueContactDetail: View {
 
 struct IssueContactDetail_Previews: PreviewProvider {
     static var previews: some View {
-        IssueContactDetail(issue: Issue.basicPreviewIssue, contact: Contact.housePreviewContact)
+        IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact])
     }
 }
