@@ -9,8 +9,14 @@
 import SwiftUI
 
 struct WelcomeView: UIViewControllerRepresentable {
+    @Environment(\.dismiss) var dismiss
+
     func makeUIViewController(context: Context) -> some UIViewController {
-        return R.storyboard.welcome.welcomeViewController()!
+        let welcomeVC = R.storyboard.welcome.welcomeViewController()!
+        welcomeVC.completionBlock = {
+            self.dismiss()
+        }
+        return welcomeVC
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
