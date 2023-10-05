@@ -190,8 +190,8 @@ class IssuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private func headerWithTitle(title: String) -> UIView {
         let notAButton = BorderedButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 26.0))
         notAButton.setTitle(title, for: .normal)
-        notAButton.setTitleColor(R.color.darkGray(), for: .normal)
-        notAButton.backgroundColor = R.color.lightGray()
+        notAButton.setTitleColor(R.color.fivecallsDarkGray(), for: .normal)
+        notAButton.backgroundColor = R.color.fivecallsLightGray()
         notAButton.titleLabel?.font = .fvc_header
         notAButton.borderWidth = 1
         notAButton.borderColor = R.color.mediumGray()!
