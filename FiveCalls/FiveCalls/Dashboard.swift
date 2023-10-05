@@ -13,6 +13,7 @@ struct Dashboard: View {
 
     @State var showLocationSheet = false
     @State var showRemindersSheet = false
+    @State var showAboutSheet = false
 
     var body: some View {
         NavigationStack {
@@ -42,8 +43,13 @@ struct Dashboard: View {
                                     .padding(.top, 40)
                                 Spacer()
                             }
-                        if let image = UIImage(named: "5calls-stars") {
-                            Image(uiImage: image)
+                        Button(action: {
+                            showAboutSheet.toggle()
+                        }, label: {
+                            Image(.fivecallsStars).renderingMode(.template)
+                        })
+                        .sheet(isPresented: $showAboutSheet) {
+                            AboutSheet()
                         }
                     }
                     .padding(.horizontal, 10)
