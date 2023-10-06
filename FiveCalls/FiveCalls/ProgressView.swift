@@ -46,12 +46,12 @@ class ProgressView : UIView {
         imageView.image = UIImage(resource: R.image.iconCheckmark, compatibleWith: nil)
     }
     
-    @IBInspectable var borderColor = R.color.lightGray()! {
+    @IBInspectable var borderColor = R.color.fivecallsLightGray()! {
         didSet {
             setNeedsDisplay()
         }
     }
-    @IBInspectable var selectedBackgroundColor = R.color.green()! {
+    @IBInspectable var selectedBackgroundColor = R.color.fivecallsGreen()! {
         didSet {
             setNeedsDisplay()
         }
@@ -81,7 +81,7 @@ class ProgressView : UIView {
             
             let center = CGPoint(x: r.midX, y: r.midY)
             context?.addArc(center: center, radius: r.width / 2.0, startAngle: CGFloat(3.0 * .pi / 2.0), endAngle: CGFloat(2 * .pi * progress) + (3.0 * .pi / 2.0), clockwise: false)
-            context?.setStrokeColor(R.color.green()!.cgColor)
+            context?.setStrokeColor(R.color.fivecallsGreen()!.cgColor)
             context?.strokePath()
         }
     }

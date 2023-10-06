@@ -197,7 +197,7 @@ struct RemindersDisabledView: View {
                 HStack {
                     Spacer()
                     Text(R.string.localizable.scheduledRemindersDescription())
-                        .foregroundColor(Color(R.color.darkGray()!))
+                        .foregroundColor(Color(R.color.fivecallsDarkGray()!))
                         .font(Font(UIFont.fvc_body))
                         .multilineTextAlignment(.center)
                         .frame(width: geometry.size.width * 0.8)
