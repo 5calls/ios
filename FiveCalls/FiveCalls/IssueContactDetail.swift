@@ -12,14 +12,24 @@ struct IssueContactDetail: View {
     let issue: Issue
     let remainingContacts: [Contact]
     
+    var currentContact: Contact {
+        return remainingContacts.first!
+    }
+    
+    var nextContacts: [Contact] {
+        return Array(remainingContacts.dropFirst())
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
+                IssueNavigationHeader()
+                    .padding(.bottom, 8)
                 Text(issue.name)
                     .font(.title2)
                     .fontWeight(.medium)
                     .padding(.bottom, 16)
-                ContactListItem(contact: currentContact())
+                ContactListItem(contact: currentContact)
                     .background {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(Color.fivecallsLightBG)
@@ -29,12 +39,12 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        Text(currentContact().phone)
+                        Text(currentContact.phone)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundColor(Color.fivecallsDarkBlueText)
                         Menu {
-                            ForEach(currentContact().fieldOffices) { office in
+                            ForEach(currentContact.fieldOffices) { office in
                                 Section(office.city) {
                                     Button{ } label: {
                                         VStack {
@@ -56,14 +66,14 @@ struct IssueContactDetail: View {
                 Text(issue.markdownIssueScript)
                     .padding(.horizontal)
                 if remainingContacts.count > 1 {
-                    NavigationLink(destination: IssueContactDetail(issue: issue, remainingContacts: nextContacts())) {
-                        PrimaryButton(title: nextButtonTitle(),
+                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
+                        PrimaryButton(title: R.string.localizable.nextContact(),
                                       systemImageName: "megaphone.fill")
                         .padding()
                     }
                 } else {
-                    NavigationLink(destination: IssueDone(issue: issue)) {
-                        PrimaryButton(title: "Done calling",
+                    NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
+                        PrimaryButton(title: R.string.localizable.doneCalling(),
                                       systemImageName: "megaphone.fill")
                         .padding()
                     }
@@ -72,18 +82,6 @@ struct IssueContactDetail: View {
             }
         }.navigationBarHidden(true)
         .clipped()
-    }
-    
-    func currentContact() -> Contact {
-        return remainingContacts.first!
-    }
-    
-    func nextContacts() -> [Contact] {
-        return Array(remainingContacts.dropFirst())
-    }
-    
-    func nextButtonTitle() -> String {
-        return "Next contact"
     }
 }
 

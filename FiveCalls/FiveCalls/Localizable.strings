@@ -59,6 +59,19 @@
 "choose-a-number"                     = "Select a Different Office";
 "uncategorized-issues"                = "Uncategorized Issues";
 
+// office holder descriptions
+"us-house"                            = "US House Rep";
+"us-senate"                           = "US Senator";
+"state-rep"                           = "State Rep";
+"governor"                            = "Governor";
+"attorney-general"                    = "Attorney General";
+"secretary-of-state"                  = "Secretary of State";
+
+// issue + issue contact detail screen
+"see-script"                          = "See your script";
+"next-contact"                        = "Next contact";
+"done-calling"                        = "Done calling";
+
 // location detection
 "locating-temp"                       = "Locating...";
 "unknown-location"                    = "Unknown Location";

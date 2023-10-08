@@ -9,13 +9,17 @@
 import SwiftUI
 
 struct IssueDone: View {
+    @EnvironmentObject var router: Router
+    
     let issue: Issue
     
     var body: some View {
         ScrollView {
             VStack {
                 Text("Issue \(issue.name) done page")
-                Button(action: {}, label: {
+                Button(action: {
+                    router.backToRoot()
+                }, label: {
                     Text("Back to dashboard")
                 })
             }

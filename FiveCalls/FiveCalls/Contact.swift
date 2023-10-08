@@ -104,17 +104,17 @@ extension Contact {
         switch self.area {
         case "US House", "House":
             // TODO: plumb the district through here too
-            return "US House Rep \(self.state ?? "")"
+            return "\(R.string.localizable.usHouse()) \(self.state ?? "")"
         case "US Senate", "Senate":
-            return "US Senator \(self.state ?? "")"
+            return "\(R.string.localizable.usSenate()) \(self.state ?? "")"
         case "StateLower", "StateUpper":
-            return "State Rep \(self.state ?? "")"
+            return "\(R.string.localizable.stateRep()) \(self.state ?? "")"
         case "Governor":
-            return "Governor \(self.state ?? "")"
+            return "\(R.string.localizable.governor()) \(self.state ?? "")"
         case "AttorneyGeneral":
-            return "Attorney General \(self.state ?? "")"
+            return "\(R.string.localizable.attorneyGeneral()) \(self.state ?? "")"
         case "SecretaryOfState":
-            return "Secretary of State \(self.state ?? "")"
+            return "\(R.string.localizable.secretaryOfState()) \(self.state ?? "")"
         default:
             return ""
         }

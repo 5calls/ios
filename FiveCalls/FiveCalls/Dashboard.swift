@@ -10,13 +10,14 @@ import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
+    @EnvironmentObject var router: Router
 
     @State var showLocationSheet = false
     @State var showRemindersSheet = false
     @State var showAboutSheet = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -64,10 +65,14 @@ struct Dashboard: View {
                         }
                     }
                 }.padding(.horizontal, 10)
-            }
-            .navigationDestination(for: Issue.self) { issue in
+            }.navigationDestination(for: Issue.self) { issue in
                 IssueDetail(issue: issue)
+            }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
+                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+            }.navigationDestination(for: IssueNavModel.self) { inm in
+                IssueDone(issue: inm.issue)
             }
+
             .navigationBarHidden(true)
             .onAppear() {
 //              TODO: refresh if issues are old too?

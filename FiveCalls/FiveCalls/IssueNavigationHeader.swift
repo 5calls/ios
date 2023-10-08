@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct IssueNavigationHeader: View {
-    @Environment(\.dismiss) var dismiss
-    
+    @EnvironmentObject var router: Router
+
     var body: some View {
         HStack(alignment: .top) {
             Button {
-                dismiss()
+                router.back()
             } label: {
                 HStack(spacing: 4) {
                     Image(systemName: "chevron.backward.circle")

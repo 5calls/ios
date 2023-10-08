@@ -38,11 +38,12 @@ struct IssueDetail: View {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
                 }.padding(.bottom, 16)
-                NavigationLink(destination: IssueContactDetail(issue: issue, remainingContacts: issue.contactsForIssue(allContacts: store.state.contacts))) {
-                    PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
+                NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))) {
+                    PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
                 }
             }.padding(.horizontal)
-        }.navigationBarHidden(true)
+        }
+.navigationBarHidden(true)
         .clipped()
     }
 }

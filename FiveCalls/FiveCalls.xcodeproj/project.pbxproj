@@ -138,6 +138,7 @@
 		D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */; };
 		D0C465CF2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465CE2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift */; };
 		D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */; };
+		D0C465D32AD30BEE00CE3E65 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D22AD30BEE00CE3E65 /* Router.swift */; };
 		D0CFF333284A835F0082693E /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF332284A835F0082693E /* OneSignal */; };
 		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
 		D0CFF33B284A877E0082693E /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33A284A877E0082693E /* DZNEmptyDataSet */; };
@@ -339,6 +340,7 @@
 		D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueContactDetail.swift; sourceTree = "<group>"; };
 		D0C465CE2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+SwipeBack.swift"; sourceTree = "<group>"; };
 		D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNavigationHeader.swift; sourceTree = "<group>"; };
+		D0C465D22AD30BEE00CE3E65 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+FiveCalls.swift"; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 				D03A20552AC53C54008BBA6E /* Middleware.swift */,
 				D03A20572AC53C6C008BBA6E /* Store.swift */,
 				D03A20502AC53B9B008BBA6E /* Actions.swift */,
+				D0C465D22AD30BEE00CE3E65 /* Router.swift */,
 			);
 			name = "Data Flow";
 			sourceTree = "<group>";
@@ -1065,6 +1068,7 @@
 				D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */,
 				9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
+				D0C465D32AD30BEE00CE3E65 /* Router.swift in Sources */,
 				271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */,
 				A02018D9204E761A006078D1 /* UserStats.swift in Sources */,
 				D03A20562AC53C54008BBA6E /* Middleware.swift in Sources */,
