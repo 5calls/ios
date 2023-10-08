@@ -64,7 +64,7 @@ struct Dashboard: View {
                         }
                     }
                 }.padding(.horizontal, 10)
-            }.navigationTitle("Issues")
+            }
             .navigationDestination(for: Issue.self) { issue in
                 IssueDetail(issue: issue)
             }

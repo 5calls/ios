@@ -16,10 +16,12 @@ struct IssueDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-//                Text(issue.name)
-//                    .font(.title2)
-//                    .fontWeight(.medium)
-//                    .padding(.bottom, 16)
+                IssueNavigationHeader()
+                    .padding(.bottom, 8)
+                Text(issue.name)
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .padding(.bottom, 8)
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
                 Text("Relevant representatives for this issue:")
@@ -38,15 +40,16 @@ struct IssueDetail: View {
                 }.padding(.bottom, 16)
                 NavigationLink(destination: IssueContactDetail(issue: issue, remainingContacts: issue.contactsForIssue(allContacts: store.state.contacts))) {
                     PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
-                        .navigationTitle(issue.name)
                 }
             }.padding(.horizontal)
-        }
+        }.navigationBarHidden(true)
+        .clipped()
     }
 }
 
 struct IssueDetail_Previews: PreviewProvider {
     static var previews: some View {
         IssueDetail(issue: Issue.multilinePreviewIssue)
+            .environmentObject(Store(state: AppState()))
     }
 }

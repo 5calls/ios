@@ -12,7 +12,15 @@ struct IssueDone: View {
     let issue: Issue
     
     var body: some View {
-        Text("Issue \(issue.name) done page")
+        ScrollView {
+            VStack {
+                Text("Issue \(issue.name) done page")
+                Button(action: {}, label: {
+                    Text("Back to dashboard")
+                })
+            }
+        }.navigationBarHidden(true)
+        .clipped()
     }
 }
 
