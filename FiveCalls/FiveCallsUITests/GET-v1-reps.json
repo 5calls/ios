@@ -1,5 +1,8 @@
 {
   "location": "San Francisco",
+  "lowAccuracy": false,
+  "state": "CA",
+  "district": "17th",
   "representatives": [
     {
       "id": "CA-GavinNewsom",
@@ -17,7 +20,7 @@
       "id": "CA-NancyPelosi",
       "name": "Nancy Pelosi",
       "phone": "202-225-4965",
-      "photoURL": "https://repimages.5calls.org/us-house/512x512/nancy-pelosi.jpg",
+      "photoURL": "https://images.5calls.org/house/256/P000197.jpg",
       "ocdID": "",
       "party": "democrat",
       "state": "CA",
