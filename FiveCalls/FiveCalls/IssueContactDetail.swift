@@ -34,7 +34,6 @@ struct IssueContactDetail: View {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(Color.fivecallsLightBG)
                     }
-                    .padding(.horizontal)
                     .padding(.bottom)
                 VStack(alignment: .trailing) {
                     HStack {
@@ -61,25 +60,21 @@ struct IssueContactDetail: View {
                         }
                     }
                 }
-                .padding(.horizontal)
                 .padding(.bottom)
                 Text(issue.markdownIssueScript)
-                    .padding(.horizontal)
                 if remainingContacts.count > 1 {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
-                        PrimaryButton(title: R.string.localizable.nextContact(),
-                                      systemImageName: "megaphone.fill")
-                        .padding()
+                        OutcomesView(outcomes: issue.outcomeModels)
+                            .padding()
                     }
                 } else {
                     NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
-                        PrimaryButton(title: R.string.localizable.doneCalling(),
-                                      systemImageName: "megaphone.fill")
-                        .padding()
+                        OutcomesView(outcomes: issue.outcomeModels)
+                            .padding()
                     }
                 }
                 Spacer()
-            }
+            }.padding(.horizontal)
         }.navigationBarHidden(true)
         .clipped()
     }
