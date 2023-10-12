@@ -11,8 +11,8 @@ import SwiftUI
 struct YourImpact: View {
     @Environment(\.dismiss) var dismiss
     
-    var userStats: UserStats?
-    var totalCalls: Int = 0
+    @State private var userStats: UserStats?
+    @State private var totalCalls: Int = 0
     
     var weeklyStreekMessage: String {
         let weeklyStreakCount = self.userStats?.weeklyStreak ?? 0
@@ -49,8 +49,7 @@ struct YourImpact: View {
             
     var body: some View {
         NavigationStack {
-            //            ScrollView {
-            VStack {
+            VStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 15) {
                     Text(weeklyStreekMessage)
                         .foregroundStyle(.fivecallsRed)
@@ -58,19 +57,27 @@ struct YourImpact: View {
                     Text(totalImpactMessage)
                         .foregroundStyle(.fiveCallsDarkGreenText)
                         .font(.system(size: 18, weight: .semibold))
-                    //                    if showSubheading {
-                    Text(R.string.localizable.subheadingMessage())
-                        .font(.system(size: 17))
-                    //                    }
+                    if showSubheading {
+                        Text(R.string.localizable.subheadingMessage())
+                            .font(.system(size: 17))
+                    }
                 }
-                .padding(16)
+                .padding(.top, 16)
+                .padding(.horizontal, 16)
                 
                 
-                if #available(iOS 17, *) {
-                    NewList(userStats: userStats, communityCallsMessage: communityCallsMessage)
-                } else {
-                    OldList(userStats: userStats, communityCallsMessage: communityCallsMessage)
+                List {
+                    Section(header: Spacer(minLength: 0),
+                            footer: HStack {
+                        Text(totalCalls > 0 ? communityCallsMessage : "")
+                    }) {
+                        ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
+                        ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
+                        ImpactListItem(title: R.string.localizable.unavailable(), count: userStats?.unavailable ?? 0)
+                    }
                 }
+                .scrollContentBackground(.hidden)
+                .listStyle(.grouped)
             }
                 .navigationTitle(R.string.localizable.yourImpactTitle())
                 .navigationBarTitleDisplayMode(.inline)
@@ -88,9 +95,34 @@ struct YourImpact: View {
                         }
                     }
                 }
-//            }
+        }
+        .onAppear() {
+            fetchTotalStats()
+            fetchUserStats()
         }
         .accentColor(.white)
+    }
+    
+    private func fetchTotalStats() {
+        let totalCallsOp = FetchStatsOperation()
+        totalCallsOp.completionBlock = {
+            self.totalCalls = totalCallsOp.numberOfCalls ?? 0
+        }
+        
+        OperationQueue.main.addOperation(totalCallsOp)
+    }
+    
+    private func fetchUserStats() {
+        let userStatsOp = FetchUserStatsOperation()
+        userStatsOp.completionBlock = {
+            if let error = userStatsOp.error {
+                AnalyticsManager.shared.trackError(error: error)
+            }
+            
+            self.userStats = userStatsOp.userStats
+        }
+        
+        OperationQueue.main.addOperation(userStatsOp)
     }
 }
 
@@ -117,59 +149,5 @@ struct ImpactListItem: View {
     private func timesString(count: Int) -> String {
         guard count != 1 else { return R.string.localizable.calledSingle(count) }
         return R.string.localizable.calledMultiple(count)
-    }
-}
-
-@available(iOS 17.0, *)
-struct NewList: View {
-    var userStats: UserStats?
-    var communityCallsMessage: String
-    
-    var body: some View {
-        List {
-            Section {
-                ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
-                ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
-                ImpactListItem(title: R.string.localizable.unavailable(), count: userStats?.unavailable ?? 0)
-            }
-            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-
-            //                        if totalCalls > 0 {
-            Section(footer: HStack {
-                Text(communityCallsMessage)
-            },
-                    content: {})
-            //                        }
-        }
-        .scrollContentBackground(.hidden)
-        .listSectionSpacing(0)
-        .environment(\.defaultMinListHeaderHeight, 0)
-        .listStyle(.grouped)
-    }
-}
-
-@available(iOS, introduced: 12, obsoleted: 17, renamed: "NewList")
-struct OldList: View {
-    var userStats: UserStats?
-    var communityCallsMessage: String
-    
-    var body: some View {
-        List {
-            //                    Section {
-            ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
-            ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
-            ImpactListItem(title: R.string.localizable.unavailable(), count: userStats?.unavailable ?? 0)
-            //                    }
-            
-            //                        if totalCalls > 0 {
-            Section(footer: HStack {
-                Text(communityCallsMessage)
-            },
-                    content: {})
-            //                        }
-        }
-        .border(.red)
-        .environment(\.defaultMinListHeaderHeight, 0)
-        .listStyle(.grouped)
     }
 }
