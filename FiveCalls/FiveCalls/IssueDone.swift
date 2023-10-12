@@ -31,3 +31,19 @@ struct IssueDone: View {
 #Preview {
     IssueDone(issue: .basicPreviewIssue)
 }
+
+struct IssueNavModel {
+    let issue: Issue
+    let type: String
+}
+
+extension IssueNavModel: Equatable, Hashable {
+    static func == (lhs: IssueNavModel, rhs: IssueNavModel) -> Bool {
+        return lhs.issue.id == rhs.issue.id && lhs.type == rhs.type
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(issue.id)
+        hasher.combine(type)
+    }
+}
