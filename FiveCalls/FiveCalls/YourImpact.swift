@@ -54,9 +54,11 @@ struct YourImpact: View {
                     Text(weeklyStreekMessage)
                         .foregroundStyle(.fivecallsRed)
                         .font(.system(size: 18, weight: .semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Text(totalImpactMessage)
                         .foregroundStyle(.fiveCallsDarkGreenText)
                         .font(.system(size: 18, weight: .semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     if showSubheading {
                         Text(R.string.localizable.subheadingMessage())
                             .font(.system(size: 17))
