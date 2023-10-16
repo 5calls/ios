@@ -39,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         if USE_NEW_SWIFTUI_INTERFACE {
             let store = Store(state: AppState(), middlewares: [appMiddleware()])
-            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store))
+            let router = Router()
+            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store).environmentObject(router))
         } else {
             window?.rootViewController = navController
         }

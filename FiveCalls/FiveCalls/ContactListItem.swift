@@ -21,7 +21,7 @@ struct ContactListItem: View {
                 Text(contact.name)
                     .font(.title3)
                     .fontWeight(.medium)
-                Text("US House Rep. District 13")
+                Text(contact.officeDescription())
                     .font(.subheadline)
                 
             }

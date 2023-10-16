@@ -136,6 +136,9 @@
 		D0C08DFA284A99F900D41257 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DF9284A99F900D41257 /* FirebaseAuth */; };
 		D0C08DFC284A99F900D41257 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0C08DFB284A99F900D41257 /* FirebaseCrashlytics */; };
 		D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */; };
+		D0C465CF2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465CE2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift */; };
+		D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */; };
+		D0C465D32AD30BEE00CE3E65 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D22AD30BEE00CE3E65 /* Router.swift */; };
 		D0CFF333284A835F0082693E /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF332284A835F0082693E /* OneSignal */; };
 		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
 		D0CFF33B284A877E0082693E /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF33A284A877E0082693E /* DZNEmptyDataSet */; };
@@ -149,6 +152,7 @@
 		D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */; };
 		D0D9270823D7D85C00777B2E /* DoneCallsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
+		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 		FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B339F1E485BA3004B9281 /* AboutViewController.swift */; };
@@ -334,11 +338,15 @@
 		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeader.swift; sourceTree = "<group>"; };
 		D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueContactDetail.swift; sourceTree = "<group>"; };
+		D0C465CE2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+SwipeBack.swift"; sourceTree = "<group>"; };
+		D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNavigationHeader.swift; sourceTree = "<group>"; };
+		D0C465D22AD30BEE00CE3E65 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D926E523D7AEE400777B2E /* ImageView+FiveCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+FiveCalls.swift"; sourceTree = "<group>"; };
 		D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneCallsViewController.swift; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		D0EE101B2ACBD69300412128 /* IssueDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDone.swift; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 		FA1B339F1E485BA3004B9281 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutHtmlViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +417,7 @@
 				33C2E0E51E52A95900F810C6 /* UIView+FiveCalls.swift */,
 				AD377CCB229BEE93001F5CAE /* UIViewController+FiveCalls.swift */,
 				4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */,
+				D0C465CE2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -656,6 +665,7 @@
 				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
 				D0A76F242A814786006EC2F5 /* LocationSheet.swift */,
 				4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */,
+				D0EE101B2ACBD69300412128 /* IssueDone.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -673,6 +683,7 @@
 				D0002E182A9DB5FB0098973F /* PrimaryButton.swift */,
 				4F4868B82AC222B300E1733A /* WebView.swift */,
 				4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */,
+				D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */,
 			);
 			name = "View Components";
 			sourceTree = "<group>";
@@ -692,6 +703,7 @@
 				D03A20552AC53C54008BBA6E /* Middleware.swift */,
 				D03A20572AC53C6C008BBA6E /* Store.swift */,
 				D03A20502AC53B9B008BBA6E /* Actions.swift */,
+				D0C465D22AD30BEE00CE3E65 /* Router.swift */,
 			);
 			name = "Data Flow";
 			sourceTree = "<group>";
@@ -1033,6 +1045,7 @@
 				9C46B1FA1E46EA58009B2C11 /* ReportOutcomeOperation.swift in Sources */,
 				B512507021E702C0007D32DF /* Error+Offline.swift in Sources */,
 				D017D95523DE6BF9002F710C /* ShareCell.swift in Sources */,
+				D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */,
 				D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */,
 				B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */,
 				AD14A52121612BAA006F06FD /* UIFont+FiveCalls.swift in Sources */,
@@ -1041,6 +1054,7 @@
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
 				D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */,
 				27FA230E2182A99B004D70BD /* ProgressView.swift in Sources */,
+				D0C465CF2AD3036400CE3E65 /* UINavigationController+SwipeBack.swift in Sources */,
 				B5E98E351E529E66005221B7 /* functions.swift in Sources */,
 				D0480B1E2A4D493B00502818 /* IssueListItem.swift in Sources */,
 				D0D926E623D7AEE400777B2E /* ImageView+FiveCalls.swift in Sources */,
@@ -1054,6 +1068,7 @@
 				D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */,
 				9C18DA611E461C920024B991 /* PaddedLabel.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
+				D0C465D32AD30BEE00CE3E65 /* Router.swift in Sources */,
 				271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */,
 				A02018D9204E761A006078D1 /* UserStats.swift in Sources */,
 				D03A20562AC53C54008BBA6E /* Middleware.swift in Sources */,
@@ -1097,6 +1112,7 @@
 				FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
 				4F11A59C2AAB7E0700AF30B9 /* UIAlertViewController+FiveCalls.swift in Sources */,
+				D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */,
 				271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
