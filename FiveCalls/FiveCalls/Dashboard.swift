@@ -66,7 +66,7 @@ struct Dashboard: View {
                     }
                 }.padding(.horizontal, 10)
             }.navigationDestination(for: Issue.self) { issue in
-                IssueDetail(issue: issue)
+                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
             }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
                 IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
             }.navigationDestination(for: IssueNavModel.self) { inm in
