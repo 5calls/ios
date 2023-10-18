@@ -25,6 +25,7 @@ class FetchUserStatsOperation : BaseOperation {
         let url = URL(string: "https://api.5calls.org/v1/users/stats")!
 
         var request = URLRequest(url: url)
+        request.setValue(AnalyticsManager.shared.callerID, forHTTPHeaderField: "X-Caller-ID")
         if let authToken = SessionManager.shared.idToken {
             request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         }

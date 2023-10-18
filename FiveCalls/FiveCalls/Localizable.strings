@@ -22,23 +22,11 @@
 "cant-send-email-title"               = "Can't send mail";
 "cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
 "share-the-app-message"               = "Make 5 Calls to your elected officials and let your voice be heard!";
-"your-impact-multiple"                = "Your total impact is %d calls.";
-"your-impact-single"                  = "Your total impact is %d call.";
-"your-impact-zero"                    = "Your total impact is %d calls.";
 "total-calls"                         = "Total calls";
 "total-issue-calls"                   = "Calls on this topic";
 "done-screen-button"                  = "Done";
 "done-screen-title"                   = "Nice work!";
 "calls"                               = "Calls";
-"your-weekly-streak-multiple"         = "Your current weekly call streak is %d weeks in a row. You're on a roll!";
-"your-weekly-streak-single"           = "Your current weekly call streak just started. Keep it going!";
-"your-weekly-streak-zero"             = "Your current weekly call streak is %d.";
-"community-calls"                     = "The 5 Calls community has contributed %@ calls!";
-"made-contact"                        = "Made Contact";
-"unavailable"                         = "Unavailable";
-"left-voicemail"                      = "Left Voicemail";
-"called-multiple"                     = "%d times";
-"called-single"                       = "%d time";
 "issue-load-failed-connection"        = "The issues failed to load. Please check your connection and try again.";
 "issue-load-failed-server"            = "We encountered an error loading issues. Please try again later.";
 "fallback-user-location-desc"         = "My Location";
@@ -47,6 +35,16 @@
 "first-call-alert-call"               = "Call";
 "place-call-failed-title"             = "Unable to Call";
 "place-call-failed-message"           = "Sorry, it looks like we can't place a call on this device. If you prefer to, you can use your phone to call, and read the script from this screen.";
+"line-busy"                           = "Local Offices ▼";
+"choose-a-number"                     = "Select a Different Office";
+"uncategorized-issues"                = "Uncategorized Issues";
+
+// dashboard
+"menu-scheduled-reminders"            = "Reminders";
+"menu-your-impact"                    = "Your Impact";
+"menu-about"                          = "About";
+
+// scheduled reminders
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
 "scheduled-reminder-alert-title"      = "Time to Make Some Calls";
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
@@ -55,9 +53,6 @@
 "scheduled-reminders-time-label"      = "Select what time of day you'd like to be reminded to make calls:";
 "scheduled-reminders-day-label"       = "Which days of the week?";
 "scheduled-reminders-no-days-warning" = "No days selected yet";
-"line-busy"                           = "Local Offices ▼";
-"choose-a-number"                     = "Select a Different Office";
-"uncategorized-issues"                = "Uncategorized Issues";
 
 // office holder descriptions
 "us-house"                            = "US House Rep";
@@ -117,3 +112,19 @@
 "about-item-rate" = "Please Rate 5 Calls";
 "about-webview-title-why-call" = "Why Calling Works";
 "about-webview-title-who-we-are" = "Who Made 5 Calls";
+
+// your impact
+"your-impact-title"                   = "My Impact";
+"your-impact-multiple"                = "Your total impact is %d calls.";
+"your-impact-single"                  = "Your total impact is %d call.";
+"your-impact-zero"                    = "Your total impact is %d calls.";
+"your-weekly-streak-multiple"         = "Your current weekly call streak is %d weeks in a row. You're on a roll!";
+"your-weekly-streak-single"           = "Your current weekly call streak just started. Keep it going!";
+"your-weekly-streak-zero"             = "Your current weekly call streak is %d.";
+"community-calls"                     = "The 5 Calls community has contributed %@ calls!";
+"made-contact"                        = "Made Contact";
+"unavailable"                         = "Unavailable";
+"left-voicemail"                      = "Left Voicemail";
+"called-multiple"                     = "%d times";
+"called-single"                       = "%d time";
+"subheading-message"                  = "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:";
