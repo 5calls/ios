@@ -11,6 +11,7 @@ import CoreLocation
 import os
 
 class AppState: ObservableObject, ReduxState {
+    @Published var numberOfCalls: Int = 0
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
     @Published var location: NewUserLocation? {
@@ -24,6 +25,8 @@ class AppState: ObservableObject, ReduxState {
         }
     }
     @Published var fetchingContacts = false
+    // TODO: display this error on welcome screen and anywhere else that uses stats
+    @Published var statsLoadingError: Error? = nil
     // TODO: display this error on the dashboard issue list (and the More page when it exists)
     @Published var issueLoadingError: Error? = nil
     // TODO: display this error on the dashboard (and location sheet?)

@@ -8,6 +8,8 @@
 import Foundation
 
 enum Action {
+    case FetchStats
+    case SetTotalNumberOfCalls(Int)
     case FetchIssues
     case SetIssues([Issue])
     case FetchContacts(NewUserLocation)
@@ -15,6 +17,7 @@ enum Action {
     case SetLocation(NewUserLocation)
     case ReportOutcome(ContactLog, Outcome)
     case SetFetchingContacts(Bool)
+    case SetLoadingStatsError(Error)
     case SetLoadingIssuesError(Error)
     case SetLoadingContactsError(Error)
 }
