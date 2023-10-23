@@ -25,7 +25,6 @@
 		4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D2EB52AB8C59500882759 /* AboutSheet.swift */; };
 		4F7D3D992AE81C9C00CB6572 /* PopoverTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D3D982AE81C9C00CB6572 /* PopoverTip.swift */; };
 		4F504DF82AE46A1900F49EF3 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F504DF72AE46A1900F49EF3 /* Welcome.swift */; };
-		4F504DFA2AE46EAA00F49EF3 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F504DF92AE46EAA00F49EF3 /* Stats.swift */; };
 		4FF4ABB42AB23FC8001A064A /* MultipleDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */; };
 		4FF4ABB82AB4DA64001A064A /* UNNotification+ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */; };
 		558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BC1EE211AE6068BB864845 /* CoreMedia.framework */; };
@@ -221,7 +220,6 @@
 		4F4D2EB52AB8C59500882759 /* AboutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheet.swift; sourceTree = "<group>"; };
 		4F7D3D982AE81C9C00CB6572 /* PopoverTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTip.swift; sourceTree = "<group>"; };
 		4F504DF72AE46A1900F49EF3 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
-		4F504DF92AE46EAA00F49EF3 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayPicker.swift; sourceTree = "<group>"; };
 		4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNNotification+ScheduleReminders.swift"; sourceTree = "<group>"; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -676,7 +674,6 @@
 				D0EE101B2ACBD69300412128 /* IssueDone.swift */,
 				4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */,
 				4F504DF72AE46A1900F49EF3 /* Welcome.swift */,
-				4F504DF92AE46EAA00F49EF3 /* Stats.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -1062,7 +1059,6 @@
 				D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */,
 				B50280521E46A7A300749ED7 /* EllipsisButton.swift in Sources */,
 				AD14A52121612BAA006F06FD /* UIFont+FiveCalls.swift in Sources */,
-				4F504DFA2AE46EAA00F49EF3 /* Stats.swift in Sources */,
 				B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */,
 				4F4868BB2AC3A3B400E1733A /* AboutListItem.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
