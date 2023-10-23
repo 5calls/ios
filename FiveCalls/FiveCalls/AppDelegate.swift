@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: CustomNavigationController!
     
-    let USE_NEW_SWIFTUI_INTERFACE = false
+    let USE_NEW_SWIFTUI_INTERFACE = true
     var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -42,15 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let store = Store(state: AppState(), middlewares: [appMiddleware()])
             let router = Router()
             window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store).environmentObject(router))
+            
             if #available(iOS 17.0, *) {
                 try? Tips.configure()
             }
+                
+            if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
+                showWelcome(store: store)
+            }
         } else {
             window?.rootViewController = navController
-        }
-        
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
-            showWelcome()
+            
+            if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
+                showWelcome()
+            }
         }
 
         window?.makeKeyAndVisible()
@@ -102,6 +107,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
             self.transitionTo(rootViewController: mainVC)
         }
+        window.rootViewController = welcomeVC
+    }
+    
+    func showWelcome(store: Store) {
+        guard let window = self.window else { return }
+        let mainVC = window.rootViewController!
+        let welcomeVC = UIHostingController(rootView: Welcome(onContinue: {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
+            self.transitionTo(rootViewController: mainVC)
+        }).environmentObject(store))
         window.rootViewController = welcomeVC
     }
     

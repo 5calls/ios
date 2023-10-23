@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct Welcome: View {
+    @EnvironmentObject var store: Store
+    
+    var onContinue: (() -> Void)?
+    
     var body: some View {
         VStack {
             Image(.fivecallsLogotype)
@@ -18,24 +22,34 @@ struct Welcome: View {
                 .padding(.vertical, 24)
             TabView {
                 Page1()
-                Page2()
+                Page2(onContinue: onContinue)
             }
             .tabViewStyle(.page)
         }
     }
 }
 
-#Preview {
-    Welcome()
+struct Welcome_Previews: PreviewProvider {
+    static let previewState = {
+        var state = AppState()
+        state.numberOfCalls = 12345
+        return state
+    }()
+
+    static let previewStore = Store(state: previewState, middlewares: [appMiddleware()])
+   
+    static var previews: some View {
+        Welcome().environmentObject(previewStore)
+    }
 }
 
 struct Page1: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("MAKE YOUR VOICE HEARD")
+            Text(R.string.localizable.welcomePage1Title())
                 .font(.title)
                 .foregroundStyle(.fivecallsDarkBlueText)
-            Text("Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.")
+            Text(R.string.localizable.welcomePage1Message())
                 .font(.headline)
                 .foregroundStyle(.fivecallsDarkBlueText)
             Spacer()
@@ -45,20 +59,42 @@ struct Page1: View {
 }
 
 struct Page2: View {
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var store: Store
+    
+    var onContinue: (() -> Void)?
+    
+    var subMessage: String {
+        guard store.state.numberOfCalls > 0 else {
+            return ""
+        }
+        
+        return String(format: R.string.localizable.welcomePage2Calls(StatsViewModel(numberOfCalls: store.state.numberOfCalls).formattedNumberOfCalls))
+    }
+    
+    var subMessageOpacity: Double {
+        store.state.numberOfCalls > 0 ? 1 : 0
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Spend 5 minutes, make 5 calls.")
+            Text(R.string.localizable.welcomePage2Title())
                 .font(.title)
                 .foregroundStyle(.fivecallsDarkBlueText)
-            Text("Calling is the most effective way to influence your representative.")
+            Text(R.string.localizable.welcomePage2Message())
                 .font(.headline)
                 .foregroundStyle(.fivecallsDarkBlueText)
-            Text("TOGETHER WE'VE MADE\n... CALLS")
+            Text(subMessage)
                 .font(.headline)
                 .foregroundStyle(.fivecallsDarkBlueText)
+                .opacity(subMessageOpacity)
+                .animation(.easeIn, value: subMessageOpacity)
             Spacer()
-            Button(action: {}) {
-                Text("Get Started")
+            Button(action: {
+                onContinue?()
+                dismiss()
+            }) {
+                Text(R.string.localizable.welcomePage2ButtonTitle())
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .font(.system(size: 30))
@@ -71,5 +107,10 @@ struct Page2: View {
             }
         }
         .padding(EdgeInsets(top: 24, leading: 24, bottom: 48, trailing: 24))
+        .onAppear() {
+            if store.state.numberOfCalls == 0 {
+                store.dispatch(action: .FetchStats)
+            }
+        }
     }
 }

@@ -130,3 +130,12 @@
 "called-multiple"                     = "%d times";
 "called-single"                       = "%d time";
 "subheading-message"                  = "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:";
+
+// welcome
+"welcome-page-1-title"                = "MAKE YOUR VOICE HEARD";
+"welcome-page-1-message"              = "Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.";
+"welcome-page-2-title"                = "Spend 5 minutes, make 5 calls.";
+"welcome-page-2-message"              = "Calling is the most effective way to influence your representative.";
+"welcome-page-2-calls-placeholder"    = "TOGETHER WE'VE MADE\n... CALLS";
+"welcome-page-2-calls"                = "TOGETHER WE'VE MADE\n%@ CALLS";
+"welcome-page-2-button-title"         = "Get Started";

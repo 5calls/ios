@@ -124,8 +124,9 @@ struct YourImpact: View {
 
 struct YourImpact_Previews: PreviewProvider {
     static var previews: some View {
+        let store = Store(state: AppState(), middlewares: [appMiddleware()])
         NavigationView {
-            YourImpact()
+            YourImpact().environmentObject(store)
         }
     }
 }
