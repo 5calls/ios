@@ -24,6 +24,7 @@
 		4F4868BD2AC3A3E900E1733A /* EmailComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */; };
 		4F4868BF2AC3A6FA00E1733A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */; };
 		4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D2EB52AB8C59500882759 /* AboutSheet.swift */; };
+		4F7D3D992AE81C9C00CB6572 /* PopoverTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D3D982AE81C9C00CB6572 /* PopoverTip.swift */; };
 		4FF4ABB42AB23FC8001A064A /* MultipleDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */; };
 		4FF4ABB82AB4DA64001A064A /* UNNotification+ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */; };
 		558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BC1EE211AE6068BB864845 /* CoreMedia.framework */; };
@@ -217,6 +218,7 @@
 		4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailComposerView.swift; sourceTree = "<group>"; };
 		4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4F4D2EB52AB8C59500882759 /* AboutSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSheet.swift; sourceTree = "<group>"; };
+		4F7D3D982AE81C9C00CB6572 /* PopoverTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTip.swift; sourceTree = "<group>"; };
 		4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayPicker.swift; sourceTree = "<group>"; };
 		4FF4ABB72AB4DA64001A064A /* UNNotification+ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNNotification+ScheduleReminders.swift"; sourceTree = "<group>"; };
 		54BC1EE211AE6068BB864845 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -681,12 +683,13 @@
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
 				4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */,
 				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
+				D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */,
 				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
 				4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */,
+				4F7D3D982AE81C9C00CB6572 /* PopoverTip.swift */,
 				D0002E182A9DB5FB0098973F /* PrimaryButton.swift */,
 				4F4868B82AC222B300E1733A /* WebView.swift */,
 				4F4868BE2AC3A6FA00E1733A /* WelcomeView.swift */,
-				D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */,
 			);
 			name = "View Components";
 			sourceTree = "<group>";
@@ -1136,6 +1139,7 @@
 				B5E762611E40470100D63D62 /* IssuesViewController.swift in Sources */,
 				D03A20582AC53C6C008BBA6E /* Store.swift in Sources */,
 				4F4868BF2AC3A6FA00E1733A /* WelcomeView.swift in Sources */,
+				4F7D3D992AE81C9C00CB6572 /* PopoverTip.swift in Sources */,
 				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
 				D0453EBF2A6F8E7000E19A81 /* AppState.swift in Sources */,
 				B512506C21E6F91C007D32DF /* ContactsManager.swift in Sources */,

@@ -41,6 +41,9 @@ struct Dashboard: View {
                         } label: {
                             Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
                         }
+                        .popoverTipIfApplicable(
+                            title: Text(R.string.localizable.menuTipTitle()),
+                            message: Text(R.string.localizable.menuTipMessage()))
                         .sheet(isPresented: $showRemindersSheet) {
                             ScheduleReminders()
                         }
@@ -119,6 +122,6 @@ struct Dashboard_Previews: PreviewProvider {
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
     
     static var previews: some View {
-        Dashboard().environmentObject(store)
+        Dashboard().environmentObject(store).environmentObject(Router())
     }
 }
