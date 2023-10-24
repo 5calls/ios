@@ -10,12 +10,16 @@ import SwiftUI
 
 struct OutcomesView: View {
     let outcomes: [Outcome]
+    let report: (Outcome) -> ()
     
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())]) {
             ForEach(outcomes) { outcome in
                 PrimaryButton(title: outcome.label.capitalized,
                               systemImageName: "megaphone.fill")
+                    .onTapGesture {
+                        report(outcome)
+                    }
             }
         }
 
@@ -23,6 +27,6 @@ struct OutcomesView: View {
 }
 
 #Preview {
-    OutcomesView(outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")])
+    OutcomesView(outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")], report: { _ in })
         .padding()
 }

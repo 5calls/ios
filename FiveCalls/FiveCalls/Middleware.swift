@@ -16,6 +16,8 @@
              fetchContacts(location: location, dispatch: dispatch)
          case let .SetLocation(location):
              fetchContacts(location: location, dispatch: dispatch)
+         case let .ReportOutcome(contactLog, outcome):
+             reportOutcome(log: contactLog, outcome: outcome)
          case .SetContacts, .SetFetchingContacts, .SetIssues, .SetLoadingIssuesError, .SetLoadingContactsError:
              // no middleware actions for these, including for completeness
              break
@@ -79,6 +81,11 @@
      }
      queue.addOperation(operation)
  }
+
+private func reportOutcome(log: ContactLog, outcome: Outcome) {
+    // we don't actually care about the result of this so no need to set the callback
+    OperationQueue.main.addOperation(ReportOutcomeOperation(log: log, outcome: outcome))
+}
 
 enum MiddlewareError: Error {
     case UnknownError

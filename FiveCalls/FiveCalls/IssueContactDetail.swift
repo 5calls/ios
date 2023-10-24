@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct IssueContactDetail: View {
+    @EnvironmentObject var store: Store
+
     let issue: Issue
     let remainingContacts: [Contact]
     
@@ -64,12 +66,19 @@ struct IssueContactDetail: View {
                 Text(issue.markdownIssueScript)
                 if remainingContacts.count > 1 {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
-                        OutcomesView(outcomes: issue.outcomeModels)
+                        OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
+                            let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
+                            store.dispatch(action: .ReportOutcome(log, outcome))
+                        })
                             .padding()
                     }
                 } else {
                     NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
-                        OutcomesView(outcomes: issue.outcomeModels)
+                        OutcomesView(outcomes: issue.outcomeModels, report:
+                            { outcome in
+                                let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
+                            store.dispatch(action: .ReportOutcome(log, outcome))
+                        })
                             .padding()
                     }
                 }
