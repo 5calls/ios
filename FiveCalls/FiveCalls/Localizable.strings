@@ -43,6 +43,8 @@
 "menu-scheduled-reminders"            = "Reminders";
 "menu-your-impact"                    = "Your Impact";
 "menu-about"                          = "About";
+"menu-tip-title"                      = "New Settings Location";
+"menu-tip-message"                    = "Your Impact and About now reside in Settings menu along with Reminders";
 
 // scheduled reminders
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
