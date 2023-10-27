@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import OneSignal
 import Firebase
+import TipKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let store = Store(state: AppState(), middlewares: [appMiddleware()])
             let router = Router()
             window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store).environmentObject(router))
+            if #available(iOS 17.0, *) {
+                try? Tips.configure()
+            }
         } else {
             window?.rootViewController = navController
         }

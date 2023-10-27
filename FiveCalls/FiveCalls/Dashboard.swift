@@ -14,6 +14,7 @@ struct Dashboard: View {
 
     @State var showLocationSheet = false
     @State var showRemindersSheet = false
+    @State var showYourImpact = false
     @State var showAboutSheet = false
 
     var body: some View {
@@ -21,15 +22,36 @@ struct Dashboard: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Button(action: {
-                            showRemindersSheet.toggle()
-                        }, label: {
-                            if let image = UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate)  {
-                                Image(uiImage: image)
-                            }
-                        })
+                        Menu {
+                            Button(action: {
+                                showRemindersSheet.toggle()
+                            }, label: {
+                                Text(R.string.localizable.menuScheduledReminders())
+                            })
+                            Button(action: {
+                                showYourImpact.toggle()
+                            }, label: {
+                                Text(R.string.localizable.menuYourImpact())
+                            })
+                            Button(action: {
+                                showAboutSheet.toggle()
+                            }, label: {
+                                Text(R.string.localizable.menuAbout())
+                            })
+                        } label: {
+                            Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
+                        }
+                        .popoverTipIfApplicable(
+                            title: Text(R.string.localizable.menuTipTitle()),
+                            message: Text(R.string.localizable.menuTipMessage()))
                         .sheet(isPresented: $showRemindersSheet) {
                             ScheduleReminders()
+                        }
+                        .sheet(isPresented: $showYourImpact) {
+                            YourImpact()
+                        }
+                        .sheet(isPresented: $showAboutSheet) {
+                            AboutSheet()
                         }
                         
                         LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
@@ -44,19 +66,13 @@ struct Dashboard: View {
                                     .padding(.top, 40)
                                 Spacer()
                             }
-                        Button(action: {
-                            showAboutSheet.toggle()
-                        }, label: {
-                            Image(.fivecallsStars).renderingMode(.template)
-                        })
-                        .sheet(isPresented: $showAboutSheet) {
-                            AboutSheet()
-                        }
+                            
+                        Image(.fivecallsStars)
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
 
-                    Text("What’s important to you?")
+                    Text(R.string.localizable.whatsImportantTitle())
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                     ForEach(store.state.issues) { issue in
@@ -102,8 +118,10 @@ struct Dashboard_Previews: PreviewProvider {
         ]
         return state
     }()
+
+    static let store = Store(state: previewState, middlewares: [appMiddleware()])
     
     static var previews: some View {
-        Dashboard().environmentObject(previewState)
+        Dashboard().environmentObject(store).environmentObject(Router())
     }
 }
