@@ -13,6 +13,7 @@ enum Action {
     case FetchContacts(NewUserLocation)
     case SetContacts([Contact])
     case SetLocation(NewUserLocation)
+    case ReportOutcome(ContactLog, Outcome)
     case SetFetchingContacts(Bool)
     case SetLoadingIssuesError(Error)
     case SetLoadingContactsError(Error)
