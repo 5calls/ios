@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
-		0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76D37F1E4FE05B00C14543 /* R.generated.swift */; };
 		1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */; };
 		271625411E52502D0042222E /* ScheduleRemindersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625401E52502D0042222E /* ScheduleRemindersController.swift */; };
 		271625431E5250BA0042222E /* MultipleSelectionSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */; };
@@ -155,8 +154,8 @@
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
 		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
-		E87D84D62AEF69F1004387F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E87D84D52AEF69F1004387F0 /* GoogleService-Info.plist */; };
-		E87D84D92AEF6A63004387F0 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E87D84D82AEF6A63004387F0 /* RswiftLibrary */; };
+		E87FAA482AF02A140054E161 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E87FAA472AF02A140054E161 /* RswiftLibrary */; };
+		E87FAA532AF02F410054E161 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E87FAA522AF02F410054E161 /* GoogleService-Info.plist */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 		FA1B33A01E485BA3004B9281 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B339F1E485BA3004B9281 /* AboutViewController.swift */; };
 		FA1B33DB1E48FD0B004B9281 /* AboutHtmlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */; };
@@ -203,7 +202,6 @@
 
 /* Begin PBXFileReference section */
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		0F76D37F1E4FE05B00C14543 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		1F79FDA41E668A7F00AE4CDC /* IssueScriptCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueScriptCell.swift; sourceTree = "<group>"; };
 		271625401E52502D0042222E /* ScheduleRemindersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRemindersController.swift; sourceTree = "<group>"; };
 		271625421E5250BA0042222E /* MultipleSelectionSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSelectionSegmentedControl.swift; sourceTree = "<group>"; };
@@ -352,7 +350,7 @@
 		D0D9270723D7D85C00777B2E /* DoneCallsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneCallsViewController.swift; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		D0EE101B2ACBD69300412128 /* IssueDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDone.swift; sourceTree = "<group>"; };
-		E87D84D52AEF69F1004387F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E87FAA522AF02F410054E161 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 		FA1B339F1E485BA3004B9281 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		FA1B33DA1E48FD0B004B9281 /* AboutHtmlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutHtmlViewController.swift; sourceTree = "<group>"; };
@@ -372,8 +370,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC7D2DC2456462200D96A5B /* WebKit.framework in Frameworks */,
+				E87FAA482AF02A140054E161 /* RswiftLibrary in Frameworks */,
 				D0CFF344284A8A4F0082693E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				E87D84D92AEF6A63004387F0 /* RswiftLibrary in Frameworks */,
 				D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */,
 				D0CFF33E284A88130082693E /* Down in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
@@ -459,7 +457,7 @@
 		B502806D1E497C1400749ED7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0F76D37F1E4FE05B00C14543 /* R.generated.swift */,
+				E87FAA522AF02F410054E161 /* GoogleService-Info.plist */,
 				791C9FD31E4E611C0074A8B7 /* Localizable.strings */,
 				B502806E1E497C2000749ED7 /* HTML / CSS */,
 			);
@@ -576,7 +574,6 @@
 		B5E7626C1E40D72400D63D62 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E87D84D52AEF69F1004387F0 /* GoogleService-Info.plist */,
 				B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */,
 				B5E762681E40D63800D63D62 /* Issue.swift */,
 				D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */,
@@ -685,7 +682,6 @@
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
 				4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */,
 				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
-				D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */,
 				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
 				4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */,
 				4F7D3D982AE81C9C00CB6572 /* PopoverTip.swift */,
@@ -781,7 +777,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B52805231E3FA94D00EE832A /* Build configuration list for PBXNativeTarget "FiveCalls" */;
 			buildPhases = (
-				D0CFF34C284A8DEE0082693E /* Run Script R.swift */,
 				B528050D1E3FA94D00EE832A /* Sources */,
 				B528050E1E3FA94D00EE832A /* Frameworks */,
 				B528050F1E3FA94D00EE832A /* Resources */,
@@ -791,6 +786,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E87FAA432AF028B50054E161 /* PBXTargetDependency */,
 				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
 			);
 			name = FiveCalls;
@@ -802,7 +798,7 @@
 				D0CFF345284A8A4F0082693E /* FirebaseAuth */,
 				D0CFF347284A8A4F0082693E /* FirebaseCrashlytics */,
 				D05745842A53E34300A8534A /* PlausibleSwift */,
-				E87D84D82AEF6A63004387F0 /* RswiftLibrary */,
+				E87FAA472AF02A140054E161 /* RswiftLibrary */,
 			);
 			productName = FiveCalls;
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
@@ -954,7 +950,7 @@
 				B528051A1E3FA94D00EE832A /* Welcome.storyboard in Resources */,
 				791C9FD41E4E611C0074A8B7 /* Localizable.strings in Resources */,
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
-				E87D84D62AEF69F1004387F0 /* GoogleService-Info.plist in Resources */,
+				E87FAA532AF02F410054E161 /* GoogleService-Info.plist in Resources */,
 				791C9FC71E4E5E000074A8B7 /* Main.storyboard in Resources */,
 				ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */,
 			);
@@ -1003,26 +999,6 @@
 			shellPath = /bin/sh;
 			shellScript = "${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
-		D0CFF34C284A8DEE0082693E /* Run Script R.swift */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script R.swift";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				$SRCROOT/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/../vendor/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1041,7 +1017,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F79FDA51E668A7F00AE4CDC /* IssueScriptCell.swift in Sources */,
-				0F76D3801E4FE05B00C14543 /* R.generated.swift in Sources */,
 				D0773DC123E4C8F700C16985 /* DonateCell.swift in Sources */,
 				D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */,
 				A5048C6F1F96BCD100C6163D /* IssuesViewModel.swift in Sources */,
@@ -1186,6 +1161,10 @@
 			isa = PBXTargetDependency;
 			target = D0BA59A71F9546510069DA58 /* NotificationsService */;
 			targetProxy = D0BA59AD1F9546510069DA58 /* PBXContainerItemProxy */;
+		};
+		E87FAA432AF028B50054E161 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E87FAA422AF028B50054E161 /* RswiftGenerateInternalResources */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1732,7 +1711,11 @@
 			package = D0CFF342284A8A4F0082693E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		E87D84D82AEF6A63004387F0 /* RswiftLibrary */ = {
+		E87FAA422AF028B50054E161 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		E87FAA472AF02A140054E161 /* RswiftLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E87D84D72AEF6A63004387F0 /* XCRemoteSwiftPackageReference "R" */;
 			productName = RswiftLibrary;
