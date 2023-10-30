@@ -10,9 +10,9 @@ import SwiftUI
 
 struct YourImpact: View {
     @Environment(\.dismiss) var dismiss
-    
+    @EnvironmentObject var store: Store
+
     @State private var userStats: UserStats?
-    @State private var totalCalls: Int = 0
     
     var weeklyStreekMessage: String {
         let weeklyStreakCount = self.userStats?.weeklyStreak ?? 0
@@ -43,7 +43,7 @@ struct YourImpact: View {
     }
     
     var communityCallsMessage: String {
-        let statsVm = StatsViewModel(numberOfCalls: totalCalls)
+        let statsVm = StatsViewModel(numberOfCalls: store.state.globalCallCount)
         return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
     }
             
@@ -71,7 +71,7 @@ struct YourImpact: View {
                 List {
                     Section(header: Spacer(minLength: 0),
                             footer: HStack {
-                        Text(totalCalls > 0 ? communityCallsMessage : "")
+                        Text(store.state.globalCallCount > 0 ? communityCallsMessage : "")
                     }) {
                         ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
                         ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
@@ -99,21 +99,15 @@ struct YourImpact: View {
                 }
         }
         .onAppear() {
-            fetchTotalStats()
+            if store.state.globalCallCount == 0 {
+                store.dispatch(action: .FetchStats)
+            }
+
             fetchUserStats()
         }
         .accentColor(.white)
     }
-    
-    private func fetchTotalStats() {
-        let totalCallsOp = FetchStatsOperation()
-        totalCallsOp.completionBlock = {
-            self.totalCalls = totalCallsOp.numberOfCalls ?? 0
-        }
         
-        OperationQueue.main.addOperation(totalCallsOp)
-    }
-    
     private func fetchUserStats() {
         let userStatsOp = FetchUserStatsOperation()
         userStatsOp.completionBlock = {
@@ -130,8 +124,9 @@ struct YourImpact: View {
 
 struct YourImpact_Previews: PreviewProvider {
     static var previews: some View {
+        let store = Store(state: AppState(), middlewares: [appMiddleware()])
         NavigationView {
-            YourImpact()
+            YourImpact().environmentObject(store)
         }
     }
 }

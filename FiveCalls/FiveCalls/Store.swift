@@ -35,8 +35,10 @@ class Store: ObservableObject {
     }
     
     func reduce(_ oldState: AppState, _ action: Action) -> AppState {
-        var state = oldState
+        let state = oldState
         switch action {
+        case let .SetGlobalCallCount(globalCallCount):
+            state.globalCallCount = globalCallCount
         case let .SetFetchingContacts(fetching):
             state.fetchingContacts = fetching
         case let .SetIssues(issues):
@@ -46,11 +48,13 @@ class Store: ObservableObject {
         case let .SetLocation(location):
             state.location = location
             self.dispatch(action: .FetchContacts(location))
+        case let .SetLoadingStatsError(error):
+            state.statsLoadingError = error
         case let .SetLoadingIssuesError(error):
             state.issueLoadingError = error
         case let .SetLoadingContactsError(error):
             state.contactsLoadingError = error
-        case .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _):
+        case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _):
             // handled in middleware
             break
         }
