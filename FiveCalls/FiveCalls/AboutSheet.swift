@@ -14,6 +14,7 @@ private let appUrl = URL(string: "https://itunes.apple.com/us/app/myapp/id\(appI
 
 struct AboutSheet: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var store: Store
     
     @State var showEmailComposer = false
     @State var showEmailComposerAlert = false
@@ -67,7 +68,7 @@ struct AboutSheet: View {
                         showWelcome = true
                     }
                     .sheet(isPresented: $showWelcome, content: {
-                        WelcomeView()
+                        Welcome()
                     })
                 }
                 
