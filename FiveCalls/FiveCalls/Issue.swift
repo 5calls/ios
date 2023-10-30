@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Rswift
+import RswiftResources
 
 struct Issue: Identifiable, Decodable {
     let id: Int64
