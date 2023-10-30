@@ -31,9 +31,11 @@ struct IssueDone: View {
                 Text("Issue \(issue.name) done page")
                 if let totalCalls {
                     CountingView(title: "Total calls", count: totalCalls)
+                        .padding(.bottom, 14)
                 }
                 if let issueCalls {
                     CountingView(title: "Calls on this topic", count: issueCalls)
+                        .padding(.bottom, 14)
                 }
                 Button(action: {
                     router.backToRoot()
@@ -64,18 +66,53 @@ struct CountingView: View {
                 .font(.title3)
                 .fontWeight(.medium)
                 .padding(.bottom, 4)
-            ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                    .foregroundColor(.fivecallsLightBG)
-                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                    .foregroundColor(.fivecallsDarkBlue)
-                    .frame(width: 100)
-                Text("\(count)")
-                    .foregroundStyle(.white)
-                    .padding(.vertical, 2)
-                    .padding(.horizontal, 6)
+            GeometryReader { geometry in
+                ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
+                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                        .foregroundColor(.fivecallsLightBG)
+                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                        .foregroundColor(.fivecallsDarkBlue)
+                        .frame(width: progressWidth(size: geometry.size))
+                    // this formats the int with commas automatically?
+                    Text("\(count)")
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, 6)
+                }
             }
         }
+    }
+    
+    func progressWidth(size: CGSize) -> CGFloat {
+        return size.width * (CGFloat(count) / nextMilestone)
+    }
+    
+    var nextMilestone: CGFloat {
+        if count < 80 {
+            return 100
+        } else if count < 450 {
+            return 500
+        } else if count < 900 {
+            return 1000
+        } else if count < 4500 {
+            return 5000
+        } else if count < 9000 {
+            return 10000
+        } else if count < 45000 {
+            return 50000
+        } else if count < 90000 {
+            return 100000
+        } else if count < 450000 {
+            return 500000
+        } else if count < 900000 {
+            return 1000000
+        } else if count < 1500000 {
+            return 2000000
+        } else if count < 4500000 {
+            return 5000000
+        }
+        
+        return 0
     }
 }
 
