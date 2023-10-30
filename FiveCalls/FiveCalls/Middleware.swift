@@ -20,7 +20,7 @@ func appMiddleware() -> Middleware<AppState> {
             fetchContacts(location: location, dispatch: dispatch)
         case let .ReportOutcome(contactLog, outcome):
             reportOutcome(log: contactLog, outcome: outcome)
-        case .SetTotalNumberOfCalls, .SetContacts, .SetFetchingContacts, .SetIssues,
+        case .SetGlobalCallCount, .SetContacts, .SetFetchingContacts, .SetIssues,
                 .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError:
             // no middleware actions for these, including for completeness
             break
@@ -32,9 +32,9 @@ private func fetchStats(dispatch: @escaping Dispatcher) {
     let queue = OperationQueue.main
     let operation = FetchStatsOperation()
     operation.completionBlock = { [weak operation] in
-        if let numberOfCalls = operation?.numberOfCalls {
+        if let globalCallCount = operation?.numberOfCalls {
             DispatchQueue.main.async {
-                dispatch(.SetTotalNumberOfCalls(numberOfCalls))
+                dispatch(.SetGlobalCallCount(globalCallCount))
             }
         } else if let error = operation?.error {
             print("Could not load stats: \(error.localizedDescription)..")

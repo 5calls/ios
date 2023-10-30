@@ -43,7 +43,7 @@ struct YourImpact: View {
     }
     
     var communityCallsMessage: String {
-        let statsVm = StatsViewModel(numberOfCalls: store.state.numberOfCalls)
+        let statsVm = StatsViewModel(numberOfCalls: store.state.globalCallCount)
         return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
     }
             
@@ -71,7 +71,7 @@ struct YourImpact: View {
                 List {
                     Section(header: Spacer(minLength: 0),
                             footer: HStack {
-                        Text(store.state.numberOfCalls > 0 ? communityCallsMessage : "")
+                        Text(store.state.globalCallCount > 0 ? communityCallsMessage : "")
                     }) {
                         ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
                         ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
@@ -99,7 +99,7 @@ struct YourImpact: View {
                 }
         }
         .onAppear() {
-            if store.state.numberOfCalls == 0 {
+            if store.state.globalCallCount == 0 {
                 store.dispatch(action: .FetchStats)
             }
 

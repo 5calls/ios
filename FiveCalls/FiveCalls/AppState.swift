@@ -11,7 +11,7 @@ import CoreLocation
 import os
 
 class AppState: ObservableObject, ReduxState {
-    @Published var numberOfCalls: Int = 0
+    @Published var globalCallCount: Int = 0
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
     @Published var location: NewUserLocation? {

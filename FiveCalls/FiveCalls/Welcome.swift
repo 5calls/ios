@@ -32,7 +32,7 @@ struct Welcome: View {
 struct Welcome_Previews: PreviewProvider {
     static let previewState = {
         var state = AppState()
-        state.numberOfCalls = 12345
+        state.globalCallCount = 12345
         return state
     }()
 
@@ -48,6 +48,7 @@ struct Page1: View {
         VStack(alignment: .leading, spacing: 20) {
             Text(R.string.localizable.welcomePage1Title())
                 .font(.title)
+                .textCase(.uppercase)
                 .foregroundStyle(.fivecallsDarkBlueText)
             Text(R.string.localizable.welcomePage1Message())
                 .font(.headline)
@@ -65,15 +66,17 @@ struct Page2: View {
     var onContinue: (() -> Void)?
     
     var subMessage: String {
-        guard store.state.numberOfCalls > 0 else {
+        guard store.state.globalCallCount > 0 else {
             return ""
         }
         
-        return String(format: R.string.localizable.welcomePage2Calls(StatsViewModel(numberOfCalls: store.state.numberOfCalls).formattedNumberOfCalls))
+        return String(format: R.string.localizable.welcomePage2Calls(
+            StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls)
+        )
     }
     
     var subMessageOpacity: Double {
-        store.state.numberOfCalls > 0 ? 1 : 0
+        store.state.globalCallCount > 0 ? 1 : 0
     }
 
     var body: some View {
@@ -86,6 +89,7 @@ struct Page2: View {
                 .foregroundStyle(.fivecallsDarkBlueText)
             Text(subMessage)
                 .font(.headline)
+                .textCase(.uppercase)
                 .foregroundStyle(.fivecallsDarkBlueText)
                 .opacity(subMessageOpacity)
                 .animation(.easeIn, value: subMessageOpacity)
@@ -108,7 +112,7 @@ struct Page2: View {
         }
         .padding(EdgeInsets(top: 24, leading: 24, bottom: 48, trailing: 24))
         .onAppear() {
-            if store.state.numberOfCalls == 0 {
+            if store.state.globalCallCount == 0 {
                 store.dispatch(action: .FetchStats)
             }
         }

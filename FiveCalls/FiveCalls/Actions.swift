@@ -9,7 +9,7 @@ import Foundation
 
 enum Action {
     case FetchStats
-    case SetTotalNumberOfCalls(Int)
+    case SetGlobalCallCount(Int)
     case FetchIssues
     case SetIssues([Issue])
     case FetchContacts(NewUserLocation)

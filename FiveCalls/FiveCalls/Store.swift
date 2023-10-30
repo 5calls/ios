@@ -37,8 +37,8 @@ class Store: ObservableObject {
     func reduce(_ oldState: AppState, _ action: Action) -> AppState {
         let state = oldState
         switch action {
-        case let .SetTotalNumberOfCalls(numberOfCalls):
-            state.numberOfCalls = numberOfCalls
+        case let .SetGlobalCallCount(globalCallCount):
+            state.globalCallCount = globalCallCount
         case let .SetFetchingContacts(fetching):
             state.fetchingContacts = fetching
         case let .SetIssues(issues):
