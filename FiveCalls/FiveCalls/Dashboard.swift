@@ -79,6 +79,7 @@ struct Dashboard: View {
                         IssueListItem(issue: issue, contacts: store.state.contacts)
                     }
                 }
+                .tint(Color.fivecallsLightBG)
                 .listStyle(.plain)
             }
         .navigationBarHidden(true)
