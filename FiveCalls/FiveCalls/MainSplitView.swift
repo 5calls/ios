@@ -11,22 +11,47 @@ import SwiftUI
 struct MainSplitView: View {
     @EnvironmentObject var store: Store
     @EnvironmentObject var router: Router
+    @State var selectedIssue: Issue?
     
     var body: some View {
-        NavigationSplitView(sidebar: {
-            Dashboard().environmentObject(router)
+        NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
+            Dashboard(selectedIssue: $selectedIssue).environmentObject(router)
         }, detail: {
-//            if selectedIssue == nil {
-                Text("Please select an issue")
-//            }
+            NavigationStack(path: $router.path) {
+                if let selectedIssue {
+                    IssueDetail(issue: selectedIssue, contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
+                    .navigationDestination(for: IssueDetailNavModel.self) { idnm in
+                        IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+                    }.navigationDestination(for: IssueNavModel.self) { inm in
+                        IssueDone(issue: inm.issue)
+                    }
+                } else {
+                    Text("Please select an issue")
+                }
+            }
         })
         .navigationSplitViewStyle(.balanced)
-        .onChange(of: router.path) { change in
-            print("router.path changed: \(change)")
-        }
     }
 }
 
-#Preview {
-    MainSplitView()
+struct MainSplitView_Previews: PreviewProvider {
+    static let previewState = {
+        var state = AppState()
+        state.issues = [
+            Issue.basicPreviewIssue,
+            Issue.multilinePreviewIssue
+        ]
+        state.contacts = [
+            Contact.housePreviewContact,
+            Contact.senatePreviewContact1,
+            Contact.senatePreviewContact2
+        ]
+        return state
+    }()
+
+    static let store = Store(state: previewState, middlewares: [appMiddleware()])
+    
+    static var previews: some View {
+        MainSplitView().environmentObject(store).environmentObject(Router())
+    }
 }

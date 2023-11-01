@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: Router
+    @Binding var selectedIssue: Issue?
 
     @State var showLocationSheet = false
     @State var showRemindersSheet = false
@@ -18,100 +18,81 @@ struct Dashboard: View {
     @State var showAboutSheet = false
 
     var body: some View {
-//        NavigationStack(path: $router.path) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Menu {
-                            Button(action: {
-                                showRemindersSheet.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuScheduledReminders())
-                            })
-                            Button(action: {
-                                showYourImpact.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuYourImpact())
-                            })
-                            Button(action: {
-                                showAboutSheet.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuAbout())
-                            })
-                        } label: {
-                            Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
-                        }
-                        .popoverTipIfApplicable(
-                            title: Text(R.string.localizable.menuTipTitle()),
-                            message: Text(R.string.localizable.menuTipMessage()))
-                        .sheet(isPresented: $showRemindersSheet) {
-                            ScheduleReminders()
-                        }
-                        .sheet(isPresented: $showYourImpact) {
-                            YourImpact()
-                        }
-                        .sheet(isPresented: $showAboutSheet) {
-                            AboutSheet()
-                        }
-                        
-                        LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
-                            .padding(.bottom, 10)
-                            .onTapGesture {
-                                showLocationSheet.toggle()
-                            }
-                            .sheet(isPresented: $showLocationSheet) {
-                                LocationSheet()
-                                    .presentationDetents([.medium])
-                                    .presentationDragIndicator(.visible)
-                                    .padding(.top, 40)
-                                Spacer()
-                            }
-                        
-                        Image(.fivecallsStars)
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Menu {
+                        Button(action: {
+                            showRemindersSheet.toggle()
+                        }, label: {
+                            Text(R.string.localizable.menuScheduledReminders())
+                        })
+                        Button(action: {
+                            showYourImpact.toggle()
+                        }, label: {
+                            Text(R.string.localizable.menuYourImpact())
+                        })
+                        Button(action: {
+                            showAboutSheet.toggle()
+                        }, label: {
+                            Text(R.string.localizable.menuAbout())
+                        })
+                    } label: {
+                        Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 10)
+                    .popoverTipIfApplicable(
+                        title: Text(R.string.localizable.menuTipTitle()),
+                        message: Text(R.string.localizable.menuTipMessage()))
+                    .sheet(isPresented: $showRemindersSheet) {
+                        ScheduleReminders()
+                    }
+                    .sheet(isPresented: $showYourImpact) {
+                        YourImpact()
+                    }
+                    .sheet(isPresented: $showAboutSheet) {
+                        AboutSheet()
+                    }
                     
-                    Text(R.string.localizable.whatsImportantTitle())
-                        .font(.system(size: 20))
-                        .fontWeight(.semibold)
-                    ForEach(store.state.issues) { issue in
-                        NavigationLink() {
-                            NavigationStack(path: $router.path) {
-                                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
-                                    .navigationDestination(for: IssueDetailNavModel.self) { idnm in
-                                        IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-                                    }.navigationDestination(for: IssueNavModel.self) { inm in
-                                        IssueDone(issue: inm.issue)
-                                    }
-                            }
-                        } label: {
-                            IssueListItem(issue: issue, contacts: store.state.contacts)
+                    LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
+                        .padding(.bottom, 10)
+                        .onTapGesture {
+                            showLocationSheet.toggle()
                         }
-                    }
-                }.padding(.horizontal, 10)
-            }
-//            }.navigationDestination(for: Issue.self) { issue in
-//                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
-//            }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
-//                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-//            }.navigationDestination(for: IssueNavModel.self) { inm in
-//                IssueDone(issue: inm.issue)
-//            }
-            
-            .navigationBarHidden(true)
-            .onAppear() {
-                //              TODO: refresh if issues are old too?
-                if store.state.issues.isEmpty {
-                    store.dispatch(action: .FetchIssues)
+                        .sheet(isPresented: $showLocationSheet) {
+                            LocationSheet()
+                                .presentationDetents([.medium])
+                                .presentationDragIndicator(.visible)
+                                .padding(.top, 40)
+                            Spacer()
+                        }
+                    
+                    Image(.fivecallsStars)
                 }
+                .padding(.horizontal, 10)
+                .padding(.bottom, 10)
                 
-                if let location = store.state.location, store.state.contacts.isEmpty {
-                    store.dispatch(action: .FetchContacts(location))
+                Text(R.string.localizable.whatsImportantTitle())
+                    .font(.system(size: 20))
+                    .fontWeight(.semibold)
+                    .padding(.horizontal, 10)
+                List(store.state.issues, selection: $selectedIssue) { issue in
+                    NavigationLink(value: issue) {
+                        IssueListItem(issue: issue, contacts: store.state.contacts)
+                    }
                 }
+                .listStyle(.plain)
+            }
+        .navigationBarHidden(true)
+        .onAppear() {
+            //              TODO: refresh if issues are old too?
+            if store.state.issues.isEmpty {
+                store.dispatch(action: .FetchIssues)
+            }
+            
+            if let location = store.state.location, store.state.contacts.isEmpty {
+                store.dispatch(action: .FetchContacts(location))
             }
         }
-//    }
+    }
 }
 
 struct Dashboard_Previews: PreviewProvider {
@@ -132,6 +113,6 @@ struct Dashboard_Previews: PreviewProvider {
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
     
     static var previews: some View {
-        Dashboard().environmentObject(store)
+        Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
     }
 }

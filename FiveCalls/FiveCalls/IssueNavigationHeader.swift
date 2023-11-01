@@ -9,19 +9,26 @@
 import SwiftUI
 
 struct IssueNavigationHeader: View {
+    @EnvironmentObject var router: Router
     @Environment(\.dismiss) var dismiss
-//    @EnvironmentObject var router: Router
+    var showBackButton: Bool
 
     var body: some View {
         HStack(alignment: .top) {
-            Button {
-                dismiss()
-            } label: {
-                HStack(spacing: 4) {
-                    Image(systemName: "chevron.backward.circle")
-                        .font(.title2)
-                    Text("Back")
-                        .fontWeight(.medium)
+            if showBackButton {
+                Button {
+                    if router.path.isEmpty {
+                        dismiss()
+                    } else {
+                        router.back()
+                    }
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "chevron.backward.circle")
+                            .font(.title2)
+                        Text("Back")
+                            .fontWeight(.medium)
+                    }
                 }
             }
             Spacer()
@@ -40,5 +47,5 @@ struct IssueNavigationHeader: View {
 }
 
 #Preview {
-    IssueNavigationHeader()
+    IssueNavigationHeader(showBackButton: true)
 }
