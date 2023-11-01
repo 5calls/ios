@@ -18,7 +18,7 @@ struct Dashboard: View {
     @State var showAboutSheet = false
 
     var body: some View {
-        NavigationStack(path: $router.path) {
+//        NavigationStack(path: $router.path) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -66,42 +66,52 @@ struct Dashboard: View {
                                     .padding(.top, 40)
                                 Spacer()
                             }
-                            
+                        
                         Image(.fivecallsStars)
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
-
+                    
                     Text(R.string.localizable.whatsImportantTitle())
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                     ForEach(store.state.issues) { issue in
-                        NavigationLink(value: issue) {
+                        NavigationLink() {
+                            NavigationStack(path: $router.path) {
+                                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
+                                    .navigationDestination(for: IssueDetailNavModel.self) { idnm in
+                                        IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+                                    }.navigationDestination(for: IssueNavModel.self) { inm in
+                                        IssueDone(issue: inm.issue)
+                                    }
+                            }
+                        } label: {
                             IssueListItem(issue: issue, contacts: store.state.contacts)
                         }
                     }
                 }.padding(.horizontal, 10)
-            }.navigationDestination(for: Issue.self) { issue in
-                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
-            }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
-                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-            }.navigationDestination(for: IssueNavModel.self) { inm in
-                IssueDone(issue: inm.issue)
             }
-
+//            }.navigationDestination(for: Issue.self) { issue in
+//                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
+//            }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
+//                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+//            }.navigationDestination(for: IssueNavModel.self) { inm in
+//                IssueDone(issue: inm.issue)
+//            }
+            
             .navigationBarHidden(true)
             .onAppear() {
-//              TODO: refresh if issues are old too?
+                //              TODO: refresh if issues are old too?
                 if store.state.issues.isEmpty {
                     store.dispatch(action: .FetchIssues)
                 }
-        
+                
                 if let location = store.state.location, store.state.contacts.isEmpty {
                     store.dispatch(action: .FetchContacts(location))
                 }
             }
         }
-    }
+//    }
 }
 
 struct Dashboard_Previews: PreviewProvider {
@@ -122,6 +132,6 @@ struct Dashboard_Previews: PreviewProvider {
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
     
     static var previews: some View {
-        Dashboard().environmentObject(store).environmentObject(Router())
+        Dashboard().environmentObject(store)
     }
 }
