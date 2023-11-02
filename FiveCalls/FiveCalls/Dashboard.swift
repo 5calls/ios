@@ -16,6 +16,21 @@ struct Dashboard: View {
     @State var showRemindersSheet = false
     @State var showYourImpact = false
     @State var showAboutSheet = false
+    @State var showAllIssues = false
+    
+    private var categorizedIssues: [CategorizedIssuesViewModel] {
+        var categoryViewModels = Set<CategorizedIssuesViewModel>()
+        for issue in store.state.issues {
+            for category in issue.categories {
+                if let categorized = categoryViewModels.first(where: { $0.category == category }) {
+                    categorized.issues.append(issue)
+                } else {
+                    categoryViewModels.insert(CategorizedIssuesViewModel(category: category, issues: [issue]))
+                }
+            }
+        }
+        return Array(categoryViewModels).sorted(by: { $0.category < $1.category })
+    }
 
     var body: some View {
                 VStack(alignment: .leading, spacing: 10) {
@@ -69,18 +84,42 @@ struct Dashboard: View {
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
-                    
+                                        
                     Text(R.string.localizable.whatsImportantTitle())
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
-                    List(store.state.issues, selection: $selectedIssue) { issue in
-                        NavigationLink(value: issue) {
-                            IssueListItem(issue: issue, contacts: store.state.contacts)
+                                        
+                    if showAllIssues {
+                        List(categorizedIssues, selection: $selectedIssue) { section in
+                            Section(section.name) {
+                                ForEach(section.issues) { issue in
+                                    NavigationLink(value: issue) {
+                                        IssueListItem(issue: issue, contacts: store.state.contacts)
+                                    }
+                                }
+                            }
                         }
+                        .tint(Color.fivecallsLightBG)
+                        .listStyle(.plain)
+                    } else {
+                        List(store.state.issues.filter({ $0.active }),
+                             selection: $selectedIssue)
+                        { issue in
+                            NavigationLink(value: issue) {
+                                IssueListItem(issue: issue, contacts: store.state.contacts)
+                            }
+                        }
+                        .tint(Color.fivecallsLightBG)
+                        .listStyle(.plain)
                     }
-                    .tint(Color.fivecallsLightBG)
-                    .listStyle(.plain)
+                    
+                    Toggle(isOn: $showAllIssues){
+                        Text(R.string.localizable.showAllIssuesTitle())
+                            .font(.headline)
+                            .foregroundStyle(Color.fivecallsDarkBlue)
+                    }
+                    .padding(.horizontal, 20)
                 }
                 .navigationBarHidden(true)
                 .onAppear() {

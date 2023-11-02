@@ -38,6 +38,7 @@
 "line-busy"                           = "Local Offices ▼";
 "choose-a-number"                     = "Select a Different Office";
 "uncategorized-issues"                = "Uncategorized Issues";
+"choose-issue-placeholder"            = "Please select an issue";
 
 // dashboard
 "menu-scheduled-reminders"            = "Reminders";
@@ -45,7 +46,7 @@
 "menu-about"                          = "About";
 "menu-tip-title"                      = "New Settings Location";
 "menu-tip-message"                    = "Your Impact and About now reside in Settings menu along with Reminders";
-"menu-choose-issue"                   = "Please select an issue";
+"show-all-issues-title"               = "Show all issues";
 
 // scheduled reminders
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
