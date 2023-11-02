@@ -1,5 +1,5 @@
 //
-//  MainSplitView.swift
+//  IssueSplitView.swift
 //  FiveCalls
 //
 //  Created by Christopher Selin on 11/1/23.
@@ -8,22 +8,25 @@
 
 import SwiftUI
 
-struct MainSplitView: View {
+struct IssueSplitView: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: Router
-    @State var selectedIssue: Issue?
+    @StateObject var router: IssueRouter = IssueRouter()
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
-            Dashboard(selectedIssue: $selectedIssue).environmentObject(router)
+            Dashboard(selectedIssue: $router.selectedIssue).environmentObject(router)
         }, detail: {
             NavigationStack(path: $router.path) {
-                if let selectedIssue {
-                    IssueDetail(issue: selectedIssue, contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
+                if let selectedIssue = router.selectedIssue {
+                    IssueDetail(issue: selectedIssue, 
+                                contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
+                        .environmentObject(router)
                     .navigationDestination(for: IssueDetailNavModel.self) { idnm in
                         IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+                            .environmentObject(router)
                     }.navigationDestination(for: IssueNavModel.self) { inm in
                         IssueDone(issue: inm.issue)
+                            .environmentObject(router)
                     }
                 } else {
                     Text("Please select an issue")
@@ -34,7 +37,7 @@ struct MainSplitView: View {
     }
 }
 
-struct MainSplitView_Previews: PreviewProvider {
+struct IssueSplitView_Previews: PreviewProvider {
     static let previewState = {
         var state = AppState()
         state.issues = [
@@ -52,6 +55,6 @@ struct MainSplitView_Previews: PreviewProvider {
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
     
     static var previews: some View {
-        MainSplitView().environmentObject(store).environmentObject(Router())
+        IssueSplitView().environmentObject(store)
     }
 }

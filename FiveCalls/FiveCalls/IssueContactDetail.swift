@@ -10,7 +10,7 @@ import SwiftUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: Router
+    @EnvironmentObject var router: IssueRouter
 
     let issue: Issue
     let remainingContacts: [Contact]
@@ -26,7 +26,7 @@ struct IssueContactDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                IssueNavigationHeader(showBackButton: true)
+                IssueNavigationHeader()
                     .padding(.bottom, 8)
                 Text(issue.name)
                     .font(.title2)

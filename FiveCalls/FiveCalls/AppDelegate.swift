@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: CustomNavigationController!
     
-    let USE_NEW_SWIFTUI_INTERFACE = true
+    let USE_NEW_SWIFTUI_INTERFACE = false
     var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -40,9 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         if USE_NEW_SWIFTUI_INTERFACE {
             let store = Store(state: AppState(), middlewares: [appMiddleware()])
-            window?.rootViewController = UIHostingController(rootView: MainSplitView()
-                .environmentObject(store)
-                .environmentObject(Router()))
+            window?.rootViewController = UIHostingController(rootView: IssueSplitView()
+                .environmentObject(store))
             
             if #available(iOS 17.0, *) {
                 try? Tips.configure()

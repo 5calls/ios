@@ -15,7 +15,7 @@ struct IssueDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                IssueNavigationHeader(showBackButton: UIDevice.current.userInterfaceIdiom == .phone)
+                IssueNavigationHeader()
                     .padding(.bottom, 8)
                 Text(issue.name)
                     .font(.title2)
