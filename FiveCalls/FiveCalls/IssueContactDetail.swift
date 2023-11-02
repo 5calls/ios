@@ -79,7 +79,7 @@ struct IssueContactDetail: View {
                             { outcome in
                                 let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                             store.dispatch(action: .ReportOutcome(log, outcome))
-                            router.path.append(IssueNavModel(issue: issue, contacts: [], type: "done"))
+                            router.path.append(IssueNavModel(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts), type: "done"))
                         })
                     }
                 }
