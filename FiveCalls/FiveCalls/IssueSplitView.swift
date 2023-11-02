@@ -29,7 +29,7 @@ struct IssueSplitView: View {
                             .environmentObject(router)
                     }
                 } else {
-                    Text("Please select an issue")
+                    Text(R.string.localizable.menuChooseIssue())
                 }
             }
         })
