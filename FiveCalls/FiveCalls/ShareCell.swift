@@ -12,6 +12,6 @@ class ShareCell: UITableViewCell {
     @IBOutlet weak var shareImage: UIImageView!
     
     func configure(issue: Issue) {
-        self.shareImage.setImageFromURL(issue.shareURL)
+        self.shareImage.setImageFromURL(issue.shareImageURL)
     }
 }

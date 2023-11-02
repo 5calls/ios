@@ -23,7 +23,7 @@ struct Issue: Identifiable, Decodable {
     let contactAreas: [String]
     let createdAt: Date
     
-    var shareURL: URL {
+    var shareImageURL: URL {
         return URL(string: String(format: "https://api.5calls.org/v1/issue/%d/share/t",self.id))!
     }
     

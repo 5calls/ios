@@ -12,6 +12,8 @@ struct PrimaryButton: View {
     let title: String
     let systemImageName: String
     
+    var bgColor: Color = .fivecallsDarkBlue
+    
     var body: some View {
         HStack {
             Text(title)
@@ -25,7 +27,7 @@ struct PrimaryButton: View {
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 6)
-                    .foregroundColor(Color.fivecallsDarkBlue)
+                    .foregroundColor(bgColor)
             }
 
     }

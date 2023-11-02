@@ -12,6 +12,7 @@ struct IssueDone: View {
     @EnvironmentObject var router: IssueRouter
     
     let issue: Issue
+    let contacts: [Contact]
     
     var totalCalls: Int?
     var issueCalls: Int?
@@ -28,19 +29,47 @@ struct IssueDone: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text("Issue \(issue.name) done page")
-                if let totalCalls {
-                    CountingView(title: "Total calls", count: totalCalls)
-                        .padding(.bottom, 14)
-                }
-                if let issueCalls {
-                    CountingView(title: "Calls on this topic", count: issueCalls)
-                        .padding(.bottom, 14)
-                }
+                HStack {
+                    Spacer()
+                    Text("You called on **\(issue.name)**")
+                        .font(.title2)
+                    Spacer()
+                }.padding(.bottom, 16)
+                VStack {
+                    if let totalCalls {
+                        CountingView(title: "Total calls", count: totalCalls)
+                            .padding(.bottom, 14)
+                    }
+                    if let issueCalls {
+                        CountingView(title: "Calls on this topic", count: issueCalls)
+                            .padding(.bottom, 14)
+                    }
+                }.padding(.bottom, 16)
+                Text("You called these reps")
+                    .font(.caption).fontWeight(.medium)
+                VStack(spacing: 2) {
+                    ForEach(contacts) { contact in
+                        ContactListItem(contact: contact)
+                    }
+                }.padding(.bottom, 16)
+                Text("Support 5 Calls")
+                    .font(.caption).fontWeight(.medium)
+                HStack {
+                    Text("Keep 5 Calls free and updated")
+                    PrimaryButton(title: "Donate today", systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                }.padding(.bottom, 16)
+                Text("Share this topic")
+                    .font(.caption).fontWeight(.medium)
+                AsyncImage(url: issue.shareImageURL,
+                           content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fill)
+                }, placeholder: { EmptyView() })
                 Button(action: {
                     router.backToRoot()
                 }, label: {
-                    Text("Back to dashboard")
+                    PrimaryButton(title: "Done", systemImageName: "flag.checkered")
+
                 })
             }
             .padding(.horizontal)
@@ -117,11 +146,12 @@ struct CountingView: View {
 }
 
 #Preview {
-    IssueDone(issue: .basicPreviewIssue, totalCalls: 1000000, issueCalls: 12345, showDonate: true)
+    IssueDone(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2], totalCalls: 1000000, issueCalls: 12345, showDonate: true)
 }
 
 struct IssueNavModel {
     let issue: Issue
+    let contacts: [Contact]
     let type: String
 }
 

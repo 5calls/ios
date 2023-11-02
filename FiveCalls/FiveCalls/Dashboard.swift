@@ -55,6 +55,24 @@ struct Dashboard: View {
                     if let location = store.state.location, store.state.contacts.isEmpty {
                         store.dispatch(action: .FetchContacts(location))
                     }
+                }.padding(.horizontal, 10)
+            }.navigationDestination(for: Issue.self) { issue in
+                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
+            }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
+                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+            }.navigationDestination(for: IssueNavModel.self) { inm in
+                IssueDone(issue: inm.issue, contacts: inm.contacts)
+            }
+
+            .navigationBarHidden(true)
+            .onAppear() {
+//              TODO: refresh if issues are old too?
+                if store.state.issues.isEmpty {
+                    store.dispatch(action: .FetchIssues)
+                }
+        
+                if let location = store.state.location, store.state.contacts.isEmpty {
+                    store.dispatch(action: .FetchContacts(location))
                 }
             }
 }
