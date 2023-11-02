@@ -8,15 +8,25 @@
 
 import SwiftUI
 
+class IssueDoneModel {
+    var totalCalls: Int?
+    var issueCalls: Int?
+    var showDonate: Bool?
+}
+
 struct IssueDone: View {
+    @EnvironmentObject var store: Store
     @EnvironmentObject var router: IssueRouter
     
     let issue: Issue
     let contacts: [Contact]
+    let viewModel: IssueDoneModel
     
-    var totalCalls: Int?
-    var issueCalls: Int?
-    var showDonate: Bool?
+    init(issue: Issue, contacts: [Contact], viewModel: IssueDoneModel = IssueDoneModel()) {
+        self.issue = issue
+        self.contacts = contacts
+        self.viewModel = viewModel
+    }
     
     // "nice work!"
     // reps called
@@ -36,11 +46,11 @@ struct IssueDone: View {
                     Spacer()
                 }.padding(.bottom, 16)
                 VStack {
-                    if let totalCalls {
+                    if let totalCalls = viewModel.totalCalls {
                         CountingView(title: "Total calls", count: totalCalls)
                             .padding(.bottom, 14)
                     }
-                    if let issueCalls {
+                    if let issueCalls = viewModel.issueCalls {
                         CountingView(title: "Calls on this topic", count: issueCalls)
                             .padding(.bottom, 14)
                     }
@@ -55,7 +65,7 @@ struct IssueDone: View {
                 Text("Support 5 Calls")
                     .font(.caption).fontWeight(.medium)
                 HStack {
-                    Text("Keep 5 Calls free and updated")
+                    Text("Keep 5 Calls free and up-to-date")
                     PrimaryButton(title: "Donate today", systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
                 }.padding(.bottom, 16)
                 Text("Share this topic")
@@ -81,7 +91,18 @@ struct IssueDone: View {
     }
         
     func loadStats() {
-        
+        let operation = FetchStatsOperation()
+        operation.issueID = String(issue.id)
+        operation.completionBlock = { [weak operation] in
+            if let globalCallCount = operation?.numberOfCalls {
+                viewModel.totalCalls = globalCallCount
+                store.dispatch(action: .SetGlobalCallCount(globalCallCount))
+            }
+            if let issueCallCount = operation?.numberOfIssueCalls {
+                viewModel.issueCalls = issueCallCount
+            }
+        }
+        operation.execute()
     }
 }
 
@@ -146,7 +167,7 @@ struct CountingView: View {
 }
 
 #Preview {
-    IssueDone(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2], totalCalls: 1000000, issueCalls: 12345, showDonate: true)
+    IssueDone(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
 }
 
 struct IssueNavModel {
