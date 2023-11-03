@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct IssueNavigationHeader: View {
-    @EnvironmentObject var router: Router
+    @EnvironmentObject var router: IssueRouter
 
     var body: some View {
         HStack(alignment: .top) {

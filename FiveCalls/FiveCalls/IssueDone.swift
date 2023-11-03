@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct IssueDone: View {
-    @EnvironmentObject var router: Router
+    @EnvironmentObject var router: IssueRouter
     
     let issue: Issue
     
