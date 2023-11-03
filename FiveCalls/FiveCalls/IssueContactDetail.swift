@@ -10,7 +10,7 @@ import SwiftUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: Router
+    @EnvironmentObject var router: IssueRouter
 
     let issue: Issue
     let remainingContacts: [Contact]

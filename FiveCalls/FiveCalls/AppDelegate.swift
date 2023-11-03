@@ -40,8 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         if USE_NEW_SWIFTUI_INTERFACE {
             let store = Store(state: AppState(), middlewares: [appMiddleware()])
-            let router = Router()
-            window?.rootViewController = UIHostingController(rootView: Dashboard().environmentObject(store).environmentObject(router))
+            window?.rootViewController = UIHostingController(rootView: IssueSplitView()
+                .environmentObject(store))
             
             if #available(iOS 17.0, *) {
                 try? Tips.configure()

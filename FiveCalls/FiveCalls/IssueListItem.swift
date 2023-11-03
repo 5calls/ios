@@ -13,46 +13,33 @@ struct IssueListItem: View {
     let contacts: [Contact]
     
     var body: some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color(.secondarySystemBackground))
-                .clipped()
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(issue.name)
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(Color.fivecallsDarkBlueText)
-                            .lineLimit(2)
-                            .multilineTextAlignment(.leading)
-                        Spacer()
-                        HStack(spacing: 0) {
-                            let contactsForIssue = issue.contactsForIssue(allContacts: contacts)
-                            ForEach(contactsForIssue.numbered()) { numberedContact in
-                                ContactCircle(contact: numberedContact.element)
-                                    .frame(width: 20, height: 20)
-                                    .offset(x: -10 * CGFloat(numberedContact.number), y:0)
-                            }
-                            Text(repText)
-                                .font(.footnote)
-                                .foregroundColor(.primary)
-                                .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
-                            Spacer()
-                        }
-                    }
-                    .padding(.leading, 10)
-                    .padding(.vertical, 10)
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(issue.name)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(Color.fivecallsDarkBlueText)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                     Spacer()
-                    Image(systemName: "chevron.right.circle.fill")
-                        .imageScale(.large)
-                        .symbolRenderingMode(.monochrome)
-                        .padding(.trailing, 10)
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(Color.fivecallsDarkBlue)
+                    HStack(spacing: 0) {
+                        let contactsForIssue = issue.contactsForIssue(allContacts: contacts)
+                        ForEach(contactsForIssue.numbered()) { numberedContact in
+                            ContactCircle(contact: numberedContact.element)
+                                .frame(width: 20, height: 20)
+                                .offset(x: -10 * CGFloat(numberedContact.number), y:0)
+                        }
+                        Text(repText)
+                            .font(.footnote)
+                            .foregroundColor(.primary)
+                            .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
+                        Spacer()
+                    }
                 }
+                .padding(.leading, 10)
+                .padding(.vertical, 10)
             }
         }
-        .clipped()
     }
     
     var repText: String {

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  IssueRouter.swift
 //  FiveCalls
 //
 //  Created by Nick O'Neill on 10/8/23.
@@ -8,14 +8,20 @@
 
 import SwiftUI
 
-class Router: ObservableObject {
+class IssueRouter: ObservableObject {
     @Published var path = NavigationPath()
+    @Published var selectedIssue: Issue?
     
     func back() {
-        path.removeLast()
+        if path.isEmpty {
+            selectedIssue = nil
+        } else {
+            path.removeLast()
+        }
     }
     
     func backToRoot() {
         path = NavigationPath()
+        selectedIssue = nil
     }
 }
