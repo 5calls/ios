@@ -43,11 +43,7 @@ struct Dashboard: View {
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
                                         
-                    if showAllIssues {
-                        AllIssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
-                    } else {
-                        ActiveIssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
-                    }
+                    IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
                 }
                 .navigationBarHidden(true)
                 .onAppear() {
@@ -119,14 +115,22 @@ struct MenuView: View {
     }
 }
 
-struct AllIssuesList: View {
+struct IssuesList: View {
     @ObservedObject var store: Store
     @Binding var selectedIssue: Issue?
     @Binding var showAllIssues: Bool
     
+    var allIssues: [Issue] {
+        if showAllIssues {
+            return store.state.issues
+        } else {
+            return store.state.issues.filter({ $0.active })
+        }
+    }
+    
     private var categorizedIssues: [CategorizedIssuesViewModel] {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
-        for issue in store.state.issues {
+        for issue in allIssues {
             for category in issue.categories {
                 if let categorized = categoryViewModels.first(where: { $0.category == category }) {
                     categorized.issues.append(issue)
@@ -147,48 +151,18 @@ struct AllIssuesList: View {
                     }
                 }
             } header: {
-                Text(section.name.uppercased()).font(.headline)
+                if showAllIssues {
+                    Text(section.name.uppercased()).font(.headline)
+                }
             } footer: {
                 if section == categorizedIssues.last {
                     Button { showAllIssues.toggle() } label: {
-                        Text(R.string.localizable.lessIssuesTitle())
+                        Text(showAllIssues ? R.string.localizable.lessIssuesTitle() : 
+                                R.string.localizable.moreIssuesTitle())
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(Color.fivecallsDarkBlueText)
                     }
                     .padding(.vertical, 10)
-                }
-            }
-        }
-        .tint(Color.fivecallsLightBG)
-        .listStyle(.grouped)
-    }
-}
-
-struct ActiveIssuesList: View {
-    @ObservedObject var store: Store
-    @Binding var selectedIssue: Issue?
-    @Binding var showAllIssues: Bool
-
-    var body: some View {
-        List(store.state.issues.filter({ $0.active }),
-             selection: $selectedIssue)
-        { issue in
-            if issue == store.state.issues.filter({ $0.active }).last {
-                Section {
-                    NavigationLink(value: issue) {
-                        IssueListItem(issue: issue, contacts: store.state.contacts)
-                    }
-                } footer: {
-                    Button { showAllIssues.toggle() } label: {
-                        Text(R.string.localizable.moreIssuesTitle())
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(Color.fivecallsDarkBlueText)
-                    }
-                    .padding(.vertical, 10)
-                }
-            } else {
-                NavigationLink(value: issue) {
-                    IssueListItem(issue: issue, contacts: store.state.contacts)
                 }
             }
         }
