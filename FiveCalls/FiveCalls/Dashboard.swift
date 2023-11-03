@@ -13,59 +13,12 @@ struct Dashboard: View {
     @Binding var selectedIssue: Issue?
 
     @State var showLocationSheet = false
-    @State var showRemindersSheet = false
-    @State var showYourImpact = false
-    @State var showAboutSheet = false
     @State var showAllIssues = false
     
-    private var categorizedIssues: [CategorizedIssuesViewModel] {
-        var categoryViewModels = Set<CategorizedIssuesViewModel>()
-        for issue in store.state.issues {
-            for category in issue.categories {
-                if let categorized = categoryViewModels.first(where: { $0.category == category }) {
-                    categorized.issues.append(issue)
-                } else {
-                    categoryViewModels.insert(CategorizedIssuesViewModel(category: category, issues: [issue]))
-                }
-            }
-        }
-        return Array(categoryViewModels).sorted(by: { $0.category < $1.category })
-    }
-
     var body: some View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Menu {
-                            Button(action: {
-                                showRemindersSheet.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuScheduledReminders())
-                            })
-                            Button(action: {
-                                showYourImpact.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuYourImpact())
-                            })
-                            Button(action: {
-                                showAboutSheet.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuAbout())
-                            })
-                        } label: {
-                            Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
-                        }
-                        .popoverTipIfApplicable(
-                            title: Text(R.string.localizable.menuTipTitle()),
-                            message: Text(R.string.localizable.menuTipMessage()))
-                        .sheet(isPresented: $showRemindersSheet) {
-                            ScheduleReminders()
-                        }
-                        .sheet(isPresented: $showYourImpact) {
-                            YourImpact()
-                        }
-                        .sheet(isPresented: $showAboutSheet) {
-                            AboutSheet()
-                        }
+                        MenuView()
                         
                         LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                             .padding(.bottom, 10)
@@ -91,35 +44,10 @@ struct Dashboard: View {
                         .padding(.horizontal, 10)
                                         
                     if showAllIssues {
-                        List(categorizedIssues, selection: $selectedIssue) { section in
-                            Section(section.name) {
-                                ForEach(section.issues) { issue in
-                                    NavigationLink(value: issue) {
-                                        IssueListItem(issue: issue, contacts: store.state.contacts)
-                                    }
-                                }
-                            }
-                        }
-                        .tint(Color.fivecallsLightBG)
-                        .listStyle(.plain)
+                        AllIssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
                     } else {
-                        List(store.state.issues.filter({ $0.active }),
-                             selection: $selectedIssue)
-                        { issue in
-                            NavigationLink(value: issue) {
-                                IssueListItem(issue: issue, contacts: store.state.contacts)
-                            }
-                        }
-                        .tint(Color.fivecallsLightBG)
-                        .listStyle(.plain)
+                        ActiveIssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
                     }
-                    
-                    Toggle(isOn: $showAllIssues){
-                        Text(R.string.localizable.showAllIssuesTitle())
-                            .font(.headline)
-                            .foregroundStyle(Color.fivecallsDarkBlue)
-                    }
-                    .padding(.horizontal, 20)
                 }
                 .navigationBarHidden(true)
                 .onAppear() {
@@ -154,5 +82,117 @@ struct Dashboard_Previews: PreviewProvider {
     
     static var previews: some View {
         Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
+    }
+}
+
+struct MenuView: View {
+    @State var showRemindersSheet = false
+    @State var showYourImpact = false
+    @State var showAboutSheet = false
+
+    var body: some View {
+        Menu {
+            Button { showRemindersSheet.toggle() } label: {
+                Text(R.string.localizable.menuScheduledReminders())
+            }
+            Button { showYourImpact.toggle() } label: {
+                Text(R.string.localizable.menuYourImpact())
+            }
+            Button { showAboutSheet.toggle() } label: {
+                Text(R.string.localizable.menuAbout())
+            }
+        } label: {
+            Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
+        }
+        .popoverTipIfApplicable(
+            title: Text(R.string.localizable.menuTipTitle()),
+            message: Text(R.string.localizable.menuTipMessage()))
+        .sheet(isPresented: $showRemindersSheet) {
+            ScheduleReminders()
+        }
+        .sheet(isPresented: $showYourImpact) {
+            YourImpact()
+        }
+        .sheet(isPresented: $showAboutSheet) {
+            AboutSheet()
+        }
+    }
+}
+
+struct AllIssuesList: View {
+    @ObservedObject var store: Store
+    @Binding var selectedIssue: Issue?
+    @Binding var showAllIssues: Bool
+    
+    private var categorizedIssues: [CategorizedIssuesViewModel] {
+        var categoryViewModels = Set<CategorizedIssuesViewModel>()
+        for issue in store.state.issues {
+            for category in issue.categories {
+                if let categorized = categoryViewModels.first(where: { $0.category == category }) {
+                    categorized.issues.append(issue)
+                } else {
+                    categoryViewModels.insert(CategorizedIssuesViewModel(category: category, issues: [issue]))
+                }
+            }
+        }
+        return Array(categoryViewModels).sorted(by: { $0.category < $1.category })
+    }
+
+    var body: some View {
+        List(categorizedIssues, selection: $selectedIssue) { section in
+            Section {
+                ForEach(section.issues) { issue in
+                    NavigationLink(value: issue) {
+                        IssueListItem(issue: issue, contacts: store.state.contacts)
+                    }
+                }
+            } header: {
+                Text(section.name.uppercased()).font(.headline)
+            } footer: {
+                if section == categorizedIssues.last {
+                    Button { showAllIssues.toggle() } label: {
+                        Text(R.string.localizable.lessIssuesTitle())
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(Color.fivecallsDarkBlueText)
+                    }
+                    .padding(.vertical, 10)
+                }
+            }
+        }
+        .tint(Color.fivecallsLightBG)
+        .listStyle(.grouped)
+    }
+}
+
+struct ActiveIssuesList: View {
+    @ObservedObject var store: Store
+    @Binding var selectedIssue: Issue?
+    @Binding var showAllIssues: Bool
+
+    var body: some View {
+        List(store.state.issues.filter({ $0.active }),
+             selection: $selectedIssue)
+        { issue in
+            if issue == store.state.issues.filter({ $0.active }).last {
+                Section {
+                    NavigationLink(value: issue) {
+                        IssueListItem(issue: issue, contacts: store.state.contacts)
+                    }
+                } footer: {
+                    Button { showAllIssues.toggle() } label: {
+                        Text(R.string.localizable.moreIssuesTitle())
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(Color.fivecallsDarkBlueText)
+                    }
+                    .padding(.vertical, 10)
+                }
+            } else {
+                NavigationLink(value: issue) {
+                    IssueListItem(issue: issue, contacts: store.state.contacts)
+                }
+            }
+        }
+        .tint(Color.fivecallsLightBG)
+        .listStyle(.plain)
     }
 }
