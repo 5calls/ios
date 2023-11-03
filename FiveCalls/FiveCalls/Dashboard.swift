@@ -51,7 +51,7 @@ struct Dashboard: View {
                         .sheet(isPresented: $showAboutSheet) {
                             AboutSheet()
                         }
-                        
+
                         LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                             .padding(.bottom, 10)
                             .onTapGesture {
@@ -64,12 +64,12 @@ struct Dashboard: View {
                                     .padding(.top, 40)
                                 Spacer()
                             }
-                        
+
                         Image(.fivecallsStars)
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 10)
-                    
+
                     Text(R.string.localizable.whatsImportantTitle())
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
@@ -88,7 +88,7 @@ struct Dashboard: View {
                     if store.state.issues.isEmpty {
                         store.dispatch(action: .FetchIssues)
                     }
-                    
+
                     if let location = store.state.location, store.state.contacts.isEmpty {
                         store.dispatch(action: .FetchContacts(location))
                     }
@@ -112,7 +112,7 @@ struct Dashboard_Previews: PreviewProvider {
     }()
 
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
-    
+
     static var previews: some View {
         Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
     }
