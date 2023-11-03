@@ -40,7 +40,7 @@ struct IssueDetail: View {
                         }
                     }.background {
                         RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
+                            .foregroundColor(Color.fivecallsLightBG)
                     }.padding(.bottom, 16)
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
                         PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
