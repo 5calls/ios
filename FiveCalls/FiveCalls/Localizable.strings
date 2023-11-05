@@ -38,7 +38,8 @@
 "line-busy"                           = "Local Offices ▼";
 "choose-a-number"                     = "Select a Different Office";
 "uncategorized-issues"                = "Uncategorized Issues";
-"choose-issue-placeholder"            = "Please select an issue";
+"choose-issue-placeholder"            = "Select an issue to get started";
+"choose-issue-subheading"             = "More details about this issue will appear here";
 
 // dashboard
 "menu-scheduled-reminders"            = "Reminders";

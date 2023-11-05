@@ -29,7 +29,20 @@ struct IssueSplitView: View {
                             .environmentObject(router)
                     }
                 } else {
-                    Text(R.string.localizable.chooseIssuePlaceholder())
+                    HStack {
+                        Image(systemName: "arrowshape.left.fill")
+                            .font(.title)
+                            .foregroundColor(.secondary)
+                        VStack(alignment: .leading) {
+                            Text(R.string.localizable.chooseIssuePlaceholder())
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                            Text(R.string.localizable.chooseIssueSubheading())
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
             }
         })
