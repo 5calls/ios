@@ -8,12 +8,16 @@
 
 import Foundation
 
-class CategorizedIssuesViewModel {
+class CategorizedIssuesViewModel: Identifiable {
     let category: Category
     var issues: [Issue]
 
     var name: String {
         return category.name
+    }
+    
+    var id: Int {
+        return name.hashValue
     }
 
     init(category: Category, issues: [Issue]) {
