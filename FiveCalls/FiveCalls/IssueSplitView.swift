@@ -25,8 +25,7 @@ struct IssueSplitView: View {
                         IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
                             .environmentObject(router)
                     }.navigationDestination(for: IssueNavModel.self) { inm in
-                        IssueDone(issue: inm.issue)
-                            .environmentObject(router)
+                        IssueDone(issue: inm.issue, contacts: inm.contacts)
                     }
                 } else {
                     HStack {

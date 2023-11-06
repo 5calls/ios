@@ -16,65 +16,47 @@ struct Dashboard: View {
     @State var showAllIssues = false
     
     var body: some View {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        MenuView()
-
-                        LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
-                            .padding(.bottom, 10)
-                            .onTapGesture {
-                                showLocationSheet.toggle()
-                            }
-                            .sheet(isPresented: $showLocationSheet) {
-                                LocationSheet()
-                                    .presentationDetents([.medium])
-                                    .presentationDragIndicator(.visible)
-                                    .padding(.top, 40)
-                                Spacer()
-                            }
-                        
-                        Image(.fivecallsStars)
-                    }
-                    .padding(.horizontal, 10)
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                MenuView()
+                
+                LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                     .padding(.bottom, 10)
-                                        
-                    Text(R.string.localizable.whatsImportantTitle())
-                        .font(.system(size: 20))
-                        .fontWeight(.semibold)
-                        .padding(.horizontal, 10)
-                                        
-                    IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
-                }
-                .navigationBarHidden(true)
-                .onAppear() {
-                    //              TODO: refresh if issues are old too?
-                    if store.state.issues.isEmpty {
-                        store.dispatch(action: .FetchIssues)
+                    .onTapGesture {
+                        showLocationSheet.toggle()
                     }
-                    
-                    if let location = store.state.location, store.state.contacts.isEmpty {
-                        store.dispatch(action: .FetchContacts(location))
+                    .sheet(isPresented: $showLocationSheet) {
+                        LocationSheet()
+                            .presentationDetents([.medium])
+                            .presentationDragIndicator(.visible)
+                            .padding(.top, 40)
+                        Spacer()
                     }
-                }.padding(.horizontal, 10)
-            }.navigationDestination(for: Issue.self) { issue in
-                IssueDetail(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts))
-            }.navigationDestination(for: IssueDetailNavModel.self) { idnm in
-                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-            }.navigationDestination(for: IssueNavModel.self) { inm in
-                IssueDone(issue: inm.issue, contacts: inm.contacts)
+                
+                Image(.fivecallsStars)
             }
-
-            .navigationBarHidden(true)
-            .onAppear() {
-//              TODO: refresh if issues are old too?
-                if store.state.issues.isEmpty {
-                    store.dispatch(action: .FetchIssues)
-                }
-        
-                if let location = store.state.location, store.state.contacts.isEmpty {
-                    store.dispatch(action: .FetchContacts(location))
-                }
+            .padding(.horizontal, 10)
+            .padding(.bottom, 10)
+            
+            Text(R.string.localizable.whatsImportantTitle())
+                .font(.system(size: 20))
+                .fontWeight(.semibold)
+                .padding(.horizontal, 10)
+            
+            IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
+        }
+        .navigationBarHidden(true)
+        .onAppear() {
+            // TODO: refresh if issues are old too?
+            if store.state.issues.isEmpty {
+                store.dispatch(action: .FetchIssues)
             }
+            
+            if let location = store.state.location, store.state.contacts.isEmpty {
+                store.dispatch(action: .FetchContacts(location))
+            }
+        }
+    }
 }
 
 struct Dashboard_Previews: PreviewProvider {

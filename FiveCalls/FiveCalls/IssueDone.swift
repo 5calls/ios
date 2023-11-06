@@ -27,16 +27,23 @@ struct IssueDone: View {
         self.issue = issue
         self.contacts = contacts
         self.viewModel = viewModel
+        
+        if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
+            self.markdownTitle = titleString
+        } else {
+            self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
+        }
     }
         
     let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
+    var markdownTitle: AttributedString!
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    Text(R.string.localizable.doneTitle(issue.name))
+                    Text(markdownTitle)
                         .font(.title2)
                     Spacer()
                 }.padding(.bottom, 16)
@@ -79,8 +86,9 @@ struct IssueDone: View {
             .padding(.horizontal)
         }.navigationBarHidden(true)
         .clipped()
+        .frame(maxWidth: 500)
         .onAppear() {
-            loadStats()
+//            loadStats()
         }
     }
         
