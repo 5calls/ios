@@ -74,12 +74,12 @@ struct IssueContactDetail: View {
                         })
                     }
                 } else {
-                    NavigationLink(value: IssueNavModel(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts), type: "done")) {
+                    NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
                         OutcomesView(outcomes: issue.outcomeModels, report:
                             { outcome in
                                 let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                             store.dispatch(action: .ReportOutcome(log, outcome))
-                            router.path.append(IssueNavModel(issue: issue, contacts: issue.contactsForIssue(allContacts: store.state.contacts), type: "done"))
+                            router.path.append(IssueNavModel(issue: issue, type: "done"))
                         })
                     }
                 }
@@ -91,8 +91,5 @@ struct IssueContactDetail: View {
 }
 
 #Preview {
-//    let state = AppState()
-//    state.contacts = [.housePreviewContact]
-//
     IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact]).environmentObject(Store(state: AppState()))
 }

@@ -20,12 +20,10 @@ struct IssueDone: View {
     @Environment(\.openURL) private var openURL
     
     let issue: Issue
-    let contacts: [Contact]
     let viewModel: IssueDoneModel
     
-    init(issue: Issue, contacts: [Contact], viewModel: IssueDoneModel = IssueDoneModel()) {
+    init(issue: Issue, viewModel: IssueDoneModel = IssueDoneModel()) {
         self.issue = issue
-        self.contacts = contacts
         self.viewModel = viewModel
         
         if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
@@ -46,7 +44,7 @@ struct IssueDone: View {
                     Text(markdownTitle)
                         .font(.title2)
                     Spacer()
-                }.padding(.bottom, 16)
+                }.padding(.vertical, 16)
                 VStack {
                     if let totalCalls = viewModel.totalCalls {
                         CountingView(title: R.string.localizable.totalCalls(), count: totalCalls)
@@ -88,7 +86,7 @@ struct IssueDone: View {
         .clipped()
         .frame(maxWidth: 500)
         .onAppear() {
-//            loadStats()
+            loadStats()
         }
     }
         
@@ -169,12 +167,11 @@ struct CountingView: View {
 }
 
 #Preview {
-    IssueDone(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
+    IssueDone(issue: .basicPreviewIssue)
 }
 
 struct IssueNavModel {
     let issue: Issue
-    let contacts: [Contact]
     let type: String
 }
 
