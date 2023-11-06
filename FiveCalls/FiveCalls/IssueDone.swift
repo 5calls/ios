@@ -17,6 +17,7 @@ class IssueDoneModel {
 struct IssueDone: View {
     @EnvironmentObject var store: Store
     @EnvironmentObject var router: IssueRouter
+    @Environment(\.openURL) private var openURL
     
     let issue: Issue
     let contacts: [Contact]
@@ -27,58 +28,51 @@ struct IssueDone: View {
         self.contacts = contacts
         self.viewModel = viewModel
     }
-    
-    // "nice work!"
-    // reps called
-    // total calls
-    // issue calls
-    // donate
-    // share image
-    // done
+        
+    let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    Text("You called on **\(issue.name)**")
+                    Text(R.string.localizable.doneTitle(issue.name))
                         .font(.title2)
                     Spacer()
                 }.padding(.bottom, 16)
                 VStack {
                     if let totalCalls = viewModel.totalCalls {
-                        CountingView(title: "Total calls", count: totalCalls)
+                        CountingView(title: R.string.localizable.totalCalls(), count: totalCalls)
                             .padding(.bottom, 14)
                     }
                     if let issueCalls = viewModel.issueCalls {
-                        CountingView(title: "Calls on this topic", count: issueCalls)
+                        CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
                             .padding(.bottom, 14)
                     }
                 }.padding(.bottom, 16)
-                Text("You called these reps")
-                    .font(.caption).fontWeight(.medium)
-                VStack(spacing: 2) {
-                    ForEach(contacts) { contact in
-                        ContactListItem(contact: contact)
+                Text(R.string.localizable.support5calls())
+                    .font(.caption).fontWeight(.bold)
+                HStack {
+                    Text(R.string.localizable.support5callsSub())
+                    Button(action: {
+                        openURL(donateURL)
+                    }) {
+                        PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
                     }
                 }.padding(.bottom, 16)
-                Text("Support 5 Calls")
-                    .font(.caption).fontWeight(.medium)
-                HStack {
-                    Text("Keep 5 Calls free and up-to-date")
-                    PrimaryButton(title: "Donate today", systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                Text(R.string.localizable.shareThisTopic())
+                    .font(.caption).fontWeight(.bold)
+                ShareLink(item: issue.shareURL) {
+                    AsyncImage(url: issue.shareImageURL,
+                               content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }, placeholder: { EmptyView() })
                 }.padding(.bottom, 16)
-                Text("Share this topic")
-                    .font(.caption).fontWeight(.medium)
-                AsyncImage(url: issue.shareImageURL,
-                           content: { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fill)
-                }, placeholder: { EmptyView() })
                 Button(action: {
                     router.backToRoot()
                 }, label: {
-                    PrimaryButton(title: "Done", systemImageName: "flag.checkered")
+                    PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
 
                 })
             }

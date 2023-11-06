@@ -27,6 +27,10 @@ struct Issue: Identifiable, Decodable {
         return URL(string: String(format: "https://api.5calls.org/v1/issue/%d/share/t",self.id))!
     }
     
+    var shareURL: URL {
+        return URL(string: String(format: "https://5calls.org/issue/%s/",self.slug))!
+    }
+    
     // contactsForIssue takes a list of all contacts and returns a consistently sorted list of
     // contacts based on the areas for this issue
     func contactsForIssue(allContacts: [Contact]) -> [Contact] {

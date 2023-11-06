@@ -22,10 +22,6 @@
 "cant-send-email-title"               = "Can't send mail";
 "cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
 "share-the-app-message"               = "Make 5 Calls to your elected officials and let your voice be heard!";
-"total-calls"                         = "Total calls";
-"total-issue-calls"                   = "Calls on this topic";
-"done-screen-button"                  = "Done";
-"done-screen-title"                   = "Nice work!";
 "calls"                               = "Calls";
 "issue-load-failed-connection"        = "The issues failed to load. Please check your connection and try again.";
 "issue-load-failed-server"            = "We encountered an error loading issues. Please try again later.";
@@ -142,3 +138,14 @@
 "welcome-page-2-message"              = "Calling is the most effective way to influence your representative.";
 "welcome-page-2-calls"                = "Together we've made\n%@ calls";
 "welcome-page-2-button-title"         = "Get Started";
+
+// done
+"done-title"                          = "You called on **%@**";
+"total-calls"                         = "Total calls";
+"total-issue-calls"                   = "Calls on this topic";
+"support-5calls"                      = "Support 5 Calls";
+"support-5calls-sub"                  = "Keep 5 Calls free and up-to-date";
+"donate-today"                        = "Donate today";
+"share-this-topic"                    = "Share this topic";
+"done-screen-button"                  = "Done";
+"done-screen-title"                   = "Nice work!";
