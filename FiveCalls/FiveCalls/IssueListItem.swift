@@ -36,7 +36,6 @@ struct IssueListItem: View {
                         Spacer()
                     }
                 }
-                .padding(.leading, 10)
                 .padding(.vertical, 10)
             }
         }
