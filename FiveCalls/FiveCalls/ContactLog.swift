@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import RswiftResources
+import Rswift
 
 struct ContactLog : Hashable, Codable {
     let issueId: String

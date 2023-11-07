@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RswiftResources
+import Rswift
 
 class MyImpactViewController : UITableViewController {
     
@@ -24,7 +24,7 @@ class MyImpactViewController : UITableViewController {
         case contacts
         case count
         
-        var cellIdentifier: RswiftResources.ReuseIdentifier<UIKit.UITableViewCell>? {
+        var cellIdentifier: Rswift.ReuseIdentifier<UIKit.UITableViewCell>? {
             switch self {
             case .stats: return R.reuseIdentifier.statCell
             case .contacts: return R.reuseIdentifier.contactStatCell
