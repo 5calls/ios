@@ -19,7 +19,7 @@ struct Dashboard: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         MenuView()
-                        
+
                         LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                             .padding(.bottom, 10)
                             .onTapGesture {
