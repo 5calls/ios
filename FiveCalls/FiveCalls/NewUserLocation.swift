@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreLocation
-import Rswift
+import RswiftResources
 
 // NewUserLocation is like UserLocation from the old app but it doesn't need a singleton to maintain its state
 class NewUserLocation {
