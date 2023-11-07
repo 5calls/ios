@@ -19,38 +19,6 @@ struct Dashboard: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         MenuView()
-                        Menu {
-                            Button(action: {
-                                showRemindersSheet.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuScheduledReminders())
-                            })
-                            Button(action: {
-                                showYourImpact.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuYourImpact())
-                            })
-                            Button(action: {
-                                showAboutSheet.toggle()
-                            }, label: {
-                                Text(R.string.localizable.menuAbout())
-                            })
-                        } label: {
-                            Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
-                        }
-                        .popoverTipIfApplicable(
-                            title: Text(R.string.localizable.menuTipTitle()),
-                            message: Text(R.string.localizable.menuTipMessage()))
-                        .sheet(isPresented: $showRemindersSheet) {
-                            ScheduleReminders()
-                        }
-                        .sheet(isPresented: $showYourImpact) {
-                            YourImpact()
-                        }
-                        .sheet(isPresented: $showAboutSheet) {
-                            AboutSheet()
-                        }
-
                         LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                             .padding(.bottom, 10)
                             .onTapGesture {
