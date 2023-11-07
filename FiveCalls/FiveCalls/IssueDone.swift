@@ -8,23 +8,15 @@
 
 import SwiftUI
 
-class IssueDoneModel {
-    var totalCalls: Int?
-    var issueCalls: Int?
-    var showDonate: Bool?
-}
-
 struct IssueDone: View {
     @EnvironmentObject var store: Store
     @EnvironmentObject var router: IssueRouter
     @Environment(\.openURL) private var openURL
     
     let issue: Issue
-    let viewModel: IssueDoneModel
     
-    init(issue: Issue, viewModel: IssueDoneModel = IssueDoneModel()) {
+    init(issue: Issue) {
         self.issue = issue
-        self.viewModel = viewModel
         
         if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
             self.markdownTitle = titleString
@@ -46,25 +38,25 @@ struct IssueDone: View {
                     Spacer()
                 }.padding(.vertical, 16)
                 VStack {
-                    if let totalCalls = viewModel.totalCalls {
-                        CountingView(title: R.string.localizable.totalCalls(), count: totalCalls)
-                            .padding(.bottom, 14)
-                    }
-                    if let issueCalls = viewModel.issueCalls {
+                    CountingView(title: R.string.localizable.totalCalls(), count: store.state.globalCallCount)
+                        .padding(.bottom, 14)
+                    if let issueCalls = store.state.issueCallCounts[issue.id] {
                         CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
                             .padding(.bottom, 14)
                     }
                 }.padding(.bottom, 16)
-                Text(R.string.localizable.support5calls())
-                    .font(.caption).fontWeight(.bold)
-                HStack {
-                    Text(R.string.localizable.support5callsSub())
-                    Button(action: {
-                        openURL(donateURL)
-                    }) {
-                        PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
-                    }
-                }.padding(.bottom, 16)
+                if store.state.donateOn {
+                    Text(R.string.localizable.support5calls())
+                        .font(.caption).fontWeight(.bold)
+                    HStack {
+                        Text(R.string.localizable.support5callsSub())
+                        Button(action: {
+                            openURL(donateURL)
+                        }) {
+                            PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                        }
+                    }.padding(.bottom, 16)
+                }
                 Text(R.string.localizable.shareThisTopic())
                     .font(.caption).fontWeight(.bold)
                 ShareLink(item: issue.shareURL) {
@@ -86,23 +78,8 @@ struct IssueDone: View {
         .clipped()
         .frame(maxWidth: 500)
         .onAppear() {
-            loadStats()
+            store.dispatch(action: .FetchStats(issue.id))
         }
-    }
-        
-    func loadStats() {
-        let operation = FetchStatsOperation()
-        operation.issueID = String(issue.id)
-        operation.completionBlock = { [weak operation] in
-            if let globalCallCount = operation?.numberOfCalls {
-                viewModel.totalCalls = globalCallCount
-                store.dispatch(action: .SetGlobalCallCount(globalCallCount))
-            }
-            if let issueCallCount = operation?.numberOfIssueCalls {
-                viewModel.issueCalls = issueCallCount
-            }
-        }
-        operation.execute()
     }
 }
 

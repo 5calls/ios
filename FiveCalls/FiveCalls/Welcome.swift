@@ -113,7 +113,7 @@ struct Page2: View {
         .padding(EdgeInsets(top: 24, leading: 24, bottom: 48, trailing: 24))
         .onAppear() {
             if store.state.globalCallCount == 0 {
-                store.dispatch(action: .FetchStats)
+                store.dispatch(action: .FetchStats(nil))
             }
         }
     }

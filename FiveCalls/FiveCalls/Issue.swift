@@ -10,7 +10,7 @@ import Foundation
 import RswiftResources
 
 struct Issue: Identifiable, Decodable {
-    let id: Int64
+    let id: Int
     let meta: String
     let name: String
     let slug: String

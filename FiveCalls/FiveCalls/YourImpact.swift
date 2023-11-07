@@ -100,7 +100,7 @@ struct YourImpact: View {
         }
         .onAppear() {
             if store.state.globalCallCount == 0 {
-                store.dispatch(action: .FetchStats)
+                store.dispatch(action: .FetchStats(nil))
             }
 
             fetchUserStats()

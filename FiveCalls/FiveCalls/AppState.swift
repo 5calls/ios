@@ -12,6 +12,8 @@ import os
 
 class AppState: ObservableObject, ReduxState {
     @Published var globalCallCount: Int = 0
+    @Published var issueCallCounts: [Int: Int] = [:]
+    @Published var donateOn = false
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
     @Published var location: NewUserLocation? {

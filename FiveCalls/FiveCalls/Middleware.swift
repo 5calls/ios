@@ -10,8 +10,8 @@
 func appMiddleware() -> Middleware<AppState> {
     return { state, action, dispatch in
         switch action {
-        case .FetchStats:
-            fetchStats(dispatch: dispatch)
+        case let .FetchStats(issueID):
+            fetchStats(issueID: issueID, dispatch: dispatch)
         case .FetchIssues:
             fetchIssues(dispatch: dispatch)
         case let .FetchContacts(location):
@@ -20,7 +20,7 @@ func appMiddleware() -> Middleware<AppState> {
             fetchContacts(location: location, dispatch: dispatch)
         case let .ReportOutcome(contactLog, outcome):
             reportOutcome(log: contactLog, outcome: outcome)
-        case .SetGlobalCallCount, .SetContacts, .SetFetchingContacts, .SetIssues,
+        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetContacts, .SetFetchingContacts, .SetIssues,
                 .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError:
             // no middleware actions for these, including for completeness
             break
@@ -28,23 +28,35 @@ func appMiddleware() -> Middleware<AppState> {
     }
 }
 
-private func fetchStats(dispatch: @escaping Dispatcher) {
+private func fetchStats(issueID: Int?, dispatch: @escaping Dispatcher) {
     let queue = OperationQueue.main
     let operation = FetchStatsOperation()
+    if let issueID {
+        operation.issueID = "\(issueID)"
+    }
     operation.completionBlock = { [weak operation] in
         if let globalCallCount = operation?.numberOfCalls {
             DispatchQueue.main.async {
                 dispatch(.SetGlobalCallCount(globalCallCount))
             }
-        } else if let error = operation?.error {
+        }
+        if  let issueID, let issueCallCount = operation?.numberOfIssueCalls {
+            DispatchQueue.main.async {
+                dispatch(.SetIssueCallCount(issueID, issueCallCount))
+            }
+        }
+        if let donateOn = operation?.donateOn {
+            DispatchQueue.main.async {
+                dispatch(.SetDonateOn(donateOn))
+            }
+        }
+
+        
+        if let error = operation?.error {
             print("Could not load stats: \(error.localizedDescription)..")
 
             DispatchQueue.main.async {
                 dispatch(.SetLoadingStatsError(error))
-            }
-        } else {
-            DispatchQueue.main.async {
-                dispatch(.SetLoadingStatsError(MiddlewareError.UnknownError))
             }
         }
     }

@@ -12,6 +12,7 @@ class FetchStatsOperation : BaseOperation {
     
     var numberOfCalls: Int?
     var numberOfIssueCalls: Int?
+    var donateOn: Bool?
     var issueID: String?
     var httpResponse: HTTPURLResponse?
     var error: Error?
@@ -56,15 +57,19 @@ class FetchStatsOperation : BaseOperation {
         }
                 
         if let count = json["count"] as? Int {
-            numberOfCalls = count
+            self.numberOfCalls = count
         } else if let countString = json["count"] as? String {
             if let number = NumberFormatter().number(from: countString) {
-                numberOfCalls = number.intValue
+                self.numberOfCalls = number.intValue
             }
         }
         
         if let issueCount = json["issueCount"] as? Int {
-            numberOfIssueCalls = issueCount
+            self.numberOfIssueCalls = issueCount
+        }
+        
+        if let donateOn = json["donateOn"] as? Bool {
+            self.donateOn = donateOn
         }
     }
 }
