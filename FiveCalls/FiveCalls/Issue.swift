@@ -10,7 +10,7 @@ import Foundation
 import RswiftResources
 
 struct Issue: Identifiable, Decodable {
-    let id: Int64
+    let id: Int
     let meta: String
     let name: String
     let slug: String
@@ -23,8 +23,12 @@ struct Issue: Identifiable, Decodable {
     let contactAreas: [String]
     let createdAt: Date
     
-    var shareURL: URL {
+    var shareImageURL: URL {
         return URL(string: String(format: "https://api.5calls.org/v1/issue/%d/share/t",self.id))!
+    }
+    
+    var shareURL: URL {
+        return URL(string: String(format: "https://5calls.org/issue/%s/",self.slug))!
     }
     
     // contactsForIssue takes a list of all contacts and returns a consistently sorted list of

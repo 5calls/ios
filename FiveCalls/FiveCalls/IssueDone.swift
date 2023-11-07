@@ -9,22 +9,137 @@
 import SwiftUI
 
 struct IssueDone: View {
+    @EnvironmentObject var store: Store
     @EnvironmentObject var router: IssueRouter
+    @Environment(\.openURL) private var openURL
     
     let issue: Issue
     
+    init(issue: Issue) {
+        self.issue = issue
+        
+        if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
+            self.markdownTitle = titleString
+        } else {
+            self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
+        }
+    }
+        
+    let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
+    var markdownTitle: AttributedString!
+    
     var body: some View {
         ScrollView {
-            VStack {
-                Text("Issue \(issue.name) done page")
+            VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    Text(markdownTitle)
+                        .font(.title2)
+                    Spacer()
+                }.padding(.vertical, 16)
+                VStack {
+                    CountingView(title: R.string.localizable.totalCalls(), count: store.state.globalCallCount)
+                        .padding(.bottom, 14)
+                    if let issueCalls = store.state.issueCallCounts[issue.id] {
+                        CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
+                            .padding(.bottom, 14)
+                    }
+                }.padding(.bottom, 16)
+                if store.state.donateOn {
+                    Text(R.string.localizable.support5calls())
+                        .font(.caption).fontWeight(.bold)
+                    HStack {
+                        Text(R.string.localizable.support5callsSub())
+                        Button(action: {
+                            openURL(donateURL)
+                        }) {
+                            PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                        }
+                    }.padding(.bottom, 16)
+                }
+                Text(R.string.localizable.shareThisTopic())
+                    .font(.caption).fontWeight(.bold)
+                ShareLink(item: issue.shareURL) {
+                    AsyncImage(url: issue.shareImageURL,
+                               content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }, placeholder: { EmptyView() })
+                }.padding(.bottom, 16)
                 Button(action: {
                     router.backToRoot()
                 }, label: {
-                    Text("Back to dashboard")
+                    PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
+
                 })
             }
+            .padding(.horizontal)
         }.navigationBarHidden(true)
         .clipped()
+        .frame(maxWidth: 500)
+        .onAppear() {
+            store.dispatch(action: .FetchStats(issue.id))
+        }
+    }
+}
+
+struct CountingView: View {
+    let title: String
+    let count: Int
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(title)
+                .font(.title3)
+                .fontWeight(.medium)
+                .padding(.bottom, 4)
+            GeometryReader { geometry in
+                ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
+                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                        .foregroundColor(.fivecallsLightBG)
+                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                        .foregroundColor(.fivecallsDarkBlue)
+                        .frame(width: progressWidth(size: geometry.size))
+                    // this formats the int with commas automatically?
+                    Text("\(count)")
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, 6)
+                }
+            }
+        }
+    }
+    
+    func progressWidth(size: CGSize) -> CGFloat {
+        return size.width * (CGFloat(count) / nextMilestone)
+    }
+    
+    var nextMilestone: CGFloat {
+        if count < 80 {
+            return 100
+        } else if count < 450 {
+            return 500
+        } else if count < 900 {
+            return 1000
+        } else if count < 4500 {
+            return 5000
+        } else if count < 9000 {
+            return 10000
+        } else if count < 45000 {
+            return 50000
+        } else if count < 90000 {
+            return 100000
+        } else if count < 450000 {
+            return 500000
+        } else if count < 900000 {
+            return 1000000
+        } else if count < 1500000 {
+            return 2000000
+        } else if count < 4500000 {
+            return 5000000
+        }
+        
+        return 0
     }
 }
 

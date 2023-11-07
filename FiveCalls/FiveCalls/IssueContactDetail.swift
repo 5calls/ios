@@ -90,8 +90,6 @@ struct IssueContactDetail: View {
     }
 }
 
-struct IssueContactDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact])
-    }
+#Preview {
+    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact]).environmentObject(Store(state: AppState()))
 }

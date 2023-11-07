@@ -39,6 +39,10 @@ class Store: ObservableObject {
         switch action {
         case let .SetGlobalCallCount(globalCallCount):
             state.globalCallCount = globalCallCount
+        case let .SetIssueCallCount(issueID, count):
+            state.issueCallCounts[issueID] = count
+        case let .SetDonateOn(donateOn):
+            state.donateOn = donateOn
         case let .SetFetchingContacts(fetching):
             state.fetchingContacts = fetching
         case let .SetIssues(issues):

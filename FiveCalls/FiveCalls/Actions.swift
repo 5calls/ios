@@ -8,8 +8,10 @@
 import Foundation
 
 enum Action {
-    case FetchStats
+    case FetchStats(Int?)
     case SetGlobalCallCount(Int)
+    case SetIssueCallCount(Int,Int)
+    case SetDonateOn(Bool)
     case FetchIssues
     case SetIssues([Issue])
     case FetchContacts(NewUserLocation)
