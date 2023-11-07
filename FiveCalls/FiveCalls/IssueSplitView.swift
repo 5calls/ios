@@ -11,14 +11,14 @@ import SwiftUI
 struct IssueSplitView: View {
     @EnvironmentObject var store: Store
     @StateObject var router: IssueRouter = IssueRouter()
-    
+
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
             Dashboard(selectedIssue: $router.selectedIssue).environmentObject(router)
         }, detail: {
             NavigationStack(path: $router.path) {
                 if let selectedIssue = router.selectedIssue {
-                    IssueDetail(issue: selectedIssue, 
+                    IssueDetail(issue: selectedIssue,
                                 contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
                         .environmentObject(router)
                     .navigationDestination(for: IssueDetailNavModel.self) { idnm in
@@ -53,7 +53,7 @@ struct IssueSplitView_Previews: PreviewProvider {
     }()
 
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
-    
+
     static var previews: some View {
         IssueSplitView().environmentObject(store)
     }
