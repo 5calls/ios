@@ -20,7 +20,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(project: xcodeproj, scheme: scheme, xcargs: "-skipPackagePluginValidation")
+    scan(project: xcodeproj, scheme: scheme)
   end
 
   desc "Increments build number"
