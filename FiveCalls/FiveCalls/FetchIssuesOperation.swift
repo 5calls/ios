@@ -22,7 +22,7 @@ class FetchIssuesOperation : BaseOperation {
     }()
     
     func buildIssuesURL() -> URL {
-        return URL(string: "https://api.5calls.org/v1/issues")!
+        return URL(string: "https://api.5calls.org/v1/issues?includeHidden=true")!
     }
 
     override func execute() {
@@ -38,9 +38,6 @@ class FetchIssuesOperation : BaseOperation {
             self.finish()
         }
         
-        
-        print("Fetching issues... \(url)")
-
         task.resume()
     }
     
@@ -54,7 +51,6 @@ class FetchIssuesOperation : BaseOperation {
             return
         }
         
-        print("HTTP \(http.statusCode)")
         httpResponse = http
         
         if http.statusCode == 200 {

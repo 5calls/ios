@@ -130,6 +130,11 @@ struct IssuesList: View {
     
     private var categorizedIssues: [CategorizedIssuesViewModel] {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
+        if !showAllIssues {
+            // if we're showing the default list, make fake categories to preserve the json order. The category names don't matter because we don't show them on the default list
+            return allIssues.map({ CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) })
+        }
+        
         for issue in allIssues {
             for category in issue.categories {
                 if let categorized = categoryViewModels.first(where: { $0.category == category }) {
