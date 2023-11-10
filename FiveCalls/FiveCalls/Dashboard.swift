@@ -148,30 +148,37 @@ struct IssuesList: View {
     }
 
     var body: some View {
-        List(categorizedIssues, selection: $selectedIssue) { section in
-            Section {
-                ForEach(section.issues) { issue in
-                    NavigationLink(value: issue) {
-                        IssueListItem(issue: issue, contacts: store.state.contacts)
+        ScrollViewReader { scroll in
+            List(categorizedIssues, selection: $selectedIssue) { section in
+                Section {
+                    ForEach(section.issues) { issue in
+                        NavigationLink(value: issue) {
+                            IssueListItem(issue: issue, contacts: store.state.contacts)
+                        }
                     }
-                }
-            } header: {
-                if showAllIssues {
-                    Text(section.name.uppercased()).font(.headline)
-                }
-            } footer: {
-                if section == categorizedIssues.last {
-                    Button { showAllIssues.toggle() } label: {
-                        Text(showAllIssues ? R.string.localizable.lessIssuesTitle() : 
-                                R.string.localizable.moreIssuesTitle())
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(Color.fivecallsDarkBlueText)
+                } header: {
+                    if showAllIssues {
+                        Text(section.name.uppercased()).font(.headline)
                     }
-                    .padding(.vertical, 10)
+                } footer: {
+                    if section == categorizedIssues.last {
+                        Button {
+                            showAllIssues.toggle()
+                            if let issueID = categorizedIssues.first?.issues.first?.id {
+                                scroll.scrollTo(issueID, anchor: .top)
+                            }
+                        } label: {
+                            Text(showAllIssues ? R.string.localizable.lessIssuesTitle() :
+                                    R.string.localizable.moreIssuesTitle())
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(Color.fivecallsDarkBlueText)
+                        }
+                        .padding(.vertical, 10)
+                    }
                 }
             }
+            .tint(Color.fivecallsLightBG)
+            .listStyle(.plain)
         }
-        .tint(Color.fivecallsLightBG)
-        .listStyle(.plain)
     }
 }
