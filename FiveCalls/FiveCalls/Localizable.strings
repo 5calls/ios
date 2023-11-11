@@ -70,6 +70,10 @@
 "next-contact"                        = "Next contact";
 "done-calling"                        = "Done calling";
 
+// location
+"your-location-is"                    = "Your location is:";
+"set-your-location"                   = "Set your location";
+
 // location detection
 "locating-temp"                       = "Locating...";
 "unknown-location"                    = "Unknown Location";
