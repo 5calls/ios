@@ -103,6 +103,7 @@ struct LocationSheet: View {
             }
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text("Detect my location"))
+            .accessibilityAddTraits(.isButton)
         }
     }
     
