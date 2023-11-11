@@ -15,6 +15,8 @@ enum UserDefaultsKey : String {
     case locationType
     case locationValue
     
+    case issueCompletionCache // a cached map of issue id to contact ids regarding completed calls
+    
     case hasSeenFirstCallInstructions
     case reminderEnabled
 

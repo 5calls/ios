@@ -13,6 +13,16 @@ import os
 class AppState: ObservableObject, ReduxState {
     @Published var globalCallCount: Int = 0
     @Published var issueCallCounts: [Int: Int] = [:]
+    // issueCompletion is a local cache of completed calls: an array of contact ids keyed by an issue id
+    @Published var issueCompletion: [Int: [String]] = [:] {
+        didSet {
+            // NSNumber (bridged automatically from Int) is not supported as a key in a plist dictionary, so we stringify and unstringify
+            let plistSupportableIssueCache: [String: [String]] = Dictionary(uniqueKeysWithValues: issueCompletion.map { key, value in
+                (String(key), value)
+            })
+            UserDefaults.standard.set(plistSupportableIssueCache, forKey: UserDefaultsKey.issueCompletionCache.rawValue)
+        }
+    }
     @Published var donateOn = false
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
@@ -43,16 +53,21 @@ class AppState: ObservableObject, ReduxState {
             
             switch locationType {
             case "address", "zipCode":
-                location = NewUserLocation(address: locationValue, display: locationDisplay)
+                self.location = NewUserLocation(address: locationValue, display: locationDisplay)
             case "coordinates":
                 let locValues = locationValue.split(separator: ",")
                 if locValues.count != 2 { return }
                 guard let lat = Double(locValues[0]), let lng = Double(locValues[1]) else { return }
                 
-                location = NewUserLocation(location: CLLocation(latitude: lat, longitude: lng), display: locationDisplay)
+                self.location = NewUserLocation(location: CLLocation(latitude: lat, longitude: lng), display: locationDisplay)
             default:
                 Logger().warning("unknown stored location type data: \(locationType)")
             }
+        }
+        
+        // load the issue completion cache
+        if let plistSupportableIssueCache = UserDefaults.standard.object(forKey: UserDefaultsKey.issueCompletionCache.rawValue) as? [String: [String]] {
+            self.issueCompletion = Dictionary(uniqueKeysWithValues: plistSupportableIssueCache.map({ key, value in (Int(key) ?? 0, value) }))
         }
     }
 }

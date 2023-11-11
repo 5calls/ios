@@ -11,6 +11,7 @@ enum Action {
     case FetchStats(Int?)
     case SetGlobalCallCount(Int)
     case SetIssueCallCount(Int,Int)
+    case SetIssueContactCompletion(Int,String)
     case SetDonateOn(Bool)
     case FetchIssues
     case SetIssues([Issue])

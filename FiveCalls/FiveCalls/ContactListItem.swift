@@ -9,7 +9,13 @@
 import SwiftUI
 
 struct ContactListItem: View {
+    let issue: Issue?
     let contact: Contact
+    
+    init(contact: Contact, issue: Issue? = nil) {
+        self.contact = contact
+        self.issue = issue
+    }
 
     var body: some View {
         HStack {
