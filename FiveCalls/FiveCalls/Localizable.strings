@@ -38,6 +38,7 @@
 "choose-issue-subheading"             = "More details about this issue will appear here";
 
 // dashboard
+"menu-name"                           = "Menu";
 "menu-scheduled-reminders"            = "Reminders";
 "menu-your-impact"                    = "Your Impact";
 "menu-about"                          = "About";

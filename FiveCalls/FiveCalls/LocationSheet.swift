@@ -54,11 +54,13 @@ struct LocationSheet: View {
                     .onTapGesture {
                         locationSearch()
                     }
+                    .accessibilityHidden(true)
                 }
                 Text("Use an address, zip code or zip + 4")
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .padding(.leading, 35)
+                    .accessibilityHidden(true)
             }
             .padding(.bottom)
             HStack(alignment: .top) {
@@ -99,6 +101,8 @@ struct LocationSheet: View {
                     }
                 }
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Detect my location"))
         }
     }
     

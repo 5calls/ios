@@ -53,6 +53,9 @@ struct LocationHeader: View {
                 .padding(.trailing)
                 .padding(.leading, 7)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Your location is: \(location!.locationDisplay)"))
+        .accessibilityAddTraits(.isButton)
     }
     
     var unsetLocationView: some View {
@@ -71,6 +74,9 @@ struct LocationHeader: View {
                 .padding(.trailing)
                 .padding(.leading, 7)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Set your location"))
+        .accessibilityAddTraits(.isButton)
     }
 }
 
