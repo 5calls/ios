@@ -142,7 +142,7 @@
 "welcome-section-2-title"                = "Spend 5 minutes, make 5 calls";
 "welcome-section-2-message"              = "Calling is the most effective way to influence your representative.";
 "welcome-section-3-calls"                = "Together we've made\n%@ calls";
-"welcome-button-title"                   = "Continue";
+"welcome-button-title"                   = "Get Started";
 
 // done
 "done-title"                          = "You called on **%@**";
