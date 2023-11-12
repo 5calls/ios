@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct IssueDetail: View {
+    @EnvironmentObject var store: Store
+
     let issue: Issue
     let contacts: [Contact]
     
@@ -30,7 +32,7 @@ struct IssueDetail: View {
                     .padding(.leading, 6)
                 VStack(spacing: 0) {
                     ForEach(contacts.numbered(), id: \.element.id) { contact in
-                        ContactListItem(contact: contact.element)
+                        ContactListItem(contact: contact.element, showComplete: (store.state.issueCompletion[issue.id] ?? []).contains(contact.element.id))
                         if contact.number < 2 { Divider().padding(0) } else { EmptyView() }
                     }
                 }.background {

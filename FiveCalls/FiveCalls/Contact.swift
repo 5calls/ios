@@ -130,7 +130,8 @@ extension Contact {
                     Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])
                 ]
         default:
-            return [Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])]
+            // list views will complain if we have mutiple placeholders with the same ID so randomize them
+            return [Contact(id: String(Int.random(in: 0..<999)), area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])]
         }
     }
 }

@@ -25,7 +25,7 @@ struct IssueListItem: View {
                     HStack(spacing: 0) {
                         let contactsForIssue = issue.contactsForIssue(allContacts: contacts)
                         ForEach(contactsForIssue.numbered()) { numberedContact in
-                            ContactCircle(contact: numberedContact.element)
+                            ContactCircle(contact: numberedContact.element, issueID: issue.id)
                                 .frame(width: 20, height: 20)
                                 .offset(x: -10 * CGFloat(numberedContact.number), y:0)
                         }
@@ -43,7 +43,7 @@ struct IssueListItem: View {
     
     var repText: String {
         if issue.contactAreas.count == 0 {
-            // we should never ship an issue with no contacts, right?
+            // we should never ship an issue with no contact areas, but handle the state anyway
             return "No contacts"
         } else {
             let areas = issue.contactAreas.map({ a in AreaToNiceString(area: a) }).joined(separator: ", ")

@@ -9,7 +9,15 @@
 import SwiftUI
 
 struct ContactListItem: View {
+    let issue: Issue?
     let contact: Contact
+    let showComplete: Bool
+    
+    init(contact: Contact, issue: Issue? = nil, showComplete: Bool = false) {
+        self.contact = contact
+        self.issue = issue
+        self.showComplete = showComplete
+    }
 
     var body: some View {
         HStack {
@@ -17,6 +25,17 @@ struct ContactListItem: View {
                 .frame(width: 45, height: 45)
                 .padding(.vertical, 8)
                 .padding(.leading, 12)
+                .overlay {
+                    if showComplete {
+                        Image(systemName: "checkmark.circle.fill")
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.fivecallsGreen)
+                            .background {
+                                Circle().foregroundColor(.white)
+                            }
+                            .offset(x: 20, y: 15)
+                    }
+                }
             VStack(alignment: .leading) {
                 Text(contact.name)
                     .font(.title3)
@@ -30,13 +49,17 @@ struct ContactListItem: View {
     }
 }
 
-struct ContactListItem_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    VStack {
         ContactListItem(contact: .housePreviewContact)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
             }
-            .padding()
-    }
+        ContactListItem(contact: .housePreviewContact, showComplete: true)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
+            }
+    }.padding(.horizontal)
 }
