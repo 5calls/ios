@@ -67,7 +67,12 @@ class AppState: ObservableObject, ReduxState {
         
         // load the issue completion cache
         if let plistSupportableIssueCache = UserDefaults.standard.object(forKey: UserDefaultsKey.issueCompletionCache.rawValue) as? [String: [String]] {
-            self.issueCompletion = Dictionary(uniqueKeysWithValues: plistSupportableIssueCache.map({ key, value in (Int(key) ?? 0, value) }))
+            self.issueCompletion = Dictionary(uniqueKeysWithValues: plistSupportableIssueCache.compactMap({ key, value in
+                if let intKey = Int(key) {
+                    return (intKey, value)
+                }
+                return nil
+            }))
         }
     }
 }

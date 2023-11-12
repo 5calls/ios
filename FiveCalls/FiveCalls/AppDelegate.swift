@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: CustomNavigationController!
     
-    let USE_NEW_SWIFTUI_INTERFACE = false
+    let USE_NEW_SWIFTUI_INTERFACE = true
     var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
