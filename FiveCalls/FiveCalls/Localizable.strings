@@ -139,6 +139,11 @@
 "welcome-page-2-calls"                = "Together we've made\n%@ calls";
 "welcome-page-2-button-title"         = "Get Started";
 
+// issue detail
+"set-location-header"                 = "We need a location to find your reps";
+"set-location-button"                 = "Set your location";
+"reps-list-header"                    = "Relevant representatives for this issue";
+
 // done
 "done-title"                          = "You called on **%@**";
 "total-calls"                         = "Total calls";

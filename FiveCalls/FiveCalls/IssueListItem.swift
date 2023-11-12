@@ -23,7 +23,9 @@ struct IssueListItem: View {
                         .multilineTextAlignment(.leading)
                     Spacer()
                     HStack(spacing: 0) {
-                        let contactsForIssue = issue.contactsForIssue(allContacts: contacts)
+                        let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
+                            Contact.placeholderContact(for: area)
+                        }) : issue.contactsForIssue(allContacts: contacts)
                         ForEach(contactsForIssue.numbered()) { numberedContact in
                             ContactCircle(contact: numberedContact.element, issueID: issue.id)
                                 .frame(width: 20, height: 20)
