@@ -14,6 +14,8 @@ struct IssueDetail: View {
     let issue: Issue
     let contacts: [Contact]
     
+    @State var showLocationSheet = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -25,35 +27,53 @@ struct IssueDetail: View {
                     .padding(.bottom, 8)
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
-                Text("Relevant representatives for this issue:")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .padding(.bottom, 2)
-                    .padding(.leading, 6)
-                VStack(spacing: 0) {
-                    ForEach(contacts.numbered(), id: \.element.id) { contact in
-                        ContactListItem(contact: contact.element, showComplete: (store.state.issueCompletion[issue.id] ?? []).contains(contact.element.id))
-                        if contact.number < 2 { Divider().padding(0) } else { EmptyView() }
+                if contacts.count > 0 {
+                    Text(R.string.localizable.repsListHeader())
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.bottom, 2)
+                        .padding(.leading, 6)
+                    VStack(spacing: 0) {
+                        ForEach(contacts.numbered(), id: \.element.id) { contact in
+                            ContactListItem(contact: contact.element, showComplete: (store.state.issueCompletion[issue.id] ?? []).contains(contact.element.id))
+                            if contact.number < 2 { Divider().padding(0) } else { EmptyView() }
+                        }
+                    }.background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
+                    }.padding(.bottom, 16)
+                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
+                        PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
                     }
-                }.background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
-                }.padding(.bottom, 16)
-                NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
-                    PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                } else {
+                    Text(R.string.localizable.setLocationHeader())
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.bottom, 2)
+                        .padding(.leading, 6)
+                    Button(action: {
+                        showLocationSheet.toggle()
+                    }, label: {
+                        PrimaryButton(title: R.string.localizable.setLocationButton(), systemImageName: "location.circle.fill")
+                    })
                 }
             }.padding(.horizontal)
         }
-.navigationBarHidden(true)
+        .navigationBarHidden(true)
         .clipped()
+        .sheet(isPresented: $showLocationSheet) {
+            LocationSheet()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+                .padding(.top, 40)
+            Spacer()
+        }
     }
 }
 
-struct IssueDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        IssueDetail(issue: Issue.multilinePreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
-            .environmentObject(Store(state: AppState()))
-    }
+#Preview {
+    IssueDetail(issue: Issue.multilinePreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
+        .environmentObject(Store(state: AppState()))
 }
 
 struct IssueDetailNavModel {
