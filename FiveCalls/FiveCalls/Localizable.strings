@@ -149,3 +149,7 @@
 "share-this-topic"                    = "Share this topic";
 "done-screen-button"                  = "Done";
 "done-screen-title"                   = "Nice work!";
+
+// nav
+"back"                                = "Back";
+"share"                               = "Share";

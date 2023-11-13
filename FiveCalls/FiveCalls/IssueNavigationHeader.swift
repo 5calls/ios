@@ -10,6 +10,8 @@ import SwiftUI
 
 struct IssueNavigationHeader: View {
     @EnvironmentObject var router: IssueRouter
+    
+    let issue: Issue
 
     var body: some View {
         HStack(alignment: .top) {
@@ -19,16 +21,14 @@ struct IssueNavigationHeader: View {
                 HStack(spacing: 4) {
                     Image(systemName: "chevron.backward.circle")
                         .font(.title2)
-                    Text("Back")
+                    Text(R.string.localizable.back())
                         .fontWeight(.medium)
                 }
             }
             Spacer()
-            Button {
-                
-            } label: {
+            ShareLink(item: issue.shareURL) {
                 HStack(spacing: 4) {
-                    Text("Share")
+                    Text(R.string.localizable.share())
                         .fontWeight(.medium)
                     Image(systemName: "square.and.arrow.up.circle")
                         .font(.title2)
@@ -39,5 +39,5 @@ struct IssueNavigationHeader: View {
 }
 
 #Preview {
-    IssueNavigationHeader()
+    IssueNavigationHeader(issue: .basicPreviewIssue)
 }
