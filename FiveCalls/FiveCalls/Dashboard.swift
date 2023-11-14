@@ -34,6 +34,7 @@ struct Dashboard: View {
                     }
                 
                 Image(.fivecallsStars)
+                    .accessibilityHidden(true)
             }
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
@@ -42,7 +43,8 @@ struct Dashboard: View {
                 .font(.system(size: 20))
                 .fontWeight(.semibold)
                 .padding(.horizontal, 10)
-            
+                .accessibilityAddTraits(.isHeader)
+
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
         }
         .navigationBarHidden(true)
@@ -99,6 +101,7 @@ struct MenuView: View {
             }
         } label: {
             Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
+                .accessibilityLabel(Text(R.string.localizable.menuName))
         }
         .popoverTipIfApplicable(
             title: Text(R.string.localizable.menuTipTitle()),

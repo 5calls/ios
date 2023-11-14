@@ -38,7 +38,7 @@ struct LocationHeader: View {
     var locationView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Your location is:")
+                Text(R.string.localizable.yourLocationIs)
                     .font(.footnote)
                 Text(location!.locationDisplay)
                     .font(.system(.title3))
@@ -53,12 +53,15 @@ struct LocationHeader: View {
                 .padding(.trailing)
                 .padding(.leading, 7)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("\(R.string.localizable.yourLocationIs()) \(location!.locationDisplay)"))
+        .accessibilityAddTraits(.isButton)
     }
     
     var unsetLocationView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Set your location")
+                Text(R.string.localizable.setYourLocation)
                     .font(.system(.title3))
                     .fontWeight(.medium)
             }
@@ -71,6 +74,9 @@ struct LocationHeader: View {
                 .padding(.trailing)
                 .padding(.leading, 7)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(R.string.localizable.setYourLocation))
+        .accessibilityAddTraits(.isButton)
     }
 }
 

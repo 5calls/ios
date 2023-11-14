@@ -38,6 +38,7 @@
 "choose-issue-subheading"             = "More details about this issue will appear here";
 
 // dashboard
+"menu-name"                           = "Menu";
 "menu-scheduled-reminders"            = "Reminders";
 "menu-your-impact"                    = "Your Impact";
 "menu-about"                          = "About";
@@ -68,6 +69,10 @@
 "see-script"                          = "See your script";
 "next-contact"                        = "Next contact";
 "done-calling"                        = "Done calling";
+
+// location
+"your-location-is"                    = "Your location is:";
+"set-your-location"                   = "Set your location";
 
 // location detection
 "locating-temp"                       = "Locating...";
@@ -132,12 +137,12 @@
 "subheading-message"                  = "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:";
 
 // welcome
-"welcome-page-1-title"                = "Make your voice heard";
-"welcome-page-1-message"              = "Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.";
-"welcome-page-2-title"                = "Spend 5 minutes, make 5 calls.";
-"welcome-page-2-message"              = "Calling is the most effective way to influence your representative.";
-"welcome-page-2-calls"                = "Together we've made\n%@ calls";
-"welcome-page-2-button-title"         = "Get Started";
+"welcome-section-1-title"                = "Make your voice heard";
+"welcome-section-1-message"              = "Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.";
+"welcome-section-2-title"                = "Spend 5 minutes, make 5 calls";
+"welcome-section-2-message"              = "Calling is the most effective way to influence your representative.";
+"welcome-section-3-calls"                = "Together we've made\n%@ calls";
+"welcome-button-title"                   = "Get Started";
 
 // issue detail
 "set-location-header"                 = "We need a location to find your reps";
