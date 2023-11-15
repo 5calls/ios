@@ -40,7 +40,7 @@ class AnalyticsManager {
         try? plausible?.trackEvent(event: name, path: path, properties: properties.merging(alwaysUseProperties) { _, new in new })
         #endif
     }
-        
+
     func trackError(error: Error) {
         // no remote error tracking right now
     }
