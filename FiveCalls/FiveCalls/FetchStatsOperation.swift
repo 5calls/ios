@@ -27,7 +27,6 @@ class FetchStatsOperation : BaseOperation {
         }
         
         let task = session.dataTask(with: urlComp.url!) { (data, response, error) in
-            
             if let e = error {
                 self.error = e
             } else {

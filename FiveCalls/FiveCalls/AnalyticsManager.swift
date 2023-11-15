@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FirebaseAnalytics
 import PlausibleSwift
 
 class AnalyticsManager {

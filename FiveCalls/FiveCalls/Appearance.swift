@@ -9,16 +9,6 @@
 import UIKit
 
 enum Appearance {
-    static func setup() {
-        let pageControlAppearance = UIPageControl.appearance()
-        pageControlAppearance.pageIndicatorTintColor = R.color.fivecallsLightBlue()
-        pageControlAppearance.currentPageIndicatorTintColor = R.color.fivecallsDarkBlue()
-        
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.fvc_header
-        ]
-    }
-    
     static func swiftUISetup() {
         let pageControlAppearance = UIPageControl.appearance()
         pageControlAppearance.pageIndicatorTintColor = R.color.fivecallsLightBlue()

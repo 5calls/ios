@@ -9,15 +9,12 @@
 import UIKit
 import SwiftUI
 import OneSignal
-import Firebase
 import TipKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var navController: CustomNavigationController!
     
-    let USE_NEW_SWIFTUI_INTERFACE = false
     var appState = AppState()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -33,29 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         oneSignalStartup(launchOptions: launchOptions)
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
-
-        FirebaseApp.configure()
         
-        navController = R.storyboard.main.instantiateInitialViewController()
         window = UIWindow()
-        if USE_NEW_SWIFTUI_INTERFACE {
-            let store = Store(state: AppState(), middlewares: [appMiddleware()])
-            window?.rootViewController = UIHostingController(rootView: IssueSplitView()
-                .environmentObject(store))
+
+        let store = Store(state: AppState(), middlewares: [appMiddleware()])
+        window?.rootViewController = UIHostingController(rootView: IssueSplitView()
+            .environmentObject(store))
+        
+        if #available(iOS 17.0, *) {
+            try? Tips.configure()
+        }
             
-            if #available(iOS 17.0, *) {
-                try? Tips.configure()
-            }
-                
-            if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
-                showWelcome(store: store)
-            }
-        } else {
-            window?.rootViewController = navController
-            
-            if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
-                showWelcome()
-            }
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
+            showWelcome(store: store)
         }
 
         window?.makeKeyAndVisible()
@@ -98,18 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             snapshot.removeFromSuperview()
         }
     }
-    
-    func showWelcome() {
-        guard let window = self.window else { return }
-        let welcomeVC = R.storyboard.welcome.welcomeViewController()!
-        let mainVC = window.rootViewController!
-        welcomeVC.completionBlock = {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
-            self.transitionTo(rootViewController: mainVC)
-        }
-        window.rootViewController = welcomeVC
-    }
-    
+        
     func showWelcome(store: Store) {
         guard let window = self.window else { return }
         let mainVC = window.rootViewController!
@@ -121,11 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setAppearance() {
-        if USE_NEW_SWIFTUI_INTERFACE {
-            Appearance.swiftUISetup()
-        } else {
-            Appearance.setup()
-        }
+        Appearance.swiftUISetup()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -144,9 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
-        // log in if not already logged in, and save the auth token for later reuse
-        SessionManager.shared.startSession()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

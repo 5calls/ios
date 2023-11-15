@@ -40,10 +40,7 @@ class ReportOutcomeOperation : BaseOperation {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-
-        if let authToken = SessionManager.shared.idToken {
-            request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-        }
+        request.setValue(AnalyticsManager.shared.callerID, forHTTPHeaderField: "X-Caller-ID")
 
         let query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)&callerid=\(AnalyticsManager.shared.callerID)"
         guard let data = query.data(using: .utf8) else {
