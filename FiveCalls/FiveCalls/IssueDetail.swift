@@ -68,6 +68,9 @@ struct IssueDetail: View {
                 .padding(.top, 40)
             Spacer()
         }
+        .onAppear() {
+            AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/")
+        }
     }
 }
 

@@ -78,6 +78,8 @@ struct IssueDone: View {
         .clipped()
         .frame(maxWidth: 500)
         .onAppear() {
+            AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/done/")
+            
             store.dispatch(action: .FetchStats(issue.id))
         }
     }
