@@ -21,7 +21,7 @@ class FetchUserStatsOperation : BaseOperation {
     
     override func execute() {
         let config = URLSessionConfiguration.default
-        let session = URLSessionProvider.buildSession(configuration: config)
+        let session = URLSession(configuration: config)
         let url = URL(string: "https://api.5calls.org/v1/users/stats")!
 
         var request = URLRequest(url: url)

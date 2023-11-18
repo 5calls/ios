@@ -25,7 +25,7 @@ class ReportOutcomeOperation : BaseOperation {
 
     override func execute() {
         let config = URLSessionConfiguration.default
-        let session = URLSessionProvider.buildSession(configuration: config)
+        let session = URLSession(configuration: config)
         let url = URL(string: "https://api.5calls.org/v1/report")!
 
         // rather than avoiding network calls during debug,

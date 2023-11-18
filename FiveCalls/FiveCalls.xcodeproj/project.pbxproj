@@ -59,9 +59,7 @@
 		B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */; };
 		B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */; };
 		B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E806FE1E463FE300EBE553 /* UserLocation.swift */; };
-		B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E321E529E31005221B7 /* URLSessionProvider.swift */; };
 		B5E98E351E529E66005221B7 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E341E529E66005221B7 /* functions.swift */; };
-		B5E98E381E529EE4005221B7 /* SeededURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E98E371E529EE4005221B7 /* SeededURLSession.swift */; };
 		B5E98E3B1E52A566005221B7 /* GET-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E3A1E52A566005221B7 /* GET-report.json */; };
 		B5E98E3D1E52A570005221B7 /* GET-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E3C1E52A570005221B7 /* GET-issues.json */; };
 		B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E98E401E52A8AB005221B7 /* POST-report.json */; };
@@ -208,9 +206,7 @@
 		B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchIssuesOperation.swift; sourceTree = "<group>"; };
 		B5E806FE1E463FE300EBE553 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
-		B5E98E321E529E31005221B7 /* URLSessionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProvider.swift; sourceTree = "<group>"; };
 		B5E98E341E529E66005221B7 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
-		B5E98E371E529EE4005221B7 /* SeededURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeededURLSession.swift; sourceTree = "<group>"; };
 		B5E98E3A1E52A566005221B7 /* GET-report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-report.json"; sourceTree = "<group>"; };
 		B5E98E3C1E52A570005221B7 /* GET-issues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-issues.json"; sourceTree = "<group>"; };
 		B5E98E401E52A8AB005221B7 /* POST-report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "POST-report.json"; sourceTree = "<group>"; };
@@ -376,9 +372,9 @@
 			isa = PBXGroup;
 			children = (
 				D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */,
-				B5E98E361E529EC1005221B7 /* Networking */,
 				B502806D1E497C1400749ED7 /* Resources */,
 				B5E7626F1E40D74900D63D62 /* Operations */,
+				D05A17D02B05A1260048D5A6 /* Extensions */,
 				B5E7626D1E40D72D00D63D62 /* View Models */,
 				B5E7626C1E40D72400D63D62 /* Models */,
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
@@ -413,7 +409,6 @@
 		B5E7626C1E40D72400D63D62 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */,
 				B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */,
 				B5E762681E40D63800D63D62 /* Issue.swift */,
 				D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */,
@@ -456,15 +451,6 @@
 				A0D474B3202A22B90012BC94 /* FetchUserStatsOperation.swift */,
 			);
 			name = Operations;
-			sourceTree = "<group>";
-		};
-		B5E98E361E529EC1005221B7 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				B5E98E321E529E31005221B7 /* URLSessionProvider.swift */,
-				B5E98E371E529EE4005221B7 /* SeededURLSession.swift */,
-			);
-			name = Networking;
 			sourceTree = "<group>";
 		};
 		B5E98E391E52A41E005221B7 /* Fixtures */ = {
@@ -561,6 +547,14 @@
 			children = (
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		D05A17D02B05A1260048D5A6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
@@ -814,7 +808,6 @@
 				B5E98E351E529E66005221B7 /* functions.swift in Sources */,
 				D0480B1E2A4D493B00502818 /* IssueListItem.swift in Sources */,
 				D0480AE32A4D45A700502818 /* App.swift in Sources */,
-				B5E98E331E529E31005221B7 /* URLSessionProvider.swift in Sources */,
 				B5E806FF1E463FE300EBE553 /* UserLocation.swift in Sources */,
 				D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
@@ -841,7 +834,6 @@
 				4F11A59E2AAB956C00AF30B9 /* ScheduleReminders.swift in Sources */,
 				D04A11912AD851AB00989AD6 /* OutcomesView.swift in Sources */,
 				AACC2AEB1E732775004B2F2B /* StreakCounter.swift in Sources */,
-				B5E98E381E529EE4005221B7 /* SeededURLSession.swift in Sources */,
 				D082961C2A7BFE04005B002A /* Numbered.swift in Sources */,
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
