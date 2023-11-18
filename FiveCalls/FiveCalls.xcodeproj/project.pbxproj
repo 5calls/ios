@@ -374,6 +374,7 @@
 				D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */,
 				B502806D1E497C1400749ED7 /* Resources */,
 				B5E7626F1E40D74900D63D62 /* Operations */,
+				D05A17D02B05A1260048D5A6 /* Extensions */,
 				B5E7626D1E40D72D00D63D62 /* View Models */,
 				B5E7626C1E40D72400D63D62 /* Models */,
 				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
@@ -408,7 +409,6 @@
 		B5E7626C1E40D72400D63D62 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */,
 				B5E762701E40D8DD00D63D62 /* JSONSerializable.swift */,
 				B5E762681E40D63800D63D62 /* Issue.swift */,
 				D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */,
