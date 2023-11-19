@@ -40,16 +40,7 @@ class AnalyticsManager {
         try? plausible?.trackEvent(event: name, path: path, properties: properties.merging(alwaysUseProperties) { _, new in new })
         #endif
     }
-    
-    // not quite ready to remove all the references to this, but I don't want to push these all to plausible immediately
-    func trackEventOld(withName name: String, andProperties properties: [String: String] = [:]) {
-        #if !DEBUG
-        // firebase does not support colons in event names...
-//        let sanitizedEventName = name.replacingOccurrences(of: ":", with: "_").replacingOccurrences(of: " ", with: "")
-//        Analytics.logEvent(sanitizedEventName, parameters: properties)
-        #endif
-    }
-    
+        
     func trackError(error: Error) {
         // no remote error tracking right now
     }
