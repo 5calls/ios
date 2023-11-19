@@ -38,9 +38,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>5 Calls would like to use your location in order to find your nearest representatives.</string>
+	<string>5 Calls uses your location to find your representatives</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>5 Calls would like to use your location in order to find your nearest representatives.</string>
+	<string>5 Calls uses your location to find your representatives</string>
 	<key>OneSignalAppID</key>
 	<string>$(ONE_SIGNAL_APP_ID)</string>
 	<key>UIBackgroundModes</key>

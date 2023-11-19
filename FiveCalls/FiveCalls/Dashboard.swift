@@ -102,7 +102,10 @@ struct MenuView: View {
                 Text(R.string.localizable.menuAbout())
             }
         } label: {
-            Image(.gear).renderingMode(.template).tint(Color.fivecallsDarkBlue)
+            Image(systemName: "gear.circle")
+                .renderingMode(.template)
+                .font(.title)
+                .tint(Color.fivecallsDarkBlue)
                 .accessibilityLabel(Text(R.string.localizable.menuName))
         }
         .popoverTipIfApplicable(
