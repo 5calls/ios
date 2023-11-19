@@ -19,7 +19,7 @@ class FetchStatsOperation : BaseOperation {
     
     override func execute() {
         let config = URLSessionConfiguration.default
-        let session = URLSessionProvider.buildSession(configuration: config)
+        let session = URLSession(configuration: config)
         var urlComp = URLComponents(url: URL(string: "https://api.5calls.org/v1/report")!, resolvingAgainstBaseURL: false)!
         if let issueID = self.issueID {
             let issueIDQuery = URLQueryItem(name: "issueID", value: issueID)
@@ -27,7 +27,6 @@ class FetchStatsOperation : BaseOperation {
         }
         
         let task = session.dataTask(with: urlComp.url!) { (data, response, error) in
-            
             if let e = error {
                 self.error = e
             } else {

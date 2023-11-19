@@ -25,12 +25,7 @@ struct AboutSheet: View {
             return nil
         }
         
-        var string = "v" + version
-        if let userID = SessionManager.shared.userID {
-            string = "\(string) - \(userID)"
-        }
-        
-        return string
+        return "v\(version) - \(AnalyticsManager.shared.callerID)"
     }()
     
     var body: some View {

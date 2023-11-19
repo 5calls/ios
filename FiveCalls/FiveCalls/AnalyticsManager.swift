@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FirebaseAnalytics
 import PlausibleSwift
 
 class AnalyticsManager {
@@ -46,8 +45,8 @@ class AnalyticsManager {
     func trackEventOld(withName name: String, andProperties properties: [String: String] = [:]) {
         #if !DEBUG
         // firebase does not support colons in event names...
-        let sanitizedEventName = name.replacingOccurrences(of: ":", with: "_").replacingOccurrences(of: " ", with: "")
-        Analytics.logEvent(sanitizedEventName, parameters: properties)
+//        let sanitizedEventName = name.replacingOccurrences(of: ":", with: "_").replacingOccurrences(of: " ", with: "")
+//        Analytics.logEvent(sanitizedEventName, parameters: properties)
         #endif
     }
     

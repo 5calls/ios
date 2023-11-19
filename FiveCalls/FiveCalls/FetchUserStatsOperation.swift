@@ -21,14 +21,11 @@ class FetchUserStatsOperation : BaseOperation {
     
     override func execute() {
         let config = URLSessionConfiguration.default
-        let session = URLSessionProvider.buildSession(configuration: config)
+        let session = URLSession(configuration: config)
         let url = URL(string: "https://api.5calls.org/v1/users/stats")!
 
         var request = URLRequest(url: url)
         request.setValue(AnalyticsManager.shared.callerID, forHTTPHeaderField: "X-Caller-ID")
-        if let authToken = SessionManager.shared.idToken {
-            request.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
-        }
 
         let task = session.dataTask(with: request) { (data, response, error) in
             
@@ -48,14 +45,6 @@ class FetchUserStatsOperation : BaseOperation {
                         print("Error parsing user stats: \(e.localizedDescription)")
                     }
                     self.finish()
-                case 401:
-                    if self.retryCount >= 2 {
-                        self.error = TokenExpiredError()
-                        self.finish()
-                    } else {
-                        self.retryCount += 1
-                        self.refreshToken()
-                    }
                     
                 default:
                     print("Received HTTP \(http.statusCode) while fetching stats")
@@ -65,14 +54,7 @@ class FetchUserStatsOperation : BaseOperation {
         }
         task.resume()
     }
-    
-    private func refreshToken() {
-        print("Token is invalid or expired, try to refresh...")
-        SessionManager.shared.refreshToken {
-            self.execute()
-        }
-    }
-    
+        
     private func parseResponse(data: Data) throws {
         // We expect the response to look like this:
         // { stats: {
