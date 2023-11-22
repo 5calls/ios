@@ -11,6 +11,7 @@ import SwiftUI
 struct ScheduleReminders: View {
     @AppStorage(UserDefaultsKey.reminderEnabled.rawValue) var remindersEnabled = false
     @Environment(\.dismiss) var dismiss
+    @Environment(\.accessibilityVoiceOverEnabled) private var voiceOverEnabled
 
     @State var existingSelectedTime = Date.distantPast
     @State var selectedTime = Date.distantPast
@@ -18,7 +19,8 @@ struct ScheduleReminders: View {
     @State var selectedDayIndices = [Int]()
     @State var shouldShake = false
     @State var presentNotificationSettingsAlert = false
-    
+    @State var presentDaysOfWeekNotSetAlert = false
+
     var body: some View {
         NavigationStack {
             VStack(spacing: .zero) {
@@ -63,6 +65,9 @@ struct ScheduleReminders: View {
                        message: {
                     Text(R.string.localizable.notificationsDeniedAlertBody())
                 })
+                .alert(isPresented: $presentDaysOfWeekNotSetAlert) {
+                    Alert(title: Text(R.string.localizable.scheduledRemindersNoDaysAlert))
+                }
             }
             .navigationTitle(R.string.localizable.scheduledRemindersTitle())
             .navigationBarTitleDisplayMode(.inline)
@@ -84,6 +89,7 @@ struct ScheduleReminders: View {
                            label: {
                         Text("")
                     }).toggleStyle(.switch)
+                        .accessibilityLabel(Text(R.string.localizable.scheduledRemindersTitle()))
                 }
             }
         }
@@ -115,8 +121,11 @@ struct ScheduleReminders: View {
         let cannotDismiss = selectedDayIndices.isEmpty && remindersEnabled
         if cannotDismiss {
             shouldShake = true
+            if voiceOverEnabled {
+                presentDaysOfWeekNotSetAlert = true
+            }
         } else if existingSelectedTime == selectedTime &&
-                    existingSelectedDayIndices == selectedDayIndices && remindersEnabled {
+            existingSelectedDayIndices == selectedDayIndices && remindersEnabled {
             dismiss()
         } else {
             clearNotifications()
@@ -136,7 +145,9 @@ struct ScheduleReminders: View {
 
 struct ScheduleReminders_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        @State var presentReminders = true
+        NavigationView { }
+        .sheet(isPresented: $presentReminders) {
             ScheduleReminders()
         }
     }
@@ -149,40 +160,43 @@ struct DayAndTimePickers: View {
     @Binding var shouldShake: Bool
     
     var body: some View {
-        VStack(spacing: 0) {
-            Text(R.string.localizable.scheduledRemindersTimeLabel())
-                .font(.system(size: 20))
-                .foregroundColor(Color.fivecallsDarkBlue)
-                .multilineTextAlignment(.center)
-                .padding(20)
-            DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                .labelsHidden()
-                .datePickerStyle(WheelDatePickerStyle())
-                .colorInvert() // TODO: this won't work in dark mode
-                .colorMultiply(Color.fivecallsDarkBlue)
-                .padding(.horizontal, 20)
-            Spacer()
-            Text(R.string.localizable.scheduledRemindersDayLabel())
-                .font(.system(size: 20))
-                .foregroundColor(Color.fivecallsDarkBlue)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
-            MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
-                .offset(x: shouldShake ? -18 : 0)
-                .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
-                .onChange(of: shouldShake) { _ in
-                    DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        shouldShake = false
+        ScrollView {
+            VStack(spacing: 0) {
+                Text(R.string.localizable.scheduledRemindersTimeLabel())
+                    .font(.title3)
+                    .foregroundColor(Color.fivecallsDarkBlue)
+                    .multilineTextAlignment(.center)
+                    .padding(20)
+                DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                    .labelsHidden()
+                    .datePickerStyle(WheelDatePickerStyle())
+                    .padding(.horizontal, 20)
+                Spacer()
+                Spacer()
+                Text(R.string.localizable.scheduledRemindersDayLabel())
+                    .font(.title3)
+                    .foregroundColor(Color.fivecallsDarkBlue)
+//                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+                    .accessibilityAddTraits(.isHeader)
+                MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
+                    .offset(x: shouldShake ? -18 : 0)
+                    .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
+                    .onChange(of: shouldShake) { _ in
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            shouldShake = false
+                        }
                     }
-                }
-            Text(R.string.localizable.scheduledRemindersNoDaysWarning())
-                .font(.system(size: 12))
-                .foregroundColor(Color.fivecallsRed)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
-                .opacity(selectedDayIndices.isEmpty ? 1 : 0)
+                    .padding(.vertical, 5)
+                Text(R.string.localizable.scheduledRemindersNoDaysWarning())
+                    .foregroundColor(Color.fivecallsRed)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+
+                    .opacity(selectedDayIndices.isEmpty ? 1 : 0)
+            }
+            .opacity(remindersEnabled ? 1 : 0)
         }
-        .opacity(remindersEnabled ? 1 : 0)
     }
 }
 
@@ -191,21 +205,13 @@ struct RemindersDisabledView: View {
     @Binding var remindersEnabled: Bool
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .center) {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Text(R.string.localizable.scheduledRemindersDescription())
-                        .foregroundColor(Color(R.color.fivecallsDarkGray()!))
-                        .font(Font(UIFont.fvc_body))
-                        .multilineTextAlignment(.center)
-                        .frame(width: geometry.size.width * 0.8)
-                        .opacity(remindersEnabled ? 0 : 1)
-                    Spacer()
-                }
-                Spacer()
-            }
+        VStack {
+            Text(R.string.localizable.scheduledRemindersDescription())
+                .foregroundColor(Color(R.color.fivecallsDarkGray()!))
+
+                .multilineTextAlignment(.center)
+                .opacity(remindersEnabled ? 0 : 1)
         }
+        .padding()
     }
 }

@@ -56,6 +56,9 @@
 "scheduled-reminders-time-label"      = "Select what time of day you'd like to be reminded to make calls:";
 "scheduled-reminders-day-label"       = "Which days of the week?";
 "scheduled-reminders-no-days-warning" = "No days selected yet";
+"scheduled-reminders-no-days-alert"   = "Please select days of the week";
+"scheduled-reminders-day-selected"    = " selected";
+"scheduled-reminders-day-not-selected"= " not selected";
 
 // office holder descriptions
 "us-house"                            = "US House Rep";
@@ -97,13 +100,20 @@
 "sign-out" = "Sign Out";
 
 // day picker
-"day-picker-sunday" = "Sun";
-"day-picker-monday" = "Mon";
-"day-picker-tuesday" = "Tues";
-"day-picker-wednesday" = "Wed";
-"day-picker-thursday" = "Thur";
-"day-picker-friday" = "Fri";
-"day-picker-saturday" = "Sat";
+"day-picker-sunday-abbr"              = "Sun";
+"day-picker-monday-abbr"              = "Mon";
+"day-picker-tuesday-abbr"             = "Tue";
+"day-picker-wednesday-abbr"           = "Wed";
+"day-picker-thursday-abbr"            = "Thu";
+"day-picker-friday-abbr"              = "Fri";
+"day-picker-saturday-abbr"            = "Sat";
+"day-picker-sunday"                   = "Sunday";
+"day-picker-monday"                   = "Monday";
+"day-picker-tuesday"                  = "Tuesday";
+"day-picker-wednesday"                = "Wednesday";
+"day-picker-thursday"                 = "Thursday";
+"day-picker-friday"                   = "Friday";
+"day-picker-saturday"                 = "Saturday";
 
 // about
 "about-title" = "About";
