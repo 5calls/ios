@@ -177,7 +177,6 @@ struct DayAndTimePickers: View {
                 Text(R.string.localizable.scheduledRemindersDayLabel())
                     .font(.title3)
                     .foregroundColor(Color.fivecallsDarkBlue)
-//                    .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .accessibilityAddTraits(.isHeader)
                 MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
