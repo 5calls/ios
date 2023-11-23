@@ -148,9 +148,7 @@ struct ScheduleReminders: View {
 
 struct ScheduleReminders_Previews: PreviewProvider {
     static var previews: some View {
-        @State var presentReminders = true
-        NavigationView { }
-        .sheet(isPresented: $presentReminders) {
+        NavigationView {
             ScheduleReminders()
         }
     }
