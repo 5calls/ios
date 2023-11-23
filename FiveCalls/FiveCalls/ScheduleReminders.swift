@@ -12,6 +12,7 @@ struct ScheduleReminders: View {
     @AppStorage(UserDefaultsKey.reminderEnabled.rawValue) var remindersEnabled = false
     @Environment(\.dismiss) var dismiss
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOverEnabled
+    @Environment(\.accessibilityReduceMotion) private var reduceMotionEnabled
 
     @State var existingSelectedTime = Date.distantPast
     @State var selectedTime = Date.distantPast
@@ -120,8 +121,10 @@ struct ScheduleReminders: View {
     private func onDismiss() {
         let cannotDismiss = selectedDayIndices.isEmpty && remindersEnabled
         if cannotDismiss {
-            shouldShake = true
-            if voiceOverEnabled {
+            if !reduceMotionEnabled {
+                shouldShake = true
+            }
+            if voiceOverEnabled || reduceMotionEnabled {
                 presentDaysOfWeekNotSetAlert = true
             }
         } else if existingSelectedTime == selectedTime &&
