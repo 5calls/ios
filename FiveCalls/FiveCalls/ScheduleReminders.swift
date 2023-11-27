@@ -110,7 +110,9 @@ struct ScheduleReminders: View {
     private func requestNotificationAccess() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge];
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
-            AnalyticsManager.shared.trackEventOld(withName: "Notification Access", andProperties: ["success": "\(success)"])
+            if success {
+                AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/reminders/")
+            }
         }
     }
     

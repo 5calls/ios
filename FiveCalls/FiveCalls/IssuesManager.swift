@@ -42,14 +42,7 @@ class IssuesManager {
                 
                 DispatchQueue.main.async {
                     if let e = error {
-                        print(e.localizedDescription)
-                        
-                        if e.isOfflineError() {
-                            completion(.offline)
-                        } else {
-                            completion(.serverError(e))
-                        }
-                        
+                        completion(.serverError(e))
                     } else {
                         // souldn't happen, but let's just assume connection error
                         completion(.offline)

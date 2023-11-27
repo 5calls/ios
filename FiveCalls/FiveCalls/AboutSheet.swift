@@ -25,12 +25,7 @@ struct AboutSheet: View {
             return nil
         }
         
-        var string = "v" + version
-        if let userID = SessionManager.shared.userID {
-            string = "\(string) - \(userID)"
-        }
-        
-        return string
+        return "v\(version) - \(AnalyticsManager.shared.callerID)"
     }()
     
     var body: some View {
@@ -49,7 +44,6 @@ struct AboutSheet: View {
 
                     }
                     AboutListItem(title: R.string.localizable.aboutItemFeedback()) {
-                        AnalyticsManager.shared.trackEventOld(withName: "Action: Feedback")
                         if EmailComposerView.canSendEmail() {
                             showEmailComposer = true
                         } else {
@@ -118,14 +112,12 @@ struct AboutSheet: View {
     }
     
     func followOnTwitter() {
-        AnalyticsManager.shared.trackEventOld(withName: "Action: Follow On Twitter")
         guard let url = URL(string: "https://twitter.com/make5calls") else { return }
         UIApplication.shared.open(url)
     }
 
     
     func requestReview() {
-        AnalyticsManager.shared.trackEventOld(withName: "Action: Rate the App")
         guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             return
         }

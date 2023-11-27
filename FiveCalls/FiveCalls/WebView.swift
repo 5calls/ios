@@ -48,7 +48,6 @@ struct WebView: UIViewRepresentable {
                     decisionHandler(.allow)
                     return
                 }
-                AnalyticsManager.shared.trackEventOld(withName: "Action: Open External Link", andProperties: ["url":url.absoluteString])
                 UIApplication.shared.open(url)
                 
                 decisionHandler(.cancel)

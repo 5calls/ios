@@ -19,7 +19,7 @@ class FetchContactsOperation : BaseOperation {
     
     lazy var sessionConfiguration = URLSessionConfiguration.default
     lazy var session: URLSession = {
-        return URLSessionProvider.buildSession(configuration: self.sessionConfiguration)
+        return URLSession(configuration: self.sessionConfiguration)
     }()
     
     init(location: UserLocation) {
