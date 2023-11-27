@@ -10,17 +10,18 @@ import SwiftUI
 
 struct Day: Hashable {
     let index: Int
+    let abbr: String
     let name: String
 }
 
 let days = [
-    Day(index: 1, name: R.string.localizable.dayPickerSunday()),
-    Day(index: 2, name: R.string.localizable.dayPickerMonday()),
-    Day(index: 3, name: R.string.localizable.dayPickerTuesday()),
-    Day(index: 4, name: R.string.localizable.dayPickerWednesday()),
-    Day(index: 5, name: R.string.localizable.dayPickerThursday()),
-    Day(index: 6, name: R.string.localizable.dayPickerFriday()),
-    Day(index: 7, name: R.string.localizable.dayPickerSaturday())
+    Day(index: 1, abbr: R.string.localizable.dayPickerSundayAbbr(), name: R.string.localizable.dayPickerSunday()),
+    Day(index: 2, abbr: R.string.localizable.dayPickerMondayAbbr(), name: R.string.localizable.dayPickerMonday()),
+    Day(index: 3, abbr: R.string.localizable.dayPickerTuesdayAbbr(), name: R.string.localizable.dayPickerTuesday()),
+    Day(index: 4, abbr: R.string.localizable.dayPickerWednesdayAbbr(), name: R.string.localizable.dayPickerWednesday()),
+    Day(index: 5, abbr: R.string.localizable.dayPickerThursdayAbbr(), name: R.string.localizable.dayPickerThursday()),
+    Day(index: 6, abbr: R.string.localizable.dayPickerFridayAbbr(), name: R.string.localizable.dayPickerFriday()),
+    Day(index: 7, abbr: R.string.localizable.dayPickerSaturdayAbbr(), name: R.string.localizable.dayPickerSaturday())
 ]
 
 struct MultipleDayPicker: View {
@@ -30,31 +31,28 @@ struct MultipleDayPicker: View {
     }
     
     var body: some View {
-        HStack(spacing: 0) {
+        DaysFlowLayout(spacing: -1) {
             ForEach(days, id: \.self) { day in
-                Text(String(day.name))
-                    .foregroundColor(isIndexSelected(day.index) ? Color.fivecallsLightBlue : Color.fivecallsMediumDarkGray)
-                    .padding(5)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
+                DayView(text: day.abbr)
                     .background(isIndexSelected(day.index) ? Color.fivecallsDarkBlue : Color(.systemBackground))
-                    .border(Color.fivecallsDarkBlue, width: 0.5)
-                    .aspectRatio(1.0, contentMode: .fit)
-                    .onTapGesture {
-                        if isIndexSelected(day.index) {
-                            selectedDayIndices.removeAll(where: {$0 == day.index})
-                        } else {
-                            selectedDayIndices.append(day.index)
-                        }
+                    .foregroundColor(isIndexSelected(day.index) ? Color.fivecallsLightBlue : Color.fivecallsMediumDarkGray)
+                    .border(borderColor)
+                    .accessibilityLabel(Text("\(String(day.name)) \(isIndexSelected(day.index) ? R.string.localizable.scheduledRemindersDaySelected() : R.string.localizable.scheduledRemindersDayNotSelected())"))
+                    .accessibilityAddTraits(.isButton)
+                .onTapGesture {
+                    if isIndexSelected(day.index) {
+                        selectedDayIndices.removeAll(where: {$0 == day.index})
+                    } else {
+                        selectedDayIndices.append(day.index)
                     }
+                }
             }
-        }
-        .overlay(
-            RoundedRectangle(cornerRadius: 4)
-                .strokeBorder(borderColor, lineWidth: 1)
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .strokeBorder(borderColor, lineWidth: 1)
             )
-        .clipShape(RoundedRectangle(cornerRadius: 4))
-        .padding(16)
+            .clipShape(RoundedRectangle(cornerRadius: 4))
     }
     
     private func isIndexSelected(_ index: Int) -> Bool {
@@ -66,5 +64,104 @@ struct MultipleDayPicker_Previews: PreviewProvider {
     static var previews: some View {
         @State var selectedDayIndices: [Int] = []
         MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
+    }
+}
+
+struct DaysFlowLayout: Layout {
+    var spacing: CGFloat? = nil
+
+    struct Cache {
+        var sizes: [CGSize] = []
+        var spacing: [CGFloat] = []
+    }
+
+    func makeCache(subviews: Subviews) -> Cache {
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        let spacing: [CGFloat] = subviews.indices.map { index in
+            guard index != subviews.count - 1 else {
+                return 0
+            }
+
+            return subviews[index].spacing.distance(
+                to: subviews[index+1].spacing,
+                along: .horizontal
+            )
+        }
+
+        return Cache(sizes: sizes, spacing: spacing)
+    }
+
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Cache) -> CGSize {
+        let standardizedWidth = cache.sizes.max(by: { $0.width < $1.width })?.width ?? 0
+        let standardizedHeight = standardizedWidth
+
+        var totalHeight: CGFloat = 0
+        var totalWidth: CGFloat = 0
+
+        var lineWidth: CGFloat = 0
+        var lineHeight: CGFloat = 0
+
+            for index in subviews.indices {
+            if lineWidth + standardizedWidth > proposal.width ?? 0 {
+                totalHeight += lineHeight + (spacing ?? cache.spacing[index])
+                lineWidth = standardizedWidth
+                lineHeight = standardizedHeight
+            } else {
+                lineWidth += standardizedWidth + (spacing ?? cache.spacing[index])
+                lineHeight = max(lineHeight, standardizedHeight)
+            }
+
+            totalWidth = max(totalWidth, lineWidth)
+        }
+
+        totalHeight += lineHeight
+
+        return .init(width: totalWidth, height: totalHeight)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Cache) {
+        let standardizedWidth = cache.sizes.max(by: { $0.width < $1.width })?.width ?? 0
+        let standarddizedHeight = standardizedWidth
+
+        var lineX = bounds.minX
+        var lineY = bounds.minY
+        var lineHeight: CGFloat = 0
+
+        for index in subviews.indices {
+            if lineX + standardizedWidth > (proposal.width ?? 0) {
+                lineY += lineHeight + (spacing ?? cache.spacing[index])
+                lineHeight = 0
+                lineX = bounds.minX
+            }
+
+            let position = CGPoint(
+                x: lineX + standardizedWidth / 2,
+                y: lineY + standarddizedHeight / 2
+            )
+
+            lineHeight = max(lineHeight, standarddizedHeight)
+            lineX += standardizedWidth + (spacing ?? cache.spacing[index])
+
+            subviews[index].place(
+                at: position,
+                anchor: .center,
+                proposal: ProposedViewSize(width: standardizedWidth, height: standarddizedHeight)
+            )
+        }
+    }
+}
+
+struct DayView: View {
+    let text: String
+
+    var body: some View {
+        ZStack {
+            Color.clear
+
+            Text(text)
+                .font(.title3)
+                .padding(5)
+        }
     }
 }
