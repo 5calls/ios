@@ -102,7 +102,7 @@ struct MenuView: View {
                 Text(R.string.localizable.menuAbout())
             }
         } label: {
-            Image(systemName: "gear.circle")
+            Image(systemName: "gear")
                 .renderingMode(.template)
                 .font(.title)
                 .tint(Color.fivecallsDarkBlue)
