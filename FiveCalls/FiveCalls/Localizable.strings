@@ -144,7 +144,7 @@
 "left-voicemail"                      = "Left Voicemail";
 "called-multiple"                     = "%d times";
 "called-single"                       = "%d time";
-"subheading-message"                  = "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:";
+"impact-list-message"                 = "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:";
 
 // welcome
 "welcome-section-1-title"                = "Make your voice heard";

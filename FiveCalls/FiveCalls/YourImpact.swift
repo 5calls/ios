@@ -38,7 +38,7 @@ struct YourImpact: View {
         }
     }
     
-    var showSubheading: Bool {
+    var showImpactList: Bool {
         userStats?.totalCalls() ?? 0 != 0
     }
     
@@ -54,15 +54,14 @@ struct YourImpact: View {
                     Text(weeklyStreakMessage)
                         .foregroundStyle(.fivecallsRed)
                         .font(.headline)
-                    //                        .padding(.horizontal, 16)
                     Text(totalImpactMessage)
                         .font(.headline)
-                    //                        .padding(.horizontal, 16)
                 }
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(Text("\(weeklyStreakMessage) \(totalImpactMessage)"))
-                if showSubheading {
-                    Text(R.string.localizable.subheadingMessage())
+
+                if showImpactList {
+                    Text(R.string.localizable.impactListMessage())
 
                     ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
                     ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
@@ -93,7 +92,6 @@ struct YourImpact: View {
                     }
                 }
             }
-            
         }
         .onAppear() {
             if store.state.globalCallCount == 0 {
