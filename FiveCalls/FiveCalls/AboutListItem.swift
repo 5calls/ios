@@ -20,12 +20,13 @@ struct AboutListItem: View {
             Button(action: action) {
                 HStack {
                     Text(title)
-                        .foregroundStyle(.black)
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .foregroundStyle(.gray)
+                    .accessibilityHidden(true)
                 }
+                .contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
         } else if let navigationLinkValue {
             HStack {
                 ZStack {
@@ -38,19 +39,29 @@ struct AboutListItem: View {
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(.gray)
+                    .accessibilityHidden(true)
             }
+            .accessibilityAddTraits(.isButton)
         } else if let url {
             ShareLink(item: url) {
                 HStack {
                     Text(title)
-                        .foregroundStyle(.black)
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .foregroundStyle(.gray)              
+                        .accessibilityHidden(true)
                 }
+                .accessibilityAddTraits(.isButton)
+                .contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
         }
     }
 }
 
+#Preview {
+    VStack {
+        AboutListItem(title: "test item nav link", navigationLinkValue: WebViewContent.whycall)
+        AboutListItem(title: "test item action") { let showEmailComposer = true }
+        AboutListItem(title: "test url", url: URL(string: "https://google.com"))
+    }
+}
