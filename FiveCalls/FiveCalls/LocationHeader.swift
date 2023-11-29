@@ -11,7 +11,12 @@ import SwiftUI
 struct LocationHeader: View {
     let location: NewUserLocation?
     let fetchingContacts: Bool
-    
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    func usingRegularFonts() -> Bool {
+        dynamicTypeSize < DynamicTypeSize.accessibility3
+    }
+
     var body: some View {
         HStack {
             Spacer()
@@ -44,14 +49,16 @@ struct LocationHeader: View {
                     .font(.system(.title3))
                     .fontWeight(.medium)
             }
-            .padding(.leading)
+            .padding(.horizontal, usingRegularFonts() ? 15 : 5)
             .padding(.vertical, 10)
-            Image(systemName: "location.circle")
-                .imageScale(.large)
-                .symbolRenderingMode(.hierarchical)
-                .font(.title3)
-                .padding(.trailing)
-                .padding(.leading, 7)
+            if usingRegularFonts() {
+                Image(systemName: "location.circle")
+                    .imageScale(.large)
+                    .symbolRenderingMode(.hierarchical)
+                    .font(.title3)
+                    .padding(.trailing)
+                    .padding(.leading, 7)
+            }
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("\(R.string.localizable.yourLocationIs()) \(location!.locationDisplay)"))
@@ -84,7 +91,9 @@ struct LocationHeader_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             LocationHeader(location: nil, fetchingContacts: true)
+            LocationHeader(location: nil, fetchingContacts: false)
             LocationHeader(location: NewUserLocation(address: "19444"), fetchingContacts: false)
+                .frame(maxWidth: 250)
             Spacer()
         }
     }

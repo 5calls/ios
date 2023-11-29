@@ -14,7 +14,13 @@ struct Dashboard: View {
 
     @State var showLocationSheet = false
     @State var showAllIssues = false
-    
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    func usingRegularFonts() -> Bool {
+        dynamicTypeSize < DynamicTypeSize.accessibility3
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -38,12 +44,14 @@ struct Dashboard: View {
             }
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
-            
-            Text(R.string.localizable.whatsImportantTitle())
-                .font(.system(size: 20))
-                .fontWeight(.semibold)
-                .padding(.horizontal, 10)
-                .accessibilityAddTraits(.isHeader)
+
+            if usingRegularFonts() {
+                Text(R.string.localizable.whatsImportantTitle())
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .padding(.horizontal, 10)
+                    .accessibilityAddTraits(.isHeader)
+            }
 
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
         }
@@ -81,7 +89,9 @@ struct Dashboard_Previews: PreviewProvider {
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
     
     static var previews: some View {
-        Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
+        NavigationStack {
+            Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
+        }
     }
 }
 
@@ -127,7 +137,7 @@ struct IssuesList: View {
     @ObservedObject var store: Store
     @Binding var selectedIssue: Issue?
     @Binding var showAllIssues: Bool
-    
+
     var allIssues: [Issue] {
         if showAllIssues {
             return store.state.issues
@@ -167,6 +177,7 @@ struct IssuesList: View {
                 } header: {
                     if showAllIssues {
                         Text(section.name.uppercased()).font(.headline)
+                            .foregroundStyle(.fivecallsDarkGray)
                     }
                 } footer: {
                     if section == categorizedIssues.last {
@@ -178,7 +189,8 @@ struct IssuesList: View {
                         } label: {
                             Text(showAllIssues ? R.string.localizable.lessIssuesTitle() :
                                     R.string.localizable.moreIssuesTitle())
-                                .font(.system(size: 20, weight: .semibold))
+                                .font(.title3)
+                                .fontWeight(.semibold)
                                 .foregroundColor(Color.fivecallsDarkBlueText)
                         }
                         .padding(.vertical, 10)

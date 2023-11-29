@@ -17,10 +17,9 @@ struct IssueListItem: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(issue.name)
-                        .font(.system(size: 20, weight: .semibold))
+                        .font(.title3)
+                        .fontWeight(.semibold)                        
                         .foregroundColor(Color.fivecallsDarkBlueText)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
                     Spacer()
                     HStack(spacing: 0) {
                         let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
@@ -55,16 +54,35 @@ struct IssueListItem: View {
 }
 
 struct IssueListItem_Previews: PreviewProvider {
+    static let previewState = {
+        var state = AppState()
+        state.issues = [
+            Issue.basicPreviewIssue,
+            Issue.multilinePreviewIssue
+        ]
+        state.contacts = [
+            Contact.housePreviewContact,
+            Contact.senatePreviewContact1,
+            Contact.senatePreviewContact2
+        ]
+        return state
+    }()
+
+    static let store = Store(state: previewState, middlewares: [appMiddleware()])
+
+
     static var previews: some View {
         ScrollView {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
                 .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact])
+            IssueListItem(issue: Issue.extraLongPreviewIssue, contacts: [Contact.housePreviewContact])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
         }
+        .environmentObject(store)
     }
 }
+
