@@ -11,7 +11,12 @@ import SwiftUI
 struct IssueListItem: View {
     let issue: Issue
     let contacts: [Contact]
-    
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    func usingRegularFonts() -> Bool {
+        dynamicTypeSize < DynamicTypeSize.accessibility3
+    }
+
     var body: some View {
         VStack {
             HStack {
@@ -27,7 +32,7 @@ struct IssueListItem: View {
                         }) : issue.contactsForIssue(allContacts: contacts)
                         ForEach(contactsForIssue.numbered()) { numberedContact in
                             ContactCircle(contact: numberedContact.element, issueID: issue.id)
-                                .frame(width: 20, height: 20)
+                                .frame(width: usingRegularFonts() ? 20 : 40, height: usingRegularFonts() ? 20 : 40)
                                 .offset(x: -10 * CGFloat(numberedContact.number), y:0)
                         }
                         Text(repText)
