@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,40 +16,21 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiZ-OK-dMl">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stars-blue" translatesAutoresizingMaskIntoConstraints="NO" id="UTy-pW-PAa">
+                                <rect key="frame" x="144" y="393" width="140" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="DZm-Y5-lhY"/>
+                                    <constraint firstAttribute="height" constant="140" id="ZmS-dQ-Oj3"/>
+                                    <constraint firstAttribute="width" constant="140" id="o1c-aB-jyh"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQN-Zs-7Xj">
-                                <rect key="frame" x="0.0" y="120" width="375" height="499"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HsC-SW-l2k">
-                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
-                                <color key="backgroundColor" name="darkBlue"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="nKe-z4-aSG"/>
-                                </constraints>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XQN-Zs-7Xj" secondAttribute="trailing" id="16a-yU-NWU"/>
-                            <constraint firstAttribute="trailing" secondItem="SiZ-OK-dMl" secondAttribute="trailing" id="4Ir-3q-E2O"/>
-                            <constraint firstItem="HsC-SW-l2k" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="P83-7d-nFs"/>
-                            <constraint firstItem="XQN-Zs-7Xj" firstAttribute="top" secondItem="SiZ-OK-dMl" secondAttribute="bottom" id="Uq7-fj-PpA"/>
-                            <constraint firstItem="HsC-SW-l2k" firstAttribute="top" secondItem="XQN-Zs-7Xj" secondAttribute="bottom" id="aD5-MF-A4D"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="HsC-SW-l2k" secondAttribute="bottom" id="hTI-Dt-s4y"/>
-                            <constraint firstItem="SiZ-OK-dMl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="pLA-2D-WVc"/>
-                            <constraint firstItem="XQN-Zs-7Xj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="pbk-LO-LUA"/>
-                            <constraint firstItem="SiZ-OK-dMl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="qnH-4M-PQc"/>
-                            <constraint firstAttribute="trailing" secondItem="HsC-SW-l2k" secondAttribute="trailing" id="yLa-Ub-zY0"/>
+                            <constraint firstItem="UTy-pW-PAa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BmV-7A-7fG"/>
+                            <constraint firstItem="UTy-pW-PAa" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="JUx-Fp-Lim"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -60,8 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="darkBlue">
-            <color red="0.11999999731779099" green="0.4699999988079071" blue="0.81000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="stars-blue" width="250" height="250"/>
     </resources>
 </document>
