@@ -70,7 +70,6 @@ struct IssueDone: View {
                     router.backToRoot()
                 }, label: {
                     PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
-
                 })
             }
             .padding(.horizontal)

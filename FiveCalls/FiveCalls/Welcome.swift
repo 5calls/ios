@@ -81,12 +81,12 @@ struct Welcome: View {
                 }) {
                     Text(R.string.localizable.welcomeButtonTitle())
                         .foregroundColor(.white)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 6)
-                        .foregroundColor(.blue)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 6)
+                                .foregroundColor(.blue)
+                        }
                 }
             }
             .onAppear() {
