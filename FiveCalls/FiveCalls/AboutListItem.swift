@@ -20,9 +20,12 @@ struct AboutListItem: View {
             Button(action: action) {
                 HStack {
                     Text(title)
+                        .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "chevron.right")
-                    .accessibilityHidden(true)
+                        .accessibilityHidden(true)
+                        .renderingMode(.template)
+                        .tint(.primary)
                 }
                 .contentShape(Rectangle())
             }
@@ -34,21 +37,27 @@ struct AboutListItem: View {
                         .opacity(0)
                     HStack {
                         Text(title)
+                            .foregroundColor(.primary)
                         Spacer()
                     }
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
                     .accessibilityHidden(true)
+                    .renderingMode(.template)
+                    .tint(.primary)
             }
             .accessibilityAddTraits(.isButton)
         } else if let url {
             ShareLink(item: url) {
                 HStack {
                     Text(title)
+                        .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "chevron.right")
                         .accessibilityHidden(true)
+                        .renderingMode(.template)
+                        .tint(.primary)
                 }
                 .accessibilityAddTraits(.isButton)
                 .contentShape(Rectangle())
