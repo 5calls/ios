@@ -43,9 +43,9 @@ class Store: ObservableObject {
             state.issueCallCounts[issueID] = count
         case let .SetDonateOn(donateOn):
             state.donateOn = donateOn
-        case let .SetIssueContactCompletion(issueID, contactID):
+        case let .SetIssueContactCompletion(issueID, contactOutcome):
             var existingCompletions = state.issueCompletion[issueID] ?? []
-            existingCompletions.append(contactID)
+            existingCompletions.append(contactOutcome)
             state.issueCompletion[issueID] = existingCompletions
         case let .SetFetchingContacts(fetching):
             state.fetchingContacts = fetching

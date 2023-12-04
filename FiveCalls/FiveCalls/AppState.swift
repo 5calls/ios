@@ -13,7 +13,7 @@ import os
 class AppState: ObservableObject, ReduxState {
     @Published var globalCallCount: Int = 0
     @Published var issueCallCounts: [Int: Int] = [:]
-    // issueCompletion is a local cache of completed calls: an array of contact ids keyed by an issue id
+    // issueCompletion is a local cache of completed calls: an array of contact id and outcomes (B0001234-contact) keyed by an issue id
     @Published var issueCompletion: [Int: [String]] = [:] {
         didSet {
             // NSNumber (bridged automatically from Int) is not supported as a key in a plist dictionary, so we stringify and unstringify
