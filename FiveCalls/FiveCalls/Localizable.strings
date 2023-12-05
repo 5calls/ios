@@ -70,6 +70,8 @@
 
 // issue + issue contact detail screen
 "see-script"                          = "See your script";
+"main-phone"                          = "Washington, DC";
+"start-phone-call"                    = "Button initiates phone call";
 "next-contact"                        = "Next contact";
 "done-calling"                        = "Done calling";
 

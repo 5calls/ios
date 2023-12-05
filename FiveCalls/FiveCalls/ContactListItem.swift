@@ -34,6 +34,7 @@ struct ContactListItem: View {
                                 Circle().foregroundColor(.white)
                             }
                             .offset(x: 20, y: 15)
+                            .accessibilityHidden(true)
                     }
                 }
             VStack(alignment: .leading) {
@@ -46,6 +47,7 @@ struct ContactListItem: View {
             }
             Spacer()
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

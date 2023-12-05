@@ -32,6 +32,7 @@ struct IssueContactDetail: View {
                     .font(.title2)
                     .fontWeight(.medium)
                     .padding(.bottom, 16)
+                    .accessibilityAddTraits(.isHeader)
                 ContactListItem(contact: currentContact)
                     .background {
                         RoundedRectangle(cornerRadius: 10)
@@ -41,10 +42,22 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        Text(currentContact.phone)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.fivecallsDarkBlueText)
+                        Link(destination: URL(string: "tel:\(currentContact.phone)")!, label: {
+                            Text(currentContact.phone)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.fivecallsDarkBlueText)
+                                .accessibilityLabel(Text("\(R.string.localizable.mainPhone()) \(currentContact.phone)"))
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityHint(Text(R.string.localizable.startPhoneCall))
+                        })
+//                        Text(currentContact.phone)
+//                            .font(.title)
+//                            .fontWeight(.semibold)
+//                            .foregroundColor(Color.fivecallsDarkBlueText)
+//                            .accessibilityLabel(Text("\(R.string.localizable.mainPhone()) \(currentContact.phone)"))
+//                            .accessibilityAddTraits(.isButton)
+//                            .accessibilityHint(Text(R.string.localizable.startPhoneCall))
                         Menu {
                             ForEach(currentContact.fieldOffices) { office in
                                 Section(office.city) {
