@@ -191,7 +191,7 @@ struct DayAndTimePickers: View {
                     }
                     .padding(.vertical, 5)
                 Text(R.string.localizable.scheduledRemindersNoDaysWarning())
-                    .foregroundColor(Color.fivecallsRed)
+                    .foregroundColor(Color.fivecallsRedText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
 

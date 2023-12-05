@@ -23,9 +23,9 @@ struct AboutListItem: View {
                         .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .accessibilityHidden(true)
                         .renderingMode(.template)
                         .tint(.primary)
+                        .accessibilityHidden(true)
                 }
                 .contentShape(Rectangle())
             }
@@ -43,9 +43,9 @@ struct AboutListItem: View {
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .accessibilityHidden(true)
                     .renderingMode(.template)
                     .tint(.primary)
+                    .accessibilityHidden(true)
             }
             .accessibilityAddTraits(.isButton)
         } else if let url {
@@ -55,9 +55,9 @@ struct AboutListItem: View {
                         .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .accessibilityHidden(true)
                         .renderingMode(.template)
                         .tint(.primary)
+                        .accessibilityHidden(true)
                 }
                 .accessibilityAddTraits(.isButton)
                 .contentShape(Rectangle())
