@@ -31,7 +31,7 @@ struct AboutSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text(R.string.localizable.aboutSectionHeaderGeneral())) {
+                Section {
                     AboutListItem(title: R.string.localizable.aboutItemWhyCall(), navigationLinkValue: WebViewContent.whycall)
                     AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(), navigationLinkValue: WebViewContent.whoweare)
                     .navigationDestination(for: WebViewContent.self) { webViewContent in
@@ -41,7 +41,6 @@ struct AboutSheet: View {
                             .toolbarBackground(.visible)
                             .toolbarBackground(Color.fivecallsDarkBlue)
                             .toolbarColorScheme(.dark, for: .navigationBar)
-
                     }
                     AboutListItem(title: R.string.localizable.aboutItemFeedback()) {
                         if EmailComposerView.canSendEmail() {
@@ -50,9 +49,9 @@ struct AboutSheet: View {
                             showEmailComposerAlert = true
                         }
                     }
-                    .sheet(isPresented: $showEmailComposer, content: {
+                    .sheet(isPresented: $showEmailComposer){
                         EmailComposerView() { _ in }
-                    })
+                    }
                     .alert(isPresented: $showEmailComposerAlert) {
                         Alert(title: Text(R.string.localizable.cantSendEmailTitle()),
                               message: Text(R.string.localizable.cantSendEmailMessage()),
@@ -64,27 +63,39 @@ struct AboutSheet: View {
                     .sheet(isPresented: $showWelcome, content: {
                         Welcome()
                     })
+                } header: {
+                    Text(R.string.localizable.aboutSectionHeaderGeneral())
+                        .font(.footnote)
+                        .foregroundStyle(.fivecallsDarkGray)
                 }
-                
-                Section(header: Text(R.string.localizable.aboutSectionHeaderSocial()),
-                        footer: Text(R.string.localizable.aboutSectionFooterSocial()))
-                {
+
+                Section {
                     AboutListItem(title: R.string.localizable.aboutItemFollowTwitter()) {
                         followOnTwitter()
                     }
                     if appUrl != nil {
                         AboutListItem(title: R.string.localizable.aboutItemShare(), url: appUrl)
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemRate()) { requestReview() }
+                    AboutListItem(title: R.string.localizable.aboutItemRate()) {
+                        requestReview()
+                    }
+                } header: {
+                    Text(R.string.localizable.aboutSectionHeaderSocial())
+                        .font(.footnote)
+                        .foregroundStyle(.fivecallsDarkGray)
+                } footer: {
+                    Text(R.string.localizable.aboutSectionFooterSocial())
+                        .font(.footnote)
+                        .foregroundStyle(.fivecallsDarkGray)
                 }
-                
+
                 if let versionString {
                     Section(
                         footer: HStack {
                             Spacer()
                             Text(versionString)
-                                .font(.caption)
-                                .foregroundStyle(.gray)
+                                .font(.footnote)
+                                .foregroundStyle(.fivecallsDarkGray)
                             Spacer()
                         },
                         content: {})
