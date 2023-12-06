@@ -20,7 +20,7 @@ struct ContactCircle: View {
     }
     
     var body: some View {
-        if let issueID, issueCalledOn(issueID: issueID, contactID: contact.id) {
+        if let issueID, store.state.issueCalledOn(issueID: issueID, contactID: contact.id) {
             Image(systemName: "checkmark.circle.fill")
                 .resizable()
                 .foregroundColor(.fivecallsGreen)
@@ -49,17 +49,6 @@ struct ContactCircle: View {
                 Circle()
             }
     }
-    
-    func issueCalledOn(issueID: Int, contactID: String) -> Bool {
-        // a contact outcome is a contactid concatenated with an outcome (B0001234-contact)
-        let contactOutcomesForIssue = store.state.issueCompletion[issueID] ?? []
-        let contactIDs = contactOutcomesForIssue.map { contactOutcome in
-            return String(contactOutcome.split(separator: "-").first ?? "")
-        }
-
-        return contactIDs.contains(contactID)
-    }
-
 }
 
 #Preview {

@@ -62,7 +62,7 @@ class Store: ObservableObject {
             state.issueLoadingError = error
         case let .SetLoadingContactsError(error):
             state.contactsLoadingError = error
-        case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _):
+        case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _, _):
             // handled in middleware
             break
         }
