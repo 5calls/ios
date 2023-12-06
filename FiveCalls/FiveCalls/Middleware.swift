@@ -18,12 +18,13 @@ func appMiddleware() -> Middleware<AppState> {
             fetchContacts(location: location, dispatch: dispatch)
         case let .SetLocation(location):
             fetchContacts(location: location, dispatch: dispatch)
-        case let .ReportOutcome(contactLog, outcome):
+        case let .ReportOutcome(issue, contactLog, outcome):
             // TODO: migrate ContactLog issueId to Int after UIKit is gone
             // this is always generated in swiftUI from an int so it should always succeed
             if let issueId = Int(contactLog.issueId), outcome.status != "skip" {
                 dispatch(.SetIssueContactCompletion(issueId, contactLog.contactId))
             }
+            AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issues/\(issue.slug)/")
             reportOutcome(log: contactLog, outcome: outcome)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, .SetFetchingContacts, .SetIssues,
                 .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError:

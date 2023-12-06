@@ -18,7 +18,7 @@ enum Action {
     case FetchContacts(NewUserLocation)
     case SetContacts([Contact])
     case SetLocation(NewUserLocation)
-    case ReportOutcome(ContactLog, Outcome)
+    case ReportOutcome(Issue, ContactLog, Outcome)
     case SetFetchingContacts(Bool)
     case SetLoadingStatsError(Error)
     case SetLoadingIssuesError(Error)

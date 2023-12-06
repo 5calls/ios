@@ -69,8 +69,7 @@ struct IssueContactDetail: View {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
                         OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                             let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                            AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issues/\(issue.slug)/")
-                            store.dispatch(action: .ReportOutcome(log, outcome))
+                            store.dispatch(action: .ReportOutcome(issue, log, outcome))
                             router.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
                         })
                     }
@@ -79,8 +78,7 @@ struct IssueContactDetail: View {
                         OutcomesView(outcomes: issue.outcomeModels, report:
                             { outcome in
                                 let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                            AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issues/\(issue.slug)/")
-                            store.dispatch(action: .ReportOutcome(log, outcome))
+                            store.dispatch(action: .ReportOutcome(issue, log, outcome))
                             router.path.append(IssueNavModel(issue: issue, type: "done"))
                         })
                     }
