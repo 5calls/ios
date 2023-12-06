@@ -17,8 +17,8 @@ struct ContactLog : Hashable, Codable {
     let date: Date
     let reported: Bool
     
-    var localizedOutcome: String {
-        switch self.outcome {
+    static func localizedOutcomeForStatus(status: String) -> String {
+        switch status {
         case "vm", "voicemail":
             return R.string.localizable.outcomesVoicemail()
         case "contact", "contacted":
@@ -32,6 +32,7 @@ struct ContactLog : Hashable, Codable {
         }
     }
 }
+
 
 struct LegacyPantryWrapper: Codable {
     let expires: Int

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RswiftResources
 
 struct Contact : Decodable {
     let id: String
@@ -124,7 +125,7 @@ extension Contact {
 extension Contact {
     static func placeholderContact(for area: String) -> [Contact] {
         switch area {
-        case "US House":
+        case "US Senate":
             return [
                     Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
                     Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])

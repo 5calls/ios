@@ -13,7 +13,7 @@ import os
 class AppState: ObservableObject, ReduxState {
     @Published var globalCallCount: Int = 0
     @Published var issueCallCounts: [Int: Int] = [:]
-    // issueCompletion is a local cache of completed calls: an array of contact ids keyed by an issue id
+    // issueCompletion is a local cache of completed calls: an array of contact id and outcomes (B0001234-contact) keyed by an issue id
     @Published var issueCompletion: [Int: [String]] = [:] {
         didSet {
             // NSNumber (bridged automatically from Int) is not supported as a key in a plist dictionary, so we stringify and unstringify
@@ -74,5 +74,17 @@ class AppState: ObservableObject, ReduxState {
                 return nil
             }))
         }
+    }
+}
+
+extension AppState {
+    func issueCalledOn(issueID: Int, contactID: String) -> Bool {
+        // a contact outcome is a contactid concatenated with an outcome (B0001234-contact)
+        let contactOutcomesForIssue = self.issueCompletion[issueID] ?? []
+        let contactIDs = contactOutcomesForIssue.map { contactOutcome in
+            return String(contactOutcome.split(separator: "-").first ?? "")
+        }
+
+        return contactIDs.contains(contactID)
     }
 }

@@ -20,7 +20,7 @@ struct ContactCircle: View {
     }
     
     var body: some View {
-        if let issueID, (store.state.issueCompletion[issueID] ?? []).contains(contact.id) {
+        if let issueID, store.state.issueCalledOn(issueID: issueID, contactID: contact.id) {
             Image(systemName: "checkmark.circle.fill")
                 .resizable()
                 .foregroundColor(.fivecallsGreen)
@@ -54,7 +54,7 @@ struct ContactCircle: View {
 #Preview {
     let storeWithCompletedIssues: Store = {
         let state = AppState()
-        state.issueCompletion[123] = ["1234"]
+        state.issueCompletion[123] = ["1234-contact"]
         return Store(state: state)
     }()
     

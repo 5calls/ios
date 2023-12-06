@@ -49,6 +49,11 @@ struct IssueDone: View {
                             .padding(.bottom, 14)
                     }
                 }.padding(.bottom, 16)
+                Text(R.string.localizable.contactSummaryHeader())
+                    .font(.caption).fontWeight(.bold)
+                ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
+                    ContactListItemCompact(contact: contact, issueCompletions: store.state.issueCompletion[issue.id] ?? [])
+                }.padding(.bottom, 8)
                 if store.state.donateOn {
                     Text(R.string.localizable.support5calls())
                         .font(.caption).fontWeight(.bold)
@@ -201,7 +206,15 @@ struct CountingView: View {
 }
 
 #Preview {
-    IssueDone(issue: .basicPreviewIssue)
+    let previewState = {
+        let state = AppState()
+        state.contacts = [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]
+        state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail","\(Contact.senatePreviewContact1.id)-contact"]
+        return state
+    }()
+
+    return IssueDone(issue: .basicPreviewIssue)
+        .environmentObject(Store(state: previewState))
 }
 
 struct IssueNavModel {
