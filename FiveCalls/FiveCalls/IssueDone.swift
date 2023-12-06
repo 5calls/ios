@@ -100,9 +100,10 @@ struct IssueDone: View {
         }.alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
-                AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/issue/x/done/")
-                OneSignal.promptForPushNotifications(userResponse: { (success) in
-                    //
+                OneSignal.promptForPushNotifications(userResponse: { success in
+                    if success {
+                        AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/issue/x/done/")
+                    }
                 })
             } label: {
                 Text(R.string.localizable.notificationImportant())
