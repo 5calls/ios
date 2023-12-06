@@ -12,6 +12,19 @@ struct ContactListItemCompact: View {
     let contact: Contact
     let issueCompletions: [String]
     
+    var latestOutcomeForContact: String {
+        if let contactOutcome = issueCompletions.last(where: { $0.split(separator: "-")[0] == contact.id }) {
+            if contactOutcome.split(separator: "-").count > 1 {
+                return ContactLog.localizedOutcomeForStatus(status: String(contactOutcome.split(separator: "-")[1]))
+            }
+        }
+        
+        return R.string.localizable.outcomesSkip()
+    }
+    var shouldShowImage: Bool {
+        return latestOutcomeForContact != "Skip"
+    }
+    
     var body: some View {
         HStack {
             ContactCircle(contact: contact)
@@ -19,7 +32,7 @@ struct ContactListItemCompact: View {
                 .padding(.vertical, 4)
                 .padding(.trailing, 4)
                 .overlay {
-                    if latestOutcomeForContact(contactID: contact.id, issueCompletions: issueCompletions) != "Skip" {
+                    if shouldShowImage {
                         Image(systemName: "checkmark.circle.fill")
                             .frame(width: 10, height: 10)
                             .foregroundColor(.fivecallsGreen)
@@ -32,22 +45,11 @@ struct ContactListItemCompact: View {
             VStack(alignment: .leading) {
                 Text(contact.name)
                     .fontWeight(.semibold)
-                Text(latestOutcomeForContact(contactID: contact.id, issueCompletions: issueCompletions))
+                Text(latestOutcomeForContact)
                     .font(.caption)
             }
         }
     }
-    
-    func latestOutcomeForContact(contactID: String, issueCompletions: [String]) -> String {
-        if let contactOutcome = issueCompletions.last(where: { $0.split(separator: "-")[0] == contactID }) {
-            if contactOutcome.split(separator: "-").count > 1 {
-                return ContactLog.localizedOutcomeForStatus(status: String(contactOutcome.split(separator: "-")[1]))
-            }
-        }
-        
-        return R.string.localizable.outcomesSkip()
-    }
-
 }
 
 #Preview {
