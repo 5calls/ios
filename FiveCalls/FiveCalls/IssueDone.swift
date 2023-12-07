@@ -7,14 +7,18 @@
 //
 
 import SwiftUI
+import StoreKit
+import OneSignal
 
 struct IssueDone: View {
     @EnvironmentObject var store: Store
     @EnvironmentObject var router: IssueRouter
     @Environment(\.openURL) private var openURL
-    
+
+    @State var showNotificationAlert = false
+
     let issue: Issue
-    
+
     init(issue: Issue) {
         self.issue = issue
         
@@ -22,12 +26,12 @@ struct IssueDone: View {
             self.markdownTitle = titleString
         } else {
             self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
-        }
+//        }
     }
-        
+
     let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     var markdownTitle: AttributedString!
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -45,6 +49,11 @@ struct IssueDone: View {
                             .padding(.bottom, 14)
                     }
                 }.padding(.bottom, 16)
+                Text(R.string.localizable.contactSummaryHeader())
+                    .font(.caption).fontWeight(.bold)
+                ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
+                    ContactListItemCompact(contact: contact, issueCompletions: store.state.issueCompletion[issue.id] ?? [])
+                }.padding(.bottom, 8)
                 if store.state.donateOn {
                     Text(R.string.localizable.support5calls())
                         .font(.caption).fontWeight(.bold)
@@ -70,7 +79,6 @@ struct IssueDone: View {
                     router.backToRoot()
                 }, label: {
                     PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
-
                 })
             }
             .padding(.horizontal)
@@ -79,16 +87,68 @@ struct IssueDone: View {
         .frame(maxWidth: 500)
         .onAppear() {
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/done/")
-            
+
             store.dispatch(action: .FetchStats(issue.id))
+
+            // will prompt for a rating after hitting done 5 times
+            RatingPromptCounter.increment {
+                guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+                    return
+                }
+
+                SKStoreReviewController.requestReview(in: currentScene)
+            }
+
+            // unlikely to occur at the same time as the rating prompt counter
+            checkForNotifications()
+        }.alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
+            Button {
+                // we don't really care which issue they were on when they subbed, just that it was a done page
+                OneSignal.promptForPushNotifications(userResponse: { success in
+                    if success {
+                        AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/issue/x/done/")
+                    }
+                })
+            } label: {
+                Text(R.string.localizable.notificationImportant())
+            }
+            Button {
+                let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+                UserDefaults.standard.set(Date(), forKey: key)
+            } label: {
+                Text(R.string.localizable.notificationNone())
+            }
+
+        } message: {
+            Text(R.string.localizable.notificationAsk())
         }
+
+    }
+}
+
+
+
+extension IssueDone {
+    func checkForNotifications() {
+            let deviceState = OneSignal.getDeviceState()
+            let nextPrompt = nextNotificationPromptDate() ?? Date()
+
+            if deviceState?.hasNotificationPermission == false && nextPrompt <= Date() {
+                showNotificationAlert = true
+            }
+        }
+    func nextNotificationPromptDate() -> Date? {
+        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
+
+        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }
 }
 
 struct CountingView: View {
     let title: String
     let count: Int
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
@@ -111,11 +171,11 @@ struct CountingView: View {
             }
         }
     }
-    
+
     func progressWidth(size: CGSize) -> CGFloat {
         return size.width * (CGFloat(count) / nextMilestone)
     }
-    
+
     var nextMilestone: CGFloat {
         if count < 80 {
             return 100
@@ -140,13 +200,25 @@ struct CountingView: View {
         } else if count < 4500000 {
             return 5000000
         }
-        
+
         return 0
     }
 }
 
 #Preview {
-    IssueDone(issue: .basicPreviewIssue)
+    let previewState = {
+        let state = AppState()
+                state.issues = [
+                    Issue.basicPreviewIssue,
+                    Issue.multilinePreviewIssue
+                ]
+        state.contacts = [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]
+//        state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail","\(Contact.senatePreviewContact1.id)-contact"]
+        return state
+    }()
+
+    return IssueDone(issue: .basicPreviewIssue)
+        .environmentObject(Store(state: previewState, middlewares: [appMiddleware()]))
 }
 
 struct IssueNavModel {

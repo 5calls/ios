@@ -171,6 +171,7 @@
 "share-this-topic"                    = "Share this topic";
 "done-screen-button"                  = "Done";
 "done-screen-title"                   = "Nice work!";
+"contact-summary-header"              = "Contacts";
 
 // nav
 "back"                                = "Back";

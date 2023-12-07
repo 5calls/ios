@@ -9,11 +9,9 @@
 import Foundation
 
 struct RatingPromptCounter {
-    private let threshold = 5
+    private static let threshold = 5
 
-    let handler: (() -> Void)?
-
-    func increment() {
+    static func increment(handler: () -> Void) {
         let defaults = UserDefaults.standard
         let key = UserDefaultsKey.countOfCallsForRatingPrompt.rawValue
         let count = defaults.integer(forKey: key) + 1
@@ -23,7 +21,7 @@ struct RatingPromptCounter {
         defaults.set(count, forKey: key)
 
         if count == threshold {
-            handler?()
+            handler()
         }
     }
 }

@@ -16,9 +16,9 @@ struct ContactLog : Hashable, Codable {
     let outcome: String
     let date: Date
     let reported: Bool
-    
-    var localizedOutcome: String {
-        switch self.outcome {
+
+    static func localizedOutcomeForStatus(status: String) -> String {
+        switch status {
         case "vm", "voicemail":
             return R.string.localizable.outcomesVoicemail()
         case "contact", "contacted":
@@ -33,6 +33,7 @@ struct ContactLog : Hashable, Codable {
     }
 }
 
+
 struct LegacyPantryWrapper: Codable {
     let expires: Int
     let storage: [ContactLog]
@@ -40,13 +41,13 @@ struct LegacyPantryWrapper: Codable {
 
 struct ContactLogs {
     private static let persistenceKey = "ContactLogs"
-    
+
     var all: [ContactLog]
-    
+
     init() {
         all = []
     }
-    
+
     private init(logs: [ContactLog]) {
         all = logs
     }
@@ -56,7 +57,7 @@ struct ContactLogs {
         save()
         NotificationCenter.default.post(name: .callMade, object: log)
     }
-        
+
     func methodOfContact(to contactId: String, forIssue issue: Issue) -> String? {
         return all.filter({$0.contactId == contactId && ($0.issueId == String(issue.id) || $0.issueId == issue.meta)}).last?.outcome
     }
@@ -65,27 +66,27 @@ struct ContactLogs {
         guard let method = methodOfContact(to: contact.id, forIssue: issue) else {
             return false
         }
-        
+
         switch method {
         // contacted and vm for compatibility
         case "contact", "contacted", "voicemail", "vm":
             return true
         default:
             return false
-        }        
+        }
     }
-    
+
     // Gets a list of unreported contacts
     func unreported() -> [ContactLog] {
         return all.filter({$0.reported == false})
     }
 
     // MARK: mutating functions
-    
+
     mutating func markAllReported(_ logs: [ContactLog]) {
         logs.forEach { self.markReported($0) }
     }
-    
+
     // Marks a contact as reported.  This will have no effect if there
     // is no matching ContactLog in our list of contacts.
     mutating func markReported(_ log: ContactLog) {
@@ -97,7 +98,7 @@ struct ContactLogs {
     }
 
     // MARK: the file path for locally saved contact logs that was inherited from pantry
-    
+
     static private var filePath: URL {
         let pantryDirName = "com.thatthinginswift.pantry"
         let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
@@ -119,7 +120,7 @@ struct ContactLogs {
 extension ContactLogs {
     func save() {
         let wrapper = LegacyPantryWrapper(expires: 0, storage: self.all)
-        
+
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         if let data = try? encoder.encode(wrapper) {
@@ -140,10 +141,10 @@ extension ContactLogs {
 
         print("directory is \(String(describing: files))")
     }
-    
+
     static func load() -> ContactLogs {
 //        ContactLogs.debugContactLogs()
-        
+
         // check for the file first, not having a file is not an error we want to log
         if FileManager.default.fileExists(atPath: ContactLogs.filePath.path),
            let fileData = try? Data(contentsOf: ContactLogs.filePath) {
@@ -156,11 +157,11 @@ extension ContactLogs {
                 AnalyticsManager.shared.trackError(error: ContactLogError.CantDecodeWrapper)
             }
         }
-        
+
         // can't decode contact logs? make a new one
         return ContactLogs()
     }
-    
+
     static func removeData() {
         try? FileManager.default.removeItem(at: ContactLogs.filePath)
     }

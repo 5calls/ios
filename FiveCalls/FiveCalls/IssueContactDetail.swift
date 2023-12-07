@@ -79,6 +79,8 @@ struct IssueContactDetail: View {
                 Text(issue.markdownIssueScript)
                     .padding(.bottom)
                 if remainingContacts.count > 1 {
+                    // VoiceOver reads as one big button. Pinged Nick to see if he has ideas.
+
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
                         OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                             let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
@@ -86,6 +88,7 @@ struct IssueContactDetail: View {
                             router.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
                         })
                     }
+                    .accessibilityRemoveTraits(.isButton)
                 } else {
                     NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
                         OutcomesView(outcomes: issue.outcomeModels, report:
