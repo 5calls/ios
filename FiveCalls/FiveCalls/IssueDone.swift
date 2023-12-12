@@ -21,16 +21,32 @@ struct IssueDone: View {
 
     init(issue: Issue) {
         self.issue = issue
-        
+
         if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
             self.markdownTitle = titleString
         } else {
             self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
-//        }
+        }
     }
 
     let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     var markdownTitle: AttributedString!
+
+    func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> String {
+        // TODO: This isn't working properly... seeing a lot of skips when I don't expect it
+        // The code below is expecting issueCompletions to be a different format than the state code actually creates
+        if let contactOutcome = issueCompletions.last(where: { $0.split(separator: "-")[0] == contact.id }) {
+            if contactOutcome.split(separator: "-").count > 1 {
+                return ContactLog.localizedOutcomeForStatus(status: String(contactOutcome.split(separator: "-")[1]))
+            }
+        }
+
+        return R.string.localizable.outcomesSkip()
+    }
+
+    func shouldShowImage(latestOutcomeForContact: String) -> Bool {
+        return latestOutcomeForContact != "Skip"
+    }
 
     var body: some View {
         ScrollView {
@@ -48,15 +64,21 @@ struct IssueDone: View {
                         CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
                             .padding(.bottom, 14)
                     }
-                }.padding(.bottom, 16)
+                }
+                .padding(.bottom, 16)
+
                 Text(R.string.localizable.contactSummaryHeader())
                     .font(.caption).fontWeight(.bold)
+                    .accessibilityAddTraits(.isHeader)
                 ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
-                    ContactListItemCompact(contact: contact, issueCompletions: store.state.issueCompletion[issue.id] ?? [])
-                }.padding(.bottom, 8)
+                    let issueCompletions = store.state.issueCompletion[issue.id] ?? []
+                    let latestContactCompletion = latestOutcomeForContact(contact: contact, issueCompletions: issueCompletions)
+                    ContactListItem(contact: contact, showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion), contactNote: latestContactCompletion, listType: .compact)
+                }
                 if store.state.donateOn {
                     Text(R.string.localizable.support5calls())
                         .font(.caption).fontWeight(.bold)
+                        .accessibilityAddTraits(.isHeader)
                     HStack {
                         Text(R.string.localizable.support5callsSub())
                         Button(action: {
@@ -64,17 +86,30 @@ struct IssueDone: View {
                         }) {
                             PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
                         }
-                    }.padding(.bottom, 16)
+                    }
+                    .padding(.bottom, 16)
                 }
+
                 Text(R.string.localizable.shareThisTopic())
                     .font(.caption).fontWeight(.bold)
+                    .accessibilityAddTraits(.isHeader)
+
                 ShareLink(item: issue.shareURL) {
-                    AsyncImage(url: issue.shareImageURL,
-                               content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }, placeholder: { EmptyView() })
-                }.padding(.bottom, 16)
+                    ZStack {
+                        // make the share link show up for VoiceOver
+                        Text("")
+                        AsyncImage(url: issue.shareImageURL,
+                                   content: { image in
+                            image.resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }, placeholder: { EmptyView() })
+                    }
+                }
+                .padding(.bottom, 16)
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(Text("\(R.string.localizable.shareThisTopic()): \(issue.name)"))
+
                 Button(action: {
                     router.backToRoot()
                 }, label: {
@@ -82,7 +117,8 @@ struct IssueDone: View {
                 })
             }
             .padding(.horizontal)
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
         .clipped()
         .frame(maxWidth: 500)
         .onAppear() {
@@ -101,7 +137,8 @@ struct IssueDone: View {
 
             // unlikely to occur at the same time as the rating prompt counter
             checkForNotifications()
-        }.alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
+        }
+        .alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
                 OneSignal.promptForPushNotifications(userResponse: { success in
@@ -118,15 +155,11 @@ struct IssueDone: View {
             } label: {
                 Text(R.string.localizable.notificationNone())
             }
-
         } message: {
             Text(R.string.localizable.notificationAsk())
         }
-
     }
 }
-
-
 
 extension IssueDone {
     func checkForNotifications() {
@@ -155,21 +188,23 @@ struct CountingView: View {
                 .font(.title3)
                 .fontWeight(.medium)
                 .padding(.bottom, 4)
-            GeometryReader { geometry in
-                ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                        .foregroundColor(.fivecallsLightBG)
-                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                        .foregroundColor(.fivecallsDarkBlue)
-                        .frame(width: progressWidth(size: geometry.size))
-                    // this formats the int with commas automatically?
-                    Text("\(count)")
-                        .foregroundStyle(.white)
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 6)
+            ZStack(alignment: .leading) {
+                Canvas { context, size in
+                    let drawRect = CGRect(origin: .zero, size: size)
+
+                    context.fill(Rectangle().size(size).path(in: drawRect), with: .color(.fivecallsLightBG))
+                    context.fill(Rectangle().size(width: progressWidth(size: size), height: size.height).path(in: drawRect), with: .color(.fivecallsDarkBlue))
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                Text("\(count)")
+                    .foregroundStyle(.white)
+                    // yes, blue background may be redundant, but it ensures that the white text can always be read, even with very large fonts
+                    .background(.fivecallsDarkBlue)
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 6)
             }
         }
+        .accessibilityElement(children: .combine)
     }
 
     func progressWidth(size: CGSize) -> CGFloat {
@@ -208,12 +243,12 @@ struct CountingView: View {
 #Preview {
     let previewState = {
         let state = AppState()
-                state.issues = [
-                    Issue.basicPreviewIssue,
-                    Issue.multilinePreviewIssue
-                ]
+            state.issues = [
+                Issue.basicPreviewIssue,
+                Issue.multilinePreviewIssue
+            ]
         state.contacts = [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]
-//        state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail","\(Contact.senatePreviewContact1.id)-contact"]
+        state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail","\(Contact.senatePreviewContact1.id)-contact"]
         return state
     }()
 
@@ -236,3 +271,5 @@ extension IssueNavModel: Equatable, Hashable {
         hasher.combine(type)
     }
 }
+
+

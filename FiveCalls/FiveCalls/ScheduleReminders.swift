@@ -13,6 +13,7 @@ struct ScheduleReminders: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOverEnabled
     @Environment(\.accessibilityReduceMotion) private var reduceMotionEnabled
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColorEnabled
 
     @State var existingSelectedTime = Date.distantPast
     @State var selectedTime = Date.distantPast
@@ -126,7 +127,7 @@ struct ScheduleReminders: View {
             if !reduceMotionEnabled {
                 shouldShake = true
             }
-            if voiceOverEnabled || reduceMotionEnabled {
+            if voiceOverEnabled || reduceMotionEnabled || differentiateWithoutColorEnabled {
                 presentDaysOfWeekNotSetAlert = true
             }
         } else if existingSelectedTime == selectedTime &&
@@ -161,7 +162,8 @@ struct DayAndTimePickers: View {
     @Binding var selectedTime: Date
     @Binding var selectedDayIndices: [Int]
     @Binding var shouldShake: Bool
-    
+    @Environment(\.colorScheme) private var colorScheme
+
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -191,7 +193,7 @@ struct DayAndTimePickers: View {
                     }
                     .padding(.vertical, 5)
                 Text(R.string.localizable.scheduledRemindersNoDaysWarning())
-                    .foregroundColor(Color.fivecallsRed)
+                    .foregroundColor(colorScheme == .light ? Color.fivecallsRed : Color.primary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
 
