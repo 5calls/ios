@@ -33,15 +33,19 @@ struct IssueDetail: View {
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
                         .padding(.leading, 6)
+                        .accessibilityAddTraits(.isHeader)
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered(), id: \.element.id) { contact in
                             ContactListItem(contact: contact.element, showComplete: (store.state.issueCompletion[issue.id] ?? []).contains(contact.element.id))
-                            if contact.number < 2 { Divider().padding(0) } else { EmptyView() }
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color(.fivecallsLightBG))
+                                }
+                                .padding(.bottom, 4)
                         }
-                    }.background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
-                    }.padding(.bottom, 16)
+                    }
+
+                    .padding(.bottom, 16)
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
                         PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
                     }
