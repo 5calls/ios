@@ -52,7 +52,6 @@ struct YourImpact: View {
             List {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(weeklyStreakMessage)
-                        .foregroundStyle(.fivecallsRed)
                         .font(.headline)
                     Text(totalImpactMessage)
                         .font(.headline)

@@ -14,7 +14,7 @@
       "appearances" : [
         {
           "appearance" : "luminosity",
-          "value" : "dark"
+          "value" : "light"
         }
       ],
       "color" : {
@@ -22,6 +22,22 @@
         "components" : {
           "alpha" : "1.000",
           "white" : "218"
+        }
+      },
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "color-space" : "gray-gamma-22",
+        "components" : {
+          "alpha" : "1.000",
+          "white" : "0.150"
         }
       },
       "idiom" : "universal"
