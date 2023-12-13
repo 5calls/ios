@@ -14,9 +14,7 @@ struct IssueContactDetail: View {
 
     let issue: Issue
     let remainingContacts: [Contact]
-    @State var currentPhoneNumber: String?
-    @State var showPhoneConfirmation: Bool = false
-
+    
     var currentContact: Contact {
         return remainingContacts.first!
     }
@@ -47,38 +45,29 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        Button {
-                            currentPhoneNumber = currentContact.phone
-                            showPhoneConfirmation = true
-                        } label: {
-                            Text(currentContact.phone)
-                                .font(.title)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.fivecallsDarkBlueText)
-                        }
-                        if currentContact.fieldOffices.count > 1 {
-                            Menu {
-                                ForEach(currentContact.fieldOffices) { office in
-                                    Section(office.city) {
-                                        Button{
-                                            currentPhoneNumber = office.phone
-                                            showPhoneConfirmation = true
-                                        } label: {
-                                            VStack {
-                                                Text(office.phone)
-                                            }
+                        Text(currentContact.phone)
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color.fivecallsDarkBlueText)
+                        Menu {
+                            ForEach(currentContact.fieldOffices) { office in
+                                Section(office.city) {
+                                    Button{ } label: {
+                                        VStack {
+                                            Text(office.phone)
                                         }
                                     }
                                 }
-                            } label: {
-                                Image(systemName: "ellipsis.circle")
-                                    .font(.title2)
-                                    .foregroundColor(Color.fivecallsDarkBlue)
-                                    .padding(.leading, 4)
                             }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .font(.title2)
+                                .foregroundColor(Color.fivecallsDarkBlue)
+                                .padding(.leading, 4)
                         }
                     }
                 }.padding(.bottom)
+<<<<<<< HEAD
 <<<<<<< HEAD
                 Text(issueMarkdown)
 =======
@@ -94,6 +83,8 @@ struct IssueContactDetail: View {
                         }
                         Button("Cancel", role: .cancel) { }
                     }
+=======
+>>>>>>> 6133b17 (Revert "use confirmation dialog")
                 Text(issue.markdownIssueScript)
 >>>>>>> 4298a5e (use confirmation dialog)
                     .padding(.bottom)
