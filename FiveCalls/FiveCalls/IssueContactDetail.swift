@@ -63,7 +63,7 @@ struct IssueContactDetail: View {
                         }
                     }
                 }.padding(.bottom)
-                Text(issue.markdownIssueScript)
+                Text(issue.markdownIssueScript(contact: currentContact, location: store.state.location))
                     .padding(.bottom)
                 if remainingContacts.count > 1 {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
@@ -91,5 +91,12 @@ struct IssueContactDetail: View {
 }
 
 #Preview {
-    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact]).environmentObject(Store(state: AppState()))
+    let previewState = {
+        let state = AppState()
+        state.location = NewUserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
+        return state
+    }()
+
+    return IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact])
+        .environmentObject(Store(state: previewState))
 }
