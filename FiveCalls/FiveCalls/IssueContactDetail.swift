@@ -27,8 +27,6 @@ struct IssueContactDetail: View {
         return issue.markdownIssueScript(contact: currentContact, location: store.state.location)
     }
 
-    @State private var isCopied: Bool = false
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -47,60 +45,25 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        
-                        if isCopied {
-                            Text("Copied!")
-                                .bold()
-                                .font(.footnote)
-                        }
-                        
                         Text(currentContact.phone)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundColor(Color.fivecallsDarkBlueText)
-                            .onTapGesture {
-                                self.call(phoneNumber: currentContact.phone)
-                            }
-                            .onLongPressGesture(minimumDuration: 1.0) {
-                                UIPasteboard.general.string = currentContact.phone
-                                withAnimation {
-                                    isCopied = true
-                                }
-                                
-                                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
-                                    withAnimation {
-                                        isCopied = false
-                                    }
-                                }
-                            }
-                        if currentContact.fieldOffices.count > 1 {
-                            Menu {
-                                ForEach(currentContact.fieldOffices) { office in
-                                    Section(office.city) {
-                                        Text(office.phone)
-                                    }
-                                    .onTapGesture {
-                                        self.call(phoneNumber: office.phone)
-                                    }
-                                    .onLongPressGesture(minimumDuration: 1.0) {
-                                        UIPasteboard.general.string = office.phone
-                                        withAnimation {
-                                            isCopied = true
-                                        }
-                                        
-                                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
-                                            withAnimation {
-                                                isCopied = false
-                                            }
+                        Menu {
+                            ForEach(currentContact.fieldOffices) { office in
+                                Section(office.city) {
+                                    Button{ } label: {
+                                        VStack {
+                                            Text(office.phone)
                                         }
                                     }
                                 }
-                            } label: {
-                                Image(systemName: "ellipsis.circle")
-                                    .font(.title2)
-                                    .foregroundColor(Color.fivecallsDarkBlue)
-                                    .padding(.leading, 4)
                             }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .font(.title2)
+                                .foregroundColor(Color.fivecallsDarkBlue)
+                                .padding(.leading, 4)
                         }
                     }
                 }.padding(.bottom)
@@ -128,13 +91,6 @@ struct IssueContactDetail: View {
             }.padding(.horizontal)
         }.navigationBarHidden(true)
         .clipped()
-    }
-    
-    private func call(phoneNumber: String) {
-        let telephone = "tel://"
-        let formattedString = telephone + phoneNumber
-        guard let url = URL(string: formattedString) else { return }
-        UIApplication.shared.open(url)
     }
 }
 
