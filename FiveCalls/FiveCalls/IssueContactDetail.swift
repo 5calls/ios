@@ -14,7 +14,9 @@ struct IssueContactDetail: View {
 
     let issue: Issue
     let remainingContacts: [Contact]
-    
+    @State var currentPhoneNumber: String?
+    @State var showPhoneConfirmation: Bool = false
+
     var currentContact: Contact {
         return remainingContacts.first!
     }
@@ -45,29 +47,55 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        Text(currentContact.phone)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.fivecallsDarkBlueText)
-                        Menu {
-                            ForEach(currentContact.fieldOffices) { office in
-                                Section(office.city) {
-                                    Button{ } label: {
-                                        VStack {
-                                            Text(office.phone)
+                        Button {
+                            currentPhoneNumber = currentContact.phone
+                            showPhoneConfirmation = true
+                        } label: {
+                            Text(currentContact.phone)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.fivecallsDarkBlueText)
+                        }
+                        if currentContact.fieldOffices.count > 1 {
+                            Menu {
+                                ForEach(currentContact.fieldOffices) { office in
+                                    Section(office.city) {
+                                        Button{
+                                            currentPhoneNumber = office.phone
+                                            showPhoneConfirmation = true
+                                        } label: {
+                                            VStack {
+                                                Text(office.phone)
+                                            }
                                         }
                                     }
                                 }
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.title2)
+                                    .foregroundColor(Color.fivecallsDarkBlue)
+                                    .padding(.leading, 4)
                             }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
-                                .font(.title2)
-                                .foregroundColor(Color.fivecallsDarkBlue)
-                                .padding(.leading, 4)
                         }
                     }
                 }.padding(.bottom)
+<<<<<<< HEAD
                 Text(issueMarkdown)
+=======
+                    .confirmationDialog("", isPresented: $showPhoneConfirmation, titleVisibility: .hidden) {
+                        Button("Call \(currentPhoneNumber ?? "")") {
+                            if let currentPhoneNumber,
+                               let url = URL(string: "tel://\(currentPhoneNumber)") {
+                                UIApplication.shared.open(url)
+                            }
+                        }
+                        Button("Copy \(currentPhoneNumber ?? "")") {
+                            UIPasteboard.general.string = currentPhoneNumber
+                        }
+                        Button("Cancel", role: .cancel) { }
+                    }
+                Text(issue.markdownIssueScript)
+>>>>>>> 4298a5e (use confirmation dialog)
                     .padding(.bottom)
                 if remainingContacts.count > 1 {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
