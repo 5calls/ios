@@ -70,7 +70,7 @@ struct AboutListItem: View {
 #Preview {
     VStack {
         AboutListItem(title: "test item nav link", navigationLinkValue: WebViewContent.whycall)
-        AboutListItem(title: "test item action") { let showEmailComposer = true }
+        AboutListItem(title: "test item action") { let _ = true }
         AboutListItem(title: "test url", url: URL(string: "https://google.com"))
     }
 }

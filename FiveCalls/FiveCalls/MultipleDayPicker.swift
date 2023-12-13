@@ -27,7 +27,7 @@ let days = [
 struct MultipleDayPicker: View {
     @Binding var selectedDayIndices: [Int]
 
-    var borderColor: Color { selectedDayIndices.isEmpty ? Color.fivecallsRed : Color.fivecallsDarkBlue
+    var borderColor: Color { selectedDayIndices.isEmpty ? Color.fivecallsRedText : Color.fivecallsDarkBlue
     }
     
     var body: some View {
