@@ -25,7 +25,7 @@ struct LocationSheet: View {
                 HStack {
                     HStack {
                         TextField(text: $locationText) {
-                            Text("Enter a location")
+                            Text(R.string.localizable.enterLocation())
                         }.onSubmit {
                             locationSearch()
                         }
@@ -56,7 +56,7 @@ struct LocationSheet: View {
                     }
                     .accessibilityHidden(true)
                 }
-                Text("Use an address, zip code or zip + 4")
+                Text(R.string.localizable.locationInstructions())
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .padding(.leading, 35)
@@ -71,7 +71,7 @@ struct LocationSheet: View {
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Detect my location")
+                            Text(R.string.localizable.detectLocation())
                                 .font(.system(.title3))
                                 .fontWeight( .medium)
                                 .foregroundColor(.white)
@@ -102,7 +102,7 @@ struct LocationSheet: View {
                 }
             }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text("Detect my location"))
+            .accessibilityLabel(Text(R.string.localizable.detectLocation()))
             .accessibilityAddTraits(.isButton)
         }
     }
@@ -127,9 +127,9 @@ struct LocationSheet: View {
             } catch (let error as LocationCoordinatorError) {
                 switch error {
                 case .Unauthorized:
-                    locationError = "Location permission is off"
+                    locationError = R.string.localizable.locationErrorOff()
                 default:
-                    locationError = "An error occured trying to find your location"
+                    locationError = R.string.localizable.locationErrorDefault()
                 }
             }
         }
