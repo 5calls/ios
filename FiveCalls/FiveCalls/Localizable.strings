@@ -72,6 +72,8 @@
 "see-script"                          = "See your script";
 "next-contact"                        = "Next contact";
 "done-calling"                        = "Done calling";
+"no-contacts"                         = "No contacts";
+"call-areas"                          = "Call %@";
 
 // location
 "your-location-is"                    = "Your location is:";
@@ -79,7 +81,12 @@
 
 // location detection
 "locating-temp"                       = "Locating...";
+"enter-location"                      = "Enter a location";
 "unknown-location"                    = "Unknown Location";
+"detect-location"                     = "Detect my location";
+"location-instructions"               = "Use an address, zip code or zip + 4";
+"location-error-off"                  = "Location permission is off";
+"location-error-default"              = "An error occured trying to find your location";
 
 // outcomes
 "outcomes.contact"                    = "Made Contact";

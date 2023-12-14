@@ -46,10 +46,10 @@ struct IssueListItem: View {
     var repText: String {
         if issue.contactAreas.count == 0 {
             // we should never ship an issue with no contact areas, but handle the state anyway
-            return "No contacts"
+            return R.string.localizable.noContacts()
         } else {
             let areas = issue.contactAreas.map({ a in AreaToNiceString(area: a) }).joined(separator: ", ")
-            return "Call \(areas)"
+            return R.string.localizable.callAreas(areas)
         }
     }
 }
