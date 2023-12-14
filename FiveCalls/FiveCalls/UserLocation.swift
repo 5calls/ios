@@ -124,20 +124,3 @@ extension UserLocation : CustomStringConvertible {
         return "type: \(typeString) value: \(valueString) | display: \(displayString)"
     }
 }
-
-extension UserLocation {
-    func customizeScript(script: String) -> String? {
-        guard let locationDisplay = self.locationDisplay else {
-            return nil
-        }
-
-        let pattern = #"\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]"#
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return nil
-        }
-
-        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
-        let scriptWithLocation = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: locationDisplay)
-        return scriptWithLocation
-    }
-}
