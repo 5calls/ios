@@ -68,12 +68,19 @@
 "attorney-general"                    = "Attorney General";
 "secretary-of-state"                  = "Secretary of State";
 
-// issue + issue contact detail screen
+// issue detail screen
 "see-script"                          = "See your script";
 "next-contact"                        = "Next contact";
 "done-calling"                        = "Done calling";
 "no-contacts"                         = "No contacts";
 "call-areas"                          = "Call %@";
+
+// issue contact detail screen
+"a11y-phone-call-copy-hint"           = "Double tap to call, triple tap to copy";
+"a11y-phone-call-hint"                = "Double tap to call";
+"a11y-phone-copy-hint"                = "Triple tap to copy";
+"copied-phone"                        = "Copied\n%@!";
+"copy"                                = "Copy";
 
 // location
 "your-location-is"                    = "Your location is:";

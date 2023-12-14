@@ -27,7 +27,7 @@ struct IssueContactDetail: View {
         return issue.markdownIssueScript(contact: currentContact, location: store.state.location)
     }
 
-    @State private var isCopied: Bool = false
+    @State private var copiedPhoneNumber: String?
     
     var body: some View {
         ScrollView {
@@ -48,10 +48,12 @@ struct IssueContactDetail: View {
                     HStack {
                         Spacer()
                         
-                        if isCopied {
-                            Text("Copied!")
+                        if let copiedPhoneNumber {
+                            Text(R.string.localizable.copiedPhone(copiedPhoneNumber))
                                 .bold()
                                 .font(.footnote)
+                                .multilineTextAlignment(.center)
+                            Spacer()
                         }
                         
                         Text(currentContact.phone)
@@ -64,35 +66,53 @@ struct IssueContactDetail: View {
                             .onLongPressGesture(minimumDuration: 1.0) {
                                 UIPasteboard.general.string = currentContact.phone
                                 withAnimation {
-                                    isCopied = true
+                                    copiedPhoneNumber = currentContact.phone
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                                     withAnimation {
-                                        isCopied = false
+                                        copiedPhoneNumber = nil
                                     }
                                 }
                             }
+                            .accessibilityAddTraits(.isButton)
+                            .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
                         if currentContact.fieldOffices.count > 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
-                                    Section(office.city) {
-                                        Text(office.phone)
+                                    Section {
+                                        Text(office.city)
                                     }
-                                    .onTapGesture {
-                                        self.call(phoneNumber: office.phone)
-                                    }
-                                    .onLongPressGesture(minimumDuration: 1.0) {
-                                        UIPasteboard.general.string = office.phone
-                                        withAnimation {
-                                            isCopied = true
-                                        }
-                                        
-                                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
-                                            withAnimation {
-                                                isCopied = false
+                                    
+                                    ControlGroup {
+                                        Button {
+                                            self.call(phoneNumber: office.phone)
+                                        } label: {
+                                            HStack {
+                                                Image(systemName: "phone")
+                                                Text(office.phone)
                                             }
                                         }
+                                        .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
+                                        
+                                        Button {
+                                            UIPasteboard.general.string = office.phone
+                                            withAnimation {
+                                                copiedPhoneNumber = office.phone
+                                            }
+                                            
+                                            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
+                                                withAnimation {
+                                                    copiedPhoneNumber = nil
+                                                }
+                                            }
+                                        } label: {
+                                            HStack {
+                                                Image(systemName: "doc.on.doc")
+                                                Text(R.string.localizable.copy())
+                                            }
+                                        }
+                                        .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
                                     }
                                 }
                             } label: {
