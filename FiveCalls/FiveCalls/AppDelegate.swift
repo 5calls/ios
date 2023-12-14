@@ -11,12 +11,7 @@ import SwiftUI
 import OneSignal
 import TipKit
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-    
-    var appState = AppState()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         if isUITesting() {
@@ -31,22 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         oneSignalStartup(launchOptions: launchOptions)
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
         
-        window = UIWindow()
-
-        let store = Store(state: AppState(), middlewares: [appMiddleware()])
-        window?.rootViewController = UIHostingController(rootView: IssueSplitView()
-            .environmentObject(store))
-        
         if #available(iOS 17.0, *) {
             try? Tips.configure()
         }
-            
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue) {
-            showWelcome(store: store)
-        }
-
-        window?.makeKeyAndVisible()
-        
+                    
         return true
     }
 
@@ -55,9 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let incomingURL = userActivity.webpageURL else {
             return false
         }
-        // sets a string like 'usps-postal-service-covid-funding' that we can use when issues are loaded
-        UserDefaults.standard.set(incomingURL.lastPathComponent, forKey: UserDefaultsKey.selectIssuePath.rawValue)
-
+        
         return true
     }
     
@@ -66,33 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             OneSignal.initWithLaunchOptions(launchOptions)
             OneSignal.setAppId(oneSignalAppID)
         }
-    }
-    
-    func transitionTo(rootViewController viewController: UIViewController) {
-        guard let window = self.window else { return }
-        guard window.rootViewController != viewController else { return }
-        
-        let snapshot = window.snapshotView(afterScreenUpdates: false)!
-        viewController.view.addSubview(snapshot)
-        window.rootViewController = viewController
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            snapshot.alpha = 0
-            snapshot.frame.origin.y += window.frame.size.height
-            snapshot.transform = snapshot.transform.scaledBy(x: 0.8, y: 0.8)
-        }) { completed in
-            snapshot.removeFromSuperview()
-        }
-    }
-        
-    func showWelcome(store: Store) {
-        guard let window = self.window else { return }
-        let mainVC = window.rootViewController!
-        let welcomeVC = UIHostingController(rootView: Welcome(onContinue: {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKey.hasShownWelcomeScreen.rawValue)
-            self.transitionTo(rootViewController: mainVC)
-        }).environmentObject(store))
-        window.rootViewController = welcomeVC
     }
     
     func setAppearance() {
@@ -134,7 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func clearNotificationBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-
 
     private func resetOrInitializeCountForRating() {
         let defaults = UserDefaults.standard

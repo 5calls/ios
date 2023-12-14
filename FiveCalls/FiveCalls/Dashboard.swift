@@ -60,6 +60,24 @@ struct Dashboard: View {
                 store.dispatch(action: .FetchContacts(location))
             }
         }
+        .onOpenURL(perform: { url in
+            if store.state.issues.isEmpty {
+                store.state.issueLoadedCallback = {
+                    selectIssue(fromURL: url)
+                    store.state.issueLoadedCallback = nil
+                }
+            } else {
+                selectIssue(fromURL: url)
+            }
+        })
+    }
+    
+    func selectIssue(fromURL url: URL) {
+        store.state.issues.forEach { issue in
+            if issue.slug == url.lastPathComponent {
+                selectedIssue = issue
+            }
+        }
     }
 }
 
