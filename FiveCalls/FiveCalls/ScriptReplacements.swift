@@ -9,7 +9,7 @@
 import Foundation
 
 struct ScriptReplacements {
-    static func Replacing(script: String, contact: Contact, location: NewUserLocation?) -> String {
+    static func replacing(script: String, contact: Contact, location: NewUserLocation?) -> String {
         var replacedScript = ScriptReplacements.replacingContact(script: script, contact: contact)
         if let location {
             replacedScript = ScriptReplacements.replacingLocation(script: replacedScript, location: location)

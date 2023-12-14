@@ -72,7 +72,7 @@ struct Issue: Identifiable, Decodable {
     
     func markdownIssueScript(contact: Contact, location: NewUserLocation?) -> AttributedString {
         do {
-            return try AttributedString(markdown: ScriptReplacements.Replacing(script: self.script, contact: contact, location: location), options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
+            return try AttributedString(markdown: ScriptReplacements.replacing(script: self.script, contact: contact, location: location), options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
         } catch {
             // TODO: notify us somehow that markdown parsing failed
             return AttributedString("Could not parse script markdown, email [hello@5calls.org](mailto:hello@5calls.org)")

@@ -23,6 +23,10 @@ struct IssueContactDetail: View {
         return Array(remainingContacts.dropFirst())
     }
     
+    var issueMarkdown: AttributedString {
+        return issue.markdownIssueScript(contact: currentContact, location: store.state.location)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -63,7 +67,7 @@ struct IssueContactDetail: View {
                         }
                     }
                 }.padding(.bottom)
-                Text(issue.markdownIssueScript(contact: currentContact, location: store.state.location))
+                Text(issueMarkdown)
                     .padding(.bottom)
                 if remainingContacts.count > 1 {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
