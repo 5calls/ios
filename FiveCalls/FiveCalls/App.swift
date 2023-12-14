@@ -14,18 +14,18 @@ struct FiveCallsApp: App {
             
     let store = Store(state: AppState(), middlewares: [appMiddleware()])
     @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
-    @State var welcomePresented = false
+    @State var showWelcomeScreen = false
 
     var body: some Scene {
         WindowGroup {
             IssueSplitView()
                 .environmentObject(store)
-                .sheet(isPresented: $welcomePresented) {
+                .sheet(isPresented: $showWelcomeScreen) {
                     Welcome().environmentObject(store)
                 }
                 .onAppear {
                     if !hasShownWelcomeScreen {
-                        welcomePresented = true
+                        showWelcomeScreen = true
                         hasShownWelcomeScreen = true
                     }
                 }
