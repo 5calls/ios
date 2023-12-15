@@ -28,6 +28,8 @@ struct IssueContactDetail: View {
     }
 
     @State private var copiedPhoneNumber: String?
+    @AccessibilityFocusState private var isCopiedPhoneNumberFocused: Bool
+
     
     var body: some View {
         ScrollView {
@@ -53,6 +55,8 @@ struct IssueContactDetail: View {
                                 .bold()
                                 .font(.footnote)
                                 .multilineTextAlignment(.center)
+                                .accessibilityFocused($isCopiedPhoneNumberFocused)
+                                .accessibilityLabel(R.string.localizable.a11yCopiedPhoneNumber())
                             Spacer()
                         }
                         
@@ -65,12 +69,19 @@ struct IssueContactDetail: View {
                             }
                             .onLongPressGesture(minimumDuration: 1.0) {
                                 UIPasteboard.general.string = currentContact.phone
+                                
                                 withAnimation {
                                     copiedPhoneNumber = currentContact.phone
+                                    if UIAccessibility.isVoiceOverRunning {
+                                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
+                                            isCopiedPhoneNumberFocused = true
+                                        }
+                                    }
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                                     withAnimation {
+                                        isCopiedPhoneNumberFocused = false
                                         copiedPhoneNumber = nil
                                     }
                                 }
@@ -93,16 +104,21 @@ struct IssueContactDetail: View {
                                                 Text(office.phone)
                                             }
                                         }
+                                        .accessibilityLabel(R.string.localizable.a11yCallPhoneNumber(office.phone))
                                         .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
                                         
                                         Button {
                                             UIPasteboard.general.string = office.phone
                                             withAnimation {
                                                 copiedPhoneNumber = office.phone
+                                                if UIAccessibility.isVoiceOverRunning {
+                                                    isCopiedPhoneNumberFocused = true
+                                                }
                                             }
                                             
                                             DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                                                 withAnimation {
+                                                    isCopiedPhoneNumberFocused = false
                                                     copiedPhoneNumber = nil
                                                 }
                                             }
@@ -112,6 +128,7 @@ struct IssueContactDetail: View {
                                                 Text(R.string.localizable.copy())
                                             }
                                         }
+                                        .accessibilityLabel(R.string.localizable.a11yCopyPhoneNumber(office.phone))
                                         .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
                                     }
                                 }
