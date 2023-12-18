@@ -88,6 +88,7 @@ struct IssueContactDetail: View {
                             }
                             .accessibilityAddTraits(.isButton)
                             .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
+                        
                         if currentContact.fieldOffices.count > 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
@@ -141,27 +142,10 @@ struct IssueContactDetail: View {
                         }
                     }
                 }.padding(.bottom)
-<<<<<<< HEAD
-<<<<<<< HEAD
+                
                 Text(issueMarkdown)
-=======
-                    .confirmationDialog("", isPresented: $showPhoneConfirmation, titleVisibility: .hidden) {
-                        Button("Call \(currentPhoneNumber ?? "")") {
-                            if let currentPhoneNumber,
-                               let url = URL(string: "tel://\(currentPhoneNumber)") {
-                                UIApplication.shared.open(url)
-                            }
-                        }
-                        Button("Copy \(currentPhoneNumber ?? "")") {
-                            UIPasteboard.general.string = currentPhoneNumber
-                        }
-                        Button("Cancel", role: .cancel) { }
-                    }
-=======
->>>>>>> 6133b17 (Revert "use confirmation dialog")
-                Text(issue.markdownIssueScript)
->>>>>>> 4298a5e (use confirmation dialog)
                     .padding(.bottom)
+                
                 if remainingContacts.count > 1 {
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
                         OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
