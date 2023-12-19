@@ -110,18 +110,18 @@ extension Contact {
 func AreaToNiceString(area: String) -> String {
     switch area {
     case "US House", "House":
-        return "House Rep";
+        return R.string.localizable.groupingUsHouse()
     case "US Senate", "Senate":
-        return "Senators";
+        return R.string.localizable.groupingUsSenate()
     // state legislatures call themselves different things by state, so let's use a generic term for all of them
     case "StateLower", "StateUpper":
-        return "State Reps";
+        return R.string.localizable.groupingStateRep()
     case "Governor":
-        return "Governor";
+        return R.string.localizable.groupingGovernor()
     case "AttorneyGeneral":
-        return "Attorney General";
+        return R.string.localizable.groupingAttorneyGeneral()
     case "SecretaryOfState":
-        return "Secretary of State";
+        return R.string.localizable.groupingSecretaryOfState()
     default:
         return area
     }

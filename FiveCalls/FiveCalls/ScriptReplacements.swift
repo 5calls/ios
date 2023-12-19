@@ -18,44 +18,35 @@ struct ScriptReplacements {
     }
 
     static func replacingContact(script: String, contact: Contact) -> String {
-        let pattern = #"\[REP\/SEN NAME\]|\[SENATOR\/REP NAME\]"#
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return script
-        }
-
-        var template = "";
-        switch contact.area {
-        case "US House", "House":
-            template = "Rep.";
-        case "US Senate", "Senate":
-            template = "Senator";
-        case "StateLower", "StateUpper":
-            template = "Legislator";
-        case "Governor":
-            template = "Governor";
-        case "AttorneyGeneral":
-            template = "Attorney General";
-        case "SecretaryOfState":
-            template = "Secretary of State";
-        default:
-            // nothing, append the name on the empty template
-            break
-        }
-        template = template + " " + contact.name
-
-        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
-        let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
-        return scriptWithContactName
+        let pattern = /\[REP\/SEN NAME\]|\[SENATOR\/REP NAME\]/
+        let template = contact.title.map { $0 + " " + contact.name } ?? contact.name
+        return script.replacing(Regex(pattern), with: template)
     }
     
     static func replacingLocation(script: String, location: NewUserLocation) -> String {
-        let pattern = #"\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]"#
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return script
-        }
+        let pattern = /\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]/
+        return script.replacing(Regex(pattern), with: location.locationDisplay)
+    }
+}
 
-        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
-        let scriptWithLocation = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: location.locationDisplay)
-        return scriptWithLocation
+extension Contact {
+    var title: String? {
+        switch self.area {
+        case "US House", "House":
+            return R.string.localizable.titleUsHouse()
+        case "US Senate", "Senate":
+            return R.string.localizable.titleUsSenate()
+        case "StateLower", "StateUpper":
+            return R.string.localizable.titleStateRep()
+        case "Governor":
+            return R.string.localizable.titleGovernor()
+        case "AttorneyGeneral":
+            return R.string.localizable.titleAttorneyGeneral()
+        case "SecretaryOfState":
+            return R.string.localizable.titleSecretaryOfState()
+        default:
+            // return nothing for unknown
+            return nil
+        }
     }
 }
