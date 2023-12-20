@@ -38,4 +38,13 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello, my name is a constituent from San Francisco"
         XCTAssertEqual(replacedScript, expectedScript)
     }
+    
+    func testUnknownAreaContactReplacement() throws {
+        let script = "Hello [REP/SEN NAME], my name is a constituent"
+
+        let replacedScript = ScriptReplacements.replacingContact(script: script, contact: Contact.unknownMayorPreviewContact)
+
+        let expectedScript = "Hello Mayor McMayorface, my name is a constituent"
+        XCTAssertEqual(replacedScript, expectedScript)
+    }
 }
