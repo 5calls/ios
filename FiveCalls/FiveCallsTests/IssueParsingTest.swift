@@ -25,7 +25,7 @@ final class IssueParsingTest: XCTestCase {
         let fetchIssues = FetchIssuesOperation(config: config)
         fetchIssues.completionBlock = {
             guard let issues = fetchIssues.issuesList else { return XCTFail("no issues present") }
-            XCTAssert(issues.count == 4, "found \(issues.count) issues, expected 4")
+            XCTAssert(issues.count == 60, "found \(issues.count) issues, expected 60")
             exp.fulfill()
         }
         OperationQueue.main.addOperation(fetchIssues)
