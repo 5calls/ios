@@ -16,12 +16,12 @@ struct Dashboard: View {
 
     @State var showLocationSheet = false
     @State var showAllIssues = false
-        
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 MenuView()
-                
+
                 LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                     .padding(.bottom, 10)
                     .onTapGesture {
@@ -34,30 +34,30 @@ struct Dashboard: View {
                             .padding(.top, 40)
                         Spacer()
                     }
-                
+
                 Image(.fivecallsStars)
                     .accessibilityHidden(true)
             }
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
-            
+
             Text(R.string.localizable.whatsImportantTitle())
                 .font(.system(size: 20))
                 .fontWeight(.semibold)
                 .padding(.horizontal, 10)
                 .accessibilityAddTraits(.isHeader)
-            
+
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
         }
         .navigationBarHidden(true)
         .onAppear() {
             AnalyticsManager.shared.trackPageview(path: "/")
-            
+
             // TODO: refresh if issues are old too?
             if store.state.issues.isEmpty {
                 store.dispatch(action: .FetchIssues)
             }
-            
+
             if let location = store.state.location, store.state.contacts.isEmpty {
                 store.dispatch(action: .FetchContacts(location))
             }
@@ -94,7 +94,7 @@ struct Dashboard_Previews: PreviewProvider {
     }()
 
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
-    
+
     static var previews: some View {
         Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
     }
@@ -142,7 +142,7 @@ struct IssuesList: View {
     @ObservedObject var store: Store
     @Binding var selectedIssue: Issue?
     @Binding var showAllIssues: Bool
-    
+
     var allIssues: [Issue] {
         if showAllIssues {
             return store.state.issues
@@ -150,14 +150,14 @@ struct IssuesList: View {
             return store.state.issues.filter({ $0.active })
         }
     }
-    
+
     private var categorizedIssues: [CategorizedIssuesViewModel] {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
         if !showAllIssues {
             // if we're showing the default list, make fake categories to preserve the json order. The category names don't matter because we don't show them on the default list
             return allIssues.map({ CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) })
         }
-        
+
         for issue in allIssues {
             for category in issue.categories {
                 if let categorized = categoryViewModels.first(where: { $0.category == category }) {

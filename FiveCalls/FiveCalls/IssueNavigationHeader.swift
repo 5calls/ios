@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct IssueNavigationHeader: View {   
+struct IssueNavigationHeader: View {
     @EnvironmentObject var store: Store
-    
+
     let issue: Issue
 
     var body: some View {
