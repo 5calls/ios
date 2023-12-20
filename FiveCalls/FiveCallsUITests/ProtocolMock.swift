@@ -16,6 +16,7 @@ class ProtocolMock: URLProtocol {
         
         testData = [
             URL(string: "https://api.5calls.org/v1/issues")!: try! Data(contentsOf: URL(fileURLWithPath: bundle.path(forResource: "GET-v1-issues", ofType: "json")!)),
+            URL(string: "https://api.5calls.org/v1/reps")!: try! Data(contentsOf: URL(fileURLWithPath: bundle.path(forResource: "GET-v1-reps", ofType: "json")!))
         ]
 
         super.init(request: request, cachedResponse: cachedResponse, client: client)
