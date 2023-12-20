@@ -24,11 +24,7 @@ class AppState: ObservableObject, ReduxState {
         }
     }
     @Published var donateOn = false
-    @Published var issues: [Issue] = [] {
-        didSet {
-            issueLoadedCallback?()
-        }
-    }
+    @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
     @Published var location: NewUserLocation? {
         didSet {
@@ -48,7 +44,7 @@ class AppState: ObservableObject, ReduxState {
     // TODO: display this error on the dashboard (and location sheet?)
     @Published var contactsLoadingError: Error? = nil
     
-    var issueLoadedCallback: (() -> Void)?
+    @Published var issueRouter: IssueRouter = IssueRouter()
 
     init() {
         // load user location cache

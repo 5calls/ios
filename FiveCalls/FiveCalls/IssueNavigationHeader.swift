@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-struct IssueNavigationHeader: View {
-    @EnvironmentObject var router: IssueRouter
+struct IssueNavigationHeader: View {   
+    @EnvironmentObject var store: Store
     
     let issue: Issue
 
     var body: some View {
         HStack(alignment: .top) {
             Button {
-                router.back()
+                store.dispatch(action: .GoBack)
             } label: {
                 HStack(spacing: 4) {
                     Image(systemName: "chevron.backward.circle")

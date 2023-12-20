@@ -12,7 +12,6 @@ import OneSignal
 
 struct IssueDone: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: IssueRouter
     @Environment(\.openURL) private var openURL
     
     @State var showNotificationAlert = false
@@ -76,7 +75,7 @@ struct IssueDone: View {
                     }, placeholder: { EmptyView() })
                 }.padding(.bottom, 16)
                 Button(action: {
-                    router.backToRoot()
+                    store.dispatch(action: .GoToRoot)
                 }, label: {
                     PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
                 })

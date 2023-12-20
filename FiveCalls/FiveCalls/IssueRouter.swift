@@ -8,20 +8,7 @@
 
 import SwiftUI
 
-class IssueRouter: ObservableObject {
-    @Published var path = NavigationPath()
-    @Published var selectedIssue: Issue?
-    
-    func back() {
-        if path.isEmpty {
-            selectedIssue = nil
-        } else {
-            path.removeLast()
-        }
-    }
-    
-    func backToRoot() {
-        path = NavigationPath()
-        selectedIssue = nil
-    }
+class IssueRouter {
+    var path = NavigationPath()
+    var selectedIssue: Issue?
 }

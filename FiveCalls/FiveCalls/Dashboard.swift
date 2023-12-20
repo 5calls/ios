@@ -10,11 +10,13 @@ import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
+
+    @State var selectedIssueUrl: URL?
     @Binding var selectedIssue: Issue?
 
     @State var showLocationSheet = false
     @State var showAllIssues = false
-    
+        
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -44,7 +46,7 @@ struct Dashboard: View {
                 .fontWeight(.semibold)
                 .padding(.horizontal, 10)
                 .accessibilityAddTraits(.isHeader)
-
+            
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
         }
         .navigationBarHidden(true)
@@ -62,20 +64,15 @@ struct Dashboard: View {
         }
         .onOpenURL(perform: { url in
             if store.state.issues.isEmpty {
-                store.state.issueLoadedCallback = {
-                    selectIssue(fromURL: url)
-                    store.state.issueLoadedCallback = nil
-                }
+                selectedIssueUrl = url
             } else {
-                selectIssue(fromURL: url)
+                selectedIssue = store.state.issues.first(where: { $0.slug == url.lastPathComponent })
             }
         })
-    }
-    
-    func selectIssue(fromURL url: URL) {
-        store.state.issues.forEach { issue in
-            if issue.slug == url.lastPathComponent {
-                selectedIssue = issue
+        .onChange(of: store.state.issues) { issues in
+            if let selectedIssueUrl {
+                selectedIssue = issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
+                self.selectedIssueUrl = nil
             }
         }
     }
