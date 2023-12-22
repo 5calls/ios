@@ -21,6 +21,14 @@ class FetchIssuesOperation : BaseOperation {
         return URLSession(configuration: self.sessionConfiguration)
     }()
     
+    init(config: URLSessionConfiguration? = nil) {
+        super.init()
+        
+        if let config {
+            self.session = URLSession(configuration: config)
+        }
+    }
+    
     func buildIssuesURL() -> URL {
         return URL(string: "https://api.5calls.org/v1/issues?includeHidden=true")!
     }
@@ -37,7 +45,7 @@ class FetchIssuesOperation : BaseOperation {
             
             self.finish()
         }
-        
+        print("Fetching issues...\(url)")
         task.resume()
     }
     

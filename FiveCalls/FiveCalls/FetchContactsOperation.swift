@@ -26,12 +26,18 @@ class FetchContactsOperation : BaseOperation {
         self.location = location
     }
 
-    init(location: NewUserLocation) {
+    init(location: NewUserLocation, config: URLSessionConfiguration? = nil) {
         let loc = UserLocation()
         loc.locationType = UserLocation.LocationType(rawValue: location.locationType.rawValue)
         loc.locationValue = location.locationValue
         loc.locationDisplay = location.locationDisplay
         self.location = loc
+        
+        super.init()
+        
+        if let config {
+            self.session = URLSession(configuration: config)
+        }
     }
     
     private func buildURL() -> URL? {
