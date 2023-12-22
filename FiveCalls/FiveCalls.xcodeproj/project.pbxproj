@@ -43,7 +43,6 @@
 		B50280781E49837000749ED7 /* about-whycall.html in Resources */ = {isa = PBXBuildFile; fileRef = B50280771E49837000749ED7 /* about-whycall.html */; };
 		B502807C1E498B9B00749ED7 /* ImpactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */; };
 		B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512506921E6F762007D32DF /* FetchContactsOperation.swift */; };
-		B512506C21E6F91C007D32DF /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512506B21E6F91C007D32DF /* ContactsManager.swift */; };
 		B512506E21E701DE007D32DF /* ContactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512506D21E701DE007D32DF /* ContactList.swift */; };
 		B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52805141E3FA94D00EE832A /* AppDelegate.swift */; };
 		B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B528051B1E3FA94D00EE832A /* Assets.xcassets */; };
@@ -195,7 +194,6 @@
 		B50280771E49837000749ED7 /* about-whycall.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "about-whycall.html"; sourceTree = "<group>"; };
 		B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactViewModel.swift; sourceTree = "<group>"; };
 		B512506921E6F762007D32DF /* FetchContactsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchContactsOperation.swift; sourceTree = "<group>"; };
-		B512506B21E6F91C007D32DF /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		B512506D21E701DE007D32DF /* ContactList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactList.swift; sourceTree = "<group>"; };
 		B52805111E3FA94D00EE832A /* FiveCalls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiveCalls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52805141E3FA94D00EE832A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -439,7 +437,6 @@
 				AACC2AEA1E732775004B2F2B /* StreakCounter.swift */,
 				A55647611F909C6F002737D4 /* Category.swift */,
 				A02018D8204E761A006078D1 /* UserStats.swift */,
-				B512506B21E6F91C007D32DF /* ContactsManager.swift */,
 				B512506D21E701DE007D32DF /* ContactList.swift */,
 				D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */,
 				D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */,
@@ -881,7 +878,6 @@
 				4F7D3D992AE81C9C00CB6572 /* PopoverTip.swift in Sources */,
 				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
 				D0453EBF2A6F8E7000E19A81 /* AppState.swift in Sources */,
-				B512506C21E6F91C007D32DF /* ContactsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,7 +27,7 @@ func appMiddleware() -> Middleware<AppState> {
             AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issues/\(issue.slug)/")
             reportOutcome(log: contactLog, outcome: outcome)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, .SetFetchingContacts, .SetIssues,
-                .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError:
+                .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError, .GoBack, .GoToRoot, .GoToNext:
             // no middleware actions for these, including for completeness
             break
         }

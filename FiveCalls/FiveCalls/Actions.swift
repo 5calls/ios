@@ -23,4 +23,7 @@ enum Action {
     case SetLoadingStatsError(Error)
     case SetLoadingIssuesError(Error)
     case SetLoadingContactsError(Error)
+    case GoBack
+    case GoToRoot
+    case GoToNext(Issue, [Contact])
 }
