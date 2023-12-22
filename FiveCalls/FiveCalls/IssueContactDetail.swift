@@ -92,20 +92,16 @@ struct IssueContactDetail: View {
                         if currentContact.fieldOffices.count > 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
-                                    Section {
-                                        Text(office.city)
-                                    }
-                                    
                                     ControlGroup {
                                         Button {
                                             self.call(phoneNumber: office.phone)
                                         } label: {
                                             HStack {
                                                 Image(systemName: "phone")
-                                                Text(office.phone)
+                                                Text(office.city)
                                             }
                                         }
-                                        .accessibilityLabel(R.string.localizable.a11yCallPhoneNumber(office.phone))
+                                        .accessibilityLabel(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
                                         .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
                                         
                                         Button {
@@ -129,7 +125,7 @@ struct IssueContactDetail: View {
                                                 Text(R.string.localizable.copy())
                                             }
                                         }
-                                        .accessibilityLabel(R.string.localizable.a11yCopyPhoneNumber(office.phone))
+                                        .accessibilityLabel(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
                                         .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
                                     }
                                 }
