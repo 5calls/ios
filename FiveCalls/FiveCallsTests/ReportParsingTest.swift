@@ -26,12 +26,16 @@ final class ReportParsingTest: XCTestCase {
         
         let getReport = FetchStatsOperation(config: config)
         getReport.completionBlock = {
-            XCTAssert(getReport.numberOfCalls == 3110741, "number of calls was \(getReport.numberOfCalls ?? 0), expected 3110741")
-            XCTAssert(getReport.numberOfIssueCalls == 98673, "number of issue calls was \(getReport.numberOfIssueCalls ?? 0), expected 98673")
-            XCTAssert(getReport.donateOn == true, "expected donateOn to be true")
+            let totalCallExpected = 3110741
+            XCTAssert(getReport.numberOfCalls == totalCallExpected, "number of calls was \(getReport.numberOfCalls ?? 0), expected \(3110741)")
+            let issueCallExpected = 98673
+            XCTAssert(getReport.numberOfIssueCalls == issueCallExpected, "number of issue calls was \(getReport.numberOfIssueCalls ?? 0), expected \(issueCallExpected)")
+            let donateOnExpected = true
+            XCTAssert(getReport.donateOn == donateOnExpected, "expected donateOn to be \(donateOnExpected)")
             exp.fulfill()
         }
         OperationQueue.main.addOperation(getReport)
+        // TODO: as part of an operations refactor, await this return so this test finishes ~immediately
         waitForExpectations(timeout: 2)
     }
 }

@@ -26,12 +26,16 @@ final class ContactParsingTest: XCTestCase {
         let fetchContacts = FetchContactsOperation(location: NewUserLocation(address: "3400 24th St, SF, CA"), config: config)
         fetchContacts.completionBlock = {
             guard let contacts = fetchContacts.contacts else { return XCTFail("no contacts present") }
-            XCTAssert(contacts.count == 8, "found \(contacts.count) issues, expected 8")
-            XCTAssert(contacts[0].name == "Gavin Newsom", "first contact was \(contacts[0].name) not Gavin Newsome")
-            XCTAssert(contacts[3].fieldOffices[0].city == "Fresno", "field office was \(contacts[3].fieldOffices[0].city), not Fresno")
+            let contactCountExpected = 8
+            XCTAssert(contacts.count == contactCountExpected, "found \(contacts.count) issues, expected \(contactCountExpected)")
+            let contactNameExpected = "Gavin Newsom"
+            XCTAssert(contacts[0].name == contactNameExpected, "first contact was \(contacts[0].name) not \(contactNameExpected)")
+            let fieldOfficeExpected = "Fresno"
+            XCTAssert(contacts[3].fieldOffices[0].city == fieldOfficeExpected, "field office was \(contacts[3].fieldOffices[0].city), not \(fieldOfficeExpected)")
             exp.fulfill()
         }
         OperationQueue.main.addOperation(fetchContacts)
+        // TODO: as part of an operations refactor, await this return so this test finishes ~immediately
         waitForExpectations(timeout: 2)
     }
 }

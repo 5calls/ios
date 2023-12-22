@@ -25,12 +25,16 @@ final class IssueParsingTest: XCTestCase {
         let fetchIssues = FetchIssuesOperation(config: config)
         fetchIssues.completionBlock = {
             guard let issues = fetchIssues.issuesList else { return XCTFail("no issues present") }
-            XCTAssert(issues.count == 60, "found \(issues.count) issues, expected 60")
-            XCTAssert(issues[0].id == 664, "first issue was not id 664 as expected")
-            XCTAssert(issues[11].createdAt.timeIntervalSince1970 == 1565582054, "12th issue did not have created date as expected")
+            let issueCountExpected = 60
+            XCTAssert(issues.count == issueCountExpected, "found \(issues.count) issues, expected \(issueCountExpected)")
+            let issueIDExpected = 664
+            XCTAssert(issues[0].id == issueIDExpected, "first issue was not id \(issueIDExpected) as expected")
+            let issueCreatedAtExpected: Double = 1565582054
+            XCTAssert(issues[11].createdAt.timeIntervalSince1970 == issueCreatedAtExpected, "12th issue did not have created date as expected")
             exp.fulfill()
         }
         OperationQueue.main.addOperation(fetchIssues)
+        // TODO: as part of an operations refactor, await this return so this test finishes ~immediately
         waitForExpectations(timeout: 2)
     }
 }
