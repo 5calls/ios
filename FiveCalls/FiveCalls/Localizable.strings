@@ -96,8 +96,8 @@
 "a11y-phone-call-hint"                = "Double tap to call";
 "a11y-phone-copy-hint"                = "Triple tap to copy";
 "a11y-copied-phone-number"            = "Copied phone number";
-"a11y-call-phone-number"              = "Call %@";
-"a11y-copy-phone-number"              = "Copy %@";
+"a11y-office-call-phone-number"       = "Call %@ %@";
+"a11y-office-copy-phone-number"       = "Copy %@ %@";
 "copied-phone"                        = "Copied\n%@!";
 "copy"                                = "Copy";
 
