@@ -2,7 +2,7 @@
 
 This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 
-[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5897bfe9e9a832010023be69&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5897bfe9e9a832010023be69/build/latest?branch=master)
+[![Build Status](https://app.bitrise.io/app/d786d837d94f6410/status.svg?token=BTL78uVY_9iE4XCx-iTekQ&branch=main)](https://app.bitrise.io/app/d786d837d94f6410)
 
 ## Requirements
 
@@ -60,12 +60,4 @@ This project is released open source under the MIT License. See [LICENSE](https:
 
 ## Contributors
 
-- [Ben Scheirman](https://github.com/subdigital)
-- [Chris Brandow](https://github.com/chrisbrandow)
-- [Patrick McCarron](https://github.com/mccarron)
-- [BJ Titus](https://github.com/bjtitus)
-- [All Contributors](https://github.com/5calls/ios/graphs/contributors)
-
-## Acknowledgments
-
-Thanks to [Nick O'Neill](https://github.com/nickoneill) for organizing the 5calls project.
+See the complete list of contributors here: https://github.com/5calls/ios/graphs/contributors
