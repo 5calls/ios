@@ -60,7 +60,6 @@ class FiveCallsUITests: XCTestCase {
         let bundle = Bundle(for: FiveCallsUITests.self)
         application.launchEnvironment["GET:/v1/reps"] = bundle.path(forResource: "GET-v1-reps", ofType: "json")
         application.launchEnvironment["GET:/v1/issues"] = bundle.path(forResource: "GET-v1-issues", ofType: "json")
-        application.launchEnvironment["GET:/v1/report"] = bundle.path(forResource: "GET-report", ofType: "json")
-        application.launchEnvironment["POST:/report"] = bundle.path(forResource: "POST-report", ofType: "json")
+        application.launchEnvironment["GET:/v1/report"] = bundle.path(forResource: "GET-v1-report", ofType: "json")
     }
 }

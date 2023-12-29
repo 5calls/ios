@@ -9,7 +9,25 @@
 import Foundation
 
 class BaseOperation : Operation {
-    
+    var session: URLSession = URLSession.shared
+        
+    override init() {
+        super.init()
+
+        // ideally we could avoid the app code knowing about testing at all,
+        // and that would be possible if we were only unit testing and can
+        // inject a mock session into our operations, but for UI testing we
+        // also want to mock data and you can't reach into the app module to
+        // configure anything so we're stuck with configuring via
+        // appEnvironment for loading test data which you have to handle in
+        // your actual app module
+        if isUITesting() {
+            let config = URLSessionConfiguration.ephemeral
+            config.protocolClasses = [ProtocolMock.self]
+            self.session = URLSession(configuration: config)
+        }
+    }
+
     override var isAsynchronous: Bool {
         return true
     }

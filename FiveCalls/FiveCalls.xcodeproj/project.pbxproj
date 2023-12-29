@@ -87,11 +87,10 @@
 		D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0480B202A4D4B0400502818 /* PreviewIssues.swift */; };
 		D04A11912AD851AB00989AD6 /* OutcomesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04A11902AD851AB00989AD6 /* OutcomesView.swift */; };
 		D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D05745842A53E34300A8534A /* PlausibleSwift */; };
-		D05EDAF42B3280D700FD94BD /* ProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */; };
 		D05EDAF62B3282F500FD94BD /* IssueParsingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */; };
-		D05EDB082B32899600FD94BD /* ProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */; };
 		D05EDB0A2B328A4A00FD94BD /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D07829772A7B3795001EE5DB /* PreviewContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07829762A7B3795001EE5DB /* PreviewContacts.swift */; };
+		D07D7C242B3F48A1004721B3 /* ProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */; };
 		D082961C2A7BFE04005B002A /* Numbered.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082961B2A7BFE04005B002A /* Numbered.swift */; };
 		D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */; };
 		D09AA8032B04974C0012FF45 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AA8022B04974C0012FF45 /* StatsViewModel.swift */; };
@@ -415,6 +414,7 @@
 				B5E762641E40480300D63D62 /* UserDefaultsKey.swift */,
 				2732D7C61E4300F300F149EF /* NotificationNames.swift */,
 				D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */,
+				D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */,
 				B528051B1E3FA94D00EE832A /* Assets.xcassets */,
 				B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */,
 				B52805201E3FA94D00EE832A /* Info.plist */,
@@ -430,7 +430,6 @@
 				B5A70A621E4C02DD0031DF58 /* SnapshotHelper.swift */,
 				B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */,
 				B5A70A5C1E4C01A00031DF58 /* Info.plist */,
-				D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */,
 			);
 			path = FiveCallsUITests;
 			sourceTree = "<group>";
@@ -817,7 +816,6 @@
 				D02FFCE2245F5733003ADA2B /* ScriptCustomizationTests.swift in Sources */,
 				B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */,
 				D05EDAF62B3282F500FD94BD /* IssueParsingTest.swift in Sources */,
-				D05EDB082B32899600FD94BD /* ProtocolMock.swift in Sources */,
 				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
 				D0E042662B47D06700D22647 /* IssueTests.swift in Sources */,
@@ -862,6 +860,7 @@
 				B5E762691E40D63800D63D62 /* Issue.swift in Sources */,
 				B5E762711E40D8DD00D63D62 /* JSONSerializable.swift in Sources */,
 				A0D474B4202A22B90012BC94 /* FetchUserStatsOperation.swift in Sources */,
+				D07D7C242B3F48A1004721B3 /* ProtocolMock.swift in Sources */,
 				D0312DD82A84A27F00F58F6B /* NewUserLocation.swift in Sources */,
 				B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */,
 				B5E762651E40480300D63D62 /* UserDefaultsKey.swift in Sources */,
@@ -906,7 +905,6 @@
 			files = (
 				B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */,
 				B5A70A631E4C02DD0031DF58 /* SnapshotHelper.swift in Sources */,
-				D05EDAF42B3280D700FD94BD /* ProtocolMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
