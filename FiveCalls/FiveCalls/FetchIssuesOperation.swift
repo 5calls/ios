@@ -29,13 +29,14 @@ class FetchIssuesOperation : BaseOperation {
         }
     }
     
-    func buildIssuesURL() -> URL {
+    var url: URL {
         return URL(string: "https://api.5calls.org/v1/issues?includeHidden=true")!
     }
 
     override func execute() {
-        let url = buildIssuesURL()
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let request = buildRequest(forURL: url)
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let e = error {
                 print("Error fetching issues: \(e.localizedDescription)")
                 self.error = e
@@ -45,7 +46,7 @@ class FetchIssuesOperation : BaseOperation {
             
             self.finish()
         }
-        print("Fetching issues...\(url)")
+
         task.resume()
     }
     

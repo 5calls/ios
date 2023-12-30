@@ -40,20 +40,17 @@ class FetchContactsOperation : BaseOperation {
         }
     }
     
-    private func buildURL() -> URL? {
+    var url: URL {
         var components = URLComponents(string: "https://api.5calls.org/v1/reps")
         let locationQueryParam = URLQueryItem(name: "location", value: location.locationValue ?? "")
         components?.queryItems = [locationQueryParam]
-        return components?.url
+        return components!.url!
     }
     
     override func execute() {
-        guard let url = buildURL() else {
-            finish()
-            return
-        }
+        let request = buildRequest(forURL: url)
         
-        let task = session.dataTask(with: url) { data, response, error in
+        let task = session.dataTask(with: request) { data, response, error in
             if let e = error {
                self.error = e
             } else {
@@ -61,7 +58,6 @@ class FetchContactsOperation : BaseOperation {
             }
             self.finish()
         }
-        print("Fetching reps...\(url)")
         task.resume()
     }
     
