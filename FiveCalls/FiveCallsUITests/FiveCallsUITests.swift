@@ -29,40 +29,26 @@ class FiveCallsUITests: XCTestCase {
     }
     
     @MainActor func testTakeScreenshots() {
-//        snapshot("0-welcome")
-        
         app.buttons["Get Started"].tap()
         
         // set location
-//        app.buttons["Set your location"].tap()
-//        app.textFields["locationField"].tap()
-//        app.textFields["locationField"].typeText("94110\r")
+        app.buttons["Set your location"].tap()
+        app.textFields["locationField"].tap()
+        app.textFields["locationField"].typeText("94110\r")
         
         // select first issue
         app.collectionViews.cells.element(boundBy: 0).tap()
-
         snapshot("1-issue-detail")
 
-        // nav to second contact that has more phone numbers
         app.buttons["See your script"].tap()
-        app.buttons["Skip"].tap()
+        snapshot("2-script")
         
-//        app.buttons["Set Location"].tap()
-//        app.textFields["Zip or Address"].tap()
-//        app.typeText("77429")
-//        app.buttons["Submit"].tap()
-//
-//        snapshot("2-issues")
-//        
-//        app.tables.cells.staticTexts["Urge Congress to Pass Legislation to Prevent Future Shutdowns"].tap()
-//        snapshot("3-issue-detail")
-//        let issueTable = app.tables.element(boundBy: 0)
-//        issueTable.swipeUp()
-//        issueTable.swipeUp()
-//        issueTable.swipeUp()
-//        
-//        app.cells.staticTexts["Nancy Pelosi"].tap()
-//        snapshot("4-call-script")
+        // nav to second contact that has more phone numbers
+        app.buttons["Skip"].tap()
+        // open the more phones menu
+        app.buttons["localNumbers"].tap()
+        
+        snapshot("3-local-numbers")
     }
     
     private func loadJSONFixtures(application: XCUIApplication) {
