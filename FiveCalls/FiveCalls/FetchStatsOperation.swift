@@ -29,15 +29,21 @@ class FetchStatsOperation: BaseOperation {
             self.session = URLSession(configuration: config)
         }
     }
-
-    override func execute() {
+    
+    var url: URL {
         var urlComp = URLComponents(url: URL(string: "https://api.5calls.org/v1/report")!, resolvingAgainstBaseURL: false)!
         if let issueID = self.issueID {
             let issueIDQuery = URLQueryItem(name: "issueID", value: issueID)
             urlComp.queryItems = [issueIDQuery]
         }
         
-        let task = session.dataTask(with: urlComp.url!) { (data, response, error) in
+        return urlComp.url!
+    }
+
+    override func execute() {
+        let request = buildRequest(forURL: url)
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let e = error {
                 self.error = e
             } else {
