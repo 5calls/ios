@@ -26,7 +26,6 @@ struct FiveCallsApp: App {
                 .onAppear {
                     if !hasShownWelcomeScreen {
                         showWelcomeScreen = true
-                        hasShownWelcomeScreen = true
                     }
                 }
         }

@@ -101,6 +101,8 @@ struct Dashboard_Previews: PreviewProvider {
 }
 
 struct MenuView: View {
+    @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
+
     @State var showRemindersSheet = false
     @State var showYourImpact = false
     @State var showAboutSheet = false
@@ -124,6 +126,7 @@ struct MenuView: View {
                 .accessibilityLabel(Text(R.string.localizable.menuName))
         }
         .popoverTipIfApplicable(
+            hasShownWelcomeScreen: hasShownWelcomeScreen,
             title: Text(R.string.localizable.menuTipTitle()),
             message: Text(R.string.localizable.menuTipMessage()))
         .sheet(isPresented: $showRemindersSheet) {
