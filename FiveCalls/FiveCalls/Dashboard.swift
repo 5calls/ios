@@ -20,7 +20,7 @@ struct Dashboard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                MenuView()
+                MenuView(showingWelcomeScreen: store.state.showWelcomeScreen)
 
                 LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                     .padding(.bottom, 10)
@@ -104,6 +104,7 @@ struct MenuView: View {
     @State var showRemindersSheet = false
     @State var showYourImpact = false
     @State var showAboutSheet = false
+    var showingWelcomeScreen: Bool
 
     var body: some View {
         Menu {
@@ -124,6 +125,7 @@ struct MenuView: View {
                 .accessibilityLabel(Text(R.string.localizable.menuName))
         }
         .popoverTipIfApplicable(
+            showingWelcomeScreen: showingWelcomeScreen,
             title: Text(R.string.localizable.menuTipTitle()),
             message: Text(R.string.localizable.menuTipMessage()))
         .sheet(isPresented: $showRemindersSheet) {

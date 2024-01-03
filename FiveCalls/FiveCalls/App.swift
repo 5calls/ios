@@ -10,23 +10,21 @@ import SwiftUI
 
 @main
 struct FiveCallsApp: App {
+    @StateObject var store: Store = Store(state: AppState(), middlewares: [appMiddleware()])
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
             
-    let store = Store(state: AppState(), middlewares: [appMiddleware()])
     @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
-    @State var showWelcomeScreen = false
 
     var body: some Scene {
         WindowGroup {
             IssueSplitView()
                 .environmentObject(store)
-                .sheet(isPresented: $showWelcomeScreen) {
+                .sheet(isPresented: $store.state.showWelcomeScreen) {
                     Welcome().environmentObject(store)
                 }
                 .onAppear {
                     if !hasShownWelcomeScreen {
-                        showWelcomeScreen = true
-                        hasShownWelcomeScreen = true
+                        store.dispatch(action: .ShowWelcomeScreen)
                     }
                 }
         }
