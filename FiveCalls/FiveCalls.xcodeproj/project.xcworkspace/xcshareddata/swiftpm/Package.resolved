@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "acknowlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vtourraine/AcknowList",
+      "state" : {
+        "revision" : "7cf70f24c97e86f1321f25ec24d128c1542eb7ef",
+        "version" : "3.0.1"
+      }
+    },
+    {
       "identity" : "onesignal-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OneSignal/OneSignal-iOS-SDK",

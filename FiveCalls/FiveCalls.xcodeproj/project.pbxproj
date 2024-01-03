@@ -10,6 +10,9 @@
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
+		4F07B2382B45E5ED00C575DF /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 4F07B2372B45E5ED00C575DF /* AcknowList */; };
+		4F07B23B2B45F05C00C575DF /* AcknowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F07B23A2B45F05C00C575DF /* AcknowListView.swift */; };
+		4F07B23E2B45F25E00C575DF /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 4F07B23D2B45F25E00C575DF /* Package.resolved */; };
 		4F11A59E2AAB956C00AF30B9 /* ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */; };
 		4F2C1CA22AD5C1AC000AB39E /* YourImpact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */; };
 		4F4868B92AC222B300E1733A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868B82AC222B300E1733A /* WebView.swift */; };
@@ -156,6 +159,8 @@
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		4F07B23A2B45F05C00C575DF /* AcknowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowListView.swift; sourceTree = "<group>"; };
+		4F07B23D2B45F25E00C575DF /* Package.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Package.resolved; path = FiveCalls.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = "<group>"; };
 		4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleReminders.swift; sourceTree = "<group>"; };
 		4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourImpact.swift; sourceTree = "<group>"; };
 		4F4868B82AC222B300E1733A /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -277,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC7D2DC2456462200D96A5B /* WebKit.framework in Frameworks */,
+				4F07B2382B45E5ED00C575DF /* AcknowList in Frameworks */,
 				E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */,
 				D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
@@ -361,6 +367,7 @@
 		B52805081E3FA94D00EE832A = {
 			isa = PBXGroup;
 			children = (
+				4F07B23D2B45F25E00C575DF /* Package.resolved */,
 				D0480B222A538E1000502818 /* Packages */,
 				B52805131E3FA94D00EE832A /* FiveCalls */,
 				B502805C1E478BC200749ED7 /* FiveCallsTests */,
@@ -491,6 +498,7 @@
 				4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */,
 				4F504DF72AE46A1900F49EF3 /* Welcome.swift */,
 				4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */,
+				4F07B23A2B45F05C00C575DF /* AcknowListView.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -624,6 +632,7 @@
 				D0CFF332284A835F0082693E /* OneSignal */,
 				D05745842A53E34300A8534A /* PlausibleSwift */,
 				E887304D2AF9E1B60053837B /* RswiftLibrary */,
+				4F07B2372B45E5ED00C575DF /* AcknowList */,
 			);
 			productName = FiveCalls;
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
@@ -734,6 +743,7 @@
 				D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 				D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */,
 				E887304C2AF9E1B60053837B /* XCRemoteSwiftPackageReference "R" */,
+				4F07B2362B45E5ED00C575DF /* XCRemoteSwiftPackageReference "AcknowList" */,
 			);
 			productRefGroup = B52805121E3FA94D00EE832A /* Products */;
 			projectDirPath = "";
@@ -768,6 +778,7 @@
 				B50280761E497FB700749ED7 /* about-whoweare.html in Resources */,
 				791C9FD41E4E611C0074A8B7 /* Localizable.strings in Resources */,
 				B50280741E497C4A00749ED7 /* styles.css in Resources */,
+				4F07B23E2B45F25E00C575DF /* Package.resolved in Resources */,
 				ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -876,6 +887,7 @@
 				D03A20582AC53C6C008BBA6E /* Store.swift in Sources */,
 				D0D670A12B29854500BEDFBF /* ScriptReplacements.swift in Sources */,
 				4F7D3D992AE81C9C00CB6572 /* PopoverTip.swift in Sources */,
+				4F07B23B2B45F05C00C575DF /* AcknowListView.swift in Sources */,
 				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
 				D0453EBF2A6F8E7000E19A81 /* AppState.swift in Sources */,
 			);
@@ -1323,6 +1335,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4F07B2362B45E5ED00C575DF /* XCRemoteSwiftPackageReference "AcknowList" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vtourraine/AcknowList";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
 		D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nickoneill/PlausibleSwift";
@@ -1350,6 +1370,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4F07B2372B45E5ED00C575DF /* AcknowList */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F07B2362B45E5ED00C575DF /* XCRemoteSwiftPackageReference "AcknowList" */;
+			productName = AcknowList;
+		};
 		D05745842A53E34300A8534A /* PlausibleSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */;

@@ -150,9 +150,10 @@
 
 // about
 "about-title" = "About";
-"about-section-header-general"        = "GENERAL";
-"about-section-header-social"         = "SOCIAL";
+"about-section-header-general"        = "General";
+"about-section-header-social"         = "Social";
 "about-section-footer-social"         = "Sharing and Rating helps others find 5 Calls.";
+"about-section-header-credits"        = "Credits";
 "about-item-why-call"                 = "Why Calling Works";
 "about-item-who-we-are"               = "Who Made 5 Calls?";
 "about-item-feedback"                 = "Feedback";
@@ -160,8 +161,10 @@
 "about-item-follow-twitter"           = "Follow on Twitter";
 "about-item-share"                    = "Share with Others";
 "about-item-rate"                     = "Please Rate 5 Calls";
+"about-item-open-source"              = "Open Source Libraries";
 "about-webview-title-why-call"        = "Why Calling Works";
 "about-webview-title-who-we-are"      = "Who Made 5 Calls";
+"about-acknowledgements-title"        = "Open Source";
 
 // your impact
 "your-impact-title"                   = "My Impact";

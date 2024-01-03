@@ -6,8 +6,8 @@
 //  Copyright © 2023 5calls. All rights reserved.
 //
 
-import SwiftUI
 import StoreKit
+import SwiftUI
 
 private let appId = "1202558609"
 private let appUrl = URL(string: "https://itunes.apple.com/us/app/myapp/id\(appId)?ls=1&mt=8")
@@ -32,8 +32,10 @@ struct AboutSheet: View {
         NavigationStack {
             List {
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemWhyCall(), navigationLinkValue: WebViewContent.whycall)
-                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(), navigationLinkValue: WebViewContent.whoweare)
+                    AboutListItem(title: R.string.localizable.aboutItemWhyCall(),
+                                  type: .webViewContent(WebViewContent.whycall))
+                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(), 
+                                  type: .webViewContent(WebViewContent.whoweare))
                     .navigationDestination(for: WebViewContent.self) { webViewContent in
                         WebView(webViewContent: webViewContent)
                             .navigationTitle(webViewContent.navigationTitle)
@@ -42,13 +44,14 @@ struct AboutSheet: View {
                             .toolbarBackground(Color.fivecallsDarkBlue)
                             .toolbarColorScheme(.dark, for: .navigationBar)
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemFeedback()) {
+                    AboutListItem(title: R.string.localizable.aboutItemFeedback(),
+                                  type: .action({
                         if EmailComposerView.canSendEmail() {
                             showEmailComposer = true
                         } else {
                             showEmailComposerAlert = true
                         }
-                    }
+                    }))
                     .sheet(isPresented: $showEmailComposer){
                         EmailComposerView() { _ in }
                     }
@@ -57,36 +60,47 @@ struct AboutSheet: View {
                               message: Text(R.string.localizable.cantSendEmailMessage()),
                               dismissButton: .default(Text(R.string.localizable.dismissTitle())))
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemShowWelcome()) {
+                    AboutListItem(title: R.string.localizable.aboutItemShowWelcome(),
+                                  type: .action({
                         showWelcome = true
-                    }
+                    }))
                     .sheet(isPresented: $showWelcome, content: {
                         Welcome()
                     })
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderGeneral())
+                    Text(R.string.localizable.aboutSectionHeaderGeneral().uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemFollowTwitter()) {
+                    AboutListItem(title: R.string.localizable.aboutItemFollowTwitter(),
+                                  type: .action({
                         followOnTwitter()
-                    }
+                    }))
                     if appUrl != nil {
-                        AboutListItem(title: R.string.localizable.aboutItemShare(), url: appUrl)
+                        AboutListItem(title: R.string.localizable.aboutItemShare(),
+                                      type: .url(appUrl!))
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemRate()) {
+                    AboutListItem(title: R.string.localizable.aboutItemRate(),
+                                  type: .action({
                         requestReview()
-                    }
+                    }))
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderSocial())
+                    Text(R.string.localizable.aboutSectionHeaderSocial().uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
                     Text(R.string.localizable.aboutSectionFooterSocial())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
+                }
+
+                Section {
+                    AboutListItem(title: R.string.localizable.aboutItemOpenSource(),
+                                  type: .acknowledgements)
+                } header: {
+                    Text(R.string.localizable.aboutSectionHeaderCredits().uppercased())
                 }
 
                 if let versionString {
