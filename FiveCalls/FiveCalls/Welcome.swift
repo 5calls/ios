@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct Welcome: View {
-    @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
-
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var store: Store
 
@@ -92,7 +90,6 @@ struct Welcome: View {
                 }
             }
             .onAppear() {
-                hasShownWelcomeScreen = true
                 if store.state.globalCallCount == 0 {
                     store.dispatch(action: .FetchStats(nil))
                 }
