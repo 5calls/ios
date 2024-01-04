@@ -6,17 +6,24 @@
 //  Copyright © 2023 5calls. All rights reserved.
 //
 
+import AcknowList
 import SwiftUI
+
+enum AboutListItemType {
+    case action(() -> Void)
+    case webViewContent(WebViewContent)
+    case url(URL)
+    case acknowledgements
+}
 
 struct AboutListItem: View {
     var title: String
-    var action: (() -> Void)?
-    var navigationLinkValue: WebViewContent?
-    var url: URL?
+    var type: AboutListItemType
 
     @ViewBuilder
     var body: some View {
-        if let action {
+        switch type {
+        case let .action(action):
             Button(action: action) {
                 HStack {
                     Text(title)
@@ -30,10 +37,10 @@ struct AboutListItem: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-        } else if let navigationLinkValue {
+        case let .webViewContent(webViewContent):
             HStack {
                 ZStack {
-                    NavigationLink("", value: navigationLinkValue)
+                    NavigationLink("", value: webViewContent)
                         .opacity(0)
                     HStack {
                         Text(title)
@@ -48,7 +55,7 @@ struct AboutListItem: View {
                     .accessibilityHidden(true)
             }
             .accessibilityAddTraits(.isButton)
-        } else if let url {
+        case let .url(url):
             ShareLink(item: url) {
                 HStack {
                     Text(title)
@@ -63,14 +70,43 @@ struct AboutListItem: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
+        case .acknowledgements:
+            HStack {
+                ZStack {
+                    NavigationLink {
+                        AcknowListView()
+                            .navigationTitle(R.string.localizable.aboutAcknowledgementsTitle())
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbarBackground(.visible)
+                            .toolbarBackground(Color.fivecallsDarkBlue)
+                            .toolbarColorScheme(.dark, for: .navigationBar)
+                    } label: {
+                        EmptyView()
+                    }
+                    .opacity(0)
+                    HStack {
+                        Text(title)
+                            .foregroundColor(.primary)
+                        Spacer()
+                    }
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .renderingMode(.template)
+                    .tint(.primary)
+                    .accessibilityHidden(true)
+            }
+            .accessibilityAddTraits(.isButton)
+
         }
     }
 }
 
 #Preview {
     VStack {
-        AboutListItem(title: "test item nav link", navigationLinkValue: WebViewContent.whycall)
-        AboutListItem(title: "test item action") { let _ = true }
-        AboutListItem(title: "test url", url: URL(string: "https://google.com"))
+        AboutListItem(title: "test item nav link", type: .webViewContent(WebViewContent.whycall))
+        AboutListItem(title: "test item action", type: .action({ let _ = true }))
+        AboutListItem(title: "test url", type: .url(URL(string: "https://google.com")!))
+        AboutListItem(title: "test acknowledgements", type: .acknowledgements)
     }
 }
