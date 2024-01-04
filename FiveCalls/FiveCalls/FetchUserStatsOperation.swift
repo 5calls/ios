@@ -27,7 +27,7 @@ class FetchUserStatsOperation : BaseOperation {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
 
-        var request = buildRequest(forURL: url)
+        let request = buildRequest(forURL: url)
         let task = session.dataTask(with: request) { (data, response, error) in
             
             if let e = error {

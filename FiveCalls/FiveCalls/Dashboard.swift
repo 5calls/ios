@@ -178,6 +178,7 @@ struct IssuesList: View {
                         NavigationLink(value: issue) {
                             IssueListItem(issue: issue, contacts: store.state.contacts)
                         }
+                        .listRowSeparatorTint(.fivecallsDarkGray)
                     }
                 } header: {
                     if showAllIssues {
@@ -195,8 +196,10 @@ struct IssuesList: View {
                                     R.string.localizable.moreIssuesTitle())
                                 .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(Color.fivecallsDarkBlueText)
+
                         }
                         .padding(.vertical, 10)
+                        .listRowSeparatorTint(.fivecallsDarkGray)
                     }
                 }
             }

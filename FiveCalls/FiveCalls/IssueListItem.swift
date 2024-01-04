@@ -21,7 +21,6 @@ struct IssueListItem: View {
                         .foregroundColor(Color.fivecallsDarkBlueText)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                    Spacer()
                     HStack(spacing: 0) {
                         let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
                             Contact.placeholderContact(for: area)
@@ -54,9 +53,14 @@ struct IssueListItem: View {
     }
 }
 
-struct IssueListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollView {
+#Preview {
+    let previewState = {
+        let state = AppState()
+        state.location = NewUserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
+        return state
+    }()
+
+    return List {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
@@ -65,6 +69,6 @@ struct IssueListItem_Previews: PreviewProvider {
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
-        }
-    }
+    }.environmentObject(Store(state: previewState))
 }
+
