@@ -35,10 +35,10 @@ struct ScriptReplacements {
         }
         
         if contact.area == "US House" || contact.area == "House" {
-            var replacedScript = script.replacing(Regex(houseIntroPattern), with: "")
+            let replacedScript = script.replacing(Regex(houseIntroPattern), with: "")
             return replacedScript.replacing(wholeRegex(senateIntroPattern), with: "")
         } else if contact.area == "US Senate" || contact.area == "Senate" {
-            var replacedScript =  script.replacing(Regex(senateIntroPattern), with: "")
+            let replacedScript =  script.replacing(Regex(senateIntroPattern), with: "")
             return replacedScript.replacing(wholeRegex(houseIntroPattern), with: "")
         }
         
