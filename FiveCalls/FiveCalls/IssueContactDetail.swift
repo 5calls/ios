@@ -51,13 +51,6 @@ struct IssueContactDetail: View {
                                 .accessibilityAddTraits(.isButton)
                                 .accessibilityHint(Text(R.string.localizable.startPhoneCall))
                         })
-//                        Text(currentContact.phone)
-//                            .font(.title)
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(Color.fivecallsDarkBlueText)
-//                            .accessibilityLabel(Text("\(R.string.localizable.mainPhone()) \(currentContact.phone)"))
-//                            .accessibilityAddTraits(.isButton)
-//                            .accessibilityHint(Text(R.string.localizable.startPhoneCall))
                         Menu {
                             ForEach(currentContact.fieldOffices) { office in
                                 Section(office.city) {
@@ -79,33 +72,26 @@ struct IssueContactDetail: View {
                 Text(issue.markdownIssueScript)
                     .padding(.bottom)
                 if remainingContacts.count > 1 {
-                    // VoiceOver reads as one big button. Pinged Nick to see if he has ideas.
-
-                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
-                        OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
+                    OutcomesView(value: IssueDetailNavModel(issue: issue, contacts: nextContacts), outcomes: issue.outcomeModels, report: { outcome in
                             let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                             store.dispatch(action: .ReportOutcome(log, outcome))
                             router.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
                         })
-                    }
-                    .accessibilityRemoveTraits(.isButton)
                 } else {
-                    NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
-                        OutcomesView(outcomes: issue.outcomeModels, report:
-                            { outcome in
-                                let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                            store.dispatch(action: .ReportOutcome(log, outcome))
-                            router.path.append(IssueNavModel(issue: issue, type: "done"))
+                    OutcomesView(value: IssueDoneNavModel(issue: issue, type: "done"), outcomes: issue.outcomeModels, report: { outcome in
+                        let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
+                        store.dispatch(action: .ReportOutcome(log, outcome))
+                        router.path.append(IssueDoneNavModel(issue: issue, type: "done"))
                         })
-                    }
                 }
-                Spacer()
-            }.padding(.horizontal)
+//            }
+            Spacer()
+        }.padding(.horizontal)
         }.navigationBarHidden(true)
         .clipped()
     }
 }
 
 #Preview {
-    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact]).environmentObject(Store(state: AppState()))
+    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact, Contact.senatePreviewContact1]).environmentObject(Store(state: AppState()))
 }

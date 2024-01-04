@@ -24,7 +24,7 @@ struct IssueSplitView: View {
                     .navigationDestination(for: IssueDetailNavModel.self) { idnm in
                         IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
                             .environmentObject(router)
-                    }.navigationDestination(for: IssueNavModel.self) { inm in
+                    }.navigationDestination(for: IssueDoneNavModel.self) { inm in
                         IssueDone(issue: inm.issue)
                             .environmentObject(router)
                     }

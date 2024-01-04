@@ -256,13 +256,13 @@ struct CountingView: View {
         .environmentObject(Store(state: previewState, middlewares: [appMiddleware()]))
 }
 
-struct IssueNavModel {
-    let issue: Issue
+struct IssueDoneNavModel: IssueNavModel {
+    var issue: Issue
     let type: String
 }
 
-extension IssueNavModel: Equatable, Hashable {
-    static func == (lhs: IssueNavModel, rhs: IssueNavModel) -> Bool {
+extension IssueDoneNavModel: Equatable, Hashable {
+    static func == (lhs: IssueDoneNavModel, rhs: IssueDoneNavModel) -> Bool {
         return lhs.issue.id == rhs.issue.id && lhs.type == rhs.type
     }
     
@@ -271,5 +271,10 @@ extension IssueNavModel: Equatable, Hashable {
         hasher.combine(type)
     }
 }
+
+protocol IssueNavModel: Hashable {
+    var issue: Issue { get set }
+}
+
 
 

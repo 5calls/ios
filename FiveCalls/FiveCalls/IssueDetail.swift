@@ -79,12 +79,12 @@ struct IssueDetail: View {
 }
 
 #Preview {
-    IssueDetail(issue: Issue.multilinePreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
+    IssueDetail(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
         .environmentObject(Store(state: AppState()))
 }
 
-struct IssueDetailNavModel {
-    let issue: Issue
+struct IssueDetailNavModel: IssueNavModel {
+    var issue: Issue
     let contacts: [Contact]
 }
 

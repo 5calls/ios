@@ -8,18 +8,36 @@
 
 import SwiftUI
 
-struct OutcomesView: View {
+struct OutcomesView<T: IssueNavModel>: View {
+    let value: T
     let outcomes: [Outcome]
     let report: (Outcome) -> ()
     
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())]) {
             ForEach(outcomes) { outcome in
-                PrimaryButton(title: outcome.label.capitalized,
-                              systemImageName: "megaphone.fill")
+
+//                NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
+//                    PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+//                }
+
+
+
+                NavigationLink(value: value) {
+                    PrimaryButton(title: outcome.label.capitalized,
+                                  systemImageName: "megaphone.fill")
+
+                    // TODO: .onTap and .simultaneous not being triggered with voiceover?
+//                    .accessibilityAddTraits(.isButton)
+//                    .simultaneousGesture(TapGesture().onEnded {
+//                        print("tapped button for \(outcome.label)")
+//                        report(outcome)
+//                    })
                     .onTapGesture {
+                        print("tapped button for \(outcome.label)")
                         report(outcome)
                     }
+                }
             }
         }
 
@@ -27,6 +45,6 @@ struct OutcomesView: View {
 }
 
 #Preview {
-    OutcomesView(outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")], report: { _ in })
-        .padding()
+    OutcomesView(value: IssueDetailNavModel(issue: .basicPreviewIssue, contacts: [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]), outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")], report: { _ in })
+//        .padding()
 }
