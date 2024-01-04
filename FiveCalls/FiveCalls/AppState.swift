@@ -11,6 +11,7 @@ import CoreLocation
 import os
 
 class AppState: ObservableObject, ReduxState {
+    @Published var showWelcomeScreen = false
     @Published var globalCallCount: Int = 0
     @Published var issueCallCounts: [Int: Int] = [:]
     // issueCompletion is a local cache of completed calls: an array of contact id and outcomes (B0001234-contact) keyed by an issue id

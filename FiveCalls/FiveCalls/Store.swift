@@ -38,6 +38,8 @@ class Store: ObservableObject {
     func reduce(_ oldState: AppState, _ action: Action) -> AppState {
         let state = oldState
         switch action {
+        case .ShowWelcomeScreen:
+            state.showWelcomeScreen = true
         case let .SetGlobalCallCount(globalCallCount):
             state.globalCallCount = globalCallCount
         case let .SetIssueCallCount(issueID, count):

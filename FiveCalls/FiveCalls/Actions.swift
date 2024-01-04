@@ -8,6 +8,7 @@
 import Foundation
 
 enum Action {
+    case ShowWelcomeScreen
     case FetchStats(Int?)
     case SetGlobalCallCount(Int)
     case SetIssueCallCount(Int,Int)

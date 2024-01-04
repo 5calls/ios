@@ -21,18 +21,26 @@ struct PopoverTip: Tip {
 }
 
 extension View {
-    func popoverTipIfApplicable(title: Text, message: Text?) -> some View {
-    if #available(iOS 17, *) {
-        return self
-            .popoverTip(
-                PopoverTip(
-                    title: title,
-                    message: message
-                ),
-                arrowEdge: .top
-            )
-    } else {
-      return self
+    func popoverTipIfApplicable(showingWelcomeScreen: Bool,
+                                title: Text,
+                                message: Text?)
+        -> some View
+    {
+        if #available(iOS 17, *) {
+            if showingWelcomeScreen {
+                AnyView(self)
+            } else {
+                AnyView(self
+                    .popoverTip(
+                        PopoverTip(
+                            title: title,
+                            message: message
+                        ),
+                        arrowEdge: .top
+                    ))
+            }
+        } else {
+          AnyView(self)
+        }
     }
-  }
 }
