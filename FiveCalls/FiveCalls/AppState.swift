@@ -11,6 +11,7 @@ import CoreLocation
 import os
 
 class AppState: ObservableObject, ReduxState {
+    @Published var showWelcomeScreen = false
     @Published var globalCallCount: Int = 0
     @Published var issueCallCounts: [Int: Int] = [:]
     // issueCompletion is a local cache of completed calls: an array of contact ids keyed by an issue id
@@ -43,6 +44,8 @@ class AppState: ObservableObject, ReduxState {
     @Published var issueLoadingError: Error? = nil
     // TODO: display this error on the dashboard (and location sheet?)
     @Published var contactsLoadingError: Error? = nil
+
+    @Published var issueRouter: IssueRouter = IssueRouter()
 
     init() {
         // load user location cache

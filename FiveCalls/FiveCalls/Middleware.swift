@@ -25,8 +25,9 @@ func appMiddleware() -> Middleware<AppState> {
                 dispatch(.SetIssueContactCompletion(issueId, contactLog.contactId))
             }
             reportOutcome(log: contactLog, outcome: outcome)
-        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, .SetFetchingContacts, .SetIssues,
-                .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError:
+        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts,
+                .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
+                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen:
             // no middleware actions for these, including for completeness
             break
         }

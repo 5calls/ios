@@ -6,6 +6,7 @@
 //  Copyright © 2023 5calls. All rights reserved.
 //
 import Foundation
+import SwiftUI
 
 typealias Dispatcher = (Action) -> Void
 
@@ -37,6 +38,8 @@ class Store: ObservableObject {
     func reduce(_ oldState: AppState, _ action: Action) -> AppState {
         let state = oldState
         switch action {
+        case .ShowWelcomeScreen:
+            state.showWelcomeScreen = true
         case let .SetGlobalCallCount(globalCallCount):
             state.globalCallCount = globalCallCount
         case let .SetIssueCallCount(issueID, count):
@@ -62,6 +65,21 @@ class Store: ObservableObject {
             state.issueLoadingError = error
         case let .SetLoadingContactsError(error):
             state.contactsLoadingError = error
+        case .GoBack:
+           if state.issueRouter.path.isEmpty {
+               state.issueRouter.selectedIssue = nil
+           } else {
+               state.issueRouter.path.removeLast()
+           }
+       case .GoToRoot:
+           state.issueRouter.selectedIssue = nil
+           state.issueRouter.path = NavigationPath()
+       case let .GoToNext(issue, nextContacts):
+           if nextContacts.count > 1 {
+               state.issueRouter.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
+           } else {
+               state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
+           }
         case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _):
             // handled in middleware
             break

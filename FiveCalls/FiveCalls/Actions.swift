@@ -8,6 +8,7 @@
 import Foundation
 
 enum Action {
+    case ShowWelcomeScreen
     case FetchStats(Int?)
     case SetGlobalCallCount(Int)
     case SetIssueCallCount(Int,Int)
@@ -23,4 +24,7 @@ enum Action {
     case SetLoadingStatsError(Error)
     case SetLoadingIssuesError(Error)
     case SetLoadingContactsError(Error)
+    case GoBack
+    case GoToRoot
+    case GoToNext(Issue, [Contact])
 }
