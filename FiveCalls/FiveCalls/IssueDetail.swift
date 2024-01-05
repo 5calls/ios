@@ -82,19 +82,3 @@ struct IssueDetail: View {
     IssueDetail(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
         .environmentObject(Store(state: AppState()))
 }
-
-struct IssueDetailNavModel: IssueNavModel {
-    var issue: Issue
-    let contacts: [Contact]
-}
-
-extension IssueDetailNavModel: Equatable, Hashable {
-    static func == (lhs: IssueDetailNavModel, rhs: IssueDetailNavModel) -> Bool {
-        return lhs.issue.id == rhs.issue.id && lhs.contacts.elementsEqual(rhs.contacts)
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(issue.id)
-        hasher.combine(contacts.compactMap({$0.id}).joined())
-    }
-}
