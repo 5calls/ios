@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct OutcomesView: View {
+struct OutcomesView<T: Hashable>: View {
     let outcomes: [Outcome]
-    let navModel: AnyHashable
+    let navModel: T
     let report: (Outcome) -> ()
     
     var body: some View {

@@ -142,13 +142,13 @@ struct IssueContactDetail: View {
                     .padding(.bottom)
                 
                 if remainingContacts.count > 1 {
-                    OutcomesView(outcomes: issue.outcomeModels, navModel: IssueDetailNavModel(issue: issue, contacts: nextContacts), report: { outcome in
+                    OutcomesView<IssueDetailNavModel>(outcomes: issue.outcomeModels, navModel: IssueDetailNavModel(issue: issue, contacts: nextContacts), report: { outcome in
                         let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                         store.dispatch(action: .ReportOutcome(issue, log, outcome))
                         store.dispatch(action: .GoToNext(issue, nextContacts))
                     })
                 } else {
-                    OutcomesView(outcomes: issue.outcomeModels, navModel: IssueNavModel(issue: issue, type: "done"), report:
+                    OutcomesView<IssueNavModel>(outcomes: issue.outcomeModels, navModel: IssueNavModel(issue: issue, type: "done"), report:
                         { outcome in
                         let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                         store.dispatch(action: .ReportOutcome(issue, log, outcome))
