@@ -93,8 +93,16 @@ class NewUserLocation {
     }
 }
 
-extension NewUserLocation : CustomStringConvertible {
+extension NewUserLocation: CustomStringConvertible {
     var description: String {
         return "type: \(locationType.rawValue) value: \(locationValue) | display: \(locationDisplay)"
+    }
+}
+
+extension NewUserLocation: Equatable {
+    static func == (lhs: NewUserLocation, rhs: NewUserLocation) -> Bool {
+        return lhs.locationType == rhs.locationType
+            && lhs.locationValue == rhs.locationValue
+            && lhs.locationDisplay == rhs.locationDisplay
     }
 }

@@ -14,6 +14,7 @@
 		4F07B23B2B45F05C00C575DF /* AcknowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F07B23A2B45F05C00C575DF /* AcknowListView.swift */; };
 		4F07B23E2B45F25E00C575DF /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 4F07B23D2B45F25E00C575DF /* Package.resolved */; };
 		4F11A59E2AAB956C00AF30B9 /* ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */; };
+		4F2178752B488CD70032D592 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2178742B488CD70032D592 /* StoreTests.swift */; };
 		4F2C1CA22AD5C1AC000AB39E /* YourImpact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */; };
 		4F4868B92AC222B300E1733A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868B82AC222B300E1733A /* WebView.swift */; };
 		4F4868BB2AC3A3B400E1733A /* AboutListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */; };
@@ -163,6 +164,7 @@
 		4F07B23A2B45F05C00C575DF /* AcknowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowListView.swift; sourceTree = "<group>"; };
 		4F07B23D2B45F25E00C575DF /* Package.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Package.resolved; path = FiveCalls.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = "<group>"; };
 		4F11A59D2AAB956C00AF30B9 /* ScheduleReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleReminders.swift; sourceTree = "<group>"; };
+		4F2178742B488CD70032D592 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourImpact.swift; sourceTree = "<group>"; };
 		4F4868B82AC222B300E1733A /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListItem.swift; sourceTree = "<group>"; };
@@ -338,12 +340,13 @@
 			children = (
 				B502805F1E478BC200749ED7 /* Info.plist */,
 				B50280671E478BF500749ED7 /* ContactLogsTests.swift */,
-				D02FFCE1245F5733003ADA2B /* ScriptCustomizationTests.swift */,
-				AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */,
-				D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */,
 				D0176E8A2B3343150090E6B7 /* ContactParsingTest.swift */,
-				D0176E912B33457D0090E6B7 /* ReportParsingTest.swift */,
+				D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */,
 				D0E042652B47D06700D22647 /* IssueTests.swift */,
+				D0176E912B33457D0090E6B7 /* ReportParsingTest.swift */,
+				D02FFCE1245F5733003ADA2B /* ScriptCustomizationTests.swift */,
+				4F2178742B488CD70032D592 /* StoreTests.swift */,
+				AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */,
 			);
 			path = FiveCallsTests;
 			sourceTree = "<group>";
@@ -818,6 +821,7 @@
 				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
 				D0E042662B47D06700D22647 /* IssueTests.swift in Sources */,
+				4F2178752B488CD70032D592 /* StoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
