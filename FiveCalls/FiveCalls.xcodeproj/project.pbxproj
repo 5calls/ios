@@ -108,6 +108,7 @@
 		D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
 		D0D670A12B29854500BEDFBF /* ScriptReplacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D670A02B29854500BEDFBF /* ScriptReplacements.swift */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
+		D0E042662B47D06700D22647 /* IssueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E042652B47D06700D22647 /* IssueTests.swift */; };
 		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
 		E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E887304D2AF9E1B60053837B /* RswiftLibrary */; };
@@ -260,6 +261,7 @@
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D670A02B29854500BEDFBF /* ScriptReplacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptReplacements.swift; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		D0E042652B47D06700D22647 /* IssueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTests.swift; sourceTree = "<group>"; };
 		D0EE101B2ACBD69300412128 /* IssueDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDone.swift; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,6 +337,7 @@
 				D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */,
 				D0176E8A2B3343150090E6B7 /* ContactParsingTest.swift */,
 				D0176E912B33457D0090E6B7 /* ReportParsingTest.swift */,
+				D0E042652B47D06700D22647 /* IssueTests.swift */,
 			);
 			path = FiveCallsTests;
 			sourceTree = "<group>";
@@ -703,7 +706,6 @@
 					};
 					B5A70A571E4C01A00031DF58 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = C2K3864N2N;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B52805101E3FA94D00EE832A;
@@ -804,6 +806,7 @@
 				D05EDB082B32899600FD94BD /* ProtocolMock.swift in Sources */,
 				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
+				D0E042662B47D06700D22647 /* IssueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,7 +1182,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = C2K3864N2N;
+				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1200,7 +1203,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEVELOPMENT_TEAM = C2K3864N2N;
+				DEVELOPMENT_TEAM = 5A8RM3W5R7;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FiveCallsUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
