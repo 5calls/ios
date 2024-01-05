@@ -255,3 +255,19 @@ struct CountingView: View {
     return IssueDone(issue: .basicPreviewIssue)
         .environmentObject(Store(state: previewState, middlewares: [appMiddleware()]))
 }
+
+struct IssueDoneNavModel {
+    var issue: Issue
+    let type: String
+}
+
+extension IssueDoneNavModel: Equatable, Hashable {
+    static func == (lhs: IssueDoneNavModel, rhs: IssueDoneNavModel) -> Bool {
+        return lhs.issue.id == rhs.issue.id && lhs.type == rhs.type
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(issue.id)
+        hasher.combine(type)
+    }
+}

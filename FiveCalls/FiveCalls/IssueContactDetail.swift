@@ -71,20 +71,20 @@ struct IssueContactDetail: View {
                 }.padding(.bottom)
                 Text(issue.markdownIssueScript)
                     .padding(.bottom)
+
                 if remainingContacts.count > 1 {
-                    OutcomesView(value: IssueDetailNavModel(issue: issue, contacts: nextContacts), outcomes: issue.outcomeModels, report: { outcome in
+                    OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                             let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                             store.dispatch(action: .ReportOutcome(log, outcome))
                             router.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
-                        })
+                    })
                 } else {
-                    OutcomesView(value: IssueDoneNavModel(issue: issue, type: "done"), outcomes: issue.outcomeModels, report: { outcome in
+                    OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                         let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                         store.dispatch(action: .ReportOutcome(log, outcome))
                         router.path.append(IssueDoneNavModel(issue: issue, type: "done"))
-                        })
+                    })
                 }
-//            }
             Spacer()
         }.padding(.horizontal)
         }.navigationBarHidden(true)

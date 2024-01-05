@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-struct OutcomesView<T: IssueNavModel>: View {
-    let value: T
+struct OutcomesView: View {
     let outcomes: [Outcome]
     let report: (Outcome) -> ()
     
@@ -28,5 +27,5 @@ struct OutcomesView<T: IssueNavModel>: View {
 }
 
 #Preview {
-    OutcomesView(value: IssueDetailNavModel(issue: .basicPreviewIssue, contacts: [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]), outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")], report: { _ in })
+    OutcomesView(outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")], report: { _ in })
 }
