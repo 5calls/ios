@@ -141,24 +141,11 @@ struct IssueContactDetail: View {
                 Text(issueMarkdown)
                     .padding(.bottom)
                 
-                if remainingContacts.count > 1 {
-                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: nextContacts)) {
-                        OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
-                            let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                            store.dispatch(action: .ReportOutcome(issue, log, outcome))
-                            store.dispatch(action: .GoToNext(issue, nextContacts))
-                        })
-                    }
-                } else {
-                    NavigationLink(value: IssueNavModel(issue: issue, type: "done")) {
-                        OutcomesView(outcomes: issue.outcomeModels, report:
-                            { outcome in
-                            let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                            store.dispatch(action: .ReportOutcome(issue, log, outcome))
-                            store.dispatch(action: .GoToNext(issue, []))
-                        })
-                    }
-                }
+                OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
+                    let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
+                    store.dispatch(action: .ReportOutcome(issue, log, outcome))
+                    store.dispatch(action: .GoToNext(issue, nextContacts))
+                })
                 Spacer()
             }.padding(.horizontal)
         }.navigationBarHidden(true)

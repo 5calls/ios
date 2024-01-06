@@ -23,13 +23,13 @@ struct PrimaryButton: View {
             Image(systemName: systemImageName)
                 .foregroundColor(.white)
         }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background {
-                RoundedRectangle(cornerRadius: 6)
-                    .foregroundColor(bgColor)
-            }
-
+        .accessibilityElement(children: .combine)
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background {
+            RoundedRectangle(cornerRadius: 6)
+                .foregroundColor(bgColor)
+        }
     }
 }
 
