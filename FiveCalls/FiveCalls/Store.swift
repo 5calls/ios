@@ -80,7 +80,7 @@ class Store: ObservableObject {
            } else {
                state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
            }
-        case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _):
+        case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _, _):
             // handled in middleware
             break
         }

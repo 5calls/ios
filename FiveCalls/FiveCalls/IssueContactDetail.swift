@@ -74,13 +74,13 @@ struct IssueContactDetail: View {
                 if remainingContacts.count > 1 {
                     OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                             let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                            store.dispatch(action: .ReportOutcome(log, outcome))
+                            store.dispatch(action: .ReportOutcome(issue, log, outcome))
                             store.dispatch(action: .GoToNext(issue, nextContacts))
                     })
                 } else {
                     OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                         let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                        store.dispatch(action: .ReportOutcome(log, outcome))
+                        store.dispatch(action: .ReportOutcome(issue, log, outcome))
                         store.dispatch(action: .GoToNext(issue, []))
                     })
                 }
@@ -92,5 +92,6 @@ struct IssueContactDetail: View {
 }
 
 #Preview {
-    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact, Contact.senatePreviewContact1]).environmentObject(Store(state: AppState()))
+    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
+        .environmentObject(Store(state: AppState()))
 }
