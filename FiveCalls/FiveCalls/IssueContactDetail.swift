@@ -10,7 +10,6 @@ import SwiftUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: IssueRouter
 
     let issue: Issue
     let remainingContacts: [Contact]
@@ -76,13 +75,13 @@ struct IssueContactDetail: View {
                     OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                             let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                             store.dispatch(action: .ReportOutcome(log, outcome))
-                            router.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
+                            store.dispatch(action: .GoToNext(issue, nextContacts))
                     })
                 } else {
                     OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                         let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                         store.dispatch(action: .ReportOutcome(log, outcome))
-                        router.path.append(IssueDoneNavModel(issue: issue, type: "done"))
+                        store.dispatch(action: .GoToNext(issue, []))
                     })
                 }
             Spacer()

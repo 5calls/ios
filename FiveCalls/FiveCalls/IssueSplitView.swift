@@ -10,23 +10,19 @@ import SwiftUI
 
 struct IssueSplitView: View {
     @EnvironmentObject var store: Store
-    @StateObject var router: IssueRouter = IssueRouter()
     
     var body: some View {
         NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
-            Dashboard(selectedIssue: $router.selectedIssue).environmentObject(router)
+            Dashboard(selectedIssue: $store.state.issueRouter.selectedIssue)
         }, detail: {
-            NavigationStack(path: $router.path) {
-                if let selectedIssue = router.selectedIssue {
-                    IssueDetail(issue: selectedIssue, 
+            NavigationStack(path: $store.state.issueRouter.path) {
+                if let selectedIssue = store.state.issueRouter.selectedIssue {
+                                   IssueDetail(issue: selectedIssue,
                                 contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
-                        .environmentObject(router)
                     .navigationDestination(for: IssueDetailNavModel.self) { idnm in
                         IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-                            .environmentObject(router)
                     }.navigationDestination(for: IssueDoneNavModel.self) { inm in
                         IssueDone(issue: inm.issue)
-                            .environmentObject(router)
                     }
                 } else {
                     HStack {

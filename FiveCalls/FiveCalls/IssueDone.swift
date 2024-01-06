@@ -12,7 +12,6 @@ import OneSignal
 
 struct IssueDone: View {
     @EnvironmentObject var store: Store
-    @EnvironmentObject var router: IssueRouter
     @Environment(\.openURL) private var openURL
 
     @State var showNotificationAlert = false
@@ -33,8 +32,6 @@ struct IssueDone: View {
     var markdownTitle: AttributedString!
 
     func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> String {
-        // TODO: This isn't working properly... seeing a lot of skips when I don't expect it
-        // The code below is expecting issueCompletions to be a different format than the state code actually creates
         if let contactOutcome = issueCompletions.last(where: { $0.split(separator: "-")[0] == contact.id }) {
             if contactOutcome.split(separator: "-").count > 1 {
                 return ContactLog.localizedOutcomeForStatus(status: String(contactOutcome.split(separator: "-")[1]))
@@ -111,7 +108,7 @@ struct IssueDone: View {
                 .accessibilityLabel(Text("\(R.string.localizable.shareThisTopic()): \(issue.name)"))
 
                 Button(action: {
-                    router.backToRoot()
+                    store.dispatch(action: .GoToRoot)
                 }, label: {
                     PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
                 })

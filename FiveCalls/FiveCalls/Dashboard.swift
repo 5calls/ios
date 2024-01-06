@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
+    @State var selectedIssueUrl: URL?
     @Binding var selectedIssue: Issue?
 
     @State var showLocationSheet = false
@@ -68,6 +69,19 @@ struct Dashboard: View {
                 store.dispatch(action: .FetchContacts(location))
             }
         }
+        .onOpenURL(perform: { url in
+            if store.state.issues.isEmpty {
+                selectedIssueUrl = url
+            } else {
+                selectedIssue = store.state.issues.first(where: { $0.slug == url.lastPathComponent })
+            }
+        })
+       .onChange(of: store.state.issues) { issues in
+           if let selectedIssueUrl {
+               selectedIssue = issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
+               self.selectedIssueUrl = nil
+           }
+       }
     }
 }
 

@@ -28,7 +28,7 @@ struct Issue: Identifiable, Decodable {
     }
     
     var shareURL: URL {
-        return URL(string: String(format: "https://5calls.org/issue/%s/",self.slug))!
+        return URL(string: String(format: "https://5calls.org/issue/%@/",self.slug))!
     }
     
     // contactsForIssue takes a list of all contacts and returns a consistently sorted list of
