@@ -58,26 +58,15 @@ struct IssueListItem: View {
     }
 }
 
-struct IssueListItem_Previews: PreviewProvider {
-    static let previewState = {
-        var state = AppState()
-        state.issues = [
-            Issue.basicPreviewIssue,
-            Issue.multilinePreviewIssue
-        ]
-        state.contacts = [
-            Contact.housePreviewContact,
-            Contact.senatePreviewContact1,
-            Contact.senatePreviewContact2
-        ]
+//struct IssueListItem_Previews: PreviewProvider {
+#Preview {
+let previewState = {
+        let state = AppState()
+        state.location = NewUserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
         return state
     }()
 
-    static let store = Store(state: previewState, middlewares: [appMiddleware()])
-
-
-    static var previews: some View {
-        ScrollView {
+return List {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
@@ -87,7 +76,6 @@ struct IssueListItem_Previews: PreviewProvider {
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
         }
-        .environmentObject(store)
-    }
+        .environmentObject(Store(state: previewState))
 }
 
