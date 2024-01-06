@@ -58,9 +58,8 @@ struct IssueListItem: View {
     }
 }
 
-//struct IssueListItem_Previews: PreviewProvider {
 #Preview {
-let previewState = {
+    let previewState = {
         let state = AppState()
         state.location = NewUserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
         return state
