@@ -120,7 +120,7 @@ struct LocationSheet: View {
                 }
 
                 locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? R.string.localizable.unknownLocation()
-                let loc = NewUserLocation(address: locationText, display: locationDisplay)
+                let loc = UserLocation(address: locationText, display: locationDisplay)
                 store.dispatch(action: .SetLocation(loc))
                 dismiss()
             } catch (let error) {
@@ -137,7 +137,7 @@ struct LocationSheet: View {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
                 let locationInfo = try await getLocationInfo(from: clLoc)
-                let loc = NewUserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? R.string.localizable.unknownLocation())
+                let loc = UserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? R.string.localizable.unknownLocation())
                 store.dispatch(action: .SetLocation(loc))
                 dismiss()
             } catch (let error as LocationCoordinatorError) {

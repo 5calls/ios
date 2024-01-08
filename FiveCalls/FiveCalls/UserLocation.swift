@@ -1,5 +1,5 @@
 //
-//  NewUserLocation.swift
+//  UserLocation.swift
 //  FiveCalls
 //
 //  Created by Nick O'Neill on 8/9/23.
@@ -10,8 +10,7 @@ import Foundation
 import CoreLocation
 import RswiftResources
 
-// NewUserLocation is like UserLocation from the old app but it doesn't need a singleton to maintain its state
-class NewUserLocation {
+class UserLocation {
     enum LocationType: String {
         case address
         case coordinates
@@ -46,14 +45,14 @@ class NewUserLocation {
     }
 }
 
-extension NewUserLocation: CustomStringConvertible {
+extension UserLocation: CustomStringConvertible {
     var description: String {
         return "type: \(locationType.rawValue) value: \(locationValue) | display: \(locationDisplay)"
     }
 }
 
-extension NewUserLocation: Equatable {
-    static func == (lhs: NewUserLocation, rhs: NewUserLocation) -> Bool {
+extension UserLocation: Equatable {
+    static func == (lhs: UserLocation, rhs: UserLocation) -> Bool {
         return lhs.locationType == rhs.locationType
             && lhs.locationValue == rhs.locationValue
             && lhs.locationDisplay == rhs.locationDisplay

@@ -9,7 +9,7 @@
 import XCTest
 @testable import FiveCalls
 
-let kLocation = NewUserLocation(address: "123 Main St", display: "San Francisco")
+let kLocation = UserLocation(address: "123 Main St", display: "San Francisco")
 
 
 class ScriptCustomizationTests: XCTestCase {

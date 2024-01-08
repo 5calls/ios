@@ -70,7 +70,7 @@ struct Issue: Identifiable, Decodable {
         }
     }
     
-    func markdownIssueScript(contact: Contact, location: NewUserLocation?) -> AttributedString {
+    func markdownIssueScript(contact: Contact, location: UserLocation?) -> AttributedString {
         do {
             return try AttributedString(markdown: ScriptReplacements.replacing(script: self.script, contact: contact, location: location), options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
         } catch {
