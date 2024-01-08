@@ -65,7 +65,7 @@ struct LocationSheet: View {
             }
             .padding(.bottom)
             HStack(alignment: .top) {
-                Text("Or")
+                Text(R.string.localizable.locationOr())
                     .font(.system(.title3))
                     .padding(.trailing)
                     .padding(.top, 10)
@@ -109,9 +109,24 @@ struct LocationSheet: View {
     }
     
     func locationSearch() {
-        _ = NewUserLocation(address: locationText) { loc in
-            store.dispatch(action: .SetLocation(loc))
-            dismiss()
+        locationError = nil
+
+        Task {
+            do {
+                var locationDisplay = R.string.localizable.unknownLocation()
+                let placemarks = try await CLGeocoder().geocodeAddressString(locationText)
+                guard let placemark = placemarks.first else {
+                    return
+                }
+
+                locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? R.string.localizable.unknownLocation()
+                let loc = NewUserLocation(address: locationText, display: locationDisplay)
+                store.dispatch(action: .SetLocation(loc))
+                dismiss()
+            } catch (let error) {
+                // TODO update?
+                locationError = R.string.localizable.locationErrorDefault()
+            }
         }
     }
     
@@ -121,10 +136,10 @@ struct LocationSheet: View {
         Task {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
-                _ = NewUserLocation(location: clLoc) { loc in
-                    store.dispatch(action: .SetLocation(loc))
-                    dismiss()
-                }
+                let locationInfo = try await getLocationInfo(from: clLoc)
+                let loc = NewUserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? R.string.localizable.unknownLocation())
+                store.dispatch(action: .SetLocation(loc))
+                dismiss()
             } catch (let error as LocationCoordinatorError) {
                 switch error {
                 case .Unauthorized:
@@ -134,6 +149,20 @@ struct LocationSheet: View {
                 }
             }
         }
+    }
+
+    private func getLocationInfo(from location: CLLocation) async throws -> [String: Any] {
+        var locationInfo = [String: Any]()
+        locationInfo["longitude"] = location.coordinate.longitude
+        locationInfo["latitude"] = location.coordinate.latitude
+        let placemarks = try await CLGeocoder().reverseGeocodeLocation(location)
+        let prefix = placemarks.first?.subThoroughfare ?? ""
+        let street = placemarks.first?.thoroughfare ?? ""
+        let streetAddress = prefix + " " + street
+        // prefer locality (generally the city name) but can fall back to address if needed
+        locationInfo["displayName"] = placemarks.first?.locality ?? (streetAddress != " " ? streetAddress : nil) ?? nil
+        locationInfo["zipcode"] = placemarks.first?.postalCode ?? ""
+        return locationInfo
     }
 }
 
