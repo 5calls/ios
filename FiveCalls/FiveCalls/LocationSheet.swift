@@ -16,7 +16,8 @@ struct LocationSheet: View {
     
     @State var locationText: String = ""
     @State var locationError: String?
-    
+    @State var detectProcessing = false
+
     let locationCoordinator = LocationCoordinator()
     
     var body: some View {
@@ -79,32 +80,44 @@ struct LocationSheet: View {
                         }
                         .padding(.leading)
                         .padding(.vertical, 10)
-                        Image(systemName: "location.circle")
-                            .imageScale(.large)
-                            .symbolRenderingMode(.hierarchical)
-                            .font(.title3)
-                            .padding(.trailing)
-                            .padding(.leading, 7)
-                            .foregroundColor(.white)
+                        ZStack {
+                            Image(systemName: "location.circle")
+                                .imageScale(.large)
+                                .symbolRenderingMode(.hierarchical)
+                                .font(.title3)
+                                .padding(.trailing)
+                                .padding(.leading, 7)
+                                .foregroundColor(.white)
+                                .opacity(detectProcessing ? 0 : 1)
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                .padding(.trailing)
+                                .padding(.leading, 7)
+                                .opacity(detectProcessing ? 1 : 0)
+                        }
                     }
                     .background {
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                             .fill(.blue)
+                            .opacity(detectProcessing ? 0.5 : 1)
                     }
                     .onTapGesture {
-                        detectLocation()
-                    }
-                    if locationError != nil {
-                        Text(locationError!)
-                            .font(.caption)
-                            .foregroundColor(.red)
-                            
+                        if !detectProcessing {
+                            detectLocation()
+                        }
                     }
                 }
             }
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text(R.string.localizable.detectLocation()))
             .accessibilityAddTraits(.isButton)
+            
+            if locationError != nil {
+                Text(locationError!)
+                    .font(.caption)
+                    .foregroundColor(.red)
+
+            }
         }
     }
     
@@ -124,13 +137,13 @@ struct LocationSheet: View {
                 store.dispatch(action: .SetLocation(loc))
                 dismiss()
             } catch (let error) {
-                // TODO update?
                 locationError = R.string.localizable.locationErrorDefault()
             }
         }
     }
     
     func detectLocation() {
+        detectProcessing = true
         locationError = nil
         
         Task {
@@ -139,14 +152,16 @@ struct LocationSheet: View {
                 let locationInfo = try await getLocationInfo(from: clLoc)
                 let loc = UserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? R.string.localizable.unknownLocation())
                 store.dispatch(action: .SetLocation(loc))
+                detectProcessing = false
                 dismiss()
-            } catch (let error as LocationCoordinatorError) {
-                switch error {
-                case .Unauthorized:
+            } catch (let error) {
+                if case LocationCoordinatorError.Unauthorized = error {
                     locationError = R.string.localizable.locationErrorOff()
-                default:
+                } else {
                     locationError = R.string.localizable.locationErrorDefault()
                 }
+
+                detectProcessing = false
             }
         }
     }
