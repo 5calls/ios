@@ -167,9 +167,17 @@ final class StoreTests: XCTestCase {
         let store = Store(state: AppState())
         let issue = Issue.basicPreviewIssue
         XCTAssertTrue(store.state.issueRouter.path.isEmpty)
-        _ = store.reduce(store.state, .GoToNext(issue, []))
-        XCTAssertFalse(store.state.issueRouter.path.isEmpty)
+
         var path = NavigationPath()
+        _ = store.reduce(store.state, .GoToNext(issue, [.senatePreviewContact1,.housePreviewContact]))
+        path.append(IssueDetailNavModel(issue: issue, contacts: [.senatePreviewContact1,.housePreviewContact]))
+        XCTAssertEqual(store.state.issueRouter.path, path)
+        
+        _ = store.reduce(store.state, .GoToNext(issue, [.housePreviewContact]))
+        path.append(IssueDetailNavModel(issue: issue, contacts: [.housePreviewContact]))
+        XCTAssertEqual(store.state.issueRouter.path, path)
+        
+        _ = store.reduce(store.state, .GoToNext(issue, []))
         path.append(IssueNavModel(issue: issue, type: "done"))
         XCTAssertEqual(store.state.issueRouter.path, path)
     }

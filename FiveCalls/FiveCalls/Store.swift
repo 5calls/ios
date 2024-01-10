@@ -74,7 +74,7 @@ class Store: ObservableObject {
             state.issueRouter.selectedIssue = nil
             state.issueRouter.path = NavigationPath()
         case let .GoToNext(issue, nextContacts):
-            if nextContacts.count > 1 {
+            if nextContacts.count >= 1 {
                 state.issueRouter.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
             } else {
                 state.issueRouter.path.append(IssueNavModel(issue: issue, type: "done"))

@@ -17,9 +17,10 @@ struct OutcomesView: View {
             ForEach(outcomes) { outcome in
                 PrimaryButton(title: outcome.label.capitalized,
                               systemImageName: "megaphone.fill")
-                    .onTapGesture {
-                        report(outcome)
-                    }
+                .accessibilityAddTraits(.isButton)
+                .onTapGesture {
+                    report(outcome)
+                }
             }
         }
 
