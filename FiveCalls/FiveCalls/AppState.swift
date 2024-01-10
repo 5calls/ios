@@ -79,3 +79,15 @@ class AppState: ObservableObject, ReduxState {
         }
     }
 }
+
+extension AppState {
+    func issueCalledOn(issueID: Int, contactID: String) -> Bool {
+        // a contact outcome is a contactid concatenated with an outcome (B0001234-contact)
+        let contactOutcomesForIssue = self.issueCompletion[issueID] ?? []
+        let contactIDs = contactOutcomesForIssue.map { contactOutcome in
+            return String(contactOutcome.split(separator: "-").first ?? "")
+        }
+
+        return contactIDs.contains(contactID)
+    }
+}

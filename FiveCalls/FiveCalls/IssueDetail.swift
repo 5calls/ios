@@ -36,12 +36,7 @@ struct IssueDetail: View {
                         .accessibilityAddTraits(.isHeader)
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered(), id: \.element.id) { contact in
-                            ContactListItem(contact: contact.element, showComplete: (store.state.issueCompletion[issue.id] ?? []).contains(contact.element.id))
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color(.fivecallsLightBG))
-                                }
-                                .padding(.bottom, 4)
+                            ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
                         }
                     }
 
