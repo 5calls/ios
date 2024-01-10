@@ -254,7 +254,7 @@ struct CountingView: View {
 }
 
 struct IssueDoneNavModel {
-    var issue: Issue
+    let issue: Issue
     let type: String
 }
 
