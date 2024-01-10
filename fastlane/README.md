@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Runs all the tests
 
+### ios coverage
+
+```sh
+[bundle exec] fastlane ios coverage
+```
+
+Runs code coverage
+
 ### ios increment_build
 
 ```sh
