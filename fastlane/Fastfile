@@ -21,12 +21,9 @@ platform :ios do
   desc "Runs all the tests"
   lane :test do
     scan(project: xcodeproj, scheme: scheme, xcargs: "-skipPackagePluginValidation")
-    xcov(project: "FiveCalls/FiveCalls.xcodeproj",
-    scheme: "FiveCalls",
-    minimum_coverage_percentage: 25.0)
   end
 
-  desc "Runs code coverage"
+  desc "Runs code coverage (requires running tests first)"
   lane :coverage do
     xcov(project: "FiveCalls/FiveCalls.xcodeproj",
     scheme: "FiveCalls",
