@@ -240,10 +240,6 @@ struct CountingView: View {
 #Preview {
     let previewState = {
         let state = AppState()
-            state.issues = [
-                Issue.basicPreviewIssue,
-                Issue.multilinePreviewIssue
-            ]
         state.contacts = [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]
         state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail","\(Contact.senatePreviewContact1.id)-contact"]
         return state
