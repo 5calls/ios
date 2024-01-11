@@ -47,7 +47,6 @@ class AppState: ObservableObject, ReduxState {
     
     @Published var issueRouter: IssueRouter = IssueRouter()
 
-    @Published var issueRouter: IssueRouter = IssueRouter()
 
     init() {
         // load user location cache
