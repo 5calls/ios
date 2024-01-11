@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RswiftResources
 
 struct Contact : Decodable {
     let id: String
@@ -67,38 +68,7 @@ extension Contact: Hashable, Identifiable {
     }
 }
 
-extension Contact {
-    func customizeScript(script: String) -> String? {
-        let pattern = #"\[REP\/SEN NAME\]|\[SENATOR\/REP NAME\]"#
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return nil
-        }
-
-        var template = "";
-        switch self.area {
-        case "US House", "House":
-            template = "Rep.";
-        case "US Senate", "Senate":
-            template = "Senator";
-        case "StateLower", "StateUpper":
-            template = "Legislator";
-        case "Governor":
-            template = "Governor";
-        case "AttorneyGeneral":
-            template = "Attorney General";
-        case "SecretaryOfState":
-            template = "Secretary of State";
-        default:
-            // nothing, append the name on the empty template
-            break
-        }
-        template = template + " " + self.name
-
-        let fullRange = NSRange(script.startIndex..<script.endIndex, in: script)
-        let scriptWithContactName = regex.stringByReplacingMatches(in: script, options: [], range: fullRange, withTemplate: template)
-        return scriptWithContactName
-    }
-    
+extension Contact {    
     // this has some overlap with other area -> string conversions but I haven't thought about it long enough to combine them
     func officeDescription() -> String {
         switch self.area {
@@ -124,7 +94,7 @@ extension Contact {
 extension Contact {
     static func placeholderContact(for area: String) -> [Contact] {
         switch area {
-        case "US House":
+        case "US Senate":
             return [
                     Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
                     Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])
@@ -140,18 +110,18 @@ extension Contact {
 func AreaToNiceString(area: String) -> String {
     switch area {
     case "US House", "House":
-        return "House Rep";
+        return R.string.localizable.groupingUsHouse()
     case "US Senate", "Senate":
-        return "Senators";
+        return R.string.localizable.groupingUsSenate()
     // state legislatures call themselves different things by state, so let's use a generic term for all of them
     case "StateLower", "StateUpper":
-        return "State Reps";
+        return R.string.localizable.groupingStateRep()
     case "Governor":
-        return "Governor";
+        return R.string.localizable.groupingGovernor()
     case "AttorneyGeneral":
-        return "Attorney General";
+        return R.string.localizable.groupingAttorneyGeneral()
     case "SecretaryOfState":
-        return "Secretary of State";
+        return R.string.localizable.groupingSecretaryOfState()
     default:
         return area
     }

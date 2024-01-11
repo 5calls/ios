@@ -24,23 +24,23 @@ extension View {
     func popoverTipIfApplicable(showingWelcomeScreen: Bool,
                                 title: Text,
                                 message: Text?)
-    -> some View
+        -> some View
     {
         if #available(iOS 17, *) {
-                    if showingWelcomeScreen {
-                        AnyView(self)
-                    } else {
-                        AnyView(self
-                            .popoverTip(
-                                PopoverTip(
-                                    title: title,
-                                    message: message
-                                ),
-                                arrowEdge: .top
-                            ))
-                    }
-                } else {
-                  AnyView(self)
-                }
-  }
+            if showingWelcomeScreen {
+                AnyView(self)
+            } else {
+                AnyView(self
+                    .popoverTip(
+                        PopoverTip(
+                            title: title,
+                            message: message
+                        ),
+                        arrowEdge: .top
+                    ))
+            }
+        } else {
+          AnyView(self)
+        }
+    }
 }

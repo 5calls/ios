@@ -13,9 +13,9 @@ import OneSignal
 struct IssueDone: View {
     @EnvironmentObject var store: Store
     @Environment(\.openURL) private var openURL
-
+    
     @State var showNotificationAlert = false
-
+    
     let issue: Issue
 
     init(issue: Issue) {
@@ -122,20 +122,19 @@ struct IssueDone: View {
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/done/")
 
             store.dispatch(action: .FetchStats(issue.id))
-
+          
             // will prompt for a rating after hitting done 5 times
             RatingPromptCounter.increment {
                 guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
                     return
                 }
-
+                
                 SKStoreReviewController.requestReview(in: currentScene)
             }
-
+            
             // unlikely to occur at the same time as the rating prompt counter
             checkForNotifications()
-        }
-        .alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
+        }.alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
                 OneSignal.promptForPushNotifications(userResponse: { success in
@@ -155,6 +154,7 @@ struct IssueDone: View {
         } message: {
             Text(R.string.localizable.notificationAsk())
         }
+
     }
 }
 
@@ -246,6 +246,7 @@ struct CountingView: View {
     }()
 
     return IssueDone(issue: .basicPreviewIssue)
+
         .environmentObject(Store(state: previewState, middlewares: [appMiddleware()]))
 }
 

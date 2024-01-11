@@ -19,14 +19,15 @@ class FetchUserStatsOperation : BaseOperation {
     
     private var retryCount = 0
     
+    var url: URL {
+        return URL(string: "https://api.5calls.org/v1/users/stats")!
+    }
+    
     override func execute() {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
-        let url = URL(string: "https://api.5calls.org/v1/users/stats")!
 
-        var request = URLRequest(url: url)
-        request.setValue(AnalyticsManager.shared.callerID, forHTTPHeaderField: "X-Caller-ID")
-
+        let request = buildRequest(forURL: url)
         let task = session.dataTask(with: request) { (data, response, error) in
             
             if let e = error {

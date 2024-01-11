@@ -41,6 +41,12 @@ class BaseOperation : Operation {
         return _finished
     }
     
+    func buildRequest(forURL url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.setValue(AnalyticsManager.shared.callerID, forHTTPHeaderField: "X-Caller-ID")
+        return request
+    }
+    
     override func start() {
         _executing = true
         execute()

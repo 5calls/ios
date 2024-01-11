@@ -14,7 +14,7 @@ struct YourImpact: View {
 
     @State private var userStats: UserStats?
     
-    var weeklyStreekMessage: String {
+    var weeklyStreakMessage: String {
         let weeklyStreakCount = self.userStats?.weeklyStreak ?? 0
         switch weeklyStreakCount {
         case 0:
@@ -38,7 +38,7 @@ struct YourImpact: View {
         }
     }
     
-    var showSubheading: Bool {
+    var showImpactList: Bool {
         userStats?.totalCalls() ?? 0 != 0
     }
     
@@ -49,54 +49,48 @@ struct YourImpact: View {
             
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                VStack(alignment: .leading, spacing: 15) {
-                    Text(weeklyStreekMessage)
-                        .foregroundStyle(.fivecallsRed)
-                        .font(.system(size: 18, weight: .semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+            List {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(weeklyStreakMessage)
+                        .font(.headline)
                     Text(totalImpactMessage)
-                        .foregroundStyle(.fiveCallsDarkGreenText)
-                        .font(.system(size: 18, weight: .semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    if showSubheading {
-                        Text(R.string.localizable.subheadingMessage())
-                            .font(.system(size: 17))
-                    }
+                        .font(.headline)
                 }
-                .padding(.top, 16)
-                .padding(.horizontal, 16)
-                
-                
-                List {
-                    Section(header: Spacer(minLength: 0),
-                            footer: HStack {
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("\(weeklyStreakMessage) \(totalImpactMessage)"))
+
+                if showImpactList {
+                    Text(R.string.localizable.impactListMessage())
+
+                    ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
+                    ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
+                    ImpactListItem(title: R.string.localizable.unavailable(), count: userStats?.unavailable ?? 0)
+                }
+                Section {
+
+                } footer: {
                         Text(store.state.globalCallCount > 0 ? communityCallsMessage : "")
-                    }) {
-                        ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
-                        ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
-                        ImpactListItem(title: R.string.localizable.unavailable(), count: userStats?.unavailable ?? 0)
-                    }
+                        .font(.footnote)
                 }
-                .scrollContentBackground(.hidden)
-                .listStyle(.grouped)
             }
-                .navigationTitle(R.string.localizable.yourImpactTitle())
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarBackButtonHidden()
-                .toolbarBackground(.visible)
-                .toolbarBackground(Color.fivecallsDarkBlue)
-                .toolbarColorScheme(.dark, for: .navigationBar)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            self.dismiss()
-                        }) {
-                            Text(R.string.localizable.doneButtonTitle())
-                                .bold()
-                        }
+            .padding(.vertical)
+            .listStyle(.plain)
+            .navigationTitle(R.string.localizable.yourImpactTitle())
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .toolbarBackground(.visible)
+            .toolbarBackground(Color.fivecallsDarkBlue)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        self.dismiss()
+                    }) {
+                        Text(R.string.localizable.doneButtonTitle())
+                            .bold()
                     }
                 }
+            }
         }
         .onAppear() {
             if store.state.globalCallCount == 0 {
@@ -138,9 +132,13 @@ struct ImpactListItem: View {
     var body: some View {
         HStack {
             Text(title)
+                .font(.body)
             Spacer()
             Text(timesString(count: count))
+                .font(.body)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("\(title) \(timesString(count: count))"))
     }
     
     private func timesString(count: Int) -> String {

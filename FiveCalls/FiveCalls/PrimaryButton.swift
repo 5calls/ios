@@ -30,7 +30,6 @@ struct PrimaryButton: View {
             RoundedRectangle(cornerRadius: 6)
                 .foregroundColor(bgColor)
         }
-
     }
 }
 

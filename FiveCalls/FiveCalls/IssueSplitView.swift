@@ -22,6 +22,7 @@ struct IssueSplitView: View {
                     .navigationDestination(for: IssueDetailNavModel.self) { idnm in
                         IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
                     }.navigationDestination(for: IssueDoneNavModel.self) { inm in
+
                         IssueDone(issue: inm.issue)
                     }
                 } else {

@@ -21,10 +21,10 @@ struct IssueContactDetail: View {
     var nextContacts: [Contact] {
         return Array(remainingContacts.dropFirst())
     }
-
+    
     var issueMarkdown: AttributedString {
-           return issue.markdownIssueScript(contact: currentContact, location: store.state.location)
-       }
+        return issue.markdownIssueScript(contact: currentContact, location: store.state.location)
+    }
 
     @State private var copiedPhoneNumber: String?
     @AccessibilityFocusState private var isCopiedPhoneNumberFocused: Bool
@@ -47,7 +47,6 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-
                         if let copiedPhoneNumber {
                             Text(R.string.localizable.copiedPhone(copiedPhoneNumber))
                                 .bold()
@@ -67,7 +66,6 @@ struct IssueContactDetail: View {
                             }
                             .onLongPressGesture(minimumDuration: 1.0) {
                                 UIPasteboard.general.string = currentContact.phone
-
                                 withAnimation {
                                     copiedPhoneNumber = currentContact.phone
                                     if UIAccessibility.isVoiceOverRunning {
@@ -87,7 +85,7 @@ struct IssueContactDetail: View {
                             .accessibilityAddTraits(.isButton)
                             .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
 
-                        if currentContact.fieldOffices.count > 1 {
+                      if currentContact.fieldOffices.count > 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
                                     ControlGroup {
@@ -101,7 +99,7 @@ struct IssueContactDetail: View {
                                         }
                                         .accessibilityLabel(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
                                         .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
-
+                                        
                                         Button {
                                             UIPasteboard.general.string = office.phone
                                             withAnimation {
@@ -110,7 +108,7 @@ struct IssueContactDetail: View {
                                                     isCopiedPhoneNumberFocused = true
                                                 }
                                             }
-
+                                            
                                             DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                                                 withAnimation {
                                                     isCopiedPhoneNumberFocused = false
@@ -136,10 +134,10 @@ struct IssueContactDetail: View {
                         }
                     }
                 }.padding(.bottom)
-
+                
                 Text(issueMarkdown)
                     .padding(.bottom)
-
+                
                 OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                     let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                     store.dispatch(action: .ReportOutcome(issue, log, outcome))

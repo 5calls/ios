@@ -25,7 +25,9 @@ struct IssueListItem: View {
                         .font(.title3)
                         .fontWeight(.semibold)                        
                         .foregroundColor(Color.fivecallsDarkBlueText)
+
                     Spacer()
+
                     HStack(spacing: 0) {
                         let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
                             Contact.placeholderContact(for: area)
@@ -50,10 +52,10 @@ struct IssueListItem: View {
     var repText: String {
         if issue.contactAreas.count == 0 {
             // we should never ship an issue with no contact areas, but handle the state anyway
-            return "No contacts"
+            return R.string.localizable.noContacts()
         } else {
             let areas = issue.contactAreas.map({ a in AreaToNiceString(area: a) }).joined(separator: ", ")
-            return "Call \(areas)"
+            return R.string.localizable.callAreas(areas)
         }
     }
 }
@@ -65,7 +67,8 @@ struct IssueListItem: View {
         return state
     }()
 
-return List {
+
+    return List {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])

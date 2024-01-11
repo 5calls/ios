@@ -42,6 +42,7 @@ struct IssueDetail: View {
                             }
                     }
                     .padding(.bottom, 16)
+
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
                         PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
                     }

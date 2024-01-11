@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FetchStatsOperation : BaseOperation {
+class FetchStatsOperation: BaseOperation {
     
     var numberOfCalls: Int?
     var numberOfIssueCalls: Int?
@@ -17,16 +17,33 @@ class FetchStatsOperation : BaseOperation {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
-    override func execute() {
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
+    lazy var sessionConfiguration = URLSessionConfiguration.default
+    lazy var session: URLSession = {
+        return URLSession(configuration: self.sessionConfiguration)
+    }()
+
+    init(config: URLSessionConfiguration? = nil) {
+        super.init()
+        
+        if let config {
+            self.session = URLSession(configuration: config)
+        }
+    }
+    
+    var url: URL {
         var urlComp = URLComponents(url: URL(string: "https://api.5calls.org/v1/report")!, resolvingAgainstBaseURL: false)!
         if let issueID = self.issueID {
             let issueIDQuery = URLQueryItem(name: "issueID", value: issueID)
             urlComp.queryItems = [issueIDQuery]
         }
         
-        let task = session.dataTask(with: urlComp.url!) { (data, response, error) in
+        return urlComp.url!
+    }
+
+    override func execute() {
+        let request = buildRequest(forURL: url)
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let e = error {
                 self.error = e
             } else {

@@ -8,14 +8,26 @@
 
 import SwiftUI
 
-//@main // TODO: once SwiftUI is done move main here
-//struct FiveCallsApp: App {
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-//            
-//    var body: some Scene {
-//        WindowGroup {
-//            Dashboard().environmentObject(appDelegate.appState)
-//        }
-//    }
-//}
+@main
+struct FiveCallsApp: App {
+    @StateObject var store: Store = Store(state: AppState(), middlewares: [appMiddleware()])
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+            
+    @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
+
+    var body: some Scene {
+        WindowGroup {
+            IssueSplitView()
+                .environmentObject(store)
+                .sheet(isPresented: $store.state.showWelcomeScreen) {
+                    Welcome().environmentObject(store)
+                }
+                .onAppear {
+                    if !hasShownWelcomeScreen {
+                        store.dispatch(action: .ShowWelcomeScreen)
+                    }
+                }
+        }
+    }
+}
 

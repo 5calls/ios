@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
+
     @State var selectedIssueUrl: URL?
     @Binding var selectedIssue: Issue?
 
@@ -39,7 +40,7 @@ struct Dashboard: View {
                             .padding(.top, 40)
                         Spacer()
                     }
-                
+
                 Image(.fivecallsStars)
                     .accessibilityHidden(true)
             }
@@ -59,12 +60,12 @@ struct Dashboard: View {
         .navigationBarHidden(true)
         .onAppear() {
             AnalyticsManager.shared.trackPageview(path: "/")
-            
+
             // TODO: refresh if issues are old too?
             if store.state.issues.isEmpty {
                 store.dispatch(action: .FetchIssues)
             }
-            
+
             if let location = store.state.location, store.state.contacts.isEmpty {
                 store.dispatch(action: .FetchContacts(location))
             }
@@ -76,12 +77,13 @@ struct Dashboard: View {
                 selectedIssue = store.state.issues.first(where: { $0.slug == url.lastPathComponent })
             }
         })
-       .onChange(of: store.state.issues) { issues in
-           if let selectedIssueUrl {
-               selectedIssue = issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
-               self.selectedIssueUrl = nil
-           }
-       }
+
+        .onChange(of: store.state.issues) { issues in
+            if let selectedIssueUrl {
+                selectedIssue = issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
+                self.selectedIssueUrl = nil
+            }
+        }
     }
 }
 
@@ -101,7 +103,7 @@ struct Dashboard_Previews: PreviewProvider {
     }()
 
     static let store = Store(state: previewState, middlewares: [appMiddleware()])
-    
+
     static var previews: some View {
         NavigationStack {
             Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
@@ -127,7 +129,7 @@ struct MenuView: View {
                 Text(R.string.localizable.menuAbout())
             }
         } label: {
-            Image(systemName: "gear.circle")
+            Image(systemName: "gear")
                 .renderingMode(.template)
                 .font(.title)
                 .tint(Color.fivecallsDarkBlue)
@@ -161,14 +163,14 @@ struct IssuesList: View {
             return store.state.issues.filter({ $0.active })
         }
     }
-    
+
     private var categorizedIssues: [CategorizedIssuesViewModel] {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
         if !showAllIssues {
             // if we're showing the default list, make fake categories to preserve the json order. The category names don't matter because we don't show them on the default list
             return allIssues.map({ CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) })
         }
-        
+
         for issue in allIssues {
             for category in issue.categories {
                 if let categorized = categoryViewModels.first(where: { $0.category == category }) {
@@ -189,6 +191,7 @@ struct IssuesList: View {
                         NavigationLink(value: issue) {
                             IssueListItem(issue: issue, contacts: store.state.contacts)
                         }
+                        .listRowSeparatorTint(.fivecallsDarkGray)
                     }
                 } header: {
                     if showAllIssues {
@@ -208,8 +211,10 @@ struct IssuesList: View {
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color.fivecallsDarkBlueText)
+
                         }
                         .padding(.vertical, 10)
+                        .listRowSeparatorTint(.fivecallsDarkGray)
                     }
                 }
             }

@@ -13,7 +13,7 @@ class FiveCallsUITests: XCTestCase {
 
     var app: XCUIApplication!
         
-    override func setUp() {
+    @MainActor override func setUp() {
         super.setUp()
         
         continueAfterFailure = false
@@ -28,7 +28,7 @@ class FiveCallsUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testTakeScreenshots() {
+    @MainActor func testTakeScreenshots() {
         snapshot("0-welcome")
         
         let predicate = NSPredicate(format: "label LIKE 'Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.'")
