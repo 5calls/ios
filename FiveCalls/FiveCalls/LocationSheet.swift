@@ -30,6 +30,7 @@ struct LocationSheet: View {
                             locationSearch()
                         }
                         .padding(.leading)
+                        .accessibilityIdentifier("locationField")
                     }
                     .padding(.vertical, 12)
                     .font(.system(size: 18, weight: .regular, design: .default))

@@ -1,20 +1,20 @@
 devices([
-  "iPhone 8",
-  "iPhone 8 Plus",
-  "iPhone 11",
-  "iPhone 11 Pro",
-  "iPhone 11 Pro Max",
-  "iPad Pro (12.9-inch) (3rd generation)"
+  "iPhone SE (3rd generation)",
+  # "iPhone 15",
+  "iPhone 15 Pro",
+  # "iPhone 15 Pro Max",
+  "iPad Pro (12.9-inch) (6th generation)",
+  "iPad Pro (12.9-inch) (2nd generation)"
 ])
 
 languages([
   "en-US",
 ])
 
-workspace "./FiveCalls/FiveCalls.xcworkspace"
+project "./FiveCalls/FiveCalls.xcodeproj"
 scheme "FiveCallsUITests"
 
-output_directory "./screenshots"
+output_directory "./fastlane/screenshots"
 clear_previous_screenshots true
 
 # Arguments to pass to the app on launch. See https://github.com/fastlane/snapshot#launch-arguments

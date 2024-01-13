@@ -17,11 +17,6 @@ class FetchStatsOperation: BaseOperation {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
-    lazy var sessionConfiguration = URLSessionConfiguration.default
-    lazy var session: URLSession = {
-        return URLSession(configuration: self.sessionConfiguration)
-    }()
-
     init(config: URLSessionConfiguration? = nil) {
         super.init()
         

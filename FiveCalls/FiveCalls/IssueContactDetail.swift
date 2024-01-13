@@ -134,6 +134,7 @@ struct IssueContactDetail: View {
                                     .foregroundColor(Color.fivecallsDarkBlue)
                                     .padding(.leading, 4)
                             }
+                            .accessibilityIdentifier("localNumbers")
                         }
                     }
                 }.padding(.bottom)

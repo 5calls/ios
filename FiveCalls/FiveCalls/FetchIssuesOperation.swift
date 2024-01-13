@@ -15,11 +15,6 @@ class FetchIssuesOperation : BaseOperation {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     var issuesList: [Issue]?
-
-    lazy var sessionConfiguration = URLSessionConfiguration.default
-    lazy var session: URLSession = {
-        return URLSession(configuration: self.sessionConfiguration)
-    }()
     
     init(config: URLSessionConfiguration? = nil) {
         super.init()

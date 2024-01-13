@@ -16,12 +16,7 @@ class FetchContactsOperation : BaseOperation {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     var contacts: [Contact]?
-    
-    lazy var sessionConfiguration = URLSessionConfiguration.default
-    lazy var session: URLSession = {
-        return URLSession(configuration: self.sessionConfiguration)
-    }()
-    
+        
     init(location: UserLocation) {
         self.location = location
     }
@@ -34,7 +29,6 @@ class FetchContactsOperation : BaseOperation {
         self.location = loc
         
         super.init()
-        
         if let config {
             self.session = URLSession(configuration: config)
         }
