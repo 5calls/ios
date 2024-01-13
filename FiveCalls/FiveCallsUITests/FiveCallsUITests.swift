@@ -34,17 +34,20 @@ class FiveCallsUITests: XCTestCase {
         // set location
         app.buttons["Set your location"].tap()
         app.textFields["locationField"].tap()
-        app.textFields["locationField"].typeText("94110\r")
-        
+        app.textFields["locationField"].typeText("94110")
+        app.textFields["locationField"].typeText("\r")
+
         // select first issue
         app.collectionViews.cells.element(boundBy: 0).tap()
         snapshot("1-issue-detail")
 
+        app.swipeUp()
         app.buttons["See your script"].tap()
         snapshot("2-script")
         
+        app.swipeUp()
         // nav to second contact that has more phone numbers
-        app.buttons["Skip"].tap()
+        app.buttons["Contact"].tap()
         // open the more phones menu
         app.buttons["localNumbers"].tap()
         
