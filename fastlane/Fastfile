@@ -23,6 +23,13 @@ platform :ios do
     scan(project: xcodeproj, scheme: scheme, xcargs: "-skipPackagePluginValidation")
   end
 
+  desc "Runs code coverage (requires running tests first)"
+  lane :coverage do
+    xcov(project: "FiveCalls/FiveCalls.xcodeproj",
+    scheme: "FiveCalls",
+    minimum_coverage_percentage: 25.0)
+  end
+
   desc "Increments build number"
   lane :increment_build do
     increment_build_number(xcodeproj: xcodeproj)
