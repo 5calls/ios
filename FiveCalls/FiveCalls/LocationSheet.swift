@@ -136,7 +136,7 @@ struct LocationSheet: View {
                 let loc = UserLocation(address: locationText, display: locationDisplay)
                 store.dispatch(action: .SetLocation(loc))
                 dismiss()
-            } catch (let error) {
+            } catch (_) {
                 locationError = R.string.localizable.locationErrorDefault()
             }
         }
@@ -166,7 +166,7 @@ struct LocationSheet: View {
         }
     }
 
-    private func getLocationInfo(from location: CLLocation) async throws -> [String: Any] {
+    func getLocationInfo(from location: CLLocation) async throws -> [String: Any] {
         var locationInfo = [String: Any]()
         locationInfo["longitude"] = location.coordinate.longitude
         locationInfo["latitude"] = location.coordinate.latitude
