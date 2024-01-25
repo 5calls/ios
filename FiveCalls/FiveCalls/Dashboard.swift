@@ -25,7 +25,13 @@ struct Dashboard: View {
                 LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
                     .padding(.bottom, 10)
                     .onTapGesture {
-                        showLocationSheet.toggle()
+                        if #available(iOS 17.0, *) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                showLocationSheet.toggle()
+                            }
+                        } else {
+                            showLocationSheet.toggle()
+                        }
                     }
                     .sheet(isPresented: $showLocationSheet) {
                         LocationSheet()
