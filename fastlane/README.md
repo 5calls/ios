@@ -29,7 +29,7 @@ Runs all the tests
 [bundle exec] fastlane ios coverage
 ```
 
-Runs code coverage
+Runs code coverage (requires running tests first)
 
 ### ios increment_build
 

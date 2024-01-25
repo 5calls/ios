@@ -10,7 +10,7 @@ import Foundation
 import RegexBuilder
 
 struct ScriptReplacements {
-    static func replacing(script: String, contact: Contact, location: NewUserLocation?) -> String {
+    static func replacing(script: String, contact: Contact, location: UserLocation?) -> String {
         var replacedScript = ScriptReplacements.chooseSubscript(script: script, contact: contact)
         
         replacedScript = ScriptReplacements.replacingContact(script: replacedScript, contact: contact)
@@ -51,7 +51,7 @@ struct ScriptReplacements {
         return script.replacing(Regex(pattern), with: template)
     }
     
-    static func replacingLocation(script: String, location: NewUserLocation) -> String {
+    static func replacingLocation(script: String, location: UserLocation) -> String {
         let pattern = /\[CITY,\s?ZIP\]|\[CITY,\s?STATE\]/
         return script.replacing(Regex(pattern), with: location.locationDisplay)
     }

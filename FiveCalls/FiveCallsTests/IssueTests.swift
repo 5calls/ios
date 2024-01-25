@@ -26,5 +26,6 @@ final class IssueTests: XCTestCase {
         let expectedShareURL = URL(string: "https://5calls.org/issue/support-act-slug/")!
         let expectedShareImageURL = URL(string: "https://api.5calls.org/v1/issue/813/share/t")!
         XCTAssert(issue.shareURL == expectedShareURL, "share url was \(issue.shareURL), expected \(expectedShareURL)")
+        XCTAssert(issue.shareImageURL == expectedShareImageURL, "share image url was \(issue.shareImageURL), expected \(expectedShareImageURL)")
     }
 }

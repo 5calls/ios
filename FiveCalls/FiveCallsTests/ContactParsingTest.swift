@@ -24,7 +24,7 @@ final class ContactParsingTest: XCTestCase {
         let exp = expectation(description: "parsing contacts")
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [ProtocolMock.self]
-        let fetchContacts = FetchContactsOperation(location: NewUserLocation(address: "3400 24th St, SF, CA"), config: config)
+        let fetchContacts = FetchContactsOperation(location: UserLocation(address: "3400 24th St, SF, CA"), config: config)
         fetchContacts.completionBlock = {
             if let error = fetchContacts.error {
                 return XCTFail("contact request failed: \(error)")

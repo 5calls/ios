@@ -10,24 +10,16 @@ import Foundation
 import OneSignal
 
 class FetchContactsOperation : BaseOperation {
-    
+
     var location: UserLocation
-    
+
     var httpResponse: HTTPURLResponse?
     var error: Error?
     var contacts: [Contact]?
-        
-    init(location: UserLocation) {
-        self.location = location
-    }
 
-    init(location: NewUserLocation, config: URLSessionConfiguration? = nil) {
-        let loc = UserLocation()
-        loc.locationType = UserLocation.LocationType(rawValue: location.locationType.rawValue)
-        loc.locationValue = location.locationValue
-        loc.locationDisplay = location.locationDisplay
-        self.location = loc
-        
+    init(location: UserLocation, config: URLSessionConfiguration? = nil) {
+        self.location = location
+
         super.init()
         if let config {
             self.session = URLSession(configuration: config)
@@ -36,7 +28,7 @@ class FetchContactsOperation : BaseOperation {
     
     var url: URL {
         var components = URLComponents(string: "https://api.5calls.org/v1/reps")
-        let locationQueryParam = URLQueryItem(name: "location", value: location.locationValue ?? "")
+        let locationQueryParam = URLQueryItem(name: "location", value: location.locationValue)
         components?.queryItems = [locationQueryParam]
         return components!.url!
     }

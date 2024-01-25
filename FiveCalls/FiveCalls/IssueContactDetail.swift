@@ -164,7 +164,7 @@ struct IssueContactDetail: View {
 #Preview {
     let previewState = {
         let state = AppState()
-        state.location = NewUserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
+        state.location = UserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
         return state
     }()
 

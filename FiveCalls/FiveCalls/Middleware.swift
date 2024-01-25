@@ -94,7 +94,7 @@ private func fetchIssues(dispatch: @escaping Dispatcher) {
     queue.addOperation(operation)
 }
 
-private func fetchContacts(location: NewUserLocation, dispatch: @escaping Dispatcher) {
+private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatcher) {
     dispatch(.SetFetchingContacts(true))
 
     let queue = OperationQueue.main

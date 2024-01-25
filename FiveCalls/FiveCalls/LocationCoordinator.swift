@@ -14,6 +14,7 @@ enum LocationCoordinatorError: Error {
     case NoLocationsReturned
     case Unauthorized
     case LocationManagerError(Error)
+    case Unknown
 }
 
 class LocationCoordinator: NSObject, CLLocationManagerDelegate {
@@ -32,6 +33,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate {
                 switch self?.manager.authorizationStatus {
                 case .denied, .restricted:
                     self?.locationContinuation?.resume(throwing: LocationCoordinatorError.Unauthorized)
+                    self?.locationContinuation = nil
                 case .authorizedAlways, .authorizedWhenInUse:
                     self?.manager.requestLocation()
                 default:
@@ -43,17 +45,20 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        print("new location: \(locations)")
-        if let location = locations.first {
+        if let location = locations.last {
             locationContinuation?.resume(with: .success(location))
+            locationContinuation = nil
         } else {
             locationContinuation?.resume(with: .failure(LocationCoordinatorError.NoLocationsReturned))
+            locationContinuation = nil
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 //        print("loc manager failed: \(error)")
-        locationContinuation?.resume(with: .failure(error))
-        
+        locationContinuation?.resume(with: .failure(LocationCoordinatorError.Unknown))
+        locationContinuation = nil
+
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -64,6 +69,7 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate {
             }
         } else if manager.authorizationStatus == .denied {
             locationContinuation?.resume(with: .failure(LocationCoordinatorError.Unauthorized))
+            locationContinuation = nil
         }
     }
 }

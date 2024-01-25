@@ -113,6 +113,7 @@
 "location-instructions"               = "Use an address, zip code or zip + 4";
 "location-error-off"                  = "Location permission is off";
 "location-error-default"              = "An error occured trying to find your location";
+"location-or"                         = "Or";
 
 // outcomes
 "outcomes.contact"                    = "Made Contact";
