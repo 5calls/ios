@@ -92,7 +92,7 @@ struct LocationHeader_Previews: PreviewProvider {
         VStack {
             LocationHeader(location: nil, fetchingContacts: true)
             LocationHeader(location: nil, fetchingContacts: false)
-            LocationHeader(location: NewUserLocation(address: "19444"), fetchingContacts: false)
+            LocationHeader(location: UserLocation(address: "19444"), fetchingContacts: false)
                 .frame(maxWidth: 250)
             Spacer()
         }
