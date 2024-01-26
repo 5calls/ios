@@ -56,6 +56,7 @@ struct ContactListItem: View {
                     .font(.footnote)
 
             }
+            .accessibilityElement(children: .combine)
             Spacer()
         }
         .padding(2)
