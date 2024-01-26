@@ -20,7 +20,6 @@ struct IssueNavigationHeader: View {
             } label: {
                 HStack(spacing: 4) {
                     Image(systemName: "chevron.backward")
-                        .font(.title2)
                     Text(R.string.localizable.back())
                         .fontWeight(.medium)
                 }
@@ -31,7 +30,6 @@ struct IssueNavigationHeader: View {
                     Text(R.string.localizable.share())
                         .fontWeight(.medium)
                     Image(systemName: "square.and.arrow.up")
-                        .font(.title2)
                 }
             }
         }
