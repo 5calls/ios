@@ -27,7 +27,7 @@ class AppState: ObservableObject, ReduxState {
     @Published var donateOn = false
     @Published var issues: [Issue] = []
     @Published var contacts: [Contact] = []
-    @Published var location: NewUserLocation? {
+    @Published var location: UserLocation? {
         didSet {
             guard let location = self.location else { return }
             let defaults = UserDefaults.standard
@@ -57,13 +57,13 @@ class AppState: ObservableObject, ReduxState {
             
             switch locationType {
             case "address", "zipCode":
-                self.location = NewUserLocation(address: locationValue, display: locationDisplay)
+                self.location = UserLocation(address: locationValue, display: locationDisplay)
             case "coordinates":
                 let locValues = locationValue.split(separator: ",")
                 if locValues.count != 2 { return }
                 guard let lat = Double(locValues[0]), let lng = Double(locValues[1]) else { return }
                 
-                self.location = NewUserLocation(location: CLLocation(latitude: lat, longitude: lng), display: locationDisplay)
+                self.location = UserLocation(location: CLLocation(latitude: lat, longitude: lng), display: locationDisplay)
             default:
                 Logger().warning("unknown stored location type data: \(locationType)")
             }

@@ -11,7 +11,7 @@ import XCTest
 
 final class IssueParsingTest: XCTestCase {
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        UserDefaults.standard.set(Bundle(for: IssueParsingTest.self).path(forResource: "GET-v1-issues", ofType: "json"), forKey: "mock-GET:/v1/issues")
     }
 
     override func tearDownWithError() throws {

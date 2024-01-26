@@ -11,8 +11,9 @@ import XCTest
 
 final class ContactParsingTest: XCTestCase {
 
-    override func setUpWithError() throws {
+    override func setUpWithError() throws {        
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        UserDefaults.standard.set(Bundle(for: ContactParsingTest.self).path(forResource: "GET-v1-reps", ofType: "json"), forKey: "mock-GET:/v1/reps")
     }
 
     override func tearDownWithError() throws {
@@ -23,8 +24,11 @@ final class ContactParsingTest: XCTestCase {
         let exp = expectation(description: "parsing contacts")
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [ProtocolMock.self]
-        let fetchContacts = FetchContactsOperation(location: NewUserLocation(address: "3400 24th St, SF, CA"), config: config)
+        let fetchContacts = FetchContactsOperation(location: UserLocation(address: "3400 24th St, SF, CA"), config: config)
         fetchContacts.completionBlock = {
+            if let error = fetchContacts.error {
+                return XCTFail("contact request failed: \(error)")
+            }
             guard let contacts = fetchContacts.contacts else { return XCTFail("no contacts present") }
             let contactCountExpected = 8
             XCTAssert(contacts.count == contactCountExpected, "found \(contacts.count) issues, expected \(contactCountExpected)")

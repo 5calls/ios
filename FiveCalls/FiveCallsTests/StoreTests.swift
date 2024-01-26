@@ -84,7 +84,7 @@ final class StoreTests: XCTestCase {
 
     func testReduceSetLocation() throws {
         let state = AppState()
-        let location = NewUserLocation(address: "123 Main St")
+        let location = UserLocation(address: "123 Main St")
         // reset cache
         state.location = nil
         let store = Store(state: state)

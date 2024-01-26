@@ -1,0 +1,106 @@
+[
+  {
+    "id": 664,
+    "createdAt": "2019-12-18T17:56:35-08:00",
+    "group": {
+      "id": 0,
+      "createdAt": "0001-01-01T00:00:00Z",
+      "name": "",
+      "groupID": "",
+      "subtitle": "",
+      "description": "",
+      "photoURL": "",
+      "totalCalls": 0,
+      "customCalls": false,
+      "subscribed": false
+    },
+    "name": "Support statehood for Washington D.C.",
+    "reason": "Residents of Washington, D.C. pay federal taxes, but don’t have Senators or a Representative to vote on issues affecting them. Local laws that voters support can be overruled by Congress without the protective rights of a state. D.C. has a larger population than both Vermont and Wyoming. In 2016, 86% of Washington, D.C. voted for statehood over the unjust status quo.\n\nLawmakers should prioritize making the District of Columbia a state and ensure that every American has fair and equal representation in the federal government. Demand that your Members of Congress support H.R. 51 and S. 51 to finally grant statehood to the District of Columbia.",
+    "script": "Hi, my name is **[NAME]** and I'm a constituent from [CITY, ZIP].\n\nI'm calling to urge [SEN/REP NAME] to support H.R. 51: The Washington, D.C. Admission Act. Over 690,000 residents of the District of Columbia deserve self-determination and full voting representation in Congress. Fulfill the wishes of the people of DC, who voted 86% in favor of statehood.\n\nThank you for your time and attention.\n\n**IF LEAVING A VOICEMAIL:** Please leave your full street address to ensure your call is tallied.",
+    "categories": [],
+    "contactType": "REPS",
+    "contacts": null,
+    "contactAreas": [
+      "US Senate",
+      "US House"
+    ],
+    "outcomeModels": [
+      {
+        "label": "unavailable",
+        "status": "unavailable"
+      },
+      {
+        "label": "voicemail",
+        "status": "voicemail"
+      },
+      {
+        "label": "contact",
+        "status": "contact"
+      },
+      {
+        "label": "skip",
+        "status": "skip"
+      }
+    ],
+    "stats": {
+      "calls": 435
+    },
+    "slug": "trump-impeachment-senate-trial",
+    "active": true,
+    "meta": "recWUAJFR3V99JNjR"
+  },
+  {
+    "id": 573,
+    "createdAt": "2019-05-06T20:15:01-07:00",
+    "group": {
+      "id": 0,
+      "createdAt": "0001-01-01T00:00:00Z",
+      "name": "",
+      "groupID": "",
+      "subtitle": "",
+      "description": "",
+      "photoURL": "",
+      "totalCalls": 0,
+      "customCalls": false,
+      "subscribed": false
+    },
+    "name": "Second screenshot issue",
+    "reason": "another reason",
+    "script": "Hi, my name is **[NAME]** and I'm a constituent from [CITY, ZIP].\n\nI'm calling to urge [REP/SEN NAME] to support **[HR 986 if House, S 466 if SENATE],** the Protecting Americans with Pre-existing Conditions Act. Permitting the use of ACA subsidies to purchase short-term insurance plans puts consumers at risk for medical bankruptcy and weakens protections for the thousands of people with preexisting health conditions. \n\nThank you for your time and attention.\n\n**IF LEAVING A VOICEMAIL:** Please leave your full street address to ensure your call is tallied.",
+    "categories": [
+      {
+        "name": "Healthcare"
+      }
+    ],
+    "contactType": "REPS",
+    "contacts": null,
+    "contactAreas": [
+      "US Senate",
+      "US House"
+    ],
+    "outcomeModels": [
+      {
+        "label": "unavailable",
+        "status": "unavailable"
+      },
+      {
+        "label": "voicemail",
+        "status": "voicemail"
+      },
+      {
+        "label": "contact",
+        "status": "contact"
+      },
+      {
+        "label": "skip",
+        "status": "skip"
+      }
+    ],
+    "stats": {
+      "calls": 524
+    },
+    "slug": "protecting-americans-preexisting-conditions-act",
+    "active": true,
+    "meta": "recs0Er3p4wNjHrAu"
+  }
+]

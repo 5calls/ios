@@ -16,9 +16,9 @@ enum Action {
     case SetDonateOn(Bool)
     case FetchIssues
     case SetIssues([Issue])
-    case FetchContacts(NewUserLocation)
+    case FetchContacts(UserLocation)
     case SetContacts([Contact])
-    case SetLocation(NewUserLocation)
+    case SetLocation(UserLocation)
     case ReportOutcome(Issue, ContactLog, Outcome)
     case SetFetchingContacts(Bool)
     case SetLoadingStatsError(Error)

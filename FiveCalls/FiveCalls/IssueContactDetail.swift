@@ -10,6 +10,7 @@ import SwiftUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let issue: Issue
     let remainingContacts: [Contact]
@@ -92,7 +93,9 @@ struct IssueContactDetail: View {
                                         Button {
                                             self.call(phoneNumber: office.phone)
                                         } label: {
-                                            HStack {
+                                            if dynamicTypeSize >= .accessibility1 {
+                                                Text(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
+                                            } else {
                                                 Image(systemName: "phone")
                                                 Text(office.city)
                                             }
@@ -116,7 +119,9 @@ struct IssueContactDetail: View {
                                                 }
                                             }
                                         } label: {
-                                            HStack {
+                                            if dynamicTypeSize >= .accessibility1 {
+                                                Text(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+                                            } else {
                                                 Image(systemName: "doc.on.doc")
                                                 Text(R.string.localizable.copy())
                                             }
@@ -131,6 +136,7 @@ struct IssueContactDetail: View {
                                     .foregroundColor(Color.fivecallsDarkBlue)
                                     .padding(.leading, 4)
                             }
+                            .accessibilityIdentifier("localNumbers")
                         }
                     }
                 }.padding(.bottom)

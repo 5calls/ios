@@ -10,9 +10,8 @@ import XCTest
 @testable import FiveCalls
 
 final class ReportParsingTest: XCTestCase {
-
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        UserDefaults.standard.set(Bundle(for: ContactParsingTest.self).path(forResource: "GET-v1-report", ofType: "json"), forKey: "mock-GET:/v1/report")
     }
 
     override func tearDownWithError() throws {

@@ -54,7 +54,7 @@ playground.xcworkspace
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
-Carthage/Build
+# Carthage/Build
 
 # fastlane
 #
@@ -65,10 +65,28 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots
+screenshots
 fastlane/test_output
 .env
 .ruby-version
 vendor/
 
 .DS_Store
+Gemfile.lock
+fastlane/xcov_report/index.html
+fastlane/xcov_report/xccovreport-0.xccovreport
+fastlane/xcov_report/resources/application.css
+fastlane/xcov_report/resources/application.js
+fastlane/xcov_report/resources/bootstrap.min.css
+fastlane/xcov_report/resources/bootstrap.min.js
+fastlane/xcov_report/resources/file_cpp.png
+fastlane/xcov_report/resources/file_objc.png
+fastlane/xcov_report/resources/file_swift.png
+fastlane/xcov_report/resources/jquery.min.js
+fastlane/xcov_report/resources/main.css
+fastlane/xcov_report/resources/main.js
+fastlane/xcov_report/resources/opensans.css
+fastlane/xcov_report/resources/xcov_logo.png
+fastlane/xcov_report/xccovarchive-0.xccovarchive/Coverage
+fastlane/xcov_report/xccovarchive-0.xccovarchive/Index
+fastlane/xcov_report/xccovarchive-0.xccovarchive/Metadata.plist

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LocationHeader: View {
-    let location: NewUserLocation?
+    let location: UserLocation?
     let fetchingContacts: Bool
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
