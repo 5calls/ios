@@ -19,7 +19,7 @@ struct IssueNavigationHeader: View {
                 store.dispatch(action: .GoBack)
             } label: {
                 HStack(spacing: 4) {
-                    Image(systemName
+                    Image(systemName: "chevron.backward")
                         .font(.body)
                     Text(R.string.localizable.back())
                         .fontWeight(.medium)
