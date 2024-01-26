@@ -33,7 +33,6 @@ struct ScriptReplacements {
                 OneOrMore(.newlineSequence)
             }
         }
-        
         if contact.area == "US House" || contact.area == "House" {
             let replacedScript = script.replacing(Regex(houseIntroPattern), with: "")
             return replacedScript.replacing(wholeRegex(senateIntroPattern), with: "")
@@ -41,7 +40,6 @@ struct ScriptReplacements {
             let replacedScript =  script.replacing(Regex(senateIntroPattern), with: "")
             return replacedScript.replacing(wholeRegex(houseIntroPattern), with: "")
         }
-        
         return script
     }
     

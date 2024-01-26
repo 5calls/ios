@@ -104,7 +104,6 @@
 		D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */; };
 		D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */; };
 		D0BFE9CB2A7DD25C007203A3 /* LocationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */; };
-		D0C2DDE32B1D5B2E0031A18E /* ContactListItemCompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C2DDE22B1D5B2E0031A18E /* ContactListItemCompact.swift */; };
 		D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */; };
 		D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */; };
 		D0C465D32AD30BEE00CE3E65 /* IssueRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */; };
@@ -265,7 +264,6 @@
 		D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCircle.swift; sourceTree = "<group>"; };
 		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeader.swift; sourceTree = "<group>"; };
-		D0C2DDE22B1D5B2E0031A18E /* ContactListItemCompact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListItemCompact.swift; sourceTree = "<group>"; };
 		D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueContactDetail.swift; sourceTree = "<group>"; };
 		D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNavigationHeader.swift; sourceTree = "<group>"; };
 		D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRouter.swift; sourceTree = "<group>"; };
@@ -523,7 +521,6 @@
 				4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */,
 				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
-				D0C2DDE22B1D5B2E0031A18E /* ContactListItemCompact.swift */,
 				4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */,
 				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
 				D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */,
@@ -855,7 +852,6 @@
 				B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */,
 				4F4868BB2AC3A3B400E1733A /* AboutListItem.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
-				D0C2DDE32B1D5B2E0031A18E /* ContactListItemCompact.swift in Sources */,
 				D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */,
 				B5E98E351E529E66005221B7 /* functions.swift in Sources */,
 				D0480B1E2A4D493B00502818 /* IssueListItem.swift in Sources */,

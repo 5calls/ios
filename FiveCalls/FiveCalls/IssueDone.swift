@@ -17,20 +17,34 @@ struct IssueDone: View {
     @State var showNotificationAlert = false
     
     let issue: Issue
-    
+
     init(issue: Issue) {
         self.issue = issue
-        
+
         if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
             self.markdownTitle = titleString
         } else {
             self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
         }
     }
-    
+
     let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     var markdownTitle: AttributedString!
-        
+
+    func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> String {
+        if let contactOutcome = issueCompletions.last(where: { $0.split(separator: "-")[0] == contact.id }) {
+            if contactOutcome.split(separator: "-").count > 1 {
+                return ContactLog.localizedOutcomeForStatus(status: String(contactOutcome.split(separator: "-")[1]))
+            }
+        }
+
+        return R.string.localizable.outcomesSkip()
+    }
+
+    func shouldShowImage(latestOutcomeForContact: String) -> Bool {
+        return latestOutcomeForContact != "Skip"
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -47,15 +61,21 @@ struct IssueDone: View {
                         CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
                             .padding(.bottom, 14)
                     }
-                }.padding(.bottom, 16)
+                }
+                .padding(.bottom, 16)
+
                 Text(R.string.localizable.contactSummaryHeader())
                     .font(.caption).fontWeight(.bold)
+                    .accessibilityAddTraits(.isHeader)
                 ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
-                    ContactListItemCompact(contact: contact, issueCompletions: store.state.issueCompletion[issue.id] ?? [])
-                }.padding(.bottom, 8)
+                    let issueCompletions = store.state.issueCompletion[issue.id] ?? []
+                    let latestContactCompletion = latestOutcomeForContact(contact: contact, issueCompletions: issueCompletions)
+                    ContactListItem(contact: contact, showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion), contactNote: latestContactCompletion, listType: .compact)
+                }
                 if store.state.donateOn {
                     Text(R.string.localizable.support5calls())
                         .font(.caption).fontWeight(.bold)
+                        .accessibilityAddTraits(.isHeader)
                     HStack {
                         Text(R.string.localizable.support5callsSub())
                         Button(action: {
@@ -63,17 +83,30 @@ struct IssueDone: View {
                         }) {
                             PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
                         }
-                    }.padding(.bottom, 16)
+                    }
+                    .padding(.bottom, 16)
                 }
+
                 Text(R.string.localizable.shareThisTopic())
                     .font(.caption).fontWeight(.bold)
+                    .accessibilityAddTraits(.isHeader)
+
                 ShareLink(item: issue.shareURL) {
-                    AsyncImage(url: issue.shareImageURL,
-                               content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }, placeholder: { EmptyView() })
-                }.padding(.bottom, 16)
+                    ZStack {
+                        // make the share link show up for VoiceOver
+                        Text("")
+                        AsyncImage(url: issue.shareImageURL,
+                                   content: { image in
+                            image.resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }, placeholder: { EmptyView() })
+                    }
+                }
+                .padding(.bottom, 16)
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(Text("\(R.string.localizable.shareThisTopic()): \(issue.name)"))
+
                 Button(action: {
                     store.dispatch(action: .GoToRoot)
                 }, label: {
@@ -81,14 +114,15 @@ struct IssueDone: View {
                 })
             }
             .padding(.horizontal)
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
         .clipped()
         .frame(maxWidth: 500)
         .onAppear() {
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/done/")
-            
+
             store.dispatch(action: .FetchStats(issue.id))
-         
+          
             // will prompt for a rating after hitting done 5 times
             RatingPromptCounter.increment {
                 guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
@@ -117,7 +151,6 @@ struct IssueDone: View {
             } label: {
                 Text(R.string.localizable.notificationNone())
             }
-
         } message: {
             Text(R.string.localizable.notificationAsk())
         }
@@ -125,13 +158,11 @@ struct IssueDone: View {
     }
 }
 
-
-
 extension IssueDone {
     func checkForNotifications() {
             let deviceState = OneSignal.getDeviceState()
             let nextPrompt = nextNotificationPromptDate() ?? Date()
-                    
+
             if deviceState?.hasNotificationPermission == false && nextPrompt <= Date() {
                 showNotificationAlert = true
             }
@@ -139,7 +170,7 @@ extension IssueDone {
     func nextNotificationPromptDate() -> Date? {
         let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
         guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
-        
+
         return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
     }
 }
@@ -147,34 +178,36 @@ extension IssueDone {
 struct CountingView: View {
     let title: String
     let count: Int
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .font(.title3)
                 .fontWeight(.medium)
                 .padding(.bottom, 4)
-            GeometryReader { geometry in
-                ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                        .foregroundColor(.fivecallsLightBG)
-                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                        .foregroundColor(.fivecallsDarkBlue)
-                        .frame(width: progressWidth(size: geometry.size))
-                    // this formats the int with commas automatically?
-                    Text("\(count)")
-                        .foregroundStyle(.white)
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 6)
+            ZStack(alignment: .leading) {
+                Canvas { context, size in
+                    let drawRect = CGRect(origin: .zero, size: size)
+
+                    context.fill(Rectangle().size(size).path(in: drawRect), with: .color(.fivecallsLightBG))
+                    context.fill(Rectangle().size(width: progressWidth(size: size), height: size.height).path(in: drawRect), with: .color(.fivecallsDarkBlue))
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                Text("\(count)")
+                    .foregroundStyle(.white)
+                    // yes, blue background may be redundant, but it ensures that the white text can always be read, even with very large fonts
+                    .background(.fivecallsDarkBlue)
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 6)
             }
         }
+        .accessibilityElement(children: .combine)
     }
-    
+
     func progressWidth(size: CGSize) -> CGFloat {
         return size.width * (CGFloat(count) / nextMilestone)
     }
-    
+
     var nextMilestone: CGFloat {
         if count < 80 {
             return 100
@@ -199,7 +232,7 @@ struct CountingView: View {
         } else if count < 4500000 {
             return 5000000
         }
-        
+
         return 0
     }
 }
@@ -213,19 +246,20 @@ struct CountingView: View {
     }()
 
     return IssueDone(issue: .basicPreviewIssue)
-        .environmentObject(Store(state: previewState))
+
+        .environmentObject(Store(state: previewState, middlewares: [appMiddleware()]))
 }
 
-struct IssueNavModel {
+struct IssueDoneNavModel {
     let issue: Issue
     let type: String
 }
 
-extension IssueNavModel: Equatable, Hashable {
-    static func == (lhs: IssueNavModel, rhs: IssueNavModel) -> Bool {
+extension IssueDoneNavModel: Equatable, Hashable {
+    static func == (lhs: IssueDoneNavModel, rhs: IssueDoneNavModel) -> Bool {
         return lhs.issue.id == rhs.issue.id && lhs.type == rhs.type
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(issue.id)
         hasher.combine(type)

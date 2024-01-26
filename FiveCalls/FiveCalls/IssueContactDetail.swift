@@ -30,7 +30,6 @@ struct IssueContactDetail: View {
     @State private var copiedPhoneNumber: String?
     @AccessibilityFocusState private var isCopiedPhoneNumberFocused: Bool
 
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -49,7 +48,6 @@ struct IssueContactDetail: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        
                         if let copiedPhoneNumber {
                             Text(R.string.localizable.copiedPhone(copiedPhoneNumber))
                                 .bold()
@@ -59,7 +57,7 @@ struct IssueContactDetail: View {
                                 .accessibilityLabel(R.string.localizable.a11yCopiedPhoneNumber())
                             Spacer()
                         }
-                        
+
                         Text(currentContact.phone)
                             .font(.title)
                             .fontWeight(.semibold)
@@ -69,7 +67,6 @@ struct IssueContactDetail: View {
                             }
                             .onLongPressGesture(minimumDuration: 1.0) {
                                 UIPasteboard.general.string = currentContact.phone
-                                
                                 withAnimation {
                                     copiedPhoneNumber = currentContact.phone
                                     if UIAccessibility.isVoiceOverRunning {
@@ -78,7 +75,7 @@ struct IssueContactDetail: View {
                                         }
                                     }
                                 }
-                                
+
                                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                                     withAnimation {
                                         isCopiedPhoneNumberFocused = false
@@ -88,8 +85,8 @@ struct IssueContactDetail: View {
                             }
                             .accessibilityAddTraits(.isButton)
                             .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
-                        
-                        if currentContact.fieldOffices.count > 1 {
+
+                      if currentContact.fieldOffices.count > 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
                                     ControlGroup {
@@ -157,7 +154,7 @@ struct IssueContactDetail: View {
         }.navigationBarHidden(true)
         .clipped()
     }
-    
+
     private func call(phoneNumber: String) {
         let telephone = "tel://"
         let formattedString = telephone + phoneNumber
@@ -167,12 +164,6 @@ struct IssueContactDetail: View {
 }
 
 #Preview {
-    let previewState = {
-        let state = AppState()
-        state.location = UserLocation(address: "3400 24th St, San Francisco, CA 94114", display: "San Francisco")
-        return state
-    }()
-
-    return IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact])
-        .environmentObject(Store(state: previewState))
+    IssueContactDetail(issue: Issue.basicPreviewIssue, remainingContacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
+        .environmentObject(Store(state: AppState()))
 }

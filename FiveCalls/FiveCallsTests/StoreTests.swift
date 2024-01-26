@@ -178,7 +178,7 @@ final class StoreTests: XCTestCase {
         XCTAssertEqual(store.state.issueRouter.path, path)
         
         _ = store.reduce(store.state, .GoToNext(issue, []))
-        path.append(IssueNavModel(issue: issue, type: "done"))
+        path.append(IssueDoneNavModel(issue: issue, type: "done"))
         XCTAssertEqual(store.state.issueRouter.path, path)
     }
 }

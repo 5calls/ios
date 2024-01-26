@@ -33,15 +33,21 @@ struct IssueDetail: View {
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
                         .padding(.leading, 6)
+                        .accessibilityAddTraits(.isHeader)
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered(), id: \.element.id) { contact in
                             ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
-                            if contact.number < 2 { Divider().padding(0) } else { EmptyView() }
+                            if contact.number < contacts.count - 1 {
+                                Divider()
+                            }
                         }
-                    }.background {
+                    }
+                    .background {
                         RoundedRectangle(cornerRadius: 10)
                             .foregroundColor(Color.fivecallsLightBG)
-                    }.padding(.bottom, 16)
+                    }
+                    .padding(.bottom, 16)
+
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
                         PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
                     }
@@ -75,12 +81,12 @@ struct IssueDetail: View {
 }
 
 #Preview {
-    IssueDetail(issue: Issue.multilinePreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
+    IssueDetail(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
         .environmentObject(Store(state: AppState()))
 }
 
 struct IssueDetailNavModel {
-    let issue: Issue
+    var issue: Issue
     let contacts: [Contact]
 }
 
@@ -88,7 +94,7 @@ extension IssueDetailNavModel: Equatable, Hashable {
     static func == (lhs: IssueDetailNavModel, rhs: IssueDetailNavModel) -> Bool {
         return lhs.issue.id == rhs.issue.id && lhs.contacts.elementsEqual(rhs.contacts)
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(issue.id)
         hasher.combine(contacts.compactMap({$0.id}).joined())
