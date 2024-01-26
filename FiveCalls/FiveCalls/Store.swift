@@ -65,20 +65,20 @@ class Store: ObservableObject {
         case let .SetLoadingContactsError(error):
             state.contactsLoadingError = error
         case .GoBack:
-            if state.issueRouter.path.isEmpty {
-                state.issueRouter.selectedIssue = nil
-            } else {
-                state.issueRouter.path.removeLast()
-            }
-        case .GoToRoot:
-            state.issueRouter.selectedIssue = nil
-            state.issueRouter.path = NavigationPath()
-        case let .GoToNext(issue, nextContacts):
-            if nextContacts.count >= 1 {
-                state.issueRouter.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
-            } else {
-                state.issueRouter.path.append(IssueNavModel(issue: issue, type: "done"))
-            }
+           if state.issueRouter.path.isEmpty {
+               state.issueRouter.selectedIssue = nil
+           } else {
+               state.issueRouter.path.removeLast()
+           }
+       case .GoToRoot:
+           state.issueRouter.selectedIssue = nil
+           state.issueRouter.path = NavigationPath()
+       case let .GoToNext(issue, nextContacts):
+           if nextContacts.count >= 1 {
+               state.issueRouter.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
+           } else {
+               state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
+           }
         case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _, _):
             // handled in middleware
             break

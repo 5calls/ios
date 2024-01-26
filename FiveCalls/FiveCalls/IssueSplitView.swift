@@ -17,11 +17,12 @@ struct IssueSplitView: View {
         }, detail: {
             NavigationStack(path: $store.state.issueRouter.path) {
                 if let selectedIssue = store.state.issueRouter.selectedIssue {
-                    IssueDetail(issue: selectedIssue,
+                                   IssueDetail(issue: selectedIssue,
                                 contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
                     .navigationDestination(for: IssueDetailNavModel.self) { idnm in
                         IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-                    }.navigationDestination(for: IssueNavModel.self) { inm in
+                    }.navigationDestination(for: IssueDoneNavModel.self) { inm in
+
                         IssueDone(issue: inm.issue)
                     }
                 } else {

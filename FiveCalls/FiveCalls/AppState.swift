@@ -47,6 +47,7 @@ class AppState: ObservableObject, ReduxState {
     
     @Published var issueRouter: IssueRouter = IssueRouter()
 
+
     init() {
         // load user location cache
         if let locationType = UserDefaults.standard.string(forKey: UserDefaultsKey.locationType.rawValue),

@@ -11,23 +11,30 @@ import SwiftUI
 struct IssueListItem: View {
     let issue: Issue
     let contacts: [Contact]
-    
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    func usingRegularFonts() -> Bool {
+        dynamicTypeSize < DynamicTypeSize.accessibility3
+    }
+
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
                     Text(issue.name)
-                        .font(.system(size: 20, weight: .semibold))
+                        .font(.title3)
+                        .fontWeight(.semibold)                        
                         .foregroundColor(Color.fivecallsDarkBlueText)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
+
+                    Spacer()
+
                     HStack(spacing: 0) {
                         let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
                             Contact.placeholderContact(for: area)
                         }) : issue.contactsForIssue(allContacts: contacts)
                         ForEach(contactsForIssue.numbered()) { numberedContact in
                             ContactCircle(contact: numberedContact.element, issueID: issue.id)
-                                .frame(width: 20, height: 20)
+                                .frame(width: usingRegularFonts() ? 20 : 40, height: usingRegularFonts() ? 20 : 40)
                                 .offset(x: -10 * CGFloat(numberedContact.number), y:0)
                         }
                         Text(repText)
@@ -60,15 +67,17 @@ struct IssueListItem: View {
         return state
     }()
 
+
     return List {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
                 .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact])
+            IssueListItem(issue: Issue.extraLongPreviewIssue, contacts: [Contact.housePreviewContact])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
-    }.environmentObject(Store(state: previewState))
+        }
+        .environmentObject(Store(state: previewState))
 }
 

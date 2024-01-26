@@ -78,7 +78,6 @@ struct Issue: Identifiable, Decodable {
             return AttributedString("Could not parse script markdown, email [hello@5calls.org](mailto:hello@5calls.org)")
         }
     }
-
 }
 
 extension Issue: Equatable, Hashable {

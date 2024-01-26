@@ -19,7 +19,8 @@ struct IssueNavigationHeader: View {
                 store.dispatch(action: .GoBack)
             } label: {
                 HStack(spacing: 4) {
-                    Image(systemName: "chevron.backward")
+                    Image(systemName
+                        .font(.body)
                     Text(R.string.localizable.back())
                         .fontWeight(.medium)
                 }
@@ -30,6 +31,8 @@ struct IssueNavigationHeader: View {
                     Text(R.string.localizable.share())
                         .fontWeight(.medium)
                     Image(systemName: "square.and.arrow.up")
+                        .font(.body)
+                        .offset(y: -1)
                 }
             }
         }

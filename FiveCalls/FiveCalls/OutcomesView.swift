@@ -16,18 +16,16 @@ struct OutcomesView: View {
         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())]) {
             ForEach(outcomes) { outcome in
                 PrimaryButton(title: outcome.label.capitalized,
-                              systemImageName: "megaphone.fill")
+                                  systemImageName: "megaphone.fill")
                 .accessibilityAddTraits(.isButton)
                 .onTapGesture {
                     report(outcome)
                 }
             }
         }
-
     }
 }
 
 #Preview {
     OutcomesView(outcomes: [Outcome(label: "OK", status: "ok"),Outcome(label: "No", status: "no"),Outcome(label: "Maybe", status: "maybe")], report: { _ in })
-        .padding()
 }
