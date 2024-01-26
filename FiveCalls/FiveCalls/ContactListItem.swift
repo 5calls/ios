@@ -44,6 +44,7 @@ struct ContactListItem: View {
                     .font(.subheadline)
                 
             }
+            .accessibilityElement(children: .combine)
             Spacer()
         }
     }
