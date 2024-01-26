@@ -34,12 +34,17 @@ struct IssueDetail: View {
                         .padding(.bottom, 2)
                         .padding(.leading, 6)
                         .accessibilityAddTraits(.isHeader)
-                    ForEach(contacts.numbered(), id: \.element.id) { contact in
-                        ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.fivecallsLightBG)
+                    VStack(spacing: 0) {
+                        ForEach(contacts.numbered(), id: \.element.id) { contact in
+                            ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
+                            if contact.number < contacts.count - 1 {
+                                Divider()
                             }
+                        }
+                    }
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color.fivecallsLightBG)
                     }
                     .padding(.bottom, 16)
 
