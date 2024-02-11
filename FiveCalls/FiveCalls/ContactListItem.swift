@@ -54,6 +54,7 @@ struct ContactListItem: View {
                     .foregroundStyle(Color.primary)
                 Text(contactDetailText)
                     .font(.footnote)
+                    .foregroundStyle(Color.primary)
 
             }
             .accessibilityElement(children: .combine)
