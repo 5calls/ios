@@ -15,7 +15,7 @@ struct OutcomesView: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())]) {
             ForEach(outcomes) { outcome in
-                PrimaryButton(title: outcome.label.capitalized,
+                PrimaryButton(title: ContactLog.localizedOutcomeForStatus(status: outcome.status),
                                   systemImageName: "megaphone.fill")
                 .accessibilityAddTraits(.isButton)
                 .onTapGesture {
