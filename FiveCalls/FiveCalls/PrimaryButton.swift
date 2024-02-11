@@ -10,21 +10,24 @@ import SwiftUI
 
 struct PrimaryButton: View {
     let title: String
-    let systemImageName: String
+    var systemImageName: String? = ""
     
     var bgColor: Color = .fivecallsDarkBlue
-    
+        
     var body: some View {
         HStack {
             Text(title)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
-            Image(systemName: systemImageName)
-                .foregroundColor(.white)
+                .lineLimit(1)
+            if let systemImageName {
+                Image(systemName: systemImageName)
+                    .foregroundColor(.white)
+            }
         }
         .accessibilityElement(children: .combine)
-        .padding()
+        .padding(.vertical)
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 6)
@@ -33,9 +36,11 @@ struct PrimaryButton: View {
     }
 }
 
-struct PrimaryButton_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    VStack {
         PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
-            .padding()
+                .padding()
+        PrimaryButton(title: "See your script")
+            .padding(.horizontal, 100)
     }
 }
