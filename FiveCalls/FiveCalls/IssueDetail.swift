@@ -27,6 +27,7 @@ struct IssueDetail: View {
                     .padding(.bottom, 8)
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
+                    .accentColor(.fivecallsDarkBlueText)
                 if contacts.count > 0 {
                     Text(R.string.localizable.repsListHeader())
                         .font(.caption)
@@ -36,7 +37,9 @@ struct IssueDetail: View {
                         .accessibilityAddTraits(.isHeader)
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered(), id: \.element.id) { contact in
-                            ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
+                            NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: Array(contacts[contact.number..<contacts.endIndex]))) {
+                                ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
+                            }
                             if contact.number < contacts.count - 1 {
                                 Divider()
                             }
