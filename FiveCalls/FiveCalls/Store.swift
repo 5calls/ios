@@ -53,6 +53,7 @@ class Store: ObservableObject {
         case let .SetFetchingContacts(fetching):
             state.fetchingContacts = fetching
         case let .SetIssues(issues):
+            state.issueFetchTime = Date()
             state.issues = issues
         case let .SetContacts(contacts):
             state.contacts = contacts

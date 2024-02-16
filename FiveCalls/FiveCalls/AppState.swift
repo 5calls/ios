@@ -26,6 +26,7 @@ class AppState: ObservableObject, ReduxState {
     }
     @Published var donateOn = false
     @Published var issues: [Issue] = []
+    @Published var issueFetchTime: Date? = nil
     @Published var contacts: [Contact] = []
     @Published var location: UserLocation? {
         didSet {
@@ -90,5 +91,17 @@ extension AppState {
         }
 
         return contactIDs.contains(contactID)
+    }
+    
+    var needsIssueRefresh: Bool {
+        guard let issueFetchTime else {
+            return true
+        }
+        
+        if issueFetchTime < Date().addingTimeInterval(-1 * 60) {
+            return true
+        } else {
+            return false
+        }
     }
 }
