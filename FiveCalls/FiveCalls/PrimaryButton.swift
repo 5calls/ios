@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PrimaryButton: View {
     let title: String
-    var systemImageName: String? = ""
+    var systemImageName: String?
     
     var bgColor: Color = .fivecallsDarkBlue
         

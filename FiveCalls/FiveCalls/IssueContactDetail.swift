@@ -10,7 +10,6 @@ import SwiftUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     let issue: Issue
     let remainingContacts: [Contact]
@@ -86,48 +85,17 @@ struct IssueContactDetail: View {
                             .accessibilityAddTraits(.isButton)
                             .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
 
-                      if currentContact.fieldOffices.count > 1 {
+                        if currentContact.fieldOffices.count > 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
-                                    ControlGroup {
-                                        Button {
-                                            self.call(phoneNumber: office.phone)
-                                        } label: {
-                                            if dynamicTypeSize >= .accessibility1 {
-                                                Text(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
-                                            } else {
-                                                Image(systemName: "phone")
-                                                Text(office.city)
-                                            }
+                                    if #available(iOS 16.4, *) {
+                                        ControlGroup {
+                                            MenuButtonsView(office: office, copiedPhoneNumber: $copiedPhoneNumber,
+                                                            isCopiedPhoneNumberFocused: _isCopiedPhoneNumberFocused, call: call)
                                         }
-                                        .accessibilityLabel(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
-                                        .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
-                                        
-                                        Button {
-                                            UIPasteboard.general.string = office.phone
-                                            withAnimation {
-                                                copiedPhoneNumber = office.phone
-                                                if UIAccessibility.isVoiceOverRunning {
-                                                    isCopiedPhoneNumberFocused = true
-                                                }
-                                            }
-                                            
-                                            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
-                                                withAnimation {
-                                                    isCopiedPhoneNumberFocused = false
-                                                    copiedPhoneNumber = nil
-                                                }
-                                            }
-                                        } label: {
-                                            if dynamicTypeSize >= .accessibility1 {
-                                                Text(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
-                                            } else {
-                                                Image(systemName: "doc.on.doc")
-                                                Text(R.string.localizable.copy())
-                                            }
-                                        }
-                                        .accessibilityLabel(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
-                                        .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
+                                    } else {
+                                        MenuButtonsView(office: office, copiedPhoneNumber: $copiedPhoneNumber,
+                                                        isCopiedPhoneNumberFocused: _isCopiedPhoneNumberFocused, call: call)
                                     }
                                 }
                             } label: {
@@ -160,6 +128,63 @@ struct IssueContactDetail: View {
         let formattedString = telephone + phoneNumber
         guard let url = URL(string: formattedString) else { return }
         UIApplication.shared.open(url)
+    }
+}
+
+struct MenuButtonsView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    let office: AreaOffice
+    @Binding var copiedPhoneNumber: String?
+    @AccessibilityFocusState var isCopiedPhoneNumberFocused: Bool
+    let call: (String) -> Void
+
+    var body: some View {
+        Button {
+            self.call(office.phone)
+        } label: {
+            if #available(iOS 16.4, *) {
+                if dynamicTypeSize >= .accessibility1 {
+                    Text(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
+                } else {
+                    Image(systemName: "phone")
+                    Text(office.city)
+                }
+            } else {
+                Text(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
+            }
+        }
+        .accessibilityLabel(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
+        .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
+
+        Button {
+            UIPasteboard.general.string = office.phone
+            withAnimation {
+                copiedPhoneNumber = office.phone
+                if UIAccessibility.isVoiceOverRunning {
+                    isCopiedPhoneNumberFocused = true
+                }
+            }
+
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
+                withAnimation {
+                    isCopiedPhoneNumberFocused = false
+                    copiedPhoneNumber = nil
+                }
+            }
+        } label: {
+            if #available(iOS 16.4, *) {
+                if dynamicTypeSize >= .accessibility1 {
+                    Text(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+                } else {
+                    Image(systemName: "doc.on.doc")
+                    Text(R.string.localizable.copy())
+                }
+            } else {
+                Text(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+            }
+        }
+        .accessibilityLabel(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+        .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
     }
 }
 
