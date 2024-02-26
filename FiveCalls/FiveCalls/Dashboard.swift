@@ -67,11 +67,6 @@ struct Dashboard: View {
         .onAppear() {
             AnalyticsManager.shared.trackPageview(path: "/")
 
-            // TODO: refresh if issues are old too?
-            if store.state.issues.isEmpty {
-                store.dispatch(action: .FetchIssues)
-            }
-
             if let location = store.state.location, store.state.contacts.isEmpty {
                 store.dispatch(action: .FetchContacts(location))
             }

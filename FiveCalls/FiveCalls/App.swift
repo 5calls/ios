@@ -12,6 +12,8 @@ import SwiftUI
 struct FiveCallsApp: App {
     @StateObject var store: Store = Store(state: AppState(), middlewares: [appMiddleware()])
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    @Environment(\.scenePhase) private var scenePhase
             
     @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
 
@@ -25,6 +27,13 @@ struct FiveCallsApp: App {
                 .onAppear {
                     if !hasShownWelcomeScreen {
                         store.dispatch(action: .ShowWelcomeScreen)
+                    }
+                }
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        if store.state.needsIssueRefresh {
+                            store.dispatch(action: .FetchIssues)
+                        }
                     }
                 }
         }
