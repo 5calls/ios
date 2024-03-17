@@ -14,7 +14,6 @@ struct Dashboard: View {
     @State var selectedIssueUrl: URL?
     @Binding var selectedIssue: Issue?
 
-    @State var showLocationSheet = false
     @State var showAllIssues = false
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -25,33 +24,9 @@ struct Dashboard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                MenuView(showingWelcomeScreen: store.state.showWelcomeScreen)
-
-                LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
-                    .padding(.bottom, 10)
-                    .onTapGesture {
-                        if #available(iOS 17.0, *) {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                showLocationSheet.toggle()
-                            }
-                        } else {
-                            showLocationSheet.toggle()
-                        }
-                    }
-                    .sheet(isPresented: $showLocationSheet) {
-                        LocationSheet()
-                            .presentationDetents([.medium])
-                            .presentationDragIndicator(.visible)
-                            .padding(.top, 40)
-                        Spacer()
-                    }
-
-                Image(.fivecallsStars)
-                    .accessibilityHidden(true)
-            }
-            .padding(.horizontal, 10)
-            .padding(.bottom, 10)
+            MainHeader()
+                .padding(.horizontal, 10)
+                .padding(.bottom, 10)
 
             if usingRegularFonts() {
                 Text(R.string.localizable.whatsImportantTitle())
