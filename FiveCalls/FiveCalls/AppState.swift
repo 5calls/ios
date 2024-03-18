@@ -24,10 +24,14 @@ class AppState: ObservableObject, ReduxState {
             UserDefaults.standard.set(plistSupportableIssueCache, forKey: UserDefaultsKey.issueCompletionCache.rawValue)
         }
     }
+    // votesSignedup indicates if a user has already signed up to get vote notifications
+    @Published var votesSignedup: Bool = false
+    @Published var repMessages: [InboxMessage]? = nil
     @Published var donateOn = false
     @Published var issues: [Issue] = []
     @Published var issueFetchTime: Date? = nil
     @Published var contacts: [Contact] = []
+    @Published var district: String? = nil
     @Published var location: UserLocation? {
         didSet {
             guard let location = self.location else { return }

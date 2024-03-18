@@ -57,8 +57,12 @@ class Store: ObservableObject {
             state.issues = issues
         case let .SetContacts(contacts):
             state.contacts = contacts
+        case let .SetDistrict(district):
+            state.district = district
         case let .SetLocation(location):
             state.location = location
+        case let .SetMessages(messages):
+            state.repMessages = messages
         case let .SetLoadingStatsError(error):
             state.statsLoadingError = error
         case let .SetLoadingIssuesError(error):
@@ -80,7 +84,7 @@ class Store: ObservableObject {
            } else {
                state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
            }
-        case .FetchStats, .FetchIssues, .FetchContacts(_), .ReportOutcome(_, _, _):
+        case .FetchStats, .FetchIssues, .FetchContacts(_), .FetchMessages, .ReportOutcome(_, _, _):
             // handled in middleware
             break
         }

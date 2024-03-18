@@ -46,23 +46,30 @@ struct InboxView: View {
                     .font(.title2)
                     .fontWeight(.medium)
                     .padding(.horizontal, 10)
-                
-                VStack {
-                    HStack {
-                        Text("Get notified when your rep votes on important issues")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .padding(.bottom, 2)
-                            .padding(.leading, 6)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer()
-                    }
 
-                    PrimaryButton(title: "Send me my votes")
-                }.padding(.horizontal, 20)
-                    .padding(.top, 20)
-
-                Spacer()
+                ForEach(store.state.repMessages) { message in
+                    Text(message.Name)
+                }
+//                if store.state.votesSignedup {
+//                    
+//                } else {
+//                    VStack {
+//                        HStack {
+//                            Text("Get notified when your rep votes on important issues")
+//                                .font(.caption)
+//                                .foregroundColor(.secondary)
+//                                .padding(.bottom, 2)
+//                                .padding(.leading, 6)
+//                                .accessibilityAddTraits(.isHeader)
+//                            Spacer()
+//                        }
+//
+//                        PrimaryButton(title: "Send me my votes")
+//                    }.padding(.horizontal, 20)
+//                        .padding(.top, 20)
+//
+//                    Spacer()
+//                }
             }
         }.navigationBarHidden(true)
     }

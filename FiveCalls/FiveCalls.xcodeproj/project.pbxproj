@@ -97,6 +97,8 @@
 		D07D7C282B3F75C2004721B3 /* GET-v1-issues-UI.json in Resources */ = {isa = PBXBuildFile; fileRef = D07D7C272B3F75C2004721B3 /* GET-v1-issues-UI.json */; };
 		D07D7C2D2B3FE530004721B3 /* GET-v1-reps-UI.json in Resources */ = {isa = PBXBuildFile; fileRef = D07D7C2C2B3FE530004721B3 /* GET-v1-reps-UI.json */; };
 		D082961C2A7BFE04005B002A /* Numbered.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082961B2A7BFE04005B002A /* Numbered.swift */; };
+		D08A9E7A2BA7DDF9006D3DCC /* FetchMessagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A9E792BA7DDF9006D3DCC /* FetchMessagesOperation.swift */; };
+		D0967EC12BA6B17200E03F14 /* InboxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0967EC02BA6B17200E03F14 /* InboxMessage.swift */; };
 		D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */; };
 		D09AA8032B04974C0012FF45 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AA8022B04974C0012FF45 /* StatsViewModel.swift */; };
 		D09AA8062B0497C70012FF45 /* UNNotification+ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */; };
@@ -256,6 +258,8 @@
 		D07D7C272B3F75C2004721B3 /* GET-v1-issues-UI.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues-UI.json"; sourceTree = "<group>"; };
 		D07D7C2C2B3FE530004721B3 /* GET-v1-reps-UI.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps-UI.json"; sourceTree = "<group>"; };
 		D082961B2A7BFE04005B002A /* Numbered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbered.swift; sourceTree = "<group>"; };
+		D08A9E792BA7DDF9006D3DCC /* FetchMessagesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMessagesOperation.swift; sourceTree = "<group>"; };
+		D0967EC02BA6B17200E03F14 /* InboxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessage.swift; sourceTree = "<group>"; };
 		D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
 		D09AA8022B04974C0012FF45 /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UNNotification+ScheduleReminders.swift"; path = "Extensions/UNNotification+ScheduleReminders.swift"; sourceTree = "<group>"; };
@@ -451,6 +455,7 @@
 				B5E762681E40D63800D63D62 /* Issue.swift */,
 				D029C6CF1F6F42EA00E56CC7 /* Outcome.swift */,
 				B5E7626A1E40D6DD00D63D62 /* Contact.swift */,
+				D0967EC02BA6B17200E03F14 /* InboxMessage.swift */,
 				B5D5C9591E441FEC00C80D5F /* IssuesManager.swift */,
 				D0312DD72A84A27F00F58F6B /* UserLocation.swift */,
 				B50280531E46A91F00749ED7 /* AreaOffice.swift */,
@@ -482,6 +487,7 @@
 				B5E7625A1E4037B400D63D62 /* BaseOperation.swift */,
 				B5E762581E40374600D63D62 /* FetchStatsOperation.swift */,
 				B5E762721E40DC5800D63D62 /* FetchIssuesOperation.swift */,
+				D08A9E792BA7DDF9006D3DCC /* FetchMessagesOperation.swift */,
 				B512506921E6F762007D32DF /* FetchContactsOperation.swift */,
 				9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */,
 				A0D474B3202A22B90012BC94 /* FetchUserStatsOperation.swift */,
@@ -848,6 +854,7 @@
 				D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */,
 				D09AA8032B04974C0012FF45 /* StatsViewModel.swift in Sources */,
 				A5048C6F1F96BCD100C6163D /* IssuesViewModel.swift in Sources */,
+				D08A9E7A2BA7DDF9006D3DCC /* FetchMessagesOperation.swift in Sources */,
 				D03A20512AC53B9B008BBA6E /* Actions.swift in Sources */,
 				A55647621F909C6F002737D4 /* Category.swift in Sources */,
 				D0002E172A9DB34D0098973F /* ContactListItem.swift in Sources */,
@@ -860,6 +867,7 @@
 				B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */,
 				4F4868BB2AC3A3B400E1733A /* AboutListItem.swift in Sources */,
 				B5E762731E40DC5800D63D62 /* FetchIssuesOperation.swift in Sources */,
+				D0967EC12BA6B17200E03F14 /* InboxMessage.swift in Sources */,
 				D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */,
 				B5E98E351E529E66005221B7 /* functions.swift in Sources */,
 				D0480B1E2A4D493B00502818 /* IssueListItem.swift in Sources */,
