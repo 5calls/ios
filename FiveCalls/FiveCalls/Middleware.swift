@@ -15,9 +15,9 @@ func appMiddleware() -> Middleware<AppState> {
         case .FetchIssues:
             fetchIssues(dispatch: dispatch)
         case let .FetchContacts(location):
-            fetchContacts(location: location, dispatch: dispatch)
+            fetchContacts(state: state, location: location, dispatch: dispatch)
         case let .SetLocation(location):
-            fetchContacts(location: location, dispatch: dispatch)
+            fetchContacts(state: state, location: location, dispatch: dispatch)
         case .FetchMessages:
             fetchMessages(state: state, dispatch: dispatch)
         case let .ReportOutcome(issue, contactLog, outcome):
@@ -107,8 +107,11 @@ private func fetchContacts(state: AppState, location: UserLocation, dispatch: @e
         if let district = operation?.district {
             // any time the district changes, fetch messages as well
             if state.district != district {
+                // TODO: if we just dispatch twice this does not run in order so... this is a hack
                 dispatch(.SetDistrict(district))
-                dispatch(.FetchMessages)
+                DispatchQueue.main.async {
+                    dispatch(.FetchMessages)
+                }
             }
         }
 
@@ -138,14 +141,18 @@ private func fetchContacts(state: AppState, location: UserLocation, dispatch: @e
 }
 
 private func fetchMessages(state: AppState, dispatch: @escaping Dispatcher) {
+    print("🤖 checkooooo \(state.district)")
     guard let district = state.district else {
         return
     }
+    
+    print("🤖 fetching messages...")
     
     let queue = OperationQueue.main
     let operation = FetchMessagesOperation(district: district)
     operation.completionBlock = { [weak operation] in
         if let messages = operation?.messages {
+            print("🤖 got some messages:\(messages)")
             DispatchQueue.main.async {
                 dispatch(.SetMessages(messages))
             }

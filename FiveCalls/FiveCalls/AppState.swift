@@ -26,7 +26,7 @@ class AppState: ObservableObject, ReduxState {
     }
     // votesSignedup indicates if a user has already signed up to get vote notifications
     @Published var votesSignedup: Bool = false
-    @Published var repMessages: [InboxMessage]? = nil
+    @Published var repMessages: [InboxMessage] = []
     @Published var donateOn = false
     @Published var issues: [Issue] = []
     @Published var issueFetchTime: Date? = nil

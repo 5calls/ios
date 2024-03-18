@@ -65,8 +65,12 @@ class FetchMessagesOperation: BaseOperation {
     private func parseMessages(data: Data) throws -> [InboxMessage] {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let messages = try decoder.decode([InboxMessage].self, from: data)
+        let messagesResponse = try decoder.decode(MessagesRespsonse.self, from: data)
 
-        return messages
+        return messagesResponse.messages
+    }
+    
+    struct MessagesRespsonse: Decodable {
+        var messages: [InboxMessage]
     }
 }

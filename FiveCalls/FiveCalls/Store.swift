@@ -58,10 +58,12 @@ class Store: ObservableObject {
         case let .SetContacts(contacts):
             state.contacts = contacts
         case let .SetDistrict(district):
+            print("🤖 setting district")
             state.district = district
         case let .SetLocation(location):
             state.location = location
         case let .SetMessages(messages):
+            print("🤖 setting messages")
             state.repMessages = messages
         case let .SetLoadingStatsError(error):
             state.statsLoadingError = error
