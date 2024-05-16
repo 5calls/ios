@@ -15,6 +15,10 @@ struct InboxView: View {
         // TODO: restrict this to main reps only
         return store.state.contacts.filter({ $0.area == "US House" || $0.area == "US Senate" })
     }
+    
+    func contactForID(contactId: String) -> Contact? {
+        return store.state.contacts.filter({ $0.id == contactId}).first
+    }
 
     var body: some View {
         NavigationStack {
@@ -24,7 +28,7 @@ struct InboxView: View {
                     .padding(.bottom, 10)
 
                 ScrollView {
-                    Text("Your national Reps")
+                    Text("Your National Reps")
                         .font(.title2)
                         .fontWeight(.medium)
                         .padding(.horizontal, 10)
@@ -37,7 +41,7 @@ struct InboxView: View {
                         HStack {
                             Text("View all Representatives")
                                 .fontWeight(.medium)
-                                .padding(.vertical, 15)
+                                .padding(.vertical, 20)
                                 .padding(.leading, 10)
                             Spacer()
                         }
@@ -49,7 +53,17 @@ struct InboxView: View {
                         .padding(.horizontal, 10)
 
                     ForEach(store.state.repMessages, id: \.id) { message in
-                        Text(message.name)
+                        if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
+                            HStack(alignment: .top) {
+                                ContactCircle(contact: contact)
+                                    .frame(width: 20, height: 20)
+                                    .padding(.top, 1)
+                                Text(message.title)
+                                    .font(.body)
+                                Spacer()
+                            }.frame(minHeight: 40)
+                                .padding(.horizontal, 20)
+                        }
                     }
                 }
 
@@ -80,12 +94,16 @@ struct InboxView: View {
 #Preview {
     let previewState = {
         var state = AppState()
-//        state.repMessages = [
-//        ]
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
             Contact.senatePreviewContact2
+        ]
+        state.repMessages = [
+            InboxMessage.houseMessage,
+            InboxMessage.senate1Message,
+            InboxMessage.senate2Message,
+            InboxMessage.whMessage
         ]
         return state
     }()
