@@ -119,6 +119,7 @@
 		D0D670A12B29854500BEDFBF /* ScriptReplacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D670A02B29854500BEDFBF /* ScriptReplacements.swift */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
 		D0E042662B47D06700D22647 /* IssueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E042652B47D06700D22647 /* IssueTests.swift */; };
+		D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E950042C03A7B700E26304 /* InboxVote.swift */; };
 		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
 		E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E887304D2AF9E1B60053837B /* RswiftLibrary */; };
@@ -282,6 +283,7 @@
 		D0D670A02B29854500BEDFBF /* ScriptReplacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptReplacements.swift; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		D0E042652B47D06700D22647 /* IssueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTests.swift; sourceTree = "<group>"; };
+		D0E950042C03A7B700E26304 /* InboxVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxVote.swift; sourceTree = "<group>"; };
 		D0EE101B2ACBD69300412128 /* IssueDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDone.swift; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -516,6 +518,7 @@
 				4F4D2EB52AB8C59500882759 /* AboutSheet.swift */,
 				D0480AE42A4D462500502818 /* Dashboard.swift */,
 				D01235BC2B8C5A7D00FEE7A0 /* InboxView.swift */,
+				D0E950042C03A7B700E26304 /* InboxVote.swift */,
 				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
 				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
 				D0EE101B2ACBD69300412128 /* IssueDone.swift */,
@@ -908,6 +911,7 @@
 				D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
+				D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */,
 				D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */,
 				4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */,
 				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,

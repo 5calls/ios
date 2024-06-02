@@ -28,44 +28,43 @@ struct InboxView: View {
                     .padding(.bottom, 10)
 
                 ScrollView {
-                    Text("Your National Reps")
-                        .font(.title2)
-                        .fontWeight(.medium)
-                        .padding(.horizontal, 10)
+                    HStack {
+                        Text("Your National Reps")
+                            .font(.body)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
                     
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered(), id: \.element.id) { contact in
-                                ContactListItem(contact: contact.element, showComplete: false)
-                                Divider()
+                            ContactListItem(contact: contact.element, showComplete: false)
                         }
-                        HStack {
-                            Text("View all Representatives")
-                                .fontWeight(.medium)
-                                .padding(.vertical, 20)
-                                .padding(.leading, 10)
-                            Spacer()
-                        }
-                    }.padding(.horizontal, 10)
+//                        HStack {
+//                            Text("View all Representatives")
+//                                .fontWeight(.medium)
+//                                .padding(.vertical, 20)
+//                            Spacer()
+//                        }
+                    }
 
-                    Text("Recent votes")
-                        .font(.title2)
-                        .fontWeight(.medium)
-                        .padding(.horizontal, 10)
+                    HStack {
+                        Text("Recent votes")
+                            .font(.body)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }.padding(.top, 10)
 
                     ForEach(store.state.repMessages, id: \.id) { message in
                         if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
-                            HStack(alignment: .top) {
-                                ContactCircle(contact: contact)
-                                    .frame(width: 20, height: 20)
-                                    .padding(.top, 1)
-                                Text(message.title)
-                                    .font(.body)
-                                Spacer()
-                            }.frame(minHeight: 40)
-                                .padding(.horizontal, 20)
+                            ContactInboxVote(contact: contact, message: message)
+                                .padding(.bottom, 6)
+                        } else if let _ = message.imageURL {
+                            GenericInboxVote(message: message)
                         }
                     }
-                }
+                }.scrollIndicators(.hidden)
 
 //                if store.state.votesSignedup {
 //                    
@@ -86,7 +85,7 @@ struct InboxView: View {
 //                        .padding(.top, 20)
 //
 //                }
-            }
+            }.padding(.horizontal, 16)
         }.navigationBarHidden(true)
     }
 }
@@ -103,7 +102,12 @@ struct InboxView: View {
             InboxMessage.houseMessage,
             InboxMessage.senate1Message,
             InboxMessage.senate2Message,
-            InboxMessage.whMessage
+            InboxMessage.whMessage,
+            InboxMessage.whMessage,
+            InboxMessage.whMessage,
+            InboxMessage.whMessage,
+            InboxMessage.whMessage,
+            InboxMessage.whMessage,
         ]
         return state
     }()
