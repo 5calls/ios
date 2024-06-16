@@ -10,9 +10,9 @@ import SwiftUI
 
 struct InboxView: View {
     @EnvironmentObject var store: Store
-    
+    @State private var detailPresented: Bool = false
+
     var contacts: [Contact] {
-        // TODO: restrict this to main reps only
         return store.state.contacts.filter({ $0.area == "US House" || $0.area == "US Senate" })
     }
     
@@ -21,53 +21,60 @@ struct InboxView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading, spacing: 10) {
-                MainHeader()
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 10)
+        VStack(alignment: .leading, spacing: 10) {
+            MainHeader()
+                .padding(.horizontal, 10)
+                .padding(.bottom, 10)
 
-                ScrollView {
-                    HStack {
-                        Text("Your National Reps")
-                            .font(.body)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.secondary)
-                        Spacer()
+            ScrollView {
+                HStack {
+                    Text("Your National Reps")
+                        .font(.body)
+                        .fontWeight(.medium)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                }
+                
+                VStack(spacing: 0) {
+                    ForEach(contacts.numbered(), id: \.element.id) { contact in
+                        ContactListItem(contact: contact.element, showComplete: false)
                     }
-                    
-                    VStack(spacing: 0) {
-                        ForEach(contacts.numbered(), id: \.element.id) { contact in
-                            ContactListItem(contact: contact.element, showComplete: false)
-                        }
 //                        HStack {
 //                            Text("View all Representatives")
 //                                .fontWeight(.medium)
 //                                .padding(.vertical, 20)
 //                            Spacer()
 //                        }
-                    }
+                }
 
-                    HStack {
-                        Text("Recent votes")
-                            .font(.body)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.secondary)
-                        Spacer()
-                    }.padding(.top, 10)
+                HStack {
+                    Text("Recent votes")
+                        .font(.body)
+                        .fontWeight(.medium)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                }.padding(.top, 10)
 
-                    ForEach(store.state.repMessages, id: \.id) { message in
-                        if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
-                            ContactInboxVote(contact: contact, message: message)
-                                .padding(.bottom, 6)
-                        } else if let _ = message.imageURL {
-                            GenericInboxVote(message: message)
-                        }
+                ForEach(store.state.repMessages, id: \.id) { message in
+                    if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
+                        ContactInboxVote(contact: contact, message: message)
+                            .padding(.bottom, 6)
+                            .onTapGesture{
+                                store.dispatch(action: .SelectMessage(message))
+                                detailPresented = true
+                            }
+                    } else if let _ = message.imageURL {
+                        GenericInboxVote(message: message)
+                            .onTapGesture{
+                                store.dispatch(action: .SelectMessage(message))
+                                detailPresented = true
+                            }
                     }
-                }.scrollIndicators(.hidden)
+                }
+            }.scrollIndicators(.hidden)
 
 //                if store.state.votesSignedup {
-//                    
+//
 //                } else {
 //                    VStack {
 //                        HStack {
@@ -85,8 +92,10 @@ struct InboxView: View {
 //                        .padding(.top, 20)
 //
 //                }
-            }.padding(.horizontal, 16)
-        }.navigationBarHidden(true)
+        }.padding(.horizontal, 16)
+            .sheet(isPresented: $detailPresented) {
+                InboxDetail()
+            }
     }
 }
 

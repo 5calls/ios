@@ -51,7 +51,7 @@ class AppState: ObservableObject, ReduxState {
     @Published var contactsLoadingError: Error? = nil
     
     @Published var issueRouter: IssueRouter = IssueRouter()
-
+    @Published var inboxRouter: InboxRouter = InboxRouter()
 
     init() {
         // load user location cache

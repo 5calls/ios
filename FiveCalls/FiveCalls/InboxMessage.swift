@@ -22,6 +22,10 @@ struct InboxMessage: Decodable, Identifiable {
     let repID: String?
     // an override message image url that we can pass for non-reps endpoint votes
     let imageURL: URL?
+    // an override contact name for non-standard rep
+    let contactName: String?
+    // an override contact title for non-standard rep
+    let contactTitle: String?
     // an indication that this was a vote for or against the position taken by 5 Calls, for styling
     let positive: Bool
     // an optional link where we can direct the user for learning more

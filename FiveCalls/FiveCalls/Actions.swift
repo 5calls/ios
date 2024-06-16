@@ -22,6 +22,7 @@ enum Action {
     case SetLocation(UserLocation)
     case FetchMessages
     case SetMessages([InboxMessage])
+    case SelectMessage(InboxMessage)
     case ReportOutcome(Issue, ContactLog, Outcome)
     case SetFetchingContacts(Bool)
     case SetLoadingStatsError(Error)

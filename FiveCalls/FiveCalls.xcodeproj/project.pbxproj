@@ -79,6 +79,7 @@
 		D02FFCE2245F5733003ADA2B /* ScriptCustomizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02FFCE1245F5733003ADA2B /* ScriptCustomizationTests.swift */; };
 		D0312DD82A84A27F00F58F6B /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0312DD72A84A27F00F58F6B /* UserLocation.swift */; };
 		D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */; };
+		D032AEBD2C0E25E200585BD2 /* InboxDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D032AEBC2C0E25E200585BD2 /* InboxDetail.swift */; };
 		D037F36B2BA5F9E600FEB0FB /* MainHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D037F36A2BA5F9E600FEB0FB /* MainHeader.swift */; };
 		D03A20512AC53B9B008BBA6E /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A20502AC53B9B008BBA6E /* Actions.swift */; };
 		D03A20562AC53C54008BBA6E /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A20552AC53C54008BBA6E /* Middleware.swift */; };
@@ -120,6 +121,7 @@
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
 		D0E042662B47D06700D22647 /* IssueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E042652B47D06700D22647 /* IssueTests.swift */; };
 		D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E950042C03A7B700E26304 /* InboxVote.swift */; };
+		D0EB04E02C1759C500AE38F2 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB04DF2C1759C500AE38F2 /* InboxRouter.swift */; };
 		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
 		E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E887304D2AF9E1B60053837B /* RswiftLibrary */; };
@@ -244,6 +246,7 @@
 		D02FFCE1245F5733003ADA2B /* ScriptCustomizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCustomizationTests.swift; sourceTree = "<group>"; };
 		D0312DD72A84A27F00F58F6B /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetail.swift; sourceTree = "<group>"; };
+		D032AEBC2C0E25E200585BD2 /* InboxDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxDetail.swift; sourceTree = "<group>"; };
 		D037F36A2BA5F9E600FEB0FB /* MainHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeader.swift; sourceTree = "<group>"; };
 		D03A20502AC53B9B008BBA6E /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		D03A20552AC53C54008BBA6E /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
@@ -284,6 +287,7 @@
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		D0E042652B47D06700D22647 /* IssueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTests.swift; sourceTree = "<group>"; };
 		D0E950042C03A7B700E26304 /* InboxVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxVote.swift; sourceTree = "<group>"; };
+		D0EB04DF2C1759C500AE38F2 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
 		D0EE101B2ACBD69300412128 /* IssueDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDone.swift; sourceTree = "<group>"; };
 		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -518,6 +522,7 @@
 				4F4D2EB52AB8C59500882759 /* AboutSheet.swift */,
 				D0480AE42A4D462500502818 /* Dashboard.swift */,
 				D01235BC2B8C5A7D00FEE7A0 /* InboxView.swift */,
+				D032AEBC2C0E25E200585BD2 /* InboxDetail.swift */,
 				D0E950042C03A7B700E26304 /* InboxVote.swift */,
 				D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */,
 				D0312DDB2A868D9A00F58F6B /* IssueDetail.swift */,
@@ -567,6 +572,7 @@
 				D03A20502AC53B9B008BBA6E /* Actions.swift */,
 				D0453EBE2A6F8E7000E19A81 /* AppState.swift */,
 				D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */,
+				D0EB04DF2C1759C500AE38F2 /* InboxRouter.swift */,
 				D03A20552AC53C54008BBA6E /* Middleware.swift */,
 				D03A20572AC53C6C008BBA6E /* Store.swift */,
 			);
@@ -898,6 +904,7 @@
 				B5D5C95A1E441FEC00C80D5F /* IssuesManager.swift in Sources */,
 				D0BFE9CB2A7DD25C007203A3 /* LocationHeader.swift in Sources */,
 				2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */,
+				D032AEBD2C0E25E200585BD2 /* InboxDetail.swift in Sources */,
 				D07829772A7B3795001EE5DB /* PreviewContacts.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				4F78E0262AF2B26D00FF23E9 /* IssueSplitView.swift in Sources */,
@@ -927,6 +934,7 @@
 				4F7D3D992AE81C9C00CB6572 /* PopoverTip.swift in Sources */,
 				4F07B23B2B45F05C00C575DF /* AcknowListView.swift in Sources */,
 				B5EADD2622013B8E00E3EA78 /* CategorizedIssuesViewModel.swift in Sources */,
+				D0EB04E02C1759C500AE38F2 /* InboxRouter.swift in Sources */,
 				D0453EBF2A6F8E7000E19A81 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
