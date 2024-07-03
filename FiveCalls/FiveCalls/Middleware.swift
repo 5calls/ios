@@ -141,18 +141,14 @@ private func fetchContacts(state: AppState, location: UserLocation, dispatch: @e
 }
 
 private func fetchMessages(state: AppState, dispatch: @escaping Dispatcher) {
-    print("🤖 checkooooo \(state.district)")
     guard let district = state.district else {
         return
     }
-    
-    print("🤖 fetching messages...")
-    
+        
     let queue = OperationQueue.main
     let operation = FetchMessagesOperation(district: district)
     operation.completionBlock = { [weak operation] in
         if let messages = operation?.messages {
-            print("🤖 got some messages:\(messages)")
             DispatchQueue.main.async {
                 dispatch(.SetMessages(messages))
             }

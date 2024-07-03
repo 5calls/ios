@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import OneSignal
 
 struct InboxView: View {
     @EnvironmentObject var store: Store
     @State private var detailPresented: Bool = false
+    @State private var showPushPrompt: Bool = true
 
     var contacts: [Contact] {
         return store.state.contacts.filter({ $0.area == "US House" || $0.area == "US Senate" })
@@ -19,7 +21,14 @@ struct InboxView: View {
     func contactForID(contactId: String) -> Contact? {
         return store.state.contacts.filter({ $0.id == contactId}).first
     }
-
+    
+    func updateNotificationStatus() async {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        if settings.authorizationStatus == .authorized || settings.authorizationStatus == .denied {
+            showPushPrompt = false
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             MainHeader()
@@ -39,12 +48,6 @@ struct InboxView: View {
                     ForEach(contacts.numbered(), id: \.element.id) { contact in
                         ContactListItem(contact: contact.element, showComplete: false)
                     }
-//                        HStack {
-//                            Text("View all Representatives")
-//                                .fontWeight(.medium)
-//                                .padding(.vertical, 20)
-//                            Spacer()
-//                        }
                 }
 
                 HStack {
@@ -55,53 +58,57 @@ struct InboxView: View {
                     Spacer()
                 }.padding(.top, 10)
 
-                ForEach(store.state.repMessages, id: \.id) { message in
-                    if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
-                        ContactInboxVote(contact: contact, message: message)
-                            .padding(.bottom, 6)
-                            .onTapGesture{
-                                store.dispatch(action: .SelectMessage(message))
-                                detailPresented = true
+                if showPushPrompt {
+                    VStack {
+                        PrimaryButton(title: "Send me important votes")
+                            .onTapGesture {
+                                OneSignal.promptForPushNotifications { success in
+                                    Task {
+                                        await updateNotificationStatus()
+                                    }
+                                }
                             }
-                    } else if let _ = message.imageURL {
-                        GenericInboxVote(message: message)
-                            .onTapGesture{
-                                store.dispatch(action: .SelectMessage(message))
-                                detailPresented = true
-                            }
-                    }
+                        Text("Get notified how your rep votes on important issues")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }.padding(.vertical, 10)
                 }
+                
+                VStack {
+                    ForEach(store.state.repMessages, id: \.id) { message in
+                        if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
+                            ContactInboxVote(contact: contact, message: message)
+                                .padding(.bottom, 6)
+                                .onTapGesture{
+                                    store.dispatch(action: .SelectMessage(message))
+                                    detailPresented = true
+                                }
+                        } else if let _ = message.imageURL {
+                            GenericInboxVote(message: message)
+                                .onTapGesture{
+                                    store.dispatch(action: .SelectMessage(message))
+                                    detailPresented = true
+                                }
+                        }
+                    }
+                }.padding(4)
             }.scrollIndicators(.hidden)
-
-//                if store.state.votesSignedup {
-//
-//                } else {
-//                    VStack {
-//                        HStack {
-//                            Text("Get notified when your rep votes on important issues")
-//                                .font(.caption)
-//                                .foregroundColor(.secondary)
-//                                .padding(.bottom, 2)
-//                                .padding(.leading, 6)
-//                                .accessibilityAddTraits(.isHeader)
-//                            Spacer()
-//                        }
-//
-//                        PrimaryButton(title: "Send me my votes")
-//                    }.padding(.horizontal, 20)
-//                        .padding(.top, 20)
-//
-//                }
         }.padding(.horizontal, 16)
             .sheet(isPresented: $detailPresented) {
                 InboxDetail()
+            }
+            .onAppear {
+                Task {
+                    await updateNotificationStatus()
+                }
             }
     }
 }
 
 #Preview {
     let previewState = {
-        var state = AppState()
+        let state = AppState()
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,

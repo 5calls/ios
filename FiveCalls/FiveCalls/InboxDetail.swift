@@ -90,7 +90,7 @@ struct InboxDetail: View {
 
 #Preview {
     let preview1State = {
-        var state = AppState()
+        let state = AppState()
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
@@ -102,7 +102,7 @@ struct InboxDetail: View {
     let store1 = Store(state: preview1State, middlewares: [appMiddleware()])
 
     let preview2State = {
-        var state = AppState()
+        let state = AppState()
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
