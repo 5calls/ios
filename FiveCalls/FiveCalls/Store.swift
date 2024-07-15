@@ -71,6 +71,12 @@ class Store: ObservableObject {
             state.issueLoadingError = error
         case let .SetLoadingContactsError(error):
             state.contactsLoadingError = error
+        case let .SetNavigateToInboxMessage(messageid):
+            if let messageIntID = Int(messageid), !state.repMessages.isEmpty {
+                if let selectedMessage = state.repMessages.first(where: { $0.id == messageIntID }) {
+                    dispatch(action: .SelectMessage(selectedMessage))
+                }
+            }
         case .GoBack:
            if state.issueRouter.path.isEmpty {
                state.issueRouter.selectedIssue = nil

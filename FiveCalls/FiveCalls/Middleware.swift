@@ -30,7 +30,7 @@ func appMiddleware() -> Middleware<AppState> {
             reportOutcome(log: contactLog, outcome: outcome)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
-                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetMessages, .SelectMessage(_):
+                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetMessages, .SelectMessage(_), .SetNavigateToInboxMessage(_):
             // no middleware actions for these, including for completeness
             break
         }

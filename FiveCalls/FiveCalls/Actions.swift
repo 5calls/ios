@@ -22,12 +22,13 @@ enum Action {
     case SetLocation(UserLocation)
     case FetchMessages
     case SetMessages([InboxMessage])
-    case SelectMessage(InboxMessage)
+    case SelectMessage(InboxMessage?)
     case ReportOutcome(Issue, ContactLog, Outcome)
     case SetFetchingContacts(Bool)
     case SetLoadingStatsError(Error)
     case SetLoadingIssuesError(Error)
     case SetLoadingContactsError(Error)
+    case SetNavigateToInboxMessage(String)
     case GoBack
     case GoToRoot
     case GoToNext(Issue, [Contact])

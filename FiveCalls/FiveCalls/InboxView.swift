@@ -100,13 +100,11 @@ struct InboxView: View {
                                     .padding(.bottom, 6)
                                     .onTapGesture{
                                         store.dispatch(action: .SelectMessage(message))
-                                        detailPresented = true
                                     }
                             } else if let _ = message.imageURL {
                                 GenericInboxVote(message: message)
                                     .onTapGesture{
                                         store.dispatch(action: .SelectMessage(message))
-                                        detailPresented = true
                                     }
                             }
                         }
@@ -114,7 +112,9 @@ struct InboxView: View {
                 }.scrollIndicators(.hidden)
             }
         }.padding(.horizontal, 16)
-            .sheet(isPresented: $detailPresented) {
+            .sheet(isPresented: $detailPresented, onDismiss: {
+                store.dispatch(action: .SelectMessage(nil))
+            }) {
                 InboxDetail()
             }
             .onAppear {
@@ -122,6 +122,13 @@ struct InboxView: View {
                     await updateNotificationStatus()
                 }
             }
+            .onChange(of: store.state.inboxRouter.selectedMessage, perform: { message in
+                if message != nil {
+                    detailPresented = true
+                } else {
+                    detailPresented = false
+                }
+            })
     }
 }
 
@@ -129,9 +136,9 @@ struct InboxView: View {
     let previewState = {
         let state = AppState()
         state.contacts = [
-//            Contact.housePreviewContact,
-//            Contact.senatePreviewContact1,
-//            Contact.senatePreviewContact2
+            Contact.housePreviewContact,
+            Contact.senatePreviewContact1,
+            Contact.senatePreviewContact2
         ]
         state.repMessages = [
             InboxMessage.houseMessage,

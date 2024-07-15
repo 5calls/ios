@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct InboxMessage: Decodable, Identifiable {
+struct InboxMessage: Decodable, Identifiable, Equatable {
     let id: Int
     
     // the title of the message, usually the rep's name and what they voted for or against

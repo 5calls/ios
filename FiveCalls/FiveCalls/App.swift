@@ -25,6 +25,7 @@ struct FiveCallsApp: App {
                     Welcome().environmentObject(store)
                 }
                 .onAppear {
+                    appDelegate.app = self
                     if !hasShownWelcomeScreen {
                         store.dispatch(action: .ShowWelcomeScreen)
                     }

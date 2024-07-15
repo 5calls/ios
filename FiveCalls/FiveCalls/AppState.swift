@@ -24,8 +24,6 @@ class AppState: ObservableObject, ReduxState {
             UserDefaults.standard.set(plistSupportableIssueCache, forKey: UserDefaultsKey.issueCompletionCache.rawValue)
         }
     }
-    // votesSignedup indicates if a user has already signed up to get vote notifications
-    @Published var votesSignedup: Bool = false
     @Published var repMessages: [InboxMessage] = []
     @Published var donateOn = false
     @Published var issues: [Issue] = []
@@ -43,6 +41,9 @@ class AppState: ObservableObject, ReduxState {
         }
     }
     @Published var fetchingContacts = false
+    // if we don't have any loaded messages, this is set to a message id we expect to receive for immediate navigation,
+    // i.e. we've tapped on a push notification about a message
+    var wantedMessageID: Int?
     // TODO: display this error on welcome screen and anywhere else that uses stats
     @Published var statsLoadingError: Error? = nil
     // TODO: display this error on the dashboard issue list (and the More page when it exists)
