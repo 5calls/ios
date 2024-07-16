@@ -23,6 +23,7 @@ enum Action {
     case FetchMessages
     case SetMessages([InboxMessage])
     case SelectMessage(InboxMessage?)
+    case SelectMessageIDWhenLoaded(Int)
     case ReportOutcome(Issue, ContactLog, Outcome)
     case SetFetchingContacts(Bool)
     case SetLoadingStatsError(Error)

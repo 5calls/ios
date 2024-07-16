@@ -12,7 +12,7 @@ struct IssueSplitView: View {
     @EnvironmentObject var store: Store
     
     var body: some View {
-        TabView {
+        TabView(selection: $store.state.selectedTab) {
             NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
                 Dashboard(selectedIssue: $store.state.issueRouter.selectedIssue)
             }, detail: {
@@ -46,8 +46,10 @@ struct IssueSplitView: View {
             })
             .navigationSplitViewStyle(.balanced)
             .tabItem({ Label("Topics", systemImage: "phone.bubble.fill" ) })
+            .tag("topics")
             InboxView()
                 .tabItem({ Label("Reps", systemImage: "person.crop.circle.fill.badge.checkmark") })
+                .tag("inbox")
         }
     }
 }
