@@ -45,10 +45,10 @@ struct IssueSplitView: View {
                 }
             })
             .navigationSplitViewStyle(.balanced)
-            .tabItem({ Label("Topics", systemImage: "phone.bubble.fill" ) })
+            .tabItem({ Label(R.string.localizable.tabTopics(), systemImage: "phone.bubble.fill" ) })
             .tag("topics")
             InboxView()
-                .tabItem({ Label("Reps", systemImage: "person.crop.circle.fill.badge.checkmark") })
+                .tabItem({ Label(R.string.localizable.tabReps(), systemImage: "person.crop.circle.fill.badge.checkmark") })
                 .tag("inbox")
         }
     }

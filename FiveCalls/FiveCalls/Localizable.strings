@@ -211,6 +211,8 @@
 // nav
 "back"                                = "Back";
 "share"                               = "Share";
+"tab-topics" = "Topics";
+"tab-reps" = "Reps";
 
 // inbox
 "inbox-empty-state" = "Set your location\rto see your reps";
