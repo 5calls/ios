@@ -30,10 +30,10 @@ struct Dashboard: View {
 
             if usingRegularFonts() {
                 Text(R.string.localizable.whatsImportantTitle())
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .padding(.horizontal, 10)
+                    .font(.body)
+                    .fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
+                    .padding(.horizontal, 16)
             }
 
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)

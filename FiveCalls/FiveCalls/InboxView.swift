@@ -57,8 +57,7 @@ struct InboxView: View {
                     HStack {
                         Text("Your National Reps")
                             .font(.body)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.secondary)
+                            .fontWeight(.bold)
                         Spacer()
                     }
                     
@@ -71,8 +70,7 @@ struct InboxView: View {
                     HStack {
                         Text("Recent votes")
                             .font(.body)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.secondary)
+                            .fontWeight(.bold)
                         Spacer()
                     }.padding(.top, 10)
 
@@ -109,10 +107,10 @@ struct InboxView: View {
                             }
                         }
                     }.padding(4)
-                }.scrollIndicators(.hidden)
+                }.padding(.horizontal, 16)
+                .scrollIndicators(.hidden)
             }
-        }.padding(.horizontal, 16)
-            .sheet(isPresented: $detailPresented, onDismiss: {
+        }.sheet(isPresented: $detailPresented, onDismiss: {
                 store.dispatch(action: .SelectMessage(nil))
             }) {
                 InboxDetail()
