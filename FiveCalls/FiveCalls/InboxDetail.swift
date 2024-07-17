@@ -113,8 +113,10 @@ struct InboxDetail: View {
     }()
     let store2 = Store(state: preview2State, middlewares: [appMiddleware()])
 
-    return VStack {
+    return Rectangle().sheet(isPresented: .constant(true)) {
         InboxDetail().environmentObject(store1)
-        InboxDetail().environmentObject(store2)
+            .padding(.top, 20)
+            .padding(.horizontal, 10)
     }
+//        InboxDetail().environmentObject(store2)
 }

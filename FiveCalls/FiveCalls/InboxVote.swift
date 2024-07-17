@@ -27,8 +27,7 @@ struct ContactInboxVote: View {
             }
             Spacer()
             Image(systemName: "chevron.right")
-                .renderingMode(.template)
-                .tint(.primary)
+                .foregroundColor(.secondary)
                 .accessibilityHidden(true)
                 .padding(.top, 10)
         }.frame(minHeight: 40)
@@ -61,8 +60,7 @@ struct GenericInboxVote: View {
             }
             Spacer()
             Image(systemName: "chevron.right")
-                .renderingMode(.template)
-                .tint(.primary)
+                .foregroundColor(.secondary)
                 .accessibilityHidden(true)
                 .padding(.top, 10)
         }.frame(minHeight: 40)
@@ -80,9 +78,9 @@ struct GenericInboxVote: View {
 }
 
 #Preview {
-    VStack {
+    VStack(spacing: 10) {
         ContactInboxVote(contact: .housePreviewContact, message: .houseMessage)
     //        .background(.gray)
         GenericInboxVote(message: .whMessage)
-    }
+    }.padding(.horizontal, 10)
 }

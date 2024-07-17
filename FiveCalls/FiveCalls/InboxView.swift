@@ -114,6 +114,8 @@ struct InboxView: View {
                 store.dispatch(action: .SelectMessage(nil))
             }) {
                 InboxDetail()
+                    .padding(.top, 20)
+                    .padding(.horizontal, 10)
             }
             .onAppear {
                 Task {
