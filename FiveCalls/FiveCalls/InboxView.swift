@@ -44,7 +44,7 @@ struct InboxView: View {
                             .font(.title)
                             .foregroundColor(.secondary)
                             .padding(.trailing, 4)
-                        Text("Set your location\rto see your reps")
+                        Text(R.string.localizable.inboxEmptyState())
                             .font(.title2)
                             .fontWeight(.medium)
                             .lineLimit(2)
@@ -56,7 +56,7 @@ struct InboxView: View {
             } else {
                 ScrollView {
                     HStack {
-                        Text("Your National Reps")
+                        Text(R.string.localizable.inboxRepsHeader())
                             .font(.body)
                             .fontWeight(.bold)
                         Spacer()
@@ -69,7 +69,7 @@ struct InboxView: View {
                     }
 
                     HStack {
-                        Text("Recent votes")
+                        Text(R.string.localizable.inboxVotesHeader())
                             .font(.body)
                             .fontWeight(.bold)
                         Spacer()
@@ -77,7 +77,7 @@ struct InboxView: View {
 
                     if showPushPrompt {
                         VStack {
-                            PrimaryButton(title: "Send me important votes")
+                            PrimaryButton(title: R.string.localizable.inboxPushButton())
                                 .onTapGesture {
                                     OneSignal.promptForPushNotifications { success in
                                         Task {
@@ -85,7 +85,7 @@ struct InboxView: View {
                                         }
                                     }
                                 }
-                            Text("Get notified how your rep votes on important issues")
+                            Text(R.string.localizable.inboxPushDetail())
                                 .font(.caption)
                                 .fontWeight(.medium)
                                 .frame(maxWidth: .infinity, alignment: .center)
