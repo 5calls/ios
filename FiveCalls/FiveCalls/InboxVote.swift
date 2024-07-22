@@ -64,7 +64,6 @@ struct GenericInboxVote: View {
                 .accessibilityHidden(true)
                 .padding(.top, 10)
         }.frame(minHeight: 40)
-
     }
     
     var placeholder: some View {
@@ -74,13 +73,11 @@ struct GenericInboxVote: View {
                 Circle()
             }
     }
-
 }
 
 #Preview {
     VStack(spacing: 10) {
         ContactInboxVote(contact: .housePreviewContact, message: .houseMessage)
-    //        .background(.gray)
         GenericInboxVote(message: .whMessage)
     }.padding(.horizontal, 10)
 }

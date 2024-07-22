@@ -15,9 +15,9 @@ func appMiddleware() -> Middleware<AppState> {
         case .FetchIssues:
             fetchIssues(dispatch: dispatch)
         case let .FetchContacts(location):
-            fetchContacts(state: state, location: location, dispatch: dispatch)
+            fetchContacts(location: location, dispatch: dispatch)
         case let .SetLocation(location):
-            fetchContacts(state: state, location: location, dispatch: dispatch)
+            fetchContacts(location: location, dispatch: dispatch)
         case .FetchMessages:
             fetchMessages(state: state, dispatch: dispatch)
         case let .ReportOutcome(issue, contactLog, outcome):
@@ -97,7 +97,7 @@ private func fetchIssues(dispatch: @escaping Dispatcher) {
     queue.addOperation(operation)
 }
 
-private func fetchContacts(state: AppState, location: UserLocation, dispatch: @escaping Dispatcher) {
+private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatcher) {
     dispatch(.SetFetchingContacts(true))
 
     let queue = OperationQueue.main
@@ -106,14 +106,7 @@ private func fetchContacts(state: AppState, location: UserLocation, dispatch: @e
         dispatch(.SetFetchingContacts(false))
         
         if let district = operation?.district {
-            // any time the district changes, fetch messages as well
-            if state.district != district {
-                // TODO: if we just dispatch twice this does not run in order so... this is a hack
-                dispatch(.SetDistrict(district))
-                DispatchQueue.main.async {
-                    dispatch(.FetchMessages)
-                }
-            }
+            dispatch(.SetDistrict(district))
         }
 
         if var contacts = operation?.contacts, !contacts.isEmpty {
@@ -145,7 +138,7 @@ private func fetchMessages(state: AppState, dispatch: @escaping Dispatcher) {
     guard let district = state.district else {
         return
     }
-        
+            
     let queue = OperationQueue.main
     let operation = FetchMessagesOperation(district: district)
     operation.completionBlock = { [weak operation] in

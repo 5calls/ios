@@ -58,7 +58,12 @@ class Store: ObservableObject {
         case let .SetContacts(contacts):
             state.contacts = contacts
         case let .SetDistrict(district):
+            let oldDistrict = state.district
             state.district = district
+
+            if oldDistrict != district {
+                dispatch(action: .FetchMessages)
+            }
         case let .SetLocation(location):
             state.location = location
         case let .SetMessages(messages):

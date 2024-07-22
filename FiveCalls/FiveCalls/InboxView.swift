@@ -63,7 +63,7 @@ struct InboxView: View {
                     }
                     
                     VStack(spacing: 0) {
-                        ForEach(contacts.numbered(), id: \.element.id) { contact in
+                        ForEach(contacts.numbered()) { contact in
                             ContactListItem(contact: contact.element, showComplete: false)
                         }
                     }
@@ -93,7 +93,7 @@ struct InboxView: View {
                     }
                     
                     VStack {
-                        ForEach(store.state.repMessages, id: \.id) { message in
+                        ForEach(store.state.repMessages) { message in
                             if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
                                 ContactInboxVote(contact: contact, message: message)
                                     .padding(.bottom, 6)
@@ -114,9 +114,11 @@ struct InboxView: View {
         }.sheet(isPresented: $detailPresented, onDismiss: {
                 store.dispatch(action: .SelectMessage(nil))
             }) {
-                InboxDetail()
-                    .padding(.top, 20)
-                    .padding(.horizontal, 10)
+                if let message = store.state.inboxRouter.selectedMessage {
+                    InboxDetail(message: message)
+                        .padding(.top, 20)
+                        .padding(.horizontal, 10)
+                }
             }
             .onAppear {
                 Task {
