@@ -50,7 +50,7 @@ struct InboxView: View {
                             .lineLimit(2)
                             .foregroundColor(.secondary)
                         Spacer()
-                    }
+                    }.accessibilityElement(children: .combine)
                     Spacer()
                 }
             } else {
@@ -59,6 +59,7 @@ struct InboxView: View {
                         Text(R.string.localizable.inboxRepsHeader())
                             .font(.body)
                             .fontWeight(.bold)
+                            .accessibilityAddTraits(.isHeader)
                         Spacer()
                     }
                     
@@ -72,6 +73,7 @@ struct InboxView: View {
                         Text(R.string.localizable.inboxVotesHeader())
                             .font(.body)
                             .fontWeight(.bold)
+                            .accessibilityAddTraits(.isHeader)
                         Spacer()
                     }.padding(.top, 10)
 
