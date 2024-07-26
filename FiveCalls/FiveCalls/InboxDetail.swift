@@ -10,7 +10,8 @@ import SwiftUI
 
 struct InboxDetail: View {
     @EnvironmentObject var store: Store
-    
+    @Environment(\.dismiss) var dismiss
+
     var message: InboxMessage
     var contactForMessage: Contact? {
         return store.state.contacts.filter({ $0.id == message.repID}).first
@@ -18,38 +19,43 @@ struct InboxDetail: View {
 
     var body: some View {
         VStack {
-            if let contact = contactForMessage {
-                ContactListItem(contact: contact, showComplete: false)
-            } else if let imageURL = message.imageURL, let contactName = message.contactName, let contactTitle = message.contactTitle {
-                HStack {
-                    AsyncImage(url: imageURL, content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .mask {
-                                Circle()
-                            }
-                    }) {
-                        placeholder
+            HStack {
+                if let contact = contactForMessage {
+                    ContactListItem(contact: contact, showComplete: false)
+                } else if let imageURL = message.imageURL, let contactName = message.contactName, let contactTitle = message.contactTitle {
+                    HStack {
+                        AsyncImage(url: imageURL, content: { image in
+                            image.resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .mask {
+                                    Circle()
+                                }
+                        }) {
+                            placeholder
+                        }
+                        .frame(width: 45, height: 45)
+                        .padding(.vertical, 8)
+                        .padding(.leading, 8)
+                        .padding(.trailing, 0)
+                        VStack(alignment: .leading) {
+                            Text(contactName)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.primary)
+                            Text(contactTitle)
+                                .font(.footnote)
+                                .foregroundStyle(Color.primary)
+                            
+                        }
+                        .accessibilityElement(children: .combine)
+                        Spacer()
                     }
-                    .frame(width: 45, height: 45)
-                    .padding(.vertical, 8)
-                    .padding(.leading, 8)
-                    .padding(.trailing, 0)
-                    VStack(alignment: .leading) {
-                        Text(contactName)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.primary)
-                        Text(contactTitle)
-                            .font(.footnote)
-                            .foregroundStyle(Color.primary)
-                        
-                    }
+                    .padding(2)
                     .accessibilityElement(children: .combine)
-                    Spacer()
                 }
-                .padding(2)
-                .accessibilityElement(children: .combine)
+                Button("", systemImage: "xmark") {
+                    self.dismiss()
+                }
             }
             HStack {
                 Text(message.title)
