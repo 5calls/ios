@@ -16,6 +16,7 @@ class FetchContactsOperation : BaseOperation {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     var contacts: [Contact]?
+    var district: String?
 
     init(location: UserLocation, config: URLSessionConfiguration? = nil) {
         self.location = location
@@ -70,6 +71,7 @@ class FetchContactsOperation : BaseOperation {
         decoder.dateDecodingStrategy = .iso8601
         let contactList = try decoder.decode(ContactList.self, from: data)
         if contactList.generalizedLocationID != "-" {
+            district = contactList.generalizedLocationID
             OneSignal.sendTag("districtID", value: contactList.generalizedLocationID)
         }
         return contactList.representatives

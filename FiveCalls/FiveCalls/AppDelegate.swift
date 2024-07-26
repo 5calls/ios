@@ -12,6 +12,8 @@ import OneSignal
 import TipKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var app: FiveCallsApp?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         if isUITesting() {
@@ -25,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         oneSignalStartup(launchOptions: launchOptions)
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
+        
+        UNUserNotificationCenter.current().delegate = self
         
         if #available(iOS 17.0, *) {
             try? Tips.configure()
@@ -104,5 +108,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static var isRunningUnitTests: Bool {
         return ProcessInfo.processInfo.environment.keys.contains("XCInjectBundleInto")
+    }
+}
+
+
+//{ "aps": {
+//    "alert": {
+//    "title": "Your reps voted",
+//    "body": "A new vote on gun control was recorded"
+//    }
+//  },
+//  "messageid": "605"
+//}
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        // if the user has selected a notification with a messageid contained, dispatch a message to handle the navigation
+        if let messageID = response.notification.request.content.userInfo["messageid"] as? String {
+            app?.store.dispatch(action: .SetNavigateToInboxMessage(messageID))
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        return [.badge,.banner,.list,.sound]
     }
 }

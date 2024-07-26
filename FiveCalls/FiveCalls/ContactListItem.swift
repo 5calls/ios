@@ -11,7 +11,7 @@ import SwiftUI
 struct ContactListItem: View {
     let contact: Contact
     let showComplete: Bool
-    let contactNote: String
+    var contactNote: String
     let listType: ContactListType
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -122,12 +122,7 @@ struct ContactListItem: View {
     }
 
     var contactDetailText: String {
-        switch listType {
-        case .standard:
-            contact.officeDescription()
-        case .compact:
-            contactNote
-        }
+        return (contactNote != "") ? contactNote : contact.officeDescription()
     }
 
     var completedCircleFrameSize: CGFloat {

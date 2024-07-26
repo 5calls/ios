@@ -12,38 +12,45 @@ struct IssueSplitView: View {
     @EnvironmentObject var store: Store
     
     var body: some View {
-        NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
-            Dashboard(selectedIssue: $store.state.issueRouter.selectedIssue)
-        }, detail: {
-            NavigationStack(path: $store.state.issueRouter.path) {
-                if let selectedIssue = store.state.issueRouter.selectedIssue {
-                                   IssueDetail(issue: selectedIssue,
-                                contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
-                    .navigationDestination(for: IssueDetailNavModel.self) { idnm in
-                        IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-                    }.navigationDestination(for: IssueDoneNavModel.self) { inm in
-
-                        IssueDone(issue: inm.issue)
-                    }
-                } else {
-                    HStack {
-                        Image(systemName: "arrowshape.left.fill")
-                            .font(.title)
-                            .foregroundColor(.secondary)
-                        VStack(alignment: .leading) {
-                            Text(R.string.localizable.chooseIssuePlaceholder())
-                                .font(.title2)
-                                .fontWeight(.medium)
+        TabView(selection: $store.state.selectedTab) {
+            NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
+                Dashboard(selectedIssue: $store.state.issueRouter.selectedIssue)
+            }, detail: {
+                NavigationStack(path: $store.state.issueRouter.path) {
+                    if let selectedIssue = store.state.issueRouter.selectedIssue {
+                        IssueDetail(issue: selectedIssue,
+                                    contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
+                        .navigationDestination(for: IssueDetailNavModel.self) { idnm in
+                            IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
+                        }.navigationDestination(for: IssueDoneNavModel.self) { inm in
+                            
+                            IssueDone(issue: inm.issue)
+                        }
+                    } else {
+                        HStack {
+                            Image(systemName: "arrowshape.left.fill")
+                                .font(.title)
                                 .foregroundColor(.secondary)
-                            Text(R.string.localizable.chooseIssueSubheading())
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                            VStack(alignment: .leading) {
+                                Text(R.string.localizable.chooseIssuePlaceholder())
+                                    .font(.title2)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.secondary)
+                                Text(R.string.localizable.chooseIssueSubheading())
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
-            }
-        })
-        .navigationSplitViewStyle(.balanced)
+            })
+            .navigationSplitViewStyle(.balanced)
+            .tabItem({ Label(R.string.localizable.tabTopics(), systemImage: "phone.bubble.fill" ) })
+            .tag("topics")
+            InboxView()
+                .tabItem({ Label(R.string.localizable.tabReps(), systemImage: "person.crop.circle.fill.badge.checkmark") })
+                .tag("inbox")
+        }
     }
 }
 

@@ -211,3 +211,13 @@
 // nav
 "back"                                = "Back";
 "share"                               = "Share";
+"tab-topics" = "Topics";
+"tab-reps" = "Reps";
+
+// inbox
+"inbox-empty-state" = "Set your location\rto see your reps";
+"inbox-reps-header" = "Your National Reps";
+"inbox-votes-header" = "Recent votes";
+"inbox-push-button" = "Send me important votes";
+"inbox-push-detail" = "Get notified how your rep votes on important issues";
+"inbox-detail-readmore" = "Read more →";

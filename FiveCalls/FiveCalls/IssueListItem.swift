@@ -26,8 +26,6 @@ struct IssueListItem: View {
                         .fontWeight(.semibold)                        
                         .foregroundColor(Color.fivecallsDarkBlueText)
 
-                    Spacer()
-
                     HStack(spacing: 0) {
                         let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
                             Contact.placeholderContact(for: area)

@@ -12,6 +12,7 @@ import os
 
 class AppState: ObservableObject, ReduxState {
     @Published var showWelcomeScreen = false
+    @Published var selectedTab = "topics"
     @Published var globalCallCount: Int = 0
     @Published var issueCallCounts: [Int: Int] = [:]
     // issueCompletion is a local cache of completed calls: an array of contact id and outcomes (B0001234-contact) keyed by an issue id
@@ -24,10 +25,12 @@ class AppState: ObservableObject, ReduxState {
             UserDefaults.standard.set(plistSupportableIssueCache, forKey: UserDefaultsKey.issueCompletionCache.rawValue)
         }
     }
+    @Published var repMessages: [InboxMessage] = []
     @Published var donateOn = false
     @Published var issues: [Issue] = []
     @Published var issueFetchTime: Date? = nil
     @Published var contacts: [Contact] = []
+    @Published var district: String? = nil
     @Published var location: UserLocation? {
         didSet {
             guard let location = self.location else { return }
@@ -39,6 +42,9 @@ class AppState: ObservableObject, ReduxState {
         }
     }
     @Published var fetchingContacts = false
+    // if we don't have any loaded messages, this is set to a message id we expect to receive for immediate navigation,
+    // i.e. we've tapped on a push notification about a message
+    var wantedMessageID: Int?
     // TODO: display this error on welcome screen and anywhere else that uses stats
     @Published var statsLoadingError: Error? = nil
     // TODO: display this error on the dashboard issue list (and the More page when it exists)
@@ -47,7 +53,7 @@ class AppState: ObservableObject, ReduxState {
     @Published var contactsLoadingError: Error? = nil
     
     @Published var issueRouter: IssueRouter = IssueRouter()
-
+    @Published var inboxRouter: InboxRouter = InboxRouter()
 
     init() {
         // load user location cache
