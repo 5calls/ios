@@ -26,7 +26,7 @@ func appMiddleware() -> Middleware<AppState> {
             if let issueId = Int(contactLog.issueId), outcome.status != "skip" {
                 dispatch(.SetIssueContactCompletion(issueId, "\(contactLog.contactId)-\(outcome.status)"))
             }
-            AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issues/\(issue.slug)/")
+            AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issue/\(issue.slug)/")
             reportOutcome(log: contactLog, outcome: outcome)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
