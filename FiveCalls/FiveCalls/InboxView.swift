@@ -90,6 +90,7 @@ struct InboxView: View {
                             Text(R.string.localizable.inboxPushDetail())
                                 .font(.caption)
                                 .fontWeight(.medium)
+                                .multilineTextAlignment(.center)
                                 .frame(maxWidth: .infinity, alignment: .center)
                         }.padding(.vertical, 10)
                     }
