@@ -56,8 +56,7 @@ struct LocationSheet: View {
                     .onTapGesture {
                         locationSearch()
                     }
-                    .accessibilityLabel(Text("Search Location"))
-                    .accessibilityHint(Text("Taps to start searching the location based on input"))
+                    .accessibilityLabel(Text(R.string.localizable.detectLocation()))
                     .accessibilityAddTraits(.isButton)
                 }
                 Text(R.string.localizable.locationInstructions())
