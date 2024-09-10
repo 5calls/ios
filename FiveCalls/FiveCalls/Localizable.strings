@@ -110,6 +110,7 @@
 "enter-location"                      = "Enter a location";
 "unknown-location"                    = "Unknown Location";
 "detect-location"                     = "Detect my location";
+"search-location"                     = "Search my location";
 "location-instructions"               = "Use an address, zip code or zip + 4";
 "location-error-off"                  = "Location permission is off";
 "location-error-default"              = "An error occured trying to find your location";
