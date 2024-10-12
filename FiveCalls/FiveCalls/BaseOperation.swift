@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BaseOperation : Operation {
+class BaseOperation: Operation, @unchecked Sendable {
     var session: URLSession = URLSession.shared
         
     override init() {

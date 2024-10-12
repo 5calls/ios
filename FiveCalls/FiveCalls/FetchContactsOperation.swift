@@ -9,7 +9,7 @@
 import Foundation
 import OneSignal
 
-class FetchContactsOperation : BaseOperation {
+class FetchContactsOperation: BaseOperation, @unchecked Sendable {
 
     var location: UserLocation
 

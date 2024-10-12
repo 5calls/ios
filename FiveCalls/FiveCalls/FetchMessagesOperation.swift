@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FetchMessagesOperation: BaseOperation {
+class FetchMessagesOperation: BaseOperation, @unchecked Sendable {
     var district: String
     
     var error: Error?

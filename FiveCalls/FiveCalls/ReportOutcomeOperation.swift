@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReportOutcomeOperation : BaseOperation {
+class ReportOutcomeOperation: BaseOperation, @unchecked Sendable {
     
     //Input properties
     var log: ContactLog

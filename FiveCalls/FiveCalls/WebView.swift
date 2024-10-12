@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import WebKit
+@preconcurrency import WebKit
 
 enum WebViewContent: String {
     case whycall

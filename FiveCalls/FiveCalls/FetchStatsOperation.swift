@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FetchStatsOperation: BaseOperation {
+class FetchStatsOperation: BaseOperation, @unchecked Sendable {
     
     var numberOfCalls: Int?
     var numberOfIssueCalls: Int?

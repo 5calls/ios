@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FetchUserStatsOperation : BaseOperation {
+class FetchUserStatsOperation: BaseOperation, @unchecked Sendable {
     
     class TokenExpiredError : Error { }
     

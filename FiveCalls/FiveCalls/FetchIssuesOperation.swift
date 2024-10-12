@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FetchIssuesOperation : BaseOperation {
+class FetchIssuesOperation: BaseOperation, @unchecked Sendable {
 
     // Output properties.
     // Once the job has finished consumers can check one or more of these for values.
