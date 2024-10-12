@@ -111,10 +111,6 @@ struct MenuView: View {
                 .tint(Color.fivecallsDarkBlue)
                 .accessibilityLabel(Text(R.string.localizable.menuName))
         }
-        .popoverTipIfApplicable(
-            showingWelcomeScreen: showingWelcomeScreen,
-            title: Text(R.string.localizable.menuTipTitle()),
-            message: Text(R.string.localizable.menuTipMessage()))
         .sheet(isPresented: $showRemindersSheet) {
             ScheduleReminders()
         }

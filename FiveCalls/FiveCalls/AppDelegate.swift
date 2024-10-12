@@ -9,7 +9,6 @@
 import UIKit
 import SwiftUI
 import OneSignal
-import TipKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var app: FiveCallsApp?
@@ -29,10 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
         
         UNUserNotificationCenter.current().delegate = self
-        
-        if #available(iOS 17.0, *) {
-            try? Tips.configure()
-        }
                     
         return true
     }
