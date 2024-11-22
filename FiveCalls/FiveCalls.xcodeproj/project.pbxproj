@@ -70,6 +70,7 @@
 		B5FFBB991E5EA60E00647121 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFBB981E5EA60E00647121 /* Appearance.swift */; };
 		D0002E172A9DB34D0098973F /* ContactListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0002E162A9DB34D0098973F /* ContactListItem.swift */; };
 		D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0002E182A9DB5FB0098973F /* PrimaryButton.swift */; };
+		D00E8B6A2CF056AF0028F935 /* NewsletterSignup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00E8B682CF056A70028F935 /* NewsletterSignup.swift */; };
 		D01235BD2B8C5A7D00FEE7A0 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01235BC2B8C5A7D00FEE7A0 /* InboxView.swift */; };
 		D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0176E8A2B3343150090E6B7 /* ContactParsingTest.swift */; };
 		D0176E8D2B33443D0090E6B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
@@ -239,6 +240,7 @@
 		CCD3D5810796C5E3DC6ACC46 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		D0002E162A9DB34D0098973F /* ContactListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListItem.swift; sourceTree = "<group>"; };
 		D0002E182A9DB5FB0098973F /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		D00E8B682CF056A70028F935 /* NewsletterSignup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsletterSignup.swift; sourceTree = "<group>"; };
 		D01235BC2B8C5A7D00FEE7A0 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		D0176E8A2B3343150090E6B7 /* ContactParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactParsingTest.swift; sourceTree = "<group>"; };
 		D0176E912B33457D0090E6B7 /* ReportParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportParsingTest.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		D0002E142A9DB2F70098973F /* View Components */ = {
 			isa = PBXGroup;
 			children = (
+				D00E8B682CF056A70028F935 /* NewsletterSignup.swift */,
 				4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */,
 				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
@@ -861,6 +864,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D00E8B6A2CF056AF0028F935 /* NewsletterSignup.swift in Sources */,
 				D09AA8062B0497C70012FF45 /* UNNotification+ScheduleReminders.swift in Sources */,
 				D01235BD2B8C5A7D00FEE7A0 /* InboxView.swift in Sources */,
 				D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */,

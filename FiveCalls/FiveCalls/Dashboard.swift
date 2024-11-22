@@ -10,7 +10,8 @@ import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
-
+    @AppStorage("shownNewsletterSignup") var shownNewsletterSignup: Bool = false
+    
     @State var selectedIssueUrl: URL?
     @Binding var selectedIssue: Issue?
 
@@ -27,6 +28,26 @@ struct Dashboard: View {
             MainHeader()
                 .padding(.horizontal, 10)
                 .padding(.bottom, 10)
+            
+            if !shownNewsletterSignup {
+                NewsletterSignup {
+                    shownNewsletterSignup.toggle()
+                } onSubmit: { email in
+                    var req = URLRequest(url: URL(string: "https://buttondown.com/api/emails/embed-subscribe/5calls")!)
+                    req.httpMethod = "POST"
+                    req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                    req.httpBody = "email=\(email)&tag=ios".data(using: .utf8)
+                    URLSession.shared.dataTask(with: req).resume()
+                    
+                    shownNewsletterSignup = true
+                }
+            }
+            Button {
+                shownNewsletterSignup.toggle()
+            } label: {
+                Text("reset newsletter signup")
+            }
+
 
             if usingRegularFonts() {
                 Text(R.string.localizable.whatsImportantTitle())
