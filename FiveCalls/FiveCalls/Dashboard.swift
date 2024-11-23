@@ -31,23 +31,21 @@ struct Dashboard: View {
             
             if !shownNewsletterSignup {
                 NewsletterSignup {
-                    shownNewsletterSignup.toggle()
+                    shownNewsletterSignup = true
                 } onSubmit: { email in
+#if !DEBUG
                     var req = URLRequest(url: URL(string: "https://buttondown.com/api/emails/embed-subscribe/5calls")!)
                     req.httpMethod = "POST"
                     req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
                     req.httpBody = "email=\(email)&tag=ios".data(using: .utf8)
                     URLSession.shared.dataTask(with: req).resume()
+#else
+                    print("DEBUG: would send email sub request to: \(email)")
+#endif
                     
                     shownNewsletterSignup = true
                 }
             }
-            Button {
-                shownNewsletterSignup.toggle()
-            } label: {
-                Text("reset newsletter signup")
-            }
-
 
             if usingRegularFonts() {
                 Text(R.string.localizable.whatsImportantTitle())
