@@ -93,13 +93,13 @@ func isValidEmail(_ email: String) -> Bool {
     return emailPredicate.evaluate(with: email)
 }
 
-#Preview {
-    NewsletterSignup(onDismiss: {}, onSubmit: { _ in })
-    NewsletterSignup(email: "some@email.com", onDismiss: {}, onSubmit: { _ in })
-    NewsletterSignup(errorString: "Invalid email", onDismiss: {}, onSubmit: { _ in })
-}
+//#Preview {
+//    NewsletterSignup(onDismiss: {}, onSubmit: { _ in })
+//    NewsletterSignup(email: "some@email.com", onDismiss: {}, onSubmit: { _ in })
+//    NewsletterSignup(errorString: "Invalid email", onDismiss: {}, onSubmit: { _ in })
+//}
 
-#Preview {
-    NewsletterSignup(onDismiss: {}, onSubmit: { _ in }).preferredColorScheme(.dark)
-    NewsletterSignup(email: "some@email.com", onDismiss: {}, onSubmit: { _ in })
-}
+//#Preview {
+//    NewsletterSignup(onDismiss: {}, onSubmit: { _ in }).preferredColorScheme(.dark)
+//    NewsletterSignup(email: "some@email.com", onDismiss: {}, onSubmit: { _ in })
+//}

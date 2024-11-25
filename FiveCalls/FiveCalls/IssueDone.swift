@@ -115,7 +115,6 @@ struct IssueDone: View {
             }
             .padding(.horizontal)
         }
-        .navigationBarHidden(true)
         .clipped()
         .frame(maxWidth: 500)
         .onAppear() {

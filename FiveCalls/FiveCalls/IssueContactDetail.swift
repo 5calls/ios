@@ -32,8 +32,6 @@ struct IssueContactDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                IssueNavigationHeader(issue: issue)
-                    .padding(.bottom, 8)
                 Text(issue.name)
                     .font(.title2)
                     .fontWeight(.medium)
@@ -120,7 +118,7 @@ struct IssueContactDetail: View {
                 })
                 Spacer()
             }.padding(.horizontal)
-        }.navigationBarHidden(true)
+        }
         .clipped()
     }
 
