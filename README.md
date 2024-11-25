@@ -6,7 +6,7 @@ This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 
 ## Requirements
 
-- Xcode 15
+- Xcode 16
 - iOS 16
 
 ## Getting Started
