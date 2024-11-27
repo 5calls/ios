@@ -10,7 +10,7 @@ import SwiftUI
 
 struct IssueDetail: View {
     @EnvironmentObject var store: Store
-
+    
     let issue: Issue
     let contacts: [Contact]
     
@@ -19,11 +19,10 @@ struct IssueDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                IssueNavigationHeader(issue: issue)
-                    .padding(.bottom, 8)
                 Text(issue.name)
                     .font(.title2)
                     .fontWeight(.medium)
+                    .padding(.top, 1)
                     .padding(.bottom, 8)
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
@@ -50,7 +49,7 @@ struct IssueDetail: View {
                             .foregroundColor(Color.fivecallsLightBG)
                     }
                     .padding(.bottom, 16)
-
+                    
                     NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
                         PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
                     }
@@ -66,10 +65,23 @@ struct IssueDetail: View {
                         PrimaryButton(title: R.string.localizable.setLocationButton(), systemImageName: "location.circle.fill")
                     })
                 }
-            }.padding(.horizontal)
+            }
+            .padding(.horizontal)
         }
-        .navigationBarHidden(true)
-        .clipped()
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                ShareLink(item: issue.shareURL) {
+                    HStack(spacing: 4) {
+                        Text(R.string.localizable.share())
+                            .fontWeight(.medium)
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.body)
+                            .offset(y: -1)
+                    }
+                }
+            }
+        }
         .sheet(isPresented: $showLocationSheet) {
             LocationSheet()
                 .presentationDetents([.medium])
@@ -77,7 +89,7 @@ struct IssueDetail: View {
                 .padding(.top, 40)
             Spacer()
         }
-        .onAppear() {
+        .onAppear {
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/")
         }
     }

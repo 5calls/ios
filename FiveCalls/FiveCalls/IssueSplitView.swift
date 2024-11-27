@@ -13,41 +13,37 @@ struct IssueSplitView: View {
     
     var body: some View {
         TabView(selection: $store.state.selectedTab) {
-            NavigationSplitView(columnVisibility: .constant(.all), sidebar: {
+            NavigationSplitView(columnVisibility: .constant(.all)) {
                 Dashboard(selectedIssue: $store.state.issueRouter.selectedIssue)
-            }, detail: {
+            } detail: {
                 NavigationStack(path: $store.state.issueRouter.path) {
                     if let selectedIssue = store.state.issueRouter.selectedIssue {
                         IssueDetail(issue: selectedIssue,
-                                    contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
-                        .toolbar(.hidden, for: .tabBar)
-                        .navigationDestination(for: IssueDetailNavModel.self) { idnm in
-                            IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
-                        }.navigationDestination(for: IssueDoneNavModel.self) { inm in
-                            
-                            IssueDone(issue: inm.issue)
-                        }
-                    } else {
-                        HStack {
-                            Image(systemName: "arrowshape.left.fill")
-                                .font(.title)
-                                .foregroundColor(.secondary)
-                            VStack(alignment: .leading) {
-                                Text(R.string.localizable.chooseIssuePlaceholder())
-                                    .font(.title2)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.secondary)
-                                Text(R.string.localizable.chooseIssueSubheading())
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
+                                  contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
+                            .toolbar(.hidden, for: .tabBar)
+                            .navigationDestination(for: IssueDetailNavModel.self) { idnm in
+                                IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)
                             }
+                            .navigationDestination(for: IssueDoneNavModel.self) { inm in
+                                IssueDone(issue: inm.issue)
+                            }
+                    } else {
+                        VStack(alignment: .leading) {
+                            Text(R.string.localizable.chooseIssuePlaceholder())
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                            Text(R.string.localizable.chooseIssueSubheading())
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                         }
                     }
                 }
-            })
+            }
             .navigationSplitViewStyle(.balanced)
             .tabItem({ Label(R.string.localizable.tabTopics(), systemImage: "phone.bubble.fill" ) })
             .tag("topics")
+            
             InboxView()
                 .tabItem({ Label(R.string.localizable.tabReps(), systemImage: "person.crop.circle.fill.badge.checkmark") })
                 .tag("inbox")
