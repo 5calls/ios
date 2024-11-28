@@ -6,8 +6,8 @@ This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 
 ## Requirements
 
-- Xcode 13
-- iOS 12
+- Xcode 16
+- iOS 16
 
 ## Getting Started
 
@@ -27,7 +27,7 @@ R.swift removes the need to use "stringly typed" resources. Instead, you can ref
 let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)!
 ```
 
-Vendor the R.swift binary from the latest release (https://github.com/mac-cain13/R.swift/releases) into `vendor/rswift` if you're getting started with this project for the first time.
+You may need to put the R.swift binary from the latest release (https://github.com/mac-cain13/R.swift/releases) into `vendor/rswift` if you're getting started with this project for the first time.
 
 ## Testflight Builds
 

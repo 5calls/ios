@@ -112,7 +112,6 @@
 		D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */; };
 		D0BFE9CB2A7DD25C007203A3 /* LocationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */; };
 		D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */; };
-		D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */; };
 		D0C465D32AD30BEE00CE3E65 /* IssueRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */; };
 		D0CFF333284A835F0082693E /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF332284A835F0082693E /* OneSignal */; };
 		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
@@ -281,7 +280,6 @@
 		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeader.swift; sourceTree = "<group>"; };
 		D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueContactDetail.swift; sourceTree = "<group>"; };
-		D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNavigationHeader.swift; sourceTree = "<group>"; };
 		D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRouter.swift; sourceTree = "<group>"; };
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
@@ -547,7 +545,6 @@
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
 				4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */,
 				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
-				D0C465D02AD30ACB00CE3E65 /* IssueNavigationHeader.swift */,
 				4F78E0252AF2B26D00FF23E9 /* IssueSplitView.swift */,
 				D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */,
 				4FF4ABB32AB23FC8001A064A /* MultipleDayPicker.swift */,
@@ -919,7 +916,6 @@
 				D0899DC82BF68A6900761577 /* PreviewMessages.swift in Sources */,
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
-				D0C465D12AD30ACB00CE3E65 /* IssueNavigationHeader.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
 				D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */,
