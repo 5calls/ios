@@ -28,4 +28,5 @@ enum UserDefaultsKey : String {
     case selectIssuePath
     
     case callerID // an anoymous unique id, sometimes the old firebase userid
+    case callingGroup // a calling group is a group that tallies their calls together
 }
