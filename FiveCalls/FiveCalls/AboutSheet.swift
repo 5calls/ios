@@ -74,9 +74,21 @@ struct AboutSheet: View {
                 }
 
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemFollowTwitter(),
+                    AboutListItem(title: "Instagram",
                                   type: .action({
-                        followOnTwitter()
+                        openSocialLink("https://www.instagram.com/5calls")
+                    }))
+                    AboutListItem(title: "Bluesky",
+                                  type: .action({
+                        openSocialLink("https://bsky.app/profile/5calls.org")
+                    }))
+                    AboutListItem(title: "Threads",
+                                  type: .action({
+                        openSocialLink("https://www.threads.net/@5calls")
+                    }))
+                    AboutListItem(title: "Mastodon",
+                                  type: .action({
+                        openSocialLink("https://mastodon.social/@5calls")
                     }))
                     if appUrl != nil {
                         AboutListItem(title: R.string.localizable.aboutItemShare(),
@@ -136,8 +148,8 @@ struct AboutSheet: View {
         .accentColor(.white)
     }
     
-    func followOnTwitter() {
-        guard let url = URL(string: "https://twitter.com/make5calls") else { return }
+    func openSocialLink(_ urlString: String) {
+        guard let url = URL(string: urlString) else { return }
         UIApplication.shared.open(url)
     }
 
