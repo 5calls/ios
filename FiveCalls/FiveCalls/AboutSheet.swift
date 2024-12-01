@@ -69,7 +69,11 @@ struct AboutSheet: View {
                 Section {
                     TextField(R.string.localizable.aboutCallingGroupPlaceholder(), text: $callingGroup)
                         .onChange(of: callingGroup) { newValue in
-                            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.callingGroup.rawValue)
+                            let trimmed = newValue.trimmingCharacters(in: .whitespaces)
+                            if trimmed != newValue {
+                                callingGroup = trimmed
+                            }
+                            UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
                         }
                 } header: {
                     Text(R.string.localizable.aboutCallingGroupHeader().uppercased())
