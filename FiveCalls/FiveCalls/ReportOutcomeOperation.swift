@@ -44,7 +44,22 @@ class ReportOutcomeOperation: BaseOperation, @unchecked Sendable {
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
-        let query = "result=\(outcome.label)&contactid=\(log.contactId)&issueid=\(log.issueId)&phone=\(log.phone)&via=\(via)&callerid=\(AnalyticsManager.shared.callerID)"
+        var queryParams = [
+            "result": outcome.label,
+            "contactid": log.contactId,
+            "issueid": log.issueId,
+            "phone": log.phone,
+            "via": via,
+            "callerid": AnalyticsManager.shared.callerID
+        ]
+        
+        // Add calling group if it exists
+        if let callingGroup = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue),
+           !callingGroup.isEmpty {
+            queryParams["group"] = callingGroup
+        }
+        
+        let query = queryParams.map { "\($0)=\($1)" }.joined(separator: "&")
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return
