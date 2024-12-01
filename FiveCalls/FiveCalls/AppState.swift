@@ -92,8 +92,13 @@ extension AppState {
     func issueCalledOn(issueID: Int, contactID: String) -> Bool {
         // a contact outcome is a contactid concatenated with an outcome (B0001234-contact)
         let contactOutcomesForIssue = self.issueCompletion[issueID] ?? []
+        
         let contactIDs = contactOutcomesForIssue.map { contactOutcome in
-            return String(contactOutcome.split(separator: "-").first ?? "")
+            // Split from the right to handle contact IDs that contain hyphens
+            if let lastHyphenIndex = contactOutcome.lastIndex(of: "-") {
+                return String(contactOutcome[..<lastHyphenIndex])
+            }
+            return contactOutcome
         }
 
         return contactIDs.contains(contactID)

@@ -108,6 +108,7 @@
 		D0A76F252A814786006EC2F5 /* LocationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A76F242A814786006EC2F5 /* LocationSheet.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */; };
 		D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */; };
 		D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */; };
 		D0BFE9CB2A7DD25C007203A3 /* LocationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */; };
@@ -276,6 +277,7 @@
 		D0BA59AC1F9546510069DA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationsService.entitlements; sourceTree = "<group>"; };
 		D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FiveCalls.entitlements; sourceTree = "<group>"; };
+		D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCircle.swift; sourceTree = "<group>"; };
 		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeader.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				B502805F1E478BC200749ED7 /* Info.plist */,
+				D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */,
 				B50280671E478BF500749ED7 /* ContactLogsTests.swift */,
 				D0176E8A2B3343150090E6B7 /* ContactParsingTest.swift */,
 				D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */,
@@ -852,6 +855,7 @@
 				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
 				4F3A572B2B597C8E009D4616 /* UserLocationTests.swift in Sources */,
+				D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */,
 				D0E042662B47D06700D22647 /* IssueTests.swift in Sources */,
 				4F2178752B488CD70032D592 /* StoreTests.swift in Sources */,
 			);
