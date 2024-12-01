@@ -153,8 +153,8 @@
 // about
 "about-title" = "About";
 "about-section-header-general"        = "General";
-"about-section-header-social"         = "Social";
-"about-section-footer-social"         = "Sharing and Rating helps others find 5 Calls.";
+"about-section-header-social"         = "Follow us on your favorite platform";
+"about-section-footer-social"         = "Sharing and Rating helps others find 5 Calls";
 "about-section-header-credits"        = "Credits";
 "about-item-why-call"                 = "Why Calling Works";
 "about-item-who-we-are"               = "Who Made 5 Calls?";
