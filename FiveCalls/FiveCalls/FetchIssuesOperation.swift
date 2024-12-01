@@ -25,7 +25,17 @@ class FetchIssuesOperation: BaseOperation, @unchecked Sendable {
     }
     
     var url: URL {
-        return URL(string: "https://api.5calls.org/v1/issues?includeHidden=true")!
+        var urlComponents = URLComponents(string: "https://api.5calls.org/v1/issues")!
+        var queryItems = [URLQueryItem(name: "includeHidden", value: "true")]
+        
+        // Add calling group if it exists
+        if let callingGroup = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue),
+           !callingGroup.isEmpty {
+            queryItems.append(URLQueryItem(name: "group", value: callingGroup))
+        }
+        
+        urlComponents.queryItems = queryItems
+        return urlComponents.url!
     }
 
     override func execute() {

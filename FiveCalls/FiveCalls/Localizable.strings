@@ -167,6 +167,9 @@
 "about-webview-title-why-call"        = "Why Calling Works";
 "about-webview-title-who-we-are"      = "Who Made 5 Calls";
 "about-acknowledgements-title"        = "Open Source";
+"about-callingGroup-header"           = "Calling Group";
+"about-callingGroup-placeholder"      = "Enter your calling group name";
+"about-callingGroup-footer"           = "Set a calling group name to track calls with others";
 
 // your impact
 "your-impact-title"                   = "My Impact";
