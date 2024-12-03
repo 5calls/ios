@@ -26,13 +26,24 @@ class FetchStatsOperation: BaseOperation, @unchecked Sendable {
     }
     
     var url: URL {
-        var urlComp = URLComponents(url: URL(string: "https://api.5calls.org/v1/report")!, resolvingAgainstBaseURL: false)!
+        var urlComponents = URLComponents(url: URL(string: "https://api.5calls.org/v1/report")!, resolvingAgainstBaseURL: false)!
+        var queryItems: [URLQueryItem] = []
+        
         if let issueID = self.issueID {
-            let issueIDQuery = URLQueryItem(name: "issueID", value: issueID)
-            urlComp.queryItems = [issueIDQuery]
+            queryItems.append(URLQueryItem(name: "issueID", value: issueID))
         }
         
-        return urlComp.url!
+        // Add calling group if it exists
+        if let callingGroup = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue),
+           !callingGroup.isEmpty {
+            queryItems.append(URLQueryItem(name: "group", value: callingGroup))
+        }
+        
+        if !queryItems.isEmpty {
+            urlComponents.queryItems = queryItems
+        }
+        
+        return urlComponents.url!
     }
 
     override func execute() {

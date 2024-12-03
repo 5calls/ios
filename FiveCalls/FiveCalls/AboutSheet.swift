@@ -19,6 +19,7 @@ struct AboutSheet: View {
     @State var showEmailComposer = false
     @State var showEmailComposerAlert = false
     @State var showWelcome = false
+    @State private var callingGroup: String = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue) ?? ""
     
     private var versionString: String? = {
         guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
@@ -36,14 +37,6 @@ struct AboutSheet: View {
                                   type: .webViewContent(WebViewContent.whycall))
                     AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(), 
                                   type: .webViewContent(WebViewContent.whoweare))
-                    .navigationDestination(for: WebViewContent.self) { webViewContent in
-                        WebView(webViewContent: webViewContent)
-                            .navigationTitle(webViewContent.navigationTitle)
-                            .navigationBarTitleDisplayMode(.inline)
-                            .toolbarBackground(.visible)
-                            .toolbarBackground(Color.fivecallsDarkBlue)
-                            .toolbarColorScheme(.dark, for: .navigationBar)
-                    }
                     AboutListItem(title: R.string.localizable.aboutItemFeedback(),
                                   type: .action({
                         if EmailComposerView.canSendEmail() {
@@ -69,6 +62,25 @@ struct AboutSheet: View {
                     })
                 } header: {
                     Text(R.string.localizable.aboutSectionHeaderGeneral().uppercased())
+                        .font(.footnote)
+                        .foregroundStyle(.fivecallsDarkGray)
+                }
+
+                Section {
+                    TextField(R.string.localizable.aboutCallingGroupPlaceholder(), text: $callingGroup)
+                        .onChange(of: callingGroup) { newValue in
+                            let trimmed = newValue.trimmingCharacters(in: .whitespaces)
+                            if trimmed != newValue {
+                                callingGroup = trimmed
+                            }
+                            UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
+                        }
+                } header: {
+                    Text(R.string.localizable.aboutCallingGroupHeader().uppercased())
+                        .font(.footnote)
+                        .foregroundStyle(.fivecallsDarkGray)
+                } footer: {
+                    Text(R.string.localizable.aboutCallingGroupFooter())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
@@ -143,7 +155,15 @@ struct AboutSheet: View {
                             .bold()
                     }
                 }
+            }.navigationDestination(for: WebViewContent.self) { webViewContent in
+                WebView(webViewContent: webViewContent)
+                    .navigationTitle(webViewContent.navigationTitle)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbarBackground(.visible)
+                    .toolbarBackground(Color.fivecallsDarkBlue)
+                    .toolbarColorScheme(.dark, for: .navigationBar)
             }
+
         }
         .accentColor(.white)
     }
