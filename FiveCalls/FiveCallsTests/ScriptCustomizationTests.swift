@@ -112,4 +112,72 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello, my name is a constituent"
         XCTAssertEqual(replacedScript, expectedScript)
     }
+
+    func testMultipleHouseSubscriptSections() throws {
+        let script = """
+            Hello!
+            
+            **WHEN CALLING HOUSE:**
+            First house section with **[REPRESENTATIVE NAME]**
+            
+            Some middle text.
+            
+            **WHEN CALLING HOUSE:**
+            Second house section
+            
+            **WHEN CALLING SENATE:**
+            Senate section should be removed
+            
+            Thank you for your time.
+            """
+
+        let replacedScript = ScriptReplacements.chooseSubscript(script: script, contact: Contact.housePreviewContact)
+
+        let expectedScript = """
+            Hello!
+            
+            First house section with **[REPRESENTATIVE NAME]**
+            
+            Some middle text.
+            
+            Second house section
+            
+            Thank you for your time.
+            """
+        XCTAssertEqual(replacedScript, expectedScript)
+    }
+
+    func testMultipleSenateSubscriptSections() throws {
+        let script = """
+            Hello!
+            
+            **WHEN CALLING SENATE:**
+            First senate section with **[SENATOR NAME]**
+            
+            Some middle text.
+            
+            **WHEN CALLING HOUSE:**
+            House section should be removed
+            
+            **WHEN CALLING SENATE:**
+            Second senate section
+            
+            Thank you for your time.
+            """
+
+        let replacedScript = ScriptReplacements.chooseSubscript(script: script, contact: Contact.senatePreviewContact1)
+
+        let expectedScript = """
+            Hello!
+            
+            First senate section with **[SENATOR NAME]**
+            
+            Some middle text.
+            
+            Second senate section
+            
+            Thank you for your time.
+            """
+        XCTAssertEqual(replacedScript, expectedScript)
+    }
 }
