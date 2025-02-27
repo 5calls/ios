@@ -13,6 +13,7 @@ struct InboxView: View {
     @EnvironmentObject var store: Store
     @State private var detailPresented: Bool = false
     @State private var showPushPrompt: Bool = true
+    @State private var showContactAlert: Bool = false
 
     var contacts: [Contact] {
         return store.state.contacts.filter({ $0.area == "US House" || $0.area == "US Senate" })
@@ -66,55 +67,63 @@ struct InboxView: View {
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered()) { contact in
                             ContactListItem(contact: contact.element, showComplete: false)
+                                .onTapGesture {
+                                    showContactAlert = true
+                                }
                         }
                     }
 
-                    HStack {
-                        Text(R.string.localizable.inboxVotesHeader())
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer()
-                    }.padding(.top, 10)
+                    if false { // remove this until we can update it regularly
+                        HStack {
+                            Text(R.string.localizable.inboxVotesHeader())
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .accessibilityAddTraits(.isHeader)
+                            Spacer()
+                        }.padding(.top, 10)
 
-                    if showPushPrompt {
-                        VStack {
-                            PrimaryButton(title: R.string.localizable.inboxPushButton())
-                                .onTapGesture {
-                                    OneSignal.promptForPushNotifications { success in
-                                        Task {
-                                            await updateNotificationStatus()
+                        if showPushPrompt {
+                            VStack {
+                                PrimaryButton(title: R.string.localizable.inboxPushButton())
+                                    .onTapGesture {
+                                        OneSignal.promptForPushNotifications { success in
+                                            Task {
+                                                await updateNotificationStatus()
+                                            }
                                         }
                                     }
-                                }
-                            Text(R.string.localizable.inboxPushDetail())
-                                .font(.caption)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity, alignment: .center)
-                        }.padding(.vertical, 10)
-                    }
-                    
-                    VStack {
-                        ForEach(store.state.repMessages) { message in
-                            if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
-                                ContactInboxVote(contact: contact, message: message)
-                                    .padding(.bottom, 6)
-                                    .onTapGesture{
-                                        store.dispatch(action: .SelectMessage(message))
-                                    }
-                            } else if let _ = message.imageURL {
-                                GenericInboxVote(message: message)
-                                    .onTapGesture{
-                                        store.dispatch(action: .SelectMessage(message))
-                                    }
-                            }
+                                Text(R.string.localizable.inboxPushDetail())
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .multilineTextAlignment(.center)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            }.padding(.vertical, 10)
                         }
-                    }.padding(4)
+                        
+                        VStack {
+                            ForEach(store.state.repMessages) { message in
+                                if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
+                                    ContactInboxVote(contact: contact, message: message)
+                                        .padding(.bottom, 6)
+                                        .onTapGesture{
+                                            store.dispatch(action: .SelectMessage(message))
+                                        }
+                                } else if let _ = message.imageURL {
+                                    GenericInboxVote(message: message)
+                                        .onTapGesture{
+                                            store.dispatch(action: .SelectMessage(message))
+                                        }
+                                }
+                            }
+                        }.padding(4)
+                    }
                 }.padding(.horizontal, 16)
                 .scrollIndicators(.hidden)
             }
-        }.sheet(isPresented: $detailPresented, onDismiss: {
+        }.alert(R.string.localizable.inboxContactAlert(), isPresented: $showContactAlert) {
+            Button(R.string.localizable.okButtonTitle(), role: .cancel) { }
+        }
+        .sheet(isPresented: $detailPresented, onDismiss: {
                 store.dispatch(action: .SelectMessage(nil))
             }) {
                 if let message = store.state.inboxRouter.selectedMessage {

@@ -11,6 +11,10 @@ import Foundation
 extension Issue {
     static let issueReason = """
     Congress is currently considering [the RESTRICT Act](https://www.warner.senate.gov/public/index.cfm/2023/3/senators-introduce-bipartisan-bill-to-tackle-national-security-threats-from-foreign-tech), [(S.686)](https://www.congress.gov/bill/118th-congress/senate-bill/686) a bill that purports to protect Americans by restricting access to apps and websites that could pose a threat to national security.
+    
+    ~this is very important.~
+    
+    ~~this is also very important.~~
 
     Demand your Senators oppose the RESTRICT Act to ensure a free and fair internet.
     """
