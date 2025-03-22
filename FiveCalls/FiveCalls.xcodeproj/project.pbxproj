@@ -44,9 +44,6 @@
 		B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280531E46A91F00749ED7 /* AreaOffice.swift */; };
 		B50280561E47875500749ED7 /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280551E47875500749ED7 /* ContactLog.swift */; };
 		B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280671E478BF500749ED7 /* ContactLogsTests.swift */; };
-		B50280741E497C4A00749ED7 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = B50280731E497C4A00749ED7 /* styles.css */; };
-		B50280761E497FB700749ED7 /* about-whoweare.html in Resources */ = {isa = PBXBuildFile; fileRef = B50280751E497FB700749ED7 /* about-whoweare.html */; };
-		B50280781E49837000749ED7 /* about-whycall.html in Resources */ = {isa = PBXBuildFile; fileRef = B50280771E49837000749ED7 /* about-whycall.html */; };
 		B502807C1E498B9B00749ED7 /* ImpactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */; };
 		B512506A21E6F762007D32DF /* FetchContactsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512506921E6F762007D32DF /* FetchContactsOperation.swift */; };
 		B512506E21E701DE007D32DF /* ContactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512506D21E701DE007D32DF /* ContactList.swift */; };
@@ -209,9 +206,6 @@
 		B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B502805F1E478BC200749ED7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B50280671E478BF500749ED7 /* ContactLogsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLogsTests.swift; sourceTree = "<group>"; };
-		B50280731E497C4A00749ED7 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
-		B50280751E497FB700749ED7 /* about-whoweare.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "about-whoweare.html"; sourceTree = "<group>"; };
-		B50280771E49837000749ED7 /* about-whycall.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "about-whycall.html"; sourceTree = "<group>"; };
 		B502807B1E498B9B00749ED7 /* ImpactViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactViewModel.swift; sourceTree = "<group>"; };
 		B512506921E6F762007D32DF /* FetchContactsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchContactsOperation.swift; sourceTree = "<group>"; };
 		B512506D21E701DE007D32DF /* ContactList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactList.swift; sourceTree = "<group>"; };
@@ -379,19 +373,8 @@
 			isa = PBXGroup;
 			children = (
 				791C9FD31E4E611C0074A8B7 /* Localizable.strings */,
-				B502806E1E497C2000749ED7 /* HTML / CSS */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		B502806E1E497C2000749ED7 /* HTML / CSS */ = {
-			isa = PBXGroup;
-			children = (
-				B50280731E497C4A00749ED7 /* styles.css */,
-				B50280751E497FB700749ED7 /* about-whoweare.html */,
-				B50280771E49837000749ED7 /* about-whycall.html */,
-			);
-			name = "HTML / CSS";
 			sourceTree = "<group>";
 		};
 		B52805081E3FA94D00EE832A = {
@@ -810,11 +793,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B528051F1E3FA94D00EE832A /* LaunchScreen.storyboard in Resources */,
-				B50280781E49837000749ED7 /* about-whycall.html in Resources */,
 				B528051C1E3FA94D00EE832A /* Assets.xcassets in Resources */,
-				B50280761E497FB700749ED7 /* about-whoweare.html in Resources */,
 				791C9FD41E4E611C0074A8B7 /* Localizable.strings in Resources */,
-				B50280741E497C4A00749ED7 /* styles.css in Resources */,
 				4F07B23E2B45F25E00C575DF /* Package.resolved in Resources */,
 				ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */,
 			);

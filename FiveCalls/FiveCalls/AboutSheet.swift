@@ -34,9 +34,13 @@ struct AboutSheet: View {
             List {
                 Section {
                     AboutListItem(title: R.string.localizable.aboutItemWhyCall(),
-                                  type: .webViewContent(WebViewContent.whycall))
-                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(), 
-                                  type: .webViewContent(WebViewContent.whoweare))
+                                  type: .action({
+                        openSocialLink("https://5calls.org/why-calling-works/")
+                    }))
+                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(),
+                                  type: .action({
+                        openSocialLink("https://5calls.org/about-us/")
+                    }))
                     AboutListItem(title: R.string.localizable.aboutItemFeedback(),
                                   type: .action({
                         if EmailComposerView.canSendEmail() {

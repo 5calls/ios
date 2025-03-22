@@ -11,7 +11,6 @@ import SwiftUI
 
 enum AboutListItemType {
     case action(() -> Void)
-    case webViewContent(WebViewContent)
     case url(URL)
     case acknowledgements
 }
@@ -37,24 +36,6 @@ struct AboutListItem: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-        case let .webViewContent(webViewContent):
-            HStack {
-                ZStack {
-                    NavigationLink("", value: webViewContent)
-                        .opacity(0)
-                    HStack {
-                        Text(title)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .renderingMode(.template)
-                    .tint(.primary)
-                    .accessibilityHidden(true)
-            }
-            .accessibilityAddTraits(.isButton)
         case let .url(url):
             ShareLink(item: url) {
                 HStack {
@@ -104,7 +85,6 @@ struct AboutListItem: View {
 
 #Preview {
     VStack {
-        AboutListItem(title: "test item nav link", type: .webViewContent(WebViewContent.whycall))
         AboutListItem(title: "test item action", type: .action({ let _ = true }))
         AboutListItem(title: "test url", type: .url(URL(string: "https://google.com")!))
         AboutListItem(title: "test acknowledgements", type: .acknowledgements)
