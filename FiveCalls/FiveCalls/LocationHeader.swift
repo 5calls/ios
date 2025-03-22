@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LocationHeader: View {
     let location: UserLocation?
+    let isSplit: Bool
     let fetchingContacts: Bool
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -45,9 +46,17 @@ struct LocationHeader: View {
             VStack(alignment: .leading) {
                 Text(R.string.localizable.yourLocationIs)
                     .font(.footnote)
-                Text(location!.locationDisplay)
-                    .font(.system(.title3))
-                    .fontWeight(.medium)
+                if isSplit {
+                    Text(
+                        "\(Image(systemName: "exclamationmark.triangle")) \(location!.locationDisplay)"
+                    )
+                        .font(.system(.title3))
+                        .fontWeight(.medium)
+                } else {
+                    Text(location!.locationDisplay)
+                        .font(.system(.title3))
+                        .fontWeight(.medium)
+                }
             }
             .padding(.horizontal, usingRegularFonts() ? 15 : 5)
             .padding(.vertical, 10)
@@ -90,9 +99,17 @@ struct LocationHeader: View {
 struct LocationHeader_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            LocationHeader(location: nil, fetchingContacts: true)
-            LocationHeader(location: nil, fetchingContacts: false)
-            LocationHeader(location: UserLocation(address: "19444"), fetchingContacts: false)
+            LocationHeader(location: nil, isSplit: false, fetchingContacts: true)
+            LocationHeader(location: nil, isSplit: true, fetchingContacts: false)
+            LocationHeader(
+                location: UserLocation(address: "19444"),
+                isSplit: false, fetchingContacts: false
+            )
+                .frame(maxWidth: 250)
+            LocationHeader(
+                location: UserLocation(address: "48184"),
+                isSplit: true, fetchingContacts: false
+            )
                 .frame(maxWidth: 250)
             Spacer()
         }

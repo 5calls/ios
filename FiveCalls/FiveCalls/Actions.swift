@@ -19,6 +19,7 @@ enum Action {
     case FetchContacts(UserLocation)
     case SetContacts([Contact])
     case SetDistrict(String)
+    case SetSplitDistrict(Bool)
     case SetLocation(UserLocation)
     case FetchMessages
     case SetMessages([InboxMessage])

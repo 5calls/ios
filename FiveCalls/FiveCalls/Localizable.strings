@@ -115,6 +115,7 @@
 "location-error-off"                  = "Location permission is off";
 "location-error-default"              = "An error occured trying to find your location";
 "location-or"                         = "Or";
+"location-split-district"             = "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy.";
 
 // outcomes
 "outcomes.contact"                    = "Made Contact";

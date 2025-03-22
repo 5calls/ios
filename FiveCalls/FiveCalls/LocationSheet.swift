@@ -23,6 +23,15 @@ struct LocationSheet: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 0) {
+                if store.state.isSplitDistrict {
+                    Text(
+                        "\(Image(systemName: "exclamationmark.triangle")) \(R.string.localizable.locationSplitDistrict())"
+                    )
+                        .font(.footnote)
+                        .foregroundColor(.red)
+                        .padding(.horizontal, 35)
+                        .padding(.bottom, 10)
+                }
                 HStack {
                     HStack {
                         TextField(text: $locationText) {

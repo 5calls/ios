@@ -64,6 +64,8 @@ class Store: ObservableObject {
             if oldDistrict != district {
                 dispatch(action: .FetchMessages)
             }
+        case let .SetSplitDistrict(splitDistrict):
+            state.isSplitDistrict = splitDistrict
         case let .SetLocation(location):
             state.location = location
         case let .SetMessages(messages):
