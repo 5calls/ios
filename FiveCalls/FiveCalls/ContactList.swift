@@ -10,7 +10,7 @@ import Foundation
 
 class ContactList : Decodable {
     let location: String
-    let lowAccuracy: Bool
+    let isSplit: Bool
     let state: String
     let district: String
     let representatives: [Contact]

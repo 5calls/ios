@@ -16,6 +16,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     var contacts: [Contact]?
+    var splitDistrict: Bool?
     var district: String?
 
     init(location: UserLocation, config: URLSessionConfiguration? = nil) {
@@ -70,6 +71,8 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let contactList = try decoder.decode(ContactList.self, from: data)
+
+        splitDistrict = contactList.isSplit
         if contactList.generalizedLocationID != "-" {
             district = contactList.generalizedLocationID
             OneSignal.sendTag("districtID", value: contactList.generalizedLocationID)

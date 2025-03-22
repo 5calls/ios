@@ -31,6 +31,7 @@ class AppState: ObservableObject, ReduxState {
     @Published var issueFetchTime: Date? = nil
     @Published var contacts: [Contact] = []
     @Published var district: String? = nil
+    @Published var isSplitDistrict: Bool = false
     @Published var location: UserLocation? {
         didSet {
             guard let location = self.location else { return }

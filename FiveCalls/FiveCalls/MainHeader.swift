@@ -17,7 +17,9 @@ struct MainHeader: View {
         HStack {
             MenuView(showingWelcomeScreen: store.state.showWelcomeScreen)
 
-            LocationHeader(location: store.state.location, fetchingContacts: store.state.fetchingContacts)
+            LocationHeader(location: store.state.location,
+                           isSplit: store.state.isSplitDistrict,
+                           fetchingContacts: store.state.fetchingContacts)
                 .padding(.bottom, 10)
                 .onTapGesture {
                     showLocationSheet.toggle()

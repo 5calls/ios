@@ -30,8 +30,8 @@ func appMiddleware() -> Middleware<AppState> {
             reportOutcome(log: contactLog, outcome: outcome)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
-                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetMessages, .SelectMessage(_),
-                .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_):
+                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages,
+                .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_):
             // no middleware actions for these, including for completeness
             break
         }
@@ -107,6 +107,9 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
         
         if let district = operation?.district {
             dispatch(.SetDistrict(district))
+        }
+        if let split = operation?.splitDistrict {
+            dispatch(.SetSplitDistrict(split))
         }
 
         if var contacts = operation?.contacts, !contacts.isEmpty {
