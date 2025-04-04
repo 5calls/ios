@@ -19,7 +19,17 @@ func defaultImage(forContact contact: Contact) -> UIImage {
     UIGraphicsBeginImageContext(CGSize(width: 256, height: 256))
     
     let colorIndex = abs(Int(contact.id.hash)) % sampleColors.count
-    sampleColors[colorIndex].setFill()
+    
+    var partyColor: UIColor {
+        switch contact.party {
+        case "Democrat": return hexStringToColor(hexString: "#4C72A9")
+        case "Republican": return hexStringToColor(hexString: "#A94C47")
+        case "Independent": return hexStringToColor(hexString: "#9063CD")
+        default: return sampleColors[colorIndex]
+        }
+    }
+    
+    partyColor.setFill()
     
     let context = UIGraphicsGetCurrentContext()
     context?.fill([CGRect(origin: .zero, size: CGSize(width: 256, height: 256))])
