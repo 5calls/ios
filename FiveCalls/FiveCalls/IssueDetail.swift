@@ -15,6 +15,7 @@ struct IssueDetail: View {
     let contacts: [Contact]
     
     @State var showLocationSheet = false
+    @State private var forceRefreshID = UUID()
     
     var body: some View {
         ScrollView {
@@ -67,6 +68,11 @@ struct IssueDetail: View {
                 }
             }
             .padding(.horizontal)
+        }
+        .id(forceRefreshID)
+        .onAppear {
+            // Force refresh id so that async images can load. See https://github.com/5calls/ios/issues/465
+            forceRefreshID = UUID()
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
