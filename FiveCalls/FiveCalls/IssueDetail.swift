@@ -70,10 +70,6 @@ struct IssueDetail: View {
             .padding(.horizontal)
         }
         .id(forceRefreshID)
-        .onAppear {
-            // Force refresh id so that async images can load. See https://github.com/5calls/ios/issues/465
-            forceRefreshID = UUID()
-        }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -96,6 +92,9 @@ struct IssueDetail: View {
             Spacer()
         }
         .onAppear {
+            // Force refresh id so that async images can load. See https://github.com/5calls/ios/issues/465
+            forceRefreshID = UUID()
+            
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/")
         }
     }
