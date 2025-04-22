@@ -83,7 +83,7 @@ struct IssueContactDetail: View {
                             .accessibilityAddTraits(.isButton)
                             .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
 
-                        if currentContact.fieldOffices.count > 1 {
+                        if currentContact.fieldOffices.count >= 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
                                     // ControlGroup doesn't render < 16.4 (https://github.com/5calls/ios/pull/446)
