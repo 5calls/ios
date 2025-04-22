@@ -33,14 +33,19 @@ struct Dashboard: View {
                 NewsletterSignup {
                     shownNewsletterSignup = true
                 } onSubmit: { email in
+                    var district = store.state.district
 #if !DEBUG
                     var req = URLRequest(url: URL(string: "https://buttondown.com/api/emails/embed-subscribe/5calls")!)
                     req.httpMethod = "POST"
                     req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                    req.httpBody = "email=\(email)&tag=ios".data(using: .utf8)
+                    var reqBody = "email=\(email)&tag=ios"
+                    if let district { reqBody += "&tag=\(district)" }
+                    req.httpBody = reqBody.data(using: .utf8)
                     URLSession.shared.dataTask(with: req).resume()
 #else
-                    print("DEBUG: would send email sub request to: \(email)")
+                    var subscribeDebug = "DEBUG: would send email sub request to: \(email)"
+                    if let district { subscribeDebug += " with district: \(district)"}
+                    print(subscribeDebug)
 #endif
                     
                     shownNewsletterSignup = true
