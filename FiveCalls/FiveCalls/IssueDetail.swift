@@ -39,6 +39,7 @@ struct IssueDetail: View {
                         ForEach(contacts.numbered(), id: \.element.id) { contact in
                             NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: Array(contacts[contact.number..<contacts.endIndex]))) {
                                 ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
+                                    .id(forceRefreshID)
                             }
                             if contact.number < contacts.count - 1 {
                                 Divider()
@@ -69,7 +70,6 @@ struct IssueDetail: View {
             }
             .padding(.horizontal)
         }
-        .id(forceRefreshID)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
