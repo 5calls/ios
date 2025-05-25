@@ -17,6 +17,10 @@ struct IssueDetail: View {
     @State var showLocationSheet = false
     @State private var forceRefreshID = UUID()
     
+    var vacantAreas: [String] {
+        store.state.missingReps.filter(issue.contactAreas.contains)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -28,7 +32,7 @@ struct IssueDetail: View {
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
-                if contacts.count > 0 {
+                if store.state.location != nil {
                     Text(R.string.localizable.repsListHeader())
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -40,9 +44,14 @@ struct IssueDetail: View {
                             NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: Array(contacts[contact.number..<contacts.endIndex]))) {
                                 ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
                             }
-                            if contact.number < contacts.count - 1 {
+                            if contact.number < contacts.count - 1 || contact.number == contacts.count - 1 && !vacantAreas.isEmpty {
                                 Divider()
                             }
+                        }
+                        
+                        ForEach(vacantAreas, id: \.self) { area in
+                            ContactListItem(contact: Contact(area: area, name: R.string.localizable.vacantSeatTitle()), contactNote: R.string.localizable.vacantSeatMessage(area))
+                                .opacity(0.5)
                         }
                     }
                     .background {
@@ -51,8 +60,10 @@ struct IssueDetail: View {
                     }
                     .padding(.bottom, 16)
                     
-                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
-                        PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                    if contacts.count > 0 {
+                        NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
+                            PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                        }
                     }
                 } else {
                     Text(R.string.localizable.setLocationHeader())

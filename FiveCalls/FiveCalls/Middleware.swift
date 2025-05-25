@@ -30,7 +30,7 @@ func appMiddleware() -> Middleware<AppState> {
             reportOutcome(log: contactLog, outcome: outcome)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
-                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages,
+                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
                 .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_):
             // no middleware actions for these, including for completeness
             break
@@ -111,17 +111,26 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
         if let split = operation?.splitDistrict {
             dispatch(.SetSplitDistrict(split))
         }
+        
+        var missingReps: [String] = []
 
         if var contacts = operation?.contacts, !contacts.isEmpty {
             // if we get more than one house rep here, select the first one.
             // this is a split district situation and we should let the user
             // pick which one is correct in the future
             let houseReps = contacts.filter({ $0.area == "US House" })
+            let senateReps = contacts.filter({ $0.area == "US Senate" })
             if houseReps.count > 1 {
                 contacts = contacts.filter({ $0.area != "US House" })
                 contacts.append(houseReps[0])
             }
-
+            if houseReps.count < 1 {
+                missingReps.append("US House")
+            }
+            if senateReps.count < 2 {
+                missingReps.append("US Senate")
+            }
+            dispatch(.SetMissingReps(missingReps))
             dispatch(.SetContacts(contacts))
         } else if let error = operation?.error {
             DispatchQueue.main.async {
