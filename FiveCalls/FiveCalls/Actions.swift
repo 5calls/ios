@@ -34,4 +34,5 @@ enum Action {
     case GoBack
     case GoToRoot
     case GoToNext(Issue, [Contact])
+    case SetMissingReps([String])
 }
