@@ -44,6 +44,8 @@ struct IssueDetail: View {
                             NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: Array(contacts[contact.number..<contacts.endIndex]))) {
                                 ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
                             }
+                            // Display divider if we are not done with the contact list
+                            // or if we are done with contacts and there is a vacancy to show
                             if contact.number < contacts.count - 1 || contact.number == contacts.count - 1 && !vacantAreas.isEmpty {
                                 Divider()
                             }
