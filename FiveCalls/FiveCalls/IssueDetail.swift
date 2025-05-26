@@ -52,8 +52,14 @@ struct IssueDetail: View {
                         }
                         
                         ForEach(vacantAreas, id: \.self) { area in
-                            ContactListItem(contact: Contact(area: area, name: R.string.localizable.vacantSeatTitle()), contactNote: R.string.localizable.vacantSeatMessage(area))
+                            let contact = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
+                            let note = R.string.localizable.vacantSeatMessage(area)
+                            
+                            ContactListItem(contact: contact, contactNote: note)
                                 .opacity(0.5)
+                            if area != vacantAreas.last {
+                                Divider()
+                            }
                         }
                     }
                     .background {
