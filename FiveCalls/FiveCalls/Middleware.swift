@@ -18,8 +18,9 @@ func appMiddleware() -> Middleware<AppState> {
             fetchContacts(location: location, dispatch: dispatch)
         case let .SetLocation(location):
             fetchContacts(location: location, dispatch: dispatch)
-        case .FetchMessages:
-            fetchMessages(state: state, dispatch: dispatch)
+//        case .FetchMessages:
+//            don't fetch any messages right now because we don't display them
+//            fetchMessages(state: state, dispatch: dispatch)
         case let .ReportOutcome(issue, contactLog, outcome):
             // TODO: migrate ContactLog issueId to Int after UIKit is gone
             // this is always generated in swiftUI from an int so it should always succeed
@@ -31,7 +32,7 @@ func appMiddleware() -> Middleware<AppState> {
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
                 .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
-                .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_):
+                .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages:
             // no middleware actions for these, including for completeness
             break
         }
