@@ -200,6 +200,8 @@
 "set-location-header"                 = "We need a location to find your reps";
 "set-location-button"                 = "Set your location";
 "reps-list-header"                    = "Relevant representatives for this issue";
+"vacant-seat-title"                   = "Vacant Seat";
+"vacant-seat-message"                 = "This %@ seat is currently vacant.";
 
 // done
 "done-title"                          = "You called on **%@**";
