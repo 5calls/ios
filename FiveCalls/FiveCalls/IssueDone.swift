@@ -231,6 +231,10 @@ struct CountingView: View {
             return 2000000
         } else if count < 4500000 {
             return 5000000
+        } else if count < 9500000 {
+            return 10000000
+        } else if count < 12500000 {
+            return 13000000
         }
 
         return 0
