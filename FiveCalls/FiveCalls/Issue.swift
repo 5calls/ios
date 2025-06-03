@@ -43,6 +43,26 @@ struct Issue: Identifiable, Decodable {
         return sortedContacts
     }
     
+    // returns any contacts that should displayed on the issue, but aren't actually targetted
+    // this ensures both house and senate reps are displayed even when the issue specifically targets one or the other
+    func irrelevantContacts(allContacts: [Contact]) -> [Contact] {
+        var irrelevantContacts: [Contact] = []
+        
+        let hasHouse = contactAreas.contains("US House")
+        let hasSenate = contactAreas.contains("US Senate")
+        
+        if hasHouse && !hasSenate {
+            let senateContacts = allContacts.filter { $0.area == "US Senate" }
+            irrelevantContacts.append(contentsOf: senateContacts)
+        }
+        
+        if hasSenate && !hasHouse {
+            let houseContacts = allContacts.filter { $0.area == "US House" }
+            irrelevantContacts.append(contentsOf: houseContacts)
+        }
+        return irrelevantContacts
+    }
+    
     // sortedContactAreas takes a list of contact areas and orders them in our preferred order,
     // we should always order them properly on the server but let's do this to be sure
     func sortedContactAreas(areas: [String]) -> [String] {
