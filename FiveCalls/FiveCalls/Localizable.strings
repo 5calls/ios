@@ -202,6 +202,7 @@
 "reps-list-header"                    = "Relevant representatives for this issue";
 "vacant-seat-title"                   = "Vacant Seat";
 "vacant-seat-message"                 = "This %@ seat is currently vacant.";
+"irrelevant-contact-message"         = "This representative is not currently relevant to this issue.";
 
 // done
 "done-title"                          = "You called on **%@**";

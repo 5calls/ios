@@ -17,9 +17,16 @@ struct IssueDetail: View {
     @State private var forceRefreshID = UUID()
     
     var targetedContacts: [Contact] { issue.contactsForIssue(allContacts: store.state.contacts) }
-    var irrelevantContacts: [Contact] { issue.irrelevantContacts(allContacts: store.state.contacts) }
-    var vacantAreas: [String] { store.state.missingReps.filter(issue.contactAreas.contains) }
     
+    // reps that we want to show, but not direct calls to
+    var irrelevantContacts: [Contact] { issue.irrelevantContacts(allContacts: store.state.contacts) }
+    
+    // vacancies for both targeted and irrelevant contacts
+    var vacantAreas: [String] {
+        let irrelevantAreas = Set(irrelevantContacts.map { $0.area })
+        return store.state.missingReps.filter { issue.contactAreas.contains($0) || $0 == issue.irrelevantContactArea() }
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -126,7 +133,7 @@ struct IssueDetail: View {
             ContactListItem(
                 contact: contact,
                 showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id),
-                contactNote: "This representative is not currently relevant to this issue." // TODO: make R String
+                contactNote: R.string.localizable.irrelevantContactMessage()
             )
             .opacity(0.4)
             .id(forceRefreshID)
