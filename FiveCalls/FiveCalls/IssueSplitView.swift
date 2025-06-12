@@ -18,8 +18,7 @@ struct IssueSplitView: View {
             } detail: {
                 NavigationStack(path: $store.state.issueRouter.path) {
                     if let selectedIssue = store.state.issueRouter.selectedIssue {
-                        IssueDetail(issue: selectedIssue,
-                                  contacts: selectedIssue.contactsForIssue(allContacts: store.state.contacts))
+                        IssueDetail(issue: selectedIssue)
                             .toolbar(.hidden, for: .tabBar)
                             .navigationDestination(for: IssueDetailNavModel.self) { idnm in
                                 IssueContactDetail(issue: idnm.issue, remainingContacts: idnm.contacts)

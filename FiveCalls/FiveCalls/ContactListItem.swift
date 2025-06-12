@@ -55,12 +55,14 @@ struct ContactListItem: View {
                 Text(contactDetailText)
                     .font(.footnote)
                     .foregroundStyle(Color.primary)
+                    .multilineTextAlignment(.leading)
 
             }
             .accessibilityElement(children: .combine)
             Spacer()
         }
         .padding(2)
+        .padding(.vertical, 4)
         .accessibilityElement(children: .combine)
     }
 

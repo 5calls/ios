@@ -12,11 +12,21 @@ struct IssueDetail: View {
     @EnvironmentObject var store: Store
     
     let issue: Issue
-    let contacts: [Contact]
     
     @State var showLocationSheet = false
     @State private var forceRefreshID = UUID()
     
+    var targetedContacts: [Contact] { issue.contactsForIssue(allContacts: store.state.contacts) }
+    
+    // reps that we want to show, but not direct calls to
+    var irrelevantContacts: [Contact] { issue.irrelevantContacts(allContacts: store.state.contacts) }
+    
+    // vacancies for both targeted and irrelevant contacts
+    var vacantAreas: [String] {
+        let irrelevantAreas = Set(irrelevantContacts.map { $0.area })
+        return store.state.missingReps.filter { issue.contactAreas.contains($0) || $0 == issue.irrelevantContactArea() }
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -28,7 +38,7 @@ struct IssueDetail: View {
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
-                if contacts.count > 0 {
+                if store.state.location != nil {
                     Text(R.string.localizable.repsListHeader())
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -36,15 +46,19 @@ struct IssueDetail: View {
                         .padding(.leading, 6)
                         .accessibilityAddTraits(.isHeader)
                     VStack(spacing: 0) {
-                        ForEach(contacts.numbered(), id: \.element.id) { contact in
-                            NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: Array(contacts[contact.number..<contacts.endIndex]))) {
-                                ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
-                                    .id(forceRefreshID)
-                            }
-                            if contact.number < contacts.count - 1 {
-                                Divider()
-                            }
+                        targetedRepsList
+                        
+                        if !irrelevantContacts.isEmpty {
+                            Divider()
                         }
+                        
+                        irrelevantRepsList
+                        
+                        if !vacantAreas.isEmpty {
+                            Divider()
+                        }
+                        
+                        vacantRepsList
                     }
                     .background {
                         RoundedRectangle(cornerRadius: 10)
@@ -52,8 +66,10 @@ struct IssueDetail: View {
                     }
                     .padding(.bottom, 16)
                     
-                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
-                        PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                    if !targetedContacts.isEmpty {
+                        NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: targetedContacts)) {
+                            PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                        }
                     }
                 } else {
                     Text(R.string.localizable.setLocationHeader())
@@ -98,11 +114,60 @@ struct IssueDetail: View {
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/")
         }
     }
+    
+    private var targetedRepsList: some View {
+        ForEach(targetedContacts.numbered(), id: \.element.id) { contact in
+            NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: Array(targetedContacts[contact.number..<targetedContacts.endIndex]))) {
+                ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
+                    .id(forceRefreshID)
+            }
+            
+            if contact.number < targetedContacts.count - 1 {
+                Divider()
+            }
+        }
+    }
+    
+    private var irrelevantRepsList: some View {
+        ForEach(irrelevantContacts, id: \.self) { contact in
+            ContactListItem(
+                contact: contact,
+                showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id),
+                contactNote: R.string.localizable.irrelevantContactMessage()
+            )
+            .opacity(0.4)
+            .id(forceRefreshID)
+            
+            if contact != irrelevantContacts.last {
+                Divider()
+            }
+        }
+    }
+    
+    private var vacantRepsList: some View {
+        ForEach(vacantAreas, id: \.self) { area in
+            let contact = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
+            let note = R.string.localizable.vacantSeatMessage(area)
+            
+            ContactListItem(contact: contact, contactNote: note)
+                .opacity(0.4)
+            
+            if area != vacantAreas.last {
+                Divider()
+            }
+        }
+    }
 }
 
 #Preview {
-    IssueDetail(issue: .basicPreviewIssue, contacts: [.housePreviewContact,.senatePreviewContact1,.senatePreviewContact2])
-        .environmentObject(Store(state: AppState()))
+    let store: Store = {
+        let state = AppState()
+        state.contacts = [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2, .unknownMayorPreviewContact]
+        return Store(state: state)
+    }()
+    
+    return IssueDetail(issue: .houseOnlyPreviewIssue)
+        .environmentObject(store)
 }
 
 struct IssueDetailNavModel {
