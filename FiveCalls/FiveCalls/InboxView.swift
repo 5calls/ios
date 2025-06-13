@@ -71,6 +71,11 @@ struct InboxView: View {
                                     showContactAlert = true
                                 }
                         }
+                        
+                        ForEach(store.state.missingReps, id: \.self) { missingRepArea in
+                            ContactListItem(contact: Contact(name: R.string.localizable.vacantSeatTitle()), contactNote: R.string.localizable.vacantSeatMessage(missingRepArea))
+                                .opacity(0.5)
+                        }
                     }
 
                     if false { // remove this until we can update it regularly

@@ -17,6 +17,10 @@ struct IssueDetail: View {
     @State var showLocationSheet = false
     @State private var forceRefreshID = UUID()
     
+    var vacantAreas: [String] {
+        store.state.missingReps.filter(issue.contactAreas.contains)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -28,7 +32,7 @@ struct IssueDetail: View {
                 Text(issue.markdownIssueReason)
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
-                if contacts.count > 0 {
+                if store.state.location != nil {
                     Text(R.string.localizable.repsListHeader())
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -41,7 +45,20 @@ struct IssueDetail: View {
                                 ContactListItem(contact: contact.element, showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id))
                                     .id(forceRefreshID)
                             }
-                            if contact.number < contacts.count - 1 {
+                            // Display divider if we are not done with the contact list
+                            // or if we are done with contacts and there is a vacancy to show
+                            if contact.number < contacts.count - 1 || contact.number == contacts.count - 1 && !vacantAreas.isEmpty {
+                                Divider()
+                            }
+                        }
+                        
+                        ForEach(vacantAreas, id: \.self) { area in
+                            let contact = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
+                            let note = R.string.localizable.vacantSeatMessage(area)
+                            
+                            ContactListItem(contact: contact, contactNote: note)
+                                .opacity(0.5)
+                            if area != vacantAreas.last {
                                 Divider()
                             }
                         }
@@ -52,8 +69,10 @@ struct IssueDetail: View {
                     }
                     .padding(.bottom, 16)
                     
-                    NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
-                        PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                    if contacts.count > 0 {
+                        NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: contacts)) {
+                            PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                        }
                     }
                 } else {
                     Text(R.string.localizable.setLocationHeader())
