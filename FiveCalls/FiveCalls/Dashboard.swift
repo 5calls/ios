@@ -16,6 +16,7 @@ struct Dashboard: View {
     @Binding var selectedIssue: Issue?
 
     @State var showAllIssues = false
+    @State var searchText = ""
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -59,8 +60,36 @@ struct Dashboard: View {
                     .accessibilityAddTraits(.isHeader)
                     .padding(.horizontal, 16)
             }
+            
+            // Search bar
+            HStack {
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.secondary)
+                    
+                    TextField("Search all issues...", text: $searchText)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .onSubmit {}
+                    
+                    if !searchText.isEmpty {
+                        Button {
+                            searchText = ""
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 8)
+                .background(Color(.systemGray6))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 8)
 
-            IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues)
+            IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues, searchText: $searchText)
         }
         .navigationBarHidden(true)
         .onAppear() {
@@ -151,19 +180,54 @@ struct IssuesList: View {
     @ObservedObject var store: Store
     @Binding var selectedIssue: Issue?
     @Binding var showAllIssues: Bool
+    @Binding var searchText: String
+    
+    var isSearching: Bool {
+        searchText.count >= 3
+    }
 
     var allIssues: [Issue] {
-        if showAllIssues {
-            return store.state.issues
+        let baseIssues: [Issue]
+        
+        if isSearching {
+            // When searching, search all issues regardless of active status
+            let filteredIssues = store.state.issues.filter { issue in
+                issue.name.localizedCaseInsensitiveContains(searchText) ||
+                issue.reason.localizedCaseInsensitiveContains(searchText) ||
+                issue.script.localizedCaseInsensitiveContains(searchText) ||
+                issue.slug.localizedCaseInsensitiveContains(searchText) ||
+                issue.categories.contains { category in
+                    category.name.localizedCaseInsensitiveContains(searchText)
+                }
+            }
+            
+            // Sort results with name matches first
+            baseIssues = filteredIssues.sorted { issue1, issue2 in
+                let issue1NameMatch = issue1.name.localizedCaseInsensitiveContains(searchText)
+                let issue2NameMatch = issue2.name.localizedCaseInsensitiveContains(searchText)
+                
+                if issue1NameMatch && !issue2NameMatch {
+                    return true // issue1 comes first
+                } else if !issue1NameMatch && issue2NameMatch {
+                    return false // issue2 comes first
+                } else {
+                    return false
+                }
+            }
+        } else if showAllIssues {
+            baseIssues = store.state.issues
         } else {
-            return store.state.issues.filter({ $0.active })
+            baseIssues = store.state.issues.filter({ $0.active })
         }
+        
+        return baseIssues
     }
 
     private var categorizedIssues: [CategorizedIssuesViewModel] {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
-        if !showAllIssues {
-            // if we're showing the default list, make fake categories to preserve the json order. The category names don't matter because we don't show them on the default list
+        
+        if isSearching || !showAllIssues {
+            // For search results or default view, make fake categories to preserve order and show flat list
             return allIssues.map({ CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) })
         }
 
@@ -190,12 +254,12 @@ struct IssuesList: View {
                         .listRowSeparatorTint(.fivecallsDarkGray)
                     }
                 } header: {
-                    if showAllIssues {
+                    if showAllIssues && !isSearching {
                         Text(section.name.uppercased()).font(.headline)
                             .foregroundStyle(.fivecallsDarkGray)
                     }
                 } footer: {
-                    if section == categorizedIssues.last {
+                    if section == categorizedIssues.last && !isSearching {
                         Button {
                             showAllIssues.toggle()
                             if let issueID = categorizedIssues.first?.issues.first?.id {
