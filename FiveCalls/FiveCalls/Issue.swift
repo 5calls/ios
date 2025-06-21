@@ -31,6 +31,10 @@ struct Issue: Identifiable, Decodable {
         return URL(string: String(format: "https://5calls.org/issue/%@/",self.slug.trimmingCharacters(in: .whitespacesAndNewlines)))!
     }
     
+    var hasHouse: Bool { contactAreas.contains("US House") }
+    
+    var hasSenate: Bool { contactAreas.contains("US Senate") }
+    
     // contactsForIssue takes a list of all contacts and returns a consistently sorted list of
     // contacts based on the areas for this issue
     func contactsForIssue(allContacts: [Contact]) -> [Contact] {
@@ -41,6 +45,37 @@ struct Issue: Identifiable, Decodable {
         }
 
         return sortedContacts
+    }
+    
+    // returns any contacts that should be displayed on the issue, but aren't actually targetted
+    // this ensures both house and senate reps are displayed even when the issue specifically targets one or the other
+    func irrelevantContacts(allContacts: [Contact]) -> [Contact] {
+        var irrelevantContacts: [Contact] = []
+        
+        if hasHouse && !hasSenate {
+            let senateContacts = allContacts.filter { $0.area == "US Senate" }
+            irrelevantContacts.append(contentsOf: senateContacts)
+        }
+        
+        if hasSenate && !hasHouse {
+            let houseContacts = allContacts.filter { $0.area == "US House" }
+            irrelevantContacts.append(contentsOf: houseContacts)
+        }
+        return irrelevantContacts
+    }
+    
+    // returns the contact area that is not relevant to a congressional issue
+    // either US House, US Senate, or nil
+    func irrelevantContactArea() -> String? {
+        if hasHouse && !hasSenate {
+            return "US Senate"
+        }
+        
+        if hasSenate && !hasHouse {
+            return "US House"
+        }
+        
+        return nil
     }
     
     // sortedContactAreas takes a list of contact areas and orders them in our preferred order,
