@@ -71,6 +71,11 @@ struct Dashboard: View {
                     TextField(R.string.localizable.searchIssues(), text: $searchText)
                         .textFieldStyle(PlainTextFieldStyle())
                         .focused($isSearchFocused)
+                        .onChange(of: searchText) { newValue in
+                            if newValue.count > 30 {
+                                searchText = String(newValue.prefix(30))
+                            }
+                        }
                         .onSubmit {}
                     
                     if !searchText.isEmpty {
