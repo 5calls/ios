@@ -17,6 +17,7 @@ struct Dashboard: View {
 
     @State var showAllIssues = false
     @State var searchText = ""
+    @FocusState private var isSearchFocused: Bool
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -67,14 +68,15 @@ struct Dashboard: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.secondary)
                     
-                    TextField("Search all issues...", text: $searchText)
+                    TextField(R.string.localizable.searchIssues(), text: $searchText)
                         .textFieldStyle(PlainTextFieldStyle())
+                        .focused($isSearchFocused)
                         .onSubmit {}
                     
                     if !searchText.isEmpty {
                         Button {
                             searchText = ""
-                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            isSearchFocused = false
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundColor(.secondary)

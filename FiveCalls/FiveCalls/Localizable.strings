@@ -46,6 +46,7 @@
 "menu-tip-message"                    = "Your Impact and About now reside in Settings menu along with Reminders";
 "more-issues-title"                   = "More Issues";
 "less-issues-title"                   = "Fewer Issues";
+"search-issues"                       = "Search all issues...";
 
 // scheduled reminders
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
