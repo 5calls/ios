@@ -2,18 +2,15 @@
 //  LogSearchOperation.swift
 //  FiveCalls
 //
-//  Created by Claude on 6/22/25.
+//  Created by Nick O'Neill on 6/22/25.
 //  Copyright © 2025 5calls. All rights reserved.
 //
 
 import Foundation
 
 class LogSearchOperation: BaseOperation, @unchecked Sendable {
-    
-    //Input properties
     var searchQuery: String
     
-    //Output properties
     var httpResponse: HTTPURLResponse?
     var error: Error?
     
@@ -36,13 +33,7 @@ class LogSearchOperation: BaseOperation, @unchecked Sendable {
         var requestBody: [String: Any] = [
             "query": searchQuery
         ]
-        
-        // Add calling group if it exists
-        if let callingGroup = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue),
-           !callingGroup.isEmpty {
-            requestBody["group"] = callingGroup
-        }
-        
+                
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
             request.httpBody = jsonData
