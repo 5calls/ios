@@ -18,6 +18,8 @@ struct Dashboard: View {
     @State var showAllIssues = false
     @State var searchText = ""
     @FocusState private var isSearchFocused: Bool
+    @State private var searchWorkItem: DispatchWorkItem?
+    @State private var hasLoggedCurrentSearch = false
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -74,6 +76,29 @@ struct Dashboard: View {
                         .onChange(of: searchText) { newValue in
                             if newValue.count > 30 {
                                 searchText = String(newValue.prefix(30))
+                                return
+                            }
+                            
+                            // Cancel previous search logging work item
+                            searchWorkItem?.cancel()
+                            
+                            // Reset logging flag when search is cleared
+                            if newValue.isEmpty {
+                                hasLoggedCurrentSearch = false
+                                return
+                            }
+                            
+                            // Only log once per search session (until cleared) for searches >= 3 characters
+                            if newValue.count >= 3 && !hasLoggedCurrentSearch {
+                                let workItem = DispatchWorkItem {
+                                    // Double-check that we haven't logged yet during the delay
+                                    if !hasLoggedCurrentSearch {
+                                        hasLoggedCurrentSearch = true
+                                        store.dispatch(action: .LogSearch(newValue))
+                                    }
+                                }
+                                searchWorkItem = workItem
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
                             }
                         }
                         .onSubmit {}
@@ -82,6 +107,8 @@ struct Dashboard: View {
                         Button {
                             searchText = ""
                             isSearchFocused = false
+                            hasLoggedCurrentSearch = false
+                            searchWorkItem?.cancel()
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundColor(.secondary)
@@ -252,7 +279,20 @@ struct IssuesList: View {
 
     var body: some View {
         ScrollViewReader { scroll in
-            List(categorizedIssues, selection: $selectedIssue) { section in
+            if isSearching && allIssues.isEmpty {
+                VStack {
+                    Spacer()
+                    Text(R.string.localizable.searchNoResultsTitle())
+                        .font(.title2)
+                        .foregroundColor(.secondary)
+                    Text(R.string.localizable.searchNoResultsMessage())
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                List(categorizedIssues, selection: $selectedIssue) { section in
                 Section {
                     ForEach(section.issues) { issue in
                         NavigationLink(value: issue) {
@@ -284,9 +324,10 @@ struct IssuesList: View {
                         .listRowSeparatorTint(.fivecallsDarkGray)
                     }
                 }
+                }
+                .tint(Color.fivecallsLightBG)
+                .listStyle(.plain)
             }
-            .tint(Color.fivecallsLightBG)
-            .listStyle(.plain)
         }
     }
 }

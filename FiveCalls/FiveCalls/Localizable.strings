@@ -47,6 +47,8 @@
 "more-issues-title"                   = "More Issues";
 "less-issues-title"                   = "Fewer Issues";
 "search-issues"                       = "Search all issues...";
+"search-no-results-title"             = "No issues found";
+"search-no-results-message"           = "Try a different search term";
 
 // scheduled reminders
 "scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";

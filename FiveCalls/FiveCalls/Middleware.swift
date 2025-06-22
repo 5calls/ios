@@ -29,6 +29,8 @@ func appMiddleware() -> Middleware<AppState> {
             }
             AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issue/\(issue.slug)/")
             reportOutcome(log: contactLog, outcome: outcome)
+        case let .LogSearch(searchQuery):
+            logSearch(searchQuery: searchQuery)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
                 .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
@@ -167,6 +169,11 @@ private func fetchMessages(state: AppState, dispatch: @escaping Dispatcher) {
 private func reportOutcome(log: ContactLog, outcome: Outcome) {
     // we don't actually care about the result of this so no need to set the callback
     OperationQueue.main.addOperation(ReportOutcomeOperation(log: log, outcome: outcome))
+}
+
+private func logSearch(searchQuery: String) {
+    // we don't actually care about the result of this so no need to set the callback
+    OperationQueue.main.addOperation(LogSearchOperation(searchQuery: searchQuery))
 }
 
 enum MiddlewareError: Error {
