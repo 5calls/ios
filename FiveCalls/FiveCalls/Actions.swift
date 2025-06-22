@@ -35,4 +35,5 @@ enum Action {
     case GoToRoot
     case GoToNext(Issue, [Contact])
     case SetMissingReps([String])
+    case LogSearch(String)
 }

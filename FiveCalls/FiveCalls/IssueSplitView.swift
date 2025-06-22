@@ -10,6 +10,7 @@ import SwiftUI
 
 struct IssueSplitView: View {
     @EnvironmentObject var store: Store
+    @Environment(\.horizontalSizeClass) private var originalSizeClass
     
     var body: some View {
         TabView(selection: $store.state.selectedTab) {
@@ -42,11 +43,15 @@ struct IssueSplitView: View {
             .navigationSplitViewStyle(.balanced)
             .tabItem({ Label(R.string.localizable.tabTopics(), systemImage: "phone.bubble.fill" ) })
             .tag("topics")
+            // Set the inner size class for the navigation stack back to whatever it was originally since we override it for old tab bar behavior below
+            .environment(\.horizontalSizeClass, originalSizeClass)
+            .toolbar(.visible, for: .tabBar)
             
             InboxView()
                 .tabItem({ Label(R.string.localizable.tabReps(), systemImage: "person.crop.circle.fill.badge.checkmark") })
                 .tag("inbox")
-        }
+        }// the new TabBar style in iOS 18 does not work well with this style, for now override the size class so it uses the old style on iPadOS
+        .environment(\.horizontalSizeClass, .compact)
     }
 }
 
