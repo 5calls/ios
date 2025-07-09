@@ -30,7 +30,7 @@ class LogSearchOperation: BaseOperation, @unchecked Sendable {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        var requestBody: [String: Any] = [
+        let requestBody: [String: Any] = [
             "query": searchQuery
         ]
                 
