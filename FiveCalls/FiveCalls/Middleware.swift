@@ -130,8 +130,9 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
             if houseReps.count < 1 {
                 missingReps.append("US House")
             }
-            if senateReps.count < 2 {
-                missingReps.append("US Senate")
+            let missingCount = 2 - senateReps.count
+            if missingCount > 0 {
+                missingReps.append(contentsOf: Array(repeating: "US Senate", count: missingCount))
             }
             dispatch(.SetMissingReps(missingReps))
             dispatch(.SetContacts(contacts))
