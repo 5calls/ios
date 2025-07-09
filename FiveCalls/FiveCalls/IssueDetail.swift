@@ -23,8 +23,7 @@ struct IssueDetail: View {
     
     // vacancies for both targeted and irrelevant contacts
     var vacantAreas: [String] {
-        let irrelevantAreas = Set(irrelevantContacts.map { $0.area })
-        return store.state.missingReps.filter { issue.contactAreas.contains($0) || $0 == issue.irrelevantContactArea() }
+        store.state.missingReps.filter { issue.contactAreas.contains($0) || $0 == issue.irrelevantContactArea() }
     }
 
     var body: some View {
