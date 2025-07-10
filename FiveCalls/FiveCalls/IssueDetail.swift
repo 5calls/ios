@@ -144,14 +144,15 @@ struct IssueDetail: View {
     }
     
     private var vacantRepsList: some View {
-        ForEach(vacantAreas, id: \.self) { area in
-            let contact = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
+        ForEach(vacantAreas.numbered(), id: \.element) { contact in
+            let area = contact.element
+            let contactItem = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
             let note = R.string.localizable.vacantSeatMessage(area)
-            
-            ContactListItem(contact: contact, contactNote: note)
+
+            ContactListItem(contact: contactItem, contactNote: note)
                 .opacity(0.4)
             
-            if area != vacantAreas.last {
+            if contact.number < vacantAreas.count - 1 {
                 Divider()
             }
         }
