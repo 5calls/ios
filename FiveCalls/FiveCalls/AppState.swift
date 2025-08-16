@@ -37,6 +37,7 @@ class AppState: ObservableObject, ReduxState {
             if let stateAbbr = stateAbbreviation {
                 UserDefaults.standard.set(stateAbbr, forKey: UserDefaultsKey.stateAbbreviation.rawValue)
                 Logger().info("saved cached state abbreviation: \(stateAbbr)")
+                // save this because we can make the state-aware issues fetch right away on next launch
             }
         }
     }
