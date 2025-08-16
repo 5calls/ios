@@ -28,7 +28,7 @@ class FetchIssuesOperation: BaseOperation, @unchecked Sendable {
     
     var url: URL {
         var urlComponents = URLComponents(string: "https://api.5calls.org/v1/issues")!
-        var queryItems = [URLQueryItem(name: "includeHidden", value: "true")]
+        var queryItems: [URLQueryItem] = []
         
         // Add state parameter if available
         if let stateAbbr = stateAbbr, !stateAbbr.isEmpty {

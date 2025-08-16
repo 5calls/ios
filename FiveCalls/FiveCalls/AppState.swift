@@ -32,7 +32,14 @@ class AppState: ObservableObject, ReduxState {
     @Published var contacts: [Contact] = []
     @Published var district: String? = nil
     @Published var isSplitDistrict: Bool = false
-    @Published var stateAbbreviation: String? = nil
+    @Published var stateAbbreviation: String? = nil {
+        didSet {
+            if let stateAbbr = stateAbbreviation {
+                UserDefaults.standard.set(stateAbbr, forKey: UserDefaultsKey.stateAbbreviation.rawValue)
+                Logger().info("saved cached state abbreviation: \(stateAbbr)")
+            }
+        }
+    }
     @Published var missingReps: [String] = []
     @Published var location: UserLocation? {
         didSet {
@@ -79,6 +86,12 @@ class AppState: ObservableObject, ReduxState {
             default:
                 Logger().warning("unknown stored location type data: \(locationType)")
             }
+        }
+        
+        // load cached state abbreviation
+        if let cachedStateAbbr = UserDefaults.standard.string(forKey: UserDefaultsKey.stateAbbreviation.rawValue) {
+            self.stateAbbreviation = cachedStateAbbr
+            Logger().info("loaded cached state abbreviation: \(cachedStateAbbr)")
         }
         
         // load the issue completion cache

@@ -14,6 +14,7 @@ enum UserDefaultsKey : String {
     case locationDisplay
     case locationType
     case locationValue
+    case stateAbbreviation // cached state abbreviation from contacts API
     
     case issueCompletionCache // a cached map of issue id to contact ids regarding completed calls
     
