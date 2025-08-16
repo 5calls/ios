@@ -66,6 +66,8 @@ class Store: ObservableObject {
             }
         case let .SetSplitDistrict(splitDistrict):
             state.isSplitDistrict = splitDistrict
+        case let .SetStateAbbr(stateAbbr):
+            state.stateAbbreviation = stateAbbr
         case let .SetMissingReps(missingReps):
             state.missingReps = missingReps
         case let .SetLocation(location):

@@ -32,6 +32,7 @@ class AppState: ObservableObject, ReduxState {
     @Published var contacts: [Contact] = []
     @Published var district: String? = nil
     @Published var isSplitDistrict: Bool = false
+    @Published var stateAbbreviation: String? = nil
     @Published var missingReps: [String] = []
     @Published var location: UserLocation? {
         didSet {
