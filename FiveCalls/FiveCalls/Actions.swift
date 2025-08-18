@@ -36,4 +36,7 @@ enum Action {
     case GoToNext(Issue, [Contact])
     case SetMissingReps([String])
     case LogSearch(String)
+    case FetchCustomizedScripts(Int, [String]) // issueID, contactIDs
+    case SetCustomizedScripts(Int, [CustomizedContactScript]) // issueID, scripts
+    case SetLoadingScriptsError(Int, Error)
 }

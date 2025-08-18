@@ -56,6 +56,8 @@ class AppState: ObservableObject, ReduxState {
     
     @Published var issueRouter: IssueRouter = IssueRouter()
     @Published var inboxRouter: InboxRouter = InboxRouter()
+    @Published var scriptsByIssue: [Int: [CustomizedContactScript]] = [:] // issue id, scripts
+    @Published var scriptsLoadingErrorByIssue: [Int: Error] = [:]
 
     init() {
         // load user location cache
@@ -116,5 +118,9 @@ extension AppState {
         } else {
             return false
         }
+    }
+    
+    func customizedScript(issueID: Int, contactID: String) -> String? {
+        scriptsByIssue[issueID]?.first { $0.id == contactID }?.script
     }
 }

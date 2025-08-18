@@ -31,10 +31,13 @@ func appMiddleware() -> Middleware<AppState> {
             reportOutcome(log: contactLog, outcome: outcome)
         case let .LogSearch(searchQuery):
             logSearch(searchQuery: searchQuery)
-        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts, 
+        case let .FetchCustomizedScripts(issueID, contactIDs):
+            fetchCustomizedScripts(issueID: issueID, contactIDs: contactIDs, state: state, dispatch: dispatch)
+        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts,
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
                 .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
-                .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages:
+                .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages,
+                .SetCustomizedScripts(_, _), .SetLoadingScriptsError(_, _):
             // no middleware actions for these, including for completeness
             break
         }
@@ -174,6 +177,32 @@ private func reportOutcome(log: ContactLog, outcome: Outcome) {
 private func logSearch(searchQuery: String) {
     // we don't actually care about the result of this so no need to set the callback
     OperationQueue.main.addOperation(LogSearchOperation(searchQuery: searchQuery))
+}
+
+private func fetchCustomizedScripts(issueID: Int, contactIDs: [String], state: AppState, dispatch: @escaping Dispatcher) {
+    // skip if already fetched for this issue
+    if state.scriptsByIssue[issueID] != nil { return }
+
+    guard let userLocation = state.location, !contactIDs.isEmpty else { return }
+
+    let queue = OperationQueue.main
+    let operation = FetchCustomizedScriptsOperation(
+        issueID: issueID,
+        contactIDs: contactIDs,
+        location: userLocation.locationDisplay
+    )
+    operation.completionBlock = { [weak operation] in
+        if let scripts = operation?.scripts {
+            DispatchQueue.main.async {
+                dispatch(.SetCustomizedScripts(issueID, scripts))
+            }
+        } else if let error = operation?.error {
+            DispatchQueue.main.async {
+                dispatch(.SetLoadingScriptsError(issueID, error))
+            }
+        }
+    }
+    queue.addOperation(operation)
 }
 
 enum MiddlewareError: Error {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
+		22D18D2F2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */; };
+		22D18D332E53A73300D9DEFD /* CustomizedContactScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
 		4F07B2382B45E5ED00C575DF /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 4F07B2372B45E5ED00C575DF /* AcknowList */; };
@@ -168,6 +170,8 @@
 
 /* Begin PBXFileReference section */
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCustomizedScriptsOperation.swift; sourceTree = "<group>"; };
+		22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedContactScript.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4F07B23A2B45F05C00C575DF /* AcknowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowListView.swift; sourceTree = "<group>"; };
@@ -464,6 +468,7 @@
 				B512506D21E701DE007D32DF /* ContactList.swift */,
 				D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */,
 				D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */,
+				22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				B512506921E6F762007D32DF /* FetchContactsOperation.swift */,
 				9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */,
 				A0D474B3202A22B90012BC94 /* FetchUserStatsOperation.swift */,
+				22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				D0312DD82A84A27F00F58F6B /* UserLocation.swift in Sources */,
 				B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */,
 				B5E762651E40480300D63D62 /* UserDefaultsKey.swift in Sources */,
+				22D18D2F2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift in Sources */,
 				D07ECA072E08675E00948BEC /* LogSearchOperation.swift in Sources */,
 				D029C6D01F6F42EA00E56CC7 /* Outcome.swift in Sources */,
 				D07ECA0E2E08698F00948BEC /* SearchBar.swift in Sources */,
@@ -909,6 +916,7 @@
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
+				22D18D332E53A73300D9DEFD /* CustomizedContactScript.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
 				D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */,
 				D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */,
