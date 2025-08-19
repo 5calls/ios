@@ -36,7 +36,6 @@ class FetchCustomizedScriptsOperation: BaseOperation, @unchecked Sendable {
     var url: URL {
         var urlComponents = URLComponents(string: "https://api.5calls.org/v1/issue/\(issueID)/script")!
         
-        
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "contact_ids", value: contactIDs.joined(separator: ",")),
             URLQueryItem(name: "location", value: location),

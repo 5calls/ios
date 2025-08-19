@@ -119,6 +119,7 @@ struct Issue: Identifiable, Decodable {
                 )
             }
         } catch {
+            // TODO: notify us somehow that markdown parsing failed
             return AttributedString("Could not parse script markdown, email [hello@5calls.org](mailto:hello@5calls.org)")
         }
     }
