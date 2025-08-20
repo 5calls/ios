@@ -109,7 +109,7 @@ struct Issue: Identifiable, Decodable {
         do {
             if let customizedScript {
                 return try AttributedString(
-                    markdown: ScriptReplacements.replacing(script: customizedScript, contact: contact, location: location),
+                    markdown: customizedScript,
                     options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
                 )
             } else { // fallback to default per-issue script
