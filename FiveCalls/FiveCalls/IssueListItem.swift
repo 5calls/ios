@@ -41,6 +41,23 @@ struct IssueListItem: View {
                             .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
                         Spacer()
                     }
+                    
+                    // State-specific badge
+                    if issue.isStateSpecific, let stateName = issue.stateNameFromAbbreviation {
+                        HStack(spacing: 4) {
+                            Image(systemName: "mappin.and.ellipse")
+                                .font(.caption2)
+                            Text(stateName)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(Color.fivecallsRedText)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Color.fivecallsRedText.opacity(0.1))
+                        .clipShape(Capsule())
+                        .padding(.top, 4)
+                    }
                 }
                 .padding(.vertical, 10)
             }
@@ -68,6 +85,8 @@ struct IssueListItem: View {
 
     return List {
             IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
+                .padding(.horizontal, 10)
+            IssueListItem(issue: Issue.stateSpecificPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
                 .padding(.horizontal, 10)
