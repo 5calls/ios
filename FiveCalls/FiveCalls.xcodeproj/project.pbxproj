@@ -113,7 +113,6 @@
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */; };
 		D0BFE9C72A7C9434007203A3 /* ContactCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */; };
-		D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */; };
 		D0BFE9CB2A7DD25C007203A3 /* LocationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */; };
 		D0C3C2722A8744EC005528B0 /* IssueContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */; };
 		D0C465D32AD30BEE00CE3E65 /* IssueRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */; };
@@ -284,7 +283,6 @@
 		D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FiveCalls.entitlements; sourceTree = "<group>"; };
 		D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCircle.swift; sourceTree = "<group>"; };
-		D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactImages.swift; sourceTree = "<group>"; };
 		D0BFE9CA2A7DD25C007203A3 /* LocationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeader.swift; sourceTree = "<group>"; };
 		D0C3C2712A8744EC005528B0 /* IssueContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueContactDetail.swift; sourceTree = "<group>"; };
 		D0C465D22AD30BEE00CE3E65 /* IssueRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRouter.swift; sourceTree = "<group>"; };
@@ -469,7 +467,6 @@
 				A55647611F909C6F002737D4 /* Category.swift */,
 				A02018D8204E761A006078D1 /* UserStats.swift */,
 				B512506D21E701DE007D32DF /* ContactList.swift */,
-				D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */,
 				D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */,
 				22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */,
 			);

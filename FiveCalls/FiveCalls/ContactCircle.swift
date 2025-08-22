@@ -43,11 +43,18 @@ struct ContactCircle: View {
     }
     
     var placeholder: some View {
-        Image(uiImage: defaultImage(forContact: contact))
-            .resizable()
-            .mask {
+        GeometryReader { geometry in
+            ZStack {
                 Circle()
+                    .fill(Color(.systemGray5))
+                
+                Image(systemName: "star.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.fivecallsDarkBlue.opacity(0.6))
+                    .frame(width: geometry.size.width * 0.7, height: geometry.size.height * 0.7)
             }
+        }
     }
 }
 
