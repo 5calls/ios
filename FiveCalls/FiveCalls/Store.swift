@@ -126,10 +126,15 @@ class Store: ObservableObject {
            } else {
                state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
            }
+        case let .SetCustomizedScripts(issueID, scripts):
+            state.scriptsByIssue[issueID] = scripts
+        case let .SetLoadingScriptsError(issueID, error):
+            state.scriptsLoadingErrorByIssue[issueID] = error
         case .FetchStats, .FetchIssues,
                 .FetchContacts(_), .FetchMessages,
                 .ReportOutcome(_, _, _),
-                .LogSearch(_):
+                .LogSearch(_),
+                .FetchCustomizedScripts(_, _):
             // handled in middleware
             break
         }

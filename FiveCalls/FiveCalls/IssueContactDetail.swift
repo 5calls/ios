@@ -23,7 +23,11 @@ struct IssueContactDetail: View {
     }
     
     var issueMarkdown: AttributedString {
-        return issue.markdownIssueScript(contact: currentContact, location: store.state.location)
+        issue.markdownIssueScript(
+            contact: currentContact,
+            location: store.state.location,
+            customizedScript: store.state.customizedScript(issueID: issue.id, contactID: currentContact.id)
+        )
     }
 
     @State private var copiedPhoneNumber: String?

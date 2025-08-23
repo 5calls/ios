@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B7C84D8023A9154688796F /* CoreText.framework */; };
+		2258E3332E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */ = {isa = PBXBuildFile; fileRef = 2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */; };
+		2258E3342E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */ = {isa = PBXBuildFile; fileRef = 2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */; };
+		2258E3382E54E40A0032F1C5 /* CustomizedScriptsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */; };
+		22D18D2F2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */; };
+		22D18D332E53A73300D9DEFD /* CustomizedContactScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
 		42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97792E8AE44B5A2E12357E88 /* AVFoundation.framework */; };
 		4F07B2382B45E5ED00C575DF /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 4F07B2372B45E5ED00C575DF /* AcknowList */; };
@@ -168,6 +173,10 @@
 
 /* Begin PBXFileReference section */
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issue-script.json"; sourceTree = "<group>"; };
+		2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedScriptsTests.swift; sourceTree = "<group>"; };
+		22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCustomizedScriptsOperation.swift; sourceTree = "<group>"; };
+		22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedContactScript.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		49B7C84D8023A9154688796F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4F07B23A2B45F05C00C575DF /* AcknowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowListView.swift; sourceTree = "<group>"; };
@@ -369,6 +378,7 @@
 				4F2178742B488CD70032D592 /* StoreTests.swift */,
 				AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */,
 				4F3A572A2B597C8E009D4616 /* UserLocationTests.swift */,
+				2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */,
 			);
 			path = FiveCallsTests;
 			sourceTree = "<group>";
@@ -464,6 +474,7 @@
 				B512506D21E701DE007D32DF /* ContactList.swift */,
 				D0BFE9C82A7C9C21007203A3 /* ContactImages.swift */,
 				D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */,
+				22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -490,6 +501,7 @@
 				B512506921E6F762007D32DF /* FetchContactsOperation.swift */,
 				9C46B1F91E46EA58009B2C11 /* ReportOutcomeOperation.swift */,
 				A0D474B3202A22B90012BC94 /* FetchUserStatsOperation.swift */,
+				22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -497,6 +509,7 @@
 		B5E98E391E52A41E005221B7 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */,
 				B5E98E3A1E52A566005221B7 /* GET-v1-report.json */,
 				D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */,
 				D07D7C272B3F75C2004721B3 /* GET-v1-issues-UI.json */,
@@ -788,6 +801,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2258E3332E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */,
 				D0176E932B3346FD0090E6B7 /* GET-v1-report.json in Resources */,
 				D05EDB0A2B328A4A00FD94BD /* GET-v1-issues.json in Resources */,
 				D0176E8D2B33443D0090E6B7 /* GET-v1-reps.json in Resources */,
@@ -815,6 +829,7 @@
 				D07D7C282B3F75C2004721B3 /* GET-v1-issues-UI.json in Resources */,
 				D07D7C2D2B3FE530004721B3 /* GET-v1-reps-UI.json in Resources */,
 				B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */,
+				2258E3342E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */,
 				D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,6 +858,7 @@
 				4F3A572B2B597C8E009D4616 /* UserLocationTests.swift in Sources */,
 				D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */,
 				D0E042662B47D06700D22647 /* IssueTests.swift in Sources */,
+				2258E3382E54E40A0032F1C5 /* CustomizedScriptsTests.swift in Sources */,
 				4F2178752B488CD70032D592 /* StoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -891,6 +907,7 @@
 				D0312DD82A84A27F00F58F6B /* UserLocation.swift in Sources */,
 				B5E7626B1E40D6DD00D63D62 /* Contact.swift in Sources */,
 				B5E762651E40480300D63D62 /* UserDefaultsKey.swift in Sources */,
+				22D18D2F2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift in Sources */,
 				D07ECA072E08675E00948BEC /* LogSearchOperation.swift in Sources */,
 				D029C6D01F6F42EA00E56CC7 /* Outcome.swift in Sources */,
 				D07ECA0E2E08698F00948BEC /* SearchBar.swift in Sources */,
@@ -909,6 +926,7 @@
 				B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */,
 				ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */,
 				D0312DDC2A868D9A00F58F6B /* IssueDetail.swift in Sources */,
+				22D18D332E53A73300D9DEFD /* CustomizedContactScript.swift in Sources */,
 				D0BFE9C92A7C9C21007203A3 /* ContactImages.swift in Sources */,
 				D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */,
 				D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */,

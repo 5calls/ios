@@ -111,6 +111,7 @@ struct IssueDetail: View {
             forceRefreshID = UUID()
             
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/")
+            store.dispatch(action: .FetchCustomizedScripts(issue.id, targetedContacts.map(\.id)))
         }
     }
     
