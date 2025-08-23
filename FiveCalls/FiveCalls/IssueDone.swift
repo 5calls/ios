@@ -32,9 +32,15 @@ struct IssueDone: View {
     var markdownTitle: AttributedString!
 
     func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> String {
-        if let contactOutcome = issueCompletions.last(where: { $0.split(separator: "-")[0] == contact.id }) {
-            if contactOutcome.split(separator: "-").count > 1 {
-                return ContactLog.localizedOutcomeForStatus(status: String(contactOutcome.split(separator: "-")[1]))
+        if let contactOutcome = issueCompletions.last(where: { 
+            let parts = $0.split(separator: "-")
+            guard parts.count > 1 else { return false }
+            let contactId = parts.dropLast().joined(separator: "-")
+            return contactId == contact.id
+        }) {
+            let parts = contactOutcome.split(separator: "-")
+            if parts.count > 1 {
+                return ContactLog.localizedOutcomeForStatus(status: String(parts.last!))
             }
         }
 
@@ -235,6 +241,8 @@ struct CountingView: View {
             return 10000000
         } else if count < 12500000 {
             return 13000000
+        } else if count < 14500000 {
+            return 15000000
         }
 
         return 0
