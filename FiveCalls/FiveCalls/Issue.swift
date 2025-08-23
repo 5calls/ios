@@ -118,34 +118,6 @@ struct Issue: Identifiable, Decodable {
         ]
         return stateMap[meta.uppercased()]
     }
-
-    var markdownIssueReason: AttributedString {
-        do {
-            return try AttributedString(markdown: self.reason, options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
-        } catch {
-            // TODO: notify us somehow that markdown parsing failed
-            return AttributedString("Could not parse issue markdown, email [hello@5calls.org](mailto:hello@5calls.org)")
-        }
-    }
-    
-    func markdownIssueScript(contact: Contact, location: UserLocation?, customizedScript: String?) -> AttributedString {
-        do {
-            if let customizedScript {
-                return try AttributedString(
-                    markdown: customizedScript,
-                    options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
-                )
-            } else { // fallback to default per-issue script
-                return try AttributedString(
-                    markdown: ScriptReplacements.replacing(script: self.script, contact: contact, location: location),
-                    options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
-                )
-            }
-        } catch {
-            // TODO: notify us somehow that markdown parsing failed
-            return AttributedString("Could not parse script markdown, email [hello@5calls.org](mailto:hello@5calls.org)")
-        }
-    }
 }
 
 extension Issue: Equatable, Hashable {
