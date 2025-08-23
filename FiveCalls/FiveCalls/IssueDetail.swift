@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct IssueDetail: View {
     @EnvironmentObject var store: Store
@@ -34,7 +35,7 @@ struct IssueDetail: View {
                     .fontWeight(.medium)
                     .padding(.top, 1)
                     .padding(.bottom, 8)
-                Text(issue.markdownIssueReason)
+                Markdown(issue.reason)
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
                 if store.state.location != nil {

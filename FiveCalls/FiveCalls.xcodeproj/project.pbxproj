@@ -93,6 +93,7 @@
 		D0480B212A4D4B0400502818 /* PreviewIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0480B202A4D4B0400502818 /* PreviewIssues.swift */; };
 		D04A11912AD851AB00989AD6 /* OutcomesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04A11902AD851AB00989AD6 /* OutcomesView.swift */; };
 		D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D05745842A53E34300A8534A /* PlausibleSwift */; };
+		D058465D2E592ACB00C7ED4C /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = D058465C2E592ACB00C7ED4C /* MarkdownUI */; };
 		D05EDAF62B3282F500FD94BD /* IssueParsingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */; };
 		D05EDB0A2B328A4A00FD94BD /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D07829772A7B3795001EE5DB /* PreviewContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07829762A7B3795001EE5DB /* PreviewContacts.swift */; };
@@ -313,6 +314,7 @@
 				4F07B2382B45E5ED00C575DF /* AcknowList in Frameworks */,
 				E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */,
 				D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */,
+				D058465D2E592ACB00C7ED4C /* MarkdownUI in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
 				8A7839350A8D2B6B70E5980D /* CoreTelephony.framework in Frameworks */,
 				E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */,
@@ -667,6 +669,7 @@
 				D05745842A53E34300A8534A /* PlausibleSwift */,
 				E887304D2AF9E1B60053837B /* RswiftLibrary */,
 				4F07B2372B45E5ED00C575DF /* AcknowList */,
+				D058465C2E592ACB00C7ED4C /* MarkdownUI */,
 			);
 			productName = FiveCalls;
 			productReference = B52805111E3FA94D00EE832A /* FiveCalls.app */;
@@ -777,6 +780,7 @@
 				D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */,
 				E887304C2AF9E1B60053837B /* XCRemoteSwiftPackageReference "R" */,
 				4F07B2362B45E5ED00C575DF /* XCRemoteSwiftPackageReference "AcknowList" */,
+				D058465B2E592ACB00C7ED4C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = B52805121E3FA94D00EE832A /* Products */;
 			projectDirPath = "";
@@ -1399,6 +1403,14 @@
 				minimumVersion = 0.3.0;
 			};
 		};
+		D058465B2E592ACB00C7ED4C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 		D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
@@ -1427,6 +1439,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */;
 			productName = PlausibleSwift;
+		};
+		D058465C2E592ACB00C7ED4C /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D058465B2E592ACB00C7ED4C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 		D0CFF332284A835F0082693E /* OneSignal */ = {
 			isa = XCSwiftPackageProductDependency;

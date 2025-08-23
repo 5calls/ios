@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
@@ -22,12 +23,22 @@ struct IssueContactDetail: View {
         return Array(remainingContacts.dropFirst())
     }
     
-    var issueMarkdown: AttributedString {
-        issue.markdownIssueScript(
-            contact: currentContact,
-            location: store.state.location,
-            customizedScript: store.state.customizedScript(issueID: issue.id, contactID: currentContact.id)
-        )
+    var issueMarkdown: String {
+        if let customizedScript = store.state.customizedScript(issueID: issue.id, contactID: currentContact.id) {
+            ScriptReplacements
+                .replacing(
+                    script: customizedScript,
+                    contact: currentContact,
+                    location: store.state.location
+                )
+        } else {
+            ScriptReplacements
+                .replacing(
+                    script: issue.script,
+                    contact: currentContact,
+                    location: store.state.location
+                )
+        }
     }
 
     @State private var copiedPhoneNumber: String?
@@ -112,7 +123,7 @@ struct IssueContactDetail: View {
                     }
                 }.padding(.bottom)
                 
-                Text(issueMarkdown)
+                Markdown(issueMarkdown)
                     .padding(.bottom)
                 
                 OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
