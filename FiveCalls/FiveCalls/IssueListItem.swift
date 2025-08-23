@@ -27,6 +27,23 @@ struct IssueListItem: View {
                         .foregroundColor(Color.fivecallsDarkBlueText)
 
                     HStack(spacing: 0) {
+                        // State-specific badge on left side
+                        if issue.isStateSpecific, let stateName = issue.stateNameFromAbbreviation {
+                            HStack(spacing: 4) {
+                                Image(systemName: "mappin.and.ellipse")
+                                    .font(.caption2)
+                                Text(stateName)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                            }
+                            .foregroundColor(Color.fivecallsRedText)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(Color.fivecallsRedText.opacity(0.1))
+                            .clipShape(Capsule())
+                            .padding(.trailing, 8)
+                        }
+                        
                         let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
                             Contact.placeholderContact(for: area)
                         }) : issue.contactsForIssue(allContacts: contacts)
@@ -39,6 +56,7 @@ struct IssueListItem: View {
                             .font(.footnote)
                             .foregroundColor(.primary)
                             .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
+                        
                         Spacer()
                     }
                 }
@@ -52,7 +70,22 @@ struct IssueListItem: View {
             // we should never ship an issue with no contact areas, but handle the state anyway
             return R.string.localizable.noContacts()
         } else {
-            let areas = issue.contactAreas.map({ a in AreaToNiceString(area: a) }).joined(separator: ", ")
+            let hasStateUpper = issue.contactAreas.contains("StateUpper")
+            let hasStateLower = issue.contactAreas.contains("StateLower")
+            
+            let mappedAreas = issue.contactAreas.map({ area in
+                if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
+                    // Both present - use plural "State Reps" for both
+                    return R.string.localizable.groupingStateRep()
+                } else if area == "StateUpper" || area == "StateLower" {
+                    // Only one present - use singular "State Rep"
+                    return R.string.localizable.stateRep()
+                } else {
+                    return AreaToNiceString(area: area)
+                }
+            })
+            let areas = Array(Set(mappedAreas)).joined(separator: ", ")
+            
             return R.string.localizable.callAreas(areas)
         }
     }
@@ -66,8 +99,17 @@ struct IssueListItem: View {
     }()
 
 
-    return List {
-            IssueListItem(issue: Issue.basicPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1, Contact.senatePreviewContact2])
+    List {
+        IssueListItem(
+            issue: Issue.basicPreviewIssue,
+            contacts: [
+                Contact.housePreviewContact,
+                Contact.senatePreviewContact1,
+                Contact.senatePreviewContact2,
+            ]
+        )
+                .padding(.horizontal, 10)
+        IssueListItem(issue: Issue.stateSpecificPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
                 .padding(.horizontal, 10)
@@ -75,6 +117,14 @@ struct IssueListItem: View {
                 .padding(.horizontal, 10)
             IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
                 .padding(.horizontal, 10)
+        IssueListItem(issue: Issue.manyContactPreviewIssue, contacts: [
+            Contact.housePreviewContact,
+            Contact.senatePreviewContact1,
+            Contact.senatePreviewContact2,
+            Contact.governorPreviewContact,
+            Contact.agPreviewContact,
+])
+            .padding(.horizontal, 10)
         }
         .environmentObject(Store(state: previewState))
 }

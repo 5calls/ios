@@ -18,6 +18,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
     var contacts: [Contact]?
     var splitDistrict: Bool?
     var district: String?
+    var stateAbbreviation: String?
 
     init(location: UserLocation, config: URLSessionConfiguration? = nil) {
         self.location = location
@@ -58,7 +59,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         
         if http.statusCode == 200 {
             do {
-                self.contacts = try parseContacts(data: data)
+                try parseContacts(data: data)
             } catch let e {
                 print("Error parsing reps: \(e.localizedDescription)")
             }
@@ -67,7 +68,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         }
     }
     
-    private func parseContacts(data: Data) throws -> [Contact] {
+    private func parseContacts(data: Data) throws {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let contactList = try decoder.decode(ContactList.self, from: data)
@@ -77,7 +78,9 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
             district = contactList.generalizedLocationID
             OneSignal.sendTag("districtID", value: contactList.generalizedLocationID)
         }
-        return contactList.representatives
+        
+        stateAbbreviation = contactList.state
+        contacts = contactList.representatives
     }
 }
 

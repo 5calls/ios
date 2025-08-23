@@ -15,8 +15,10 @@ class FetchIssuesOperation: BaseOperation, @unchecked Sendable {
     var httpResponse: HTTPURLResponse?
     var error: Error?
     var issuesList: [Issue]?
+    var stateAbbr: String?
     
-    init(config: URLSessionConfiguration? = nil) {
+    init(stateAbbr: String? = nil, config: URLSessionConfiguration? = nil) {
+        self.stateAbbr = stateAbbr
         super.init()
         
         if let config {
@@ -26,7 +28,12 @@ class FetchIssuesOperation: BaseOperation, @unchecked Sendable {
     
     var url: URL {
         var urlComponents = URLComponents(string: "https://api.5calls.org/v1/issues")!
-        var queryItems = [URLQueryItem(name: "includeHidden", value: "true")]
+        var queryItems: [URLQueryItem] = []
+        
+        // Add state parameter if available
+        if let stateAbbr = stateAbbr, !stateAbbr.isEmpty {
+            queryItems.append(URLQueryItem(name: "state", value: stateAbbr))
+        }
         
         // Add calling group if it exists
         if let callingGroup = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue),

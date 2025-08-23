@@ -194,7 +194,24 @@ struct IssuesList: View {
             baseIssues = store.state.issues.filter({ $0.active })
         }
         
-        return baseIssues
+        // Prioritize state-specific issues at the top
+        return baseIssues.sorted { issue1, issue2 in
+            let issue1IsState = issue1.isStateSpecific
+            let issue2IsState = issue2.isStateSpecific
+            
+            if issue1IsState && !issue2IsState {
+                return true // State-specific issues come first
+            } else if !issue1IsState && issue2IsState {
+                return false // Non-state issues come after
+            } else if issue1IsState && issue2IsState {
+                // Both are state-specific, sort by createdAt (newest first)
+                // TODO: Replace with sort field when available
+                return issue1.createdAt > issue2.createdAt
+            } else {
+                // Both are non-state, maintain original order (no sorting)
+                return false
+            }
+        }
     }
 
     private var categorizedIssues: [CategorizedIssuesViewModel] {

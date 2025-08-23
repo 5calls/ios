@@ -13,7 +13,7 @@ func appMiddleware() -> Middleware<AppState> {
         case let .FetchStats(issueID):
             fetchStats(issueID: issueID, dispatch: dispatch)
         case .FetchIssues:
-            fetchIssues(dispatch: dispatch)
+            fetchIssues(state: state, dispatch: dispatch)
         case let .FetchContacts(location):
             fetchContacts(location: location, dispatch: dispatch)
         case let .SetLocation(location):
@@ -24,7 +24,8 @@ func appMiddleware() -> Middleware<AppState> {
         case let .ReportOutcome(issue, contactLog, outcome):
             // TODO: migrate ContactLog issueId to Int after UIKit is gone
             // this is always generated in swiftUI from an int so it should always succeed
-            if let issueId = Int(contactLog.issueId), outcome.status != "skip" {
+            if let issueId = Int(contactLog.issueId),
+ outcome.status != "skip" {
                 dispatch(.SetIssueContactCompletion(issueId, "\(contactLog.contactId)-\(outcome.status)"))
             }
             AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issue/\(issue.slug)/")
@@ -33,11 +34,13 @@ func appMiddleware() -> Middleware<AppState> {
             logSearch(searchQuery: searchQuery)
         case let .FetchCustomizedScripts(issueID, contactIDs):
             fetchCustomizedScripts(issueID: issueID, contactIDs: contactIDs, state: state, dispatch: dispatch)
-        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion, .SetContacts,
+        case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion,
+                .SetContacts(_),
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
                 .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
                 .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages,
-                .SetCustomizedScripts(_, _), .SetLoadingScriptsError(_, _):
+                .SetCustomizedScripts(_, _), .SetLoadingScriptsError(_, _),
+                .SetStateAbbr(_):
             // no middleware actions for these, including for completeness
             break
         }
@@ -79,9 +82,10 @@ private func fetchStats(issueID: Int?, dispatch: @escaping Dispatcher) {
     queue.addOperation(operation)
 }
 
-private func fetchIssues(dispatch: @escaping Dispatcher) {
+private func fetchIssues(state: AppState, dispatch: @escaping Dispatcher) {
     let queue = OperationQueue.main
-    let operation = FetchIssuesOperation()
+    
+    let operation = FetchIssuesOperation(stateAbbr: state.stateAbbreviation)
     operation.completionBlock = { [weak operation] in
         if let issues = operation?.issuesList {
             DispatchQueue.main.async {
@@ -116,6 +120,9 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
         }
         if let split = operation?.splitDistrict {
             dispatch(.SetSplitDistrict(split))
+        }
+        if let stateAbbr = operation?.stateAbbreviation {
+            dispatch(.SetStateAbbr(stateAbbr))
         }
         
         var missingReps: [String] = []

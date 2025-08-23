@@ -66,6 +66,17 @@ class Store: ObservableObject {
             }
         case let .SetSplitDistrict(splitDistrict):
             state.isSplitDistrict = splitDistrict
+        case let .SetStateAbbr(stateAbbr):
+            var refetchIssuse = false
+            if state.stateAbbreviation != stateAbbr {
+                refetchIssuse = true
+            }
+            state.stateAbbreviation = stateAbbr
+            
+            // this needs to be changed in the state before we call refetching
+            if refetchIssuse {
+                dispatch(action: .FetchIssues)
+            }
         case let .SetMissingReps(missingReps):
             state.missingReps = missingReps
         case let .SetLocation(location):
