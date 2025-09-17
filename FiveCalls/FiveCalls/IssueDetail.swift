@@ -27,6 +27,12 @@ struct IssueDetail: View {
         store.state.missingReps.filter { issue.contactAreas.contains($0) || $0 == issue.irrelevantContactArea() }
     }
 
+    var hasStateReps: Bool {
+        return issue.contactAreas.contains { area in
+            area == "StateUpper" || area == "StateLower"
+        }
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -65,7 +71,16 @@ struct IssueDetail: View {
                             .foregroundColor(Color.fivecallsLightBG)
                     }
                     .padding(.bottom, 16)
-                    
+
+                    if store.state.contactsLowAccuracy && hasStateReps {
+                        Text("Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.")
+                            .font(.callout)
+                            .fontWeight(.medium)
+                            .foregroundColor(.red)
+                            .padding(.horizontal, 12)
+                            .padding(.bottom, 16)
+                    }
+
                     if !targetedContacts.isEmpty {
                         NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: targetedContacts)) {
                             PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")

@@ -35,7 +35,7 @@ func appMiddleware() -> Middleware<AppState> {
         case let .FetchCustomizedScripts(issueID, contactIDs):
             fetchCustomizedScripts(issueID: issueID, contactIDs: contactIDs, state: state, dispatch: dispatch)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion,
-                .SetContacts(_),
+                .SetContacts(_), .SetContactsLowAccuracy(_),
                 .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
                 .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
                 .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages,
@@ -124,7 +124,10 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
         if let stateAbbr = operation?.stateAbbreviation {
             dispatch(.SetStateAbbr(stateAbbr))
         }
-        
+        if let lowAccuracy = operation?.lowAccuracy {
+            dispatch(.SetContactsLowAccuracy(lowAccuracy))
+        }
+
         var missingReps: [String] = []
 
         if var contacts = operation?.contacts, !contacts.isEmpty {

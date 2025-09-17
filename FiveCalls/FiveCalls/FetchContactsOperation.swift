@@ -19,6 +19,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
     var splitDistrict: Bool?
     var district: String?
     var stateAbbreviation: String?
+    var lowAccuracy: Bool?
 
     init(location: UserLocation, config: URLSessionConfiguration? = nil) {
         self.location = location
@@ -74,11 +75,12 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         let contactList = try decoder.decode(ContactList.self, from: data)
 
         splitDistrict = contactList.isSplit
+        lowAccuracy = contactList.lowAccuracy
         if contactList.generalizedLocationID != "-" {
             district = contactList.generalizedLocationID
             OneSignal.sendTag("districtID", value: contactList.generalizedLocationID)
         }
-        
+
         stateAbbreviation = contactList.state
         contacts = contactList.representatives
     }

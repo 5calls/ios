@@ -14,11 +14,11 @@ struct IssueContactDetail: View {
 
     let issue: Issue
     let remainingContacts: [Contact]
-    
+
     var currentContact: Contact {
         return remainingContacts.first!
     }
-    
+
     var nextContacts: [Contact] {
         return Array(remainingContacts.dropFirst())
     }
