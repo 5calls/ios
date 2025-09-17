@@ -28,9 +28,15 @@ struct IssueDetail: View {
     }
 
     var hasStateReps: Bool {
-        return issue.contactAreas.contains { area in
-            area == "StateUpper" || area == "StateLower"
-        }
+        return IssueDetailWarningLogic.hasStateReps(in: issue.contactAreas)
+    }
+
+    // Testable function for warning display logic
+    func shouldShowWarning() -> Bool {
+        return IssueDetailWarningLogic.shouldShowWarning(
+            contactsLowAccuracy: store.state.contactsLowAccuracy,
+            issueContactAreas: issue.contactAreas
+        )
     }
 
     var body: some View {
@@ -72,7 +78,7 @@ struct IssueDetail: View {
                     }
                     .padding(.bottom, 16)
 
-                    if store.state.contactsLowAccuracy && hasStateReps {
+                    if shouldShowWarning() {
                         Text("Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.")
                             .font(.callout)
                             .fontWeight(.medium)
@@ -200,5 +206,20 @@ extension IssueDetailNavModel: Equatable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(issue.id)
         hasher.combine(contacts.compactMap({$0.id}).joined())
+    }
+}
+
+// MARK: - Testable Warning Logic
+
+struct IssueDetailWarningLogic {
+    static func shouldShowWarning(contactsLowAccuracy: Bool, issueContactAreas: [String]) -> Bool {
+        return contactsLowAccuracy && IssueDetailWarningLogic
+            .hasStateReps(in: issueContactAreas)
+    }
+
+    static func hasStateReps(in issueContactAreas: [String]) -> Bool {
+        return issueContactAreas.contains { area in
+            area == "StateUpper" || area == "StateLower"
+        }
     }
 }

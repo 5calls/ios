@@ -122,6 +122,7 @@
 		D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
 		D0D670A12B29854500BEDFBF /* ScriptReplacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D670A02B29854500BEDFBF /* ScriptReplacements.swift */; };
+		D0D8A8412E7A6F4D006B0B2E /* IssueDetailWarningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8A8402E7A6F4D006B0B2E /* IssueDetailWarningTests.swift */; };
 		D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */; };
 		D0E042662B47D06700D22647 /* IssueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E042652B47D06700D22647 /* IssueTests.swift */; };
 		D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E950042C03A7B700E26304 /* InboxVote.swift */; };
@@ -290,6 +291,7 @@
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
 		D0D670A02B29854500BEDFBF /* ScriptReplacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptReplacements.swift; sourceTree = "<group>"; };
+		D0D8A8402E7A6F4D006B0B2E /* IssueDetailWarningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailWarningTests.swift; sourceTree = "<group>"; };
 		D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		D0E042652B47D06700D22647 /* IssueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTests.swift; sourceTree = "<group>"; };
 		D0E950042C03A7B700E26304 /* InboxVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxVote.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				B502805F1E478BC200749ED7 /* Info.plist */,
+				D0D8A8402E7A6F4D006B0B2E /* IssueDetailWarningTests.swift */,
 				D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */,
 				B50280671E478BF500749ED7 /* ContactLogsTests.swift */,
 				D0176E8A2B3343150090E6B7 /* ContactParsingTest.swift */,
@@ -850,6 +853,7 @@
 				D02FFCE2245F5733003ADA2B /* ScriptCustomizationTests.swift in Sources */,
 				4F3A572E2B598203009D4616 /* LocationSheetTests.swift in Sources */,
 				B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */,
+				D0D8A8412E7A6F4D006B0B2E /* IssueDetailWarningTests.swift in Sources */,
 				D05EDAF62B3282F500FD94BD /* IssueParsingTest.swift in Sources */,
 				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
