@@ -172,13 +172,22 @@ final class StoreTests: XCTestCase {
         _ = store.reduce(store.state, .GoToNext(issue, [.senatePreviewContact1,.housePreviewContact]))
         path.append(IssueDetailNavModel(issue: issue, contacts: [.senatePreviewContact1,.housePreviewContact]))
         XCTAssertEqual(store.state.issueRouter.path, path)
-        
+
         _ = store.reduce(store.state, .GoToNext(issue, [.housePreviewContact]))
         path.append(IssueDetailNavModel(issue: issue, contacts: [.housePreviewContact]))
         XCTAssertEqual(store.state.issueRouter.path, path)
-        
+
         _ = store.reduce(store.state, .GoToNext(issue, []))
         path.append(IssueDoneNavModel(issue: issue, type: "done"))
         XCTAssertEqual(store.state.issueRouter.path, path)
+    }
+
+    func testReduceSetContactsLowAccuracy() {
+        let store = Store(state: AppState())
+        XCTAssertFalse(store.state.contactsLowAccuracy)
+        _ = store.reduce(store.state, .SetContactsLowAccuracy(true))
+        XCTAssertTrue(store.state.contactsLowAccuracy)
+        _ = store.reduce(store.state, .SetContactsLowAccuracy(false))
+        XCTAssertFalse(store.state.contactsLowAccuracy)
     }
 }

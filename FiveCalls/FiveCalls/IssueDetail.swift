@@ -27,6 +27,18 @@ struct IssueDetail: View {
         store.state.missingReps.filter { issue.contactAreas.contains($0) || $0 == issue.irrelevantContactArea() }
     }
 
+    var hasStateReps: Bool {
+        return IssueDetailWarningLogic.hasStateReps(in: issue.contactAreas)
+    }
+
+    // Testable function for warning display logic
+    func shouldShowWarning() -> Bool {
+        return IssueDetailWarningLogic.shouldShowWarning(
+            contactsLowAccuracy: store.state.contactsLowAccuracy,
+            issueContactAreas: issue.contactAreas
+        )
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -65,7 +77,16 @@ struct IssueDetail: View {
                             .foregroundColor(Color.fivecallsLightBG)
                     }
                     .padding(.bottom, 16)
-                    
+
+                    if shouldShowWarning() {
+                        Text("Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.")
+                            .font(.callout)
+                            .fontWeight(.medium)
+                            .foregroundColor(.red)
+                            .padding(.horizontal, 12)
+                            .padding(.bottom, 16)
+                    }
+
                     if !targetedContacts.isEmpty {
                         NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: targetedContacts)) {
                             PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
@@ -185,5 +206,20 @@ extension IssueDetailNavModel: Equatable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(issue.id)
         hasher.combine(contacts.compactMap({$0.id}).joined())
+    }
+}
+
+// MARK: - Testable Warning Logic
+
+struct IssueDetailWarningLogic {
+    static func shouldShowWarning(contactsLowAccuracy: Bool, issueContactAreas: [String]) -> Bool {
+        return contactsLowAccuracy && IssueDetailWarningLogic
+            .hasStateReps(in: issueContactAreas)
+    }
+
+    static func hasStateReps(in issueContactAreas: [String]) -> Bool {
+        return issueContactAreas.contains { area in
+            area == "StateUpper" || area == "StateLower"
+        }
     }
 }
