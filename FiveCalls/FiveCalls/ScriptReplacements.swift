@@ -59,17 +59,17 @@ extension Contact {
     var title: String? {
         switch self.area {
         case "US House", "House":
-            return R.string.localizable.titleUsHouse()
+            return Bundle.Strings.titleUsHouse
         case "US Senate", "Senate":
-            return R.string.localizable.titleUsSenate()
+            return Bundle.Strings.titleUsSenate
         case "StateLower", "StateUpper":
-            return R.string.localizable.titleStateRep()
+            return Bundle.Strings.titleStateRep
         case "Governor":
-            return R.string.localizable.titleGovernor()
+            return Bundle.Strings.titleGovernor
         case "AttorneyGeneral":
-            return R.string.localizable.titleAttorneyGeneral()
+            return Bundle.Strings.titleAttorneyGeneral
         case "SecretaryOfState":
-            return R.string.localizable.titleSecretaryOfState()
+            return Bundle.Strings.titleSecretaryOfState
         default:
             // return nothing for unknown
             return nil

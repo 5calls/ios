@@ -42,7 +42,7 @@ final class UserLocationTests: XCTestCase {
         let userLocation = UserLocation(address: "123 Main St")
         XCTAssertEqual(userLocation.locationType, .address)
         XCTAssertEqual(userLocation.locationValue, "123 Main St")
-        XCTAssertEqual(userLocation.locationDisplay, R.string.localizable.locatingTemp())
+        XCTAssertEqual(userLocation.locationDisplay, Bundle.Strings.locatingTemp)
     }
 
     func testAddressLocationWithDisplay() throws {

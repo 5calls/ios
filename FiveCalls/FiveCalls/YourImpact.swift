@@ -18,11 +18,11 @@ struct YourImpact: View {
         let weeklyStreakCount = self.userStats?.weeklyStreak ?? 0
         switch weeklyStreakCount {
         case 0:
-            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
+            return Bundle.Strings.yourWeeklyStreakZero(weeklyStreakCount)
         case 1:
-            return R.string.localizable.yourWeeklyStreakSingle()
+            return Bundle.Strings.yourWeeklyStreakSingle()
         default:
-            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
+            return Bundle.Strings.yourWeeklyStreakMultiple(weeklyStreakCount)
         }
     }
     
@@ -30,11 +30,11 @@ struct YourImpact: View {
         let numberOfCalls = userStats?.totalCalls() ?? 0
         switch numberOfCalls {
         case 0:
-            return R.string.localizable.yourImpactZero(numberOfCalls)
+            return Bundle.Strings.yourImpactZero(numberOfCalls)
         case 1:
-            return R.string.localizable.yourImpactSingle(numberOfCalls)
+            return Bundle.Strings.yourImpactSingle(numberOfCalls)
         default:
-            return R.string.localizable.yourImpactMultiple(numberOfCalls)
+            return Bundle.Strings.yourImpactMultiple(numberOfCalls)
         }
     }
     
@@ -44,7 +44,7 @@ struct YourImpact: View {
     
     var communityCallsMessage: String {
         let statsVm = StatsViewModel(numberOfCalls: store.state.globalCallCount)
-        return R.string.localizable.communityCalls(statsVm.formattedNumberOfCalls)
+        return Bundle.Strings.communityCalls(statsVm.formattedNumberOfCalls)
     }
             
     var body: some View {
@@ -60,11 +60,11 @@ struct YourImpact: View {
                 .accessibilityLabel(Text("\(weeklyStreakMessage) \(totalImpactMessage)"))
 
                 if showImpactList {
-                    Text(R.string.localizable.impactListMessage())
+                    Text(Bundle.Strings.impactListMessage)
 
-                    ImpactListItem(title: R.string.localizable.madeContact(), count: userStats?.contact ?? 0)
-                    ImpactListItem(title: R.string.localizable.leftVoicemail(), count: userStats?.voicemail ?? 0)
-                    ImpactListItem(title: R.string.localizable.unavailable(), count: userStats?.unavailable ?? 0)
+                    ImpactListItem(title: Bundle.Strings.madeContact, count: userStats?.contact ?? 0)
+                    ImpactListItem(title: Bundle.Strings.leftVoicemail, count: userStats?.voicemail ?? 0)
+                    ImpactListItem(title: Bundle.Strings.unavailable, count: userStats?.unavailable ?? 0)
                 }
                 Section {
 
@@ -75,7 +75,7 @@ struct YourImpact: View {
             }
             .padding(.vertical)
             .listStyle(.plain)
-            .navigationTitle(R.string.localizable.yourImpactTitle())
+            .navigationTitle(Bundle.Strings.yourImpactTitle)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
@@ -86,7 +86,7 @@ struct YourImpact: View {
                     Button(action: {
                         self.dismiss()
                     }) {
-                        Text(R.string.localizable.doneButtonTitle())
+                        Text(Bundle.Strings.doneButtonTitle)
                             .bold()
                     }
                 }
@@ -142,7 +142,7 @@ struct ImpactListItem: View {
     }
     
     private func timesString(count: Int) -> String {
-        guard count != 1 else { return R.string.localizable.calledSingle(count) }
-        return R.string.localizable.calledMultiple(count)
+        guard count != 1 else { return Bundle.Strings.calledSingle(count) }
+        return Bundle.Strings.calledMultiple(count)
     }
 }

@@ -61,12 +61,12 @@ struct IssueContactDetail: View {
                     HStack {
                         Spacer()
                         if let copiedPhoneNumber {
-                            Text(R.string.localizable.copiedPhone(copiedPhoneNumber))
+                            Text(Bundle.Strings.copiedPhone(copiedPhoneNumber))
                                 .bold()
                                 .font(.footnote)
                                 .multilineTextAlignment(.center)
                                 .accessibilityFocused($isCopiedPhoneNumberFocused)
-                                .accessibilityLabel(R.string.localizable.a11yCopiedPhoneNumber())
+                                .accessibilityLabel(Bundle.Strings.a11yCopiedPhoneNumber)
                             Spacer()
                         }
 
@@ -96,7 +96,7 @@ struct IssueContactDetail: View {
                                 }
                             }
                             .accessibilityAddTraits(.isButton)
-                            .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
+                            .accessibilityHint(Bundle.Strings.a11yPhoneCallCopyHint)
 
                         if currentContact.fieldOffices.count >= 1 {
                             Menu {
@@ -157,14 +157,14 @@ struct MenuButtonsView: View {
             self.call(office.phone)
         } label: {
             if dynamicTypeSize >= .accessibility1 {
-                Text(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
+                Text(Bundle.Strings.a11yOfficeCallPhoneNumber(office.city, office.phone))
             } else {
                 Image(systemName: "phone")
                 Text(office.city)
             }
         }
-        .accessibilityLabel(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
-        .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
+        .accessibilityLabel(Bundle.Strings.a11yOfficeCallPhoneNumber(office.city, office.phone))
+        .accessibilityHint(Bundle.Strings.a11yPhoneCallHint)
 
         // disable copy < 16.4 for rationale see https://github.com/5calls/ios/pull/446
         if #available(iOS 16.4, *) {
@@ -185,14 +185,14 @@ struct MenuButtonsView: View {
                 }
             } label: {
                 if dynamicTypeSize >= .accessibility1 {
-                    Text(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+                    Text(Bundle.Strings.a11yOfficeCopyPhoneNumber(office.city, office.phone))
                 } else {
                     Image(systemName: "doc.on.doc")
-                    Text(R.string.localizable.copy())
+                    Text(Bundle.Strings.copy)
                 }
             }
-            .accessibilityLabel(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
-            .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
+            .accessibilityLabel(Bundle.Strings.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+            .accessibilityHint(Bundle.Strings.a11yPhoneCopyHint)
         }
     }
 }

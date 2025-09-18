@@ -33,15 +33,15 @@ struct AboutSheet: View {
         NavigationStack {
             List {
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemWhyCall(),
+                    AboutListItem(title: Bundle.Strings.aboutItemWhyCall,
                                   type: .action({
                         openSocialLink("https://5calls.org/why-calling-works/")
                     }))
-                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(),
+                    AboutListItem(title: Bundle.Strings.aboutItemWhoWeAre,
                                   type: .action({
                         openSocialLink("https://5calls.org/about-us/")
                     }))
-                    AboutListItem(title: R.string.localizable.aboutItemFeedback(),
+                    AboutListItem(title: Bundle.Strings.aboutItemFeedback,
                                   type: .action({
                         if EmailComposerView.canSendEmail() {
                             showEmailComposer = true
@@ -53,11 +53,11 @@ struct AboutSheet: View {
                         EmailComposerView() { _ in }
                     }
                     .alert(isPresented: $showEmailComposerAlert) {
-                        Alert(title: Text(R.string.localizable.cantSendEmailTitle()),
-                              message: Text(R.string.localizable.cantSendEmailMessage()),
-                              dismissButton: .default(Text(R.string.localizable.dismissTitle())))
+                        Alert(title: Text(Bundle.Strings.cantSendEmailTitle),
+                              message: Text(Bundle.Strings.cantSendEmailMessage),
+                              dismissButton: .default(Text(Bundle.Strings.dismissTitle)))
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemShowWelcome(),
+                    AboutListItem(title: Bundle.Strings.aboutItemShowWelcome,
                                   type: .action({
                         showWelcome = true
                     }))
@@ -65,13 +65,13 @@ struct AboutSheet: View {
                         Welcome()
                     })
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderGeneral().uppercased())
+                    Text(Bundle.Strings.aboutSectionHeaderGeneral.uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    TextField(R.string.localizable.aboutCallingGroupPlaceholder(), text: $callingGroup)
+                    TextField(Bundle.Strings.aboutCallingGroupPlaceholder, text: $callingGroup)
                         .onChange(of: callingGroup) { newValue in
                             let trimmed = newValue.trimmingCharacters(in: .whitespaces)
                             if trimmed != newValue {
@@ -80,11 +80,11 @@ struct AboutSheet: View {
                             UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
                         }
                 } header: {
-                    Text(R.string.localizable.aboutCallingGroupHeader().uppercased())
+                    Text(Bundle.Strings.aboutCallingGroupHeader.uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
-                    Text(R.string.localizable.aboutCallingGroupFooter())
+                    Text(Bundle.Strings.aboutCallingGroupFooter)
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
@@ -107,28 +107,28 @@ struct AboutSheet: View {
                         openSocialLink("https://mastodon.social/@5calls")
                     }))
                     if appUrl != nil {
-                        AboutListItem(title: R.string.localizable.aboutItemShare(),
+                        AboutListItem(title: Bundle.Strings.aboutItemShare,
                                       type: .url(appUrl!))
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemRate(),
+                    AboutListItem(title: Bundle.Strings.aboutItemRate,
                                   type: .action({
                         requestReview()
                     }))
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderSocial().uppercased())
+                    Text(Bundle.Strings.aboutSectionHeaderSocial.uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
-                    Text(R.string.localizable.aboutSectionFooterSocial())
+                    Text(Bundle.Strings.aboutSectionFooterSocial)
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemOpenSource(),
+                    AboutListItem(title: Bundle.Strings.aboutItemOpenSource,
                                   type: .acknowledgements)
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderCredits().uppercased())
+                    Text(Bundle.Strings.aboutSectionHeaderCredits.uppercased())
                 }
 
                 if let versionString {
@@ -144,7 +144,7 @@ struct AboutSheet: View {
                 }
             }
             .listStyle(.grouped)
-            .navigationTitle(R.string.localizable.aboutTitle())
+            .navigationTitle(Bundle.Strings.aboutTitle)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
@@ -155,7 +155,7 @@ struct AboutSheet: View {
                     Button(action: {
                         self.dismiss()
                     }) {
-                        Text(R.string.localizable.doneButtonTitle())
+                        Text(Bundle.Strings.doneButtonTitle)
                             .bold()
                     }
                 }

@@ -68,7 +68,7 @@ struct IssueListItem: View {
     var repText: String {
         if issue.contactAreas.count == 0 {
             // we should never ship an issue with no contact areas, but handle the state anyway
-            return R.string.localizable.noContacts()
+            return Bundle.Strings.noContacts
         } else {
             let hasStateUpper = issue.contactAreas.contains("StateUpper")
             let hasStateLower = issue.contactAreas.contains("StateLower")
@@ -76,17 +76,17 @@ struct IssueListItem: View {
             let mappedAreas = issue.contactAreas.map({ area in
                 if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
                     // Both present - use plural "State Reps" for both
-                    return R.string.localizable.groupingStateRep()
+                    return Bundle.Strings.groupingStateRep
                 } else if area == "StateUpper" || area == "StateLower" {
                     // Only one present - use singular "State Rep"
-                    return R.string.localizable.stateRep()
+                    return Bundle.Strings.stateRep
                 } else {
                     return AreaToNiceString(area: area)
                 }
             })
             let areas = Array(Set(mappedAreas)).joined(separator: ", ")
             
-            return R.string.localizable.callAreas(areas)
+            return Bundle.Strings.callAreas(areas)
         }
     }
 }

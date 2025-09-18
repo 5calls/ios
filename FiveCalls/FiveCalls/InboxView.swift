@@ -45,7 +45,7 @@ struct InboxView: View {
                             .font(.title)
                             .foregroundColor(.secondary)
                             .padding(.trailing, 4)
-                        Text(R.string.localizable.inboxEmptyState())
+                        Text(Bundle.Strings.inboxEmptyState)
                             .font(.title2)
                             .fontWeight(.medium)
                             .lineLimit(2)
@@ -57,7 +57,7 @@ struct InboxView: View {
             } else {
                 ScrollView {
                     HStack {
-                        Text(R.string.localizable.inboxRepsHeader())
+                        Text(Bundle.Strings.inboxRepsHeader)
                             .font(.body)
                             .fontWeight(.bold)
                             .accessibilityAddTraits(.isHeader)
@@ -73,14 +73,14 @@ struct InboxView: View {
                         }
                         
                         ForEach(store.state.missingReps, id: \.self) { missingRepArea in
-                            ContactListItem(contact: Contact(name: R.string.localizable.vacantSeatTitle()), contactNote: R.string.localizable.vacantSeatMessage(missingRepArea))
+                            ContactListItem(contact: Contact(name: Bundle.Strings.vacantSeatTitle), contactNote: Bundle.Strings.vacantSeatMessage(missingRepArea))
                                 .opacity(0.5)
                         }
                     }
 
                     if false { // remove this until we can update it regularly
                         HStack {
-                            Text(R.string.localizable.inboxVotesHeader())
+                            Text(Bundle.Strings.inboxVotesHeader)
                                 .font(.body)
                                 .fontWeight(.bold)
                                 .accessibilityAddTraits(.isHeader)
@@ -89,7 +89,7 @@ struct InboxView: View {
 
                         if showPushPrompt {
                             VStack {
-                                PrimaryButton(title: R.string.localizable.inboxPushButton())
+                                PrimaryButton(title: Bundle.Strings.inboxPushButton)
                                     .onTapGesture {
                                         OneSignal.promptForPushNotifications { success in
                                             Task {
@@ -97,7 +97,7 @@ struct InboxView: View {
                                             }
                                         }
                                     }
-                                Text(R.string.localizable.inboxPushDetail())
+                                Text(Bundle.Strings.inboxPushDetail)
                                     .font(.caption)
                                     .fontWeight(.medium)
                                     .multilineTextAlignment(.center)
@@ -125,8 +125,8 @@ struct InboxView: View {
                 }.padding(.horizontal, 16)
                 .scrollIndicators(.hidden)
             }
-        }.alert(R.string.localizable.inboxContactAlert(), isPresented: $showContactAlert) {
-            Button(R.string.localizable.okButtonTitle(), role: .cancel) { }
+        }.alert(Bundle.Strings.inboxContactAlert, isPresented: $showContactAlert) {
+            Button(Bundle.Strings.okButtonTitle, role: .cancel) { }
         }
         .sheet(isPresented: $detailPresented, onDismiss: {
                 store.dispatch(action: .SelectMessage(nil))

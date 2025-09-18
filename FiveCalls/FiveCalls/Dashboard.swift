@@ -54,7 +54,7 @@ struct Dashboard: View {
             }
 
             if usingRegularFonts() {
-                Text(R.string.localizable.whatsImportantTitle())
+                Text(Bundle.Strings.whatsImportantTitle)
                     .font(.body)
                     .fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
@@ -123,20 +123,20 @@ struct MenuView: View {
     var body: some View {
         Menu {
             Button { showRemindersSheet.toggle() } label: {
-                Text(R.string.localizable.menuScheduledReminders())
+                Text(Bundle.Strings.menuScheduledReminders)
             }
             Button { showYourImpact.toggle() } label: {
-                Text(R.string.localizable.menuYourImpact())
+                Text(Bundle.Strings.menuYourImpact)
             }
             Button { showAboutSheet.toggle() } label: {
-                Text(R.string.localizable.menuAbout())
+                Text(Bundle.Strings.menuAbout)
             }
         } label: {
             Image(systemName: "gear")
                 .renderingMode(.template)
                 .font(.title)
                 .tint(Color.fivecallsDarkBlue)
-                .accessibilityLabel(Text(R.string.localizable.menuName))
+                .accessibilityLabel(Text(Bundle.Strings.menuName))
         }
         .sheet(isPresented: $showRemindersSheet) {
             ScheduleReminders()
@@ -239,10 +239,10 @@ struct IssuesList: View {
             if isSearching && allIssues.isEmpty {
                 VStack {
                     Spacer()
-                    Text(R.string.localizable.searchNoResultsTitle())
+                    Text(Bundle.Strings.searchNoResultsTitle)
                         .font(.title2)
                         .foregroundColor(.secondary)
-                    Text(R.string.localizable.searchNoResultsMessage())
+                    Text(Bundle.Strings.searchNoResultsMessage)
                         .font(.body)
                         .foregroundColor(.secondary)
                     Spacer()
@@ -270,8 +270,8 @@ struct IssuesList: View {
                                 scroll.scrollTo(issueID, anchor: .top)
                             }
                         } label: {
-                            Text(showAllIssues ? R.string.localizable.lessIssuesTitle() :
-                                    R.string.localizable.moreIssuesTitle())
+                            Text(showAllIssues ? Bundle.Strings.lessIssuesTitle :
+                                    Bundle.Strings.moreIssuesTitle)
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color.fivecallsDarkBlueText)

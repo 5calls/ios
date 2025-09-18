@@ -21,10 +21,10 @@ struct IssueDone: View {
     init(issue: Issue) {
         self.issue = issue
 
-        if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
+        if let titleString = try? AttributedString(markdown:  Bundle.Strings.doneTitle(issue.name)) {
             self.markdownTitle = titleString
         } else {
-            self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
+            self.markdownTitle = AttributedString(Bundle.Strings.doneScreenTitle)
         }
     }
 
@@ -44,7 +44,7 @@ struct IssueDone: View {
             }
         }
 
-        return R.string.localizable.outcomesSkip()
+        return Bundle.Strings.outcomesSkip
     }
 
     func shouldShowImage(latestOutcomeForContact: String) -> Bool {
@@ -61,16 +61,16 @@ struct IssueDone: View {
                     Spacer()
                 }.padding(.vertical, 16)
                 VStack {
-                    CountingView(title: R.string.localizable.totalCalls(), count: store.state.globalCallCount)
+                    CountingView(title: Bundle.Strings.totalCalls, count: store.state.globalCallCount)
                         .padding(.bottom, 14)
                     if let issueCalls = store.state.issueCallCounts[issue.id] {
-                        CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
+                        CountingView(title: Bundle.Strings.totalIssueCalls, count: issueCalls)
                             .padding(.bottom, 14)
                     }
                 }
                 .padding(.bottom, 16)
 
-                Text(R.string.localizable.contactSummaryHeader())
+                Text(Bundle.Strings.contactSummaryHeader)
                     .font(.caption).fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
                 ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
@@ -79,21 +79,21 @@ struct IssueDone: View {
                     ContactListItem(contact: contact, showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion), contactNote: latestContactCompletion, listType: .compact)
                 }
                 if store.state.donateOn {
-                    Text(R.string.localizable.support5calls())
+                    Text(Bundle.Strings.support5calls)
                         .font(.caption).fontWeight(.bold)
                         .accessibilityAddTraits(.isHeader)
                     HStack {
-                        Text(R.string.localizable.support5callsSub())
+                        Text(Bundle.Strings.support5callsSub)
                         Button(action: {
                             openURL(donateURL)
                         }) {
-                            PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                            PrimaryButton(title: Bundle.Strings.donateToday, systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
                         }
                     }
                     .padding(.bottom, 16)
                 }
 
-                Text(R.string.localizable.shareThisTopic())
+                Text(Bundle.Strings.shareThisTopic)
                     .font(.caption).fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
 
@@ -111,12 +111,12 @@ struct IssueDone: View {
                 .padding(.bottom, 16)
                 .accessibilityElement(children: .ignore)
                 .accessibilityAddTraits(.isButton)
-                .accessibilityLabel(Text("\(R.string.localizable.shareThisTopic()): \(issue.name)"))
+                .accessibilityLabel(Text("\(Bundle.Strings.shareThisTopic): \(issue.name)"))
 
                 Button(action: {
                     store.dispatch(action: .GoToRoot)
                 }, label: {
-                    PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
+                    PrimaryButton(title: Bundle.Strings.doneScreenButton, systemImageName: "flag.checkered")
                 })
             }
             .padding(.horizontal)
@@ -140,7 +140,7 @@ struct IssueDone: View {
             
             // unlikely to occur at the same time as the rating prompt counter
             checkForNotifications()
-        }.alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
+        }.alert(Bundle.Strings.notificationTitle, isPresented: $showNotificationAlert) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
                 OneSignal.promptForPushNotifications(userResponse: { success in
@@ -149,16 +149,16 @@ struct IssueDone: View {
                     }
                 })
             } label: {
-                Text(R.string.localizable.notificationImportant())
+                Text(Bundle.Strings.notificationImportant)
             }
             Button {
                 let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
                 UserDefaults.standard.set(Date(), forKey: key)
             } label: {
-                Text(R.string.localizable.notificationNone())
+                Text(Bundle.Strings.notificationNone)
             }
         } message: {
-            Text(R.string.localizable.notificationAsk())
+            Text(Bundle.Strings.notificationAsk)
         }
 
     }

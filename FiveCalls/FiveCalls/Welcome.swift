@@ -21,7 +21,7 @@ struct Welcome: View {
             return ""
         }
 
-        return String(format: R.string.localizable.welcomeSection3Calls(
+        return String(format: Bundle.Strings.welcomeSection3Calls(
             StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls)
         )
     }
@@ -33,7 +33,7 @@ struct Welcome: View {
     var body: some View {
         ScrollView {
             Grid(verticalSpacing: 30) {
-                Image(decorative: R.image.fivecallsLogotype)
+                Image("fivecalls-logotype")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 292)
@@ -45,9 +45,9 @@ struct Welcome: View {
                         .font(.title)
                         .accessibilityHidden(true)
                     VStack(alignment: .leading) {
-                        Text(R.string.localizable.welcomeSection1Title())
+                        Text(Bundle.Strings.welcomeSection1Title)
                             .fontWeight(.heavy)
-                        Text(R.string.localizable.welcomeSection1Message())
+                        Text(Bundle.Strings.welcomeSection1Message)
                     }
                     .accessibilityElement(children: .combine)
                 }
@@ -57,9 +57,9 @@ struct Welcome: View {
                         .font(.title)
                         .accessibilityHidden(true)
                     VStack(alignment: .leading) {
-                        Text(R.string.localizable.welcomeSection2Title())
+                        Text(Bundle.Strings.welcomeSection2Title)
                             .fontWeight(.heavy)
-                        Text(R.string.localizable.welcomeSection2Message())
+                        Text(Bundle.Strings.welcomeSection2Message)
                     }
                     .accessibilityElement(children: .combine)
                 }
@@ -81,7 +81,7 @@ struct Welcome: View {
                     onContinue?()
                     dismiss()
                 }) {
-                    Text(R.string.localizable.welcomeButtonTitle())
+                    Text(Bundle.Strings.welcomeButtonTitle)
                         .foregroundColor(.white)
                         .padding()
                         .frame(maxWidth: .infinity)

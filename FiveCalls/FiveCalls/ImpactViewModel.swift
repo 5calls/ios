@@ -47,22 +47,22 @@ struct ImpactViewModel {
 
         switch weeklyStreakCount {
         case 0:
-            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
+            return Bundle.Strings.yourWeeklyStreakZero(weeklyStreakCount)
         case 1:
-            return R.string.localizable.yourWeeklyStreakSingle()
+            return Bundle.Strings.yourWeeklyStreakSingle()
         default:
-            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
+            return Bundle.Strings.yourWeeklyStreakMultiple(weeklyStreakCount)
         }
     }
 
     var impactMessage: String {
         switch self.numberOfCalls {
         case 0:
-            return R.string.localizable.yourImpactZero(numberOfCalls)
+            return Bundle.Strings.yourImpactZero(numberOfCalls)
         case 1:
-            return R.string.localizable.yourImpactSingle(numberOfCalls)
+            return Bundle.Strings.yourImpactSingle(numberOfCalls)
         default:
-            return R.string.localizable.yourImpactMultiple(numberOfCalls)
+            return Bundle.Strings.yourImpactMultiple(numberOfCalls)
         }
     }
 

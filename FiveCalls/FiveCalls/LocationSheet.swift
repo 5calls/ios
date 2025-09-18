@@ -25,7 +25,7 @@ struct LocationSheet: View {
             VStack(alignment: .leading, spacing: 0) {
                 if store.state.isSplitDistrict {
                     Text(
-                        "\(Image(systemName: "exclamationmark.triangle")) \(R.string.localizable.locationSplitDistrict())"
+                        "\(Image(systemName: "exclamationmark.triangle")) \(Bundle.Strings.locationSplitDistrict)"
                     )
                         .font(.footnote)
                         .foregroundColor(.red)
@@ -35,7 +35,7 @@ struct LocationSheet: View {
                 HStack {
                     HStack {
                         TextField(text: $locationText) {
-                            Text(R.string.localizable.enterLocation())
+                            Text(Bundle.Strings.enterLocation)
                         }.onSubmit {
                             locationSearch()
                         }
@@ -65,10 +65,10 @@ struct LocationSheet: View {
                     .onTapGesture {
                         locationSearch()
                     }
-                    .accessibilityLabel(Text(R.string.localizable.searchLocation()))
+                    .accessibilityLabel(Text(Bundle.Strings.searchLocation))
                     .accessibilityAddTraits(.isButton)
                 }
-                Text(R.string.localizable.locationInstructions())
+                Text(Bundle.Strings.locationInstructions)
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .padding(.leading, 35)
@@ -76,14 +76,14 @@ struct LocationSheet: View {
             }
             .padding(.bottom)
             HStack(alignment: .top) {
-                Text(R.string.localizable.locationOr())
+                Text(Bundle.Strings.locationOr)
                     .font(.system(.title3))
                     .padding(.trailing)
                     .padding(.top, 10)
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(R.string.localizable.detectLocation())
+                            Text(Bundle.Strings.detectLocation)
                                 .font(.system(.title3))
                                 .fontWeight( .medium)
                                 .foregroundColor(.white)
@@ -119,7 +119,7 @@ struct LocationSheet: View {
                 }
             }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text(R.string.localizable.detectLocation()))
+            .accessibilityLabel(Text(Bundle.Strings.detectLocation))
             .accessibilityAddTraits(.isButton)
             
             if locationError != nil {
@@ -136,18 +136,18 @@ struct LocationSheet: View {
 
         Task {
             do {
-                var locationDisplay = R.string.localizable.unknownLocation()
+                var locationDisplay = Bundle.Strings.unknownLocation
                 let placemarks = try await CLGeocoder().geocodeAddressString(locationText)
                 guard let placemark = placemarks.first else {
                     return
                 }
 
-                locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? R.string.localizable.unknownLocation()
+                locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? Bundle.Strings.unknownLocation
                 let loc = UserLocation(address: locationText, display: locationDisplay)
                 store.dispatch(action: .SetLocation(loc))
                 dismiss()
             } catch (_) {
-                locationError = R.string.localizable.locationErrorDefault()
+                locationError = Bundle.Strings.locationErrorDefault
             }
         }
     }
@@ -160,15 +160,15 @@ struct LocationSheet: View {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
                 let locationInfo = try await getLocationInfo(from: clLoc)
-                let loc = UserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? R.string.localizable.unknownLocation())
+                let loc = UserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? Bundle.Strings.unknownLocation)
                 store.dispatch(action: .SetLocation(loc))
                 detectProcessing = false
                 dismiss()
             } catch (let error) {
                 if case LocationCoordinatorError.Unauthorized = error {
-                    locationError = R.string.localizable.locationErrorOff()
+                    locationError = Bundle.Strings.locationErrorOff
                 } else {
-                    locationError = R.string.localizable.locationErrorDefault()
+                    locationError = Bundle.Strings.locationErrorDefault
                 }
 
                 detectProcessing = false

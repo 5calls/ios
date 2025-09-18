@@ -22,7 +22,7 @@ struct SearchBar: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.secondary)
                 
-                TextField(R.string.localizable.searchIssues(), text: $searchText)
+                TextField(Bundle.Strings.searchIssues, text: $searchText)
                     .textFieldStyle(PlainTextFieldStyle())
                     .focused($isSearchFocused)
                     .onChange(of: searchText) { newValue in

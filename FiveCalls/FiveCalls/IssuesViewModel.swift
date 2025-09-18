@@ -95,6 +95,6 @@ struct ActiveIssuesViewModel: IssuesViewModel {
     }
 
     func titleForHeaderInSection(section: Int) -> String {
-        return R.string.localizable.whatsImportantTitle()
+        return Bundle.Strings.whatsImportantTitle
     }
 }
