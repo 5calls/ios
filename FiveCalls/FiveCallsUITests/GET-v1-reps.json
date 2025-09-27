@@ -1,5 +1,6 @@
 {
   "location": "San Francisco",
+  "lowAccuracy": false,
   "isSplit": false,
   "state": "CA",
   "district": "17th",
