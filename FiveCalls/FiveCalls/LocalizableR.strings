@@ -14,7 +14,7 @@
 "call-your-reps"                      = "Call your representatives";
 "split-district-title"                = "Split Congressional District";
 "split-district-message"              = "Your location information could belong to more than one congressional district. Try a more specific address, or select “Use My Location” to locate your particular representative.";
-"set-your-location"                   = "Set your location to find your representatives";
+//"set-your-location"                   = "Set your location to find your representatives";
 "cant-send-email-title"               = "Can't send mail";
 "cant-send-email-message"             = "Please configure an e-mail address in the Settings app";
 "share-the-app-message"               = "Make 5 Calls to your elected officials and let your voice be heard!";
@@ -101,8 +101,8 @@
 "copy"                                = "Copy";
 
 // location
-"your-location-is"                    = "Your location is:";
-"set-your-location"                   = "Set your location";
+//"your-location-is"                    = "Your location is:";
+//"set-your-location"                   = "Set your location";
 
 // location detection
 "locating-temp"                       = "Locating...";

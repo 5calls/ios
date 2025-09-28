@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "\"Your location is: %@" : {
+      "comment" : "LocationView Accessibility Label"
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -212,6 +215,9 @@
     "Set your location" : {
       "comment" : "IssueDetail button prompt to set location\nIssueDetail prompt to set location"
     },
+    "Set your location to find your representatives" : {
+      "comment" : "UnsetLocationView Accessibility Label\nUnsetLocationView Title Text"
+    },
     "Share" : {
       "comment" : "Share toolbar button text"
     },
@@ -301,6 +307,9 @@
     },
     "You called on %@" : {
       "comment" : "Issue done title string markdown text"
+    },
+    "Your location is:" : {
+      "comment" : "Location View Title Text"
     }
   },
   "version" : "1.0"
