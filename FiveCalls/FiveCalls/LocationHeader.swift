@@ -44,7 +44,7 @@ struct LocationHeader: View {
     var locationView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(R.string.localizable.yourLocationIs)
+                Text(R.string.localizableR.yourLocationIs)
                     .font(.footnote)
                 if isSplit {
                     Text(
@@ -70,14 +70,14 @@ struct LocationHeader: View {
             }
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("\(R.string.localizable.yourLocationIs()) \(location!.locationDisplay)"))
+        .accessibilityLabel(Text("\(R.string.localizableR.yourLocationIs()) \(location!.locationDisplay)"))
         .accessibilityAddTraits(.isButton)
     }
     
     var unsetLocationView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(R.string.localizable.setYourLocation)
+                Text(R.string.localizableR.setYourLocation)
                     .font(.system(.title3))
                     .fontWeight(.medium)
             }
@@ -91,7 +91,7 @@ struct LocationHeader: View {
                 .padding(.leading, 7)
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(R.string.localizable.setYourLocation))
+        .accessibilityLabel(Text(R.string.localizableR.setYourLocation))
         .accessibilityAddTraits(.isButton)
     }
 }

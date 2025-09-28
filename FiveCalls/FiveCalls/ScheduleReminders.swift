@@ -55,23 +55,23 @@ struct ScheduleReminders: View {
                         onRemindersEnabled()
                     }
                 }
-                .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
+                .alert(Text(R.string.localizableR.notificationsDeniedAlertTitle()),
                        isPresented: $presentNotificationSettingsAlert,
                        actions: {
-                    Button(R.string.localizable.dismissTitle()) { }
-                    Button(R.string.localizable.openSettingsTitle()) {
+                    Button(R.string.localizableR.dismissTitle()) { }
+                    Button(R.string.localizableR.openSettingsTitle()) {
                         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                         UIApplication.shared.open(url)
                     }.keyboardShortcut(.defaultAction)
                 },
                        message: {
-                    Text(R.string.localizable.notificationsDeniedAlertBody())
+                    Text(R.string.localizableR.notificationsDeniedAlertBody())
                 })
                 .alert(isPresented: $presentDaysOfWeekNotSetAlert) {
-                    Alert(title: Text(R.string.localizable.scheduledRemindersNoDaysAlert))
+                    Alert(title: Text(R.string.localizableR.scheduledRemindersNoDaysAlert))
                 }
             }
-            .navigationTitle(R.string.localizable.scheduledRemindersTitle())
+            .navigationTitle(R.string.localizableR.scheduledRemindersTitle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
@@ -82,7 +82,7 @@ struct ScheduleReminders: View {
                     Button(action: {
                         self.onDismiss()
                     }) {
-                        Text(R.string.localizable.doneButtonTitle())
+                        Text(R.string.localizableR.doneButtonTitle())
                             .bold()
                     }
                 }
@@ -91,7 +91,7 @@ struct ScheduleReminders: View {
                            label: {
                         Text("")
                     }).toggleStyle(.switch)
-                        .accessibilityLabel(Text(R.string.localizable.scheduledRemindersTitle()))
+                        .accessibilityLabel(Text(R.string.localizableR.scheduledRemindersTitle()))
                 }
             }
         }
@@ -167,7 +167,7 @@ struct DayAndTimePickers: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                Text(R.string.localizable.scheduledRemindersTimeLabel())
+                Text(R.string.localizableR.scheduledRemindersTimeLabel())
                     .font(.title3)
                     .foregroundColor(Color.fivecallsDarkBlue)
                     .multilineTextAlignment(.center)
@@ -178,7 +178,7 @@ struct DayAndTimePickers: View {
                     .padding(.horizontal, 20)
                 Spacer()
                 Spacer()
-                Text(R.string.localizable.scheduledRemindersDayLabel())
+                Text(R.string.localizableR.scheduledRemindersDayLabel())
                     .font(.title3)
                     .foregroundColor(Color.fivecallsDarkBlue)
                     .padding(.horizontal, 20)
@@ -192,7 +192,7 @@ struct DayAndTimePickers: View {
                         }
                     }
                     .padding(.vertical, 5)
-                Text(R.string.localizable.scheduledRemindersNoDaysWarning())
+                Text(R.string.localizableR.scheduledRemindersNoDaysWarning())
                     .foregroundColor(colorScheme == .light ? Color.fivecallsRed : Color.primary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
@@ -210,7 +210,7 @@ struct RemindersDisabledView: View {
     
     var body: some View {
         VStack {
-            Text(R.string.localizable.scheduledRemindersDescription())
+            Text(R.string.localizableR.scheduledRemindersDescription())
                 .foregroundColor(Color(R.color.fivecallsDarkGray()!))
 
                 .multilineTextAlignment(.center)

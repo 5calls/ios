@@ -33,15 +33,15 @@ struct AboutSheet: View {
         NavigationStack {
             List {
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemWhyCall(),
+                    AboutListItem(title: R.string.localizableR.aboutItemWhyCall(),
                                   type: .action({
                         openSocialLink("https://5calls.org/why-calling-works/")
                     }))
-                    AboutListItem(title: R.string.localizable.aboutItemWhoWeAre(),
+                    AboutListItem(title: R.string.localizableR.aboutItemWhoWeAre(),
                                   type: .action({
                         openSocialLink("https://5calls.org/about-us/")
                     }))
-                    AboutListItem(title: R.string.localizable.aboutItemFeedback(),
+                    AboutListItem(title: R.string.localizableR.aboutItemFeedback(),
                                   type: .action({
                         if EmailComposerView.canSendEmail() {
                             showEmailComposer = true
@@ -53,11 +53,11 @@ struct AboutSheet: View {
                         EmailComposerView() { _ in }
                     }
                     .alert(isPresented: $showEmailComposerAlert) {
-                        Alert(title: Text(R.string.localizable.cantSendEmailTitle()),
-                              message: Text(R.string.localizable.cantSendEmailMessage()),
-                              dismissButton: .default(Text(R.string.localizable.dismissTitle())))
+                        Alert(title: Text(R.string.localizableR.cantSendEmailTitle()),
+                              message: Text(R.string.localizableR.cantSendEmailMessage()),
+                              dismissButton: .default(Text(R.string.localizableR.dismissTitle())))
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemShowWelcome(),
+                    AboutListItem(title: R.string.localizableR.aboutItemShowWelcome(),
                                   type: .action({
                         showWelcome = true
                     }))
@@ -65,13 +65,13 @@ struct AboutSheet: View {
                         Welcome()
                     })
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderGeneral().uppercased())
+                    Text(R.string.localizableR.aboutSectionHeaderGeneral().uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    TextField(R.string.localizable.aboutCallingGroupPlaceholder(), text: $callingGroup)
+                    TextField(R.string.localizableR.aboutCallingGroupPlaceholder(), text: $callingGroup)
                         .onChange(of: callingGroup) { newValue in
                             let trimmed = newValue.trimmingCharacters(in: .whitespaces)
                             if trimmed != newValue {
@@ -80,11 +80,11 @@ struct AboutSheet: View {
                             UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
                         }
                 } header: {
-                    Text(R.string.localizable.aboutCallingGroupHeader().uppercased())
+                    Text(R.string.localizableR.aboutCallingGroupHeader().uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
-                    Text(R.string.localizable.aboutCallingGroupFooter())
+                    Text(R.string.localizableR.aboutCallingGroupFooter())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
@@ -107,28 +107,28 @@ struct AboutSheet: View {
                         openSocialLink("https://mastodon.social/@5calls")
                     }))
                     if appUrl != nil {
-                        AboutListItem(title: R.string.localizable.aboutItemShare(),
+                        AboutListItem(title: R.string.localizableR.aboutItemShare(),
                                       type: .url(appUrl!))
                     }
-                    AboutListItem(title: R.string.localizable.aboutItemRate(),
+                    AboutListItem(title: R.string.localizableR.aboutItemRate(),
                                   type: .action({
                         requestReview()
                     }))
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderSocial().uppercased())
+                    Text(R.string.localizableR.aboutSectionHeaderSocial().uppercased())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
-                    Text(R.string.localizable.aboutSectionFooterSocial())
+                    Text(R.string.localizableR.aboutSectionFooterSocial())
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    AboutListItem(title: R.string.localizable.aboutItemOpenSource(),
+                    AboutListItem(title: R.string.localizableR.aboutItemOpenSource(),
                                   type: .acknowledgements)
                 } header: {
-                    Text(R.string.localizable.aboutSectionHeaderCredits().uppercased())
+                    Text(R.string.localizableR.aboutSectionHeaderCredits().uppercased())
                 }
 
                 if let versionString {
@@ -144,7 +144,7 @@ struct AboutSheet: View {
                 }
             }
             .listStyle(.grouped)
-            .navigationTitle(R.string.localizable.aboutTitle())
+            .navigationTitle(R.string.localizableR.aboutTitle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
@@ -155,7 +155,7 @@ struct AboutSheet: View {
                     Button(action: {
                         self.dismiss()
                     }) {
-                        Text(R.string.localizable.doneButtonTitle())
+                        Text(R.string.localizableR.doneButtonTitle())
                             .bold()
                     }
                 }

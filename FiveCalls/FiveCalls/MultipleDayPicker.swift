@@ -15,13 +15,13 @@ struct Day: Hashable {
 }
 
 let days = [
-    Day(index: 1, abbr: R.string.localizable.dayPickerSundayAbbr(), name: R.string.localizable.dayPickerSunday()),
-    Day(index: 2, abbr: R.string.localizable.dayPickerMondayAbbr(), name: R.string.localizable.dayPickerMonday()),
-    Day(index: 3, abbr: R.string.localizable.dayPickerTuesdayAbbr(), name: R.string.localizable.dayPickerTuesday()),
-    Day(index: 4, abbr: R.string.localizable.dayPickerWednesdayAbbr(), name: R.string.localizable.dayPickerWednesday()),
-    Day(index: 5, abbr: R.string.localizable.dayPickerThursdayAbbr(), name: R.string.localizable.dayPickerThursday()),
-    Day(index: 6, abbr: R.string.localizable.dayPickerFridayAbbr(), name: R.string.localizable.dayPickerFriday()),
-    Day(index: 7, abbr: R.string.localizable.dayPickerSaturdayAbbr(), name: R.string.localizable.dayPickerSaturday())
+    Day(index: 1, abbr: R.string.localizableR.dayPickerSundayAbbr(), name: R.string.localizableR.dayPickerSunday()),
+    Day(index: 2, abbr: R.string.localizableR.dayPickerMondayAbbr(), name: R.string.localizableR.dayPickerMonday()),
+    Day(index: 3, abbr: R.string.localizableR.dayPickerTuesdayAbbr(), name: R.string.localizableR.dayPickerTuesday()),
+    Day(index: 4, abbr: R.string.localizableR.dayPickerWednesdayAbbr(), name: R.string.localizableR.dayPickerWednesday()),
+    Day(index: 5, abbr: R.string.localizableR.dayPickerThursdayAbbr(), name: R.string.localizableR.dayPickerThursday()),
+    Day(index: 6, abbr: R.string.localizableR.dayPickerFridayAbbr(), name: R.string.localizableR.dayPickerFriday()),
+    Day(index: 7, abbr: R.string.localizableR.dayPickerSaturdayAbbr(), name: R.string.localizableR.dayPickerSaturday())
 ]
 
 struct MultipleDayPicker: View {
@@ -37,7 +37,7 @@ struct MultipleDayPicker: View {
                     .background(isIndexSelected(day.index) ? Color.fivecallsDarkBlue : Color(.systemBackground))
                     .foregroundColor(isIndexSelected(day.index) ? Color.fivecallsLightBlue : Color.fivecallsMediumDarkGray)
                     .border(borderColor)
-                    .accessibilityLabel(Text("\(String(day.name)) \(isIndexSelected(day.index) ? R.string.localizable.scheduledRemindersDaySelected() : R.string.localizable.scheduledRemindersDayNotSelected())"))
+                    .accessibilityLabel(Text("\(String(day.name)) \(isIndexSelected(day.index) ? R.string.localizableR.scheduledRemindersDaySelected() : R.string.localizableR.scheduledRemindersDayNotSelected())"))
                     .accessibilityAddTraits(.isButton)
                 .onTapGesture {
                     if isIndexSelected(day.index) {

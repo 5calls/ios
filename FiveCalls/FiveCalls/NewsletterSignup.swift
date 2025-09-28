@@ -17,7 +17,7 @@ struct NewsletterSignup: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(R.string.localizable.newsletterHeader)
+            Text(R.string.localizableR.newsletterHeader)
                 .font(.headline)
                 .foregroundStyle(.white)
             if errorString != nil {
@@ -27,7 +27,7 @@ struct NewsletterSignup: View {
                     .foregroundStyle(.red)
                     .padding(.bottom, 4)
             } else {
-                Text(R.string.localizable.newsletterSubhead())
+                Text(R.string.localizableR.newsletterSubhead())
                     .font(.caption)
                     .foregroundStyle(.white)
                     .padding(.bottom, 4)
@@ -35,7 +35,7 @@ struct NewsletterSignup: View {
             TextField(
                 "",
                 text: $email,
-                prompt: Text(R.string.localizable.newsletterEmailPlaceholder())
+                prompt: Text(R.string.localizableR.newsletterEmailPlaceholder())
                     .foregroundColor(.fivecallsDarkGray)
             )
                 .font(.headline)
@@ -55,7 +55,7 @@ struct NewsletterSignup: View {
                 Button(action: onDismiss,
                     label: {
                         Label(
-                            R.string.localizable.newsletterDismiss(),
+                            R.string.localizableR.newsletterDismiss(),
                             systemImage: "nosign"
                         )
                         .padding(.vertical, 6)
@@ -65,14 +65,14 @@ struct NewsletterSignup: View {
                 )
                 Button(action: {
                     if !isValidEmail(email) {
-                        errorString = R.string.localizable
+                        errorString = R.string.localizableR
                             .newsletterInvalidEmail()
                     } else {
                         onSubmit(email)
                     }
                 }, label: {
                     Label(
-                        R.string.localizable.newsletterSubscribe(),
+                        R.string.localizableR.newsletterSubscribe(),
                         systemImage: "paperplane"
                     ).padding(.vertical, 6)
                      .frame(maxWidth: .infinity)

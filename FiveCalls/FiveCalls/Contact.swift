@@ -74,17 +74,17 @@ extension Contact {
         switch self.area {
         case "US House", "House":
             // TODO: plumb the district through here too
-            return "\(R.string.localizable.usHouse()) \(self.state ?? "")"
+            return "\(R.string.localizableR.usHouse()) \(self.state ?? "")"
         case "US Senate", "Senate":
-            return "\(R.string.localizable.usSenate()) \(self.state ?? "")"
+            return "\(R.string.localizableR.usSenate()) \(self.state ?? "")"
         case "StateLower", "StateUpper":
-            return "\(R.string.localizable.stateRep()) \(self.state ?? "")"
+            return "\(R.string.localizableR.stateRep()) \(self.state ?? "")"
         case "Governor":
-            return "\(R.string.localizable.governor()) \(self.state ?? "")"
+            return "\(R.string.localizableR.governor()) \(self.state ?? "")"
         case "AttorneyGeneral":
-            return "\(R.string.localizable.attorneyGeneral()) \(self.state ?? "")"
+            return "\(R.string.localizableR.attorneyGeneral()) \(self.state ?? "")"
         case "SecretaryOfState":
-            return "\(R.string.localizable.secretaryOfState()) \(self.state ?? "")"
+            return "\(R.string.localizableR.secretaryOfState()) \(self.state ?? "")"
         default:
             return ""
         }
@@ -110,18 +110,18 @@ extension Contact {
 func AreaToNiceString(area: String) -> String {
     switch area {
     case "US House", "House":
-        return R.string.localizable.groupingUsHouse()
+        return R.string.localizableR.groupingUsHouse()
     case "US Senate", "Senate":
-        return R.string.localizable.groupingUsSenate()
+        return R.string.localizableR.groupingUsSenate()
     // state legislatures call themselves different things by state, so let's use a generic term for all of them
     case "StateLower", "StateUpper":
-        return R.string.localizable.groupingStateRep()
+        return R.string.localizableR.groupingStateRep()
     case "Governor":
-        return R.string.localizable.groupingGovernor()
+        return R.string.localizableR.groupingGovernor()
     case "AttorneyGeneral":
-        return R.string.localizable.groupingAttorneyGeneral()
+        return R.string.localizableR.groupingAttorneyGeneral()
     case "SecretaryOfState":
-        return R.string.localizable.groupingSecretaryOfState()
+        return R.string.localizableR.groupingSecretaryOfState()
     default:
         return area
     }

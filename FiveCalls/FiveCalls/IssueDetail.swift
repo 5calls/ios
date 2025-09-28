@@ -51,7 +51,7 @@ struct IssueDetail: View {
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
                 if store.state.location != nil {
-                    Text(R.string.localizable.repsListHeader())
+                    Text(R.string.localizableR.repsListHeader())
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
@@ -89,11 +89,11 @@ struct IssueDetail: View {
 
                     if !targetedContacts.isEmpty {
                         NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: targetedContacts)) {
-                            PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                            PrimaryButton(title: R.string.localizableR.seeScript(), systemImageName: "megaphone.fill")
                         }
                     }
                 } else {
-                    Text(R.string.localizable.setLocationHeader())
+                    Text(R.string.localizableR.setLocationHeader())
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
@@ -101,7 +101,7 @@ struct IssueDetail: View {
                     Button(action: {
                         showLocationSheet.toggle()
                     }, label: {
-                        PrimaryButton(title: R.string.localizable.setLocationButton(), systemImageName: "location.circle.fill")
+                        PrimaryButton(title: R.string.localizableR.setLocationButton(), systemImageName: "location.circle.fill")
                     })
                 }
             }
@@ -112,7 +112,7 @@ struct IssueDetail: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareLink(item: issue.shareURL) {
                     HStack(spacing: 4) {
-                        Text(R.string.localizable.share())
+                        Text(R.string.localizableR.share())
                             .fontWeight(.medium)
                         Image(systemName: "square.and.arrow.up")
                             .font(.body)
@@ -155,7 +155,7 @@ struct IssueDetail: View {
             ContactListItem(
                 contact: contact,
                 showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id),
-                contactNote: R.string.localizable.irrelevantContactMessage()
+                contactNote: R.string.localizableR.irrelevantContactMessage()
             )
             .opacity(0.4)
             .id(forceRefreshID)
@@ -169,8 +169,8 @@ struct IssueDetail: View {
     private var vacantRepsList: some View {
         ForEach(vacantAreas.numbered(), id: \.element) { contact in
             let area = contact.element
-            let contactItem = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
-            let note = R.string.localizable.vacantSeatMessage(area)
+            let contactItem = Contact(area: area, name: R.string.localizableR.vacantSeatTitle())
+            let note = R.string.localizableR.vacantSeatMessage(area)
 
             ContactListItem(contact: contactItem, contactNote: note)
                 .opacity(0.4)

@@ -16,9 +16,9 @@ enum WebViewContent: String {
     var navigationTitle: String {
         switch self {
         case .whycall:
-            return R.string.localizable.aboutWebviewTitleWhyCall()
+            return R.string.localizableR.aboutWebviewTitleWhyCall()
         case .whoweare:
-            return R.string.localizable.aboutWebviewTitleWhoWeAre()
+            return R.string.localizableR.aboutWebviewTitleWhoWeAre()
         }
     }
 }
