@@ -17,6 +17,9 @@
         }
       }
     },
+    "An error occured trying to find your location" : {
+      "comment" : "Default location error message"
+    },
     "Attorney General Grouping" : {
       "comment" : "Office Holder grouping description",
       "extractionState" : "extracted_with_value",
@@ -62,6 +65,9 @@
     "Contacts" : {
       "comment" : "Contact Summary header text"
     },
+    "Detect my location" : {
+      "comment" : "LocationSheet 'Detect my location' text\nLocationSheet detect my location accessibility label"
+    },
     "Dismiss" : {
       "comment" : "Standard Dismiss Button text"
     },
@@ -70,6 +76,9 @@
     },
     "Done" : {
       "comment" : "Standard Done Button text"
+    },
+    "Enter a location" : {
+      "comment" : "LocationSheet prompt"
     },
     "Enter your email" : {
       "comment" : "Newsletter email placeholder text"
@@ -128,6 +137,12 @@
     "Legislator" : {
       "comment" : "Office Holder title"
     },
+    "Locating..." : {
+      "comment" : "location display for searching"
+    },
+    "Location permission is off" : {
+      "comment" : "Error message when location permission is off"
+    },
     "Made Contact" : {
       "comment" : "Contact Log Outcome"
     },
@@ -149,6 +164,9 @@
     "OK" : {
       "comment" : "Standard OK Button text"
     },
+    "Or" : {
+      "comment" : "LocationSheet 'Or' text"
+    },
     "Relevant representatives for this issue" : {
       "comment" : "Issue Detail header for reps list"
     },
@@ -163,6 +181,9 @@
     },
     "Saturday" : {
       "comment" : "Day name"
+    },
+    "Search my location" : {
+      "comment" : "LocationSheet search accessibility label"
     },
     "Secretary of State Grouping" : {
       "comment" : "Office Holder grouping description",
@@ -263,6 +284,9 @@
     "This representative is not currently relevant to this issue." : {
       "comment" : "Contact list item note for an irrelevant contact"
     },
+    "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy." : {
+      "comment" : "Split district location warning"
+    },
     "Thu" : {
       "comment" : "Abbreviated day name"
     },
@@ -287,11 +311,17 @@
     "Unknown" : {
 
     },
+    "Unknown Location" : {
+
+    },
     "US House Rep" : {
       "comment" : "Office Holder description"
     },
     "US Senator" : {
       "comment" : "Office Holder description"
+    },
+    "Use an address, zip code or zip + 4" : {
+      "comment" : "LocationSheet instructions"
     },
     "Vacant Seat" : {
       "comment" : "Vacant seat contact name"

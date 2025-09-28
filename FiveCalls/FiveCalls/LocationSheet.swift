@@ -25,7 +25,7 @@ struct LocationSheet: View {
             VStack(alignment: .leading, spacing: 0) {
                 if store.state.isSplitDistrict {
                     Text(
-                        "\(Image(systemName: "exclamationmark.triangle")) \(R.string.localizableR.locationSplitDistrict())"
+                        "\(Image(systemName: "exclamationmark.triangle")) \(String(localized: "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy.", comment: "Split district location warning"))"
                     )
                         .font(.footnote)
                         .foregroundColor(.red)
@@ -35,7 +35,7 @@ struct LocationSheet: View {
                 HStack {
                     HStack {
                         TextField(text: $locationText) {
-                            Text(R.string.localizableR.enterLocation())
+                            Text("Enter a location", comment: "LocationSheet prompt")
                         }.onSubmit {
                             locationSearch()
                         }
@@ -65,10 +65,15 @@ struct LocationSheet: View {
                     .onTapGesture {
                         locationSearch()
                     }
-                    .accessibilityLabel(Text(R.string.localizableR.searchLocation()))
+                    .accessibilityLabel(
+                        Text(
+                            "Search my location",
+                            comment: "LocationSheet search accessibility label"
+                        )
+                    )
                     .accessibilityAddTraits(.isButton)
                 }
-                Text(R.string.localizableR.locationInstructions())
+                Text("Use an address, zip code or zip + 4", comment: "LocationSheet instructions")
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .padding(.leading, 35)
@@ -76,14 +81,14 @@ struct LocationSheet: View {
             }
             .padding(.bottom)
             HStack(alignment: .top) {
-                Text(R.string.localizableR.locationOr())
+                Text("Or", comment: "LocationSheet 'Or' text")
                     .font(.system(.title3))
                     .padding(.trailing)
                     .padding(.top, 10)
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(R.string.localizableR.detectLocation())
+                            Text("Detect my location", comment: "LocationSheet 'Detect my location' text")
                                 .font(.system(.title3))
                                 .fontWeight( .medium)
                                 .foregroundColor(.white)
@@ -119,7 +124,12 @@ struct LocationSheet: View {
                 }
             }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text(R.string.localizableR.detectLocation()))
+            .accessibilityLabel(
+                Text(
+                    "Detect my location",
+                    comment: "LocationSheet detect my location accessibility label"
+                )
+            )
             .accessibilityAddTraits(.isButton)
             
             if locationError != nil {
@@ -136,18 +146,21 @@ struct LocationSheet: View {
 
         Task {
             do {
-                var locationDisplay = R.string.localizableR.unknownLocation()
+                var locationDisplay = String(localized: "Unknown Location")
                 let placemarks = try await CLGeocoder().geocodeAddressString(locationText)
                 guard let placemark = placemarks.first else {
                     return
                 }
 
-                locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? R.string.localizableR.unknownLocation()
+                locationDisplay = placemark.locality ?? placemark.administrativeArea ?? placemark.postalCode ?? String(localized: "Unknown Location")
                 let loc = UserLocation(address: locationText, display: locationDisplay)
                 store.dispatch(action: .SetLocation(loc))
                 dismiss()
             } catch (_) {
-                locationError = R.string.localizableR.locationErrorDefault()
+                locationError = String(
+                    localized: "An error occured trying to find your location",
+                    comment: "Default location error message"
+                )
             }
         }
     }
@@ -160,15 +173,17 @@ struct LocationSheet: View {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
                 let locationInfo = try await getLocationInfo(from: clLoc)
-                let loc = UserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? R.string.localizableR.unknownLocation())
+                let loc = UserLocation(location: clLoc, display: locationInfo["displayName"] as? String ?? String(localized: "Unknown Location"))
                 store.dispatch(action: .SetLocation(loc))
                 detectProcessing = false
                 dismiss()
             } catch (let error) {
                 if case LocationCoordinatorError.Unauthorized = error {
-                    locationError = R.string.localizableR.locationErrorOff()
+                    locationError = String(localized: "Location permission is off", comment: "Error message when location permission is off")
                 } else {
-                    locationError = R.string.localizableR.locationErrorDefault()
+                    locationError = String(
+                        localized: "An error occured trying to find your location",
+                    )
                 }
 
                 detectProcessing = false

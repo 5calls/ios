@@ -105,16 +105,16 @@
 //"set-your-location"                   = "Set your location";
 
 // location detection
-"locating-temp"                       = "Locating...";
-"enter-location"                      = "Enter a location";
-"unknown-location"                    = "Unknown Location";
-"detect-location"                     = "Detect my location";
-"search-location"                     = "Search my location";
-"location-instructions"               = "Use an address, zip code or zip + 4";
-"location-error-off"                  = "Location permission is off";
-"location-error-default"              = "An error occured trying to find your location";
-"location-or"                         = "Or";
-"location-split-district"             = "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy.";
+//"locating-temp"                       = "Locating...";
+//"enter-location"                      = "Enter a location";
+//"unknown-location"                    = "Unknown Location";
+//"detect-location"                     = "Detect my location";
+//"search-location"                     = "Search my location";
+//"location-instructions"               = "Use an address, zip code or zip + 4";
+//"location-error-off"                  = "Location permission is off";
+//"location-error-default"              = "An error occured trying to find your location";
+//"location-or"                         = "Or";
+//"location-split-district"             = "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy.";
 
 // outcomes
 //"outcomes.contact"                    = "Made Contact";
