@@ -85,10 +85,10 @@
 
 // issue detail screen
 //"see-script"                          = "See your script";
-"next-contact"                        = "Next contact";
-"done-calling"                        = "Done calling";
-"no-contacts"                         = "No contacts";
-"call-areas"                          = "Call %@";
+//"next-contact"                        = "Next contact";
+//"done-calling"                        = "Done calling";
+//"no-contacts"                         = "No contacts";
+//"call-areas"                          = "Call %@";
 
 // issue contact detail screen
 "a11y-phone-call-copy-hint"           = "Double tap to call, triple tap to copy";
@@ -196,9 +196,9 @@
 "welcome-button-title"                   = "Get Started";
 
 // issue detail
-"set-location-header"                 = "We need a location to find your reps";
+//"set-location-header"                 = "We need a location to find your reps";
 //"set-location-button"                 = "Set your location";
-"reps-list-header"                    = "Relevant representatives for this issue";
+//"reps-list-header"                    = "Relevant representatives for this issue";
 //"vacant-seat-title"                   = "Vacant Seat";
 //"vacant-seat-message"                 = "This %@ seat is currently vacant.";
 //"irrelevant-contact-message"         = "This representative is not currently relevant to this issue.";

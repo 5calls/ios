@@ -50,6 +50,9 @@
         }
       }
     },
+    "Call %@" : {
+      "comment" : "Sorted list of Representative offices"
+    },
     "Calls on this topic" : {
 
     },
@@ -134,11 +137,17 @@
     "Nice work!" : {
       "comment" : "Fallback issue done title markdown text"
     },
+    "No contacts" : {
+      "comment" : "Issue list view list item text for no contacts"
+    },
     "No thanks" : {
       "comment" : "Newslitter signup decline button text"
     },
     "OK" : {
       "comment" : "Standard OK Button text"
+    },
+    "Relevant representatives for this issue" : {
+      "comment" : "Issue Detail header for reps list"
     },
     "Rep." : {
       "comment" : "Office Holder title"
@@ -201,7 +210,7 @@
       "comment" : "Prompt for push notifications button title"
     },
     "Set your location" : {
-      "comment" : "IssueDetail button prompt to set location"
+      "comment" : "IssueDetail button prompt to set location\nIssueDetail prompt to set location"
     },
     "Share" : {
       "comment" : "Share toolbar button text"
@@ -222,10 +231,10 @@
       "comment" : "Contact Log Outcome"
     },
     "State Rep" : {
-      "comment" : "Office Holder description"
+      "comment" : "Localized rep text for single rep\nOffice Holder description"
     },
     "State Reps" : {
-      "comment" : "Office Holder grouping description"
+      "comment" : "Localized rep text for multiple reps\nOffice Holder grouping description"
     },
     "Sun" : {
       "comment" : "Abbreviated day name"

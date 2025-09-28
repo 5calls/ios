@@ -51,7 +51,7 @@ struct IssueDetail: View {
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
                 if store.state.location != nil {
-                    Text(R.string.localizableR.repsListHeader())
+                    Text("Relevant representatives for this issue", comment: "Issue Detail header for reps list")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
@@ -102,7 +102,7 @@ struct IssueDetail: View {
                         }
                     }
                 } else {
-                    Text(R.string.localizableR.setLocationHeader())
+                    Text("Set your location", comment: "IssueDetail prompt to set location")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
