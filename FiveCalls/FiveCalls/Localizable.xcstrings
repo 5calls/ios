@@ -105,8 +105,14 @@
     "House Rep" : {
       "comment" : "Office Holder grouping description"
     },
+    "Left Voicemail" : {
+      "comment" : "Contact Log Outcome"
+    },
     "Legislator" : {
       "comment" : "Office Holder title"
+    },
+    "Made Contact" : {
+      "comment" : "Contact Log Outcome"
     },
     "OK" : {
       "comment" : "Standard OK Button text"
@@ -156,11 +162,17 @@
     "Senators" : {
       "comment" : "Office Holder grouping description"
     },
+    "Skip" : {
+      "comment" : "Contact Log Outcome"
+    },
     "State Rep" : {
       "comment" : "Office Holder description"
     },
     "State Reps" : {
       "comment" : "Office Holder grouping description"
+    },
+    "Unavailable" : {
+      "comment" : "Contact Log Outcome"
     },
     "US House Rep" : {
       "comment" : "Office Holder description"

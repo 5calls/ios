@@ -20,13 +20,13 @@ struct ContactLog : Hashable, Codable {
     static func localizedOutcomeForStatus(status: String) -> String {
         switch status {
         case "vm", "voicemail":
-            return R.string.localizableR.outcomesVoicemail()
+            return String(localized: "Left Voicemail", comment: "Contact Log Outcome")
         case "contact", "contacted":
-            return R.string.localizableR.outcomesContact()
+            return String(localized: "Made Contact", comment: "Contact Log Outcome")
         case "unavailable":
-            return R.string.localizableR.outcomesUnavailable()
+            return String(localized: "Unavailable", comment: "Contact Log Outcome")
         case "skip":
-            return R.string.localizableR.outcomesSkip()
+            return String(localized: "Skip", comment: "Contact Log Outcome")
         default:
             return "Unknown"
         }

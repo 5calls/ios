@@ -6,7 +6,7 @@
   Copyright © 2017 5calls. All rights reserved.
 */
 
-"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: https://5calls.org/issue/%@";
+//"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: https://5calls.org/issue/%@";
 "location-permission-denied-title"    = "Location permission denied.";
 "location-permission-denied-message"  = "To use Location please change the permissions in the Settings app and try again.";
 "open-settings-title"                 = "Open Settings";
@@ -117,10 +117,10 @@
 "location-split-district"             = "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy.";
 
 // outcomes
-"outcomes.contact"                    = "Made Contact";
-"outcomes.unavailable"                = "Unavailable";
-"outcomes.voicemail"                  = "Left Voicemail";
-"outcomes.skip"                       = "Skip";
+//"outcomes.contact"                    = "Made Contact";
+//"outcomes.unavailable"                = "Unavailable";
+//"outcomes.voicemail"                  = "Left Voicemail";
+//"outcomes.skip"                       = "Skip";
 
 // notifications
 "notification-title" = "Nice work!";
