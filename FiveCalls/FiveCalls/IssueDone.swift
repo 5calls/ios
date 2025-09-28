@@ -199,7 +199,7 @@ struct CountingView: View {
                     context.fill(Rectangle().size(width: progressWidth(size: size), height: size.height).path(in: drawRect), with: .color(.fivecallsDarkBlue))
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                Text("\(count)")
+                Text(verbatim: "\(count)")
                     .foregroundStyle(.white)
                     // yes, blue background may be redundant, but it ensures that the white text can always be read, even with very large fonts
                     .background(.fivecallsDarkBlue)

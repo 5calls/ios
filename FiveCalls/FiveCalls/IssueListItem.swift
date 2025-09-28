@@ -76,12 +76,12 @@ struct IssueListItem: View {
             let mappedAreas = issue.contactAreas.map({ area in
                 if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
                     // Both present - use plural "State Reps" for both
-                    return R.string.localizableR.groupingStateRep()
+                    return String(localized: "State Reps")
                 } else if area == "StateUpper" || area == "StateLower" {
                     // Only one present - use singular "State Rep"
-                    return R.string.localizableR.stateRep()
+                    return String(localized: "State Rep")
                 } else {
-                    return AreaToNiceString(area: area)
+                    return areaToNiceString(area: area)
                 }
             })
             let areas = Array(Set(mappedAreas)).joined(separator: ", ")

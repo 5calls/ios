@@ -59,29 +59,29 @@
 "scheduled-reminders-day-selected"    = " selected";
 "scheduled-reminders-day-not-selected"= " not selected";
 
-// office holder descriptions
-"us-house"                            = "US House Rep";
-"us-senate"                           = "US Senator";
-"state-rep"                           = "State Rep";
-"governor"                            = "Governor";
-"attorney-general"                    = "Attorney General";
-"secretary-of-state"                  = "Secretary of State";
-
-// office holder grouping description
-"grouping-us-house"                   = "House Rep";
-"grouping-us-senate"                  = "Senators";
-"grouping-state-rep"                  = "State Reps";
-"grouping-governor"                   = "Governor";
-"grouping-attorney-general"           = "Attorney General";
-"grouping-secretary-of-state"         = "Secretary of State";
-
-// office holder title
-"title-us-house"                      = "Rep.";
-"title-us-senate"                     = "Senator";
-"title-state-rep"                     = "Legislator";
-"title-governor"                      = "Governor";
-"title-attorney-general"              = "Attorney General";
-"title-secretary-of-state"            = "Secretary of State";
+//// office holder descriptions
+//"us-house"                            = "US House Rep";
+//"us-senate"                           = "US Senator";
+//"state-rep"                           = "State Rep";
+//"governor"                            = "Governor";
+//"attorney-general"                    = "Attorney General";
+//"secretary-of-state"                  = "Secretary of State";
+//
+//// office holder grouping description
+//"grouping-us-house"                   = "House Rep";
+//"grouping-us-senate"                  = "Senators";
+//"grouping-state-rep"                  = "State Reps";
+//"grouping-governor"                   = "Governor";
+//"grouping-attorney-general"           = "Attorney General";
+//"grouping-secretary-of-state"         = "Secretary of State";
+//
+//// office holder title
+//"title-us-house"                      = "Rep.";
+//"title-us-senate"                     = "Senator";
+//"title-state-rep"                     = "Legislator";
+//"title-governor"                      = "Governor";
+//"title-attorney-general"              = "Attorney General";
+//"title-secretary-of-state"            = "Secretary of State";
 
 // issue detail screen
 "see-script"                          = "See your script";

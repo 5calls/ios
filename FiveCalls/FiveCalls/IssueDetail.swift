@@ -79,7 +79,10 @@ struct IssueDetail: View {
                     .padding(.bottom, 16)
 
                     if shouldShowWarning() {
-                        Text("Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.")
+                        Text(
+                            "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.",
+                            comment: "IssueDetail warning for imprecise location"
+                        )
                             .font(.callout)
                             .fontWeight(.medium)
                             .foregroundColor(.red)

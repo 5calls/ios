@@ -24,8 +24,41 @@
         }
       }
     },
-    "%lld" : {
-
+    "Attorney General Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attorney General"
+          }
+        }
+      }
+    },
+    "Attorney General Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attorney General"
+          }
+        }
+      }
+    },
+    "Attorney General Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attorney General"
+          }
+        }
+      }
     },
     "Dismiss" : {
       "comment" : "Standard Dismiss Button text"
@@ -33,11 +66,110 @@
     "Done" : {
       "comment" : "Standard Done Button text"
     },
+    "Governor Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Governor"
+          }
+        }
+      }
+    },
+    "Governor Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Governor"
+          }
+        }
+      }
+    },
+    "Governor Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Governor"
+          }
+        }
+      }
+    },
+    "House Rep" : {
+      "comment" : "Office Holder grouping description"
+    },
+    "Legislator" : {
+      "comment" : "Office Holder title"
+    },
     "OK" : {
       "comment" : "Standard OK Button text"
     },
+    "Rep." : {
+      "comment" : "Office Holder title"
+    },
+    "Secretary of State Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of State"
+          }
+        }
+      }
+    },
+    "Secretary of State Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of State"
+          }
+        }
+      }
+    },
+    "Secretary of State Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of State"
+          }
+        }
+      }
+    },
+    "Senator" : {
+      "comment" : "Office Holder title"
+    },
+    "Senators" : {
+      "comment" : "Office Holder grouping description"
+    },
+    "State Rep" : {
+      "comment" : "Office Holder description"
+    },
+    "State Reps" : {
+      "comment" : "Office Holder grouping description"
+    },
+    "US House Rep" : {
+      "comment" : "Office Holder description"
+    },
+    "US Senator" : {
+      "comment" : "Office Holder description"
+    },
     "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps." : {
-
+      "comment" : "IssueDetail warning for imprecise location"
     }
   },
   "version" : "1.0"
