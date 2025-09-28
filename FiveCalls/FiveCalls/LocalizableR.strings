@@ -229,10 +229,11 @@
 "inbox-push-detail" = "Get notified how your rep votes on your topics,\r1-2 notifications per month";
 "inbox-detail-readmore" = "Read more →";
 "inbox-contact-alert" = "Select an issue on the topics tab to show relevant reps and phone numbers";
+
 // Newsletter
-"newsletter-header" = "The easy way to keep up with Congress";
-"newsletter-subhead" = "Sign up for our newsletter, just one email a week";
-"newsletter-email-placeholder" = "Enter your email";
-"newsletter-dismiss" = "No thanks";
-"newsletter-subscribe" = "Sign me up";
-"newsletter-invalid-email" = "This doesn't look like an email";
+//"newsletter-header" = "The easy way to keep up with Congress";
+//"newsletter-subhead" = "Sign up for our newsletter, just one email a week";
+//"newsletter-email-placeholder" = "Enter your email";
+//"newsletter-dismiss" = "No thanks";
+//"newsletter-subscribe" = "Sign me up";
+//"newsletter-invalid-email" = "This doesn't look like an email";

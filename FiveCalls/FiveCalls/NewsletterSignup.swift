@@ -17,9 +17,12 @@ struct NewsletterSignup: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(R.string.localizableR.newsletterHeader)
-                .font(.headline)
-                .foregroundStyle(.white)
+            Text(
+                "The easy way to keep up with Congress",
+                comment: "Newsletter signup header text"
+            )
+            .font(.headline)
+            .foregroundStyle(.white)
             if errorString != nil {
                 Text(errorString!)
                     .font(.caption)
@@ -27,16 +30,24 @@ struct NewsletterSignup: View {
                     .foregroundStyle(.red)
                     .padding(.bottom, 4)
             } else {
-                Text(R.string.localizableR.newsletterSubhead())
-                    .font(.caption)
-                    .foregroundStyle(.white)
-                    .padding(.bottom, 4)
+                Text(
+                    "Sign up for our newsletter, just one email a week",
+                    comment: "Newsletter signup subheader text"
+                )
+                .font(.caption)
+                .foregroundStyle(.white)
+                .padding(.bottom, 4)
             }
             TextField(
                 "",
                 text: $email,
-                prompt: Text(R.string.localizableR.newsletterEmailPlaceholder())
-                    .foregroundColor(.fivecallsDarkGray)
+                prompt: Text(
+                    "Enter your email",
+                    comment: "Newsletter email placeholder text"
+                )
+                .foregroundColor(
+                    .fivecallsDarkGray
+                )
             )
                 .font(.headline)
                 .padding(.horizontal, 4)
@@ -55,7 +66,7 @@ struct NewsletterSignup: View {
                 Button(action: onDismiss,
                     label: {
                         Label(
-                            R.string.localizableR.newsletterDismiss(),
+                            String(localized: "No thanks", comment: "Newslitter signup decline button text"),
                             systemImage: "nosign"
                         )
                         .padding(.vertical, 6)
@@ -65,14 +76,13 @@ struct NewsletterSignup: View {
                 )
                 Button(action: {
                     if !isValidEmail(email) {
-                        errorString = R.string.localizableR
-                            .newsletterInvalidEmail()
+                        errorString = String(localized: "This doesn't look like an email", comment: "Newsletter signup invalid email error message")
                     } else {
                         onSubmit(email)
                     }
                 }, label: {
                     Label(
-                        R.string.localizableR.newsletterSubscribe(),
+                        String(localized: "Sign me up", comment: "Newsletter signup submit button text"),
                         systemImage: "paperplane"
                     ).padding(.vertical, 6)
                      .frame(maxWidth: .infinity)

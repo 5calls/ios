@@ -66,6 +66,9 @@
     "Done" : {
       "comment" : "Standard Done Button text"
     },
+    "Enter your email" : {
+      "comment" : "Newsletter email placeholder text"
+    },
     "Fri" : {
       "comment" : "Abbreviated day name"
     },
@@ -125,6 +128,9 @@
     },
     "Monday" : {
       "comment" : "Day name"
+    },
+    "No thanks" : {
+      "comment" : "Newslitter signup decline button text"
     },
     "OK" : {
       "comment" : "Standard OK Button text"
@@ -186,6 +192,12 @@
     "Share" : {
       "comment" : "Share toolbar button text"
     },
+    "Sign me up" : {
+      "comment" : "Newsletter signup submit button text"
+    },
+    "Sign up for our newsletter, just one email a week" : {
+      "comment" : "Newsletter signup subheader text"
+    },
     "Skip" : {
       "comment" : "Contact Log Outcome"
     },
@@ -200,6 +212,12 @@
     },
     "Sunday" : {
       "comment" : "Day name"
+    },
+    "The easy way to keep up with Congress" : {
+      "comment" : "Newsletter signup header text"
+    },
+    "This doesn't look like an email" : {
+      "comment" : "Newsletter signup invalid email error message"
     },
     "Thu" : {
       "comment" : "Abbreviated day name"
