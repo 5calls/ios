@@ -132,6 +132,9 @@
     "Rep." : {
       "comment" : "Office Holder title"
     },
+    "Reps" : {
+      "comment" : "Reps Tab title"
+    },
     "Sat" : {
       "comment" : "Abbreviated day name"
     },
@@ -180,6 +183,9 @@
     "Senators" : {
       "comment" : "Office Holder grouping description"
     },
+    "Share" : {
+      "comment" : "Share toolbar button text"
+    },
     "Skip" : {
       "comment" : "Contact Log Outcome"
     },
@@ -200,6 +206,9 @@
     },
     "Thursday" : {
       "comment" : "Day name"
+    },
+    "Topics" : {
+      "comment" : "Topics Tab title"
     },
     "Tue" : {
       "comment" : "Abbreviated day name"

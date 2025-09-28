@@ -115,7 +115,7 @@ struct IssueDetail: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareLink(item: issue.shareURL) {
                     HStack(spacing: 4) {
-                        Text(R.string.localizableR.share())
+                        Text("Share", comment: "Share toolbar button text")
                             .fontWeight(.medium)
                         Image(systemName: "square.and.arrow.up")
                             .font(.body)
