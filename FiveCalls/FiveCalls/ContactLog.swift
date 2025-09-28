@@ -17,16 +17,16 @@ struct ContactLog : Hashable, Codable {
     let date: Date
     let reported: Bool
 
-    static func localizedOutcomeForStatus(status: String) -> String {
+    static func localizedOutcomeForStatus(status: String) -> LocalizedStringResource {
         switch status {
         case "vm", "voicemail":
-            return String(localized: "Left Voicemail", comment: "Contact Log Outcome")
+            return LocalizedStringResource("Left Voicemail", comment: "Contact Log Outcome")
         case "contact", "contacted":
-            return String(localized: "Made Contact", comment: "Contact Log Outcome")
+            return LocalizedStringResource("Made Contact", comment: "Contact Log Outcome")
         case "unavailable":
-            return String(localized: "Unavailable", comment: "Contact Log Outcome")
+            return LocalizedStringResource("Unavailable", comment: "Contact Log Outcome")
         case "skip":
-            return String(localized: "Skip", comment: "Contact Log Outcome")
+            return LocalizedStringResource("Skip", comment: "Contact Log Outcome")
         default:
             return "Unknown"
         }

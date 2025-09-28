@@ -9,7 +9,7 @@
 import Foundation
 import RswiftResources
 
-struct Contact : Decodable {
+struct Contact : Decodable, Identifiable {
     let id: String
     let area: String
     let name: String
@@ -59,7 +59,7 @@ struct Contact : Decodable {
     }
 }
 
-extension Contact: Hashable, Identifiable {
+extension Contact: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
@@ -71,7 +71,7 @@ extension Contact: Hashable, Identifiable {
 
 extension Contact {    
     // this has some overlap with other area -> string conversions but I haven't thought about it long enough to combine them
-    func officeDescription() -> String {
+    func localizedOfficeDescription() -> LocalizedStringResource {
         switch self.area {
         case "US House", "House":
             // TODO: plumb the district through here too

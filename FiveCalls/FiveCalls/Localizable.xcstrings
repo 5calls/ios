@@ -188,11 +188,20 @@
         }
       }
     },
+    "See your script" : {
+      "comment" : "navigation link button to see the script"
+    },
     "Senator" : {
       "comment" : "Office Holder title"
     },
     "Senators" : {
       "comment" : "Office Holder grouping description"
+    },
+    "Send me important votes" : {
+      "comment" : "Prompt for push notifications button title"
+    },
+    "Set your location" : {
+      "comment" : "IssueDetail button prompt to set location"
     },
     "Share" : {
       "comment" : "Share toolbar button text"
@@ -230,8 +239,14 @@
     "The easy way to keep up with Congress" : {
       "comment" : "Newsletter signup header text"
     },
+    "This %@ seat is currently vacant." : {
+      "comment" : "ContactListItem note for a vacant seat"
+    },
     "This doesn't look like an email" : {
       "comment" : "Newsletter signup invalid email error message"
+    },
+    "This representative is not currently relevant to this issue." : {
+      "comment" : "Contact list item note for an irrelevant contact"
     },
     "Thu" : {
       "comment" : "Abbreviated day name"
@@ -254,11 +269,17 @@
     "Unavailable" : {
       "comment" : "Contact Log Outcome"
     },
+    "Unknown" : {
+
+    },
     "US House Rep" : {
       "comment" : "Office Holder description"
     },
     "US Senator" : {
       "comment" : "Office Holder description"
+    },
+    "Vacant Seat" : {
+      "comment" : "Vacant seat contact name"
     },
     "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps." : {
       "comment" : "IssueDetail warning for imprecise location"

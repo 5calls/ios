@@ -92,7 +92,13 @@ struct IssueDetail: View {
 
                     if !targetedContacts.isEmpty {
                         NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: targetedContacts)) {
-                            PrimaryButton(title: R.string.localizableR.seeScript(), systemImageName: "megaphone.fill")
+                            PrimaryButton(
+                                title: LocalizedStringResource(
+                                    "See your script",
+                                    comment: "navigation link button to see the script"
+                                ),
+                                systemImageName: "megaphone.fill"
+                            )
                         }
                     }
                 } else {
@@ -101,11 +107,20 @@ struct IssueDetail: View {
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
                         .padding(.leading, 6)
-                    Button(action: {
-                        showLocationSheet.toggle()
-                    }, label: {
-                        PrimaryButton(title: R.string.localizableR.setLocationButton(), systemImageName: "location.circle.fill")
-                    })
+                    Button(
+                        action: {
+                            showLocationSheet.toggle()
+                        },
+                        label: {
+                            PrimaryButton(
+                                title: LocalizedStringResource(
+                                    "Set your location",
+                                    comment: "IssueDetail button prompt to set location"
+                                ),
+                                systemImageName: "location.circle.fill"
+                            )
+                        }
+                    )
                 }
             }
             .padding(.horizontal)
@@ -158,7 +173,10 @@ struct IssueDetail: View {
             ContactListItem(
                 contact: contact,
                 showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id),
-                contactNote: R.string.localizableR.irrelevantContactMessage()
+                contactNote: LocalizedStringResource(
+                    "This representative is not currently relevant to this issue.",
+                    comment: "Contact list item note for an irrelevant contact"
+                )
             )
             .opacity(0.4)
             .id(forceRefreshID)
@@ -172,8 +190,14 @@ struct IssueDetail: View {
     private var vacantRepsList: some View {
         ForEach(vacantAreas.numbered(), id: \.element) { contact in
             let area = contact.element
-            let contactItem = Contact(area: area, name: R.string.localizableR.vacantSeatTitle())
-            let note = R.string.localizableR.vacantSeatMessage(area)
+            let contactItem = Contact(
+                area: area,
+                name: String(
+                    localized: "Vacant Seat",
+                    comment: "Vacant seat contact name"
+                )
+            )
+            let note = LocalizedStringResource("This \(area) seat is currently vacant.")
 
             ContactListItem(contact: contactItem, contactNote: note)
                 .opacity(0.4)

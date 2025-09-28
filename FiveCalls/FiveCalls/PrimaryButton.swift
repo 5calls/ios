@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct PrimaryButton: View {
-    let title: String
+    let title: LocalizedStringResource
     var systemImageName: String?
-    
+
     var bgColor: Color = .fivecallsDarkBlue
-        
+
     var body: some View {
         HStack {
             Text(title)
@@ -39,7 +39,7 @@ struct PrimaryButton: View {
 #Preview {
     VStack {
         PrimaryButton(title: "See your script", systemImageName: "megaphone.fill")
-                .padding()
+            .padding()
         PrimaryButton(title: "See your script")
             .padding(.horizontal, 100)
     }

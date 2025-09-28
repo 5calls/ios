@@ -73,8 +73,14 @@ struct InboxView: View {
                         }
                         
                         ForEach(store.state.missingReps, id: \.self) { missingRepArea in
-                            ContactListItem(contact: Contact(name: R.string.localizableR.vacantSeatTitle()), contactNote: R.string.localizableR.vacantSeatMessage(missingRepArea))
-                                .opacity(0.5)
+                            ContactListItem(
+                                contact: Contact(name: "Vacant Seat"),
+                                contactNote: LocalizedStringResource(
+                                    "This \(missingRepArea) seat is currently vacant.",
+                                    comment: "ContactListItem note for a vacant seat"
+                                )
+                            )
+                            .opacity(0.5)
                         }
                     }
 
@@ -89,14 +95,19 @@ struct InboxView: View {
 
                         if showPushPrompt {
                             VStack {
-                                PrimaryButton(title: R.string.localizableR.inboxPushButton())
-                                    .onTapGesture {
-                                        OneSignal.promptForPushNotifications { success in
-                                            Task {
-                                                await updateNotificationStatus()
-                                            }
+                                PrimaryButton(
+                                    title: LocalizedStringResource(
+                                        "Send me important votes",
+                                        comment: "Prompt for push notifications button title"
+                                    )
+                                )
+                                .onTapGesture {
+                                    OneSignal.promptForPushNotifications { success in
+                                        Task {
+                                            await updateNotificationStatus()
                                         }
                                     }
+                                }
                                 Text(R.string.localizableR.inboxPushDetail())
                                     .font(.caption)
                                     .fontWeight(.medium)

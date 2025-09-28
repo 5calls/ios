@@ -41,8 +41,8 @@ struct IssueDone: View {
     let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     var markdownTitle: AttributedString!
 
-    func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> String {
-        if let contactOutcome = issueCompletions.last(where: { 
+    func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> LocalizedStringResource {
+        if let contactOutcome = issueCompletions.last(where: {
             let parts = $0.split(separator: "-")
             guard parts.count > 1 else { return false }
             let contactId = parts.dropLast().joined(separator: "-")
@@ -54,10 +54,10 @@ struct IssueDone: View {
             }
         }
 
-        return String(localized: "Skip", comment: "Contact Log Outcome")
+        return LocalizedStringResource("Skip", comment: "Contact Log Outcome")
     }
 
-    func shouldShowImage(latestOutcomeForContact: String) -> Bool {
+    func shouldShowImage(latestOutcomeForContact: LocalizedStringResource) -> Bool {
         return latestOutcomeForContact != "Skip"
     }
 
@@ -86,7 +86,12 @@ struct IssueDone: View {
                 ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
                     let issueCompletions = store.state.issueCompletion[issue.id] ?? []
                     let latestContactCompletion = latestOutcomeForContact(contact: contact, issueCompletions: issueCompletions)
-                    ContactListItem(contact: contact, showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion), contactNote: latestContactCompletion, listType: .compact)
+                    ContactListItem(
+                        contact: contact,
+                        showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion),
+                        contactNote: latestContactCompletion,
+                        listType: .compact
+                    )
                 }
                 if store.state.donateOn {
                     Text("Support 5 Calls", comment: "Support 5 Calls header text")
@@ -98,7 +103,10 @@ struct IssueDone: View {
                             openURL(donateURL)
                         }) {
                             PrimaryButton(
-                                title: String(localized: "Donate today", comment: "Donate today button title"),
+                                title: LocalizedStringResource(
+                                    "Donate today",
+                                    comment: "Donate today button title"
+                                ),
                                 systemImageName: "hand.thumbsup.circle.fill",
                                 bgColor: .fivecallsRed
                             )

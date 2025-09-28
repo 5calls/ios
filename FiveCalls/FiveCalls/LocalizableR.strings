@@ -84,7 +84,7 @@
 //"title-secretary-of-state"            = "Secretary of State";
 
 // issue detail screen
-"see-script"                          = "See your script";
+//"see-script"                          = "See your script";
 "next-contact"                        = "Next contact";
 "done-calling"                        = "Done calling";
 "no-contacts"                         = "No contacts";
@@ -197,11 +197,11 @@
 
 // issue detail
 "set-location-header"                 = "We need a location to find your reps";
-"set-location-button"                 = "Set your location";
+//"set-location-button"                 = "Set your location";
 "reps-list-header"                    = "Relevant representatives for this issue";
-"vacant-seat-title"                   = "Vacant Seat";
-"vacant-seat-message"                 = "This %@ seat is currently vacant.";
-"irrelevant-contact-message"         = "This representative is not currently relevant to this issue.";
+//"vacant-seat-title"                   = "Vacant Seat";
+//"vacant-seat-message"                 = "This %@ seat is currently vacant.";
+//"irrelevant-contact-message"         = "This representative is not currently relevant to this issue.";
 
 // done
 //"done-title"                          = "You called on **%@**";
@@ -225,7 +225,7 @@
 "inbox-empty-state" = "Set your location\rto see your reps";
 "inbox-reps-header" = "Your National Reps";
 "inbox-votes-header" = "Recent messages";
-"inbox-push-button" = "Send me important votes";
+//"inbox-push-button" = "Send me important votes";
 "inbox-push-detail" = "Get notified how your rep votes on your topics,\r1-2 notifications per month";
 "inbox-detail-readmore" = "Read more →";
 "inbox-contact-alert" = "Select an issue on the topics tab to show relevant reps and phone numbers";
