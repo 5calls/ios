@@ -66,6 +66,12 @@
     "Done" : {
       "comment" : "Standard Done Button text"
     },
+    "Fri" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Friday" : {
+      "comment" : "Day name"
+    },
     "Governor Grouping" : {
       "comment" : "Office Holder grouping description",
       "extractionState" : "extracted_with_value",
@@ -114,11 +120,23 @@
     "Made Contact" : {
       "comment" : "Contact Log Outcome"
     },
+    "Mon" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Monday" : {
+      "comment" : "Day name"
+    },
     "OK" : {
       "comment" : "Standard OK Button text"
     },
     "Rep." : {
       "comment" : "Office Holder title"
+    },
+    "Sat" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Saturday" : {
+      "comment" : "Day name"
     },
     "Secretary of State Grouping" : {
       "comment" : "Office Holder grouping description",
@@ -171,6 +189,24 @@
     "State Reps" : {
       "comment" : "Office Holder grouping description"
     },
+    "Sun" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Sunday" : {
+      "comment" : "Day name"
+    },
+    "Thu" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Thursday" : {
+      "comment" : "Day name"
+    },
+    "Tue" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Tuesday" : {
+      "comment" : "Day name"
+    },
     "Unavailable" : {
       "comment" : "Contact Log Outcome"
     },
@@ -182,6 +218,12 @@
     },
     "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps." : {
       "comment" : "IssueDetail warning for imprecise location"
+    },
+    "Wed" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Wednesday" : {
+      "comment" : "Day name"
     }
   },
   "version" : "1.0"

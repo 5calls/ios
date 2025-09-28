@@ -44,7 +44,7 @@ struct IssueDone: View {
             }
         }
 
-        return R.string.localizableR.outcomesSkip()
+        return String(localized: "Skip", comment: "Contact Log Outcome")
     }
 
     func shouldShowImage(latestOutcomeForContact: String) -> Bool {

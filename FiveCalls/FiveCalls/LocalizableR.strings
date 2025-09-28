@@ -131,24 +131,24 @@
 "notifications-denied-alert-body"     = "To use reminders please change notifications permissions in the Settings app and try again.";
 
 // profile
-"sign-in" = "Sign In";
-"sign-out" = "Sign Out";
+//"sign-in" = "Sign In";
+//"sign-out" = "Sign Out";
 
 // day picker
-"day-picker-sunday-abbr"              = "Sun";
-"day-picker-monday-abbr"              = "Mon";
-"day-picker-tuesday-abbr"             = "Tue";
-"day-picker-wednesday-abbr"           = "Wed";
-"day-picker-thursday-abbr"            = "Thu";
-"day-picker-friday-abbr"              = "Fri";
-"day-picker-saturday-abbr"            = "Sat";
-"day-picker-sunday"                   = "Sunday";
-"day-picker-monday"                   = "Monday";
-"day-picker-tuesday"                  = "Tuesday";
-"day-picker-wednesday"                = "Wednesday";
-"day-picker-thursday"                 = "Thursday";
-"day-picker-friday"                   = "Friday";
-"day-picker-saturday"                 = "Saturday";
+//"day-picker-sunday-abbr"              = "Sun";
+//"day-picker-monday-abbr"              = "Mon";
+//"day-picker-tuesday-abbr"             = "Tue";
+//"day-picker-wednesday-abbr"           = "Wed";
+//"day-picker-thursday-abbr"            = "Thu";
+//"day-picker-friday-abbr"              = "Fri";
+//"day-picker-saturday-abbr"            = "Sat";
+//"day-picker-sunday"                   = "Sunday";
+//"day-picker-monday"                   = "Monday";
+//"day-picker-tuesday"                  = "Tuesday";
+//"day-picker-wednesday"                = "Wednesday";
+//"day-picker-thursday"                 = "Thursday";
+//"day-picker-friday"                   = "Friday";
+//"day-picker-saturday"                 = "Saturday";
 
 // about
 "about-title" = "About";

@@ -15,13 +15,55 @@ struct Day: Hashable {
 }
 
 let days = [
-    Day(index: 1, abbr: R.string.localizableR.dayPickerSundayAbbr(), name: R.string.localizableR.dayPickerSunday()),
-    Day(index: 2, abbr: R.string.localizableR.dayPickerMondayAbbr(), name: R.string.localizableR.dayPickerMonday()),
-    Day(index: 3, abbr: R.string.localizableR.dayPickerTuesdayAbbr(), name: R.string.localizableR.dayPickerTuesday()),
-    Day(index: 4, abbr: R.string.localizableR.dayPickerWednesdayAbbr(), name: R.string.localizableR.dayPickerWednesday()),
-    Day(index: 5, abbr: R.string.localizableR.dayPickerThursdayAbbr(), name: R.string.localizableR.dayPickerThursday()),
-    Day(index: 6, abbr: R.string.localizableR.dayPickerFridayAbbr(), name: R.string.localizableR.dayPickerFriday()),
-    Day(index: 7, abbr: R.string.localizableR.dayPickerSaturdayAbbr(), name: R.string.localizableR.dayPickerSaturday())
+    Day(index: 1, abbr: String(
+        localized: "Sun",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Sunday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Mon",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Monday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Tue",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Tuesday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Wed",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Wednesday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Thu",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Thursday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Fri",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Friday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Sat",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Saturday",
+        comment: "Day name"
+    )),
 ]
 
 struct MultipleDayPicker: View {
