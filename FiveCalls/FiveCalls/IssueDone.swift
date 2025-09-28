@@ -21,10 +21,20 @@ struct IssueDone: View {
     init(issue: Issue) {
         self.issue = issue
 
-        if let titleString = try? AttributedString(markdown:  R.string.localizableR.doneTitle(issue.name)) {
+        if let titleString = try? AttributedString(
+            markdown:  String(
+                localized: "You called on \(issue.name)",
+                comment: "Issue done title string markdown text"
+            )
+        ) {
             self.markdownTitle = titleString
         } else {
-            self.markdownTitle = AttributedString(R.string.localizableR.doneScreenTitle())
+            self.markdownTitle = AttributedString(
+                String(
+                    localized: "Nice work!",
+                    comment: "Fallback issue done title markdown text"
+                )
+            )
         }
     }
 
@@ -61,16 +71,16 @@ struct IssueDone: View {
                     Spacer()
                 }.padding(.vertical, 16)
                 VStack {
-                    CountingView(title: R.string.localizableR.totalCalls(), count: store.state.globalCallCount)
+                    CountingView(title: "Total calls", count: store.state.globalCallCount)
                         .padding(.bottom, 14)
                     if let issueCalls = store.state.issueCallCounts[issue.id] {
-                        CountingView(title: R.string.localizableR.totalIssueCalls(), count: issueCalls)
+                        CountingView(title: "Calls on this topic", count: issueCalls)
                             .padding(.bottom, 14)
                     }
                 }
                 .padding(.bottom, 16)
 
-                Text(R.string.localizableR.contactSummaryHeader())
+                Text("Contacts", comment: "Contact Summary header text")
                     .font(.caption).fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
                 ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
@@ -79,21 +89,25 @@ struct IssueDone: View {
                     ContactListItem(contact: contact, showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion), contactNote: latestContactCompletion, listType: .compact)
                 }
                 if store.state.donateOn {
-                    Text(R.string.localizableR.support5calls())
+                    Text("Support 5 Calls", comment: "Support 5 Calls header text")
                         .font(.caption).fontWeight(.bold)
                         .accessibilityAddTraits(.isHeader)
                     HStack {
-                        Text(R.string.localizableR.support5callsSub())
+                        Text("Keep 5 Calls free and up-to-date", comment: "Support 5 Calls subtitle text")
                         Button(action: {
                             openURL(donateURL)
                         }) {
-                            PrimaryButton(title: R.string.localizableR.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                            PrimaryButton(
+                                title: String(localized: "Donate today", comment: "Donate today button title"),
+                                systemImageName: "hand.thumbsup.circle.fill",
+                                bgColor: .fivecallsRed
+                            )
                         }
                     }
                     .padding(.bottom, 16)
                 }
 
-                Text(R.string.localizableR.shareThisTopic())
+                Text("Share this topic", comment: "Issue Done share link text")
                     .font(.caption).fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
 
@@ -111,12 +125,17 @@ struct IssueDone: View {
                 .padding(.bottom, 16)
                 .accessibilityElement(children: .ignore)
                 .accessibilityAddTraits(.isButton)
-                .accessibilityLabel(Text("\(R.string.localizableR.shareThisTopic()): \(issue.name)"))
+                .accessibilityLabel(
+                    Text(
+                        "Share this topic \(issue.name)",
+                        comment: "Accessibility label for share link in IssueDone"
+                    )
+                )
 
                 Button(action: {
                     store.dispatch(action: .GoToRoot)
                 }, label: {
-                    PrimaryButton(title: R.string.localizableR.doneScreenButton(), systemImageName: "flag.checkered")
+                    PrimaryButton(title: "Done", systemImageName: "flag.checkered")
                 })
             }
             .padding(.horizontal)
@@ -181,73 +200,7 @@ extension IssueDone {
     }
 }
 
-struct CountingView: View {
-    let title: String
-    let count: Int
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(title)
-                .font(.title3)
-                .fontWeight(.medium)
-                .padding(.bottom, 4)
-            ZStack(alignment: .leading) {
-                Canvas { context, size in
-                    let drawRect = CGRect(origin: .zero, size: size)
-
-                    context.fill(Rectangle().size(size).path(in: drawRect), with: .color(.fivecallsLightBG))
-                    context.fill(Rectangle().size(width: progressWidth(size: size), height: size.height).path(in: drawRect), with: .color(.fivecallsDarkBlue))
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                Text(verbatim: "\(count)")
-                    .foregroundStyle(.white)
-                    // yes, blue background may be redundant, but it ensures that the white text can always be read, even with very large fonts
-                    .background(.fivecallsDarkBlue)
-                    .padding(.vertical, 2)
-                    .padding(.horizontal, 6)
-            }
-        }
-        .accessibilityElement(children: .combine)
-    }
-
-    func progressWidth(size: CGSize) -> CGFloat {
-        return size.width * (CGFloat(count) / nextMilestone)
-    }
-
-    var nextMilestone: CGFloat {
-        if count < 80 {
-            return 100
-        } else if count < 450 {
-            return 500
-        } else if count < 900 {
-            return 1000
-        } else if count < 4500 {
-            return 5000
-        } else if count < 9000 {
-            return 10000
-        } else if count < 45000 {
-            return 50000
-        } else if count < 90000 {
-            return 100000
-        } else if count < 450000 {
-            return 500000
-        } else if count < 900000 {
-            return 1000000
-        } else if count < 1500000 {
-            return 2000000
-        } else if count < 4500000 {
-            return 5000000
-        } else if count < 9500000 {
-            return 10000000
-        } else if count < 12500000 {
-            return 13000000
-        } else if count < 14500000 {
-            return 15000000
-        }
-
-        return 0
-    }
-}
 
 #Preview {
     let previewState = {

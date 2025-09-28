@@ -14,16 +14,6 @@
         }
       }
     },
-    "%@: %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@: %2$@"
-          }
-        }
-      }
-    },
     "Attorney General Grouping" : {
       "comment" : "Office Holder grouping description",
       "extractionState" : "extracted_with_value",
@@ -60,8 +50,17 @@
         }
       }
     },
+    "Calls on this topic" : {
+
+    },
+    "Contacts" : {
+      "comment" : "Contact Summary header text"
+    },
     "Dismiss" : {
       "comment" : "Standard Dismiss Button text"
+    },
+    "Donate today" : {
+      "comment" : "Donate today button title"
     },
     "Done" : {
       "comment" : "Standard Done Button text"
@@ -114,6 +113,9 @@
     "House Rep" : {
       "comment" : "Office Holder grouping description"
     },
+    "Keep 5 Calls free and up-to-date" : {
+      "comment" : "Support 5 Calls subtitle text"
+    },
     "Left Voicemail" : {
       "comment" : "Contact Log Outcome"
     },
@@ -128,6 +130,9 @@
     },
     "Monday" : {
       "comment" : "Day name"
+    },
+    "Nice work!" : {
+      "comment" : "Fallback issue done title markdown text"
     },
     "No thanks" : {
       "comment" : "Newslitter signup decline button text"
@@ -192,6 +197,12 @@
     "Share" : {
       "comment" : "Share toolbar button text"
     },
+    "Share this topic" : {
+      "comment" : "Issue Done share link text"
+    },
+    "Share this topic %@" : {
+      "comment" : "Accessibility label for share link in IssueDone"
+    },
     "Sign me up" : {
       "comment" : "Newsletter signup submit button text"
     },
@@ -213,6 +224,9 @@
     "Sunday" : {
       "comment" : "Day name"
     },
+    "Support 5 Calls" : {
+      "comment" : "Support 5 Calls header text"
+    },
     "The easy way to keep up with Congress" : {
       "comment" : "Newsletter signup header text"
     },
@@ -227,6 +241,9 @@
     },
     "Topics" : {
       "comment" : "Topics Tab title"
+    },
+    "Total calls" : {
+
     },
     "Tue" : {
       "comment" : "Abbreviated day name"
@@ -251,6 +268,9 @@
     },
     "Wednesday" : {
       "comment" : "Day name"
+    },
+    "You called on %@" : {
+      "comment" : "Issue done title string markdown text"
     }
   },
   "version" : "1.0"

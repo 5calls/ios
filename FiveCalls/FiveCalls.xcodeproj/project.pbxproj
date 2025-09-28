@@ -46,6 +46,7 @@
 		ADAA03E524B48B38006695DD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAA03E424B48B38006695DD /* Colors.xcassets */; };
 		ADB0976A1F8B212800B81661 /* RatingPromptCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB097691F8B212800B81661 /* RatingPromptCounter.swift */; };
 		ADCA0F502E89AF2E00556FB9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = ADCA0F4F2E89AF2E00556FB9 /* Localizable.xcstrings */; };
+		ADCA0F7D2E89CA7B00556FB9 /* CountingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCA0F7C2E89CA7B00556FB9 /* CountingView.swift */; };
 		B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9AA735873694488D24C260 /* QuartzCore.framework */; };
 		B50280541E46A91F00749ED7 /* AreaOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280531E46A91F00749ED7 /* AreaOffice.swift */; };
 		B50280561E47875500749ED7 /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280551E47875500749ED7 /* ContactLog.swift */; };
@@ -213,6 +214,7 @@
 		ADAA03E424B48B38006695DD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		ADB097691F8B212800B81661 /* RatingPromptCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPromptCounter.swift; sourceTree = "<group>"; };
 		ADCA0F4F2E89AF2E00556FB9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		ADCA0F7C2E89CA7B00556FB9 /* CountingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingView.swift; sourceTree = "<group>"; };
 		AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B50280531E46A91F00749ED7 /* AreaOffice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaOffice.swift; sourceTree = "<group>"; };
 		B50280551E47875500749ED7 /* ContactLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLog.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				D00E8B682CF056A70028F935 /* NewsletterSignup.swift */,
 				4F4868BA2AC3A3B400E1733A /* AboutListItem.swift */,
 				D0BFE9C62A7C9434007203A3 /* ContactCircle.swift */,
+				ADCA0F7C2E89CA7B00556FB9 /* CountingView.swift */,
 				D0002E162A9DB34D0098973F /* ContactListItem.swift */,
 				4F4868BC2AC3A3E900E1733A /* EmailComposerView.swift */,
 				D0480B1D2A4D493B00502818 /* IssueListItem.swift */,
@@ -900,6 +903,7 @@
 				D0DD4570229F11FF00AA94C1 /* AnalyticsManager.swift in Sources */,
 				B5E762591E40374600D63D62 /* FetchStatsOperation.swift in Sources */,
 				D0C465D32AD30BEE00CE3E65 /* IssueRouter.swift in Sources */,
+				ADCA0F7D2E89CA7B00556FB9 /* CountingView.swift in Sources */,
 				A02018D9204E761A006078D1 /* UserStats.swift in Sources */,
 				D03A20562AC53C54008BBA6E /* Middleware.swift in Sources */,
 				B50280561E47875500749ED7 /* ContactLog.swift in Sources */,
