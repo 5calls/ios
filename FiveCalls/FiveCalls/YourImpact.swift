@@ -86,7 +86,7 @@ struct YourImpact: View {
                     Button(action: {
                         self.dismiss()
                     }) {
-                        Text(R.string.localizableR.doneButtonTitle())
+                        Text("Done", comment: "Standard Done Button text")
                             .bold()
                     }
                 }

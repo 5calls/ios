@@ -58,7 +58,7 @@ struct ScheduleReminders: View {
                 .alert(Text(R.string.localizableR.notificationsDeniedAlertTitle()),
                        isPresented: $presentNotificationSettingsAlert,
                        actions: {
-                    Button(R.string.localizableR.dismissTitle()) { }
+                    Button(String(localized: "Dismiss", comment: "Standard Dismiss Button text")) { }
                     Button(R.string.localizableR.openSettingsTitle()) {
                         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                         UIApplication.shared.open(url)
@@ -82,7 +82,7 @@ struct ScheduleReminders: View {
                     Button(action: {
                         self.onDismiss()
                     }) {
-                        Text(R.string.localizableR.doneButtonTitle())
+                        Text("Done", comment: "Standard Done Button text")
                             .bold()
                     }
                 }

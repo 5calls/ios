@@ -48,7 +48,7 @@ struct LocationHeader: View {
                     .font(.footnote)
                 if isSplit {
                     Text(
-                        "\(Image(systemName: "exclamationmark.triangle")) \(location!.locationDisplay)"
+                        verbatim: "\(Image(systemName: "exclamationmark.triangle")) \(location!.locationDisplay)"
                     )
                         .font(.system(.title3))
                         .fontWeight(.medium)

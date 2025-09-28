@@ -126,7 +126,7 @@ struct InboxView: View {
                 .scrollIndicators(.hidden)
             }
         }.alert(R.string.localizableR.inboxContactAlert(), isPresented: $showContactAlert) {
-            Button(R.string.localizableR.okButtonTitle(), role: .cancel) { }
+            Button(String(localized: "OK", comment: "Standard OK Button text"), role: .cancel) { }
         }
         .sheet(isPresented: $detailPresented, onDismiss: {
                 store.dispatch(action: .SelectMessage(nil))

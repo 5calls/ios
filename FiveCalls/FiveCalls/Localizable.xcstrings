@@ -1,7 +1,44 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
 
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "Dismiss" : {
+      "comment" : "Standard Dismiss Button text"
+    },
+    "Done" : {
+      "comment" : "Standard Done Button text"
+    },
+    "OK" : {
+      "comment" : "Standard OK Button text"
+    },
+    "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps." : {
+
+    }
   },
   "version" : "1.0"
 }

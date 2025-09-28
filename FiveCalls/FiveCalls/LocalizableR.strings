@@ -7,13 +7,9 @@
 */
 
 "i-just-called-my-rep"                = "I just called my rep to %@ — you should too: https://5calls.org/issue/%@";
-"ok-button-title"                     = "OK";
-"done-button-title"                   = "Done";
-"cancel-button-title"                 = "Cancel";
 "location-permission-denied-title"    = "Location permission denied.";
 "location-permission-denied-message"  = "To use Location please change the permissions in the Settings app and try again.";
 "open-settings-title"                 = "Open Settings";
-"dismiss-title"                       = "Dismiss";
 "whats-important-title"               = "What's important to you?";
 "call-your-reps"                      = "Call your representatives";
 "split-district-title"                = "Split Congressional District";

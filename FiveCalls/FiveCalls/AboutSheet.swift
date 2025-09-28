@@ -55,7 +55,7 @@ struct AboutSheet: View {
                     .alert(isPresented: $showEmailComposerAlert) {
                         Alert(title: Text(R.string.localizableR.cantSendEmailTitle()),
                               message: Text(R.string.localizableR.cantSendEmailMessage()),
-                              dismissButton: .default(Text(R.string.localizableR.dismissTitle())))
+                              dismissButton: .default(Text("Dismiss", comment: "Standard Dismiss Button text")))
                     }
                     AboutListItem(title: R.string.localizableR.aboutItemShowWelcome(),
                                   type: .action({
@@ -155,7 +155,7 @@ struct AboutSheet: View {
                     Button(action: {
                         self.dismiss()
                     }) {
-                        Text(R.string.localizableR.doneButtonTitle())
+                        Text("Done", comment: "Standard Done Button text")
                             .bold()
                     }
                 }
