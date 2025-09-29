@@ -59,6 +59,17 @@
     "Call %@" : {
       "comment" : "Sorted list of Representative offices"
     },
+    "Call %@ %@" : {
+      "comment" : "Call phone numbers accessibility label\nCall phone numbers text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Call %1$@ %2$@"
+          }
+        }
+      }
+    },
     "Calling is the most effective way to influence your representative." : {
       "comment" : "Welcome section 2 message"
     },
@@ -67,6 +78,26 @@
     },
     "Contacts" : {
       "comment" : "Contact Summary header text"
+    },
+    "Copied\n%@!" : {
+      "comment" : "Copied phone number message"
+    },
+    "Copied phone number" : {
+      "comment" : "Copied phone number accessibility label"
+    },
+    "Copy" : {
+      "comment" : "Copy phone number short text"
+    },
+    "Copy %@ %@" : {
+      "comment" : "Copy phone numbers accessibility label\nCopy phone numbers text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Copy %1$@ %2$@"
+          }
+        }
+      }
     },
     "Detect my location" : {
       "comment" : "LocationSheet 'Detect my location' text\nLocationSheet detect my location accessibility label"
@@ -79,6 +110,9 @@
     },
     "Done" : {
       "comment" : "Standard Done Button text"
+    },
+    "Double tap to call" : {
+      "comment" : "Call phone numbers accessibility hint"
     },
     "Enter a location" : {
       "comment" : "LocationSheet prompt"
@@ -328,6 +362,9 @@
     },
     "Total calls" : {
 
+    },
+    "Triple tap to copy" : {
+      "comment" : "Copy phone number accissibility hint"
     },
     "Tue" : {
       "comment" : "Abbreviated day name"

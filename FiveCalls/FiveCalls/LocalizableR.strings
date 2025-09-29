@@ -91,14 +91,14 @@
 //"call-areas"                          = "Call %@";
 
 // issue contact detail screen
-"a11y-phone-call-copy-hint"           = "Double tap to call, triple tap to copy";
-"a11y-phone-call-hint"                = "Double tap to call";
-"a11y-phone-copy-hint"                = "Triple tap to copy";
-"a11y-copied-phone-number"            = "Copied phone number";
-"a11y-office-call-phone-number"       = "Call %@ %@";
-"a11y-office-copy-phone-number"       = "Copy %@ %@";
-"copied-phone"                        = "Copied\n%@!";
-"copy"                                = "Copy";
+//"a11y-phone-call-copy-hint"           = "Double tap to call, triple tap to copy";
+//"a11y-phone-call-hint"                = "Double tap to call";
+//"a11y-phone-copy-hint"                = "Triple tap to copy";
+//"a11y-copied-phone-number"            = "Copied phone number";
+//"a11y-office-call-phone-number"       = "Call %@ %@";
+//"a11y-office-copy-phone-number"       = "Copy %@ %@";
+//"copied-phone"                        = "Copied\n%@!";
+//"copy"                                = "Copy";
 
 // location
 //"your-location-is"                    = "Your location is:";
