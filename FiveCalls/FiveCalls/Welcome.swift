@@ -17,12 +17,15 @@ struct Welcome: View {
     var onContinue: (() -> Void)?
 
     var subMessage: String {
-        guard store.state.globalCallCount > 0 else {
+        guard store.state.globalCallCount > 0,
+        let numberOfCalls = StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls
+        else {
             return ""
         }
 
-        return String(format: R.string.localizableR.welcomeSection3Calls(
-            StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls)
+        return String(
+            localized: "Together we've made\n\(numberOfCalls) calls",
+            comment: "Welcome number of calls display text"
         )
     }
 
@@ -45,9 +48,12 @@ struct Welcome: View {
                         .font(.title)
                         .accessibilityHidden(true)
                     VStack(alignment: .leading) {
-                        Text(R.string.localizableR.welcomeSection1Title())
+                        Text("Make your voice heard", comment: "Welcome section 1 title")
                             .fontWeight(.heavy)
-                        Text(R.string.localizableR.welcomeSection1Message())
+                        Text(
+                            "Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can.",
+                            comment: "Welcome section 1 message"
+                        )
                     }
                     .accessibilityElement(children: .combine)
                 }
@@ -57,9 +63,15 @@ struct Welcome: View {
                         .font(.title)
                         .accessibilityHidden(true)
                     VStack(alignment: .leading) {
-                        Text(R.string.localizableR.welcomeSection2Title())
+                        Text(
+                            "Spend 5 minutes, make 5 calls",
+                            comment: "Welcome section 2 title"
+                        )
                             .fontWeight(.heavy)
-                        Text(R.string.localizableR.welcomeSection2Message())
+                        Text(
+                            "Calling is the most effective way to influence your representative.",
+                            comment: "Welcome section 2 message"
+                        )
                     }
                     .accessibilityElement(children: .combine)
                 }
@@ -81,7 +93,7 @@ struct Welcome: View {
                     onContinue?()
                     dismiss()
                 }) {
-                    Text(R.string.localizableR.welcomeButtonTitle())
+                    Text("Get Started", comment: "Welcome button title")
                         .foregroundColor(.white)
                         .padding()
                         .frame(maxWidth: .infinity)
