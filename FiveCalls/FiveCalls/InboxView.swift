@@ -45,7 +45,7 @@ struct InboxView: View {
                             .font(.title)
                             .foregroundColor(.secondary)
                             .padding(.trailing, 4)
-                        Text(R.string.localizableR.inboxEmptyState())
+                        Text("Set your location\rto see your reps", comment: "Inbox no contacts suggestion")
                             .font(.title2)
                             .fontWeight(.medium)
                             .lineLimit(2)
@@ -57,7 +57,7 @@ struct InboxView: View {
             } else {
                 ScrollView {
                     HStack {
-                        Text(R.string.localizableR.inboxRepsHeader())
+                        Text("Your National Reps", comment: "Inbox reps header")
                             .font(.body)
                             .fontWeight(.bold)
                             .accessibilityAddTraits(.isHeader)
@@ -86,7 +86,7 @@ struct InboxView: View {
 
                     if false { // remove this until we can update it regularly
                         HStack {
-                            Text(R.string.localizableR.inboxVotesHeader())
+                            Text("Recent messages", comment: "Inbox messages header")
                                 .font(.body)
                                 .fontWeight(.bold)
                                 .accessibilityAddTraits(.isHeader)
@@ -108,7 +108,10 @@ struct InboxView: View {
                                         }
                                     }
                                 }
-                                Text(R.string.localizableR.inboxPushDetail())
+                                Text(
+                                    "Get notified how your rep votes on your topics,\r1-2 notifications per month",
+                                    comment: "Inbox push notifications prompt"
+                                )
                                     .font(.caption)
                                     .fontWeight(.medium)
                                     .multilineTextAlignment(.center)
@@ -136,7 +139,13 @@ struct InboxView: View {
                 }.padding(.horizontal, 16)
                 .scrollIndicators(.hidden)
             }
-        }.alert(R.string.localizableR.inboxContactAlert(), isPresented: $showContactAlert) {
+        }.alert(
+            String(
+                localized: "Select an issue on the topics tab to show relevant reps and phone numbers",
+                comment: "Inbox Alert title"
+            ),
+            isPresented: $showContactAlert
+        ) {
             Button(String(localized: "OK", comment: "Standard OK Button text"), role: .cancel) { }
         }
         .sheet(isPresented: $detailPresented, onDismiss: {

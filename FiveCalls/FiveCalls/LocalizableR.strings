@@ -222,13 +222,13 @@
 //"tab-reps" = "Reps";
 
 // inbox
-"inbox-empty-state" = "Set your location\rto see your reps";
-"inbox-reps-header" = "Your National Reps";
-"inbox-votes-header" = "Recent messages";
+//"inbox-empty-state" = "Set your location\rto see your reps";
+//"inbox-reps-header" = "Your National Reps";
+//"inbox-votes-header" = "Recent messages";
 //"inbox-push-button" = "Send me important votes";
-"inbox-push-detail" = "Get notified how your rep votes on your topics,\r1-2 notifications per month";
-"inbox-detail-readmore" = "Read more →";
-"inbox-contact-alert" = "Select an issue on the topics tab to show relevant reps and phone numbers";
+//"inbox-push-detail" = "Get notified how your rep votes on your topics,\r1-2 notifications per month";
+//"inbox-detail-readmore" = "Read more →";
+//"inbox-contact-alert" = "Select an issue on the topics tab to show relevant reps and phone numbers";
 
 // Newsletter
 //"newsletter-header" = "The easy way to keep up with Congress";

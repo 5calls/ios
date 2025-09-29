@@ -73,7 +73,13 @@ struct InboxDetail: View {
             Text(message.description)
                 .padding(.bottom, 4)
             if let moreInfoURL =  message.moreInfoURL {
-                Link(R.string.localizableR.inboxDetailReadmore(), destination: moreInfoURL)
+                Link(
+                    String(
+                        localized: "Read more →",
+                        comment: "Inbox detail link text"
+                    ),
+                    destination: moreInfoURL
+                )
                     .fontWeight(.medium)
             }
             Spacer()

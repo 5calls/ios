@@ -92,6 +92,9 @@
     "Friday" : {
       "comment" : "Day name"
     },
+    "Get notified how your rep votes on your topics,\r1-2 notifications per month" : {
+      "comment" : "Inbox push notifications prompt"
+    },
     "Get Started" : {
       "comment" : "Welcome button title"
     },
@@ -176,6 +179,12 @@
     "Or" : {
       "comment" : "LocationSheet 'Or' text"
     },
+    "Read more →" : {
+      "comment" : "Inbox detail link text"
+    },
+    "Recent messages" : {
+      "comment" : "Inbox messages header"
+    },
     "Relevant representatives for this issue" : {
       "comment" : "Issue Detail header for reps list"
     },
@@ -233,6 +242,9 @@
     "See your script" : {
       "comment" : "navigation link button to see the script"
     },
+    "Select an issue on the topics tab to show relevant reps and phone numbers" : {
+      "comment" : "Inbox Alert title"
+    },
     "Senator" : {
       "comment" : "Office Holder title"
     },
@@ -244,6 +256,9 @@
     },
     "Set your location" : {
       "comment" : "IssueDetail button prompt to set location\nIssueDetail prompt to set location"
+    },
+    "Set your location\rto see your reps" : {
+      "comment" : "Inbox no contacts suggestion"
     },
     "Set your location to find your representatives" : {
       "comment" : "UnsetLocationView Accessibility Label\nUnsetLocationView Title Text"
@@ -358,6 +373,9 @@
     },
     "Your location is:" : {
       "comment" : "Location View Title Text"
+    },
+    "Your National Reps" : {
+      "comment" : "Inbox reps header"
     }
   },
   "version" : "1.0"
