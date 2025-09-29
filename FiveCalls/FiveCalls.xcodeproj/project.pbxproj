@@ -130,7 +130,6 @@
 		D0EB04E02C1759C500AE38F2 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB04DF2C1759C500AE38F2 /* InboxRouter.swift */; };
 		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
-		E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E887304D2AF9E1B60053837B /* RswiftLibrary */; };
 		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 /* End PBXBuildFile section */
 
@@ -316,7 +315,6 @@
 			files = (
 				9CC7D2DC2456462200D96A5B /* WebKit.framework in Frameworks */,
 				4F07B2382B45E5ED00C575DF /* AcknowList in Frameworks */,
-				E887304E2AF9E1B60053837B /* RswiftLibrary in Frameworks */,
 				D05745852A53E34300A8534A /* PlausibleSwift in Frameworks */,
 				D058465D2E592ACB00C7ED4C /* MarkdownUI in Frameworks */,
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
@@ -666,14 +664,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				E88730502AF9E1ED0053837B /* PBXTargetDependency */,
 				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
 			);
 			name = FiveCalls;
 			packageProductDependencies = (
 				D0CFF332284A835F0082693E /* OneSignal */,
 				D05745842A53E34300A8534A /* PlausibleSwift */,
-				E887304D2AF9E1B60053837B /* RswiftLibrary */,
 				4F07B2372B45E5ED00C575DF /* AcknowList */,
 				D058465C2E592ACB00C7ED4C /* MarkdownUI */,
 			);
@@ -784,7 +780,6 @@
 			packageReferences = (
 				D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 				D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */,
-				E887304C2AF9E1B60053837B /* XCRemoteSwiftPackageReference "R" */,
 				4F07B2362B45E5ED00C575DF /* XCRemoteSwiftPackageReference "AcknowList" */,
 				D058465B2E592ACB00C7ED4C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
@@ -987,10 +982,6 @@
 			isa = PBXTargetDependency;
 			target = D0BA59A71F9546510069DA58 /* NotificationsService */;
 			targetProxy = D0BA59AD1F9546510069DA58 /* PBXContainerItemProxy */;
-		};
-		E88730502AF9E1ED0053837B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = E887304F2AF9E1ED0053837B /* RswiftGenerateInternalResources */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1430,14 +1421,6 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		E887304C2AF9E1B60053837B /* XCRemoteSwiftPackageReference "R" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mac-cain13/R.swift/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.4.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1465,15 +1448,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
 			productName = OneSignalExtension;
-		};
-		E887304D2AF9E1B60053837B /* RswiftLibrary */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E887304C2AF9E1B60053837B /* XCRemoteSwiftPackageReference "R" */;
-			productName = RswiftLibrary;
-		};
-		E887304F2AF9E1ED0053837B /* RswiftGenerateInternalResources */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "plugin:RswiftGenerateInternalResources";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

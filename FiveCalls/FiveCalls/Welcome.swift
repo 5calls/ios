@@ -36,11 +36,12 @@ struct Welcome: View {
     var body: some View {
         ScrollView {
             Grid(verticalSpacing: 30) {
-                Image(decorative: R.image.fivecallsLogotype)
+                Image(.fivecallsLogotype)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 292)
                     .padding(.vertical, 24)
+                    .accessibilityHidden(true)
                 GridRow() {
                     Image(systemName: "phone.badge.waveform")
                         .symbolRenderingMode(.palette)

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RswiftResources
 
 struct Contact : Decodable, Identifiable {
     let id: String

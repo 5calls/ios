@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreLocation
-import RswiftResources
 
 class UserLocation {
     enum LocationType: String {

@@ -8,7 +8,6 @@
 
 import UserNotifications
 import UIKit
-import RswiftResources
 
 extension UNMutableNotificationContent {
     static func notificationContent() -> UNMutableNotificationContent {
