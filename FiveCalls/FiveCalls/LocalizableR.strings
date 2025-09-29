@@ -164,8 +164,8 @@
 "about-item-share"                    = "Share with Others";
 "about-item-rate"                     = "Please Rate 5 Calls";
 "about-item-open-source"              = "Open Source Libraries";
-"about-webview-title-why-call"        = "Why Calling Works";
-"about-webview-title-who-we-are"      = "Who Made 5 Calls";
+//"about-webview-title-why-call"        = "Why Calling Works";
+//"about-webview-title-who-we-are"      = "Who Made 5 Calls";
 "about-acknowledgements-title"        = "Open Source";
 "about-callingGroup-header"           = "Calling Group";
 "about-callingGroup-placeholder"      = "Enter your calling group name";

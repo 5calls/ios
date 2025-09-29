@@ -477,6 +477,12 @@
     "Which days of the week?" : {
       "comment" : "ScheduledReminderds day label"
     },
+    "Who Made 5 Calls" : {
+      "comment" : "Navigation title for who we are webview"
+    },
+    "Why Calling Works" : {
+      "comment" : "Navigation title for why call webview"
+    },
     "Yes, notify me" : {
       "comment" : "IssueDone Alert subscribe to push notifications"
     },
