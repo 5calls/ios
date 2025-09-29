@@ -16,7 +16,7 @@ enum AboutListItemType {
 }
 
 struct AboutListItem: View {
-    var title: String
+    var title: LocalizedStringResource
     var type: AboutListItemType
 
     @ViewBuilder

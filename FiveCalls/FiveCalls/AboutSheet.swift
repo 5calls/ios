@@ -33,45 +33,77 @@ struct AboutSheet: View {
         NavigationStack {
             List {
                 Section {
-                    AboutListItem(title: R.string.localizableR.aboutItemWhyCall(),
-                                  type: .action({
-                        openSocialLink("https://5calls.org/why-calling-works/")
-                    }))
-                    AboutListItem(title: R.string.localizableR.aboutItemWhoWeAre(),
-                                  type: .action({
-                        openSocialLink("https://5calls.org/about-us/")
-                    }))
-                    AboutListItem(title: R.string.localizableR.aboutItemFeedback(),
-                                  type: .action({
-                        if EmailComposerView.canSendEmail() {
-                            showEmailComposer = true
-                        } else {
-                            showEmailComposerAlert = true
-                        }
-                    }))
+                    AboutListItem(
+                        title: LocalizedStringResource(
+                            "Why Calling Works",
+                            comment: "AboutListItem title"
+                        ),
+                        type: .action({
+                            openSocialLink("https://5calls.org/why-calling-works/")
+                        })
+                    )
+                    AboutListItem(
+                        title: LocalizedStringResource(
+                            "Who Made 5 Calls?",
+                            comment: "AboutListItem title"
+                        ),
+                        type: .action({
+                            openSocialLink("https://5calls.org/about-us/")
+                        })
+                    )
+                    AboutListItem(
+                        title: LocalizedStringResource(
+                            "Feedback",
+                            comment: "AboutListItem title"
+                        ),
+                        type: .action({
+                            if EmailComposerView.canSendEmail() {
+                                showEmailComposer = true
+                            } else {
+                                showEmailComposerAlert = true
+                            }
+                        })
+                    )
                     .sheet(isPresented: $showEmailComposer){
                         EmailComposerView() { _ in }
                     }
                     .alert(isPresented: $showEmailComposerAlert) {
-                        Alert(title: Text(R.string.localizableR.cantSendEmailTitle()),
-                              message: Text(R.string.localizableR.cantSendEmailMessage()),
-                              dismissButton: .default(Text("Dismiss", comment: "Standard Dismiss Button text")))
+                        Alert(
+                            title: Text("Can't send mail", comment: "AboutSheet alert title"),
+                            message: Text(
+                                "Please configure an e-mail address in the Settings app",
+                                comment: "About sheet alert body"
+                            ),
+                            dismissButton: .default(Text("Dismiss", comment: "Standard Dismiss Button text"))
+                        )
                     }
-                    AboutListItem(title: R.string.localizableR.aboutItemShowWelcome(),
-                                  type: .action({
-                        showWelcome = true
-                    }))
+                    AboutListItem(
+                        title: LocalizedStringResource(
+                            "Show Welcome Screen",
+                            comment: "AboutListItem title"
+                        ),
+                        type: .action({
+                            showWelcome = true
+                        })
+                    )
                     .sheet(isPresented: $showWelcome, content: {
                         Welcome()
                     })
                 } header: {
-                    Text(R.string.localizableR.aboutSectionHeaderGeneral().uppercased())
+                    Text("General", comment: "About Section Header")
+                        .textCase(.uppercase)
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    TextField(R.string.localizableR.aboutCallingGroupPlaceholder(), text: $callingGroup)
+                    TextField(
+                        String(
+                            localized: "Enter your calling group name",
+                            comment: "AboutSheet calling group placeholder text"
+                        ),
+                        text: $callingGroup
+                    )
                         .onChange(of: callingGroup) { newValue in
                             let trimmed = newValue.trimmingCharacters(in: .whitespaces)
                             if trimmed != newValue {
@@ -80,55 +112,84 @@ struct AboutSheet: View {
                             UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
                         }
                 } header: {
-                    Text(R.string.localizableR.aboutCallingGroupHeader().uppercased())
+                    Text("Calling Group", comment: "AboutSheet Section Header")
+                        .textCase(.uppercase)
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
-                    Text(R.string.localizableR.aboutCallingGroupFooter())
+                    Text(
+                        "Set a calling group name to track calls with others",
+                        comment: "AboutSheet section footer"
+                    )
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    AboutListItem(title: "Instagram",
-                                  type: .action({
-                        openSocialLink("https://www.instagram.com/5calls")
-                    }))
-                    AboutListItem(title: "Bluesky",
-                                  type: .action({
-                        openSocialLink("https://bsky.app/profile/5calls.org")
-                    }))
-                    AboutListItem(title: "Threads",
-                                  type: .action({
-                        openSocialLink("https://www.threads.net/@5calls")
-                    }))
-                    AboutListItem(title: "Mastodon",
-                                  type: .action({
-                        openSocialLink("https://mastodon.social/@5calls")
-                    }))
+                    AboutListItem(
+                        title: "Instagram",
+                        type: .action({
+                            openSocialLink("https://www.instagram.com/5calls")
+                        })
+                    )
+                    AboutListItem(
+                        title: "Bluesky",
+                        type: .action({
+                            openSocialLink("https://bsky.app/profile/5calls.org")
+                        })
+                    )
+                    AboutListItem(
+                        title: "Threads",
+                        type: .action({
+                            openSocialLink("https://www.threads.net/@5calls")
+                        })
+                    )
+                    AboutListItem(
+                        title: "Mastodon",
+                        type: .action({
+                            openSocialLink("https://mastodon.social/@5calls")
+                        })
+                    )
                     if appUrl != nil {
-                        AboutListItem(title: R.string.localizableR.aboutItemShare(),
-                                      type: .url(appUrl!))
+                        AboutListItem(
+                            title: LocalizedStringResource(
+                                "Share with Others",
+                                comment: "AboutListItem title"
+                            ),
+                            type: .url(appUrl!)
+                        )
                     }
-                    AboutListItem(title: R.string.localizableR.aboutItemRate(),
-                                  type: .action({
-                        requestReview()
-                    }))
+                    AboutListItem(
+                        title: LocalizedStringResource(
+                            "Please Rate 5 Calls",
+                            comment: "AboutListItem title"
+                        ),
+                        type: .action({
+                            requestReview()
+                        })
+                    )
                 } header: {
-                    Text(R.string.localizableR.aboutSectionHeaderSocial().uppercased())
+                    Text("Follow us on your favorite platform", comment: "About section header")
+                        .textCase(.uppercase)
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 } footer: {
-                    Text(R.string.localizableR.aboutSectionFooterSocial())
+                    Text("Sharing and Rating helps others find 5 Calls", comment: "About section footer")
                         .font(.footnote)
                         .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
-                    AboutListItem(title: R.string.localizableR.aboutItemOpenSource(),
-                                  type: .acknowledgements)
+                    AboutListItem(
+                        title: LocalizedStringResource(
+                            "Open Source Libraries",
+                            comment: "AboutListItem title"
+                        ),
+                        type: .acknowledgements
+                    )
                 } header: {
-                    Text(R.string.localizableR.aboutSectionHeaderCredits().uppercased())
+                    Text("Credits", comment: "About section header")
+                        .textCase(.uppercase)
                 }
 
                 if let versionString {
@@ -144,7 +205,7 @@ struct AboutSheet: View {
                 }
             }
             .listStyle(.grouped)
-            .navigationTitle(R.string.localizableR.aboutTitle())
+            .navigationTitle(String(localized: "About", comment: "AboutSheet navigation title"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
