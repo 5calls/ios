@@ -23,6 +23,29 @@
         }
       }
     },
+    "%lld time" : {
+      "comment" : "Your impact call count pluralized",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld time"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld times"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "About" : {
       "comment" : "Dashboard menu item"
     },
@@ -193,7 +216,7 @@
       "comment" : "Support 5 Calls subtitle text"
     },
     "Left Voicemail" : {
-      "comment" : "Contact Log Outcome"
+      "comment" : "Contact Log Outcome\nImpactList item title"
     },
     "Legislator" : {
       "comment" : "Office Holder title"
@@ -205,7 +228,7 @@
       "comment" : "Error message when location permission is off"
     },
     "Made Contact" : {
-      "comment" : "Contact Log Outcome"
+      "comment" : "Contact Log Outcome\nImpactList item title"
     },
     "Make your voice heard" : {
       "comment" : "Welcome section 1 title"
@@ -219,8 +242,14 @@
     "Monday" : {
       "comment" : "Day name"
     },
+    "More details about this issue will appear here" : {
+      "comment" : "IssueSplitView caption"
+    },
     "More Issues" : {
       "comment" : "Issues List button text"
+    },
+    "My Impact" : {
+      "comment" : "YourImpact Navigation Title"
     },
     "Nice work!" : {
       "comment" : "Fallback issue done title markdown text\nIssueDone alert title"
@@ -330,6 +359,9 @@
     "Select an issue on the topics tab to show relevant reps and phone numbers" : {
       "comment" : "Inbox Alert title"
     },
+    "Select an issue to get started" : {
+      "comment" : "IssueSplitView title"
+    },
     "Select what time of day you'd like to be reminded to make calls:" : {
       "comment" : "Scheduled Reminders time label"
     },
@@ -390,6 +422,9 @@
     "Tap here to open 5 Calls and get started" : {
       "comment" : "ScheduledReminderNotification Alert body"
     },
+    "The 5 Calls community has contributed %@ calls!" : {
+      "comment" : "Community call count"
+    },
     "The easy way to keep up with Congress" : {
       "comment" : "Newsletter signup header text"
     },
@@ -445,7 +480,7 @@
       "comment" : "Welcome section 1 message"
     },
     "Unavailable" : {
-      "comment" : "Contact Log Outcome"
+      "comment" : "Contact Log Outcome\nImpactList item title"
     },
     "Unknown" : {
 
@@ -492,6 +527,18 @@
     "You called on %@" : {
       "comment" : "Issue done title string markdown text"
     },
+    "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:" : {
+      "comment" : "ImpactList message"
+    },
+    "Your current weekly call streak is %lld weeks in a row. You're on a roll!" : {
+      "comment" : "Weekly call streak multiples"
+    },
+    "Your current weekly call streak is 0." : {
+      "comment" : "Weekly streak for zero"
+    },
+    "Your current weekly call streak just started. Keep it going!" : {
+      "comment" : "Weekly call streak single"
+    },
     "Your Impact" : {
       "comment" : "Dashboard menu item"
     },
@@ -500,6 +547,29 @@
     },
     "Your National Reps" : {
       "comment" : "Inbox reps header"
+    },
+    "Your total impact is %lld calls." : {
+      "comment" : "Pluralized number of calls impact message",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Your total impact is %lld call."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Your total impact is %lld calls."
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

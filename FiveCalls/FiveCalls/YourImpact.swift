@@ -18,24 +18,30 @@ struct YourImpact: View {
         let weeklyStreakCount = self.userStats?.weeklyStreak ?? 0
         switch weeklyStreakCount {
         case 0:
-            return R.string.localizableR.yourWeeklyStreakZero(weeklyStreakCount)
+            return String(
+                localized: "Your current weekly call streak is 0.",
+                comment: "Weekly streak for zero"
+            )
         case 1:
-            return R.string.localizableR.yourWeeklyStreakSingle()
+            return String(
+                localized: "Your current weekly call streak just started. Keep it going!",
+                comment: "Weekly call streak single"
+            )
         default:
-            return R.string.localizableR.yourWeeklyStreakMultiple(weeklyStreakCount)
+            return String(
+                localized: "Your current weekly call streak is \(weeklyStreakCount) weeks in a row. You're on a roll!",
+                comment: "Weekly call streak multiples"
+            )
         }
     }
     
     var totalImpactMessage: String {
         let numberOfCalls = userStats?.totalCalls() ?? 0
-        switch numberOfCalls {
-        case 0:
-            return R.string.localizableR.yourImpactZero(numberOfCalls)
-        case 1:
-            return R.string.localizableR.yourImpactSingle(numberOfCalls)
-        default:
-            return R.string.localizableR.yourImpactMultiple(numberOfCalls)
-        }
+
+        return String(
+            localized: "Your total impact is \(numberOfCalls) calls.",
+            comment: "Pluralized number of calls impact message"
+        )
     }
     
     var showImpactList: Bool {
@@ -43,8 +49,11 @@ struct YourImpact: View {
     }
     
     var communityCallsMessage: String {
-        let statsVm = StatsViewModel(numberOfCalls: store.state.globalCallCount)
-        return R.string.localizableR.communityCalls(statsVm.formattedNumberOfCalls)
+        let callCount = StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls
+        return String(
+            localized: "The 5 Calls community has contributed \(callCount ?? "") calls!",
+            comment: "Community call count"
+        )
     }
             
     var body: some View {
@@ -60,11 +69,31 @@ struct YourImpact: View {
                 .accessibilityLabel(Text("\(weeklyStreakMessage) \(totalImpactMessage)"))
 
                 if showImpactList {
-                    Text(R.string.localizableR.impactListMessage())
-
-                    ImpactListItem(title: R.string.localizableR.madeContact(), count: userStats?.contact ?? 0)
-                    ImpactListItem(title: R.string.localizableR.leftVoicemail(), count: userStats?.voicemail ?? 0)
-                    ImpactListItem(title: R.string.localizableR.unavailable(), count: userStats?.unavailable ?? 0)
+                    Text(
+                        "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:",
+                        comment: "ImpactList message"
+                    )
+                    ImpactListItem(
+                        title: LocalizedStringResource(
+                            "Made Contact",
+                            comment: "ImpactList item title"
+                        ),
+                        count: userStats?.contact ?? 0
+                    )
+                    ImpactListItem(
+                        title: LocalizedStringResource(
+                            "Left Voicemail",
+                            comment: "ImpactList item title"
+                        ),
+                        count: userStats?.voicemail ?? 0
+                    )
+                    ImpactListItem(
+                        title: LocalizedStringResource(
+                            "Unavailable",
+                            comment: "ImpactList item title"
+                        ),
+                        count: userStats?.unavailable ?? 0
+                    )
                 }
                 Section {
 
@@ -75,7 +104,7 @@ struct YourImpact: View {
             }
             .padding(.vertical)
             .listStyle(.plain)
-            .navigationTitle(R.string.localizableR.yourImpactTitle())
+            .navigationTitle(String(localized: "My Impact", comment: "YourImpact Navigation Title"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
@@ -126,7 +155,7 @@ struct YourImpact_Previews: PreviewProvider {
 }
 
 struct ImpactListItem: View {
-    var title: String
+    var title: LocalizedStringResource
     var count: Int
     
     var body: some View {
@@ -142,7 +171,6 @@ struct ImpactListItem: View {
     }
     
     private func timesString(count: Int) -> String {
-        guard count != 1 else { return R.string.localizableR.calledSingle(count) }
-        return R.string.localizableR.calledMultiple(count)
+        String(localized: "\(count) time", comment: "Your impact call count pluralized")
     }
 }
