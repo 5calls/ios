@@ -72,29 +72,29 @@ struct AllIssuesViewModel: IssuesViewModel {
 struct ActiveIssuesViewModel: IssuesViewModel {
     private let activeIssues: [Issue]
     let issues: [Issue]
-
+    
     init(issues: [Issue]) {
         self.issues = issues
         activeIssues = issues.filter { $0.active }
     }
-
+    
     func numberOfSections() -> Int {
-        return 1
+        1
     }
-
+    
     func numberOfRowsInSection(section: Int) -> Int {
-        return activeIssues.count
+        activeIssues.count
     }
-
+    
     func hasNoData() -> Bool {
-        return activeIssues.count == 0
+        activeIssues.count == 0
     }
-
+    
     func issueForIndexPath(indexPath: IndexPath) -> Issue {
-        return activeIssues[indexPath.row]
+        activeIssues[indexPath.row]
     }
-
+    
     func titleForHeaderInSection(section: Int) -> String {
-        return R.string.localizableR.whatsImportantTitle()
+        String(localized: "What's important to you?", comment: "ActiveIssuesViewModel Section header")
     }
 }

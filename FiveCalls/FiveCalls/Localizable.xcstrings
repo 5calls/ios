@@ -17,6 +17,9 @@
         }
       }
     },
+    "About" : {
+      "comment" : "Dashboard menu item"
+    },
     "An error occured trying to find your location" : {
       "comment" : "Default location error message"
     },
@@ -120,6 +123,9 @@
     "Enter your email" : {
       "comment" : "Newsletter email placeholder text"
     },
+    "Fewer Issues" : {
+      "comment" : "Issues List button text"
+    },
     "Fri" : {
       "comment" : "Abbreviated day name"
     },
@@ -192,17 +198,26 @@
     "Make your voice heard" : {
       "comment" : "Welcome section 1 title"
     },
+    "Menu" : {
+      "comment" : "Dashboard menu accessibility label"
+    },
     "Mon" : {
       "comment" : "Abbreviated day name"
     },
     "Monday" : {
       "comment" : "Day name"
     },
+    "More Issues" : {
+      "comment" : "Issues List button text"
+    },
     "Nice work!" : {
       "comment" : "Fallback issue done title markdown text"
     },
     "No contacts" : {
       "comment" : "Issue list view list item text for no contacts"
+    },
+    "No issues found" : {
+      "comment" : "IssuesList no results title"
     },
     "No thanks" : {
       "comment" : "Newslitter signup decline button text"
@@ -222,6 +237,9 @@
     "Relevant representatives for this issue" : {
       "comment" : "Issue Detail header for reps list"
     },
+    "Reminders" : {
+      "comment" : "Dashboard menu item"
+    },
     "Rep." : {
       "comment" : "Office Holder title"
     },
@@ -233,6 +251,9 @@
     },
     "Saturday" : {
       "comment" : "Day name"
+    },
+    "Search all issues..." : {
+      "comment" : "SearchBar placeholder text"
     },
     "Search my location" : {
       "comment" : "LocationSheet search accessibility label"
@@ -366,6 +387,9 @@
     "Triple tap to copy" : {
       "comment" : "Copy phone number accissibility hint"
     },
+    "Try a different search term" : {
+      "comment" : "IssuesList no results message"
+    },
     "Tue" : {
       "comment" : "Abbreviated day name"
     },
@@ -405,8 +429,14 @@
     "Wednesday" : {
       "comment" : "Day name"
     },
+    "What's important to you?" : {
+      "comment" : "ActiveIssuesViewModel Section header\nDashboard title text"
+    },
     "You called on %@" : {
       "comment" : "Issue done title string markdown text"
+    },
+    "Your Impact" : {
+      "comment" : "Dashboard menu item"
     },
     "Your location is:" : {
       "comment" : "Location View Title Text"
