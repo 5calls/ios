@@ -141,6 +141,9 @@
     "Friday" : {
       "comment" : "Day name"
     },
+    "Get alerts before your reps vote on important issues? Usually 1-2 messages per month." : {
+      "comment" : "IssueDone Alert message"
+    },
     "Get notified how your rep votes on your topics,\r1-2 notifications per month" : {
       "comment" : "Inbox push notifications prompt"
     },
@@ -220,7 +223,7 @@
       "comment" : "Issues List button text"
     },
     "Nice work!" : {
-      "comment" : "Fallback issue done title markdown text"
+      "comment" : "Fallback issue done title markdown text\nIssueDone alert title"
     },
     "No contacts" : {
       "comment" : "Issue list view list item text for no contacts"
@@ -233,6 +236,9 @@
     },
     "No thanks" : {
       "comment" : "Newslitter signup decline button text"
+    },
+    "No, thanks" : {
+      "comment" : "IssueDone Alert decline push notifications"
     },
     "Notifications permissions denied." : {
       "comment" : "Notifications denied alert title"
@@ -470,6 +476,9 @@
     },
     "Which days of the week?" : {
       "comment" : "ScheduledReminderds day label"
+    },
+    "Yes, notify me" : {
+      "comment" : "IssueDone Alert subscribe to push notifications"
     },
     "You called on %@" : {
       "comment" : "Issue done title string markdown text"

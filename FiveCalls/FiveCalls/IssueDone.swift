@@ -167,7 +167,13 @@ struct IssueDone: View {
             
             // unlikely to occur at the same time as the rating prompt counter
             checkForNotifications()
-        }.alert(R.string.localizableR.notificationTitle(), isPresented: $showNotificationAlert) {
+        }.alert(
+            String(
+                localized: "Nice work!",
+                comment: "IssueDone alert title"
+            ),
+            isPresented: $showNotificationAlert
+        ) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
                 OneSignal.promptForPushNotifications(userResponse: { success in
@@ -176,16 +182,19 @@ struct IssueDone: View {
                     }
                 })
             } label: {
-                Text(R.string.localizableR.notificationImportant())
+                Text("Yes, notify me", comment: "IssueDone Alert subscribe to push notifications")
             }
             Button {
                 let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
                 UserDefaults.standard.set(Date(), forKey: key)
             } label: {
-                Text(R.string.localizableR.notificationNone())
+                Text("No, thanks", comment: "IssueDone Alert decline push notifications")
             }
         } message: {
-            Text(R.string.localizableR.notificationAsk())
+            Text(
+                "Get alerts before your reps vote on important issues? Usually 1-2 messages per month.",
+                comment: "IssueDone Alert message"
+            )
         }
 
     }

@@ -123,10 +123,10 @@
 //"outcomes.skip"                       = "Skip";
 
 // notifications
-"notification-title" = "Nice work!";
-"notification-ask" = "Get alerts before your reps vote on important issues? Usually 1-2 messages per month.";
-"notification-important" = "Yes, notify me";
-"notification-none" = "No, thanks";
+//"notification-title" = "Nice work!";
+//"notification-ask" = "Get alerts before your reps vote on important issues? Usually 1-2 messages per month.";
+//"notification-important" = "Yes, notify me";
+//"notification-none" = "No, thanks";
 //"notifications-denied-alert-title"    = "Notifications permissions denied.";
 //"notifications-denied-alert-body"     = "To use reminders please change notifications permissions in the Settings app and try again.";
 
