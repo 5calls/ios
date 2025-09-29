@@ -30,8 +30,8 @@
 "line-busy"                           = "Local Offices ▼";
 "choose-a-number"                     = "Select a Different Office";
 "uncategorized-issues"                = "Uncategorized Issues";
-"choose-issue-placeholder"            = "Select an issue to get started";
-"choose-issue-subheading"             = "More details about this issue will appear here";
+//"choose-issue-placeholder"            = "Select an issue to get started";
+//"choose-issue-subheading"             = "More details about this issue will appear here";
 
 // dashboard
 //"menu-name"                           = "Menu";
@@ -166,7 +166,7 @@
 "about-item-open-source"              = "Open Source Libraries";
 //"about-webview-title-why-call"        = "Why Calling Works";
 //"about-webview-title-who-we-are"      = "Who Made 5 Calls";
-"about-acknowledgements-title"        = "Open Source";
+//"about-acknowledgements-title"        = "Open Source";
 "about-callingGroup-header"           = "Calling Group";
 "about-callingGroup-placeholder"      = "Enter your calling group name";
 "about-callingGroup-footer"           = "Set a calling group name to track calls with others";

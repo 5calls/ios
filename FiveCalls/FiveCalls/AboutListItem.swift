@@ -56,7 +56,12 @@ struct AboutListItem: View {
                 ZStack {
                     NavigationLink {
                         AcknowListView()
-                            .navigationTitle(R.string.localizableR.aboutAcknowledgementsTitle())
+                            .navigationTitle(
+                                String(
+                                    localized: "Open Source",
+                                    comment: "AcknowListView navigation title"
+                                )
+                            )
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbarBackground(.visible)
                             .toolbarBackground(Color.fivecallsDarkBlue)

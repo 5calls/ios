@@ -30,13 +30,19 @@ struct IssueSplitView: View {
                             }
                     } else {
                         VStack(alignment: .leading) {
-                            Text(R.string.localizableR.chooseIssuePlaceholder())
-                                .font(.title2)
-                                .fontWeight(.medium)
-                                .foregroundColor(.secondary)
-                            Text(R.string.localizableR.chooseIssueSubheading())
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                            Text(
+                                "Select an issue to get started",
+                                comment: "IssueSplitView title"
+                            )
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                            Text(
+                                "More details about this issue will appear here",
+                                comment: "IssueSplitView caption"
+                            )
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                         }
                     }
                 }

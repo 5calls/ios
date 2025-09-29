@@ -249,6 +249,9 @@
     "Open Settings" : {
       "comment" : "Open Settings button title"
     },
+    "Open Source" : {
+      "comment" : "AcknowListView navigation title"
+    },
     "Or" : {
       "comment" : "LocationSheet 'Or' text"
     },
