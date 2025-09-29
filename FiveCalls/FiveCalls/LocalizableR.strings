@@ -9,7 +9,7 @@
 //"i-just-called-my-rep"                = "I just called my rep to %@ — you should too: https://5calls.org/issue/%@";
 "location-permission-denied-title"    = "Location permission denied.";
 "location-permission-denied-message"  = "To use Location please change the permissions in the Settings app and try again.";
-"open-settings-title"                 = "Open Settings";
+//"open-settings-title"                 = "Open Settings";
 //"whats-important-title"               = "What's important to you?";
 "call-your-reps"                      = "Call your representatives";
 "split-district-title"                = "Split Congressional District";
@@ -47,17 +47,17 @@
 //"search-no-results-message"           = "Try a different search term";
 
 // scheduled reminders
-"scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
-"scheduled-reminder-alert-title"      = "Time to Make Some Calls";
-"scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
-"scheduled-reminders-title"           = "Enable reminder";
-"scheduled-reminders-description"     = "Turn these on to get a quick local reminder to make your 5 calls.";
-"scheduled-reminders-time-label"      = "Select what time of day you'd like to be reminded to make calls:";
-"scheduled-reminders-day-label"       = "Which days of the week?";
-"scheduled-reminders-no-days-warning" = "No days selected yet";
-"scheduled-reminders-no-days-alert"   = "Please select days of the week";
-"scheduled-reminders-day-selected"    = " selected";
-"scheduled-reminders-day-not-selected"= " not selected";
+//"scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
+//"scheduled-reminder-alert-title"      = "Time to Make Some Calls";
+//"scheduled-reminder-alert-body"       = "Tap here to open 5 Calls and get started";
+//"scheduled-reminders-title"           = "Enable reminder";
+//"scheduled-reminders-description"     = "Turn these on to get a quick local reminder to make your 5 calls.";
+//"scheduled-reminders-time-label"      = "Select what time of day you'd like to be reminded to make calls:";
+//"scheduled-reminders-day-label"       = "Which days of the week?";
+//"scheduled-reminders-no-days-warning" = "No days selected yet";
+//"scheduled-reminders-no-days-alert"   = "Please select days of the week";
+//"scheduled-reminders-day-selected"    = " selected";
+//"scheduled-reminders-day-not-selected"= " not selected";
 
 //// office holder descriptions
 //"us-house"                            = "US House Rep";
@@ -127,8 +127,8 @@
 "notification-ask" = "Get alerts before your reps vote on important issues? Usually 1-2 messages per month.";
 "notification-important" = "Yes, notify me";
 "notification-none" = "No, thanks";
-"notifications-denied-alert-title"    = "Notifications permissions denied.";
-"notifications-denied-alert-body"     = "To use reminders please change notifications permissions in the Settings app and try again.";
+//"notifications-denied-alert-title"    = "Notifications permissions denied.";
+//"notifications-denied-alert-body"     = "To use reminders please change notifications permissions in the Settings app and try again.";
 
 // profile
 //"sign-in" = "Sign In";

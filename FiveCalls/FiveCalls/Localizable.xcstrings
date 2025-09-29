@@ -4,6 +4,12 @@
     "" : {
 
     },
+    " not selected" : {
+      "comment" : "MultipleDayPicker AccessibilityLabel text"
+    },
+    " selected" : {
+      "comment" : "MultipleDayPicker AccessibiltyLabel text"
+    },
     "\"Your location is: %@" : {
       "comment" : "LocationView Accessibility Label"
     },
@@ -117,6 +123,9 @@
     "Double tap to call" : {
       "comment" : "Call phone numbers accessibility hint"
     },
+    "Enable reminder" : {
+      "comment" : "Accessibility label for the switch to enable reminders\nScheduleReminders navigation title"
+    },
     "Enter a location" : {
       "comment" : "LocationSheet prompt"
     },
@@ -216,17 +225,29 @@
     "No contacts" : {
       "comment" : "Issue list view list item text for no contacts"
     },
+    "No days selected yet" : {
+      "comment" : "ScheduledReminders no days warning"
+    },
     "No issues found" : {
       "comment" : "IssuesList no results title"
     },
     "No thanks" : {
       "comment" : "Newslitter signup decline button text"
     },
+    "Notifications permissions denied." : {
+      "comment" : "Notifications denied alert title"
+    },
     "OK" : {
       "comment" : "Standard OK Button text"
     },
+    "Open Settings" : {
+      "comment" : "Open Settings button title"
+    },
     "Or" : {
       "comment" : "LocationSheet 'Or' text"
+    },
+    "Please select days of the week" : {
+      "comment" : "Scheduled reminders no days selected alert title"
     },
     "Read more →" : {
       "comment" : "Inbox detail link text"
@@ -300,6 +321,9 @@
     "Select an issue on the topics tab to show relevant reps and phone numbers" : {
       "comment" : "Inbox Alert title"
     },
+    "Select what time of day you'd like to be reminded to make calls:" : {
+      "comment" : "Scheduled Reminders time label"
+    },
     "Senator" : {
       "comment" : "Office Holder title"
     },
@@ -354,6 +378,9 @@
     "Support 5 Calls" : {
       "comment" : "Support 5 Calls header text"
     },
+    "Tap here to open 5 Calls and get started" : {
+      "comment" : "ScheduledReminderNotification Alert body"
+    },
     "The easy way to keep up with Congress" : {
       "comment" : "Newsletter signup header text"
     },
@@ -375,6 +402,12 @@
     "Thursday" : {
       "comment" : "Day name"
     },
+    "Time to Make Some Calls" : {
+      "comment" : "ScheduledReminderNotification Alert title"
+    },
+    "To use reminders please change notifications permissions in the Settings app and try again." : {
+      "comment" : "Notifications denied alert message"
+    },
     "Together we've made\n%@ calls" : {
       "comment" : "Welcome number of calls display text"
     },
@@ -395,6 +428,9 @@
     },
     "Tuesday" : {
       "comment" : "Day name"
+    },
+    "Turn these on to get a quick local reminder to make your 5 calls." : {
+      "comment" : "RemindersDisabledView text"
     },
     "Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can." : {
       "comment" : "Welcome section 1 message"
@@ -431,6 +467,9 @@
     },
     "What's important to you?" : {
       "comment" : "ActiveIssuesViewModel Section header\nDashboard title text"
+    },
+    "Which days of the week?" : {
+      "comment" : "ScheduledReminderds day label"
     },
     "You called on %@" : {
       "comment" : "Issue done title string markdown text"

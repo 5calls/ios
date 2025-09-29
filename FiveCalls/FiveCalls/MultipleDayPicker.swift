@@ -71,7 +71,7 @@ struct MultipleDayPicker: View {
 
     var borderColor: Color { selectedDayIndices.isEmpty ? Color.fivecallsRedText : Color.fivecallsDarkBlue
     }
-    
+
     var body: some View {
         DaysFlowLayout(spacing: -1) {
             ForEach(days, id: \.self) { day in
@@ -79,26 +79,34 @@ struct MultipleDayPicker: View {
                     .background(isIndexSelected(day.index) ? Color.fivecallsDarkBlue : Color(.systemBackground))
                     .foregroundColor(isIndexSelected(day.index) ? Color.fivecallsLightBlue : Color.fivecallsMediumDarkGray)
                     .border(borderColor)
-                    .accessibilityLabel(Text("\(String(day.name)) \(isIndexSelected(day.index) ? R.string.localizableR.scheduledRemindersDaySelected() : R.string.localizableR.scheduledRemindersDayNotSelected())"))
+                    .accessibilityLabel(Text(accessibilityLabelText(day: day)))
                     .accessibilityAddTraits(.isButton)
-                .onTapGesture {
-                    if isIndexSelected(day.index) {
-                        selectedDayIndices.removeAll(where: {$0 == day.index})
-                    } else {
-                        selectedDayIndices.append(day.index)
+                    .onTapGesture {
+                        if isIndexSelected(day.index) {
+                            selectedDayIndices.removeAll(where: {$0 == day.index})
+                        } else {
+                            selectedDayIndices.append(day.index)
+                        }
                     }
-                }
             }
-            }
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .strokeBorder(borderColor, lineWidth: 1)
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 4))
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: 4)
+                .strokeBorder(borderColor, lineWidth: 1)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 4))
     }
-    
+
     private func isIndexSelected(_ index: Int) -> Bool {
         return selectedDayIndices.contains(index)
+    }
+
+    private func accessibilityLabelText(day: Day) -> String {
+        let name = day.name
+        let selected = String(localized: " selected", comment: "MultipleDayPicker AccessibiltyLabel text")
+        let notSelected = String(localized: " not selected", comment: "MultipleDayPicker AccessibilityLabel text")
+
+        return isIndexSelected(day.index) ? "\(name)\(selected)" : "\(name)\(notSelected)"
     }
 }
 
