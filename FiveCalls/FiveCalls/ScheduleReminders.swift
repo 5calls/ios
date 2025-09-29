@@ -242,7 +242,7 @@ struct RemindersDisabledView: View {
                 "Turn these on to get a quick local reminder to make your 5 calls.",
                 comment: "RemindersDisabledView text"
             )
-                .foregroundColor(Color(R.color.fivecallsDarkGray()!))
+                .foregroundColor(Color(.fivecallsDarkGray))
 
                 .multilineTextAlignment(.center)
                 .opacity(remindersEnabled ? 0 : 1)
