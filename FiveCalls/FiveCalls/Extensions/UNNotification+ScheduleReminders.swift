@@ -8,13 +8,18 @@
 
 import UserNotifications
 import UIKit
-import RswiftResources
 
 extension UNMutableNotificationContent {
     static func notificationContent() -> UNMutableNotificationContent {
         let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = R.string.localizable.scheduledReminderAlertTitle()
-        notificationContent.body = R.string.localizable.scheduledReminderAlertBody()
+        notificationContent.title = String(
+            localized: "Time to Make Some Calls",
+            comment: "ScheduledReminderNotification Alert title"
+        )
+        notificationContent.body = String(
+            localized: "Tap here to open 5 Calls and get started",
+            comment: "ScheduledReminderNotification Alert body"
+        )
         notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
         return notificationContent
     }

@@ -16,7 +16,7 @@ enum AboutListItemType {
 }
 
 struct AboutListItem: View {
-    var title: String
+    var title: LocalizedStringResource
     var type: AboutListItemType
 
     @ViewBuilder
@@ -56,7 +56,12 @@ struct AboutListItem: View {
                 ZStack {
                     NavigationLink {
                         AcknowListView()
-                            .navigationTitle(R.string.localizable.aboutAcknowledgementsTitle())
+                            .navigationTitle(
+                                String(
+                                    localized: "Open Source",
+                                    comment: "AcknowListView navigation title"
+                                )
+                            )
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbarBackground(.visible)
                             .toolbarBackground(Color.fivecallsDarkBlue)

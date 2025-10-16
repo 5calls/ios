@@ -15,13 +15,55 @@ struct Day: Hashable {
 }
 
 let days = [
-    Day(index: 1, abbr: R.string.localizable.dayPickerSundayAbbr(), name: R.string.localizable.dayPickerSunday()),
-    Day(index: 2, abbr: R.string.localizable.dayPickerMondayAbbr(), name: R.string.localizable.dayPickerMonday()),
-    Day(index: 3, abbr: R.string.localizable.dayPickerTuesdayAbbr(), name: R.string.localizable.dayPickerTuesday()),
-    Day(index: 4, abbr: R.string.localizable.dayPickerWednesdayAbbr(), name: R.string.localizable.dayPickerWednesday()),
-    Day(index: 5, abbr: R.string.localizable.dayPickerThursdayAbbr(), name: R.string.localizable.dayPickerThursday()),
-    Day(index: 6, abbr: R.string.localizable.dayPickerFridayAbbr(), name: R.string.localizable.dayPickerFriday()),
-    Day(index: 7, abbr: R.string.localizable.dayPickerSaturdayAbbr(), name: R.string.localizable.dayPickerSaturday())
+    Day(index: 1, abbr: String(
+        localized: "Sun",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Sunday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Mon",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Monday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Tue",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Tuesday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Wed",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Wednesday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Thu",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Thursday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Fri",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Friday",
+        comment: "Day name"
+    )),
+    Day(index: 1, abbr: String(
+        localized: "Sat",
+        comment: "Abbreviated day name"
+    ), name: String(
+        localized: "Saturday",
+        comment: "Day name"
+    )),
 ]
 
 struct MultipleDayPicker: View {
@@ -29,7 +71,7 @@ struct MultipleDayPicker: View {
 
     var borderColor: Color { selectedDayIndices.isEmpty ? Color.fivecallsRedText : Color.fivecallsDarkBlue
     }
-    
+
     var body: some View {
         DaysFlowLayout(spacing: -1) {
             ForEach(days, id: \.self) { day in
@@ -37,26 +79,34 @@ struct MultipleDayPicker: View {
                     .background(isIndexSelected(day.index) ? Color.fivecallsDarkBlue : Color(.systemBackground))
                     .foregroundColor(isIndexSelected(day.index) ? Color.fivecallsLightBlue : Color.fivecallsMediumDarkGray)
                     .border(borderColor)
-                    .accessibilityLabel(Text("\(String(day.name)) \(isIndexSelected(day.index) ? R.string.localizable.scheduledRemindersDaySelected() : R.string.localizable.scheduledRemindersDayNotSelected())"))
+                    .accessibilityLabel(Text(accessibilityLabelText(day: day)))
                     .accessibilityAddTraits(.isButton)
-                .onTapGesture {
-                    if isIndexSelected(day.index) {
-                        selectedDayIndices.removeAll(where: {$0 == day.index})
-                    } else {
-                        selectedDayIndices.append(day.index)
+                    .onTapGesture {
+                        if isIndexSelected(day.index) {
+                            selectedDayIndices.removeAll(where: {$0 == day.index})
+                        } else {
+                            selectedDayIndices.append(day.index)
+                        }
                     }
-                }
             }
-            }
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .strokeBorder(borderColor, lineWidth: 1)
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 4))
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: 4)
+                .strokeBorder(borderColor, lineWidth: 1)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 4))
     }
-    
+
     private func isIndexSelected(_ index: Int) -> Bool {
         return selectedDayIndices.contains(index)
+    }
+
+    private func accessibilityLabelText(day: Day) -> String {
+        let name = day.name
+        let selected = String(localized: " selected", comment: "MultipleDayPicker AccessibiltyLabel text")
+        let notSelected = String(localized: " not selected", comment: "MultipleDayPicker AccessibilityLabel text")
+
+        return isIndexSelected(day.index) ? "\(name)\(selected)" : "\(name)\(notSelected)"
     }
 }
 

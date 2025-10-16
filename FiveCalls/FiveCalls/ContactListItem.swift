@@ -11,7 +11,7 @@ import SwiftUI
 struct ContactListItem: View {
     let contact: Contact
     let showComplete: Bool
-    var contactNote: String
+    var contactNote: LocalizedStringResource
     let listType: ContactListType
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -20,7 +20,7 @@ struct ContactListItem: View {
         dynamicTypeSize < DynamicTypeSize.accessibility3
     }
 
-    init(contact: Contact, showComplete: Bool = false, contactNote: String = "", listType: ContactListType = .standard) {
+    init(contact: Contact, showComplete: Bool = false, contactNote: LocalizedStringResource = "", listType: ContactListType = .standard) {
         self.contact = contact
         self.showComplete = showComplete
         self.contactNote = contactNote
@@ -123,8 +123,8 @@ struct ContactListItem: View {
         }
     }
 
-    var contactDetailText: String {
-        return (contactNote != "") ? contactNote : contact.officeDescription()
+    var contactDetailText: LocalizedStringResource {
+        return (contactNote != "") ? contactNote : contact.localizedOfficeDescription()
     }
 
     var completedCircleFrameSize: CGFloat {

@@ -21,18 +21,28 @@ struct IssueDone: View {
     init(issue: Issue) {
         self.issue = issue
 
-        if let titleString = try? AttributedString(markdown:  R.string.localizable.doneTitle(issue.name)) {
+        if let titleString = try? AttributedString(
+            markdown:  String(
+                localized: "You called on \(issue.name)",
+                comment: "Issue done title string markdown text"
+            )
+        ) {
             self.markdownTitle = titleString
         } else {
-            self.markdownTitle = AttributedString(R.string.localizable.doneScreenTitle())
+            self.markdownTitle = AttributedString(
+                String(
+                    localized: "Nice work!",
+                    comment: "Fallback issue done title markdown text"
+                )
+            )
         }
     }
 
     let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     var markdownTitle: AttributedString!
 
-    func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> String {
-        if let contactOutcome = issueCompletions.last(where: { 
+    func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> LocalizedStringResource {
+        if let contactOutcome = issueCompletions.last(where: {
             let parts = $0.split(separator: "-")
             guard parts.count > 1 else { return false }
             let contactId = parts.dropLast().joined(separator: "-")
@@ -44,10 +54,10 @@ struct IssueDone: View {
             }
         }
 
-        return R.string.localizable.outcomesSkip()
+        return LocalizedStringResource("Skip", comment: "Contact Log Outcome")
     }
 
-    func shouldShowImage(latestOutcomeForContact: String) -> Bool {
+    func shouldShowImage(latestOutcomeForContact: LocalizedStringResource) -> Bool {
         return latestOutcomeForContact != "Skip"
     }
 
@@ -61,39 +71,51 @@ struct IssueDone: View {
                     Spacer()
                 }.padding(.vertical, 16)
                 VStack {
-                    CountingView(title: R.string.localizable.totalCalls(), count: store.state.globalCallCount)
+                    CountingView(title: "Total calls", count: store.state.globalCallCount)
                         .padding(.bottom, 14)
                     if let issueCalls = store.state.issueCallCounts[issue.id] {
-                        CountingView(title: R.string.localizable.totalIssueCalls(), count: issueCalls)
+                        CountingView(title: "Calls on this topic", count: issueCalls)
                             .padding(.bottom, 14)
                     }
                 }
                 .padding(.bottom, 16)
 
-                Text(R.string.localizable.contactSummaryHeader())
+                Text("Contacts", comment: "Contact Summary header text")
                     .font(.caption).fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
                 ForEach(issue.contactsForIssue(allContacts: store.state.contacts)) { contact in
                     let issueCompletions = store.state.issueCompletion[issue.id] ?? []
                     let latestContactCompletion = latestOutcomeForContact(contact: contact, issueCompletions: issueCompletions)
-                    ContactListItem(contact: contact, showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion), contactNote: latestContactCompletion, listType: .compact)
+                    ContactListItem(
+                        contact: contact,
+                        showComplete: shouldShowImage(latestOutcomeForContact: latestContactCompletion),
+                        contactNote: latestContactCompletion,
+                        listType: .compact
+                    )
                 }
                 if store.state.donateOn {
-                    Text(R.string.localizable.support5calls())
+                    Text("Support 5 Calls", comment: "Support 5 Calls header text")
                         .font(.caption).fontWeight(.bold)
                         .accessibilityAddTraits(.isHeader)
                     HStack {
-                        Text(R.string.localizable.support5callsSub())
+                        Text("Keep 5 Calls free and up-to-date", comment: "Support 5 Calls subtitle text")
                         Button(action: {
                             openURL(donateURL)
                         }) {
-                            PrimaryButton(title: R.string.localizable.donateToday(), systemImageName: "hand.thumbsup.circle.fill", bgColor: .fivecallsRed)
+                            PrimaryButton(
+                                title: LocalizedStringResource(
+                                    "Donate today",
+                                    comment: "Donate today button title"
+                                ),
+                                systemImageName: "hand.thumbsup.circle.fill",
+                                bgColor: .fivecallsRed
+                            )
                         }
                     }
                     .padding(.bottom, 16)
                 }
 
-                Text(R.string.localizable.shareThisTopic())
+                Text("Share this topic", comment: "Issue Done share link text")
                     .font(.caption).fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
 
@@ -111,12 +133,17 @@ struct IssueDone: View {
                 .padding(.bottom, 16)
                 .accessibilityElement(children: .ignore)
                 .accessibilityAddTraits(.isButton)
-                .accessibilityLabel(Text("\(R.string.localizable.shareThisTopic()): \(issue.name)"))
+                .accessibilityLabel(
+                    Text(
+                        "Share this topic \(issue.name)",
+                        comment: "Accessibility label for share link in IssueDone"
+                    )
+                )
 
                 Button(action: {
                     store.dispatch(action: .GoToRoot)
                 }, label: {
-                    PrimaryButton(title: R.string.localizable.doneScreenButton(), systemImageName: "flag.checkered")
+                    PrimaryButton(title: "Done", systemImageName: "flag.checkered")
                 })
             }
             .padding(.horizontal)
@@ -140,7 +167,13 @@ struct IssueDone: View {
             
             // unlikely to occur at the same time as the rating prompt counter
             checkForNotifications()
-        }.alert(R.string.localizable.notificationTitle(), isPresented: $showNotificationAlert) {
+        }.alert(
+            String(
+                localized: "Nice work!",
+                comment: "IssueDone alert title"
+            ),
+            isPresented: $showNotificationAlert
+        ) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
                 OneSignal.promptForPushNotifications(userResponse: { success in
@@ -149,16 +182,19 @@ struct IssueDone: View {
                     }
                 })
             } label: {
-                Text(R.string.localizable.notificationImportant())
+                Text("Yes, notify me", comment: "IssueDone Alert subscribe to push notifications")
             }
             Button {
                 let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
                 UserDefaults.standard.set(Date(), forKey: key)
             } label: {
-                Text(R.string.localizable.notificationNone())
+                Text("No, thanks", comment: "IssueDone Alert decline push notifications")
             }
         } message: {
-            Text(R.string.localizable.notificationAsk())
+            Text(
+                "Get alerts before your reps vote on important issues? Usually 1-2 messages per month.",
+                comment: "IssueDone Alert message"
+            )
         }
 
     }
@@ -181,73 +217,7 @@ extension IssueDone {
     }
 }
 
-struct CountingView: View {
-    let title: String
-    let count: Int
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(title)
-                .font(.title3)
-                .fontWeight(.medium)
-                .padding(.bottom, 4)
-            ZStack(alignment: .leading) {
-                Canvas { context, size in
-                    let drawRect = CGRect(origin: .zero, size: size)
-
-                    context.fill(Rectangle().size(size).path(in: drawRect), with: .color(.fivecallsLightBG))
-                    context.fill(Rectangle().size(width: progressWidth(size: size), height: size.height).path(in: drawRect), with: .color(.fivecallsDarkBlue))
-                }
-                .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                Text("\(count)")
-                    .foregroundStyle(.white)
-                    // yes, blue background may be redundant, but it ensures that the white text can always be read, even with very large fonts
-                    .background(.fivecallsDarkBlue)
-                    .padding(.vertical, 2)
-                    .padding(.horizontal, 6)
-            }
-        }
-        .accessibilityElement(children: .combine)
-    }
-
-    func progressWidth(size: CGSize) -> CGFloat {
-        return size.width * (CGFloat(count) / nextMilestone)
-    }
-
-    var nextMilestone: CGFloat {
-        if count < 80 {
-            return 100
-        } else if count < 450 {
-            return 500
-        } else if count < 900 {
-            return 1000
-        } else if count < 4500 {
-            return 5000
-        } else if count < 9000 {
-            return 10000
-        } else if count < 45000 {
-            return 50000
-        } else if count < 90000 {
-            return 100000
-        } else if count < 450000 {
-            return 500000
-        } else if count < 900000 {
-            return 1000000
-        } else if count < 1500000 {
-            return 2000000
-        } else if count < 4500000 {
-            return 5000000
-        } else if count < 9500000 {
-            return 10000000
-        } else if count < 12500000 {
-            return 13000000
-        } else if count < 14500000 {
-            return 15000000
-        }
-
-        return 0
-    }
-}
 
 #Preview {
     let previewState = {

@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreLocation
-import RswiftResources
 
 class UserLocation {
     enum LocationType: String {
@@ -35,7 +34,7 @@ class UserLocation {
     init(address: String, display: String? = nil) {
         locationType = .address
         locationValue = address
-        locationDisplay = display ?? R.string.localizable.locatingTemp()
+        locationDisplay = display ?? String(localized: "Locating...", comment: "location display for searching")
     }
     
     init(location: CLLocation, display: String? = nil) {

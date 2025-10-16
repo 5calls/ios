@@ -44,11 +44,11 @@ struct LocationHeader: View {
     var locationView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(R.string.localizable.yourLocationIs)
+                Text("Your location is:", comment: "Location View Title Text")
                     .font(.footnote)
                 if isSplit {
                     Text(
-                        "\(Image(systemName: "exclamationmark.triangle")) \(location!.locationDisplay)"
+                        verbatim: "\(Image(systemName: "exclamationmark.triangle")) \(location!.locationDisplay)"
                     )
                         .font(.system(.title3))
                         .fontWeight(.medium)
@@ -70,14 +70,22 @@ struct LocationHeader: View {
             }
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("\(R.string.localizable.yourLocationIs()) \(location!.locationDisplay)"))
+        .accessibilityLabel(
+            Text(
+                "\"Your location is: \(location!.locationDisplay)",
+                comment: "LocationView Accessibility Label"
+            )
+        )
         .accessibilityAddTraits(.isButton)
     }
     
     var unsetLocationView: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(R.string.localizable.setYourLocation)
+                Text(
+                    "Set your location to find your representatives",
+                    comment: "UnsetLocationView Title Text"
+                )
                     .font(.system(.title3))
                     .fontWeight(.medium)
             }
@@ -91,7 +99,12 @@ struct LocationHeader: View {
                 .padding(.leading, 7)
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(R.string.localizable.setYourLocation))
+        .accessibilityLabel(
+            Text(
+                "Set your location to find your representatives",
+                comment: "UnsetLocationView Accessibility Label"
+            )
+        )
         .accessibilityAddTraits(.isButton)
     }
 }

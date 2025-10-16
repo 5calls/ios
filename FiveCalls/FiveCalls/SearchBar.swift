@@ -22,7 +22,13 @@ struct SearchBar: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.secondary)
                 
-                TextField(R.string.localizable.searchIssues(), text: $searchText)
+                TextField(
+                    String(
+                        localized: "Search all issues...",
+                        comment: "SearchBar placeholder text"
+                    ),
+                    text: $searchText
+                )
                     .textFieldStyle(PlainTextFieldStyle())
                     .focused($isSearchFocused)
                     .onChange(of: searchText) { newValue in

@@ -30,26 +30,50 @@ struct IssueSplitView: View {
                             }
                     } else {
                         VStack(alignment: .leading) {
-                            Text(R.string.localizable.chooseIssuePlaceholder())
-                                .font(.title2)
-                                .fontWeight(.medium)
-                                .foregroundColor(.secondary)
-                            Text(R.string.localizable.chooseIssueSubheading())
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                            Text(
+                                "Select an issue to get started",
+                                comment: "IssueSplitView title"
+                            )
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                            Text(
+                                "More details about this issue will appear here",
+                                comment: "IssueSplitView caption"
+                            )
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                         }
                     }
                 }
             }
             .navigationSplitViewStyle(.balanced)
-            .tabItem({ Label(R.string.localizable.tabTopics(), systemImage: "phone.bubble.fill" ) })
+            .tabItem(
+                {
+                    Label(
+                        String(
+                            localized: "Topics",
+                            comment: "Topics Tab title"
+                        ),
+                        systemImage: "phone.bubble.fill"
+                    )
+                })
             .tag("topics")
             // Set the inner size class for the navigation stack back to whatever it was originally since we override it for old tab bar behavior below
             .environment(\.horizontalSizeClass, originalSizeClass)
             .toolbar(.visible, for: .tabBar)
             
             InboxView()
-                .tabItem({ Label(R.string.localizable.tabReps(), systemImage: "person.crop.circle.fill.badge.checkmark") })
+                .tabItem(
+                    {
+                        Label(
+                            String(
+                                localized: "Reps",
+                                comment: "Reps Tab title"
+                            ),
+                            systemImage: "person.crop.circle.fill.badge.checkmark"
+                        )
+                    })
                 .tag("inbox")
         }// the new TabBar style in iOS 18 does not work well with this style, for now override the size class so it uses the old style on iPadOS
         .environment(\.horizontalSizeClass, .compact)

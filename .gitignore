@@ -6,9 +6,6 @@
 build/
 DerivedData/
 
-## R.swift
-*.generated.swift
-
 ## Various settings
 *.pbxuser
 !default.pbxuser

@@ -51,7 +51,7 @@ struct IssueDetail: View {
                     .padding(.bottom, 16)
                     .accentColor(.fivecallsDarkBlueText)
                 if store.state.location != nil {
-                    Text(R.string.localizable.repsListHeader())
+                    Text("Relevant representatives for this issue", comment: "Issue Detail header for reps list")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
@@ -79,7 +79,10 @@ struct IssueDetail: View {
                     .padding(.bottom, 16)
 
                     if shouldShowWarning() {
-                        Text("Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.")
+                        Text(
+                            "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps.",
+                            comment: "IssueDetail warning for imprecise location"
+                        )
                             .font(.callout)
                             .fontWeight(.medium)
                             .foregroundColor(.red)
@@ -89,20 +92,35 @@ struct IssueDetail: View {
 
                     if !targetedContacts.isEmpty {
                         NavigationLink(value: IssueDetailNavModel(issue: issue, contacts: targetedContacts)) {
-                            PrimaryButton(title: R.string.localizable.seeScript(), systemImageName: "megaphone.fill")
+                            PrimaryButton(
+                                title: LocalizedStringResource(
+                                    "See your script",
+                                    comment: "navigation link button to see the script"
+                                ),
+                                systemImageName: "megaphone.fill"
+                            )
                         }
                     }
                 } else {
-                    Text(R.string.localizable.setLocationHeader())
+                    Text("Set your location", comment: "IssueDetail prompt to set location")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 2)
                         .padding(.leading, 6)
-                    Button(action: {
-                        showLocationSheet.toggle()
-                    }, label: {
-                        PrimaryButton(title: R.string.localizable.setLocationButton(), systemImageName: "location.circle.fill")
-                    })
+                    Button(
+                        action: {
+                            showLocationSheet.toggle()
+                        },
+                        label: {
+                            PrimaryButton(
+                                title: LocalizedStringResource(
+                                    "Set your location",
+                                    comment: "IssueDetail button prompt to set location"
+                                ),
+                                systemImageName: "location.circle.fill"
+                            )
+                        }
+                    )
                 }
             }
             .padding(.horizontal)
@@ -112,7 +130,7 @@ struct IssueDetail: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareLink(item: issue.shareURL) {
                     HStack(spacing: 4) {
-                        Text(R.string.localizable.share())
+                        Text("Share", comment: "Share toolbar button text")
                             .fontWeight(.medium)
                         Image(systemName: "square.and.arrow.up")
                             .font(.body)
@@ -155,7 +173,10 @@ struct IssueDetail: View {
             ContactListItem(
                 contact: contact,
                 showComplete: store.state.issueCalledOn(issueID: issue.id, contactID: contact.id),
-                contactNote: R.string.localizable.irrelevantContactMessage()
+                contactNote: LocalizedStringResource(
+                    "This representative is not currently relevant to this issue.",
+                    comment: "Contact list item note for an irrelevant contact"
+                )
             )
             .opacity(0.4)
             .id(forceRefreshID)
@@ -169,8 +190,14 @@ struct IssueDetail: View {
     private var vacantRepsList: some View {
         ForEach(vacantAreas.numbered(), id: \.element) { contact in
             let area = contact.element
-            let contactItem = Contact(area: area, name: R.string.localizable.vacantSeatTitle())
-            let note = R.string.localizable.vacantSeatMessage(area)
+            let contactItem = Contact(
+                area: area,
+                name: String(
+                    localized: "Vacant Seat",
+                    comment: "Vacant seat contact name"
+                )
+            )
+            let note = LocalizedStringResource("This \(area) seat is currently vacant.")
 
             ContactListItem(contact: contactItem, contactNote: note)
                 .opacity(0.4)

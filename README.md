@@ -11,23 +11,11 @@ This is the repository for the iOS app for [5Calls.org](https://5calls.org).
 
 ## Getting Started
 
-Install the dependencies:
+Clone the repository and resolve the Swift Packages. The gems installed by Bundler are more for distribution.
 
-```
-bundle install
-```
+### Strings
 
-## Using R.swift
-
-R.swift removes the need to use "stringly typed" resources. Instead, you can reference your app's resources Android-style, which is strongly typed. Benefits are less casting, compile time checking for resources, and a little less code. [See examples for each type here.](https://github.com/mac-cain13/R.swift/blob/master/Documentation/Examples.md)
-
-**Note**: Since 5Calls uses prototype cells instead of cell nibs, this is all you need to dequeue a cell:
-
-```
-let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.setLocationCell, for: indexPath)!
-```
-
-You may need to put the R.swift binary from the latest release (https://github.com/mac-cain13/R.swift/releases) into `vendor/rswift` if you're getting started with this project for the first time.
+Although not localized yet, the app uses Xcode's String Catalog feature and the project is set up to track strings automatically.
 
 ## Testflight Builds
 

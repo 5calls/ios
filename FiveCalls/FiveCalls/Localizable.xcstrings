@@ -1,0 +1,633 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    " not selected" : {
+      "comment" : "MultipleDayPicker AccessibilityLabel text"
+    },
+    " selected" : {
+      "comment" : "MultipleDayPicker AccessibiltyLabel text"
+    },
+    "\"Your location is: %@" : {
+      "comment" : "LocationView Accessibility Label"
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%lld time" : {
+      "comment" : "Your impact call count pluralized",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld time"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld times"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "About" : {
+      "comment" : "AboutSheet navigation title\nDashboard menu item"
+    },
+    "An error occured trying to find your location" : {
+      "comment" : "Default location error message"
+    },
+    "Attorney General Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attorney General"
+          }
+        }
+      }
+    },
+    "Attorney General Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attorney General"
+          }
+        }
+      }
+    },
+    "Attorney General Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attorney General"
+          }
+        }
+      }
+    },
+    "Bluesky" : {
+
+    },
+    "Call %@" : {
+      "comment" : "Sorted list of Representative offices"
+    },
+    "Call %@ %@" : {
+      "comment" : "Call phone numbers accessibility label\nCall phone numbers text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Call %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "Calling Group" : {
+      "comment" : "AboutSheet Section Header"
+    },
+    "Calling is the most effective way to influence your representative." : {
+      "comment" : "Welcome section 2 message"
+    },
+    "Calls on this topic" : {
+
+    },
+    "Can't send mail" : {
+      "comment" : "AboutSheet alert title"
+    },
+    "Contacts" : {
+      "comment" : "Contact Summary header text"
+    },
+    "Copied\n%@!" : {
+      "comment" : "Copied phone number message"
+    },
+    "Copied phone number" : {
+      "comment" : "Copied phone number accessibility label"
+    },
+    "Copy" : {
+      "comment" : "Copy phone number short text"
+    },
+    "Copy %@ %@" : {
+      "comment" : "Copy phone numbers accessibility label\nCopy phone numbers text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Copy %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "Credits" : {
+      "comment" : "About section header"
+    },
+    "Detect my location" : {
+      "comment" : "LocationSheet 'Detect my location' text\nLocationSheet detect my location accessibility label"
+    },
+    "Dismiss" : {
+      "comment" : "Standard Dismiss Button text"
+    },
+    "Donate today" : {
+      "comment" : "Donate today button title"
+    },
+    "Done" : {
+      "comment" : "Standard Done Button text"
+    },
+    "Double tap to call" : {
+      "comment" : "Call phone numbers accessibility hint"
+    },
+    "Enable reminder" : {
+      "comment" : "Accessibility label for the switch to enable reminders\nScheduleReminders navigation title"
+    },
+    "Enter a location" : {
+      "comment" : "LocationSheet prompt"
+    },
+    "Enter your calling group name" : {
+      "comment" : "AboutSheet calling group placeholder text"
+    },
+    "Enter your email" : {
+      "comment" : "Newsletter email placeholder text"
+    },
+    "Feedback" : {
+      "comment" : "AboutListItem title"
+    },
+    "Fewer Issues" : {
+      "comment" : "Issues List button text"
+    },
+    "Follow us on your favorite platform" : {
+      "comment" : "About section header"
+    },
+    "Fri" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Friday" : {
+      "comment" : "Day name"
+    },
+    "General" : {
+      "comment" : "About Section Header"
+    },
+    "Get alerts before your reps vote on important issues? Usually 1-2 messages per month." : {
+      "comment" : "IssueDone Alert message"
+    },
+    "Get notified how your rep votes on your topics,\r1-2 notifications per month" : {
+      "comment" : "Inbox push notifications prompt"
+    },
+    "Get Started" : {
+      "comment" : "Welcome button title"
+    },
+    "Governor Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Governor"
+          }
+        }
+      }
+    },
+    "Governor Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Governor"
+          }
+        }
+      }
+    },
+    "Governor Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Governor"
+          }
+        }
+      }
+    },
+    "House Rep" : {
+      "comment" : "Office Holder grouping description"
+    },
+    "Instagram" : {
+
+    },
+    "Keep 5 Calls free and up-to-date" : {
+      "comment" : "Support 5 Calls subtitle text"
+    },
+    "Left Voicemail" : {
+      "comment" : "Contact Log Outcome\nImpactList item title"
+    },
+    "Legislator" : {
+      "comment" : "Office Holder title"
+    },
+    "Locating..." : {
+      "comment" : "location display for searching"
+    },
+    "Location permission is off" : {
+      "comment" : "Error message when location permission is off"
+    },
+    "Made Contact" : {
+      "comment" : "Contact Log Outcome\nImpactList item title"
+    },
+    "Make your voice heard" : {
+      "comment" : "Welcome section 1 title"
+    },
+    "Mastodon" : {
+
+    },
+    "Menu" : {
+      "comment" : "Dashboard menu accessibility label"
+    },
+    "Mon" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Monday" : {
+      "comment" : "Day name"
+    },
+    "More details about this issue will appear here" : {
+      "comment" : "IssueSplitView caption"
+    },
+    "More Issues" : {
+      "comment" : "Issues List button text"
+    },
+    "My Impact" : {
+      "comment" : "YourImpact Navigation Title"
+    },
+    "Nice work!" : {
+      "comment" : "Fallback issue done title markdown text\nIssueDone alert title"
+    },
+    "No contacts" : {
+      "comment" : "Issue list view list item text for no contacts"
+    },
+    "No days selected yet" : {
+      "comment" : "ScheduledReminders no days warning"
+    },
+    "No issues found" : {
+      "comment" : "IssuesList no results title"
+    },
+    "No thanks" : {
+      "comment" : "Newslitter signup decline button text"
+    },
+    "No, thanks" : {
+      "comment" : "IssueDone Alert decline push notifications"
+    },
+    "Notifications permissions denied." : {
+      "comment" : "Notifications denied alert title"
+    },
+    "OK" : {
+      "comment" : "Standard OK Button text"
+    },
+    "Open Settings" : {
+      "comment" : "Open Settings button title"
+    },
+    "Open Source" : {
+      "comment" : "AcknowListView navigation title"
+    },
+    "Open Source Libraries" : {
+      "comment" : "AboutListItem title"
+    },
+    "Or" : {
+      "comment" : "LocationSheet 'Or' text"
+    },
+    "Please configure an e-mail address in the Settings app" : {
+      "comment" : "About sheet alert body"
+    },
+    "Please Rate 5 Calls" : {
+      "comment" : "AboutListItem title"
+    },
+    "Please select days of the week" : {
+      "comment" : "Scheduled reminders no days selected alert title"
+    },
+    "Read more →" : {
+      "comment" : "Inbox detail link text"
+    },
+    "Recent messages" : {
+      "comment" : "Inbox messages header"
+    },
+    "Relevant representatives for this issue" : {
+      "comment" : "Issue Detail header for reps list"
+    },
+    "Reminders" : {
+      "comment" : "Dashboard menu item"
+    },
+    "Rep." : {
+      "comment" : "Office Holder title"
+    },
+    "Reps" : {
+      "comment" : "Reps Tab title"
+    },
+    "Sat" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Saturday" : {
+      "comment" : "Day name"
+    },
+    "Search all issues..." : {
+      "comment" : "SearchBar placeholder text"
+    },
+    "Search my location" : {
+      "comment" : "LocationSheet search accessibility label"
+    },
+    "Secretary of State Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of State"
+          }
+        }
+      }
+    },
+    "Secretary of State Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of State"
+          }
+        }
+      }
+    },
+    "Secretary of State Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of State"
+          }
+        }
+      }
+    },
+    "See your script" : {
+      "comment" : "navigation link button to see the script"
+    },
+    "Select an issue on the topics tab to show relevant reps and phone numbers" : {
+      "comment" : "Inbox Alert title"
+    },
+    "Select an issue to get started" : {
+      "comment" : "IssueSplitView title"
+    },
+    "Select what time of day you'd like to be reminded to make calls:" : {
+      "comment" : "Scheduled Reminders time label"
+    },
+    "Senator" : {
+      "comment" : "Office Holder title"
+    },
+    "Senators" : {
+      "comment" : "Office Holder grouping description"
+    },
+    "Send me important votes" : {
+      "comment" : "Prompt for push notifications button title"
+    },
+    "Set a calling group name to track calls with others" : {
+      "comment" : "AboutSheet section footer"
+    },
+    "Set your location" : {
+      "comment" : "IssueDetail button prompt to set location\nIssueDetail prompt to set location"
+    },
+    "Set your location\rto see your reps" : {
+      "comment" : "Inbox no contacts suggestion"
+    },
+    "Set your location to find your representatives" : {
+      "comment" : "UnsetLocationView Accessibility Label\nUnsetLocationView Title Text"
+    },
+    "Share" : {
+      "comment" : "Share toolbar button text"
+    },
+    "Share this topic" : {
+      "comment" : "Issue Done share link text"
+    },
+    "Share this topic %@" : {
+      "comment" : "Accessibility label for share link in IssueDone"
+    },
+    "Share with Others" : {
+      "comment" : "AboutListItem title"
+    },
+    "Sharing and Rating helps others find 5 Calls" : {
+      "comment" : "About section footer"
+    },
+    "Show Welcome Screen" : {
+      "comment" : "AboutListItem title"
+    },
+    "Sign me up" : {
+      "comment" : "Newsletter signup submit button text"
+    },
+    "Sign up for our newsletter, just one email a week" : {
+      "comment" : "Newsletter signup subheader text"
+    },
+    "Skip" : {
+      "comment" : "Contact Log Outcome"
+    },
+    "Spend 5 minutes, make 5 calls" : {
+      "comment" : "Welcome section 2 title"
+    },
+    "State Rep" : {
+      "comment" : "Localized rep text for single rep\nOffice Holder description"
+    },
+    "State Reps" : {
+      "comment" : "Localized rep text for multiple reps\nOffice Holder grouping description"
+    },
+    "Sun" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Sunday" : {
+      "comment" : "Day name"
+    },
+    "Support 5 Calls" : {
+      "comment" : "Support 5 Calls header text"
+    },
+    "Tap here to open 5 Calls and get started" : {
+      "comment" : "ScheduledReminderNotification Alert body"
+    },
+    "The 5 Calls community has contributed %@ calls!" : {
+      "comment" : "Community call count"
+    },
+    "The easy way to keep up with Congress" : {
+      "comment" : "Newsletter signup header text"
+    },
+    "This %@ seat is currently vacant." : {
+      "comment" : "ContactListItem note for a vacant seat"
+    },
+    "This doesn't look like an email" : {
+      "comment" : "Newsletter signup invalid email error message"
+    },
+    "This representative is not currently relevant to this issue." : {
+      "comment" : "Contact list item note for an irrelevant contact"
+    },
+    "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy." : {
+      "comment" : "Split district location warning"
+    },
+    "Threads" : {
+
+    },
+    "Thu" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Thursday" : {
+      "comment" : "Day name"
+    },
+    "Time to Make Some Calls" : {
+      "comment" : "ScheduledReminderNotification Alert title"
+    },
+    "To use reminders please change notifications permissions in the Settings app and try again." : {
+      "comment" : "Notifications denied alert message"
+    },
+    "Together we've made\n%@ calls" : {
+      "comment" : "Welcome number of calls display text"
+    },
+    "Topics" : {
+      "comment" : "Topics Tab title"
+    },
+    "Total calls" : {
+
+    },
+    "Triple tap to copy" : {
+      "comment" : "Copy phone number accissibility hint"
+    },
+    "Try a different search term" : {
+      "comment" : "IssuesList no results message"
+    },
+    "Tue" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Tuesday" : {
+      "comment" : "Day name"
+    },
+    "Turn these on to get a quick local reminder to make your 5 calls." : {
+      "comment" : "RemindersDisabledView text"
+    },
+    "Turn your passive participation into active resistance. Facebook likes and Twitter retweets can’t create the change you want to see. Calling your Government on the phone can." : {
+      "comment" : "Welcome section 1 message"
+    },
+    "Unavailable" : {
+      "comment" : "Contact Log Outcome\nImpactList item title"
+    },
+    "Unknown" : {
+
+    },
+    "Unknown Location" : {
+
+    },
+    "US House Rep" : {
+      "comment" : "Office Holder description"
+    },
+    "US Senator" : {
+      "comment" : "Office Holder description"
+    },
+    "Use an address, zip code or zip + 4" : {
+      "comment" : "LocationSheet instructions"
+    },
+    "Vacant Seat" : {
+      "comment" : "Vacant seat contact name"
+    },
+    "Warning: your location is set to a zip code or other approximate location, please enter an address or zip+4 for accurate state level reps." : {
+      "comment" : "IssueDetail warning for imprecise location"
+    },
+    "Wed" : {
+      "comment" : "Abbreviated day name"
+    },
+    "Wednesday" : {
+      "comment" : "Day name"
+    },
+    "What's important to you?" : {
+      "comment" : "ActiveIssuesViewModel Section header\nDashboard title text"
+    },
+    "Which days of the week?" : {
+      "comment" : "ScheduledReminderds day label"
+    },
+    "Who Made 5 Calls" : {
+      "comment" : "Navigation title for who we are webview"
+    },
+    "Who Made 5 Calls?" : {
+      "comment" : "AboutListItem title"
+    },
+    "Why Calling Works" : {
+      "comment" : "AboutListItem title\nNavigation title for why call webview"
+    },
+    "Yes, notify me" : {
+      "comment" : "IssueDone Alert subscribe to push notifications"
+    },
+    "You called on %@" : {
+      "comment" : "Issue done title string markdown text"
+    },
+    "You're making a difference! Calling is the most effective way to influence your representatives, and here's what you've achieved:" : {
+      "comment" : "ImpactList message"
+    },
+    "Your current weekly call streak is %lld weeks in a row. You're on a roll!" : {
+      "comment" : "Weekly call streak multiples"
+    },
+    "Your current weekly call streak is 0." : {
+      "comment" : "Weekly streak for zero"
+    },
+    "Your current weekly call streak just started. Keep it going!" : {
+      "comment" : "Weekly call streak single"
+    },
+    "Your Impact" : {
+      "comment" : "Dashboard menu item"
+    },
+    "Your location is:" : {
+      "comment" : "Location View Title Text"
+    },
+    "Your National Reps" : {
+      "comment" : "Inbox reps header"
+    },
+    "Your total impact is %lld calls." : {
+      "comment" : "Pluralized number of calls impact message",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Your total impact is %lld call."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "Your total impact is %lld calls."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

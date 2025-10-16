@@ -52,7 +52,7 @@ struct IssueListItem: View {
                                 .frame(width: usingRegularFonts() ? 20 : 40, height: usingRegularFonts() ? 20 : 40)
                                 .offset(x: -10 * CGFloat(numberedContact.number), y:0)
                         }
-                        Text(repText)
+                        Text(localizedRepText)
                             .font(.footnote)
                             .foregroundColor(.primary)
                             .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
@@ -65,29 +65,32 @@ struct IssueListItem: View {
         }
     }
     
-    var repText: String {
-        if issue.contactAreas.count == 0 {
-            // we should never ship an issue with no contact areas, but handle the state anyway
-            return R.string.localizable.noContacts()
-        } else {
-            let hasStateUpper = issue.contactAreas.contains("StateUpper")
-            let hasStateLower = issue.contactAreas.contains("StateLower")
-            
-            let mappedAreas = issue.contactAreas.map({ area in
-                if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
-                    // Both present - use plural "State Reps" for both
-                    return R.string.localizable.groupingStateRep()
-                } else if area == "StateUpper" || area == "StateLower" {
-                    // Only one present - use singular "State Rep"
-                    return R.string.localizable.stateRep()
-                } else {
-                    return AreaToNiceString(area: area)
-                }
-            })
-            let areas = Array(Set(mappedAreas)).joined(separator: ", ")
-            
-            return R.string.localizable.callAreas(areas)
+    var localizedRepText: LocalizedStringResource {
+        let areas = issue.contactAreas
+
+        guard !areas.isEmpty else {
+            return LocalizedStringResource(
+                "No contacts",
+                comment: "Issue list view list item text for no contacts"
+            )
         }
+
+        let hasStateUpper = areas.contains("StateUpper")
+        let hasStateLower = areas.contains("StateLower")
+
+        let labels: [String] = areas.map { area in
+            if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
+                return String(localized: "State Reps", comment: "Localized rep text for multiple reps")
+            } else if area == "StateUpper" || area == "StateLower" {
+                return String(localized: "State Rep" , comment: "Localized rep text for single rep")
+            } else {
+                return areaToNiceString(area: area)
+            }
+        }
+
+        let list = Array(Set(labels)).sorted().joined(separator: ", ")
+
+        return LocalizedStringResource("Call \(list)", comment: "Sorted list of Representative offices")
     }
 }
 

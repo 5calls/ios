@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RswiftResources
 
 struct ContactLog : Hashable, Codable {
     let issueId: String
@@ -17,16 +16,16 @@ struct ContactLog : Hashable, Codable {
     let date: Date
     let reported: Bool
 
-    static func localizedOutcomeForStatus(status: String) -> String {
+    static func localizedOutcomeForStatus(status: String) -> LocalizedStringResource {
         switch status {
         case "vm", "voicemail":
-            return R.string.localizable.outcomesVoicemail()
+            return LocalizedStringResource("Left Voicemail", comment: "Contact Log Outcome")
         case "contact", "contacted":
-            return R.string.localizable.outcomesContact()
+            return LocalizedStringResource("Made Contact", comment: "Contact Log Outcome")
         case "unavailable":
-            return R.string.localizable.outcomesUnavailable()
+            return LocalizedStringResource("Unavailable", comment: "Contact Log Outcome")
         case "skip":
-            return R.string.localizable.outcomesSkip()
+            return LocalizedStringResource("Skip", comment: "Contact Log Outcome")
         default:
             return "Unknown"
         }

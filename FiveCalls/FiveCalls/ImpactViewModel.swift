@@ -47,23 +47,28 @@ struct ImpactViewModel {
 
         switch weeklyStreakCount {
         case 0:
-            return R.string.localizable.yourWeeklyStreakZero(weeklyStreakCount)
+            return String(
+                localized: "Your current weekly call streak is 0.",
+                comment: "Weekly streak for zero"
+            )
         case 1:
-            return R.string.localizable.yourWeeklyStreakSingle()
+            return String(
+                localized: "Your current weekly call streak just started. Keep it going!",
+                comment: "Weekly call streak single"
+            )
         default:
-            return R.string.localizable.yourWeeklyStreakMultiple(weeklyStreakCount)
+            return String(
+                localized: "Your current weekly call streak is \(weeklyStreakCount) weeks in a row. You're on a roll!",
+                comment: "Weekly call streak multiples"
+            )
         }
     }
 
     var impactMessage: String {
-        switch self.numberOfCalls {
-        case 0:
-            return R.string.localizable.yourImpactZero(numberOfCalls)
-        case 1:
-            return R.string.localizable.yourImpactSingle(numberOfCalls)
-        default:
-            return R.string.localizable.yourImpactMultiple(numberOfCalls)
-        }
+        String(
+            localized: "Your total impact is \(self.numberOfCalls) calls.",
+            comment: "Pluralized number of calls impact message"
+        )
     }
 
 }

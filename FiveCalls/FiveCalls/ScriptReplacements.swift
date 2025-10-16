@@ -54,25 +54,3 @@ struct ScriptReplacements {
         return script.replacing(Regex(pattern), with: location.locationDisplay)
     }
 }
-
-extension Contact {
-    var title: String? {
-        switch self.area {
-        case "US House", "House":
-            return R.string.localizable.titleUsHouse()
-        case "US Senate", "Senate":
-            return R.string.localizable.titleUsSenate()
-        case "StateLower", "StateUpper":
-            return R.string.localizable.titleStateRep()
-        case "Governor":
-            return R.string.localizable.titleGovernor()
-        case "AttorneyGeneral":
-            return R.string.localizable.titleAttorneyGeneral()
-        case "SecretaryOfState":
-            return R.string.localizable.titleSecretaryOfState()
-        default:
-            // return nothing for unknown
-            return nil
-        }
-    }
-}

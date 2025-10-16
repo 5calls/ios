@@ -55,23 +55,37 @@ struct ScheduleReminders: View {
                         onRemindersEnabled()
                     }
                 }
-                .alert(Text(R.string.localizable.notificationsDeniedAlertTitle()),
-                       isPresented: $presentNotificationSettingsAlert,
-                       actions: {
-                    Button(R.string.localizable.dismissTitle()) { }
-                    Button(R.string.localizable.openSettingsTitle()) {
-                        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-                        UIApplication.shared.open(url)
-                    }.keyboardShortcut(.defaultAction)
-                },
-                       message: {
-                    Text(R.string.localizable.notificationsDeniedAlertBody())
+                .alert(
+                    Text("Notifications permissions denied.", comment: "Notifications denied alert title"),
+                    isPresented: $presentNotificationSettingsAlert,
+                    actions: {
+                        Button(String(localized: "Dismiss", comment: "Standard Dismiss Button text")) { }
+                        Button(String(localized: "Open Settings", comment: "Open Settings button title")) {
+                            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                            UIApplication.shared.open(url)
+                        }.keyboardShortcut(.defaultAction)
+                    },
+                    message: {
+                        Text(
+                            "To use reminders please change notifications permissions in the Settings app and try again.",
+                            comment: "Notifications denied alert message"
+                        )
                 })
                 .alert(isPresented: $presentDaysOfWeekNotSetAlert) {
-                    Alert(title: Text(R.string.localizable.scheduledRemindersNoDaysAlert))
+                    Alert(
+                        title: Text(
+                            "Please select days of the week",
+                            comment: "Scheduled reminders no days selected alert title"
+                        )
+                    )
                 }
             }
-            .navigationTitle(R.string.localizable.scheduledRemindersTitle())
+            .navigationTitle(
+                String(
+                    localized: "Enable reminder",
+                    comment: "ScheduleReminders navigation title"
+                )
+            )
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbarBackground(.visible)
@@ -82,7 +96,7 @@ struct ScheduleReminders: View {
                     Button(action: {
                         self.onDismiss()
                     }) {
-                        Text(R.string.localizable.doneButtonTitle())
+                        Text("Done", comment: "Standard Done Button text")
                             .bold()
                     }
                 }
@@ -91,7 +105,12 @@ struct ScheduleReminders: View {
                            label: {
                         Text("")
                     }).toggleStyle(.switch)
-                        .accessibilityLabel(Text(R.string.localizable.scheduledRemindersTitle()))
+                        .accessibilityLabel(
+                            Text(
+                                "Enable reminder",
+                                comment: "Accessibility label for the switch to enable reminders"
+                            )
+                        )
                 }
             }
         }
@@ -167,7 +186,10 @@ struct DayAndTimePickers: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                Text(R.string.localizable.scheduledRemindersTimeLabel())
+                Text(
+                    "Select what time of day you'd like to be reminded to make calls:",
+                    comment: "Scheduled Reminders time label"
+                )
                     .font(.title3)
                     .foregroundColor(Color.fivecallsDarkBlue)
                     .multilineTextAlignment(.center)
@@ -178,7 +200,10 @@ struct DayAndTimePickers: View {
                     .padding(.horizontal, 20)
                 Spacer()
                 Spacer()
-                Text(R.string.localizable.scheduledRemindersDayLabel())
+                Text(
+                    "Which days of the week?",
+                    comment: "ScheduledReminderds day label"
+                )
                     .font(.title3)
                     .foregroundColor(Color.fivecallsDarkBlue)
                     .padding(.horizontal, 20)
@@ -192,7 +217,10 @@ struct DayAndTimePickers: View {
                         }
                     }
                     .padding(.vertical, 5)
-                Text(R.string.localizable.scheduledRemindersNoDaysWarning())
+                Text(
+                    "No days selected yet",
+                    comment: "ScheduledReminders no days warning"
+                )
                     .foregroundColor(colorScheme == .light ? Color.fivecallsRed : Color.primary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
@@ -210,8 +238,11 @@ struct RemindersDisabledView: View {
     
     var body: some View {
         VStack {
-            Text(R.string.localizable.scheduledRemindersDescription())
-                .foregroundColor(Color(R.color.fivecallsDarkGray()!))
+            Text(
+                "Turn these on to get a quick local reminder to make your 5 calls.",
+                comment: "RemindersDisabledView text"
+            )
+                .foregroundColor(Color(.fivecallsDarkGray))
 
                 .multilineTextAlignment(.center)
                 .opacity(remindersEnabled ? 0 : 1)

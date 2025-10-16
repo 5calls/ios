@@ -61,12 +61,17 @@ struct IssueContactDetail: View {
                     HStack {
                         Spacer()
                         if let copiedPhoneNumber {
-                            Text(R.string.localizable.copiedPhone(copiedPhoneNumber))
+                            Text("Copied\n\(copiedPhoneNumber)!", comment: "Copied phone number message")
                                 .bold()
                                 .font(.footnote)
                                 .multilineTextAlignment(.center)
                                 .accessibilityFocused($isCopiedPhoneNumberFocused)
-                                .accessibilityLabel(R.string.localizable.a11yCopiedPhoneNumber())
+                                .accessibilityLabel(
+                                    String(
+                                        localized: "Copied phone number",
+                                        comment: "Copied phone number accessibility label"
+                                    )
+                                )
                             Spacer()
                         }
 
@@ -96,7 +101,12 @@ struct IssueContactDetail: View {
                                 }
                             }
                             .accessibilityAddTraits(.isButton)
-                            .accessibilityHint(R.string.localizable.a11yPhoneCallCopyHint())
+                            .accessibilityHint(
+                                String(
+                                    localized: "Triple tap to copy",
+                                    comment: "Copy phone number accissibility hint"
+                                )
+                            )
 
                         if currentContact.fieldOffices.count >= 1 {
                             Menu {
@@ -157,14 +167,24 @@ struct MenuButtonsView: View {
             self.call(office.phone)
         } label: {
             if dynamicTypeSize >= .accessibility1 {
-                Text(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
+                Text("Call \(office.city) \(office.phone)", comment: "Call phone numbers text")
             } else {
                 Image(systemName: "phone")
                 Text(office.city)
             }
         }
-        .accessibilityLabel(R.string.localizable.a11yOfficeCallPhoneNumber(office.city, office.phone))
-        .accessibilityHint(R.string.localizable.a11yPhoneCallHint())
+        .accessibilityLabel(
+            String(
+                localized: "Call \(office.city) \(office.phone)",
+                comment: "Call phone numbers accessibility label"
+            )
+        )
+        .accessibilityHint(
+            String(
+                localized:"Double tap to call",
+                comment: "Call phone numbers accessibility hint"
+            )
+        )
 
         // disable copy < 16.4 for rationale see https://github.com/5calls/ios/pull/446
         if #available(iOS 16.4, *) {
@@ -185,14 +205,24 @@ struct MenuButtonsView: View {
                 }
             } label: {
                 if dynamicTypeSize >= .accessibility1 {
-                    Text(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
+                    Text("Copy \(office.city) \(office.phone)", comment: "Copy phone numbers text")
                 } else {
                     Image(systemName: "doc.on.doc")
-                    Text(R.string.localizable.copy())
+                    Text("Copy", comment: "Copy phone number short text")
                 }
             }
-            .accessibilityLabel(R.string.localizable.a11yOfficeCopyPhoneNumber(office.city, office.phone))
-            .accessibilityHint(R.string.localizable.a11yPhoneCopyHint())
+            .accessibilityLabel(
+                String(
+                    localized: "Copy \(office.city) \(office.phone)",
+                    comment: "Copy phone numbers accessibility label"
+                )
+            )
+            .accessibilityHint(
+                String(
+                    localized: "Triple tap to copy",
+                    comment: "Copy phone number accissibility hint"
+                )
+            )
         }
     }
 }

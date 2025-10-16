@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import RswiftResources
 
-struct Contact : Decodable {
+struct Contact : Decodable, Identifiable {
     let id: String
     let area: String
     let name: String
@@ -45,6 +44,7 @@ struct Contact : Decodable {
         fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
     }
 
+    // Used for placeholder generation - I don't think the whole object is used, just the `area` parameter
     init(id: String = "id", area: String = "US House", name: String = "Test Name", party: String = "Party", phone: String = "14155551212", photoURL: URL? = nil, fieldOffices: [AreaOffice] = []) {
         self.id = id
         self.area = area
@@ -58,7 +58,7 @@ struct Contact : Decodable {
     }
 }
 
-extension Contact: Hashable, Identifiable {
+extension Contact: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
@@ -70,21 +70,21 @@ extension Contact: Hashable, Identifiable {
 
 extension Contact {    
     // this has some overlap with other area -> string conversions but I haven't thought about it long enough to combine them
-    func officeDescription() -> String {
+    func localizedOfficeDescription() -> LocalizedStringResource {
         switch self.area {
         case "US House", "House":
             // TODO: plumb the district through here too
-            return "\(R.string.localizable.usHouse()) \(self.state ?? "")"
+            return "\(String(localized: "US House Rep", comment: "Office Holder description")) \(self.state ?? "")"
         case "US Senate", "Senate":
-            return "\(R.string.localizable.usSenate()) \(self.state ?? "")"
+            return "\(String(localized: "US Senator", comment: "Office Holder description")) \(self.state ?? "")"
         case "StateLower", "StateUpper":
-            return "\(R.string.localizable.stateRep()) \(self.state ?? "")"
+            return "\(String(localized: "State Rep", comment: "Office Holder description")) \(self.state ?? "")"
         case "Governor":
-            return "\(R.string.localizable.governor()) \(self.state ?? "")"
+            return "\(String(localized: "Governor Office", defaultValue: "Governor", comment: "Office Holder description")) \(self.state ?? "")"
         case "AttorneyGeneral":
-            return "\(R.string.localizable.attorneyGeneral()) \(self.state ?? "")"
+            return "\(String(localized: "Attorney General Office", defaultValue: "Attorney General", comment: "Office Holder description")) \(self.state ?? "")"
         case "SecretaryOfState":
-            return "\(R.string.localizable.secretaryOfState()) \(self.state ?? "")"
+            return "\(String(localized: "Secretary of State Office", defaultValue: "Secretary of State", comment: "Office Holder description")) \(self.state ?? "")"
         default:
             return ""
         }
@@ -106,23 +106,47 @@ extension Contact {
     }
 }
 
+extension Contact {
+    var title: String? {
+        switch self.area {
+        case "US House", "House":
+            return String(localized: "Rep.", comment: "Office Holder title")
+        case "US Senate", "Senate":
+            return String(localized: "Senator", comment: "Office Holder title")
+        case "StateLower", "StateUpper":
+            return String(localized: "Legislator", comment: "Office Holder title")
+        case "Governor":
+            return String(localized: "Governor Title", defaultValue: "Governor", comment: "Office Holder title")
+        case "AttorneyGeneral":
+            return String(localized: "Attorney General Title", defaultValue: "Attorney General", comment: "Office Holder title")
+        case "SecretaryOfState":
+            return String(localized: "Secretary of State Title", defaultValue: "Secretary of State", comment: "Office Holder title")
+        default:
+            // return nothing for unknown
+            return nil
+        }
+    }
+}
+
+
 // AreaToNiceString converts an area name to a generic office name that can be used in the interface
-func AreaToNiceString(area: String) -> String {
+func areaToNiceString(area: String) -> String {
     switch area {
     case "US House", "House":
-        return R.string.localizable.groupingUsHouse()
+        return String(localized: "House Rep", comment: "Office Holder grouping description")
     case "US Senate", "Senate":
-        return R.string.localizable.groupingUsSenate()
+        return String(localized: "Senators", comment: "Office Holder grouping description")
     // state legislatures call themselves different things by state, so let's use a generic term for all of them
     case "StateLower", "StateUpper":
-        return R.string.localizable.groupingStateRep()
+        return String(localized: "State Reps", comment: "Office Holder grouping description")
     case "Governor":
-        return R.string.localizable.groupingGovernor()
+        return String(localized: "Governor Grouping", defaultValue: "Governor", comment: "Office Holder grouping description")
     case "AttorneyGeneral":
-        return R.string.localizable.groupingAttorneyGeneral()
+        return String(localized: "Attorney General Grouping", defaultValue: "Attorney General", comment: "Office Holder grouping description")
     case "SecretaryOfState":
-        return R.string.localizable.groupingSecretaryOfState()
+        return String(localized: "Secretary of State Grouping", defaultValue: "Secretary of State", comment: "Office Holder grouping description")
     default:
         return area
     }
 }
+

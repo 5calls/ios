@@ -54,7 +54,7 @@ struct Dashboard: View {
             }
 
             if usingRegularFonts() {
-                Text(R.string.localizable.whatsImportantTitle())
+                Text("What's important to you?", comment: "Dashboard title text")
                     .font(.body)
                     .fontWeight(.bold)
                     .accessibilityAddTraits(.isHeader)
@@ -123,20 +123,25 @@ struct MenuView: View {
     var body: some View {
         Menu {
             Button { showRemindersSheet.toggle() } label: {
-                Text(R.string.localizable.menuScheduledReminders())
+                Text("Reminders", comment: "Dashboard menu item")
             }
             Button { showYourImpact.toggle() } label: {
-                Text(R.string.localizable.menuYourImpact())
+                Text("Your Impact", comment: "Dashboard menu item")
             }
             Button { showAboutSheet.toggle() } label: {
-                Text(R.string.localizable.menuAbout())
+                Text("About", comment: "Dashboard menu item")
             }
         } label: {
             Image(systemName: "gear")
                 .renderingMode(.template)
                 .font(.title)
                 .tint(Color.fivecallsDarkBlue)
-                .accessibilityLabel(Text(R.string.localizable.menuName))
+                .accessibilityLabel(
+                    String(
+                        localized: "Menu",
+                        comment: "Dashboard menu accessibility label"
+                    )
+                )
         }
         .sheet(isPresented: $showRemindersSheet) {
             ScheduleReminders()
@@ -239,10 +244,10 @@ struct IssuesList: View {
             if isSearching && allIssues.isEmpty {
                 VStack {
                     Spacer()
-                    Text(R.string.localizable.searchNoResultsTitle())
+                    Text("No issues found", comment: "IssuesList no results title")
                         .font(.title2)
                         .foregroundColor(.secondary)
-                    Text(R.string.localizable.searchNoResultsMessage())
+                    Text("Try a different search term", comment: "IssuesList no results message")
                         .font(.body)
                         .foregroundColor(.secondary)
                     Spacer()
@@ -270,11 +275,13 @@ struct IssuesList: View {
                                 scroll.scrollTo(issueID, anchor: .top)
                             }
                         } label: {
-                            Text(showAllIssues ? R.string.localizable.lessIssuesTitle() :
-                                    R.string.localizable.moreIssuesTitle())
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.fivecallsDarkBlueText)
+                            Text(showAllIssues ?
+                                 String(localized: "Fewer Issues", comment: "Issues List button text")
+                                 : String(localized: "More Issues", comment: "Issues List button text")
+                            )
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color.fivecallsDarkBlueText)
 
                         }
                         .padding(.vertical, 10)
