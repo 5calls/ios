@@ -11,14 +11,14 @@ import MarkdownUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
-
+    
     let issue: Issue
     let remainingContacts: [Contact]
-
+    
     var currentContact: Contact {
         return remainingContacts.first!
     }
-
+    
     var nextContacts: [Contact] {
         return Array(remainingContacts.dropFirst())
     }
@@ -40,113 +40,139 @@ struct IssueContactDetail: View {
                 )
         }
     }
-
+    
     @State private var copiedPhoneNumber: String?
     @AccessibilityFocusState private var isCopiedPhoneNumberFocused: Bool
-
+    @State private var isShowingOutcomeHelp = false
+    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(issue.name)
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .padding(.bottom, 16)
-                ContactListItem(contact: currentContact)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.fivecallsLightBG)
-                    }
-                    .padding(.bottom)
-                VStack(alignment: .trailing) {
-                    HStack {
-                        Spacer()
-                        if let copiedPhoneNumber {
-                            Text("Copied\n\(copiedPhoneNumber)!", comment: "Copied phone number message")
-                                .bold()
-                                .font(.footnote)
-                                .multilineTextAlignment(.center)
-                                .accessibilityFocused($isCopiedPhoneNumberFocused)
-                                .accessibilityLabel(
-                                    String(
-                                        localized: "Copied phone number",
-                                        comment: "Copied phone number accessibility label"
-                                    )
-                                )
-                            Spacer()
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(issue.name)
+                        .font(.title2)
+                        .fontWeight(.medium)
+                        .padding(.bottom, 16)
+                    ContactListItem(contact: currentContact)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color.fivecallsLightBG)
                         }
-
-                        Text(currentContact.phone)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.fivecallsDarkBlueText)
-                            .onTapGesture {
-                                self.call(phoneNumber: currentContact.phone)
+                        .padding(.bottom)
+                    VStack(alignment: .trailing) {
+                        HStack {
+                            Spacer()
+                            if let copiedPhoneNumber {
+                                Text("Copied\n\(copiedPhoneNumber)!", comment: "Copied phone number message")
+                                    .bold()
+                                    .font(.footnote)
+                                    .multilineTextAlignment(.center)
+                                    .accessibilityFocused($isCopiedPhoneNumberFocused)
+                                    .accessibilityLabel(
+                                        String(
+                                            localized: "Copied phone number",
+                                            comment: "Copied phone number accessibility label"
+                                        )
+                                    )
+                                Spacer()
                             }
-                            .onLongPressGesture(minimumDuration: 1.0) {
-                                UIPasteboard.general.string = currentContact.phone
-                                withAnimation {
-                                    copiedPhoneNumber = currentContact.phone
-                                    if UIAccessibility.isVoiceOverRunning {
-                                        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
-                                            isCopiedPhoneNumberFocused = true
+                            
+                            Text(currentContact.phone)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.fivecallsDarkBlueText)
+                                .onTapGesture {
+                                    self.call(phoneNumber: currentContact.phone)
+                                }
+                                .onLongPressGesture(minimumDuration: 1.0) {
+                                    UIPasteboard.general.string = currentContact.phone
+                                    withAnimation {
+                                        copiedPhoneNumber = currentContact.phone
+                                        if UIAccessibility.isVoiceOverRunning {
+                                            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
+                                                isCopiedPhoneNumberFocused = true
+                                            }
+                                        }
+                                    }
+                                    
+                                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
+                                        withAnimation {
+                                            isCopiedPhoneNumberFocused = false
+                                            copiedPhoneNumber = nil
                                         }
                                     }
                                 }
-
-                                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
-                                    withAnimation {
-                                        isCopiedPhoneNumberFocused = false
-                                        copiedPhoneNumber = nil
-                                    }
-                                }
-                            }
-                            .accessibilityAddTraits(.isButton)
-                            .accessibilityHint(
-                                String(
-                                    localized: "Triple tap to copy",
-                                    comment: "Copy phone number accissibility hint"
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityHint(
+                                    String(
+                                        localized: "Triple tap to copy",
+                                        comment: "Copy phone number accessibility hint"
+                                    )
                                 )
-                            )
-
-                        if currentContact.fieldOffices.count >= 1 {
-                            Menu {
-                                ForEach(currentContact.fieldOffices) { office in
-                                    // ControlGroup doesn't render < 16.4 (https://github.com/5calls/ios/pull/446)
-                                    if #available(iOS 16.4, *) {
-                                        ControlGroup {
+                            
+                            if currentContact.fieldOffices.count >= 1 {
+                                Menu {
+                                    ForEach(currentContact.fieldOffices) { office in
+                                        // ControlGroup doesn't render < 16.4 (https://github.com/5calls/ios/pull/446)
+                                        if #available(iOS 16.4, *) {
+                                            ControlGroup {
+                                                MenuButtonsView(office: office, copiedPhoneNumber: $copiedPhoneNumber,
+                                                                isCopiedPhoneNumberFocused: _isCopiedPhoneNumberFocused, call: call)
+                                            }
+                                        } else {
                                             MenuButtonsView(office: office, copiedPhoneNumber: $copiedPhoneNumber,
                                                             isCopiedPhoneNumberFocused: _isCopiedPhoneNumberFocused, call: call)
                                         }
-                                    } else {
-                                        MenuButtonsView(office: office, copiedPhoneNumber: $copiedPhoneNumber,
-                                                        isCopiedPhoneNumberFocused: _isCopiedPhoneNumberFocused, call: call)
                                     }
+                                } label: {
+                                    Image(systemName: "ellipsis.circle")
+                                        .font(.title2)
+                                        .foregroundColor(Color.fivecallsDarkBlue)
+                                        .padding(.leading, 4)
                                 }
-                            } label: {
-                                Image(systemName: "ellipsis.circle")
-                                    .font(.title2)
-                                    .foregroundColor(Color.fivecallsDarkBlue)
-                                    .padding(.leading, 4)
+                                .accessibilityIdentifier("localNumbers")
                             }
-                            .accessibilityIdentifier("localNumbers")
+                        }
+                    }.padding(.bottom)
+                    
+                    Markdown(issueMarkdown)
+                        .padding(.bottom)
+                    
+                    OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
+                        let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
+                        store.dispatch(action: .ReportOutcome(issue, log, outcome))
+                        store.dispatch(action: .GoToNext(issue, nextContacts))
+                    })
+                    .padding(.bottom)
+                                        
+                    Button("Not sure which outcome to select?", systemImage: "info.circle") {
+                        isShowingOutcomeHelp.toggle()
+                        if !isShowingOutcomeHelp {
+                            return
+                        }
+                        // Scroll to help text after toggle
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation {
+                                proxy.scrollTo("outcome-help-text", anchor: .bottom)
+                            }
                         }
                     }
-                }.padding(.bottom)
-                
-                Markdown(issueMarkdown)
+                    .foregroundColor(Color.fivecallsDarkBlueText)
                     .padding(.bottom)
-                
-                OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
-                    let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
-                    store.dispatch(action: .ReportOutcome(issue, log, outcome))
-                    store.dispatch(action: .GoToNext(issue, nextContacts))
-                })
-                Spacer()
-            }.padding(.horizontal)
+                    
+                    if isShowingOutcomeHelp {
+                        Text("Choose **Made Contact** if you were able to reach the office of \(currentContact.name).\n\nChoose **Left Voicemail** if you left a voicemail.\n\nChoose **Unavailable** if your call was not answered and no voicemail was left.\n\nChoose **Skip** if you did not attempt to call the office of \(currentContact.name).", comment: "Outcome help text explaining each option")
+                            .id("outcome-help-text")
+                            .multilineTextAlignment(.leading)
+                            .padding(.bottom, 6)
+                    }
+                    Spacer()
+                }.padding(.horizontal)
+            }
+            .clipped()
         }
-        .clipped()
     }
-
+    
     private func call(phoneNumber: String) {
         let telephone = "tel://"
         let formattedString = telephone + phoneNumber
@@ -220,7 +246,7 @@ struct MenuButtonsView: View {
             .accessibilityHint(
                 String(
                     localized: "Triple tap to copy",
-                    comment: "Copy phone number accissibility hint"
+                    comment: "Copy phone number accessibility hint"
                 )
             )
         }
