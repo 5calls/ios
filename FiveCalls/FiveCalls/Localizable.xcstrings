@@ -311,7 +311,7 @@
       "comment" : "IssueDone Alert decline push notifications"
     },
     "Not sure which outcome to select?" : {
-      "comment" : "Outcome help button text"
+      "comment" : "Issue contact help button text"
     },
     "Notifications permissions denied." : {
       "comment" : "Notifications denied alert title"

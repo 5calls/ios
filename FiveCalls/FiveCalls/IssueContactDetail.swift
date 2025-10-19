@@ -145,7 +145,13 @@ struct IssueContactDetail: View {
                     })
                     .padding(.bottom)
                                         
-                    Button("Not sure which outcome to select?", systemImage: "info.circle") {
+                    Button(
+                        String(
+                            localized: "Not sure which outcome to select?",
+                            comment: "Issue contact help button text"
+                        ),
+                        systemImage: "info.circle"
+                    ) {
                         isShowingOutcomeHelp.toggle()
                         if !isShowingOutcomeHelp {
                             return
