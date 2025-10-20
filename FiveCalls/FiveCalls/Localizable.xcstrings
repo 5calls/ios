@@ -117,17 +117,6 @@
     "Can't send mail" : {
       "comment" : "AboutSheet alert title"
     },
-    "Choose **Made Contact** if you were able to reach the office of %@.\n\nChoose **Left Voicemail** if you left a voicemail.\n\nChoose **Unavailable** if your call was not answered and no voicemail was left.\n\nChoose **Skip** if you did not attempt to call the office of %@." : {
-      "comment" : "Outcome help text explaining each option",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose **Made Contact** if you were able to reach the office of %1$@.\n\nChoose **Left Voicemail** if you left a voicemail.\n\nChoose **Unavailable** if your call was not answered and no voicemail was left.\n\nChoose **Skip** if you did not attempt to call the office of %2$@."
-          }
-        }
-      }
-    },
     "Contacts" : {
       "comment" : "Contact Summary header text"
     },
@@ -310,6 +299,9 @@
     "No, thanks" : {
       "comment" : "IssueDone Alert decline push notifications"
     },
+    "Not sure how to mark the result of a call? \n\nChoose **Made Contact** if you were able to reach the office.\n\nChoose **Left Voicemail** if you left a voicemail.\n\nChoose **Unavailable** if your call was not answered and no voicemail was left.\n\nChoose **Skip** if you did not attempt to make the call." : {
+      "comment" : "Outcome help text explaining each option"
+    },
     "Not sure which outcome to select?" : {
       "comment" : "Issue contact help button text"
     },
@@ -330,6 +322,9 @@
     },
     "Or" : {
       "comment" : "LocationSheet 'Or' text"
+    },
+    "Outcome Selection Help" : {
+      "comment" : "OutcomeHelpSheet navigation title"
     },
     "Please configure an e-mail address in the Settings app" : {
       "comment" : "About sheet alert body"
