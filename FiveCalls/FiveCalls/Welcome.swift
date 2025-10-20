@@ -112,7 +112,7 @@ struct Welcome: View {
 
 #Preview {
     let previewState = {
-        var state = AppState()
+        let state = AppState()
         state.globalCallCount = 12345
         return state
     }()

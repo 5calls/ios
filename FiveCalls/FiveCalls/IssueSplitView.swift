@@ -74,7 +74,7 @@ struct IssueSplitView: View {
 
 #Preview {
     let previewState = {
-        var state = AppState()
+        let state = AppState()
         state.issues = [
             Issue.basicPreviewIssue,
             Issue.multilinePreviewIssue,

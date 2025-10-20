@@ -32,7 +32,7 @@ struct StreakCounter {
             return count
         }
 
-        var intervalsApart: (Date, Date) -> Int? = switch intervalType {
+        let intervalsApart: (Date, Date) -> Int? = switch intervalType {
         case .Daily:
             StreakCounter.daysApart
         case .Weekly:
