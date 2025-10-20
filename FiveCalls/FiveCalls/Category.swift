@@ -1,10 +1,4 @@
-//
-//  Category.swift
-//  FiveCalls
-//
-//  Created by Indrajit on 10/13/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 /*
  "categories": [{
@@ -13,12 +7,12 @@
  */
 
 // Category to which an issue may belong.
-struct Category : Decodable {
+struct Category: Decodable {
     let name: String
 }
 
-extension Category : Hashable, Comparable {
+extension Category: Hashable, Comparable {
     static func < (lhs: Category, rhs: Category) -> Bool {
-        return lhs.name < rhs.name
+        lhs.name < rhs.name
     }
 }

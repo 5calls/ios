@@ -1,35 +1,29 @@
-//
-//  IssueDone.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 10/2/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import SwiftUI
-import StoreKit
 import OneSignal
+import StoreKit
+import SwiftUI
 
 struct IssueDone: View {
     @EnvironmentObject var store: Store
     @Environment(\.openURL) private var openURL
-    
+
     @State var showNotificationAlert = false
-    
+
     let issue: Issue
 
     init(issue: Issue) {
         self.issue = issue
 
         if let titleString = try? AttributedString(
-            markdown:  String(
+            markdown: String(
                 localized: "You called on \(issue.name)",
                 comment: "Issue done title string markdown text"
             )
         ) {
-            self.markdownTitle = titleString
+            markdownTitle = titleString
         } else {
-            self.markdownTitle = AttributedString(
+            markdownTitle = AttributedString(
                 String(
                     localized: "Nice work!",
                     comment: "Fallback issue done title markdown text"
@@ -58,7 +52,7 @@ struct IssueDone: View {
     }
 
     func shouldShowImage(latestOutcomeForContact: LocalizedStringResource) -> Bool {
-        return latestOutcomeForContact != "Skip"
+        latestOutcomeForContact != "Skip"
     }
 
     var body: some View {
@@ -125,9 +119,9 @@ struct IssueDone: View {
                         Text("")
                         AsyncImage(url: issue.shareImageURL,
                                    content: { image in
-                            image.resizable()
-                                .aspectRatio(contentMode: .fill)
-                        }, placeholder: { EmptyView() })
+                                       image.resizable()
+                                           .aspectRatio(contentMode: .fill)
+                                   }, placeholder: { EmptyView() })
                     }
                 }
                 .padding(.bottom, 16)
@@ -151,20 +145,20 @@ struct IssueDone: View {
         .navigationBarHidden(true)
         .clipped()
         .frame(maxWidth: 500)
-        .onAppear() {
+        .onAppear {
             AnalyticsManager.shared.trackPageview(path: "/issue/\(issue.slug)/done/")
 
             store.dispatch(action: .FetchStats(issue.id))
-          
+
             // will prompt for a rating after hitting done 5 times
             RatingPromptCounter.increment {
                 guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
                     return
                 }
-                
+
                 SKStoreReviewController.requestReview(in: currentScene)
             }
-            
+
             // unlikely to occur at the same time as the rating prompt counter
             checkForNotifications()
         }.alert(
@@ -196,19 +190,19 @@ struct IssueDone: View {
                 comment: "IssueDone Alert message"
             )
         }
-
     }
 }
 
 extension IssueDone {
     func checkForNotifications() {
-            let deviceState = OneSignal.getDeviceState()
-            let nextPrompt = nextNotificationPromptDate() ?? Date()
+        let deviceState = OneSignal.getDeviceState()
+        let nextPrompt = nextNotificationPromptDate() ?? Date()
 
-            if deviceState?.hasNotificationPermission == false && nextPrompt <= Date() {
-                showNotificationAlert = true
-            }
+        if deviceState?.hasNotificationPermission == false, nextPrompt <= Date() {
+            showNotificationAlert = true
         }
+    }
+
     func nextNotificationPromptDate() -> Date? {
         let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
         guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
@@ -217,13 +211,11 @@ extension IssueDone {
     }
 }
 
-
-
 #Preview {
     let previewState = {
         let state = AppState()
         state.contacts = [.housePreviewContact, .senatePreviewContact1, .senatePreviewContact2]
-        state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail","\(Contact.senatePreviewContact1.id)-contact"]
+        state.issueCompletion[Issue.basicPreviewIssue.id] = ["\(Contact.housePreviewContact.id)-voicemail", "\(Contact.senatePreviewContact1.id)-contact"]
         return state
     }()
 
@@ -239,7 +231,7 @@ struct IssueDoneNavModel {
 
 extension IssueDoneNavModel: Equatable, Hashable {
     static func == (lhs: IssueDoneNavModel, rhs: IssueDoneNavModel) -> Bool {
-        return lhs.issue.id == rhs.issue.id && lhs.type == rhs.type
+        lhs.issue.id == rhs.issue.id && lhs.type == rhs.type
     }
 
     func hash(into hasher: inout Hasher) {

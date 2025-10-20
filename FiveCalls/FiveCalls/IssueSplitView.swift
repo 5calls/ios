@@ -1,17 +1,11 @@
-//
-//  IssueSplitView.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 11/1/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
 struct IssueSplitView: View {
     @EnvironmentObject var store: Store
     @Environment(\.horizontalSizeClass) private var originalSizeClass
-    
+
     var body: some View {
         TabView(selection: $store.state.selectedTab) {
             NavigationSplitView(columnVisibility: .constant(.all)) {
@@ -48,56 +42,52 @@ struct IssueSplitView: View {
                 }
             }
             .navigationSplitViewStyle(.balanced)
-            .tabItem(
-                {
-                    Label(
-                        String(
-                            localized: "Topics",
-                            comment: "Topics Tab title"
-                        ),
-                        systemImage: "phone.bubble.fill"
-                    )
-                })
+            .tabItem {
+                Label(
+                    String(
+                        localized: "Topics",
+                        comment: "Topics Tab title"
+                    ),
+                    systemImage: "phone.bubble.fill"
+                )
+            }
             .tag("topics")
             // Set the inner size class for the navigation stack back to whatever it was originally since we override it for old tab bar behavior below
             .environment(\.horizontalSizeClass, originalSizeClass)
             .toolbar(.visible, for: .tabBar)
-            
+
             InboxView()
-                .tabItem(
-                    {
-                        Label(
-                            String(
-                                localized: "Reps",
-                                comment: "Reps Tab title"
-                            ),
-                            systemImage: "person.crop.circle.fill.badge.checkmark"
-                        )
-                    })
+                .tabItem {
+                    Label(
+                        String(
+                            localized: "Reps",
+                            comment: "Reps Tab title"
+                        ),
+                        systemImage: "person.crop.circle.fill.badge.checkmark"
+                    )
+                }
                 .tag("inbox")
-        }// the new TabBar style in iOS 18 does not work well with this style, for now override the size class so it uses the old style on iPadOS
+        } // the new TabBar style in iOS 18 does not work well with this style, for now override the size class so it uses the old style on iPadOS
         .environment(\.horizontalSizeClass, .compact)
     }
 }
 
-struct IssueSplitView_Previews: PreviewProvider {
-    static let previewState = {
+#Preview {
+    let previewState = {
         var state = AppState()
         state.issues = [
             Issue.basicPreviewIssue,
-            Issue.multilinePreviewIssue
+            Issue.multilinePreviewIssue,
         ]
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
-            Contact.senatePreviewContact2
+            Contact.senatePreviewContact2,
         ]
         return state
     }()
 
-    static let store = Store(state: previewState, middlewares: [appMiddleware()])
-    
-    static var previews: some View {
-        IssueSplitView().environmentObject(store)
-    }
+    let store = Store(state: previewState, middlewares: [appMiddleware()])
+
+    IssueSplitView().environmentObject(store)
 }

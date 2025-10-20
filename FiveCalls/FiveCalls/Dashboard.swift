@@ -1,17 +1,11 @@
-//
-//  Dashboard.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/28/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
 struct Dashboard: View {
     @EnvironmentObject var store: Store
     @AppStorage("shownNewsletterSignup") var shownNewsletterSignup: Bool = false
-    
+
     @State var selectedIssueUrl: URL?
     @Binding var selectedIssue: Issue?
 
@@ -29,26 +23,26 @@ struct Dashboard: View {
             MainHeader()
                 .padding(.horizontal, 10)
                 .padding(.bottom, 10)
-            
+
             if !shownNewsletterSignup {
                 NewsletterSignup {
                     shownNewsletterSignup = true
                 } onSubmit: { email in
                     var district = store.state.district
-#if !DEBUG
-                    var req = URLRequest(url: URL(string: "https://buttondown.com/api/emails/embed-subscribe/5calls")!)
-                    req.httpMethod = "POST"
-                    req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                    var reqBody = "email=\(email)&tag=ios"
-                    if let district { reqBody += "&tag=\(district)" }
-                    req.httpBody = reqBody.data(using: .utf8)
-                    URLSession.shared.dataTask(with: req).resume()
-#else
-                    var subscribeDebug = "DEBUG: would send email sub request to: \(email)"
-                    if let district { subscribeDebug += " with district: \(district)"}
-                    print(subscribeDebug)
-#endif
-                    
+                    #if !DEBUG
+                        var req = URLRequest(url: URL(string: "https://buttondown.com/api/emails/embed-subscribe/5calls")!)
+                        req.httpMethod = "POST"
+                        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                        var reqBody = "email=\(email)&tag=ios"
+                        if let district { reqBody += "&tag=\(district)" }
+                        req.httpBody = reqBody.data(using: .utf8)
+                        URLSession.shared.dataTask(with: req).resume()
+                    #else
+                        var subscribeDebug = "DEBUG: would send email sub request to: \(email)"
+                        if let district { subscribeDebug += " with district: \(district)" }
+                        print(subscribeDebug)
+                    #endif
+
                     shownNewsletterSignup = true
                 }
             }
@@ -60,13 +54,13 @@ struct Dashboard: View {
                     .accessibilityAddTraits(.isHeader)
                     .padding(.horizontal, 16)
             }
-            
+
             SearchBar(searchText: $searchText)
 
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues, searchText: $searchText)
         }
         .navigationBarHidden(true)
-        .onAppear() {
+        .onAppear {
             AnalyticsManager.shared.trackPageview(path: "/")
 
             if let location = store.state.location, store.state.contacts.isEmpty {
@@ -86,30 +80,6 @@ struct Dashboard: View {
                 selectedIssue = issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
                 self.selectedIssueUrl = nil
             }
-        }
-    }
-}
-
-struct Dashboard_Previews: PreviewProvider {
-    static let previewState = {
-        var state = AppState()
-        state.issues = [
-            Issue.basicPreviewIssue,
-            Issue.multilinePreviewIssue
-        ]
-        state.contacts = [
-            Contact.housePreviewContact,
-            Contact.senatePreviewContact1,
-            Contact.senatePreviewContact2
-        ]
-        return state
-    }()
-
-    static let store = Store(state: previewState, middlewares: [appMiddleware()])
-
-    static var previews: some View {
-        NavigationStack {
-            Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
         }
     }
 }
@@ -160,34 +130,34 @@ struct IssuesList: View {
     @Binding var selectedIssue: Issue?
     @Binding var showAllIssues: Bool
     @Binding var searchText: String
-    
+
     var isSearching: Bool {
         searchText.count >= 3
     }
 
     var allIssues: [Issue] {
         let baseIssues: [Issue]
-        
+
         if isSearching {
             // When searching, search all issues regardless of active status
             let filteredIssues = store.state.issues.filter { issue in
                 issue.name.localizedCaseInsensitiveContains(searchText) ||
-                issue.reason.localizedCaseInsensitiveContains(searchText) ||
-                issue.script.localizedCaseInsensitiveContains(searchText) ||
-                issue.slug.localizedCaseInsensitiveContains(searchText) ||
-                issue.categories.contains { category in
-                    category.name.localizedCaseInsensitiveContains(searchText)
-                }
+                    issue.reason.localizedCaseInsensitiveContains(searchText) ||
+                    issue.script.localizedCaseInsensitiveContains(searchText) ||
+                    issue.slug.localizedCaseInsensitiveContains(searchText) ||
+                    issue.categories.contains { category in
+                        category.name.localizedCaseInsensitiveContains(searchText)
+                    }
             }
-            
+
             // Sort results with name matches first
             baseIssues = filteredIssues.sorted { issue1, issue2 in
                 let issue1NameMatch = issue1.name.localizedCaseInsensitiveContains(searchText)
                 let issue2NameMatch = issue2.name.localizedCaseInsensitiveContains(searchText)
-                
-                if issue1NameMatch && !issue2NameMatch {
+
+                if issue1NameMatch, !issue2NameMatch {
                     return true // issue1 comes first
-                } else if !issue1NameMatch && issue2NameMatch {
+                } else if !issue1NameMatch, issue2NameMatch {
                     return false // issue2 comes first
                 } else {
                     return false
@@ -196,19 +166,19 @@ struct IssuesList: View {
         } else if showAllIssues {
             baseIssues = store.state.issues
         } else {
-            baseIssues = store.state.issues.filter({ $0.active })
+            baseIssues = store.state.issues.filter(\.active)
         }
-        
+
         // Prioritize state-specific issues at the top
         return baseIssues.sorted { issue1, issue2 in
             let issue1IsState = issue1.isStateSpecific
             let issue2IsState = issue2.isStateSpecific
-            
-            if issue1IsState && !issue2IsState {
+
+            if issue1IsState, !issue2IsState {
                 return true // State-specific issues come first
-            } else if !issue1IsState && issue2IsState {
+            } else if !issue1IsState, issue2IsState {
                 return false // Non-state issues come after
-            } else if issue1IsState && issue2IsState {
+            } else if issue1IsState, issue2IsState {
                 // Both are state-specific, sort by createdAt (newest first)
                 // TODO: Replace with sort field when available
                 return issue1.createdAt > issue2.createdAt
@@ -221,10 +191,10 @@ struct IssuesList: View {
 
     private var categorizedIssues: [CategorizedIssuesViewModel] {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
-        
+
         if isSearching || !showAllIssues {
             // For search results or default view, make fake categories to preserve order and show flat list
-            return allIssues.map({ CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) })
+            return allIssues.map { CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) }
         }
 
         for issue in allIssues {
@@ -241,7 +211,7 @@ struct IssuesList: View {
 
     var body: some View {
         ScrollViewReader { scroll in
-            if isSearching && allIssues.isEmpty {
+            if isSearching, allIssues.isEmpty {
                 VStack {
                     Spacer()
                     Text("No issues found", comment: "IssuesList no results title")
@@ -255,43 +225,64 @@ struct IssuesList: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 List(categorizedIssues, selection: $selectedIssue) { section in
-                Section {
-                    ForEach(section.issues) { issue in
-                        NavigationLink(value: issue) {
-                            IssueListItem(issue: issue, contacts: store.state.contacts)
-                        }
-                        .listRowSeparatorTint(.fivecallsDarkGray)
-                    }
-                } header: {
-                    if showAllIssues && !isSearching {
-                        Text(section.name.uppercased()).font(.headline)
-                            .foregroundStyle(.fivecallsDarkGray)
-                    }
-                } footer: {
-                    if section == categorizedIssues.last && !isSearching {
-                        Button {
-                            showAllIssues.toggle()
-                            if let issueID = categorizedIssues.first?.issues.first?.id {
-                                scroll.scrollTo(issueID, anchor: .top)
+                    Section {
+                        ForEach(section.issues) { issue in
+                            NavigationLink(value: issue) {
+                                IssueListItem(issue: issue, contacts: store.state.contacts)
                             }
-                        } label: {
-                            Text(showAllIssues ?
-                                 String(localized: "Fewer Issues", comment: "Issues List button text")
-                                 : String(localized: "More Issues", comment: "Issues List button text")
-                            )
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.fivecallsDarkBlueText)
-
+                            .listRowSeparatorTint(.fivecallsDarkGray)
                         }
-                        .padding(.vertical, 10)
-                        .listRowSeparatorTint(.fivecallsDarkGray)
+                    } header: {
+                        if showAllIssues, !isSearching {
+                            Text(section.name.uppercased()).font(.headline)
+                                .foregroundStyle(.fivecallsDarkGray)
+                        }
+                    } footer: {
+                        if section == categorizedIssues.last, !isSearching {
+                            Button {
+                                showAllIssues.toggle()
+                                if let issueID = categorizedIssues.first?.issues.first?.id {
+                                    scroll.scrollTo(issueID, anchor: .top)
+                                }
+                            } label: {
+                                Text(showAllIssues ?
+                                    String(localized: "Fewer Issues", comment: "Issues List button text")
+                                    : String(localized: "More Issues", comment: "Issues List button text")
+                                )
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.fivecallsDarkBlueText)
+                            }
+                            .padding(.vertical, 10)
+                            .listRowSeparatorTint(.fivecallsDarkGray)
+                        }
                     }
-                }
                 }
                 .tint(Color.fivecallsLightBG)
                 .listStyle(.plain)
             }
         }
+    }
+}
+
+#Preview {
+    let previewState = {
+        var state = AppState()
+        state.issues = [
+            Issue.basicPreviewIssue,
+            Issue.multilinePreviewIssue,
+        ]
+        state.contacts = [
+            Contact.housePreviewContact,
+            Contact.senatePreviewContact1,
+            Contact.senatePreviewContact2,
+        ]
+        return state
+    }()
+
+    let store = Store(state: previewState, middlewares: [appMiddleware()])
+
+    NavigationStack {
+        Dashboard(selectedIssue: .constant(.none)).environmentObject(store)
     }
 }

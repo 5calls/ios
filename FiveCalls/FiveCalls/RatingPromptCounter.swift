@@ -1,14 +1,8 @@
-//
-//  RatingPromptCounter.swift
-//  FiveCalls
-//
-//  Created by Abizer Nasir on 09/10/2017.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
-struct RatingPromptCounter {
+enum RatingPromptCounter {
     private static let threshold = 5
 
     static func increment(handler: () -> Void) {

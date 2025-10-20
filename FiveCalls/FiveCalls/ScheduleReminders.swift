@@ -1,10 +1,4 @@
-//
-//  ScheduleReminders.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 9/8/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -40,7 +34,7 @@ struct ScheduleReminders: View {
                     if remindersEnabled {
                         onRemindersEnabled()
                     }
-                    
+
                     let notificationRequests = await UNUserNotificationCenter.current().pendingNotificationRequests()
                     let indices = UNNotificationRequest.indices(from: notificationRequests)
                     existingSelectedDayIndices = indices
@@ -59,7 +53,7 @@ struct ScheduleReminders: View {
                     Text("Notifications permissions denied.", comment: "Notifications denied alert title"),
                     isPresented: $presentNotificationSettingsAlert,
                     actions: {
-                        Button(String(localized: "Dismiss", comment: "Standard Dismiss Button text")) { }
+                        Button(String(localized: "Dismiss", comment: "Standard Dismiss Button text")) {}
                         Button(String(localized: "Open Settings", comment: "Open Settings button title")) {
                             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                             UIApplication.shared.open(url)
@@ -70,7 +64,8 @@ struct ScheduleReminders: View {
                             "To use reminders please change notifications permissions in the Settings app and try again.",
                             comment: "Notifications denied alert message"
                         )
-                })
+                    }
+                )
                 .alert(isPresented: $presentDaysOfWeekNotSetAlert) {
                     Alert(
                         title: Text(
@@ -94,7 +89,7 @@ struct ScheduleReminders: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        self.onDismiss()
+                        onDismiss()
                     }) {
                         Text("Done", comment: "Standard Done Button text")
                             .bold()
@@ -103,8 +98,8 @@ struct ScheduleReminders: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Toggle(isOn: $remindersEnabled,
                            label: {
-                        Text("")
-                    }).toggleStyle(.switch)
+                               Text("")
+                           }).toggleStyle(.switch)
                         .accessibilityLabel(
                             Text(
                                 "Enable reminder",
@@ -118,28 +113,28 @@ struct ScheduleReminders: View {
     }
 
     private func onRemindersEnabled() {
-         UNUserNotificationCenter.current().getNotificationSettings() { settings in
-             if settings.authorizationStatus == .notDetermined {
-                 requestNotificationAccess()
-             } else if settings.authorizationStatus == .denied {
-                    presentNotificationSettingsAlert = true
-             }
-         }
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            if settings.authorizationStatus == .notDetermined {
+                requestNotificationAccess()
+            } else if settings.authorizationStatus == .denied {
+                presentNotificationSettingsAlert = true
+            }
+        }
     }
-    
+
     private func requestNotificationAccess() {
-        let options: UNAuthorizationOptions = [.alert, .sound, .badge];
-        UNUserNotificationCenter.current().requestAuthorization(options: options) { (success, error) in
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { success, _ in
             if success {
                 AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/reminders/")
             }
         }
     }
-    
+
     private func clearNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
-    
+
     private func onDismiss() {
         let cannotDismiss = selectedDayIndices.isEmpty && remindersEnabled
         if cannotDismiss {
@@ -149,8 +144,9 @@ struct ScheduleReminders: View {
             if voiceOverEnabled || reduceMotionEnabled || differentiateWithoutColorEnabled {
                 presentDaysOfWeekNotSetAlert = true
             }
-        } else if existingSelectedTime == selectedTime &&
-            existingSelectedDayIndices == selectedDayIndices && remindersEnabled {
+        } else if existingSelectedTime == selectedTime,
+                  existingSelectedDayIndices == selectedDayIndices, remindersEnabled
+        {
             dismiss()
         } else {
             clearNotifications()
@@ -164,14 +160,6 @@ struct ScheduleReminders: View {
             }
 
             dismiss()
-        }
-    }
-}
-
-struct ScheduleReminders_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ScheduleReminders()
         }
     }
 }
@@ -190,10 +178,10 @@ struct DayAndTimePickers: View {
                     "Select what time of day you'd like to be reminded to make calls:",
                     comment: "Scheduled Reminders time label"
                 )
-                    .font(.title3)
-                    .foregroundColor(Color.fivecallsDarkBlue)
-                    .multilineTextAlignment(.center)
-                    .padding(20)
+                .font(.title3)
+                .foregroundColor(Color.fivecallsDarkBlue)
+                .multilineTextAlignment(.center)
+                .padding(20)
                 DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
                     .labelsHidden()
                     .datePickerStyle(WheelDatePickerStyle())
@@ -204,10 +192,10 @@ struct DayAndTimePickers: View {
                     "Which days of the week?",
                     comment: "ScheduledReminderds day label"
                 )
-                    .font(.title3)
-                    .foregroundColor(Color.fivecallsDarkBlue)
-                    .padding(.horizontal, 20)
-                    .accessibilityAddTraits(.isHeader)
+                .font(.title3)
+                .foregroundColor(Color.fivecallsDarkBlue)
+                .padding(.horizontal, 20)
+                .accessibilityAddTraits(.isHeader)
                 MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
                     .offset(x: shouldShake ? -18 : 0)
                     .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
@@ -221,11 +209,10 @@ struct DayAndTimePickers: View {
                     "No days selected yet",
                     comment: "ScheduledReminders no days warning"
                 )
-                    .foregroundColor(colorScheme == .light ? Color.fivecallsRed : Color.primary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 20)
-
-                    .opacity(selectedDayIndices.isEmpty ? 1 : 0)
+                .foregroundColor(colorScheme == .light ? Color.fivecallsRed : Color.primary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 20)
+                .opacity(selectedDayIndices.isEmpty ? 1 : 0)
             }
             .opacity(remindersEnabled ? 1 : 0)
         }
@@ -235,18 +222,23 @@ struct DayAndTimePickers: View {
 struct RemindersDisabledView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var remindersEnabled: Bool
-    
+
     var body: some View {
         VStack {
             Text(
                 "Turn these on to get a quick local reminder to make your 5 calls.",
                 comment: "RemindersDisabledView text"
             )
-                .foregroundColor(Color(.fivecallsDarkGray))
-
-                .multilineTextAlignment(.center)
-                .opacity(remindersEnabled ? 0 : 1)
+            .foregroundColor(Color(.fivecallsDarkGray))
+            .multilineTextAlignment(.center)
+            .opacity(remindersEnabled ? 0 : 1)
         }
         .padding()
+    }
+}
+
+#Preview {
+    NavigationView {
+        ScheduleReminders()
     }
 }

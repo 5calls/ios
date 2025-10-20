@@ -1,10 +1,4 @@
-//
-//  IssueListItem.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/28/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -23,7 +17,7 @@ struct IssueListItem: View {
                 VStack(alignment: .leading) {
                     Text(issue.name)
                         .font(.title3)
-                        .fontWeight(.semibold)                        
+                        .fontWeight(.semibold)
                         .foregroundColor(Color.fivecallsDarkBlueText)
 
                     HStack(spacing: 0) {
@@ -43,20 +37,20 @@ struct IssueListItem: View {
                             .clipShape(Capsule())
                             .padding(.trailing, 8)
                         }
-                        
-                        let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap({ area in
+
+                        let contactsForIssue = contacts.isEmpty ? issue.contactAreas.flatMap { area in
                             Contact.placeholderContact(for: area)
-                        }) : issue.contactsForIssue(allContacts: contacts)
+                        } : issue.contactsForIssue(allContacts: contacts)
                         ForEach(contactsForIssue.numbered()) { numberedContact in
                             ContactCircle(contact: numberedContact.element, issueID: issue.id)
                                 .frame(width: usingRegularFonts() ? 20 : 40, height: usingRegularFonts() ? 20 : 40)
-                                .offset(x: -10 * CGFloat(numberedContact.number), y:0)
+                                .offset(x: -10 * CGFloat(numberedContact.number), y: 0)
                         }
                         Text(localizedRepText)
                             .font(.footnote)
                             .foregroundColor(.primary)
                             .offset(x: contactsForIssue.isEmpty ? 0 : 16 + (-10 * CGFloat(contactsForIssue.count)), y: 0)
-                        
+
                         Spacer()
                     }
                 }
@@ -64,7 +58,7 @@ struct IssueListItem: View {
             }
         }
     }
-    
+
     var localizedRepText: LocalizedStringResource {
         let areas = issue.contactAreas
 
@@ -80,11 +74,11 @@ struct IssueListItem: View {
 
         let labels: [String] = areas.map { area in
             if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
-                return String(localized: "State Reps", comment: "Localized rep text for multiple reps")
+                String(localized: "State Reps", comment: "Localized rep text for multiple reps")
             } else if area == "StateUpper" || area == "StateLower" {
-                return String(localized: "State Rep" , comment: "Localized rep text for single rep")
+                String(localized: "State Rep", comment: "Localized rep text for single rep")
             } else {
-                return areaToNiceString(area: area)
+                areaToNiceString(area: area)
             }
         }
 
@@ -101,7 +95,6 @@ struct IssueListItem: View {
         return state
     }()
 
-
     List {
         IssueListItem(
             issue: Issue.basicPreviewIssue,
@@ -111,24 +104,23 @@ struct IssueListItem: View {
                 Contact.senatePreviewContact2,
             ]
         )
-                .padding(.horizontal, 10)
+        .padding(.horizontal, 10)
         IssueListItem(issue: Issue.stateSpecificPreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
-                .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
-                .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.extraLongPreviewIssue, contacts: [Contact.housePreviewContact])
-                .padding(.horizontal, 10)
-            IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
-                .padding(.horizontal, 10)
+            .padding(.horizontal, 10)
+        IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [Contact.housePreviewContact, Contact.senatePreviewContact1])
+            .padding(.horizontal, 10)
+        IssueListItem(issue: Issue.extraLongPreviewIssue, contacts: [Contact.housePreviewContact])
+            .padding(.horizontal, 10)
+        IssueListItem(issue: Issue.multilinePreviewIssue, contacts: [])
+            .padding(.horizontal, 10)
         IssueListItem(issue: Issue.manyContactPreviewIssue, contacts: [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
             Contact.senatePreviewContact2,
             Contact.governorPreviewContact,
             Contact.agPreviewContact,
-])
-            .padding(.horizontal, 10)
-        }
-        .environmentObject(Store(state: previewState))
+        ])
+        .padding(.horizontal, 10)
+    }
+    .environmentObject(Store(state: previewState))
 }
-

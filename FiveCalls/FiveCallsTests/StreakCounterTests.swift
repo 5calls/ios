@@ -1,10 +1,4 @@
-//
-//  StreakCounterTests.swift
-//  FiveCalls
-//
-//  Created by Nikrad Mahdi on 3/10/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import XCTest
 @testable import FiveCalls
@@ -12,23 +6,23 @@ import XCTest
 class StreakCounterTests: XCTestCase {
     let oldTimeZone = NSTimeZone.default
     let dates: [Date] = [
-        Date(timeIntervalSince1970: TimeInterval(1478649600)), // Wed, 09 Nov 2016 00:00:00 GMT
-        Date(timeIntervalSince1970: TimeInterval(1485928846)), // Wed, 01 Feb 2017 06:00:46 GMT
-        Date(timeIntervalSince1970: TimeInterval(1485930046)), // Wed, 01 Feb 2017 06:20:46 GMT
-        Date(timeIntervalSince1970: TimeInterval(1486016446)), // Thu, 02 Feb 2017 06:20:46 GMT
-        Date(timeIntervalSince1970: TimeInterval(1486102846)), // Fri, 03 Feb 2017 06:20:46 GMT
-        Date(timeIntervalSince1970: TimeInterval(1486706446)), // Fri, 10 Feb 2017 06:00:46 GMT
-        Date(timeIntervalSince1970: TimeInterval(1487073600)), // Tue, 14 Feb 2017 12:00:00 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_478_649_600)), // Wed, 09 Nov 2016 00:00:00 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_485_928_846)), // Wed, 01 Feb 2017 06:00:46 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_485_930_046)), // Wed, 01 Feb 2017 06:20:46 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_486_016_446)), // Thu, 02 Feb 2017 06:20:46 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_486_102_846)), // Fri, 03 Feb 2017 06:20:46 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_486_706_446)), // Fri, 10 Feb 2017 06:00:46 GMT
+        Date(timeIntervalSince1970: TimeInterval(1_487_073_600)), // Tue, 14 Feb 2017 12:00:00 GMT
     ]
-    
+
     override func setUp() {
         NSTimeZone.default = TimeZone(abbreviation: "PDT")!
     }
-    
+
     override func tearDown() {
         NSTimeZone.default = oldTimeZone
     }
-    
+
     func testDaysApart() {
         let t1 = dates[1]
         let expected = [84, 0, 0, 1, 2, 9, 14]
@@ -37,7 +31,7 @@ class StreakCounterTests: XCTestCase {
             XCTAssertEqual(StreakCounter.daysApart(from: t2, to: t1), expected[index])
         }
     }
-    
+
     func testWeeksApart() {
         let t1 = dates[1]
         let expected = [12, 0, 0, 0, 0, 1, 2]
@@ -46,7 +40,7 @@ class StreakCounterTests: XCTestCase {
             XCTAssertEqual(StreakCounter.weeksApart(from: t2, to: t1), expected[index])
         }
     }
-    
+
     func testDailyStreak() {
         // No events
         var streak = StreakCounter(dates: [], referenceDate: Date())
@@ -81,10 +75,10 @@ class StreakCounterTests: XCTestCase {
         // One event today, one event yesterday, and two events the day before that
         streak = StreakCounter(dates: [dates[4], dates[0], dates[1], dates[3], dates[2]], referenceDate: dates[4])
         XCTAssertEqual(streak.daily, 3)
-        streak = StreakCounter(dates: Array(self.dates[0...4]), referenceDate: dates[4])
+        streak = StreakCounter(dates: Array(dates[0 ... 4]), referenceDate: dates[4])
         XCTAssertEqual(streak.daily, 3)
     }
-    
+
     func testWeeklyStreak() {
         // No events
         var streak = StreakCounter(dates: [], referenceDate: Date())

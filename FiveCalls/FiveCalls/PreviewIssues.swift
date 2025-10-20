@@ -1,24 +1,18 @@
-//
-//  PreviewIssues.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/28/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
 extension Issue {
     static let issueReason = """
     Congress is currently considering [the RESTRICT Act](https://www.warner.senate.gov/public/index.cfm/2023/3/senators-introduce-bipartisan-bill-to-tackle-national-security-threats-from-foreign-tech), [(S.686)](https://www.congress.gov/bill/118th-congress/senate-bill/686) a bill that purports to protect Americans by restricting access to apps and websites that could pose a threat to national security.
-    
+
     ~this is very important.~
-    
+
     ~~this is also very important.~~
 
     Demand your Senators oppose the RESTRICT Act to ensure a free and fair internet.
     """
-    
+
     static let issueScript = """
     Hi, my name is **[NAME]** and I’m a constituent from [CITY, ZIP].
 
@@ -28,13 +22,12 @@ extension Issue {
 
     **IF LEAVING VOICEMAIL:** Please leave your full street address to ensure your call is tallied.
     """
-    
-    static let basicPreviewIssue = Issue(id: 813, meta: "", name: "Support the Act", slug: "support-act-slug", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Budget")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate"], createdAt: Date(timeIntervalSince1970: 1688015904))
-    static let multilinePreviewIssue = Issue(id: 812, meta: "", name: "Support the Act whose name is quite long", slug: "support-act-slug2", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate"], createdAt: Date(timeIntervalSince1970: 1688015904))
-    static let extraLongPreviewIssue = Issue(id: 811, meta: "", name: "Call for supportive action in a made up region with extra long details", slug: "support-act-slug2", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate"], createdAt: Date(timeIntervalSince1970: 1688015904))
-    static let houseOnlyPreviewIssue = Issue(id: 813, meta: "", name: "Support the Act", slug: "support-act-slug", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Budget")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House"], createdAt: Date(timeIntervalSince1970: 1688015904))
-    static let senateOnlyPreviewIssue = Issue(id: 813, meta: "", name: "Support the Act", slug: "support-act-slug", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Budget")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US Senate"], createdAt: Date(timeIntervalSince1970: 1688015904))
-    static let stateSpecificPreviewIssue = Issue(id: 814, meta: "CA", name: "California Environmental Protection Act", slug: "ca-environmental-act", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["StateUpper", "StateLower"], createdAt: Date(timeIntervalSince1970: 1688015904))
-    static let manyContactPreviewIssue = Issue(id: 815, meta: "", name: "Environmental Protection Act", slug: "environmental-act", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate", "Governor", "AttorneyGeneral"], createdAt: Date(timeIntervalSince1970: 1688015904))
-}
 
+    static let basicPreviewIssue = Issue(id: 813, meta: "", name: "Support the Act", slug: "support-act-slug", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Budget")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+    static let multilinePreviewIssue = Issue(id: 812, meta: "", name: "Support the Act whose name is quite long", slug: "support-act-slug2", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+    static let extraLongPreviewIssue = Issue(id: 811, meta: "", name: "Call for supportive action in a made up region with extra long details", slug: "support-act-slug2", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+    static let houseOnlyPreviewIssue = Issue(id: 813, meta: "", name: "Support the Act", slug: "support-act-slug", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Budget")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+    static let senateOnlyPreviewIssue = Issue(id: 813, meta: "", name: "Support the Act", slug: "support-act-slug", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Budget")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US Senate"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+    static let stateSpecificPreviewIssue = Issue(id: 814, meta: "CA", name: "California Environmental Protection Act", slug: "ca-environmental-act", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["StateUpper", "StateLower"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+    static let manyContactPreviewIssue = Issue(id: 815, meta: "", name: "Environmental Protection Act", slug: "environmental-act", reason: Issue.issueReason, script: Issue.issueScript, categories: [Category(name: "Environment")], active: true, outcomeModels: [Outcome(label: "Contacted", status: "contact"), Outcome(label: "Voicemail", status: "voicemail")], contactType: "reps", contactAreas: ["US House", "US Senate", "Governor", "AttorneyGeneral"], createdAt: Date(timeIntervalSince1970: 1_688_015_904))
+}

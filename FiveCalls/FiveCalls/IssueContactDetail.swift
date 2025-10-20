@@ -1,13 +1,7 @@
-//
-//  IssueContactDetail.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 8/11/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import SwiftUI
 import MarkdownUI
+import SwiftUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
@@ -16,13 +10,13 @@ struct IssueContactDetail: View {
     let remainingContacts: [Contact]
 
     var currentContact: Contact {
-        return remainingContacts.first!
+        remainingContacts.first!
     }
 
     var nextContacts: [Contact] {
-        return Array(remainingContacts.dropFirst())
+        Array(remainingContacts.dropFirst())
     }
-    
+
     var issueMarkdown: String {
         if let customizedScript = store.state.customizedScript(issueID: issue.id, contactID: currentContact.id) {
             ScriptReplacements
@@ -80,7 +74,7 @@ struct IssueContactDetail: View {
                             .fontWeight(.semibold)
                             .foregroundColor(Color.fivecallsDarkBlueText)
                             .onTapGesture {
-                                self.call(phoneNumber: currentContact.phone)
+                                call(phoneNumber: currentContact.phone)
                             }
                             .onLongPressGesture(minimumDuration: 1.0) {
                                 UIPasteboard.general.string = currentContact.phone
@@ -132,10 +126,10 @@ struct IssueContactDetail: View {
                         }
                     }
                 }.padding(.bottom)
-                
+
                 Markdown(issueMarkdown)
                     .padding(.bottom)
-                
+
                 OutcomesView(outcomes: issue.outcomeModels, report: { outcome in
                     let log = ContactLog(issueId: String(issue.id), contactId: currentContact.id, phone: "", outcome: outcome.status, date: Date(), reported: true)
                     store.dispatch(action: .ReportOutcome(issue, log, outcome))
@@ -164,7 +158,7 @@ struct MenuButtonsView: View {
 
     var body: some View {
         Button {
-            self.call(office.phone)
+            call(office.phone)
         } label: {
             if dynamicTypeSize >= .accessibility1 {
                 Text("Call \(office.city) \(office.phone)", comment: "Call phone numbers text")
@@ -181,7 +175,7 @@ struct MenuButtonsView: View {
         )
         .accessibilityHint(
             String(
-                localized:"Double tap to call",
+                localized: "Double tap to call",
                 comment: "Call phone numbers accessibility hint"
             )
         )

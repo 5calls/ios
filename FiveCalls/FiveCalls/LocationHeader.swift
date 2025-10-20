@@ -1,10 +1,4 @@
-//
-//  LocationHeader.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 8/4/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -40,7 +34,7 @@ struct LocationHeader: View {
             Spacer()
         }
     }
-    
+
     var locationView: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -50,8 +44,8 @@ struct LocationHeader: View {
                     Text(
                         verbatim: "\(Image(systemName: "exclamationmark.triangle")) \(location!.locationDisplay)"
                     )
-                        .font(.system(.title3))
-                        .fontWeight(.medium)
+                    .font(.system(.title3))
+                    .fontWeight(.medium)
                 } else {
                     Text(location!.locationDisplay)
                         .font(.system(.title3))
@@ -78,7 +72,7 @@ struct LocationHeader: View {
         )
         .accessibilityAddTraits(.isButton)
     }
-    
+
     var unsetLocationView: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -86,8 +80,8 @@ struct LocationHeader: View {
                     "Set your location to find your representatives",
                     comment: "UnsetLocationView Title Text"
                 )
-                    .font(.system(.title3))
-                    .fontWeight(.medium)
+                .font(.system(.title3))
+                .fontWeight(.medium)
             }
             .padding(.leading)
             .padding(.vertical, 10)
@@ -109,22 +103,20 @@ struct LocationHeader: View {
     }
 }
 
-struct LocationHeader_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            LocationHeader(location: nil, isSplit: false, fetchingContacts: true)
-            LocationHeader(location: nil, isSplit: true, fetchingContacts: false)
-            LocationHeader(
-                location: UserLocation(address: "19444"),
-                isSplit: false, fetchingContacts: false
-            )
-                .frame(maxWidth: 250)
-            LocationHeader(
-                location: UserLocation(address: "48184"),
-                isSplit: true, fetchingContacts: false
-            )
-                .frame(maxWidth: 250)
-            Spacer()
-        }
+#Preview {
+    VStack {
+        LocationHeader(location: nil, isSplit: false, fetchingContacts: true)
+        LocationHeader(location: nil, isSplit: true, fetchingContacts: false)
+        LocationHeader(
+            location: UserLocation(address: "19444"),
+            isSplit: false, fetchingContacts: false
+        )
+        .frame(maxWidth: 250)
+        LocationHeader(
+            location: UserLocation(address: "48184"),
+            isSplit: true, fetchingContacts: false
+        )
+        .frame(maxWidth: 250)
+        Spacer()
     }
 }

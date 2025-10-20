@@ -1,10 +1,4 @@
-//
-//  PrimaryButton.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 8/28/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 

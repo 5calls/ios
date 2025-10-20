@@ -1,10 +1,4 @@
-//
-//  AboutSheet.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 9/18/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import StoreKit
 import SwiftUI
@@ -15,20 +9,20 @@ private let appUrl = URL(string: "https://itunes.apple.com/us/app/myapp/id\(appI
 struct AboutSheet: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var store: Store
-    
+
     @State var showEmailComposer = false
     @State var showEmailComposerAlert = false
     @State var showWelcome = false
     @State private var callingGroup: String = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue) ?? ""
-    
+
     private var versionString: String? = {
         guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             return nil
         }
-        
+
         return "v\(version) - \(AnalyticsManager.shared.callerID)"
     }()
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -38,34 +32,34 @@ struct AboutSheet: View {
                             "Why Calling Works",
                             comment: "AboutListItem title"
                         ),
-                        type: .action({
+                        type: .action {
                             openSocialLink("https://5calls.org/why-calling-works/")
-                        })
+                        }
                     )
                     AboutListItem(
                         title: LocalizedStringResource(
                             "Who Made 5 Calls?",
                             comment: "AboutListItem title"
                         ),
-                        type: .action({
+                        type: .action {
                             openSocialLink("https://5calls.org/about-us/")
-                        })
+                        }
                     )
                     AboutListItem(
                         title: LocalizedStringResource(
                             "Feedback",
                             comment: "AboutListItem title"
                         ),
-                        type: .action({
+                        type: .action {
                             if EmailComposerView.canSendEmail() {
                                 showEmailComposer = true
                             } else {
                                 showEmailComposerAlert = true
                             }
-                        })
+                        }
                     )
-                    .sheet(isPresented: $showEmailComposer){
-                        EmailComposerView() { _ in }
+                    .sheet(isPresented: $showEmailComposer) {
+                        EmailComposerView { _ in }
                     }
                     .alert(isPresented: $showEmailComposerAlert) {
                         Alert(
@@ -82,9 +76,9 @@ struct AboutSheet: View {
                             "Show Welcome Screen",
                             comment: "AboutListItem title"
                         ),
-                        type: .action({
+                        type: .action {
                             showWelcome = true
-                        })
+                        }
                     )
                     .sheet(isPresented: $showWelcome, content: {
                         Welcome()
@@ -104,13 +98,13 @@ struct AboutSheet: View {
                         ),
                         text: $callingGroup
                     )
-                        .onChange(of: callingGroup) { newValue in
-                            let trimmed = newValue.trimmingCharacters(in: .whitespaces)
-                            if trimmed != newValue {
-                                callingGroup = trimmed
-                            }
-                            UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
+                    .onChange(of: callingGroup) { newValue in
+                        let trimmed = newValue.trimmingCharacters(in: .whitespaces)
+                        if trimmed != newValue {
+                            callingGroup = trimmed
                         }
+                        UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)
+                    }
                 } header: {
                     Text("Calling Group", comment: "AboutSheet Section Header")
                         .textCase(.uppercase)
@@ -121,34 +115,34 @@ struct AboutSheet: View {
                         "Set a calling group name to track calls with others",
                         comment: "AboutSheet section footer"
                     )
-                        .font(.footnote)
-                        .foregroundStyle(.fivecallsDarkGray)
+                    .font(.footnote)
+                    .foregroundStyle(.fivecallsDarkGray)
                 }
 
                 Section {
                     AboutListItem(
                         title: "Instagram",
-                        type: .action({
+                        type: .action {
                             openSocialLink("https://www.instagram.com/5calls")
-                        })
+                        }
                     )
                     AboutListItem(
                         title: "Bluesky",
-                        type: .action({
+                        type: .action {
                             openSocialLink("https://bsky.app/profile/5calls.org")
-                        })
+                        }
                     )
                     AboutListItem(
                         title: "Threads",
-                        type: .action({
+                        type: .action {
                             openSocialLink("https://www.threads.net/@5calls")
-                        })
+                        }
                     )
                     AboutListItem(
                         title: "Mastodon",
-                        type: .action({
+                        type: .action {
                             openSocialLink("https://mastodon.social/@5calls")
-                        })
+                        }
                     )
                     if appUrl != nil {
                         AboutListItem(
@@ -164,9 +158,9 @@ struct AboutSheet: View {
                             "Please Rate 5 Calls",
                             comment: "AboutListItem title"
                         ),
-                        type: .action({
+                        type: .action {
                             requestReview()
-                        })
+                        }
                     )
                 } header: {
                     Text("Follow us on your favorite platform", comment: "About section header")
@@ -201,7 +195,8 @@ struct AboutSheet: View {
                                 .foregroundStyle(.fivecallsDarkGray)
                             Spacer()
                         },
-                        content: {})
+                        content: {}
+                    )
                 }
             }
             .listStyle(.grouped)
@@ -214,7 +209,7 @@ struct AboutSheet: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        self.dismiss()
+                        dismiss()
                     }) {
                         Text("Done", comment: "Standard Done Button text")
                             .bold()
@@ -228,28 +223,24 @@ struct AboutSheet: View {
                     .toolbarBackground(Color.fivecallsDarkBlue)
                     .toolbarColorScheme(.dark, for: .navigationBar)
             }
-
         }
         .accentColor(.white)
     }
-    
+
     func openSocialLink(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
         UIApplication.shared.open(url)
     }
 
-    
     func requestReview() {
         guard let currentScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             return
         }
-        
+
         SKStoreReviewController.requestReview(in: currentScene)
     }
 }
 
-struct AboutSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        AboutSheet()
-    }
+#Preview {
+    AboutSheet()
 }

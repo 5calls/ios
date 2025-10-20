@@ -1,30 +1,23 @@
-//
-//  ReportOutcomeOperation.swift
-//  FiveCalls
-//
-//  Created by Ben Scheirman on 2/4/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
 class ReportOutcomeOperation: BaseOperation, @unchecked Sendable {
-    
-    //Input properties
+    // Input properties
     var log: ContactLog
     var outcome: Outcome
-    
-    //Output properties
+
+    // Output properties
     var httpResponse: HTTPURLResponse?
     var error: Error?
-    
+
     init(log: ContactLog, outcome: Outcome) {
         self.log = log
         self.outcome = outcome
     }
-    
+
     var url: URL {
-        return URL(string: "https://api.5calls.org/v1/report")!
+        URL(string: "https://api.5calls.org/v1/report")!
     }
 
     override func execute() {
@@ -50,22 +43,23 @@ class ReportOutcomeOperation: BaseOperation, @unchecked Sendable {
             "issueid": log.issueId,
             "phone": log.phone,
             "via": via,
-            "callerid": AnalyticsManager.shared.callerID
+            "callerid": AnalyticsManager.shared.callerID,
         ]
-        
+
         // Add calling group if it exists
         if let callingGroup = UserDefaults.standard.string(forKey: UserDefaultsKey.callingGroup.rawValue),
-           !callingGroup.isEmpty {
+           !callingGroup.isEmpty
+        {
             queryParams["group"] = callingGroup
         }
-        
+
         let query = queryParams.map { "\($0)=\($1)" }.joined(separator: "&")
         guard let data = query.data(using: .utf8) else {
             print("error creating HTTP POST body")
             return
         }
         request.httpBody = data
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { data, response, error in
             if let e = error {
                 self.error = e
             } else {

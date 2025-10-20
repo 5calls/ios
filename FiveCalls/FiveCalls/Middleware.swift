@@ -1,14 +1,9 @@
-//
- //  Middlewares.swift
- //  FiveCalls
- //
- //  Created by Christopher Selin on 9/22/23.
- //  Copyright © 2023 5calls. All rights reserved.
- //
- import Foundation
+// Copyright 5calls. All rights reserved. See LICENSE for details.
+
+import Foundation
 
 func appMiddleware() -> Middleware<AppState> {
-    return { state, action, dispatch in
+    { state, action, dispatch in
         switch action {
         case let .FetchStats(issueID):
             fetchStats(issueID: issueID, dispatch: dispatch)
@@ -25,7 +20,8 @@ func appMiddleware() -> Middleware<AppState> {
             // TODO: migrate ContactLog issueId to Int after UIKit is gone
             // this is always generated in swiftUI from an int so it should always succeed
             if let issueId = Int(contactLog.issueId),
- outcome.status != "skip" {
+               outcome.status != "skip"
+            {
                 dispatch(.SetIssueContactCompletion(issueId, "\(contactLog.contactId)-\(outcome.status)"))
             }
             AnalyticsManager.shared.trackEvent(name: "Outcome-\(outcome.status)", path: "/issue/\(issue.slug)/")
@@ -35,12 +31,12 @@ func appMiddleware() -> Middleware<AppState> {
         case let .FetchCustomizedScripts(issueID, contactIDs):
             fetchCustomizedScripts(issueID: issueID, contactIDs: contactIDs, state: state, dispatch: dispatch)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion,
-                .SetContacts(_), .SetContactsLowAccuracy(_),
-                .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
-                .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
-                .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages,
-                .SetCustomizedScripts(_, _), .SetLoadingScriptsError(_, _),
-                .SetStateAbbr(_):
+             .SetContacts(_), .SetContactsLowAccuracy(_),
+             .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
+             .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
+             .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages,
+             .SetCustomizedScripts(_, _), .SetLoadingScriptsError(_, _),
+             .SetStateAbbr:
             // no middleware actions for these, including for completeness
             break
         }
@@ -59,7 +55,7 @@ private func fetchStats(issueID: Int?, dispatch: @escaping Dispatcher) {
                 dispatch(.SetGlobalCallCount(globalCallCount))
             }
         }
-        if  let issueID, let issueCallCount = operation?.numberOfIssueCalls {
+        if let issueID, let issueCallCount = operation?.numberOfIssueCalls {
             DispatchQueue.main.async {
                 dispatch(.SetIssueCallCount(issueID, issueCallCount))
             }
@@ -70,7 +66,6 @@ private func fetchStats(issueID: Int?, dispatch: @escaping Dispatcher) {
             }
         }
 
-        
         if let error = operation?.error {
             print("Could not load stats: \(error.localizedDescription)..")
 
@@ -84,7 +79,7 @@ private func fetchStats(issueID: Int?, dispatch: @escaping Dispatcher) {
 
 private func fetchIssues(state: AppState, dispatch: @escaping Dispatcher) {
     let queue = OperationQueue.main
-    
+
     let operation = FetchIssuesOperation(stateAbbr: state.stateAbbreviation)
     operation.completionBlock = { [weak operation] in
         if let issues = operation?.issuesList {
@@ -114,7 +109,7 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
     let operation = FetchContactsOperation(location: location)
     operation.completionBlock = { [weak operation] in
         dispatch(.SetFetchingContacts(false))
-        
+
         if let district = operation?.district {
             dispatch(.SetDistrict(district))
         }
@@ -134,10 +129,10 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
             // if we get more than one house rep here, select the first one.
             // this is a split district situation and we should let the user
             // pick which one is correct in the future
-            let houseReps = contacts.filter({ $0.area == "US House" })
-            let senateReps = contacts.filter({ $0.area == "US Senate" })
+            let houseReps = contacts.filter { $0.area == "US House" }
+            let senateReps = contacts.filter { $0.area == "US Senate" }
             if houseReps.count > 1 {
-                contacts = contacts.filter({ $0.area != "US House" })
+                contacts = contacts.filter { $0.area != "US House" }
                 contacts.append(houseReps[0])
             }
             if houseReps.count < 1 {
@@ -167,7 +162,7 @@ private func fetchMessages(state: AppState, dispatch: @escaping Dispatcher) {
     guard let district = state.district else {
         return
     }
-            
+
     let queue = OperationQueue.main
     let operation = FetchMessagesOperation(district: district)
     operation.completionBlock = { [weak operation] in
@@ -217,5 +212,5 @@ private func fetchCustomizedScripts(issueID: Int, contactIDs: [String], state: A
 }
 
 enum MiddlewareError: Error {
-   case UnknownError
+    case UnknownError
 }

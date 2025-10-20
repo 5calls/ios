@@ -1,10 +1,4 @@
-//
-//  ContactListItem.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 8/28/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -56,7 +50,6 @@ struct ContactListItem: View {
                     .font(.footnote)
                     .foregroundStyle(Color.primary)
                     .multilineTextAlignment(.leading)
-
             }
             .accessibilityElement(children: .combine)
             Spacer()
@@ -72,12 +65,11 @@ struct ContactListItem: View {
     }
 
     var contactCircleFrameSize: CGFloat {
-        var frameSize: CGFloat
-        switch listType {
+        var frameSize: CGFloat = switch listType {
         case .standard:
-            frameSize = 45
+            45
         case .compact:
-            frameSize = 25
+            25
         }
 
         if !usingRegularFonts() {
@@ -124,16 +116,15 @@ struct ContactListItem: View {
     }
 
     var contactDetailText: LocalizedStringResource {
-        return (contactNote != "") ? contactNote : contact.localizedOfficeDescription()
+        (contactNote != "") ? contactNote : contact.localizedOfficeDescription()
     }
 
     var completedCircleFrameSize: CGFloat {
-        var frameSize: CGFloat
-        switch listType {
+        var frameSize: CGFloat = switch listType {
         case .standard:
-            frameSize = 20
+            20
         case .compact:
-            frameSize = 10
+            10
         }
 
         if !usingRegularFonts() {
@@ -144,12 +135,11 @@ struct ContactListItem: View {
     }
 
     var completedCircleOffset: (x: CGFloat, y: CGFloat) {
-        var offset: (x: CGFloat, y: CGFloat)
-        switch listType {
+        var offset: (x: CGFloat, y: CGFloat) = switch listType {
         case .standard:
-            offset = (20, 15)
+            (20, 15)
         case .compact:
-            offset = (7, 7)
+            (7, 7)
         }
 
         if !usingRegularFonts() {
@@ -173,6 +163,6 @@ struct ContactListItem: View {
         ContactListItem(contact: .housePreviewContact, showComplete: true, contactNote: "vm", listType: .compact)
         ContactListItem(contact: .housePreviewContact, showComplete: false, contactNote: "skip", listType: .compact)
     }
-    
+
 //    .padding(.horizontal)
 }

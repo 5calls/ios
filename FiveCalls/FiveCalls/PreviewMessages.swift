@@ -1,10 +1,4 @@
-//
-//  PreviewMessages.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 5/16/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 

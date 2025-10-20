@@ -1,18 +1,12 @@
-//
-//  AcknowListView.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 1/3/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import AcknowList
 import SwiftUI
 
 struct AcknowListView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> AcknowListViewController {
-        return AcknowListViewController()
+    func makeUIViewController(context _: Context) -> AcknowListViewController {
+        AcknowListViewController()
     }
-    
-    func updateUIViewController(_ uiViewController: AcknowListViewController, context: Context) { }
+
+    func updateUIViewController(_: AcknowListViewController, context _: Context) {}
 }

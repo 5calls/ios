@@ -1,25 +1,19 @@
-//
-//  LocationSheet.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 8/7/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import SwiftUI
 import CoreLocation
+import SwiftUI
 
 struct LocationSheet: View {
     @Environment(\.dismiss) var dismiss
-    
+
     @EnvironmentObject var store: Store
-    
+
     @State var locationText: String = ""
     @State var locationError: String?
     @State var detectProcessing = false
 
     let locationCoordinator = LocationCoordinator()
-    
+
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 0) {
@@ -27,10 +21,10 @@ struct LocationSheet: View {
                     Text(
                         "\(Image(systemName: "exclamationmark.triangle")) \(String(localized: "This zip code is split between multiple Congressional districts, please use a zip+4 or address for best accuracy.", comment: "Split district location warning"))"
                     )
-                        .font(.footnote)
-                        .foregroundColor(.red)
-                        .padding(.horizontal, 35)
-                        .padding(.bottom, 10)
+                    .font(.footnote)
+                    .foregroundColor(.red)
+                    .padding(.horizontal, 35)
+                    .padding(.bottom, 10)
                 }
                 HStack {
                     HStack {
@@ -90,7 +84,7 @@ struct LocationSheet: View {
                         VStack(alignment: .leading) {
                             Text("Detect my location", comment: "LocationSheet 'Detect my location' text")
                                 .font(.system(.title3))
-                                .fontWeight( .medium)
+                                .fontWeight(.medium)
                                 .foregroundColor(.white)
                         }
                         .padding(.leading)
@@ -131,16 +125,15 @@ struct LocationSheet: View {
                 )
             )
             .accessibilityAddTraits(.isButton)
-            
+
             if locationError != nil {
                 Text(locationError!)
                     .font(.caption)
                     .foregroundColor(.red)
-
             }
         }
     }
-    
+
     func locationSearch() {
         locationError = nil
 
@@ -164,11 +157,11 @@ struct LocationSheet: View {
             }
         }
     }
-    
+
     func detectLocation() {
         detectProcessing = true
         locationError = nil
-        
+
         Task {
             do {
                 let clLoc = try await locationCoordinator.getLocation()
@@ -177,7 +170,7 @@ struct LocationSheet: View {
                 store.dispatch(action: .SetLocation(loc))
                 detectProcessing = false
                 dismiss()
-            } catch (let error) {
+            } catch {
                 if case LocationCoordinatorError.Unauthorized = error {
                     locationError = String(localized: "Location permission is off", comment: "Error message when location permission is off")
                 } else {
@@ -206,10 +199,9 @@ struct LocationSheet: View {
     }
 }
 
-struct LocationSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        let store = Store(state: AppState(), middlewares: [appMiddleware()])
-        LocationSheet().environmentObject(store)
-        LocationSheet(locationError: "A location error string").environmentObject(store)
-    }
+#Preview {
+    let store = Store(state: AppState(), middlewares: [appMiddleware()])
+    LocationSheet().environmentObject(store)
+
+    LocationSheet(locationError: "A location error string").environmentObject(store)
 }

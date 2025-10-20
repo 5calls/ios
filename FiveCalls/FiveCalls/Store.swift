@@ -1,3 +1,5 @@
+// Copyright 5calls. All rights reserved. See LICENSE for details.
+
 //
 //  Store.swift
 //  FiveCalls
@@ -13,7 +15,7 @@ typealias Dispatcher = (Action) -> Void
 typealias Reducer<State: ReduxState> = (_ state: State, _ action: Action) -> State
 typealias Middleware<StoreState: ReduxState> = (StoreState, Action, @escaping Dispatcher) -> Void
 
-protocol ReduxState { }
+protocol ReduxState {}
 
 class Store: ObservableObject {
     @Published var state: AppState
@@ -30,11 +32,11 @@ class Store: ObservableObject {
         }
 
         // run all middlewares
-        middlewares.forEach { middleware in
+        for middleware in middlewares {
             middleware(state, action, dispatch)
         }
     }
-    
+
     func reduce(_ oldState: AppState, _ action: Action) -> AppState {
         let state = oldState
         switch action {
@@ -74,7 +76,7 @@ class Store: ObservableObject {
                 refetchIssuse = true
             }
             state.stateAbbreviation = stateAbbr
-            
+
             // this needs to be changed in the state before we call refetching
             if refetchIssuse {
                 dispatch(action: .FetchIssues)
@@ -89,7 +91,7 @@ class Store: ObservableObject {
                 if let selectedMessage = state.repMessages.first(where: { $0.id == state.wantedMessageID }) {
                     dispatch(action: .SelectMessage(selectedMessage))
                 }
-                
+
                 // reset the wanted message id to nil any time we process it, regardless of success
                 state.wantedMessageID = nil
             }
@@ -108,7 +110,7 @@ class Store: ObservableObject {
             guard let messageIntID = Int(messageid) else {
                 break
             }
-            
+
             // three cases that need to be handled here as we jump into the app from a push:
             // * no messages loaded: likely app launched fresh and racing the messages response
             // * have messages, but nothing matched the id: app in background but with stale messages
@@ -125,33 +127,32 @@ class Store: ObservableObject {
                 dispatch(action: .FetchMessages)
             }
         case .GoBack:
-           if state.issueRouter.path.isEmpty {
-               state.issueRouter.selectedIssue = nil
-           } else {
-               state.issueRouter.path.removeLast()
-           }
-       case .GoToRoot:
-           state.issueRouter.selectedIssue = nil
-           state.issueRouter.path = NavigationPath()
-       case let .GoToNext(issue, nextContacts):
-           if nextContacts.count >= 1 {
-               state.issueRouter.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
-           } else {
-               state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
-           }
+            if state.issueRouter.path.isEmpty {
+                state.issueRouter.selectedIssue = nil
+            } else {
+                state.issueRouter.path.removeLast()
+            }
+        case .GoToRoot:
+            state.issueRouter.selectedIssue = nil
+            state.issueRouter.path = NavigationPath()
+        case let .GoToNext(issue, nextContacts):
+            if nextContacts.count >= 1 {
+                state.issueRouter.path.append(IssueDetailNavModel(issue: issue, contacts: nextContacts))
+            } else {
+                state.issueRouter.path.append(IssueDoneNavModel(issue: issue, type: "done"))
+            }
         case let .SetCustomizedScripts(issueID, scripts):
             state.scriptsByIssue[issueID] = scripts
         case let .SetLoadingScriptsError(issueID, error):
             state.scriptsLoadingErrorByIssue[issueID] = error
         case .FetchStats, .FetchIssues,
-                .FetchContacts(_), .FetchMessages,
-                .ReportOutcome(_, _, _),
-                .LogSearch(_),
-                .FetchCustomizedScripts(_, _):
+             .FetchContacts(_), .FetchMessages,
+             .ReportOutcome(_, _, _),
+             .LogSearch(_),
+             .FetchCustomizedScripts:
             // handled in middleware
             break
         }
         return state
     }
-
 }

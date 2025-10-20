@@ -1,17 +1,10 @@
-//
-//  IssueDetailWarningTests.swift
-//  FiveCallsTests
-//
-//  Created by Claude Code on 9/16/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import XCTest
 import SwiftUI
+import XCTest
 @testable import FiveCalls
 
 final class IssueDetailWarningTests: XCTestCase {
-
     // MARK: - Test Data Setup
 
     private func createTestStore(contactsLowAccuracy: Bool, contacts: [Contact] = []) -> Store {
@@ -57,7 +50,6 @@ final class IssueDetailWarningTests: XCTestCase {
         _ = store.reduce(store.state, .SetContactsLowAccuracy(false))
         XCTAssertFalse(store.state.contactsLowAccuracy)
     }
-
 
     // MARK: - Warning Logic Tests
 

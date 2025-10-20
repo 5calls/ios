@@ -1,10 +1,4 @@
-//
-//  MultipleDayPicker.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 9/13/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -83,7 +77,7 @@ struct MultipleDayPicker: View {
                     .accessibilityAddTraits(.isButton)
                     .onTapGesture {
                         if isIndexSelected(day.index) {
-                            selectedDayIndices.removeAll(where: {$0 == day.index})
+                            selectedDayIndices.removeAll(where: { $0 == day.index })
                         } else {
                             selectedDayIndices.append(day.index)
                         }
@@ -98,7 +92,7 @@ struct MultipleDayPicker: View {
     }
 
     private func isIndexSelected(_ index: Int) -> Bool {
-        return selectedDayIndices.contains(index)
+        selectedDayIndices.contains(index)
     }
 
     private func accessibilityLabelText(day: Day) -> String {
@@ -110,15 +104,8 @@ struct MultipleDayPicker: View {
     }
 }
 
-struct MultipleDayPicker_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var selectedDayIndices: [Int] = []
-        MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
-    }
-}
-
 struct DaysFlowLayout: Layout {
-    var spacing: CGFloat? = nil
+    var spacing: CGFloat?
 
     struct Cache {
         var sizes: [CGSize] = []
@@ -133,14 +120,13 @@ struct DaysFlowLayout: Layout {
             }
 
             return subviews[index].spacing.distance(
-                to: subviews[index+1].spacing,
+                to: subviews[index + 1].spacing,
                 along: .horizontal
             )
         }
 
         return Cache(sizes: sizes, spacing: spacing)
     }
-
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Cache) -> CGSize {
         let standardizedWidth = cache.sizes.max(by: { $0.width < $1.width })?.width ?? 0
@@ -152,7 +138,7 @@ struct DaysFlowLayout: Layout {
         var lineWidth: CGFloat = 0
         var lineHeight: CGFloat = 0
 
-            for index in subviews.indices {
+        for index in subviews.indices {
             if lineWidth + standardizedWidth > proposal.width ?? 0 {
                 totalHeight += lineHeight + (spacing ?? cache.spacing[index])
                 lineWidth = standardizedWidth
@@ -213,5 +199,13 @@ struct DayView: View {
                 .font(.title3)
                 .padding(5)
         }
+    }
+}
+
+// Not translated to #Preview macro, @Previewable is not available
+struct MultipleDayPicker_Previews: PreviewProvider {
+    static var previews: some View {
+        @State var selectedDayIndices: [Int] = []
+        MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
     }
 }

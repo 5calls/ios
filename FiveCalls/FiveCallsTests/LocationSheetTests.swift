@@ -1,20 +1,13 @@
-//
-//  LocationSheetTests.swift
-//  FiveCallsTests
-//
-//  Created by Christopher Selin on 1/18/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import CoreLocation
-@testable import FiveCalls
 import XCTest
+@testable import FiveCalls
 
 private let kLocation = CLLocation(latitude: 37.752193, longitude: -122.420668)
 
 @MainActor
 final class LocationSheetTests: XCTestCase {
-
     func testGetLocationInfo() async throws {
         let locationSheet = LocationSheet()
         let locationInfo = try await locationSheet.getLocationInfo(from: kLocation)
