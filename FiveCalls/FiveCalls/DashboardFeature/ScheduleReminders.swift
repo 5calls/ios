@@ -44,8 +44,8 @@ struct ScheduleReminders: View {
                         selectedTime = triggerDate
                     }
                 }
-                .onChange(of: remindersEnabled) { newValue in
-                    if newValue {
+                .onChange(of: remindersEnabled) {
+                    if remindersEnabled {
                         onRemindersEnabled()
                     }
                 }
@@ -199,7 +199,7 @@ struct DayAndTimePickers: View {
                 MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
                     .offset(x: shouldShake ? -18 : 0)
                     .animation(.interpolatingSpring(mass: 0.1, stiffness: 100, damping: 1), value: shouldShake)
-                    .onChange(of: shouldShake) { _ in
+                    .onChange(of: shouldShake) {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
                             shouldShake = false
                         }

@@ -25,8 +25,8 @@ struct SearchBar: View {
                 )
                 .textFieldStyle(PlainTextFieldStyle())
                 .focused($isSearchFocused)
-                .onChange(of: searchText) { newValue in
-                    handleSearchTextChange(newValue)
+                .onChange(of: searchText) {
+                    handleSearchTextChange(searchText)
                 }
                 .onSubmit {}
 

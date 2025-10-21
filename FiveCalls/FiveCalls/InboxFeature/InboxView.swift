@@ -156,13 +156,13 @@ struct InboxView: View {
                 await updateNotificationStatus()
             }
         }
-        .onChange(of: store.state.inboxRouter.selectedMessage, perform: { message in
-            if message != nil {
+        .onChange(of: store.state.inboxRouter.selectedMessage){
+            if store.state.inboxRouter.selectedMessage != nil {
                 detailPresented = true
             } else {
                 detailPresented = false
             }
-        })
+        }
     }
 }
 
