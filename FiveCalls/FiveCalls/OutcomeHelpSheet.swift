@@ -4,24 +4,24 @@ import SwiftUI
 
 struct OutcomeHelpSheet: View {
     @Environment(\.dismiss) private var dismiss
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
                     Text("""
-                        Not sure how to mark the result of a call? 
-                        
-                        Choose **Made Contact** if you were able to reach the office.
-                        
-                        Choose **Left Voicemail** if you left a voicemail.
-                        
-                        Choose **Unavailable** if your call was not answered and no voicemail was left.
-                        
-                        Choose **Skip** if you did not attempt to make the call.
-                        """,
+                         Not sure how to mark the result of a call? 
+
+                         Choose **Made Contact** if you were able to reach the office.
+
+                         Choose **Left Voicemail** if you left a voicemail.
+
+                         Choose **Unavailable** if your call was not answered and no voicemail was left.
+
+                         Choose **Skip** if you did not attempt to make the call.
+                         """,
                          comment: "Outcome help text explaining each option")
-                    
+
                     Spacer()
                 }
                 .padding()
