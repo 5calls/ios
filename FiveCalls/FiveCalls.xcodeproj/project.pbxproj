@@ -11,6 +11,7 @@
 		2258E3332E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */ = {isa = PBXBuildFile; fileRef = 2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */; };
 		2258E3342E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */ = {isa = PBXBuildFile; fileRef = 2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */; };
 		2258E3382E54E40A0032F1C5 /* CustomizedScriptsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */; };
+		22A9D6692EA5AB33008AC138 /* OutcomeHelpSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9D6682EA5AB33008AC138 /* OutcomeHelpSheet.swift */; };
 		22D18D2F2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */; };
 		22D18D332E53A73300D9DEFD /* CustomizedContactScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */; };
 		2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732D7C61E4300F300F149EF /* NotificationNames.swift */; };
@@ -175,6 +176,7 @@
 		097A879D4BFD5431EF684F89 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2258E3322E54E3BD0032F1C5 /* GET-v1-issue-script.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issue-script.json"; sourceTree = "<group>"; };
 		2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedScriptsTests.swift; sourceTree = "<group>"; };
+		22A9D6682EA5AB33008AC138 /* OutcomeHelpSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeHelpSheet.swift; sourceTree = "<group>"; };
 		22D18D2E2E539E7900D9DEFD /* FetchCustomizedScriptsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCustomizedScriptsOperation.swift; sourceTree = "<group>"; };
 		22D18D322E53A73300D9DEFD /* CustomizedContactScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedContactScript.swift; sourceTree = "<group>"; };
 		2732D7C61E4300F300F149EF /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				4F504DF72AE46A1900F49EF3 /* Welcome.swift */,
 				4F2C1CA12AD5C1AC000AB39E /* YourImpact.swift */,
 				4F07B23A2B45F05C00C575DF /* AcknowListView.swift */,
+				22A9D6682EA5AB33008AC138 /* OutcomeHelpSheet.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				D0BFE9CB2A7DD25C007203A3 /* LocationHeader.swift in Sources */,
 				2732D7C71E4300F300F149EF /* NotificationNames.swift in Sources */,
 				D032AEBD2C0E25E200585BD2 /* InboxDetail.swift in Sources */,
+				22A9D6692EA5AB33008AC138 /* OutcomeHelpSheet.swift in Sources */,
 				D07829772A7B3795001EE5DB /* PreviewContacts.swift in Sources */,
 				B52805151E3FA94D00EE832A /* AppDelegate.swift in Sources */,
 				4F78E0262AF2B26D00FF23E9 /* IssueSplitView.swift in Sources */,

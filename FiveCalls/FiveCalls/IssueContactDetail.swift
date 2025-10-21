@@ -11,14 +11,14 @@ import MarkdownUI
 
 struct IssueContactDetail: View {
     @EnvironmentObject var store: Store
-
+    
     let issue: Issue
     let remainingContacts: [Contact]
-
+    
     var currentContact: Contact {
         return remainingContacts.first!
     }
-
+    
     var nextContacts: [Contact] {
         return Array(remainingContacts.dropFirst())
     }
@@ -40,10 +40,11 @@ struct IssueContactDetail: View {
                 )
         }
     }
-
+    
     @State private var copiedPhoneNumber: String?
     @AccessibilityFocusState private var isCopiedPhoneNumberFocused: Bool
-
+    @State private var isPresentingOutcomeHelpSheet = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -74,7 +75,7 @@ struct IssueContactDetail: View {
                                 )
                             Spacer()
                         }
-
+                        
                         Text(currentContact.phone)
                             .font(.title)
                             .fontWeight(.semibold)
@@ -92,7 +93,7 @@ struct IssueContactDetail: View {
                                         }
                                     }
                                 }
-
+                                
                                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                                     withAnimation {
                                         isCopiedPhoneNumberFocused = false
@@ -104,10 +105,10 @@ struct IssueContactDetail: View {
                             .accessibilityHint(
                                 String(
                                     localized: "Triple tap to copy",
-                                    comment: "Copy phone number accissibility hint"
+                                    comment: "Copy phone number accessibility hint"
                                 )
                             )
-
+                        
                         if currentContact.fieldOffices.count >= 1 {
                             Menu {
                                 ForEach(currentContact.fieldOffices) { office in
@@ -141,12 +142,29 @@ struct IssueContactDetail: View {
                     store.dispatch(action: .ReportOutcome(issue, log, outcome))
                     store.dispatch(action: .GoToNext(issue, nextContacts))
                 })
+                .padding(.bottom)
+                
+                Button(
+                    String(
+                        localized: "Not sure which outcome to select?",
+                        comment: "Issue contact help button text"
+                    ),
+                    systemImage: "info.circle"
+                ) {
+                    isPresentingOutcomeHelpSheet = true
+                }
+                .foregroundColor(Color.fivecallsDarkBlueText)
+                .padding(.bottom)
+                
                 Spacer()
             }.padding(.horizontal)
         }
         .clipped()
+        .sheet(isPresented: $isPresentingOutcomeHelpSheet) {
+            OutcomeHelpSheet()
+        }
     }
-
+    
     private func call(phoneNumber: String) {
         let telephone = "tel://"
         let formattedString = telephone + phoneNumber
@@ -161,7 +179,7 @@ struct MenuButtonsView: View {
     @Binding var copiedPhoneNumber: String?
     @AccessibilityFocusState var isCopiedPhoneNumberFocused: Bool
     let call: (String) -> Void
-
+    
     var body: some View {
         Button {
             self.call(office.phone)
@@ -185,7 +203,7 @@ struct MenuButtonsView: View {
                 comment: "Call phone numbers accessibility hint"
             )
         )
-
+        
         // disable copy < 16.4 for rationale see https://github.com/5calls/ios/pull/446
         if #available(iOS 16.4, *) {
             Button {
@@ -196,7 +214,7 @@ struct MenuButtonsView: View {
                         isCopiedPhoneNumberFocused = true
                     }
                 }
-
+                
                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3) {
                     withAnimation {
                         isCopiedPhoneNumberFocused = false
@@ -220,7 +238,7 @@ struct MenuButtonsView: View {
             .accessibilityHint(
                 String(
                     localized: "Triple tap to copy",
-                    comment: "Copy phone number accissibility hint"
+                    comment: "Copy phone number accessibility hint"
                 )
             )
         }
