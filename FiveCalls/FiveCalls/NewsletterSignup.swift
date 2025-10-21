@@ -52,7 +52,7 @@ struct NewsletterSignup: View {
             .keyboardType(.emailAddress)
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
-            .onChange(of: email) { _ in
+            .onChange(of: email) {
                 // reset the error state when the user starts typing again
                 errorString = nil
             }

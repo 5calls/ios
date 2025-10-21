@@ -14,6 +14,7 @@ extension UNMutableNotificationContent {
             localized: "Tap here to open 5 Calls and get started",
             comment: "ScheduledReminderNotification Alert body"
         )
+        // TODO: Leaving this for now until the app state tracks the badge count independently (abizern: 2025-10-21)
         notificationContent.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
         return notificationContent
     }
