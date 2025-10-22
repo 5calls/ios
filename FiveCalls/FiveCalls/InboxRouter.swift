@@ -1,10 +1,4 @@
-//
-//  InboxRouter.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/10/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 

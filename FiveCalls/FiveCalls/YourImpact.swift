@@ -1,10 +1,4 @@
-//
-//  YourImpact.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 10/10/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -13,9 +7,9 @@ struct YourImpact: View {
     @EnvironmentObject var store: Store
 
     @State private var userStats: UserStats?
-    
+
     var weeklyStreakMessage: String {
-        let weeklyStreakCount = self.userStats?.weeklyStreak ?? 0
+        let weeklyStreakCount = userStats?.weeklyStreak ?? 0
         switch weeklyStreakCount {
         case 0:
             return String(
@@ -34,7 +28,7 @@ struct YourImpact: View {
             )
         }
     }
-    
+
     var totalImpactMessage: String {
         let numberOfCalls = userStats?.totalCalls() ?? 0
 
@@ -43,11 +37,11 @@ struct YourImpact: View {
             comment: "Pluralized number of calls impact message"
         )
     }
-    
+
     var showImpactList: Bool {
         userStats?.totalCalls() ?? 0 != 0
     }
-    
+
     var communityCallsMessage: String {
         let callCount = StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls
         return String(
@@ -55,7 +49,7 @@ struct YourImpact: View {
             comment: "Community call count"
         )
     }
-            
+
     var body: some View {
         NavigationStack {
             List {
@@ -95,10 +89,8 @@ struct YourImpact: View {
                         count: userStats?.unavailable ?? 0
                     )
                 }
-                Section {
-
-                } footer: {
-                        Text(store.state.globalCallCount > 0 ? communityCallsMessage : "")
+                Section {} footer: {
+                    Text(store.state.globalCallCount > 0 ? communityCallsMessage : "")
                         .font(.footnote)
                 }
             }
@@ -113,7 +105,7 @@ struct YourImpact: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        self.dismiss()
+                        dismiss()
                     }) {
                         Text("Done", comment: "Standard Done Button text")
                             .bold()
@@ -121,7 +113,7 @@ struct YourImpact: View {
                 }
             }
         }
-        .onAppear() {
+        .onAppear {
             if store.state.globalCallCount == 0 {
                 store.dispatch(action: .FetchStats(nil))
             }
@@ -130,34 +122,25 @@ struct YourImpact: View {
         }
         .accentColor(.white)
     }
-        
+
     private func fetchUserStats() {
         let userStatsOp = FetchUserStatsOperation()
         userStatsOp.completionBlock = {
             if let error = userStatsOp.error {
                 AnalyticsManager.shared.trackError(error: error)
             }
-            
-            self.userStats = userStatsOp.userStats
-        }
-        
-        OperationQueue.main.addOperation(userStatsOp)
-    }
-}
 
-struct YourImpact_Previews: PreviewProvider {
-    static var previews: some View {
-        let store = Store(state: AppState(), middlewares: [appMiddleware()])
-        NavigationView {
-            YourImpact().environmentObject(store)
+            userStats = userStatsOp.userStats
         }
+
+        OperationQueue.main.addOperation(userStatsOp)
     }
 }
 
 struct ImpactListItem: View {
     var title: LocalizedStringResource
     var count: Int
-    
+
     var body: some View {
         HStack {
             Text(title)
@@ -169,8 +152,15 @@ struct ImpactListItem: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("\(title) \(timesString(count: count))"))
     }
-    
+
     private func timesString(count: Int) -> String {
         String(localized: "\(count) time", comment: "Your impact call count pluralized")
+    }
+}
+
+#Preview {
+    let store = Store(state: AppState(), middlewares: [appMiddleware()])
+    NavigationView {
+        YourImpact().environmentObject(store)
     }
 }

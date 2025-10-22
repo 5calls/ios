@@ -1,10 +1,4 @@
-//
-//  IssueParsingTest.swift
-//  FiveCallsTests
-//
-//  Created by Nick O'Neill on 12/19/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import XCTest
 @testable import FiveCalls
@@ -29,7 +23,7 @@ final class IssueParsingTest: XCTestCase {
             XCTAssert(issues.count == issueCountExpected, "found \(issues.count) issues, expected \(issueCountExpected)")
             let issueIDExpected = 664
             XCTAssert(issues[0].id == issueIDExpected, "first issue was not id \(issueIDExpected) as expected")
-            let issueCreatedAtExpected: Double = 1565582054
+            let issueCreatedAtExpected: Double = 1_565_582_054
             XCTAssert(issues[11].createdAt.timeIntervalSince1970 == issueCreatedAtExpected, "12th issue did not have created date as expected")
             exp.fulfill()
         }

@@ -1,10 +1,4 @@
-//
-//  NotificationNames.swift
-//  FiveCalls
-//
-//  Created by Christopher Brandow on 2/1/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 

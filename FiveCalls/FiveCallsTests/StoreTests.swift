@@ -1,10 +1,4 @@
-//
-//  StoreTests.swift
-//  FiveCallsTests
-//
-//  Created by Christopher Selin on 1/5/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 import XCTest
@@ -169,8 +163,8 @@ final class StoreTests: XCTestCase {
         XCTAssertTrue(store.state.issueRouter.path.isEmpty)
 
         var path = NavigationPath()
-        _ = store.reduce(store.state, .GoToNext(issue, [.senatePreviewContact1,.housePreviewContact]))
-        path.append(IssueDetailNavModel(issue: issue, contacts: [.senatePreviewContact1,.housePreviewContact]))
+        _ = store.reduce(store.state, .GoToNext(issue, [.senatePreviewContact1, .housePreviewContact]))
+        path.append(IssueDetailNavModel(issue: issue, contacts: [.senatePreviewContact1, .housePreviewContact]))
         XCTAssertEqual(store.state.issueRouter.path, path)
 
         _ = store.reduce(store.state, .GoToNext(issue, [.housePreviewContact]))

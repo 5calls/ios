@@ -1,10 +1,4 @@
-//
-//  Welcome.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 10/21/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -18,7 +12,7 @@ struct Welcome: View {
 
     var subMessage: String {
         guard store.state.globalCallCount > 0,
-        let numberOfCalls = StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls
+              let numberOfCalls = StatsViewModel(numberOfCalls: store.state.globalCallCount).formattedNumberOfCalls
         else {
             return ""
         }
@@ -42,7 +36,7 @@ struct Welcome: View {
                     .frame(width: 292)
                     .padding(.vertical, 24)
                     .accessibilityHidden(true)
-                GridRow() {
+                GridRow {
                     Image(systemName: "phone.badge.waveform")
                         .symbolRenderingMode(.palette)
                         .foregroundStyle(.red, .blue)
@@ -58,7 +52,7 @@ struct Welcome: View {
                     }
                     .accessibilityElement(children: .combine)
                 }
-                GridRow() {
+                GridRow {
                     Image(systemName: "goforward.5")
                         .foregroundStyle(.blue)
                         .font(.title)
@@ -68,7 +62,7 @@ struct Welcome: View {
                             "Spend 5 minutes, make 5 calls",
                             comment: "Welcome section 2 title"
                         )
-                            .fontWeight(.heavy)
+                        .fontWeight(.heavy)
                         Text(
                             "Calling is the most effective way to influence your representative.",
                             comment: "Welcome section 2 message"
@@ -76,7 +70,7 @@ struct Welcome: View {
                     }
                     .accessibilityElement(children: .combine)
                 }
-                GridRow() {
+                GridRow {
                     Image(systemName: "person.2")
                         .opacity(subMessageOpacity)
                         .symbolRenderingMode(.palette)
@@ -104,7 +98,7 @@ struct Welcome: View {
                         }
                 }
             }
-            .onAppear() {
+            .onAppear {
                 hasShownWelcomeScreen = true
                 if store.state.globalCallCount == 0 {
                     store.dispatch(action: .FetchStats(nil))
@@ -116,16 +110,14 @@ struct Welcome: View {
     }
 }
 
-struct Welcome_Previews: PreviewProvider {
-    static let previewState = {
-        var state = AppState()
+#Preview {
+    let previewState = {
+        let state = AppState()
         state.globalCallCount = 12345
         return state
     }()
 
-    static let previewStore = Store(state: previewState, middlewares: [appMiddleware()])
+    let previewStore = Store(state: previewState, middlewares: [appMiddleware()])
 
-    static var previews: some View {
-        Welcome().environmentObject(previewStore)
-    }
+    Welcome().environmentObject(previewStore)
 }

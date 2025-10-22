@@ -1,17 +1,10 @@
-//
-//  ContactParsingTest.swift
-//  FiveCallsTests
-//
-//  Created by Nick O'Neill on 12/20/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import XCTest
 @testable import FiveCalls
 
 final class ContactParsingTest: XCTestCase {
-
-    override func setUpWithError() throws {        
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         UserDefaults.standard.set(Bundle(for: ContactParsingTest.self).path(forResource: "GET-v1-reps", ofType: "json"), forKey: "mock-GET:/v1/reps")
     }

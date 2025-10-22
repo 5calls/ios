@@ -1,14 +1,8 @@
-//
-//  UserLocationTests.swift
-//  FiveCallsTests
-//
-//  Created by Christopher Selin on 1/18/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import CoreLocation
-@testable import FiveCalls
 import XCTest
+@testable import FiveCalls
 
 final class UserLocationTests: XCTestCase {
     func testLocationTypeInitialization() {

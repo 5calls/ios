@@ -1,10 +1,4 @@
-//
-//  UserStats.swift
-//  FiveCalls
-//
-//  Created by Melville Stanley on 3/5/18.
-//  Copyright © 2018 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 // We expect the JSON to look like this:
 // {
@@ -20,7 +14,7 @@ struct UserStats {
     let weeklyStreak: Int?
 }
 
-extension UserStats : JSONSerializable {
+extension UserStats: JSONSerializable {
     init?(dictionary: JSONDictionary) {
         let weeklyStreak = dictionary["weeklyStreak"] as? Int
 
@@ -38,9 +32,8 @@ extension UserStats : JSONSerializable {
                   unavailable: unavailable,
                   weeklyStreak: weeklyStreak)
     }
-    
+
     func totalCalls() -> Int {
-        return (contact ?? 0) + (voicemail ?? 0) + (unavailable ?? 0)
+        (contact ?? 0) + (voicemail ?? 0) + (unavailable ?? 0)
     }
-    
 }

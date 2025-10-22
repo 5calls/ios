@@ -1,10 +1,4 @@
-//
-//  Appearance.swift
-//  FiveCalls
-//
-//  Created by Ben Scheirman on 2/22/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import UIKit
 

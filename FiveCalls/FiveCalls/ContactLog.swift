@@ -1,14 +1,8 @@
-//
-//  ContactLog.swift
-//  FiveCalls
-//
-//  Created by Ben Scheirman on 2/5/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
-struct ContactLog : Hashable, Codable {
+struct ContactLog: Hashable, Codable {
     let issueId: String
     let contactId: String
     let phone: String
@@ -19,19 +13,18 @@ struct ContactLog : Hashable, Codable {
     static func localizedOutcomeForStatus(status: String) -> LocalizedStringResource {
         switch status {
         case "vm", "voicemail":
-            return LocalizedStringResource("Left Voicemail", comment: "Contact Log Outcome")
+            LocalizedStringResource("Left Voicemail", comment: "Contact Log Outcome")
         case "contact", "contacted":
-            return LocalizedStringResource("Made Contact", comment: "Contact Log Outcome")
+            LocalizedStringResource("Made Contact", comment: "Contact Log Outcome")
         case "unavailable":
-            return LocalizedStringResource("Unavailable", comment: "Contact Log Outcome")
+            LocalizedStringResource("Unavailable", comment: "Contact Log Outcome")
         case "skip":
-            return LocalizedStringResource("Skip", comment: "Contact Log Outcome")
+            LocalizedStringResource("Skip", comment: "Contact Log Outcome")
         default:
-            return "Unknown"
+            "Unknown"
         }
     }
 }
-
 
 struct LegacyPantryWrapper: Codable {
     let expires: Int
@@ -58,7 +51,7 @@ struct ContactLogs {
     }
 
     func methodOfContact(to contactId: String, forIssue issue: Issue) -> String? {
-        return all.filter({$0.contactId == contactId && ($0.issueId == String(issue.id) || $0.issueId == issue.meta)}).last?.outcome
+        all.filter { $0.contactId == contactId && ($0.issueId == String(issue.id) || $0.issueId == issue.meta) }.last?.outcome
     }
 
     func hasContacted(contact: Contact, forIssue issue: Issue) -> Bool {
@@ -77,13 +70,13 @@ struct ContactLogs {
 
     // Gets a list of unreported contacts
     func unreported() -> [ContactLog] {
-        return all.filter({$0.reported == false})
+        all.filter { $0.reported == false }
     }
 
     // MARK: mutating functions
 
     mutating func markAllReported(_ logs: [ContactLog]) {
-        logs.forEach { self.markReported($0) }
+        logs.forEach { markReported($0) }
     }
 
     // Marks a contact as reported.  This will have no effect if there
@@ -98,15 +91,14 @@ struct ContactLogs {
 
     // MARK: the file path for locally saved contact logs that was inherited from pantry
 
-    static private var filePath: URL {
+    private static var filePath: URL {
         let pantryDirName = "com.thatthinginswift.pantry"
         let appSupportDir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
 
-        let targetPath: URL
-        if AppDelegate.isRunningUnitTests {
-            targetPath = FileManager.default.temporaryDirectory
+        let targetPath: URL = if AppDelegate.isRunningUnitTests {
+            FileManager.default.temporaryDirectory
         } else {
-            targetPath = URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName)
+            URL(fileURLWithPath: appSupportDir).appendingPathComponent(pantryDirName)
         }
 
         // don't try to create a directory with the full path, even with "isDirectory: false"
@@ -118,7 +110,7 @@ struct ContactLogs {
 
 extension ContactLogs {
     func save() {
-        let wrapper = LegacyPantryWrapper(expires: 0, storage: self.all)
+        let wrapper = LegacyPantryWrapper(expires: 0, storage: all)
 
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -146,7 +138,8 @@ extension ContactLogs {
 
         // check for the file first, not having a file is not an error we want to log
         if FileManager.default.fileExists(atPath: ContactLogs.filePath.path),
-           let fileData = try? Data(contentsOf: ContactLogs.filePath) {
+           let fileData = try? Data(contentsOf: ContactLogs.filePath)
+        {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             if let wrapper = try? decoder.decode(LegacyPantryWrapper.self, from: fileData) {

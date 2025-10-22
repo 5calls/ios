@@ -1,25 +1,19 @@
-//
-//  LogSearchOperation.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/22/25.
-//  Copyright © 2025 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
 class LogSearchOperation: BaseOperation, @unchecked Sendable {
     var searchQuery: String
-    
+
     var httpResponse: HTTPURLResponse?
     var error: Error?
-    
+
     init(searchQuery: String) {
         self.searchQuery = searchQuery
     }
-    
+
     var url: URL {
-        return URL(string: "https://api.5calls.org/v1/users/search")!
+        URL(string: "https://api.5calls.org/v1/users/search")!
     }
 
     override func execute() {
@@ -31,20 +25,20 @@ class LogSearchOperation: BaseOperation, @unchecked Sendable {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let requestBody: [String: Any] = [
-            "query": searchQuery
+            "query": searchQuery,
         ]
-                
+
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
             request.httpBody = jsonData
         } catch {
             print("Error creating JSON body for search log: \(error)")
             self.error = error
-            self.finish()
+            finish()
             return
         }
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
+
+        let task = session.dataTask(with: request) { _, response, error in
             if let e = error {
                 self.error = e
                 print("Error logging search query: \(e)")

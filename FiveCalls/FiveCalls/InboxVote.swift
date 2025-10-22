@@ -1,17 +1,11 @@
-//
-//  InboxVote.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 5/26/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
 struct ContactInboxVote: View {
     var contact: Contact
     var message: InboxMessage
-    
+
     var body: some View {
         HStack(alignment: .top) {
             ContactCircle(contact: contact)
@@ -36,7 +30,7 @@ struct ContactInboxVote: View {
 
 struct GenericInboxVote: View {
     var message: InboxMessage
-    
+
     var body: some View {
         HStack(alignment: .top) {
             AsyncImage(url: message.imageURL, content: { image in
@@ -48,8 +42,8 @@ struct GenericInboxVote: View {
             }) {
                 placeholder
             }
-                .frame(width: 20, height: 20)
-                .padding(.top, 1)
+            .frame(width: 20, height: 20)
+            .padding(.top, 1)
             VStack(alignment: .leading) {
                 Text(message.title)
                     .font(.body)
@@ -65,7 +59,7 @@ struct GenericInboxVote: View {
                 .padding(.top, 10)
         }.frame(minHeight: 40)
     }
-    
+
     var placeholder: some View {
         Image(systemName: "person.crop.circle")
             .resizable()

@@ -1,27 +1,21 @@
-//
-//  SearchBar.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/22/25.
-//  Copyright © 2025 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
 struct SearchBar: View {
     @Binding var searchText: String
     @EnvironmentObject var store: Store
-    
+
     @FocusState private var isSearchFocused: Bool
     @State private var searchWorkItem: DispatchWorkItem?
     @State private var hasLoggedCurrentSearch = false
-    
+
     var body: some View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.secondary)
-                
+
                 TextField(
                     String(
                         localized: "Search all issues...",
@@ -29,13 +23,13 @@ struct SearchBar: View {
                     ),
                     text: $searchText
                 )
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .focused($isSearchFocused)
-                    .onChange(of: searchText) { newValue in
-                        handleSearchTextChange(newValue)
-                    }
-                    .onSubmit {}
-                
+                .textFieldStyle(PlainTextFieldStyle())
+                .focused($isSearchFocused)
+                .onChange(of: searchText) { newValue in
+                    handleSearchTextChange(newValue)
+                }
+                .onSubmit {}
+
                 if !searchText.isEmpty {
                     Button {
                         clearSearch()
@@ -53,24 +47,24 @@ struct SearchBar: View {
         .padding(.horizontal, 16)
         .padding(.bottom, 8)
     }
-    
+
     private func handleSearchTextChange(_ newValue: String) {
         if newValue.count > 30 {
             searchText = String(newValue.prefix(30))
             return
         }
-        
+
         // Cancel previous search logging work item
         searchWorkItem?.cancel()
-        
+
         // Reset logging flag when search is cleared
         if newValue.isEmpty {
             hasLoggedCurrentSearch = false
             return
         }
-        
+
         // Only log once per search session (until cleared) for searches >= 3 characters
-        if newValue.count >= 3 && !hasLoggedCurrentSearch {
+        if newValue.count >= 3, !hasLoggedCurrentSearch {
             let workItem = DispatchWorkItem {
                 // Double-check that we haven't logged yet during the delay
                 if !hasLoggedCurrentSearch {
@@ -82,7 +76,7 @@ struct SearchBar: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
         }
     }
-    
+
     private func clearSearch() {
         searchText = ""
         isSearchFocused = false

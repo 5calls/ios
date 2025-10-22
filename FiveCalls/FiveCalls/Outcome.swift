@@ -1,10 +1,4 @@
-//
-//  Outcome.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 9/17/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
@@ -18,6 +12,6 @@ struct Outcome: Decodable {
 
 extension Outcome: Identifiable {
     var id: Int {
-        return label.hashValue
+        label.hashValue
     }
 }

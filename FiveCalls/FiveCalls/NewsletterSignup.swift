@@ -1,20 +1,14 @@
-//
-//  NewsletterSignup.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 11/21/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct NewsletterSignup: View {
     @State var email: String = ""
     @State var errorString: String?
     var onDismiss: () -> Void
     var onSubmit: (String) -> Void
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(
@@ -49,29 +43,29 @@ struct NewsletterSignup: View {
                     .fivecallsDarkGray
                 )
             )
-                .font(.headline)
-                .padding(.horizontal, 4)
-                .padding(.vertical, 8)
-                .foregroundColor(.black)
-                .background(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 4))
-                .keyboardType(.emailAddress)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
-                .onChange(of: email) { newValue in
-                    // reset the error state when the user starts typing again
-                    errorString = nil
-                }
+            .font(.headline)
+            .padding(.horizontal, 4)
+            .padding(.vertical, 8)
+            .foregroundColor(.black)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .keyboardType(.emailAddress)
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
+            .onChange(of: email) { _ in
+                // reset the error state when the user starts typing again
+                errorString = nil
+            }
             HStack {
                 Button(action: onDismiss,
-                    label: {
-                        Label(
-                            String(localized: "No thanks", comment: "Newslitter signup decline button text"),
-                            systemImage: "nosign"
-                        )
-                        .padding(.vertical, 6)
-                        .frame(maxWidth: .infinity)
-                }).background(.white).clipShape(
+                       label: {
+                           Label(
+                               String(localized: "No thanks", comment: "Newslitter signup decline button text"),
+                               systemImage: "nosign"
+                           )
+                           .padding(.vertical, 6)
+                           .frame(maxWidth: .infinity)
+                       }).background(.white).clipShape(
                     RoundedRectangle(cornerRadius: 8)
                 )
                 Button(action: {
@@ -85,15 +79,15 @@ struct NewsletterSignup: View {
                         String(localized: "Sign me up", comment: "Newsletter signup submit button text"),
                         systemImage: "paperplane"
                     ).padding(.vertical, 6)
-                     .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity)
                 }).background(.white).clipShape(
                     RoundedRectangle(cornerRadius: 8)
                 )
             }.padding(.top, 6)
         }.padding()
-        .background(.fivecallsDarkBlue)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .padding()
+            .background(.fivecallsDarkBlue)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding()
     }
 }
 

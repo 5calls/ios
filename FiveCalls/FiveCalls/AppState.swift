@@ -1,13 +1,7 @@
-//
-//  AppState.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 7/24/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import Foundation
 import CoreLocation
+import Foundation
 import os
 
 class AppState: ObservableObject, ReduxState {
@@ -25,6 +19,7 @@ class AppState: ObservableObject, ReduxState {
             UserDefaults.standard.set(plistSupportableIssueCache, forKey: UserDefaultsKey.issueCompletionCache.rawValue)
         }
     }
+
     @Published var repMessages: [InboxMessage] = []
     @Published var donateOn = false
     @Published var issues: [Issue] = []
@@ -42,10 +37,11 @@ class AppState: ObservableObject, ReduxState {
             }
         }
     }
+
     @Published var missingReps: [String] = []
     @Published var location: UserLocation? {
         didSet {
-            guard let location = self.location else { return }
+            guard let location else { return }
             let defaults = UserDefaults.standard
             defaults.set(location.locationType.rawValue, forKey: UserDefaultsKey.locationType.rawValue)
             defaults.set(location.locationValue, forKey: UserDefaultsKey.locationValue.rawValue)
@@ -53,6 +49,7 @@ class AppState: ObservableObject, ReduxState {
             Logger().info("saved cached location as \(location)")
         }
     }
+
     @Published var fetchingContacts = false
     // if we don't have any loaded messages, this is set to a message id we expect to receive for immediate navigation,
     // i.e. we've tapped on a push notification about a message
@@ -63,47 +60,48 @@ class AppState: ObservableObject, ReduxState {
     @Published var issueLoadingError: Error? = nil
     // TODO: display this error on the dashboard (and location sheet?)
     @Published var contactsLoadingError: Error? = nil
-    
-    @Published var issueRouter: IssueRouter = IssueRouter()
-    @Published var inboxRouter: InboxRouter = InboxRouter()
+
+    @Published var issueRouter: IssueRouter = .init()
+    @Published var inboxRouter: InboxRouter = .init()
     @Published var scriptsByIssue: [Int: [CustomizedContactScript]] = [:] // issue id, scripts
     @Published var scriptsLoadingErrorByIssue: [Int: Error] = [:]
 
     init() {
         // load user location cache
         if let locationType = UserDefaults.standard.string(forKey: UserDefaultsKey.locationType.rawValue),
-            let locationValue = UserDefaults.standard.string(forKey: UserDefaultsKey.locationValue.rawValue) {
+           let locationValue = UserDefaults.standard.string(forKey: UserDefaultsKey.locationValue.rawValue)
+        {
             let locationDisplay = UserDefaults.standard.string(forKey: UserDefaultsKey.locationDisplay.rawValue)
             Logger().info("loading cached location: \(locationType) \(locationValue) \(locationDisplay ?? "")")
-            
+
             switch locationType {
             case "address", "zipCode":
-                self.location = UserLocation(address: locationValue, display: locationDisplay)
+                location = UserLocation(address: locationValue, display: locationDisplay)
             case "coordinates":
                 let locValues = locationValue.split(separator: ",")
                 if locValues.count != 2 { return }
                 guard let lat = Double(locValues[0]), let lng = Double(locValues[1]) else { return }
-                
-                self.location = UserLocation(location: CLLocation(latitude: lat, longitude: lng), display: locationDisplay)
+
+                location = UserLocation(location: CLLocation(latitude: lat, longitude: lng), display: locationDisplay)
             default:
                 Logger().warning("unknown stored location type data: \(locationType)")
             }
         }
-        
+
         // load cached state abbreviation
         if let cachedStateAbbr = UserDefaults.standard.string(forKey: UserDefaultsKey.stateAbbreviation.rawValue) {
-            self.stateAbbreviation = cachedStateAbbr
+            stateAbbreviation = cachedStateAbbr
             Logger().info("loaded cached state abbreviation: \(cachedStateAbbr)")
         }
-        
+
         // load the issue completion cache
         if let plistSupportableIssueCache = UserDefaults.standard.object(forKey: UserDefaultsKey.issueCompletionCache.rawValue) as? [String: [String]] {
-            self.issueCompletion = Dictionary(uniqueKeysWithValues: plistSupportableIssueCache.compactMap({ key, value in
+            issueCompletion = Dictionary(uniqueKeysWithValues: plistSupportableIssueCache.compactMap { key, value in
                 if let intKey = Int(key) {
                     return (intKey, value)
                 }
                 return nil
-            }))
+            })
         }
     }
 }
@@ -111,8 +109,8 @@ class AppState: ObservableObject, ReduxState {
 extension AppState {
     func issueCalledOn(issueID: Int, contactID: String) -> Bool {
         // a contact outcome is a contactid concatenated with an outcome (B0001234-contact)
-        let contactOutcomesForIssue = self.issueCompletion[issueID] ?? []
-        
+        let contactOutcomesForIssue = issueCompletion[issueID] ?? []
+
         let contactIDs = contactOutcomesForIssue.map { contactOutcome in
             // Split from the right to handle contact IDs that contain hyphens
             if let lastHyphenIndex = contactOutcome.lastIndex(of: "-") {
@@ -123,19 +121,19 @@ extension AppState {
 
         return contactIDs.contains(contactID)
     }
-    
+
     var needsIssueRefresh: Bool {
         guard let issueFetchTime else {
             return true
         }
-        
+
         if issueFetchTime < Date().addingTimeInterval(-1 * 60) {
             return true
         } else {
             return false
         }
     }
-    
+
     func customizedScript(issueID: Int, contactID: String) -> String? {
         scriptsByIssue[issueID]?.first { $0.id == contactID }?.script
     }

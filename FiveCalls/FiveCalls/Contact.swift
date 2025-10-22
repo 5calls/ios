@@ -1,14 +1,8 @@
-//
-//  Contact.swift
-//  FiveCalls
-//
-//  Created by Ben Scheirman on 1/31/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
-struct Contact : Decodable, Identifiable {
+struct Contact: Decodable, Identifiable {
     let id: String
     let area: String
     let name: String
@@ -18,7 +12,7 @@ struct Contact : Decodable, Identifiable {
     let reason: String?
     let state: String?
     let fieldOffices: [AreaOffice]
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case area
@@ -30,7 +24,7 @@ struct Contact : Decodable, Identifiable {
         case state
         case fieldOffices = "field_offices"
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
@@ -38,7 +32,7 @@ struct Contact : Decodable, Identifiable {
         name = try container.decode(String.self, forKey: .name)
         party = try container.decode(String.self, forKey: .party)
         phone = try container.decode(String.self, forKey: .phone)
-        photoURL = (try container.decode(String?.self, forKey: .photoURL)).flatMap(URL.init)
+        photoURL = try (container.decode(String?.self, forKey: .photoURL)).flatMap(URL.init)
         reason = try container.decode(String.self, forKey: .reason)
         state = try container.decode(String.self, forKey: .state)
         fieldOffices = try container.decode([AreaOffice]?.self, forKey: .fieldOffices) ?? []
@@ -52,41 +46,41 @@ struct Contact : Decodable, Identifiable {
         self.party = party
         self.phone = phone
         self.photoURL = photoURL
-        self.reason = nil
-        self.state = nil
+        reason = nil
+        state = nil
         self.fieldOffices = fieldOffices
     }
 }
 
 extension Contact: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+        hasher.combine(id)
     }
-    
-    static func ==(lhs: Contact, rhs: Contact) -> Bool {
-        return lhs.id == rhs.id
+
+    static func == (lhs: Contact, rhs: Contact) -> Bool {
+        lhs.id == rhs.id
     }
 }
 
-extension Contact {    
+extension Contact {
     // this has some overlap with other area -> string conversions but I haven't thought about it long enough to combine them
     func localizedOfficeDescription() -> LocalizedStringResource {
-        switch self.area {
+        switch area {
         case "US House", "House":
             // TODO: plumb the district through here too
-            return "\(String(localized: "US House Rep", comment: "Office Holder description")) \(self.state ?? "")"
+            "\(String(localized: "US House Rep", comment: "Office Holder description")) \(state ?? "")"
         case "US Senate", "Senate":
-            return "\(String(localized: "US Senator", comment: "Office Holder description")) \(self.state ?? "")"
+            "\(String(localized: "US Senator", comment: "Office Holder description")) \(state ?? "")"
         case "StateLower", "StateUpper":
-            return "\(String(localized: "State Rep", comment: "Office Holder description")) \(self.state ?? "")"
+            "\(String(localized: "State Rep", comment: "Office Holder description")) \(state ?? "")"
         case "Governor":
-            return "\(String(localized: "Governor Office", defaultValue: "Governor", comment: "Office Holder description")) \(self.state ?? "")"
+            "\(String(localized: "Governor Office", defaultValue: "Governor", comment: "Office Holder description")) \(state ?? "")"
         case "AttorneyGeneral":
-            return "\(String(localized: "Attorney General Office", defaultValue: "Attorney General", comment: "Office Holder description")) \(self.state ?? "")"
+            "\(String(localized: "Attorney General Office", defaultValue: "Attorney General", comment: "Office Holder description")) \(state ?? "")"
         case "SecretaryOfState":
-            return "\(String(localized: "Secretary of State Office", defaultValue: "Secretary of State", comment: "Office Holder description")) \(self.state ?? "")"
+            "\(String(localized: "Secretary of State Office", defaultValue: "Secretary of State", comment: "Office Holder description")) \(state ?? "")"
         default:
-            return ""
+            ""
         }
     }
 }
@@ -95,58 +89,56 @@ extension Contact {
     static func placeholderContact(for area: String) -> [Contact] {
         switch area {
         case "US Senate":
-            return [
-                    Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
-                    Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])
-                ]
+            [
+                Contact(id: "1234", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
+                Contact(id: "1235", area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: []),
+            ]
         default:
             // list views will complain if we have mutiple placeholders with the same ID so randomize them
-            return [Contact(id: String(Int.random(in: 0..<999)), area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])]
+            [Contact(id: String(Int.random(in: 0 ..< 999)), area: area, name: area, party: area, phone: "", photoURL: nil, fieldOffices: [])]
         }
     }
 }
 
 extension Contact {
     var title: String? {
-        switch self.area {
+        switch area {
         case "US House", "House":
-            return String(localized: "Rep.", comment: "Office Holder title")
+            String(localized: "Rep.", comment: "Office Holder title")
         case "US Senate", "Senate":
-            return String(localized: "Senator", comment: "Office Holder title")
+            String(localized: "Senator", comment: "Office Holder title")
         case "StateLower", "StateUpper":
-            return String(localized: "Legislator", comment: "Office Holder title")
+            String(localized: "Legislator", comment: "Office Holder title")
         case "Governor":
-            return String(localized: "Governor Title", defaultValue: "Governor", comment: "Office Holder title")
+            String(localized: "Governor Title", defaultValue: "Governor", comment: "Office Holder title")
         case "AttorneyGeneral":
-            return String(localized: "Attorney General Title", defaultValue: "Attorney General", comment: "Office Holder title")
+            String(localized: "Attorney General Title", defaultValue: "Attorney General", comment: "Office Holder title")
         case "SecretaryOfState":
-            return String(localized: "Secretary of State Title", defaultValue: "Secretary of State", comment: "Office Holder title")
+            String(localized: "Secretary of State Title", defaultValue: "Secretary of State", comment: "Office Holder title")
         default:
             // return nothing for unknown
-            return nil
+            nil
         }
     }
 }
-
 
 // AreaToNiceString converts an area name to a generic office name that can be used in the interface
 func areaToNiceString(area: String) -> String {
     switch area {
     case "US House", "House":
-        return String(localized: "House Rep", comment: "Office Holder grouping description")
+        String(localized: "House Rep", comment: "Office Holder grouping description")
     case "US Senate", "Senate":
-        return String(localized: "Senators", comment: "Office Holder grouping description")
+        String(localized: "Senators", comment: "Office Holder grouping description")
     // state legislatures call themselves different things by state, so let's use a generic term for all of them
     case "StateLower", "StateUpper":
-        return String(localized: "State Reps", comment: "Office Holder grouping description")
+        String(localized: "State Reps", comment: "Office Holder grouping description")
     case "Governor":
-        return String(localized: "Governor Grouping", defaultValue: "Governor", comment: "Office Holder grouping description")
+        String(localized: "Governor Grouping", defaultValue: "Governor", comment: "Office Holder grouping description")
     case "AttorneyGeneral":
-        return String(localized: "Attorney General Grouping", defaultValue: "Attorney General", comment: "Office Holder grouping description")
+        String(localized: "Attorney General Grouping", defaultValue: "Attorney General", comment: "Office Holder grouping description")
     case "SecretaryOfState":
-        return String(localized: "Secretary of State Grouping", defaultValue: "Secretary of State", comment: "Office Holder grouping description")
+        String(localized: "Secretary of State Grouping", defaultValue: "Secretary of State", comment: "Office Holder grouping description")
     default:
-        return area
+        area
     }
 }
-

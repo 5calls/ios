@@ -1,16 +1,10 @@
-//
-//  BaseOperation.swift
-//  FiveCalls
-//
-//  Created by Ben Scheirman on 1/30/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
 class BaseOperation: Operation, @unchecked Sendable {
-    var session: URLSession = URLSession.shared
-        
+    var session: URLSession = .shared
+
     override init() {
         super.init()
 
@@ -24,14 +18,14 @@ class BaseOperation: Operation, @unchecked Sendable {
         if isUITesting() {
             let config = URLSessionConfiguration.ephemeral
             config.protocolClasses = [ProtocolMock.self]
-            self.session = URLSession(configuration: config)
+            session = URLSession(configuration: config)
         }
     }
 
     override var isAsynchronous: Bool {
-        return true
+        true
     }
-    
+
     private var _executing = false {
         willSet {
             willChangeValue(forKey: "isExecuting")
@@ -40,40 +34,40 @@ class BaseOperation: Operation, @unchecked Sendable {
             didChangeValue(forKey: "isExecuting")
         }
     }
-    
+
     override var isExecuting: Bool {
-        return _executing
+        _executing
     }
-    
+
     private var _finished = false {
         willSet {
             willChangeValue(forKey: "isFinished")
         }
-        
+
         didSet {
             didChangeValue(forKey: "isFinished")
         }
     }
-    
+
     override var isFinished: Bool {
-        return _finished
+        _finished
     }
-    
+
     func buildRequest(forURL url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.setValue(AnalyticsManager.shared.callerID, forHTTPHeaderField: "X-Caller-ID")
         return request
     }
-    
+
     override func start() {
         _executing = true
         execute()
     }
-    
+
     func execute() {
         fatalError("You must override this")
     }
-    
+
     func finish() {
         _executing = false
         _finished = true

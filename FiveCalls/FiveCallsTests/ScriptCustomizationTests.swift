@@ -1,19 +1,11 @@
-//
-//  ScriptCustomizationTests.swift
-//  FiveCallsTests
-//
-//  Created by Nick O'Neill on 5/3/20.
-//  Copyright © 2020 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import XCTest
 @testable import FiveCalls
 
 private let kLocation = UserLocation(address: "123 Main St", display: "San Francisco")
 
-
 class ScriptCustomizationTests: XCTestCase {
-
     func testSingleContactReplacement() throws {
         let script = "Hello [REP/SEN NAME], my name is a constituent"
 
@@ -22,7 +14,7 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello Rep. Housy McHouseface, my name is a constituent"
         XCTAssertEqual(replacedScript, expectedScript)
     }
-    
+
     func testAlternateHouseContactReplacement() throws {
         let script = "Hello [REPRESENTATIVE NAME], my name is a constituent"
 
@@ -31,7 +23,7 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello Rep. Housy McHouseface, my name is a constituent"
         XCTAssertEqual(replacedScript, expectedScript)
     }
-    
+
     func testAlternateSenateContactReplacement() throws {
         let script = "Hello [SENATOR NAME], my name is a constituent"
 
@@ -58,7 +50,7 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello, my name is a constituent from San Francisco"
         XCTAssertEqual(replacedScript, expectedScript)
     }
-    
+
     func testUnknownAreaContactReplacement() throws {
         let script = "Hello [REP/SEN NAME], my name is a constituent"
 
@@ -67,7 +59,7 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello Mayor McMayorface, my name is a constituent"
         XCTAssertEqual(replacedScript, expectedScript)
     }
-    
+
     func testChooseHouseSubscript() throws {
         let script = "Hello!\n\n**WHEN CALLING HOUSE:**\nI'm calling to urge **[REPRESENTATIVE NAME]** to support house bill.\n\n**WHEN CALLING SENATE:**\nI'm calling to urge **[SENATOR NAME]** to support senate bill.\n\nThank you for your time and consideration."
 
@@ -76,7 +68,7 @@ class ScriptCustomizationTests: XCTestCase {
         let expectedScript = "Hello!\n\nI'm calling to urge **[REPRESENTATIVE NAME]** to support house bill.\n\nThank you for your time and consideration."
         XCTAssertEqual(replacedScript, expectedScript)
     }
-    
+
     func testChooseSenateSubscript() throws {
         let script = "Hello!\n\n**WHEN CALLING HOUSE:**\nI'm calling to urge **[REPRESENTATIVE NAME]** to support house bill.\n\n**WHEN CALLING SENATE:**\nI'm calling to urge **[SENATOR NAME]** to support senate bill.\n\nThank you for your time and consideration."
 
@@ -115,69 +107,69 @@ class ScriptCustomizationTests: XCTestCase {
 
     func testMultipleHouseSubscriptSections() throws {
         let script = """
-            Hello!
-            
-            **WHEN CALLING HOUSE:**
-            First house section with **[REPRESENTATIVE NAME]**
-            
-            Some middle text.
-            
-            **WHEN CALLING HOUSE:**
-            Second house section
-            
-            **WHEN CALLING SENATE:**
-            Senate section should be removed
-            
-            Thank you for your time.
-            """
+        Hello!
+
+        **WHEN CALLING HOUSE:**
+        First house section with **[REPRESENTATIVE NAME]**
+
+        Some middle text.
+
+        **WHEN CALLING HOUSE:**
+        Second house section
+
+        **WHEN CALLING SENATE:**
+        Senate section should be removed
+
+        Thank you for your time.
+        """
 
         let replacedScript = ScriptReplacements.chooseSubscript(script: script, contact: Contact.housePreviewContact)
 
         let expectedScript = """
-            Hello!
-            
-            First house section with **[REPRESENTATIVE NAME]**
-            
-            Some middle text.
-            
-            Second house section
-            
-            Thank you for your time.
-            """
+        Hello!
+
+        First house section with **[REPRESENTATIVE NAME]**
+
+        Some middle text.
+
+        Second house section
+
+        Thank you for your time.
+        """
         XCTAssertEqual(replacedScript, expectedScript)
     }
 
     func testMultipleSenateSubscriptSections() throws {
         let script = """
-            Hello!
-            
-            **WHEN CALLING SENATE:**
-            First senate section with **[SENATOR NAME]**
-            
-            Some middle text.
-            
-            **WHEN CALLING HOUSE:**
-            House section should be removed
-            
-            **WHEN CALLING SENATE:**
-            Second senate section
-            
-            Thank you for your time.
-            """
+        Hello!
+
+        **WHEN CALLING SENATE:**
+        First senate section with **[SENATOR NAME]**
+
+        Some middle text.
+
+        **WHEN CALLING HOUSE:**
+        House section should be removed
+
+        **WHEN CALLING SENATE:**
+        Second senate section
+
+        Thank you for your time.
+        """
 
         let replacedScript = ScriptReplacements.chooseSubscript(script: script, contact: Contact.senatePreviewContact1)
 
         let expectedScript = """
-            Hello!
-            
-            First senate section with **[SENATOR NAME]**
-            
-            Some middle text.
-            
-            Second senate section
-            
-            Thank you for your time.
-            """
+        Hello!
+
+        First senate section with **[SENATOR NAME]**
+
+        Some middle text.
+
+        Second senate section
+
+        Thank you for your time.
+        """
         XCTAssertEqual(replacedScript, expectedScript)
     }
 }

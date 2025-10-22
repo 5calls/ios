@@ -1,24 +1,18 @@
-//
-//  ContactCircle.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 8/3/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
 struct ContactCircle: View {
     @EnvironmentObject var store: Store
-    
+
     let issueID: Int?
     let contact: Contact
-    
+
     init(contact: Contact, issueID: Int? = nil) {
         self.contact = contact
         self.issueID = issueID
     }
-    
+
     var body: some View {
         if let issueID, store.state.issueCalledOn(issueID: issueID, contactID: contact.id) {
             Image(systemName: "checkmark.circle.fill")
@@ -41,13 +35,13 @@ struct ContactCircle: View {
             placeholder
         }
     }
-    
+
     var placeholder: some View {
         GeometryReader { geometry in
             ZStack {
                 Circle()
                     .fill(Color(.systemGray5))
-                
+
                 Image(systemName: "star.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -64,7 +58,7 @@ struct ContactCircle: View {
         state.issueCompletion[123] = ["1234-contact"]
         return Store(state: state)
     }()
-    
+
     return HStack {
         ContactCircle(contact: Contact.housePreviewContact)
             .frame(width: 40, height: 40)

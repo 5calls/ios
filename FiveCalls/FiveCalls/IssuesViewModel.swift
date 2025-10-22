@@ -1,18 +1,11 @@
-//
-//  IssuesViewModel.swift
-//  FiveCalls
-//
-//  Created by Indrajit on 17/10/17.
-//  Copyright © 2017 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
 protocol IssuesViewModel {
-
     var issues: [Issue] { get }
 
-    init(issues:[Issue])
+    init(issues: [Issue])
     func numberOfSections() -> Int
     func numberOfRowsInSection(section: Int) -> Int
     func hasNoData() -> Bool
@@ -25,7 +18,6 @@ extension IssuesViewModel {
         var categoryViewModels = Set<CategorizedIssuesViewModel>()
         for issue in issues {
             for category in issue.categories {
-
                 if let categorized = categoryViewModels.first(where: { $0.category == category }) {
                     categorized.issues.append(issue)
                 } else {
@@ -47,24 +39,24 @@ struct AllIssuesViewModel: IssuesViewModel {
 
     func numberOfSections() -> Int {
         // As many section as there are unique categories.
-        return categorizedIssues.count
+        categorizedIssues.count
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
-        return categorizedIssues[section].issues.count
+        categorizedIssues[section].issues.count
     }
 
     func hasNoData() -> Bool {
-        return categorizedIssues.count == 0
+        categorizedIssues.count == 0
     }
 
     func issueForIndexPath(indexPath: IndexPath) -> Issue {
-        return categorizedIssues[indexPath.section].issues[indexPath.row]
+        categorizedIssues[indexPath.section].issues[indexPath.row]
     }
 
     func titleForHeaderInSection(section: Int) -> String {
         // Category name as section header.
-        return categorizedIssues[section].name
+        categorizedIssues[section].name
     }
 }
 
@@ -72,29 +64,29 @@ struct AllIssuesViewModel: IssuesViewModel {
 struct ActiveIssuesViewModel: IssuesViewModel {
     private let activeIssues: [Issue]
     let issues: [Issue]
-    
+
     init(issues: [Issue]) {
         self.issues = issues
-        activeIssues = issues.filter { $0.active }
+        activeIssues = issues.filter(\.active)
     }
-    
+
     func numberOfSections() -> Int {
         1
     }
-    
-    func numberOfRowsInSection(section: Int) -> Int {
+
+    func numberOfRowsInSection(section _: Int) -> Int {
         activeIssues.count
     }
-    
+
     func hasNoData() -> Bool {
         activeIssues.count == 0
     }
-    
+
     func issueForIndexPath(indexPath: IndexPath) -> Issue {
         activeIssues[indexPath.row]
     }
-    
-    func titleForHeaderInSection(section: Int) -> String {
+
+    func titleForHeaderInSection(section _: Int) -> String {
         String(localized: "What's important to you?", comment: "ActiveIssuesViewModel Section header")
     }
 }

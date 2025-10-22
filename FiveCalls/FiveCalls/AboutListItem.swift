@@ -1,10 +1,4 @@
-//
-//  AboutListItem.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 9/26/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import AcknowList
 import SwiftUI
@@ -83,14 +77,13 @@ struct AboutListItem: View {
                     .accessibilityHidden(true)
             }
             .accessibilityAddTraits(.isButton)
-
         }
     }
 }
 
 #Preview {
     VStack {
-        AboutListItem(title: "test item action", type: .action({ let _ = true }))
+        AboutListItem(title: "test item action", type: .action { _ = true })
         AboutListItem(title: "test url", type: .url(URL(string: "https://google.com")!))
         AboutListItem(title: "test acknowledgements", type: .acknowledgements)
     }

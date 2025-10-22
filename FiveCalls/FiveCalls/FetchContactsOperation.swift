@@ -1,16 +1,9 @@
-//
-//  FetchContactsOperation.swift
-//  FiveCalls
-//
-//  Created by Ben Scheirman on 1/9/19.
-//  Copyright © 2019 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 import OneSignal
 
 class FetchContactsOperation: BaseOperation, @unchecked Sendable {
-
     var location: UserLocation
 
     var httpResponse: HTTPURLResponse?
@@ -26,23 +19,23 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
 
         super.init()
         if let config {
-            self.session = URLSession(configuration: config)
+            session = URLSession(configuration: config)
         }
     }
-    
+
     var url: URL {
         var components = URLComponents(string: "https://api.5calls.org/v1/reps")
         let locationQueryParam = URLQueryItem(name: "location", value: location.locationValue)
         components?.queryItems = [locationQueryParam]
         return components!.url!
     }
-    
+
     override func execute() {
         let request = buildRequest(forURL: url)
-        
+
         let task = session.dataTask(with: request) { data, response, error in
             if let e = error {
-               self.error = e
+                self.error = e
             } else {
                 self.handleResponse(data: data, response: response)
             }
@@ -50,14 +43,14 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         }
         task.resume()
     }
-    
+
     private func handleResponse(data: Data?, response: URLResponse?) {
-        guard let data = data else { return }
+        guard let data else { return }
         guard let http = response as? HTTPURLResponse else { return }
-        
+
         print("HTTP \(http.statusCode)")
         httpResponse = http
-        
+
         if http.statusCode == 200 {
             do {
                 try parseContacts(data: data)
@@ -68,7 +61,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
             print("Received HTTP \(http.statusCode)")
         }
     }
-    
+
     private func parseContacts(data: Data) throws {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -85,4 +78,3 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         contacts = contactList.representatives
     }
 }
-

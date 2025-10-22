@@ -1,16 +1,10 @@
-//
-//  InboxMessage.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 3/16/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
 
 struct InboxMessage: Decodable, Identifiable, Equatable {
     let id: Int
-    
+
     // the title of the message, usually the rep's name and what they voted for or against
     let title: String
     // a slightly longer description of what the legislation does

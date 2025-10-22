@@ -1,20 +1,14 @@
-//
-//  App.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/28/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
 @main
 struct FiveCallsApp: App {
-    @StateObject var store: Store = Store(state: AppState(), middlewares: [appMiddleware()])
+    @StateObject var store: Store = .init(state: AppState(), middlewares: [appMiddleware()])
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     @Environment(\.scenePhase) private var scenePhase
-            
+
     @AppStorage(UserDefaultsKey.hasShownWelcomeScreen.rawValue) var hasShownWelcomeScreen = false
 
     var body: some Scene {
@@ -40,4 +34,3 @@ struct FiveCallsApp: App {
         }
     }
 }
-

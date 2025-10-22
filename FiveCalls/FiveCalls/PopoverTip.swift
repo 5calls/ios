@@ -1,10 +1,4 @@
-//
-//  PopoverTip.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 10/24/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 import TipKit
@@ -14,7 +8,7 @@ struct PopoverTip: Tip {
     var title: Text
     var message: Text?
     var image: Image?
-    
+
     var options: [Option] {
         Tips.MaxDisplayCount(3)
     }
@@ -40,7 +34,7 @@ extension View {
                     ))
             }
         } else {
-          AnyView(self)
+            AnyView(self)
         }
     }
 }

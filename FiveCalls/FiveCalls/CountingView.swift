@@ -1,15 +1,8 @@
-//
-//  CountingView.swift
-//  FiveCalls
-//
-//  Created by Abizer Nasir on 28/09/2025.
-//  Copyright © 2025 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-
-import SwiftUI
-import StoreKit
 import OneSignal
+import StoreKit
+import SwiftUI
 
 struct CountingView: View {
     let title: LocalizedStringResource
@@ -41,7 +34,7 @@ struct CountingView: View {
     }
 
     func progressWidth(size: CGSize) -> CGFloat {
-        return size.width * (CGFloat(count) / nextMilestone)
+        size.width * (CGFloat(count) / nextMilestone)
     }
 
     var nextMilestone: CGFloat {
@@ -58,21 +51,21 @@ struct CountingView: View {
         } else if count < 45000 {
             return 50000
         } else if count < 90000 {
-            return 100000
-        } else if count < 450000 {
-            return 500000
-        } else if count < 900000 {
-            return 1000000
-        } else if count < 1500000 {
-            return 2000000
-        } else if count < 4500000 {
-            return 5000000
-        } else if count < 9500000 {
-            return 10000000
-        } else if count < 12500000 {
-            return 13000000
-        } else if count < 14500000 {
-            return 15000000
+            return 100_000
+        } else if count < 450_000 {
+            return 500_000
+        } else if count < 900_000 {
+            return 1_000_000
+        } else if count < 1_500_000 {
+            return 2_000_000
+        } else if count < 4_500_000 {
+            return 5_000_000
+        } else if count < 9_500_000 {
+            return 10_000_000
+        } else if count < 12_500_000 {
+            return 13_000_000
+        } else if count < 14_500_000 {
+            return 15_000_000
         }
 
         return 0

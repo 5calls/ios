@@ -1,10 +1,4 @@
-//
-//  InboxDetail.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 6/3/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 
@@ -14,7 +8,7 @@ struct InboxDetail: View {
 
     var message: InboxMessage
     var contactForMessage: Contact? {
-        return store.state.contacts.filter({ $0.id == message.repID}).first
+        store.state.contacts.filter { $0.id == message.repID }.first
     }
 
     var body: some View {
@@ -45,7 +39,6 @@ struct InboxDetail: View {
                             Text(contactTitle)
                                 .font(.footnote)
                                 .foregroundStyle(Color.primary)
-                            
                         }
                         .accessibilityElement(children: .combine)
                         Spacer()
@@ -54,7 +47,7 @@ struct InboxDetail: View {
                     .accessibilityElement(children: .combine)
                 }
                 Button("", systemImage: "xmark") {
-                    self.dismiss()
+                    dismiss()
                 }
             }
             HStack {
@@ -72,7 +65,7 @@ struct InboxDetail: View {
             }.padding(.bottom, 0)
             Text(message.description)
                 .padding(.bottom, 4)
-            if let moreInfoURL =  message.moreInfoURL {
+            if let moreInfoURL = message.moreInfoURL {
                 Link(
                     String(
                         localized: "Read more →",
@@ -80,13 +73,13 @@ struct InboxDetail: View {
                     ),
                     destination: moreInfoURL
                 )
-                    .fontWeight(.medium)
+                .fontWeight(.medium)
             }
             Spacer()
         }
         .padding(.horizontal, 10)
     }
-        
+
     var placeholder: some View {
         Image(systemName: "person.crop.circle")
             .resizable()
@@ -102,7 +95,7 @@ struct InboxDetail: View {
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
-            Contact.senatePreviewContact2
+            Contact.senatePreviewContact2,
         ]
         state.inboxRouter.selectedMessage = .houseMessage
         return state
@@ -122,7 +115,7 @@ struct InboxDetail: View {
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
-            Contact.senatePreviewContact2
+            Contact.senatePreviewContact2,
         ]
         state.inboxRouter.selectedMessage = .whMessage
         return state

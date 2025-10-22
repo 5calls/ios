@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -110,7 +110,6 @@
 		D0967EC12BA6B17200E03F14 /* InboxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0967EC02BA6B17200E03F14 /* InboxMessage.swift */; };
 		D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */; };
 		D09AA8032B04974C0012FF45 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AA8022B04974C0012FF45 /* StatsViewModel.swift */; };
-		D09AA8062B0497C70012FF45 /* UNNotification+ScheduleReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */; };
 		D0A76F252A814786006EC2F5 /* LocationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A76F242A814786006EC2F5 /* LocationSheet.swift */; };
 		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
 		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -131,7 +130,6 @@
 		D0EB04E02C1759C500AE38F2 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB04DF2C1759C500AE38F2 /* InboxRouter.swift */; };
 		D0EE101C2ACBD69300412128 /* IssueDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE101B2ACBD69300412128 /* IssueDone.swift */; };
 		E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */; };
-		F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,7 +277,6 @@
 		D0967EC02BA6B17200E03F14 /* InboxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessage.swift; sourceTree = "<group>"; };
 		D0983DD82A8209DA00DC90A6 /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
 		D09AA8022B04974C0012FF45 /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
-		D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UNNotification+ScheduleReminders.swift"; path = "Extensions/UNNotification+ScheduleReminders.swift"; sourceTree = "<group>"; };
 		D0A76F242A814786006EC2F5 /* LocationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSheet.swift; sourceTree = "<group>"; };
 		D0BA59A81F9546510069DA58 /* NotificationsService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationsService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA59AA1F9546510069DA58 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -300,8 +297,11 @@
 		D0E950042C03A7B700E26304 /* InboxVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxVote.swift; sourceTree = "<group>"; };
 		D0EB04DF2C1759C500AE38F2 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
 		D0EE101B2ACBD69300412128 /* IssueDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDone.swift; sourceTree = "<group>"; };
-		F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProxies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AD4D35F12EA67635008D9E85 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B50280581E478BC200749ED7 /* Frameworks */ = {
@@ -398,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				4F07B23D2B45F25E00C575DF /* Package.resolved */,
-				D0480B222A538E1000502818 /* Packages */,
 				B52805131E3FA94D00EE832A /* FiveCalls */,
 				B502805C1E478BC200749ED7 /* FiveCallsTests */,
 				B5A70A591E4C01A00031DF58 /* FiveCallsUITests */,
@@ -423,27 +422,26 @@
 		B52805131E3FA94D00EE832A /* FiveCalls */ = {
 			isa = PBXGroup;
 			children = (
-				D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */,
-				B502806D1E497C1400749ED7 /* Resources */,
-				B5E7626F1E40D74900D63D62 /* Operations */,
-				D05A17D02B05A1260048D5A6 /* Extensions */,
-				B5E7626D1E40D72D00D63D62 /* View Models */,
-				B5E7626C1E40D72400D63D62 /* Models */,
-				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
-				D0480AE22A4D45A700502818 /* App.swift */,
-				D0480AE62A4D462F00502818 /* SwiftUI */,
-				ADB097691F8B212800B81661 /* RatingPromptCounter.swift */,
-				B5E98E341E529E66005221B7 /* functions.swift */,
-				B5FFBB981E5EA60E00647121 /* Appearance.swift */,
-				F57BD8B91E438E7600BD554C /* AppearanceProxies.swift */,
-				B5E762641E40480300D63D62 /* UserDefaultsKey.swift */,
-				2732D7C61E4300F300F149EF /* NotificationNames.swift */,
 				D0DD456F229F11FF00AA94C1 /* AnalyticsManager.swift */,
-				D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */,
+				D0480AE22A4D45A700502818 /* App.swift */,
+				B52805141E3FA94D00EE832A /* AppDelegate.swift */,
+				B5FFBB981E5EA60E00647121 /* Appearance.swift */,
 				B528051B1E3FA94D00EE832A /* Assets.xcassets */,
-				B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */,
-				B52805201E3FA94D00EE832A /* Info.plist */,
 				ADAA03E424B48B38006695DD /* Colors.xcassets */,
+				AD4D35F12EA67635008D9E85 /* Extensions */,
+				D0BA59B71F9547270069DA58 /* FiveCalls.entitlements */,
+				B5E98E341E529E66005221B7 /* functions.swift */,
+				B52805201E3FA94D00EE832A /* Info.plist */,
+				B528051D1E3FA94D00EE832A /* LaunchScreen.storyboard */,
+				B5E7626C1E40D72400D63D62 /* Models */,
+				2732D7C61E4300F300F149EF /* NotificationNames.swift */,
+				B5E7626F1E40D74900D63D62 /* Operations */,
+				D05EDAF32B3280D700FD94BD /* ProtocolMock.swift */,
+				ADB097691F8B212800B81661 /* RatingPromptCounter.swift */,
+				B502806D1E497C1400749ED7 /* Resources */,
+				D0480AE62A4D462F00502818 /* SwiftUI */,
+				B5E762641E40480300D63D62 /* UserDefaultsKey.swift */,
+				B5E7626D1E40D72D00D63D62 /* View Models */,
 			);
 			path = FiveCalls;
 			sourceTree = "<group>";
@@ -609,21 +607,6 @@
 			name = PreviewContent;
 			sourceTree = "<group>";
 		};
-		D0480B222A538E1000502818 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
-		D05A17D02B05A1260048D5A6 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D09AA8052B0497C70012FF45 /* UNNotification+ScheduleReminders.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +651,9 @@
 			);
 			dependencies = (
 				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AD4D35F12EA67635008D9E85 /* Extensions */,
 			);
 			name = FiveCalls;
 			packageProductDependencies = (
@@ -871,7 +857,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D00E8B6A2CF056AF0028F935 /* NewsletterSignup.swift in Sources */,
-				D09AA8062B0497C70012FF45 /* UNNotification+ScheduleReminders.swift in Sources */,
 				D01235BD2B8C5A7D00FEE7A0 /* InboxView.swift in Sources */,
 				D0983DD92A8209DA00DC90A6 /* LocationCoordinator.swift in Sources */,
 				D09AA8032B04974C0012FF45 /* StatsViewModel.swift in Sources */,
@@ -934,7 +919,6 @@
 				D0E950052C03A7B700E26304 /* InboxVote.swift in Sources */,
 				D0002E192A9DB5FB0098973F /* PrimaryButton.swift in Sources */,
 				4F4D2EB62AB8C59500882759 /* AboutSheet.swift in Sources */,
-				F57BD8BA1E438E7600BD554C /* AppearanceProxies.swift in Sources */,
 				D0A76F252A814786006EC2F5 /* LocationSheet.swift in Sources */,
 				D0480AE52A4D462500502818 /* Dashboard.swift in Sources */,
 				4FF4ABB42AB23FC8001A064A /* MultipleDayPicker.swift in Sources */,

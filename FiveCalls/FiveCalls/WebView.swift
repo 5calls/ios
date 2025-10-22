@@ -1,10 +1,4 @@
-//
-//  WebView.swift
-//  FiveCalls
-//
-//  Created by Christopher Selin on 9/25/23.
-//  Copyright © 2023 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import SwiftUI
 @preconcurrency import WebKit
@@ -12,35 +6,35 @@ import SwiftUI
 enum WebViewContent: String {
     case whycall
     case whoweare
-    
+
     var navigationTitle: String {
         switch self {
         case .whycall:
-            return String(localized: "Why Calling Works", comment: "Navigation title for why call webview")
+            String(localized: "Why Calling Works", comment: "Navigation title for why call webview")
         case .whoweare:
-            return String(localized: "Who Made 5 Calls", comment: "Navigation title for who we are webview")
+            String(localized: "Who Made 5 Calls", comment: "Navigation title for who we are webview")
         }
     }
 }
 
 struct WebView: UIViewRepresentable {
     let webViewContent: WebViewContent
-    
+
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
         return webView
     }
-    
-    func updateUIView(_ webView: WKWebView, context: Context) {
+
+    func updateUIView(_ webView: WKWebView, context _: Context) {
         let path = Bundle.main.path(forResource: "about-\(webViewContent.rawValue)", ofType: "html")!
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         let htmlString = String(data: data, encoding: .utf8)!
         webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL)
     }
-    
+
     class Coordinator: NSObject, WKNavigationDelegate {
-        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             switch navigationAction.navigationType {
             case .linkActivated:
                 // Open links in Safari
@@ -49,7 +43,7 @@ struct WebView: UIViewRepresentable {
                     return
                 }
                 UIApplication.shared.open(url)
-                
+
                 decisionHandler(.cancel)
             default:
                 // Handle other navigation types...

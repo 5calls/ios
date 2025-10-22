@@ -1,13 +1,7 @@
-//
-//  InboxView.swift
-//  FiveCalls
-//
-//  Created by Nick O'Neill on 2/25/24.
-//  Copyright © 2024 5calls. All rights reserved.
-//
+// Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import SwiftUI
 import OneSignal
+import SwiftUI
 
 struct InboxView: View {
     @EnvironmentObject var store: Store
@@ -16,20 +10,20 @@ struct InboxView: View {
     @State private var showContactAlert: Bool = false
 
     var contacts: [Contact] {
-        return store.state.contacts.filter({ $0.area == "US House" || $0.area == "US Senate" })
+        store.state.contacts.filter { $0.area == "US House" || $0.area == "US Senate" }
     }
-    
+
     func contactForID(contactId: String) -> Contact? {
-        return store.state.contacts.filter({ $0.id == contactId}).first
+        store.state.contacts.filter { $0.id == contactId }.first
     }
-    
+
     func updateNotificationStatus() async {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         if settings.authorizationStatus == .authorized || settings.authorizationStatus == .denied {
             showPushPrompt = false
         }
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             MainHeader()
@@ -63,7 +57,7 @@ struct InboxView: View {
                             .accessibilityAddTraits(.isHeader)
                         Spacer()
                     }
-                    
+
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered()) { contact in
                             ContactListItem(contact: contact.element, showComplete: false)
@@ -71,7 +65,7 @@ struct InboxView: View {
                                     showContactAlert = true
                                 }
                         }
-                        
+
                         ForEach(store.state.missingReps, id: \.self) { missingRepArea in
                             ContactListItem(
                                 contact: Contact(name: "Vacant Seat"),
@@ -102,7 +96,7 @@ struct InboxView: View {
                                     )
                                 )
                                 .onTapGesture {
-                                    OneSignal.promptForPushNotifications { success in
+                                    OneSignal.promptForPushNotifications { _ in
                                         Task {
                                             await updateNotificationStatus()
                                         }
@@ -112,24 +106,24 @@ struct InboxView: View {
                                     "Get notified how your rep votes on your topics,\r1-2 notifications per month",
                                     comment: "Inbox push notifications prompt"
                                 )
-                                    .font(.caption)
-                                    .fontWeight(.medium)
-                                    .multilineTextAlignment(.center)
-                                    .frame(maxWidth: .infinity, alignment: .center)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity, alignment: .center)
                             }.padding(.vertical, 10)
                         }
-                        
+
                         VStack {
                             ForEach(store.state.repMessages) { message in
-                                if let repID = message.repID, let contact = self.contactForID(contactId: repID) {
+                                if let repID = message.repID, let contact = contactForID(contactId: repID) {
                                     ContactInboxVote(contact: contact, message: message)
                                         .padding(.bottom, 6)
-                                        .onTapGesture{
+                                        .onTapGesture {
                                             store.dispatch(action: .SelectMessage(message))
                                         }
                                 } else if let _ = message.imageURL {
                                     GenericInboxVote(message: message)
-                                        .onTapGesture{
+                                        .onTapGesture {
                                             store.dispatch(action: .SelectMessage(message))
                                         }
                                 }
@@ -137,7 +131,7 @@ struct InboxView: View {
                         }.padding(4)
                     }
                 }.padding(.horizontal, 16)
-                .scrollIndicators(.hidden)
+                    .scrollIndicators(.hidden)
             }
         }.alert(
             String(
@@ -146,29 +140,29 @@ struct InboxView: View {
             ),
             isPresented: $showContactAlert
         ) {
-            Button(String(localized: "OK", comment: "Standard OK Button text"), role: .cancel) { }
+            Button(String(localized: "OK", comment: "Standard OK Button text"), role: .cancel) {}
         }
         .sheet(isPresented: $detailPresented, onDismiss: {
-                store.dispatch(action: .SelectMessage(nil))
-            }) {
-                if let message = store.state.inboxRouter.selectedMessage {
-                    InboxDetail(message: message)
-                        .padding(.top, 20)
-                        .padding(.horizontal, 10)
-                }
+            store.dispatch(action: .SelectMessage(nil))
+        }) {
+            if let message = store.state.inboxRouter.selectedMessage {
+                InboxDetail(message: message)
+                    .padding(.top, 20)
+                    .padding(.horizontal, 10)
             }
-            .onAppear {
-                Task {
-                    await updateNotificationStatus()
-                }
+        }
+        .onAppear {
+            Task {
+                await updateNotificationStatus()
             }
-            .onChange(of: store.state.inboxRouter.selectedMessage, perform: { message in
-                if message != nil {
-                    detailPresented = true
-                } else {
-                    detailPresented = false
-                }
-            })
+        }
+        .onChange(of: store.state.inboxRouter.selectedMessage, perform: { message in
+            if message != nil {
+                detailPresented = true
+            } else {
+                detailPresented = false
+            }
+        })
     }
 }
 
@@ -178,7 +172,7 @@ struct InboxView: View {
         state.contacts = [
             Contact.housePreviewContact,
             Contact.senatePreviewContact1,
-            Contact.senatePreviewContact2
+            Contact.senatePreviewContact2,
         ]
         state.repMessages = [
             InboxMessage.houseMessage,
