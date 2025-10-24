@@ -62,5 +62,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>launchScreenBG</string>
+		<key>UIImageName</key>
+		<string>stars-blue</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+        <key>UIImageScaling</key>
+        <string>scaleAspectFit</string>
+	</dict>
 </dict>
 </plist>
