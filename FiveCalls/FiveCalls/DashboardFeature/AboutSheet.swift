@@ -98,9 +98,9 @@ struct AboutSheet: View {
                         ),
                         text: $callingGroup
                     )
-                    .onChange(of: callingGroup) { newValue in
-                        let trimmed = newValue.trimmingCharacters(in: .whitespaces)
-                        if trimmed != newValue {
+                    .onChange(of: callingGroup) {
+                        let trimmed = callingGroup.trimmingCharacters(in: .whitespaces)
+                        if trimmed != callingGroup {
                             callingGroup = trimmed
                         }
                         UserDefaults.standard.set(trimmed, forKey: UserDefaultsKey.callingGroup.rawValue)

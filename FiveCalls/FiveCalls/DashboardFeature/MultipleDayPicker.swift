@@ -202,10 +202,7 @@ struct DayView: View {
     }
 }
 
-// Not translated to #Preview macro, @Previewable is not available
-struct MultipleDayPicker_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var selectedDayIndices: [Int] = []
-        MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
-    }
+#Preview {
+    @Previewable @State var selectedDayIndices: [Int] = []
+    MultipleDayPicker(selectedDayIndices: $selectedDayIndices)
 }

@@ -24,8 +24,8 @@ struct FiveCallsApp: App {
                         store.dispatch(action: .ShowWelcomeScreen)
                     }
                 }
-                .onChange(of: scenePhase) { newPhase in
-                    if newPhase == .active {
+                .onChange(of: scenePhase) {
+                    if scenePhase == .active {
                         if store.state.needsIssueRefresh {
                             store.dispatch(action: .FetchIssues)
                         }

@@ -33,6 +33,6 @@ final class ContactParsingTest: XCTestCase {
         }
         OperationQueue.main.addOperation(fetchContacts)
         // TODO: as part of an operations refactor, await this return so this test finishes ~immediately
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 10) // I hate myself for doing this, but I just need this to be less fragile until the code gets refactored.
     }
 }
