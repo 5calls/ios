@@ -75,9 +75,9 @@ struct Dashboard: View {
             }
         })
 
-        .onChange(of: store.state.issues) { issues in
+        .onChange(of: store.state.issues) {
             if let selectedIssueUrl {
-                selectedIssue = issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
+                selectedIssue = store.state.issues.first(where: { $0.slug == selectedIssueUrl.lastPathComponent })
                 self.selectedIssueUrl = nil
             }
         }
