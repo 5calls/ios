@@ -190,14 +190,25 @@ struct IssuesList: View {
     }
 
     private var categorizedIssues: [CategorizedIssuesViewModel] {
-        var categoryViewModels = Set<CategorizedIssuesViewModel>()
-
         if isSearching || !showAllIssues {
             // For search results or default view, make fake categories to preserve order and show flat list
             return allIssues.map { CategorizedIssuesViewModel(category: Category(name: "\($0.id)"), issues: [$0]) }
         }
 
-        for issue in allIssues {
+        var result: [CategorizedIssuesViewModel] = []
+
+        // Separate state-specific issues into their own category with the state name
+        let stateIssues = allIssues.filter { $0.isStateSpecific }
+        let nonStateIssues = allIssues.filter { !$0.isStateSpecific }
+
+        if !stateIssues.isEmpty {
+            let stateName = stateIssues.first?.stateNameFromAbbreviation ?? "State"
+            result.append(CategorizedIssuesViewModel(category: Category(name: stateName), issues: stateIssues))
+        }
+
+        // Build regular categories from non-state issues only
+        var categoryViewModels = Set<CategorizedIssuesViewModel>()
+        for issue in nonStateIssues {
             for category in issue.categories {
                 if let categorized = categoryViewModels.first(where: { $0.category == category }) {
                     categorized.issues.append(issue)
@@ -206,7 +217,9 @@ struct IssuesList: View {
                 }
             }
         }
-        return Array(categoryViewModels).sorted(by: { $0.category < $1.category })
+        result.append(contentsOf: Array(categoryViewModels).sorted(by: { $0.category < $1.category }))
+
+        return result
     }
 
     var body: some View {
