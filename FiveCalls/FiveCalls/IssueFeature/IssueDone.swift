@@ -1,5 +1,6 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
+import MarkdownUI
 import OneSignal
 import StoreKit
 import SwiftUI
@@ -32,7 +33,6 @@ struct IssueDone: View {
         }
     }
 
-    let donateURL = URL(string: "https://secure.actblue.com/donate/5calls-donate?refcode=ios&refcode2=\(AnalyticsManager.shared.callerID)")!
     var markdownTitle: AttributedString!
 
     func latestOutcomeForContact(contact: Contact, issueCompletions: [String]) -> LocalizedStringResource {
@@ -53,6 +53,16 @@ struct IssueDone: View {
 
     func shouldShowImage(latestOutcomeForContact: LocalizedStringResource) -> Bool {
         latestOutcomeForContact != "Skip"
+    }
+
+    var resolvedActions: [IssueAction] {
+        if let actions = issue.actions, !actions.isEmpty {
+            return actions
+        }
+        if store.state.donateOn {
+            return [IssueAction(type: .donate)]
+        }
+        return []
     }
 
     var body: some View {
@@ -87,26 +97,8 @@ struct IssueDone: View {
                         listType: .compact
                     )
                 }
-                if store.state.donateOn {
-                    Text("Support 5 Calls", comment: "Support 5 Calls header text")
-                        .font(.caption).fontWeight(.bold)
-                        .accessibilityAddTraits(.isHeader)
-                    HStack {
-                        Text("Keep 5 Calls free and up-to-date", comment: "Support 5 Calls subtitle text")
-                        Button(action: {
-                            openURL(donateURL)
-                        }) {
-                            PrimaryButton(
-                                title: LocalizedStringResource(
-                                    "Donate today",
-                                    comment: "Donate today button title"
-                                ),
-                                systemImageName: "hand.thumbsup.circle.fill",
-                                bgColor: .fivecallsRed
-                            )
-                        }
-                    }
-                    .padding(.bottom, 16)
+                ForEach(resolvedActions, id: \.self) { action in
+                    IssueActionView(action: action)
                 }
 
                 Text("Share this topic", comment: "Issue Done share link text")

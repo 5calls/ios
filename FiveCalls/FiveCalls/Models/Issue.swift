@@ -15,6 +15,7 @@ struct Issue: Identifiable, Decodable {
     let contactType: String
     let contactAreas: [String]
     let createdAt: Date
+    let actions: [IssueAction]?
 
     var shareImageURL: URL {
         URL(string: String(format: "https://api.5calls.org/v1/issue/%d/share/t", id))!
