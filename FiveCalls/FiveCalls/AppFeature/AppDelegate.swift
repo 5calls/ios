@@ -26,11 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_: UIApplication, continue userActivity: NSUserActivity, restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let url = userActivity.webpageURL else {
             return false
         }
 
+        handleReferral(in: url)
+
         return true
+    }
+
+    private func handleReferral(in url: URL) {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let ref = components.queryItems?.first(where: { $0.name == "ref" })?.value,
+              !ref.isEmpty else {
+            return
+        }
+
+        OperationQueue.main.addOperation(PostReferralOperation(ref: ref, path: url.path))
     }
 
     func oneSignalStartup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
