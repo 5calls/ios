@@ -39,11 +39,7 @@
 		D05EDB0A2B328A4A00FD94BD /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D07D7C282B3F75C2004721B3 /* GET-v1-issues-UI.json in Resources */ = {isa = PBXBuildFile; fileRef = D07D7C272B3F75C2004721B3 /* GET-v1-issues-UI.json */; };
 		D07D7C2D2B3FE530004721B3 /* GET-v1-reps-UI.json in Resources */ = {isa = PBXBuildFile; fileRef = D07D7C2C2B3FE530004721B3 /* GET-v1-reps-UI.json */; };
-		D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA59AA1F9546510069DA58 /* NotificationService.swift */; };
-		D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0BA59A81F9546510069DA58 /* NotificationsService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */; };
-		D0CFF333284A835F0082693E /* OneSignal in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF332284A835F0082693E /* OneSignal */; };
-		D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D0CFF334284A835F0082693E /* OneSignalExtension */; };
 		D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */; };
 		D0D169CD23BD999C00C695B7 /* GET-v1-reps.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */; };
 		D0D8A8412E7A6F4D006B0B2E /* IssueDetailWarningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8A8402E7A6F4D006B0B2E /* IssueDetailWarningTests.swift */; };
@@ -66,13 +62,6 @@
 			remoteGlobalIDString = B52805101E3FA94D00EE832A;
 			remoteInfo = FiveCalls;
 		};
-		D0BA59AD1F9546510069DA58 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B52805091E3FA94D00EE832A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D0BA59A71F9546510069DA58;
-			remoteInfo = NotificationsService;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,7 +71,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D0BA59AF1F9546510069DA58 /* NotificationsService.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,10 +111,6 @@
 		D05EDAF52B3282F500FD94BD /* IssueParsingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueParsingTest.swift; sourceTree = "<group>"; };
 		D07D7C272B3F75C2004721B3 /* GET-v1-issues-UI.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues-UI.json"; sourceTree = "<group>"; };
 		D07D7C2C2B3FE530004721B3 /* GET-v1-reps-UI.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps-UI.json"; sourceTree = "<group>"; };
-		D0BA59A81F9546510069DA58 /* NotificationsService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationsService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0BA59AA1F9546510069DA58 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		D0BA59AC1F9546510069DA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationsService.entitlements; sourceTree = "<group>"; };
 		D0BC8D2D2CFC23EA00560EDA /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		D0D169CA23BD990C00C695B7 /* GET-v1-issues.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-issues.json"; sourceTree = "<group>"; };
 		D0D169CC23BD999C00C695B7 /* GET-v1-reps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-v1-reps.json"; sourceTree = "<group>"; };
@@ -181,7 +165,6 @@
 				061B964448DA5CCCC94994E2 /* CoreText.framework in Frameworks */,
 				8A7839350A8D2B6B70E5980D /* CoreTelephony.framework in Frameworks */,
 				E00C4DA8DB93E99E40E87452 /* SystemConfiguration.framework in Frameworks */,
-				D0CFF333284A835F0082693E /* OneSignal in Frameworks */,
 				B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */,
 				42881B27103F3B812251890B /* AVFoundation.framework in Frameworks */,
 				558C17D1893D9289DF88BC95 /* CoreMedia.framework in Frameworks */,
@@ -193,14 +176,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0BA59A51F9546510069DA58 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0CFF335284A835F0082693E /* OneSignalExtension in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +227,6 @@
 				B52805131E3FA94D00EE832A /* FiveCalls */,
 				B502805C1E478BC200749ED7 /* FiveCallsTests */,
 				B5A70A591E4C01A00031DF58 /* FiveCallsUITests */,
-				D0BA59A91F9546510069DA58 /* NotificationsService */,
 				B52805121E3FA94D00EE832A /* Products */,
 				41C59A8CD8923A7D219FA9B5 /* Frameworks */,
 			);
@@ -264,7 +238,6 @@
 				B52805111E3FA94D00EE832A /* FiveCalls.app */,
 				B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */,
 				B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */,
-				D0BA59A81F9546510069DA58 /* NotificationsService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -316,16 +289,6 @@
 			name = Fixtures;
 			sourceTree = "<group>";
 		};
-		D0BA59A91F9546510069DA58 /* NotificationsService */ = {
-			isa = PBXGroup;
-			children = (
-				D0BA59B61F9547080069DA58 /* NotificationsService.entitlements */,
-				D0BA59AA1F9546510069DA58 /* NotificationService.swift */,
-				D0BA59AC1F9546510069DA58 /* Info.plist */,
-			);
-			path = NotificationsService;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -359,7 +322,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D0BA59AE1F9546510069DA58 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				AD4D35F12EA67635008D9E85 /* Extensions */,
@@ -380,7 +342,6 @@
 			);
 			name = FiveCalls;
 			packageProductDependencies = (
-				D0CFF332284A835F0082693E /* OneSignal */,
 				D05745842A53E34300A8534A /* PlausibleSwift */,
 				4F07B2372B45E5ED00C575DF /* AcknowList */,
 				D058465C2E592ACB00C7ED4C /* MarkdownUI */,
@@ -408,26 +369,6 @@
 			productName = FiveCallsUITests;
 			productReference = B5A70A581E4C01A00031DF58 /* FiveCallsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		D0BA59A71F9546510069DA58 /* NotificationsService */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D0BA59B21F9546510069DA58 /* Build configuration list for PBXNativeTarget "NotificationsService" */;
-			buildPhases = (
-				D0BA59A41F9546510069DA58 /* Sources */,
-				D0BA59A51F9546510069DA58 /* Frameworks */,
-				D0BA59A61F9546510069DA58 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NotificationsService;
-			packageProductDependencies = (
-				D0CFF334284A835F0082693E /* OneSignalExtension */,
-			);
-			productName = NotificationsService;
-			productReference = D0BA59A81F9546510069DA58 /* NotificationsService.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -467,17 +408,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = B52805101E3FA94D00EE832A;
 					};
-					D0BA59A71F9546510069DA58 = {
-						CreatedOnToolsVersion = 9.0;
-						DevelopmentTeam = 5A8RM3W5R7;
-						LastSwiftMigration = 1130;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Push = {
-								enabled = 0;
-							};
-						};
-					};
 				};
 			};
 			buildConfigurationList = B528050C1E3FA94D00EE832A /* Build configuration list for PBXProject "FiveCalls" */;
@@ -490,7 +420,6 @@
 			);
 			mainGroup = B52805081E3FA94D00EE832A;
 			packageReferences = (
-				D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
 				D05745832A53E34300A8534A /* XCRemoteSwiftPackageReference "PlausibleSwift" */,
 				4F07B2362B45E5ED00C575DF /* XCRemoteSwiftPackageReference "AcknowList" */,
 				D058465B2E592ACB00C7ED4C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
@@ -502,7 +431,6 @@
 				B52805101E3FA94D00EE832A /* FiveCalls */,
 				B502805A1E478BC200749ED7 /* FiveCallsTests */,
 				B5A70A571E4C01A00031DF58 /* FiveCallsUITests */,
-				D0BA59A71F9546510069DA58 /* NotificationsService */,
 			);
 		};
 /* End PBXProject section */
@@ -538,13 +466,6 @@
 				B5E98E411E52A8AB005221B7 /* POST-report.json in Resources */,
 				2258E3342E54E3BF0032F1C5 /* GET-v1-issue-script.json in Resources */,
 				D0D169CB23BD990C00C695B7 /* GET-v1-issues.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0BA59A61F9546510069DA58 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,14 +508,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D0BA59A41F9546510069DA58 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0BA59AB1F9546510069DA58 /* NotificationService.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -607,11 +520,6 @@
 			isa = PBXTargetDependency;
 			target = B52805101E3FA94D00EE832A /* FiveCalls */;
 			targetProxy = B5A70A5D1E4C01A00031DF58 /* PBXContainerItemProxy */;
-		};
-		D0BA59AE1F9546510069DA58 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D0BA59A71F9546510069DA58 /* NotificationsService */;
-			targetProxy = D0BA59AD1F9546510069DA58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -813,7 +721,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3.1;
-				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -846,7 +753,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3.1;
-				ONE_SIGNAL_APP_ID = "5fd4ca41-9f6c-4149-a312-ae3e71b35c0e";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -898,59 +804,6 @@
 			};
 			name = Release;
 		};
-		D0BA59B01F9546510069DA58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 71;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = NotificationsService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D0BA59B11F9546510069DA58 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 71;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = NotificationsService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.fivecalls.FiveCalls-ios.NotificationsService";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -990,15 +843,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0BA59B21F9546510069DA58 /* Build configuration list for PBXNativeTarget "NotificationsService" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D0BA59B01F9546510069DA58 /* Debug */,
-				D0BA59B11F9546510069DA58 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1026,14 +870,6 @@
 				minimumVersion = 2.4.1;
 			};
 		};
-		D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1051,16 +887,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D058465B2E592ACB00C7ED4C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
-		};
-		D0CFF332284A835F0082693E /* OneSignal */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
-			productName = OneSignal;
-		};
-		D0CFF334284A835F0082693E /* OneSignalExtension */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D0CFF331284A835F0082693E /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
-			productName = OneSignalExtension;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
