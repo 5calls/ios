@@ -41,8 +41,6 @@
 	<string>5 Calls uses your location to find your representatives</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>5 Calls uses your location to find your representatives</string>
-	<key>OneSignalAppID</key>
-	<string>$(ONE_SIGNAL_APP_ID)</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
