@@ -1,7 +1,6 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import MarkdownUI
-import OneSignal
 import StoreKit
 import SwiftUI
 
@@ -152,7 +151,9 @@ struct IssueDone: View {
             }
 
             // unlikely to occur at the same time as the rating prompt counter
-            checkForNotifications()
+            Task {
+                await checkForNotifications()
+            }
         }.alert(
             String(
                 localized: "Nice work!",
@@ -162,11 +163,11 @@ struct IssueDone: View {
         ) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
-                OneSignal.promptForPushNotifications(userResponse: { success in
-                    if success {
+                Task {
+                    if await PushRegistration.requestPermission() {
                         AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/issue/x/done/")
                     }
-                })
+                }
             } label: {
                 Text("Yes, notify me", comment: "IssueDone Alert subscribe to push notifications")
             }
@@ -186,11 +187,11 @@ struct IssueDone: View {
 }
 
 extension IssueDone {
-    func checkForNotifications() {
-        let deviceState = OneSignal.getDeviceState()
+    func checkForNotifications() async {
+        let hasPermission = await PushRegistration.hasPermission()
         let nextPrompt = nextNotificationPromptDate() ?? Date()
 
-        if deviceState?.hasNotificationPermission == false, nextPrompt <= Date() {
+        if !hasPermission, nextPrompt <= Date() {
             showNotificationAlert = true
         }
     }

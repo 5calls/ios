@@ -1,6 +1,5 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import OneSignal
 import StoreKit
 import SwiftUI
 
