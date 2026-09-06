@@ -127,6 +127,13 @@ struct ScheduleReminders: View {
         UNUserNotificationCenter.current().requestAuthorization(options: options) { success, _ in
             if success {
                 AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/reminders/")
+
+                // this prompt is for local reminders, but permission is
+                // permission: pick up an APNs token now instead of waiting
+                // for the next launch to notice
+                Task {
+                    await PushRegistration.registerIfAuthorized()
+                }
             }
         }
     }
