@@ -95,17 +95,36 @@ struct ScheduleReminders: View {
                             .bold()
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Toggle(isOn: $remindersEnabled,
-                           label: {
-                               Text("")
-                           }).toggleStyle(.switch)
-                        .accessibilityLabel(
-                            Text(
-                                "Enable reminder",
-                                comment: "Accessibility label for the switch to enable reminders"
+                if #available(iOS 26.0, *) {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Toggle(isOn: $remindersEnabled,
+                               label: {
+                            Text("")
+                        }).toggleStyle(.switch)
+                            .tint(.green)
+                            .accessibilityLabel(
+                                Text(
+                                    "Enable reminder",
+                                    comment: "Accessibility label for the switch to enable reminders"
+                                )
                             )
-                        )
+                    }
+                    .sharedBackgroundVisibility(.hidden) // removes liquid glass effect
+                } else {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Toggle(isOn: $remindersEnabled,
+                               label: {
+                            Text("")
+                        }).toggleStyle(.switch)
+                            .tint(.green)
+                            .accessibilityLabel(
+                                Text(
+                                    "Enable reminder",
+                                    comment: "Accessibility label for the switch to enable reminders"
+                                )
+                            )
+                    }
+
                 }
             }
         }
