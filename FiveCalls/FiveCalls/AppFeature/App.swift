@@ -24,6 +24,13 @@ struct FiveCallsApp: App {
                         store.dispatch(action: .ShowWelcomeScreen)
                     }
                 }
+                .onOpenURL { url in
+                    // universal links arrive here rather than the app delegate
+                    // in a SwiftUI app. Dashboard handles navigating to the issue.
+                    if let referral = PostReferralOperation.forLink(url) {
+                        OperationQueue.main.addOperation(referral)
+                    }
+                }
                 .onChange(of: scenePhase) {
                     if scenePhase == .active {
                         if store.state.needsIssueRefresh {

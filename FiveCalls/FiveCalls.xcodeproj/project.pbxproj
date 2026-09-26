@@ -25,6 +25,7 @@
 		5C0A11E12E8F000100A1B2C3 /* NotificationPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A11E02E8F000100A1B2C3 /* NotificationPromptTests.swift */; };
 		5C0A11E32E8F000100A1B2C3 /* CountingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A11E22E8F000100A1B2C3 /* CountingViewTests.swift */; };
 		5C0A11E52E8F000100A1B2C3 /* PushRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A11E42E8F000100A1B2C3 /* PushRegistrationTests.swift */; };
+		5C0A11E72E8F000100A1B2C3 /* PostReferralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A11E62E8F000100A1B2C3 /* PostReferralTests.swift */; };
 		B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9AA735873694488D24C260 /* QuartzCore.framework */; };
 		B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280671E478BF500749ED7 /* ContactLogsTests.swift */; };
 		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
@@ -98,6 +99,7 @@
 		5C0A11E02E8F000100A1B2C3 /* NotificationPromptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPromptTests.swift; sourceTree = "<group>"; };
 		5C0A11E22E8F000100A1B2C3 /* CountingViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingViewTests.swift; sourceTree = "<group>"; };
 		5C0A11E42E8F000100A1B2C3 /* PushRegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRegistrationTests.swift; sourceTree = "<group>"; };
+		5C0A11E62E8F000100A1B2C3 /* PostReferralTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReferralTests.swift; sourceTree = "<group>"; };
 		AC9AA735873694488D24C260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				5C0A11E02E8F000100A1B2C3 /* NotificationPromptTests.swift */,
 				5C0A11E22E8F000100A1B2C3 /* CountingViewTests.swift */,
 				5C0A11E42E8F000100A1B2C3 /* PushRegistrationTests.swift */,
+				5C0A11E62E8F000100A1B2C3 /* PostReferralTests.swift */,
 				4F3A572A2B597C8E009D4616 /* UserLocationTests.swift */,
 				2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */,
 			);
@@ -495,6 +498,7 @@
 				5C0A11E12E8F000100A1B2C3 /* NotificationPromptTests.swift in Sources */,
 				5C0A11E32E8F000100A1B2C3 /* CountingViewTests.swift in Sources */,
 				5C0A11E52E8F000100A1B2C3 /* PushRegistrationTests.swift in Sources */,
+				5C0A11E72E8F000100A1B2C3 /* PostReferralTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
 				4F3A572B2B597C8E009D4616 /* UserLocationTests.swift in Sources */,
 				D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */,

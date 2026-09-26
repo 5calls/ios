@@ -14,14 +14,23 @@ class PostReferralOperation: BaseOperation, @unchecked Sendable {
         self.path = path
     }
 
+    /// Builds a referral post for a universal link with a non-empty `ref`
+    /// query item, like the web does, or nil if there's nothing to report.
+    static func forLink(_ url: URL) -> PostReferralOperation? {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let ref = components.queryItems?.first(where: { $0.name == "ref" })?.value,
+              !ref.isEmpty else {
+            return nil
+        }
+
+        return PostReferralOperation(ref: ref, path: url.path)
+    }
+
     var url: URL {
         URL(string: "https://api.5calls.org/v1/users/refs")!
     }
 
     override func execute() {
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-
         var request = buildRequest(forURL: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -39,8 +48,7 @@ class PostReferralOperation: BaseOperation, @unchecked Sendable {
             if let e = error {
                 self.error = e
                 print("Error posting referral: \(e)")
-            } else {
-                let http = response as! HTTPURLResponse
+            } else if let http = response as? HTTPURLResponse {
                 self.httpResponse = http
                 if http.statusCode == 200 {
                     print("Referral posted successfully")
