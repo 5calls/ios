@@ -23,6 +23,7 @@
 		9CC7D2DC2456462200D96A5B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC7D2DB2456462200D96A5B /* WebKit.framework */; };
 		AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */; };
 		5C0A11E12E8F000100A1B2C3 /* NotificationPromptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A11E02E8F000100A1B2C3 /* NotificationPromptTests.swift */; };
+		5C0A11E32E8F000100A1B2C3 /* CountingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A11E22E8F000100A1B2C3 /* CountingViewTests.swift */; };
 		B13763C171A7D473EE15FAA1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9AA735873694488D24C260 /* QuartzCore.framework */; };
 		B50280681E478BF500749ED7 /* ContactLogsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50280671E478BF500749ED7 /* ContactLogsTests.swift */; };
 		B5A70A5B1E4C01A00031DF58 /* FiveCallsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A70A5A1E4C01A00031DF58 /* FiveCallsUITests.swift */; };
@@ -94,6 +95,7 @@
 		9CC7D2DB2456462200D96A5B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreakCounterTests.swift; sourceTree = "<group>"; };
 		5C0A11E02E8F000100A1B2C3 /* NotificationPromptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPromptTests.swift; sourceTree = "<group>"; };
+		5C0A11E22E8F000100A1B2C3 /* CountingViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingViewTests.swift; sourceTree = "<group>"; };
 		AC9AA735873694488D24C260 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF2A740FE5EBC6A70F2AB3CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B502805B1E478BC200749ED7 /* FiveCallsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCallsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +219,7 @@
 				4F2178742B488CD70032D592 /* StoreTests.swift */,
 				AACC2AEC1E735144004B2F2B /* StreakCounterTests.swift */,
 				5C0A11E02E8F000100A1B2C3 /* NotificationPromptTests.swift */,
+				5C0A11E22E8F000100A1B2C3 /* CountingViewTests.swift */,
 				4F3A572A2B597C8E009D4616 /* UserLocationTests.swift */,
 				2258E3372E54E40A0032F1C5 /* CustomizedScriptsTests.swift */,
 			);
@@ -487,6 +490,7 @@
 				D05EDAF62B3282F500FD94BD /* IssueParsingTest.swift in Sources */,
 				AACC2AED1E735144004B2F2B /* StreakCounterTests.swift in Sources */,
 				5C0A11E12E8F000100A1B2C3 /* NotificationPromptTests.swift in Sources */,
+				5C0A11E32E8F000100A1B2C3 /* CountingViewTests.swift in Sources */,
 				D0176E8B2B3343150090E6B7 /* ContactParsingTest.swift in Sources */,
 				4F3A572B2B597C8E009D4616 /* UserLocationTests.swift in Sources */,
 				D0BC8D2E2CFC23EA00560EDA /* AppStateTests.swift in Sources */,

@@ -67,7 +67,9 @@ struct CountingView: View {
             return 15_000_000
         }
 
-        return 0
+        // from here on, every 5M, moving to the next one once we're within 500k
+        let step = 5_000_000
+        return CGFloat((count + 500_000) / step + 1) * CGFloat(step)
     }
 }
 
