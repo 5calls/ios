@@ -1,9 +1,9 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import MarkdownUI
-import OneSignal
 import StoreKit
 import SwiftUI
+import UserNotifications
 
 struct IssueDone: View {
     @EnvironmentObject var store: Store
@@ -152,7 +152,9 @@ struct IssueDone: View {
             }
 
             // unlikely to occur at the same time as the rating prompt counter
-            checkForNotifications()
+            Task {
+                await checkForNotifications()
+            }
         }.alert(
             String(
                 localized: "Nice work!",
@@ -162,11 +164,11 @@ struct IssueDone: View {
         ) {
             Button {
                 // we don't really care which issue they were on when they subbed, just that it was a done page
-                OneSignal.promptForPushNotifications(userResponse: { success in
-                    if success {
+                Task {
+                    if await PushRegistration.requestPermission() {
                         AnalyticsManager.shared.trackEvent(name: "push-subscribe", path: "/issue/x/done/")
                     }
-                })
+                }
             } label: {
                 Text("Yes, notify me", comment: "IssueDone Alert subscribe to push notifications")
             }
@@ -186,20 +188,26 @@ struct IssueDone: View {
 }
 
 extension IssueDone {
-    func checkForNotifications() {
-        let deviceState = OneSignal.getDeviceState()
-        let nextPrompt = nextNotificationPromptDate() ?? Date()
+    func checkForNotifications() async {
+        let status = await PushRegistration.authorizationStatus()
+        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+        let lastAsked = UserDefaults.standard.object(forKey: key) as? Date
 
-        if deviceState?.hasNotificationPermission == false, nextPrompt <= Date() {
+        if Self.shouldPromptForNotifications(status: status, lastAsked: lastAsked) {
             showNotificationAlert = true
         }
     }
 
-    func nextNotificationPromptDate() -> Date? {
-        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
+    /// Only prompt people iOS hasn't asked yet. Once they've answered the system
+    /// prompt, or turned notifications off in Settings, iOS won't show the
+    /// prompt again, so our "Yes, notify me" would do nothing and we'd just be
+    /// nagging them after every call.
+    static func shouldPromptForNotifications(status: UNAuthorizationStatus, lastAsked: Date?, now: Date = Date()) -> Bool {
+        guard status == .notDetermined else { return false }
+        guard let lastAsked else { return true }
+        guard let nextPrompt = Calendar.current.date(byAdding: .month, value: 1, to: lastAsked) else { return true }
 
-        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
+        return nextPrompt <= now
     }
 }
 

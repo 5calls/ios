@@ -1,6 +1,5 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import OneSignal
 import SwiftUI
 
 struct InboxView: View {
@@ -96,10 +95,9 @@ struct InboxView: View {
                                     )
                                 )
                                 .onTapGesture {
-                                    OneSignal.promptForPushNotifications { _ in
-                                        Task {
-                                            await updateNotificationStatus()
-                                        }
+                                    Task {
+                                        await PushRegistration.requestPermission()
+                                        await updateNotificationStatus()
                                     }
                                 }
                                 Text(

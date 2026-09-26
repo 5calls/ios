@@ -1,13 +1,12 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
-import OneSignal
 import SwiftUI
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var app: FiveCallsApp?
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if isUITesting() {
             resetData()
         }
@@ -17,10 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         resetOrInitializeCountForRating()
 
-        oneSignalStartup(launchOptions: launchOptions)
-        OneSignal.setExternalUserId(AnalyticsManager.shared.callerID)
-
         UNUserNotificationCenter.current().delegate = self
+
+        // if they've already said yes, pick up the current token. iOS may hand
+        // back a different one than last launch, which is the case OneSignal
+        // used to handle for us.
+        Task {
+            await PushRegistration.registerIfAuthorized()
+        }
 
         return true
     }
@@ -33,11 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func oneSignalStartup(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if let infoPlist = Bundle.main.infoDictionary, let oneSignalAppID = infoPlist["OneSignalAppID"] as? String {
-            OneSignal.initWithLaunchOptions(launchOptions)
-            OneSignal.setAppId(oneSignalAppID)
-        }
+    func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        PushRegistration.didRegister(deviceToken: deviceToken)
+    }
+
+    func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        PushRegistration.didFailToRegister(error: error)
     }
 
     func setAppearance() {

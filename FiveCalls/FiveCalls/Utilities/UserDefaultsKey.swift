@@ -23,5 +23,8 @@ enum UserDefaultsKey: String {
     case selectIssuePath
 
     case callerID // an anoymous unique id, sometimes the old firebase userid
+
+    case pushToken // the APNs device token we last sent to the api
+    case pushDistrict // the district we last sent with that token
     case callingGroup // a calling group is a group that tallies their calls together
 }

@@ -1,7 +1,6 @@
 // Copyright 5calls. All rights reserved. See LICENSE for details.
 
 import Foundation
-import OneSignal
 
 class FetchContactsOperation: BaseOperation, @unchecked Sendable {
     var location: UserLocation
@@ -71,7 +70,9 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
         lowAccuracy = contactList.lowAccuracy
         if contactList.generalizedLocationID != "-" {
             district = contactList.generalizedLocationID
-            OneSignal.sendTag("districtID", value: contactList.generalizedLocationID)
+            // the api targets notifications by district, so it needs to hear
+            // about this the same way onesignal's tag used to
+            PushRegistration.update(district: contactList.generalizedLocationID)
         }
 
         stateAbbreviation = contactList.state
