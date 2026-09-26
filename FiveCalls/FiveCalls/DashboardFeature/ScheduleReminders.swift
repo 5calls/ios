@@ -151,7 +151,7 @@ struct ScheduleReminders: View {
                 // permission: pick up an APNs token now instead of waiting
                 // for the next launch to notice
                 Task {
-                    await PushRegistration.registerIfAuthorized()
+                    await PushRegistration.syncWithPermission()
                 }
             }
         }

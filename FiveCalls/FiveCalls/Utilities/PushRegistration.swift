@@ -21,14 +21,6 @@ enum PushRegistration {
         set { UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.pushDistrict.rawValue) }
     }
 
-    /// Whether the user has already granted notification permission. Replaces
-    /// OneSignal's getDeviceState().hasNotificationPermission.
-    static func hasPermission() async -> Bool {
-        let settings = await UNUserNotificationCenter.current().notificationSettings()
-        return settings.authorizationStatus == .authorized ||
-            settings.authorizationStatus == .provisional
-    }
-
     /// Where the user stands with notification permission, including whether
     /// they've been asked at all.
     static func authorizationStatus() async -> UNAuthorizationStatus {
@@ -56,12 +48,39 @@ enum PushRegistration {
         return granted
     }
 
-    /// Registers with APNs if permission was granted at some point in the past.
-    /// Safe to call on every launch: iOS hands back the current token, which is
-    /// how we notice a token that changed while the app wasn't running.
-    static func registerIfAuthorized() async {
-        guard await hasPermission() else { return }
-        await registerWithAPNs()
+    enum SyncAction: Equatable {
+        case register
+        case unregister
+        case none
+    }
+
+    /// What to do with our token given where permission stands now.
+    static func syncAction(status: UNAuthorizationStatus, hasStoredToken: Bool) -> SyncAction {
+        switch status {
+        case .authorized, .provisional:
+            return .register
+        case .denied:
+            // turned off in Settings after we registered: the token is still
+            // valid, so the API would keep sending pushes iOS silently drops
+            return hasStoredToken ? .unregister : .none
+        default:
+            return .none
+        }
+    }
+
+    /// Brings the API in line with the current permission. Safe to call on
+    /// every launch: when permission is granted iOS hands back the current
+    /// token, which is how we notice a token that changed while the app wasn't
+    /// running, and when it's been turned off we remove the token we sent.
+    static func syncWithPermission() async {
+        switch await syncAction(status: authorizationStatus(), hasStoredToken: storedToken != nil) {
+        case .register:
+            await registerWithAPNs()
+        case .unregister:
+            disable()
+        case .none:
+            break
+        }
     }
 
     @MainActor
@@ -99,8 +118,17 @@ enum PushRegistration {
     static func disable() {
         guard let token = storedToken else { return }
 
-        OperationQueue.main.addOperation(UnregisterPushTokenOperation(token: token))
-        storedToken = nil
+        let operation = UnregisterPushTokenOperation(token: token)
+        operation.completionBlock = { [weak operation] in
+            // only forget the token once the API has, so a failed request is
+            // retried next launch. If they turned notifications back on and
+            // we've since stored a new token, leave that one alone.
+            guard let status = operation?.httpResponse?.statusCode, (200 ..< 300).contains(status) else { return }
+            if storedToken == token {
+                storedToken = nil
+            }
+        }
+        OperationQueue.main.addOperation(operation)
     }
 
     private static func send(token: String) {

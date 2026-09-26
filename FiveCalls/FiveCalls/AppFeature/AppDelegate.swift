@@ -20,9 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // if they've already said yes, pick up the current token. iOS may hand
         // back a different one than last launch, which is the case OneSignal
-        // used to handle for us.
+        // used to handle for us. If they've since turned notifications off,
+        // this tells the API to stop sending to us.
         Task {
-            await PushRegistration.registerIfAuthorized()
+            await PushRegistration.syncWithPermission()
         }
 
         return true
