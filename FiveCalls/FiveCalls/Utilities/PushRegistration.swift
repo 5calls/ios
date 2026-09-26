@@ -29,6 +29,12 @@ enum PushRegistration {
             settings.authorizationStatus == .provisional
     }
 
+    /// Where the user stands with notification permission, including whether
+    /// they've been asked at all.
+    static func authorizationStatus() async -> UNAuthorizationStatus {
+        await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+    }
+
     /// Asks for notification permission and, if granted, registers with APNs.
     /// Replaces OneSignal.promptForPushNotifications.
     @discardableResult

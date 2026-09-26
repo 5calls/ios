@@ -3,6 +3,7 @@
 import MarkdownUI
 import StoreKit
 import SwiftUI
+import UserNotifications
 
 struct IssueDone: View {
     @EnvironmentObject var store: Store
@@ -188,19 +189,25 @@ struct IssueDone: View {
 
 extension IssueDone {
     func checkForNotifications() async {
-        let hasPermission = await PushRegistration.hasPermission()
-        let nextPrompt = nextNotificationPromptDate() ?? Date()
+        let status = await PushRegistration.authorizationStatus()
+        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
+        let lastAsked = UserDefaults.standard.object(forKey: key) as? Date
 
-        if !hasPermission, nextPrompt <= Date() {
+        if Self.shouldPromptForNotifications(status: status, lastAsked: lastAsked) {
             showNotificationAlert = true
         }
     }
 
-    func nextNotificationPromptDate() -> Date? {
-        let key = UserDefaultsKey.lastAskedForNotificationPermission.rawValue
-        guard let lastPrompt = UserDefaults.standard.object(forKey: key) as? Date else { return nil }
+    /// Only prompt people iOS hasn't asked yet. Once they've answered the system
+    /// prompt, or turned notifications off in Settings, iOS won't show the
+    /// prompt again, so our "Yes, notify me" would do nothing and we'd just be
+    /// nagging them after every call.
+    static func shouldPromptForNotifications(status: UNAuthorizationStatus, lastAsked: Date?, now: Date = Date()) -> Bool {
+        guard status == .notDetermined else { return false }
+        guard let lastAsked else { return true }
+        guard let nextPrompt = Calendar.current.date(byAdding: .month, value: 1, to: lastAsked) else { return true }
 
-        return Calendar.current.date(byAdding: .month, value: 1, to: lastPrompt)
+        return nextPrompt <= now
     }
 }
 
