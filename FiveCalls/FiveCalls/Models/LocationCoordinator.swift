@@ -56,6 +56,8 @@ class LocationCoordinator: NSObject, CLLocationManagerDelegate {
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 //        print("change authorization: \(manager.authorizationStatus)")
+        guard locationContinuation != nil else { return }
+
         if manager.authorizationStatus == .authorizedWhenInUse {
             DispatchQueue.global(qos: .userInitiated).async { () in
                 manager.requestLocation()
