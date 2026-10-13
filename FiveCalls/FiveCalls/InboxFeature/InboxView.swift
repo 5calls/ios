@@ -2,6 +2,36 @@
 
 import SwiftUI
 
+private struct ContactGroup: Identifiable {
+    let id: String
+    let title: String
+    let contacts: [Contact]
+}
+
+private struct ContactGroupSection: View {
+    let group: ContactGroup
+    let onSelectContact: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text(group.title)
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+            }
+
+            VStack(spacing: 0) {
+                ForEach(group.contacts) { contact in
+                    ContactListItem(contact: contact, showComplete: false)
+                        .onTapGesture(perform: onSelectContact)
+                }
+            }
+        }
+    }
+}
+
 struct InboxView: View {
     @EnvironmentObject var store: Store
     @State private var detailPresented: Bool = false
@@ -9,7 +39,27 @@ struct InboxView: View {
     @State private var showContactAlert: Bool = false
 
     var contacts: [Contact] {
-        store.state.contacts.filter { $0.area == "US House" || $0.area == "US Senate" }
+        store.state.contacts.filter { $0.normalizedArea == "US House" || $0.normalizedArea == "US Senate" }
+    }
+
+    private var otherContactGroups: [ContactGroup] {
+        let otherContacts = store.state.contacts.filter { $0.normalizedArea != "US House" && $0.normalizedArea != "US Senate" }
+        guard !otherContacts.isEmpty else { return [] }
+
+        let orderedAreas = ["StateLower", "StateUpper", "Governor", "AttorneyGeneral", "SecretaryOfState"]
+        let orderedContacts = orderedAreas.flatMap { area in
+            otherContacts.filter { $0.normalizedArea == area }
+        }
+        let otherAreas = Set(otherContacts.map(\.normalizedArea)).subtracting(Set(orderedAreas)).sorted()
+        let unrecognizedContacts = otherAreas.flatMap { area in
+            otherContacts.filter { $0.normalizedArea == area }
+        }
+
+        return [ContactGroup(
+            id: "state-officials",
+            title: String(localized: "State Officials", comment: "Inbox grouping for state-level representatives and officials"),
+            contacts: orderedContacts + unrecognizedContacts
+        )]
     }
 
     func contactForID(contactId: String) -> Contact? {
@@ -75,6 +125,13 @@ struct InboxView: View {
                             )
                             .opacity(0.5)
                         }
+                    }
+
+                    ForEach(otherContactGroups) { group in
+                        ContactGroupSection(group: group) {
+                            showContactAlert = true
+                        }
+                        .padding(.top, 10)
                     }
 
                     if false { // remove this until we can update it regularly

@@ -35,7 +35,8 @@ struct Issue: Identifiable, Decodable {
         var sortedContacts: [Contact] = []
 
         for area in sortedContactAreas(areas: contactAreas) {
-            sortedContacts.append(contentsOf: allContacts.filter { area == $0.area })
+            let normalizedArea = Contact.normalizedArea(for: area)
+            sortedContacts.append(contentsOf: allContacts.filter { $0.normalizedArea == normalizedArea })
         }
 
         return sortedContacts
@@ -47,12 +48,12 @@ struct Issue: Identifiable, Decodable {
         var irrelevantContacts: [Contact] = []
 
         if hasHouse, !hasSenate {
-            let senateContacts = allContacts.filter { $0.area == "US Senate" }
+            let senateContacts = allContacts.filter { $0.normalizedArea == "US Senate" }
             irrelevantContacts.append(contentsOf: senateContacts)
         }
 
         if hasSenate, !hasHouse {
-            let houseContacts = allContacts.filter { $0.area == "US House" }
+            let houseContacts = allContacts.filter { $0.normalizedArea == "US House" }
             irrelevantContacts.append(contentsOf: houseContacts)
         }
         return irrelevantContacts

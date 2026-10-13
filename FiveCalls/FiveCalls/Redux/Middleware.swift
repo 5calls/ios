@@ -129,10 +129,10 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
             // if we get more than one house rep here, select the first one.
             // this is a split district situation and we should let the user
             // pick which one is correct in the future
-            let houseReps = contacts.filter { $0.area == "US House" }
-            let senateReps = contacts.filter { $0.area == "US Senate" }
+            let houseReps = contacts.filter { $0.normalizedArea == "US House" }
+            let senateReps = contacts.filter { $0.normalizedArea == "US Senate" }
             if houseReps.count > 1 {
-                contacts = contacts.filter { $0.area != "US House" }
+                contacts = contacts.filter { $0.normalizedArea != "US House" }
                 contacts.append(houseReps[0])
             }
             if houseReps.count < 1 {

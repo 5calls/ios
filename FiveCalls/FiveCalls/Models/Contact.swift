@@ -63,13 +63,40 @@ extension Contact: Hashable {
 }
 
 extension Contact {
+    var normalizedArea: String {
+        Self.normalizedArea(for: area)
+    }
+
+    static func normalizedArea(for area: String) -> String {
+        switch area {
+        case "House":
+            "US House"
+        case "Senate":
+            "US Senate"
+        case "AttorneysGeneral":
+            "AttorneyGeneral"
+        case "SecState":
+            "SecretaryOfState"
+        default:
+            area
+        }
+    }
+
+    // Massachusetts, Pennsylvania, and Virginia title this office Secretary of the Commonwealth.
+    private static let statesWithSecretaryOfTheCommonwealth: Set<String> = ["MA", "PA", "VA"]
+
+    static func usesSecretaryOfTheCommonwealthTitle(state: String?) -> Bool {
+        guard let state else { return false }
+        return statesWithSecretaryOfTheCommonwealth.contains(state.uppercased())
+    }
+
     // this has some overlap with other area -> string conversions but I haven't thought about it long enough to combine them
     func localizedOfficeDescription() -> LocalizedStringResource {
-        switch area {
-        case "US House", "House":
+        switch normalizedArea {
+        case "US House":
             // TODO: plumb the district through here too
             "\(String(localized: "US House Rep", comment: "Office Holder description")) \(state ?? "")"
-        case "US Senate", "Senate":
+        case "US Senate":
             "\(String(localized: "US Senator", comment: "Office Holder description")) \(state ?? "")"
         case "StateLower", "StateUpper":
             "\(String(localized: "State Rep", comment: "Office Holder description")) \(state ?? "")"
@@ -77,6 +104,8 @@ extension Contact {
             "\(String(localized: "Governor Office", defaultValue: "Governor", comment: "Office Holder description")) \(state ?? "")"
         case "AttorneyGeneral":
             "\(String(localized: "Attorney General Office", defaultValue: "Attorney General", comment: "Office Holder description")) \(state ?? "")"
+        case "SecretaryOfState" where Self.usesSecretaryOfTheCommonwealthTitle(state: state):
+            "\(String(localized: "Secretary of the Commonwealth Office", defaultValue: "Secretary of the Commonwealth", comment: "Office Holder description")) \(state ?? "")"
         case "SecretaryOfState":
             "\(String(localized: "Secretary of State Office", defaultValue: "Secretary of State", comment: "Office Holder description")) \(state ?? "")"
         default:
@@ -102,10 +131,10 @@ extension Contact {
 
 extension Contact {
     var title: String? {
-        switch area {
-        case "US House", "House":
+        switch normalizedArea {
+        case "US House":
             String(localized: "Rep.", comment: "Office Holder title")
-        case "US Senate", "Senate":
+        case "US Senate":
             String(localized: "Senator", comment: "Office Holder title")
         case "StateLower", "StateUpper":
             String(localized: "Legislator", comment: "Office Holder title")
@@ -113,6 +142,8 @@ extension Contact {
             String(localized: "Governor Title", defaultValue: "Governor", comment: "Office Holder title")
         case "AttorneyGeneral":
             String(localized: "Attorney General Title", defaultValue: "Attorney General", comment: "Office Holder title")
+        case "SecretaryOfState" where Contact.usesSecretaryOfTheCommonwealthTitle(state: state):
+            String(localized: "Secretary of the Commonwealth Title", defaultValue: "Secretary of the Commonwealth", comment: "Office Holder title")
         case "SecretaryOfState":
             String(localized: "Secretary of State Title", defaultValue: "Secretary of State", comment: "Office Holder title")
         default:
@@ -123,11 +154,11 @@ extension Contact {
 }
 
 // AreaToNiceString converts an area name to a generic office name that can be used in the interface
-func areaToNiceString(area: String) -> String {
-    switch area {
-    case "US House", "House":
+func areaToNiceString(area: String, state: String? = nil) -> String {
+    switch Contact.normalizedArea(for: area) {
+    case "US House":
         String(localized: "House Rep", comment: "Office Holder grouping description")
-    case "US Senate", "Senate":
+    case "US Senate":
         String(localized: "Senators", comment: "Office Holder grouping description")
     // state legislatures call themselves different things by state, so let's use a generic term for all of them
     case "StateLower", "StateUpper":
@@ -136,6 +167,8 @@ func areaToNiceString(area: String) -> String {
         String(localized: "Governor Grouping", defaultValue: "Governor", comment: "Office Holder grouping description")
     case "AttorneyGeneral":
         String(localized: "Attorney General Grouping", defaultValue: "Attorney General", comment: "Office Holder grouping description")
+    case "SecretaryOfState" where Contact.usesSecretaryOfTheCommonwealthTitle(state: state):
+        String(localized: "Secretary of the Commonwealth Grouping", defaultValue: "Secretary of the Commonwealth", comment: "Office Holder grouping description")
     case "SecretaryOfState":
         String(localized: "Secretary of State Grouping", defaultValue: "Secretary of State", comment: "Office Holder grouping description")
     default:
