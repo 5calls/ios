@@ -31,7 +31,7 @@ func appMiddleware() -> Middleware<AppState> {
         case let .FetchCustomizedScripts(issueID, contactIDs):
             fetchCustomizedScripts(issueID: issueID, contactIDs: contactIDs, state: state, dispatch: dispatch)
         case .SetGlobalCallCount, .SetIssueCallCount, .SetDonateOn, .SetIssueContactCompletion,
-             .SetContacts(_), .SetContactsLowAccuracy(_),
+             .SetContacts(_), .SetContactsLowAccuracy(_), .SetRepNotice(_),
              .SetFetchingContacts, .SetIssues, .SetLoadingStatsError, .SetLoadingIssuesError, .SetLoadingContactsError,
              .GoBack, .GoToRoot, .GoToNext, .ShowWelcomeScreen, .SetDistrict, .SetSplitDistrict, .SetMessages, .SetMissingReps,
              .SelectMessage(_), .SelectMessageIDWhenLoaded(_), .SetNavigateToInboxMessage(_), .FetchMessages,
@@ -143,6 +143,7 @@ private func fetchContacts(location: UserLocation, dispatch: @escaping Dispatche
                 missingReps.append(contentsOf: Array(repeating: "US Senate", count: missingCount))
             }
             dispatch(.SetMissingReps(missingReps))
+            dispatch(.SetRepNotice(operation?.notice))
             dispatch(.SetContacts(contacts))
         } else if let error = operation?.error {
             DispatchQueue.main.async {

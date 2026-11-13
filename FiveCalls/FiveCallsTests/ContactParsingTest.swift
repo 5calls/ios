@@ -35,4 +35,61 @@ final class ContactParsingTest: XCTestCase {
         // TODO: as part of an operations refactor, await this return so this test finishes ~immediately
         waitForExpectations(timeout: 10) // I hate myself for doing this, but I just need this to be less fragile until the code gets refactored.
     }
+
+    // MARK: rep notices
+
+    private func decodeContactList(_ json: String) throws -> ContactList {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode(ContactList.self, from: Data(json.utf8))
+    }
+
+    private func repsJSON(notice: String?) -> String {
+        let noticeField = notice.map { ", \"notice\": \($0)" } ?? ""
+        return """
+        {"location": "San Francisco", "lowAccuracy": false, "isSplit": false, "state": "CA",
+         "district": "11", "representatives": []\(noticeField)}
+        """
+    }
+
+    func testParsesRepNotice() throws {
+        let list = try decodeContactList(repsJSON(notice: """
+        {"id": 4, "text": " New members take office in January. ", "expiresAt": "2027-01-04T00:00:00Z"}
+        """))
+
+        let notice = try XCTUnwrap(list.notice)
+        XCTAssertEqual(notice.id, 4)
+        XCTAssertEqual(notice.text, "New members take office in January.")
+        XCTAssertEqual(notice.expiresAt, Date(timeIntervalSince1970: 1_799_020_800))
+    }
+
+    func testNoRepNotice() throws {
+        XCTAssertNil(try decodeContactList(repsJSON(notice: nil)).notice)
+        XCTAssertNil(try decodeContactList(repsJSON(notice: "null")).notice)
+    }
+
+    func testMalformedRepNoticeKeepsReps() throws {
+        // a bad notice must not fail the reps response
+        let list = try decodeContactList(repsJSON(notice: "{\"text\": 12}"))
+        XCTAssertNil(list.notice)
+        XCTAssertEqual(list.state, "CA")
+    }
+
+    func testRepNoticeTimestampFormats() {
+        let expected = Date(timeIntervalSince1970: 1_799_020_800)
+        XCTAssertEqual(RepNotice.parseTimestamp("2027-01-04T00:00:00Z"), expected)
+        XCTAssertEqual(RepNotice.parseTimestamp("2027-01-04T00:00:00.000Z"), expected)
+        XCTAssertEqual(RepNotice.parseTimestamp("2027-01-03T16:00:00-08:00"), expected)
+        XCTAssertNil(RepNotice.parseTimestamp("January 2027"))
+    }
+
+    func testRepNoticeIsActive() {
+        let expiry = Date(timeIntervalSince1970: 1_799_020_800)
+        let notice = RepNotice(id: 1, text: "Hello", expiresAt: expiry)
+        XCTAssertTrue(notice.isActive(now: expiry.addingTimeInterval(-1)))
+        // expiry is exclusive, matching the API
+        XCTAssertFalse(notice.isActive(now: expiry))
+        XCTAssertTrue(RepNotice(id: 1, text: "Hello", expiresAt: nil).isActive(now: .distantFuture))
+        XCTAssertFalse(RepNotice(id: 1, text: "", expiresAt: nil).isActive())
+    }
 }
