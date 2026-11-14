@@ -2,7 +2,6 @@
 
 import SwiftUI
 
-/// The server's notice above the caller's reps, styled like the warning box on the website.
 struct RepNoticeView: View {
     let notice: RepNotice
 

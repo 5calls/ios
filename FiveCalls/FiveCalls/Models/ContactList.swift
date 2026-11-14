@@ -9,7 +9,6 @@ class ContactList: Decodable {
     let state: String
     let district: String
     let representatives: [Contact]
-    // optional message to show above the reps, see RepNotice
     let notice: RepNotice?
 
     var generalizedLocationID: String {

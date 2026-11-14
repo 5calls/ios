@@ -62,14 +62,12 @@ class FiveCallsUITests: XCTestCase {
         app.textFields["locationField"].typeText("94110")
         app.textFields["locationField"].typeText("\r")
 
-        // the first issue, on the issue detail screen
         let issue = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Call House Rep'")).firstMatch
         XCTAssertTrue(issue.waitForExistence(timeout: 5))
         issue.tap()
         XCTAssertTrue(app.descendants(matching: .any)["repNotice"].waitForExistence(timeout: 5))
         attachScreenshot(named: "rep-notice-issue")
 
-        // and the Reps tab
         app.navigationBars.buttons.firstMatch.tap()
         app.buttons["Reps"].tap()
         XCTAssertTrue(app.descendants(matching: .any)["repNotice"].waitForExistence(timeout: 5))
@@ -85,7 +83,8 @@ class FiveCallsUITests: XCTestCase {
         add(attachment)
     }
 
-    /// The UI reps fixture with a notice added, written somewhere the app can read it.
+    /// Built from the shared fixture at runtime so testTakeScreenshots, which uses that fixture for
+    /// the App Store screenshots, doesn't get a notice.
     private func repsFixtureWithNotice() throws -> String {
         let bundle = Bundle(for: FiveCallsUITests.self)
         let fixture = try XCTUnwrap(bundle.url(forResource: "GET-v1-reps-UI", withExtension: "json"))

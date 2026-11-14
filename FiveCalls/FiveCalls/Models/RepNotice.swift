@@ -2,8 +2,6 @@
 
 import Foundation
 
-/// A server-controlled message shown above the caller's reps, e.g. explaining that new members of
-/// Congress don't take office until January. The API only sends a notice while it's live.
 struct RepNotice: Decodable, Equatable {
     let id: Int
     let text: String

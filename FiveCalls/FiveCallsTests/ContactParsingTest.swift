@@ -69,7 +69,6 @@ final class ContactParsingTest: XCTestCase {
     }
 
     func testMalformedRepNoticeKeepsReps() throws {
-        // a bad notice must not fail the reps response
         let list = try decodeContactList(repsJSON(notice: "{\"text\": 12}"))
         XCTAssertNil(list.notice)
         XCTAssertEqual(list.state, "CA")
