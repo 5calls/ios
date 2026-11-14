@@ -51,6 +51,10 @@ struct IssueDetail: View {
                         .padding(.bottom, 2)
                         .padding(.leading, 6)
                         .accessibilityAddTraits(.isHeader)
+                    if let notice = store.state.repNotice, notice.isActive() {
+                        RepNoticeView(notice: notice)
+                            .padding(.bottom, 8)
+                    }
                     VStack(spacing: 0) {
                         targetedRepsList
 

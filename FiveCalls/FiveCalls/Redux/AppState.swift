@@ -26,6 +26,7 @@ class AppState: ObservableObject, ReduxState {
     @Published var issueFetchTime: Date? = nil
     @Published var contacts: [Contact] = []
     @Published var contactsLowAccuracy: Bool = false
+    @Published var repNotice: RepNotice? = nil
     @Published var district: String? = nil
     @Published var isSplitDistrict: Bool = false
     @Published var stateAbbreviation: String? = nil {

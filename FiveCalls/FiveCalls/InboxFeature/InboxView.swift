@@ -57,6 +57,10 @@ struct InboxView: View {
                         Spacer()
                     }
 
+                    if let notice = store.state.repNotice, notice.isActive() {
+                        RepNoticeView(notice: notice)
+                    }
+
                     VStack(spacing: 0) {
                         ForEach(contacts.numbered()) { contact in
                             ContactListItem(contact: contact.element, showComplete: false)

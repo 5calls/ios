@@ -61,6 +61,8 @@ class Store: ObservableObject {
             state.contacts = contacts
         case let .SetContactsLowAccuracy(lowAccuracy):
             state.contactsLowAccuracy = lowAccuracy
+        case let .SetRepNotice(notice):
+            state.repNotice = notice
         case let .SetDistrict(district):
             let oldDistrict = state.district
             state.district = district

@@ -14,6 +14,7 @@ enum Action {
     case FetchContacts(UserLocation)
     case SetContacts([Contact])
     case SetContactsLowAccuracy(Bool)
+    case SetRepNotice(RepNotice?)
     case SetDistrict(String)
     case SetSplitDistrict(Bool)
     case SetStateAbbr(String)
