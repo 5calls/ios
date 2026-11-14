@@ -12,6 +12,7 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
     var district: String?
     var stateAbbreviation: String?
     var lowAccuracy: Bool?
+    var notice: RepNotice?
 
     init(location: UserLocation, config: URLSessionConfiguration? = nil) {
         self.location = location
@@ -77,5 +78,6 @@ class FetchContactsOperation: BaseOperation, @unchecked Sendable {
 
         stateAbbreviation = contactList.state
         contacts = contactList.representatives
+        notice = contactList.notice
     }
 }
