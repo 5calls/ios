@@ -31,7 +31,9 @@ struct FiveCallsApp: App {
                         OperationQueue.main.addOperation(referral)
                     }
                 }
-                .onChange(of: scenePhase) {
+                // initial: on iPad and iPhone Duo the scene can already be active when this
+                // appears, so without it nothing fetches issues until the app is backgrounded
+                .onChange(of: scenePhase, initial: true) {
                     if scenePhase == .active {
                         if store.state.needsIssueRefresh {
                             store.dispatch(action: .FetchIssues)
