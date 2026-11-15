@@ -47,9 +47,7 @@ class FiveCallsUITests: XCTestCase {
         snapshot("3-local-numbers")
     }
 
-    /// Not part of the App Store screenshots: shows the server's notice above the reps so the UI
-    /// can be reviewed. The screenshot is attached to the test result.
-    @MainActor func testRepNoticeScreenshot() throws {
+    @MainActor func testRepNoticeShownAboveReps() throws {
         app.terminate()
         app.launchEnvironment["GET:/v1/reps"] = try repsFixtureWithNotice()
         app.launch()
@@ -66,21 +64,10 @@ class FiveCallsUITests: XCTestCase {
         XCTAssertTrue(issue.waitForExistence(timeout: 5))
         issue.tap()
         XCTAssertTrue(app.descendants(matching: .any)["repNotice"].waitForExistence(timeout: 5))
-        attachScreenshot(named: "rep-notice-issue")
 
         app.navigationBars.buttons.firstMatch.tap()
         app.buttons["Reps"].tap()
         XCTAssertTrue(app.descendants(matching: .any)["repNotice"].waitForExistence(timeout: 5))
-        attachScreenshot(named: "rep-notice-reps-tab")
-    }
-
-    @MainActor private func attachScreenshot(named name: String) {
-        // let the rep photos load
-        sleep(2)
-        let attachment = XCTAttachment(screenshot: app.screenshot())
-        attachment.name = name
-        attachment.lifetime = .keepAlways
-        add(attachment)
     }
 
     /// Built from the shared fixture at runtime so testTakeScreenshots, which uses that fixture for
