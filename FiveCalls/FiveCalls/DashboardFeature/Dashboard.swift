@@ -18,10 +18,16 @@ struct Dashboard: View {
         dynamicTypeSize < DynamicTypeSize.accessibility3
     }
 
+    // The iPhone Duo puts its status bar down the side in portrait, leaving no top safe area,
+    // so the header would sit flush against the top edge without a minimum of its own.
+    @State private var topSafeArea: CGFloat = 0
+    private let minimumTopSpace: CGFloat = 12
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             MainHeader()
                 .padding(.horizontal, 10)
+                .padding(.top, max(0, minimumTopSpace - topSafeArea))
                 .padding(.bottom, 10)
 
             if !shownNewsletterSignup {
@@ -60,6 +66,7 @@ struct Dashboard: View {
             IssuesList(store: store, selectedIssue: $selectedIssue, showAllIssues: $showAllIssues, searchText: $searchText)
         }
         .navigationBarHidden(true)
+        .onGeometryChange(for: CGFloat.self) { $0.safeAreaInsets.top } action: { topSafeArea = $0 }
         .onAppear {
             AnalyticsManager.shared.trackPageview(path: "/")
 
