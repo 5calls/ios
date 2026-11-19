@@ -365,6 +365,42 @@
     "Search my location" : {
       "comment" : "LocationSheet search accessibility label"
     },
+    "Secretary of the Commonwealth Grouping" : {
+      "comment" : "Office Holder grouping description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of the Commonwealth"
+          }
+        }
+      }
+    },
+    "Secretary of the Commonwealth Office" : {
+      "comment" : "Office Holder description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of the Commonwealth"
+          }
+        }
+      }
+    },
+    "Secretary of the Commonwealth Title" : {
+      "comment" : "Office Holder title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secretary of the Commonwealth"
+          }
+        }
+      }
+    },
     "Secretary of State Grouping" : {
       "comment" : "Office Holder grouping description",
       "extractionState" : "extracted_with_value",
@@ -469,6 +505,18 @@
     },
     "State Reps" : {
       "comment" : "Localized rep text for multiple reps\nOffice Holder grouping description"
+    },
+    "State Officials" : {
+      "comment" : "Inbox grouping for state-level representatives and officials",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "State Officials"
+          }
+        }
+      }
     },
     "Sun" : {
       "comment" : "Abbreviated day name"

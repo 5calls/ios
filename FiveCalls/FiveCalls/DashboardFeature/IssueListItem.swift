@@ -72,14 +72,16 @@ struct IssueListItem: View {
         let hasStateUpper = areas.contains("StateUpper")
         let hasStateLower = areas.contains("StateLower")
 
-        let labels: [String] = areas.map { area in
+        let labels: [String] = areas.map { area -> String in
             if (area == "StateUpper" || area == "StateLower") && hasStateUpper && hasStateLower {
-                String(localized: "State Reps", comment: "Localized rep text for multiple reps")
+                return String(localized: "State Reps", comment: "Localized rep text for multiple reps")
             } else if area == "StateUpper" || area == "StateLower" {
-                String(localized: "State Rep", comment: "Localized rep text for single rep")
-            } else {
-                areaToNiceString(area: area)
+                return String(localized: "State Rep", comment: "Localized rep text for single rep")
             }
+
+            let normalizedArea = Contact.normalizedArea(for: area)
+            let state = contacts.first { $0.normalizedArea == normalizedArea }?.state
+            return areaToNiceString(area: area, state: state)
         }
 
         let list = Array(Set(labels)).sorted().joined(separator: ", ")
