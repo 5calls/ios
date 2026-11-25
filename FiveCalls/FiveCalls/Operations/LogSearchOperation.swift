@@ -26,6 +26,7 @@ class LogSearchOperation: BaseOperation, @unchecked Sendable {
 
         let requestBody: [String: Any] = [
             "query": searchQuery,
+            "via": "ios",
         ]
 
         do {
